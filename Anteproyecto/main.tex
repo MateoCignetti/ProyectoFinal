@@ -1,0 +1,85 @@
+\documentclass[11pt, a4paper, fleqn]{article}
+
+% Símbolos y lenguaje español %
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+% Márgenes %
+\usepackage[left=3cm, right=1cm, top=3cm, bottom=2cm]{geometry}
+
+% Paquetes de matemática, símbolos y gráficos %
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{mathtools} % Para splitfrac
+%\usepackage{textcomp}
+%\usepackage{gensymb}
+%\usepackage{xfrac}
+%\usepackage{amsfonts}
+%\usepackage{siunitx}
+
+% Tablas %
+\usepackage{longtable}
+\usepackage{tabularx}
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
+
+% Figuras %
+\usepackage{graphicx}
+\usepackage{subcaption}
+%\usepackage{caption}
+\graphicspath{{./figures/}}
+
+% Interlineado y sangría %
+\usepackage[indent=0.5cm]{parskip}
+\setlength{\mathindent}{0cm}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\onehalfspacing
+\setlength{\parskip}{0.1cm}
+
+% Encabezado y pie de página %
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\headheight}{70pt}
+\addtolength{\topmargin}{-50pt}
+
+\setlength{\headsep}{0cm}
+
+\usepackage{wrapfig}
+\usepackage[bottom]{footmisc}
+%\renewcommand{\headrulewidth}{0cm} % Para borrar la línea del encabezado
+
+% Paquetes para enumerar items %
+\usepackage{enumitem}
+
+% Paquetes de Bibliografía %
+\usepackage[sorting=none,backend=biber,style=numeric,citestyle=authoryear]{biblatex}
+\usepackage{csquotes}
+
+\bibliography{referencias}
+
+% Hipervínculos %
+\usepackage[hidelinks]{hyperref}
+
+% Justificado %
+\usepackage[]{ragged2e}
+
+\begin{document}
+
+    \input{encabezado_pdp}
+    \input{portada}
+
+    \input{introduccion}
+    \input{planteamiento}
+    \input{objetivo}
+    \input{antecedentes}
+    \input{metodologia}
+    \input{cronograma}
+    \input{recursos}
+
+    \newpage
+    %\renewcommand{\refname}{\large REFERENCIAS}
+    \begin{minipage}{0.96\textwidth}
+    \printbibliography
+    \end{minipage}
+\end{document}
