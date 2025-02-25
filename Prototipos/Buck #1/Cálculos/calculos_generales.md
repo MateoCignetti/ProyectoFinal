@@ -27,7 +27,7 @@ Se determina un rendimiento teórico del 90%, se lo toma como criterio de diseñ
 
 ### Cálculo de capacitor de salida
 
-$$C_{min} = \frac{\Delta I_L}{8*f_s*\Delta V_{out}} = \frac{1,2 A}{8*100\times10^3 Hz * 0,12 V} = 12,5 \ \mu F$$
+$$C_{min} = \frac{\Delta I_L}{8 * f_s * \Delta V_{out}} = \frac{1,2 A}{8*100\times10^3 Hz * 0,12 V} = 12,5 \ \mu F$$
 
 Se recomienda el uso de capacitores cerámicos de bajo ESR con material dieléctrico
 X5R. Cualquier capacidad mayor a la calculada puede ser utilizada, sin perder el funcionamiento 
