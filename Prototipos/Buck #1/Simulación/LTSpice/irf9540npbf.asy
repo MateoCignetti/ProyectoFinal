@@ -5,7 +5,7 @@ WINDOW 0 0 -40 Bottom 2
 WINDOW 3 0 40 Top 2
 SYMATTR Prefix X
 SYMATTR Value irf9540npbf
-SYMATTR ModelFile C:\Users\aleal\Downloads\Infineon-Spice File-IRF9540NPBF-SM-v01_00-EN.spi
+SYMATTR ModelFile D:\RepositorioGitHub\ProyectoFinal\Prototipos\Buck #1\Simulación\Modelos_spice\Infineon-Spice File-IRF9540NPBF-SM-v01_00-EN.spi
 PIN -32 0 LEFT 8
 PINATTR PinName 1
 PINATTR SpiceOrder 1

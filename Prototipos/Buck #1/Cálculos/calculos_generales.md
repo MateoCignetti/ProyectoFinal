@@ -43,3 +43,15 @@ $$I_D = I_{out} *(1-D) = 4 \ A * (1-0.28) = 2,88 \ A$$
 
 Corriente media aplicada en el diodo de rectificación. Se recomienda utilizar un Schottky, la 
 tensión soportada por el diodo debe ser al menos un 30% más que la tensión de salida del convertidor
+
+### Red Snubber 
+
+Para este cálculo se utilizó el siguiente documento [Toshiba](https://toshiba.semicon-storage.com/info/application_note_en_20180901_AKX00078.pdf?did=63595).
+No se pudo seguir por completo, pero se realizaron algunas consideraciones para el cálculo.
+
+$C_{OSS} = 400 \ pF \approx C_{snub}$
+
+$$ R_{snub} = \frac{1}{2\pi f_p C_{snub}} = 3,9 \ k\Omega$$
+
+$f_p$, representa la frecuencia de las oscilaciones existentes en la conmutación del transistor, no se
+tiene este valor, pero para un cálculo previo se utiliza 100 kHz correspondiente a la conmutación.
