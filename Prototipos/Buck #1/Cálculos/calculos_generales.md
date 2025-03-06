@@ -12,6 +12,9 @@
 Para el diseño se siguió un diseño de referencia de
 [Texas Instrumens](https://www.ti.com/lit/an/slva477b/slva477b.pdf?ts=1740493656949).
 
+
+## Diseño para 100 kHz
+
 #### Criterios de diseño
 * R = 1,5 $\Omega$
 * Ripple
@@ -55,3 +58,29 @@ $$ R_{snub} = \frac{1}{2\pi f_p C_{snub}} = 3,9 \ k\Omega$$
 
 $f_p$, representa la frecuencia de las oscilaciones existentes en la conmutación del transistor, no se
 tiene este valor, pero para un cálculo previo se utiliza 100 kHz correspondiente a la conmutación.
+
+
+## Diseño para 2 kHz
+
+### Cálculo de Duty Cycle máximo
+
+$$D_{max} = \frac{V_{out}}{V_{in} * \eta} = \frac{6 V}{24 V * 0,9} = 0,28$$
+
+### Cálculo de capacitor de salida
+
+$$C_{min} = \frac{\Delta I_L}{8 * f_s * \Delta V_{out}} = \frac{1,2 A}{8*2\times10^3 Hz * 0,12 V} = 625 \ \mu F$$
+
+### Cálculo de inductor
+
+$$L = \frac{(V_{in}-V_{out})*D_{max}}{f_s * \Delta I_L} = \frac{(24 V-6 V)*0,28}{2\times10^3 Hz * 1,2 A} = 2.1 \ mH$$
+
+### Cálculo diodo
+
+$$I_D = I_{out} *(1-D) = 4 \ A * (1-0.28) = 2,88 \ A$$
+
+
+### Red Snubber 
+
+$C_{OSS} = 400 \ pF \approx C_{snub}$
+
+$$ R_{snub} = \frac{1}{2\pi f_p C_{snub}} = 200 \ k\Omega$$
