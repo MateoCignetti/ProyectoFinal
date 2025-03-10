@@ -23,8 +23,8 @@ Para el diseño se siguió un diseño de referencia de
 #### Criterios de diseño
 * R = 1,5 $\Omega$
 * Ripple
-  * $\Delta V_{out} = 2\% \ V_{out} = 0,02 * 6 V = 0,12 V$ 
-  * $\Delta I_L = 30\% \ I_{out} = 0,3 * 4 A = 1,2 A$
+  * $\Delta V_{out} = 0,02 *  V_{out} = 0,02 * 6 V = 0,12 V$ 
+  * $\Delta I_L = 0,3 * I_{out} = 0,3 * 4 A = 1,2 A$
 * Frecuencia de conmutación ($f_s$), 100 kHz
 
 ### Cálculo de Duty Cycle máximo
@@ -70,9 +70,9 @@ $f_c = 100 Hz$
 
 $C = 10 \ \mu F$
 
-$f_c = \frac{1}{2\pi*R*C}$
+$f_c = \frac{1}{2\pi * R * C}$
 
-$$R = \frac{1}{2\pi*f_c*C} = 159.15 \ \Omega \approx 150 \ \Omega$$
+$$R = \frac{1}{2\pi * f_c * C} = 159.15 \ \Omega \approx 150 \ \Omega$$
 
 ### Resistencia limitadora de corriente para carga de capacitancia de gate de transistor de conmutación
 
@@ -143,8 +143,8 @@ $$ R_{snub} = \frac{1}{2\pi f_p C_{snub}} = 200 \ k\Omega$$
 #### Criterios de diseño
 * R = 1,5 $\Omega$
 * Ripple
-  * $\Delta V_{out} = 2\% \ V_{out} = 0,02 * 6 V = 0,12 \ V$ 
-  * $\Delta I_L = 30\% \ I_{out} = 0,3 * 2 A = 0,6 \ A$
+  * $\Delta V_{out} = 0,02 \ V_{out} = 0,02 * 6 V = 0,12 \ V$ 
+  * $\Delta I_L = 0,3 \ I_{out} = 0,3 * 2 A = 0,6 \ A$
 * Frecuencia de conmutación ($f_s$), 15 kHz
 
 ### Cálculo de Duty Cycle máximo
