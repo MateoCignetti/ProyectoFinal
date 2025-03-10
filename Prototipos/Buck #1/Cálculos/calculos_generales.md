@@ -129,3 +129,36 @@ $$I_D = I_{out} *(1-D) = 4 \ A * (1-0.28) = 2,88 \ A$$
 $C_{OSS} = 400 \ pF \approx C_{snub}$
 
 $$ R_{snub} = \frac{1}{2\pi f_p C_{snub}} = 200 \ k\Omega$$
+
+
+## Otro diseño 12 V
+
+### Requisitos
+| Entrada | Salida |
+|-------|-------|
+|$V_{in}$ = 12 V| $V_{out}$ = 6 V|
+|$I_{in}$ = 1 A | $I_{out}$ = 2 A|
+|P = 12 W|
+
+#### Criterios de diseño
+* R = 1,5 $\Omega$
+* Ripple
+  * $\Delta V_{out} = 2\% \ V_{out} = 0,02 * 6 V = 0,12 \ V$ 
+  * $\Delta I_L = 30\% \ I_{out} = 0,3 * 2 A = 0,6 \ A$
+* Frecuencia de conmutación ($f_s$), 15 kHz
+
+### Cálculo de Duty Cycle máximo
+
+$$D_{max} = \frac{V_{out}}{V_{in} * \eta} = \frac{6 V}{12 V * 0,9} = 0,55$$
+
+### Cálculo de capacitor de salida
+
+$$C_{min} = \frac{\Delta I_L}{8 * f_s * \Delta V_{out}} = \frac{0,6 A}{8*15\times10^3 Hz * 0,12 V} = 41,66 \ \mu F$$
+
+### Cálculo de inductor
+
+$$L = \frac{(V_{in}-V_{out})*D_{max}}{f_s * \Delta I_L} = \frac{(12 V-6 V)*0,55}{15\times10^3 Hz * 0,6 A} = 366,66 \ \mu H$$
+
+### Cálculo diodo
+
+$$I_D = I_{out} *(1-D) = 2 \ A * (1-0.55) = 0,9 \ A$$
