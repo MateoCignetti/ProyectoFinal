@@ -1,11 +1,6 @@
 # Diseño Convertidor Buck
 
-<img src="figures/buck.svg" class="icono">
-<style>
-  .icono {
-    filter: invert(100%);
-  }
-</style>
+![Buck](figures/buck.svg)
 
 ### Requisitos
 | Entrada | Salida |
@@ -79,6 +74,8 @@ $$R = \frac{1}{2\pi*f_c*C} = 159.15 \ \Omega \approx 150 \ \Omega$$
 [Infineon](https://www.infineon.com/dgdl/Infineon-power_mosfet_basics-Article-v01_00-EN.pdf?fileId=8ac78c8c8d2fe47b018e625961741a0e&redirId=273241)
 
 [Stack Exchange](https://electronics.stackexchange.com/questions/287792/what-the-best-way-to-calculate-rg-gate-driver-for-mosfet)
+
+[Texas Instruments](https://www.ti.com/lit/ml/slua618a/slua618a.pdf?ts=1741669157446)
 
 ## Diseño para 15 kHz
 
