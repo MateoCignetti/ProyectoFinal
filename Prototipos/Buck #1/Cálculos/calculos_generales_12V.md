@@ -49,12 +49,27 @@ tensión soportada por el diodo debe ser al menos un 30% más que la tensión de
 Para este cálculo se utilizó el siguiente documento [Toshiba](https://toshiba.semicon-storage.com/info/application_note_en_20180901_AKX00078.pdf?did=63595).
 No se pudo seguir por completo, pero se realizaron algunas consideraciones para el cálculo.
 
-$C_{OSS} = 400 \ pF \approx C_{snub}$
+Se supone un valor de inductancia parásita típico de 50 nH. $C_P = C_{OSS}$
 
-$$ R_{snub} = \frac{1}{2\pi f_p C_{snub}} = 27 \ k\Omega$$
++ IRF9540
 
-$f_p$, representa la frecuencia de las oscilaciones existentes en la conmutación del transistor, no se
-tiene este valor, pero para un cálculo previo se utiliza 100 kHz correspondiente a la conmutación.
+$C_{OSS} = 400 \ pF \approx C_{snub}(min)$
+
+$$f_{ring} = \frac{1}{2 \pi * \sqrt{L_P * C_P}} = \frac{1}{2 \pi * \sqrt{50 \ nH * 400 \ pF}} = 35,6 MHz$$
+
+$$ R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = 11,2 \ \Omega$$
+
+$f_{ring}$, representa la frecuencia de las oscilaciones existentes en la conmutación del transistor, no se
+tiene este valor, pero se calcula en función de un valor estimado de Inductancia parásita, lo ideal es
+medirlo uno vez el circuito se encuentre armado.
+
++ IRLML6344
+
+$C_{OSS} = 65 \ pF \approx C_{snub}(min)$
+
+$$f_{ring} = \frac{1}{2 \pi * \sqrt{L_P * C_P}} = \frac{1}{2 \pi * \sqrt{50 \ nH * 65 \ pF}} = 88,3 MHz$$
+
+$$ R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = 27,7 \ \Omega$$
 
 ### Filtro RC para entrada de ADC
 
@@ -78,8 +93,21 @@ vería un cortocircuito cuando el capacitor de entrada está descargado generand
 además ayuda a prevenir corrientes residuales de oscilación. A tener en cuenta, cuanto mayor es el valor
 de resistencia, la respuesta del transistor disminuye.
 
-[Infineon](https://www.infineon.com/dgdl/Infineon-power_mosfet_basics-Article-v01_00-EN.pdf?fileId=8ac78c8c8d2fe47b018e625961741a0e&redirId=273241)
+[Infineon](https://www.infineon.com/dgdl/Infineon-power_mosfet_basics-Article-v01_00-EN.pdf?fileId=8ac78c8c8d2fe47b018e625961741a0e&redirId=273241), página 11
 
 [Stack Exchange](https://electronics.stackexchange.com/questions/287792/what-the-best-way-to-calculate-rg-gate-driver-for-mosfet)
 
 [Texas Instruments](https://www.ti.com/lit/ml/slua618a/slua618a.pdf?ts=1741669157446)
+
+### Resistencia para transistor de conmutación
+
+La corriente requerida para cargar la gate del transistor está determinada por su capacitancia de gate, y
+el período de conmutación.
+
+$t=1/f_s = 66,66 \ \mu s$
+
+$$I_g = \frac{Q_g}{t} = \frac{97 \ nC}{66,66 \ \mu s} = 1,455 \ mA$$
+
+$$R_{max} = \frac{V_{in}}{I_g} = \frac{12 \ V}{1,455 \ mA} = 8,25 \ k\Omega$$
+
+Este valor fue probado en simulación pero generaba una disminución drástica en el tiempo de respuesta del transistor, por ello se probará en la práctica para determinar si este cálculo es adecuado o no.
