@@ -25,13 +25,18 @@ Otro punto importante de los convertidores es el modo de operación, el mismo pu
 
 Si un convertidor fue diseñado para trabajar en modo CCM, también lo hará en modo DCM cuando al corriente por la carga disminuye.
 
+Las imágenes siguientes fueron obtenidas de [Wikipedia](https://es.wikipedia.org/wiki/Convertidor_reductor#:~:text=El%20convertidor%20reductor%E2%80%8B%E2%80%8B,menor%20que%20a%20su%20entrada.).
+
+![CCM](figures/buck-continuous.png)
+![DCM](figures/buck-discontinuous.png)
+
 ## Funcionamiento
 
 ### Modo Encendido
 
 ![Modo 1](figures/Buck-Converter-mode-1.png)
 
-En este momento el diodo queda polarizado de forma inversa, haciendo que toda la corriente de entrada se aplique en el inductor. En este momento el inductor se carga.
+En este momento el diodo queda polarizado de forma inversa, haciendo que toda la corriente de entrada se aplique en el inductor; el inductor se carga.
 
 ![Modo 1 ondas](figures/mode-1-waveform.png)
 
@@ -42,4 +47,12 @@ En la figura anterior se observa que, mientras el interruptor (en la mayoría de
 ![Modo 2](figures/Buck-Converter-mode-2.png)
 
 En este momento, el interruptor se encuentra abierto, y el inductor comienza a funcionar como una fuente (¿de corriente?), y el diodo queda polarizado en forma directa. 
+
+## Red de Snubber
+
+![Red Snubber](figures/red-snubber.png)
+
+Esta red es la encargada de reducir los picos de voltaje y de proteger al interruptor, frente a la rápida conmutación que realiza el mismo. Cuando el transistor conmuta en un periodo muy pequeño (alta frecuencia), se generan picos en $t_{on}$ y $t_{off}$ que son indeseados y empeoran el rendimiento del convertidor, por ello, se utiliza una red de Snubber, filtro RC que se encarga de filtrar esos altos picos de tensión debidos a la conmutación del interruptor.
+
+![Respuestas red Snubber](figures/respuestas-snubber.png)
 
