@@ -26,7 +26,7 @@
 *Reemplazando 2 en 1:*
 
 3. $$V_{DIAC} = \dfrac{V_{ca}}{\sqrt{R^2+{X_C}^2}} \cdot X_C$$
-4. $$\hat{V}_{DIAC} = \dfrac{V_{DIAC}}{\sqrt{2}}$$
+4. $$\hat{V}_{DIAC} = \dfrac{V\_{DIAC}}{\sqrt{2}}$$
 
 *Reemplazando 4 en 3:*
 
@@ -78,7 +78,7 @@ Se establece una **resistencia mínima** $R4 = 1 k\Omega$ y se decide utilizar u
 
 ### Desarrollo de fórmulas
 
-Según [STMicroelectronics](https://www.st.com/resource/en/application_note/an437-rc-snubber-circuit-design-for-triacs-stmicroelectronics.pdf) para los TRIACs con  $ dI/dt $ máxima de $ 50\  A/\mu s $, se necesita como mínimo una resistencia de $47\ \Omega$. Se selecciona un **capacitor** $C2 = 10\ nF$ al igual que en la guía, ya que en la práctica la selección del mismo depende mucho de la carga *(sujeto a cambio)*.
+Según [STMicroelectronics](https://www.st.com/resource/en/application_note/an437-rc-snubber-circuit-design-for-triacs-stmicroelectronics.pdf) para los TRIACs con  $ dI/dt $ máxima de  $50\  A/\mu s$, se necesita como mínimo una resistencia de $47\ \Omega$. Se selecciona un **capacitor** $C2 = 10\ nF$ al igual que en la guía, ya que en la práctica la selección del mismo depende mucho de la carga *(sujeto a cambio)*.
 
 *Usando resistencias con tolerancias $\pm 5 \%$ (banda dorada en THT):*
 
