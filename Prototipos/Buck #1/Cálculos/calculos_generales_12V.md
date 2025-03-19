@@ -71,6 +71,8 @@ $$f_{ring} = \frac{1}{2 \pi * \sqrt{L_P * C_P}} = \frac{1}{2 \pi * \sqrt{50 \ nH
 
 $$ R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = 27,7 \ \Omega$$
 
+**Puede ser necesario una red de snubber para el diodo rectificador**
+
 ### Filtro RC para entrada de ADC
 
 $f_c = 100 Hz$
@@ -80,6 +82,18 @@ $C = 10 \ \mu F$
 $f_c = \frac{1}{2\pi * R * C}$
 
 $$R = \frac{1}{2\pi * f_c * C} = 159.15 \ \Omega \approx 150 \ \Omega$$
+
+### Divisor de tensión (retroalimentación micro)
+
+Tensión de salida requerida 3,3 V.
+
+![Divisor tensión](figures/divisor-tension.png)
+
+$$V_{out} = \frac{V_{in}*R_2}{R_1+R_2}$$
+
+$$3,3 \ V= \frac{12 \ V*4,7 \ k\Omega}{R_1+4,7 \ k\Omega}$$
+
+$$R_1 = 12,39 \ k\Omega$$
 
 ### Resistencia limitadora de corriente para carga de capacitancia de gate de transistor utilizado como driver
 
