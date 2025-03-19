@@ -94,9 +94,9 @@ Por lo tanto, se opta por utilizar una $R9 = 51\ \Omega$ si es una resistencia c
 
 ### Criterios de diseño - Emisor
 
-* $I_{F(max)} = 60\ mA $ ([Datasheet MOC3021-M](../../../Datasheets/MOC3021-M.pdf)) $\rightarrow I_F = 30\ mA$
+* $I_{F(max)} = 60\ mA$ ([Datasheet MOC3021-M](../../../Datasheets/MOC3021-M.pdf)) $\rightarrow I_F = 30\ mA$
 
-* $V_{F(typ)} = 1,15\ V $ ([Datasheet MOC3021-M](../../../Datasheets/MOC3021-M.pdf))
+* $V_{F(typ)} = 1,15\ V$ ([Datasheet MOC3021-M](../../../Datasheets/MOC3021-M.pdf))
 
 ### Desarrollo de fórmulas - Emisor
 
@@ -104,7 +104,7 @@ Por lo tanto, se opta por utilizar una $R9 = 51\ \Omega$ si es una resistencia c
 
 ### Criterios de diseño - Detector
 
-* $I_{TSM(max)} = 1\ A $ ([Datasheet MOC3021-M](../../../Datasheets/MOC3021-M.pdf)) $\rightarrow I_{TSM} = 0.8\ A$ (corriente pico repetitiva máxima)
+* $I_{TSM(max)} = 1\ A$ ([Datasheet MOC3021-M](../../../Datasheets/MOC3021-M.pdf)) $\rightarrow I_{TSM} = 0.8\ A$ (corriente pico repetitiva máxima)
 
 ### Desarrollo de fórmulas - Detector
 
@@ -120,9 +120,9 @@ Por lo tanto, se opta por utilizar una $R9 = 51\ \Omega$ si es una resistencia c
 
 ### Criterios de diseño
 
-* $I_{TSM(max)} = 1\ A $ ([Datasheet EL817](../../../Datasheets/EL817.pdf)) $\rightarrow I_{TSM} = 0.8\ A$ (corriente pico repetitiva máxima)
+* $I_{TSM(max)} = 1\ A$ ([Datasheet EL817](../../../Datasheets/EL817.pdf)) $\rightarrow I_{TSM} = 0.8\ A$ (corriente pico repetitiva máxima)
 
-* $V_{F(typ)} = 1,2\ V $ ([Datasheet EL817](../../../Datasheets/EL817.pdf))
+* $V_{F(typ)} = 1,2\ V$ ([Datasheet EL817](../../../Datasheets/EL817.pdf))
 
 ### Desarrollo de fórmulas
 
