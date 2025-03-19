@@ -297,7 +297,7 @@ TSWLatexianTemp*
 *.pch
 
 # Libraries
-*.lib
+#*.lib #Ver #27
 *.a
 *.la
 *.lo
@@ -323,7 +323,7 @@ TSWLatexianTemp*
 *.pdb
 
 # Kernel Module Compile Results
-*.mod*
+#*.mod* #Ver #27
 *.cmd
 .tmp_versions/
 modules.order
