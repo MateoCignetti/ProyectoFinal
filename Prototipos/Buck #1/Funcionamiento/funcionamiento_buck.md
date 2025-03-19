@@ -19,7 +19,7 @@ Un convertidor Buck básico consiste en una conmutación controlada de un interr
 
 El voltaje medio de salida del convertidor puede ser controlado de 2 formas, PWM (pulse width modulation) o PFM (pulse frequency modulation). En el primero de los casos lo que se modifica es el tiempo de encendido, manteniéndose el periodo constante. A diferencia de PFM donde el periodo es el que se modifica (cambia la frecuencia de conmutación), pero el tiempo de encendido se mantiene constante, por ejemplo en un 50 % del duty. El método más elegido para los convertidores buck es el PWM.
 
-Otro punto importante de los convertidores es el modo de operación, el mismo puede operar en dos modos de conducción, CCM (continuous conduction mode) y DCM (discontinues conduction mode); en el primero la corriente en el inductor de salida permanece en un valor positivo, haciendo que nunca tenga corriente cero a través del mismo en el periodo de conmutación. En cambio para el caso de DCM, la corriente en el inductor se hace cero en algunos momentos del periodo de conmutación.
+Otro punto importante de los convertidores es el modo de operación, el mismo puede operar en dos modos de conducción, CCM (continuous conduction mode) y DCM (discontinuous conduction mode); en el primero la corriente en el inductor de salida permanece en un valor positivo, haciendo que nunca tenga corriente cero a través del mismo en el periodo de conmutación. En cambio para el caso de DCM, la corriente en el inductor se hace cero en algunos momentos del periodo de conmutación.
 
 ![CCM-DCM](figures/CCM-DCM-Graphs.png)
 
@@ -54,7 +54,7 @@ En la figura anterior se observa que, mientras el interruptor (en la mayoría de
 
 ![Modo 2](figures/Buck-Converter-mode-2.png)
 
-En este momento, el interruptor se encuentra abierto, y el inductor comienza a funcionar como una fuente (¿de corriente?), y el diodo queda polarizado en forma directa. 
+En este momento, el interruptor se encuentra abierto, y el inductor cambia su polaridad para oponerse a la descarga que está sufriendo el mismo, y el diodo queda polarizado en forma directa. 
 
 ### Medición de tensión
 
