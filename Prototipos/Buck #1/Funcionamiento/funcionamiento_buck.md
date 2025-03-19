@@ -32,6 +32,14 @@ Las imágenes siguientes fueron obtenidas de [Wikipedia](https://es.wikipedia.or
 
 ## Funcionamiento
 
+### Componentes principales del convertidor
+
+* Interruptor, puede ser un transistor BJT como un MOSFET.
+* Diodo de rectificación.
+* Inductor.
+* Capacitor de salida.
+* Controlador PWM.
+
 ### Modo Encendido
 
 ![Modo 1](figures/Buck-Converter-mode-1.png)
@@ -47,6 +55,16 @@ En la figura anterior se observa que, mientras el interruptor (en la mayoría de
 ![Modo 2](figures/Buck-Converter-mode-2.png)
 
 En este momento, el interruptor se encuentra abierto, y el inductor comienza a funcionar como una fuente (¿de corriente?), y el diodo queda polarizado en forma directa. 
+
+### Medición de tensión
+
+La medición de tensión es realizada mediante un divisor resistivo que reduce la tensión a un valor seguro para trabajarlo en el microcontrolador. Además se le anexa un filtro RC a la entrada del ADC para mejorar la medición del mismo. 
+
+El objetivo de esta medición es poder realizar un control preciso de la tensión y corriente entregada a la carga, por ello se aplica un lazo cerrado donde la tensión de salida se la compara con una tensión de referencia (set-point), para así aplicar la corrección del ciclo de trabajo del PWM para lograr la conmutación correcta del transistor.
+
+Si la carga demanda menos corriente, la tensión tiende a subir y viceversa, por ello la utilidad de un control para ajustar el D en función de la carga conectada al convertidor.
+
+Hay diversas técnicas de control, dentro de las más utilizadas, PID.
 
 ## Red de Snubber
 
