@@ -125,3 +125,5 @@ $$I_g = \frac{Q_g}{t} = \frac{97 \ nC}{66,66 \ \mu s} = 1,455 \ mA$$
 $$R_{max} = \frac{V_{in}}{I_g} = \frac{12 \ V}{1,455 \ mA} = 8,25 \ k\Omega$$
 
 Este valor fue probado en simulación pero generaba una disminución drástica en el tiempo de respuesta del transistor, por ello se probará en la práctica para determinar si este cálculo es adecuado o no.
+
+## Otro diseño - [Convertirdor 24 V](calculos_ganerales_24V_old)
