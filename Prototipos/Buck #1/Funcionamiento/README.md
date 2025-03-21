@@ -4,12 +4,19 @@
 
 ### Lista de Entradas-Salidas
 
+<!-- 
 | Señal | Tipo |
 |----|-----|
 | Tensión de alimentación | Entrada |
 | Señal de control gate | Entrada |
 | Tensión de salida | Salida |
 | Tensión de retroalimentación | Salida |
+-->
+
+| Entrada | Salida |
+|----|-----|
+| Tensión de alimentación, $V_{cc}$ = 12 V | Tensión de salida, $V_{out}$ = 6 V|
+| Señal de control gate, PWM -- 0 a 3,3 V | Tensión de retroalimentación, $V_\beta$ entre 0 y 3,3 V  |
 
 El desarrollo siguiente fue obtenido de, [Electrical Technology](https://www.electricaltechnology.org/2020/09/buck-converter.html), 
 
