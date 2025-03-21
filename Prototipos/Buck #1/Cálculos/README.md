@@ -113,7 +113,7 @@ de resistencia, la respuesta del transistor disminuye.
 
 [Texas Instruments](https://www.ti.com/lit/ml/slua618a/slua618a.pdf?ts=1741669157446)
 
-Tener en cuenta que el transistor utilizado es un MOSFET de nivel lógico, se puede utilizar un transistor BJT en caso de que la primer solución no entregue resultados acordes a lo esperado. Una opción en transistores BJT es el uso de 2N2222. IRL540 (MOSFET)
+Tener en cuenta que el transistor utilizado es un MOSFET de nivel lógico, se puede utilizar un transistor BJT en caso de que la primer solución no entregue resultados acordes a lo esperado. Una opción en transistores BJT es el uso de 2N2222, BC548,  2N2219. IRL540 (MOSFET)
 
 ### Resistencia para transistor de conmutación
 
@@ -126,6 +126,13 @@ $$I_g = \frac{Q_g}{t} = \frac{97 \ nC}{66,66 \ \mu s} = 1,455 \ mA$$
 
 $$R_{max} = \frac{V_{in}}{I_g} = \frac{12 \ V}{1,455 \ mA} = 8,25 \ k\Omega$$
 
-Este valor fue probado en simulación pero generaba una disminución drástica en el tiempo de respuesta del transistor, por ello se probará en la práctica para determinar si este cálculo es adecuado o no.
+Este valor fue probado en simulación pero generaba una disminución drástica en el tiempo de respuesta del 
+transistor, por ello se probará en la práctica para determinar si este cálculo es adecuado o no.
+
+## Diseño Prototipo 12 V
+
+![Circuito](figures/circuito-buck.png)
+
+![Circuito de disparo](figures/drive-buck.png)
 
 ## Otro diseño - [Convertirdor 24 V](calculos_ganerales_24V_old.md)
