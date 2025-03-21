@@ -113,6 +113,8 @@ de resistencia, la respuesta del transistor disminuye.
 
 [Texas Instruments](https://www.ti.com/lit/ml/slua618a/slua618a.pdf?ts=1741669157446)
 
+Tener en cuenta que el transistor utilizado es un MOSFET de nivel lógico, se puede utilizar un transistor BJT en caso de que la primer solución no entregue resultados acordes a lo esperado. Una opción en transistores BJT es el uso de 2N2222. IRL540 (MOSFET)
+
 ### Resistencia para transistor de conmutación
 
 La corriente requerida para cargar la gate del transistor está determinada por su capacitancia de gate, y
