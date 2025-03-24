@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP BT137-600E,127
+D BT137-600E,127 8A, 600V, TRIAC, Gate Trigger 1.5V 25mA, 3-pin, Through Hole, TO-220AB WeEn Semiconductors Co., Ltd
+K
+F http://www.ween-semi.com/sites/default/files/2018-10/bt137-600e.pdf
+$ENDCMP
+#
+#End Doc Library
