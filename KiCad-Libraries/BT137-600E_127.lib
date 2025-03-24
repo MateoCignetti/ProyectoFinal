@@ -1,0 +1,31 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#SamacSys ECAD Model BT137-600E,127
+#/1159960/952270/2.50/3/4/Triac MT
+DEF BT137-600E,127 Q 0 30 Y Y 1 F N
+F0 "Q" 550 -100 50 H V L CNN
+F1 "BT137-600E,127" 550 -200 50 H V L CNN
+F2 "TO254P470X1000X2000-3P" 550 -300 50 H I L CNN
+F3 "http://www.ween-semi.com/sites/default/files/2018-10/bt137-600e.pdf" 550 -400 50 H I L CNN
+F4 "BT137-600E,127 8A, 600V, TRIAC, Gate Trigger 1.5V 25mA, 3-pin, Through Hole, TO-220AB WeEn Semiconductors Co., Ltd" 550 -500 50 H I L CNN "Description"
+F5 "4.7" 550 -600 50 H I L CNN "Height"
+F6 "771-BT137-600E" 550 -700 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/WeEn-Semiconductors/BT137-600E127?qs=me8TqzrmIYUZpSeuBf3dRg%3D%3D" 550 -800 50 H I L CNN "Mouser Price/Stock"
+F8 "WeEn Semiconductors" 550 -900 50 H I L CNN "Manufacturer_Name"
+F9 "BT137-600E,127" 550 -1000 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+X ~ 1 600 0 100 L 50 50 0 0 P
+X ~ 2 0 0 100 R 50 50 0 0 P
+X ~ 3 500 -250 100 U 50 50 0 0 P
+P 2 0 1 6 350 0 350 -100 N
+P 2 0 1 6 250 0 250 100 N
+P 2 0 1 6 350 0 500 0 N
+P 2 0 1 6 250 0 100 0 N
+P 2 0 1 6 350 -50 500 -150 N
+C 300 0 180 0 1 10 N
+P 4 0 1 10 350 100 350 0 250 50 350 100 F
+P 4 0 1 10 250 -100 250 0 350 -50 250 -100 F
+ENDDRAW
+ENDDEF
+#
+#End Library
