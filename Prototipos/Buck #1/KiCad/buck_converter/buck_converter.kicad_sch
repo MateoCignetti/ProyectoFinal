@@ -4713,7 +4713,7 @@
 				)
 			)
 		)
-		(property "Value" "~"
+		(property "Value" "33k"
 			(at 162.56 119.888 90)
 			(effects
 				(font
@@ -5033,7 +5033,7 @@
 				)
 			)
 		)
-		(property "Value" "~"
+		(property "Value" "180"
 			(at 189.992 113.03 90)
 			(effects
 				(font
@@ -5980,7 +5980,7 @@
 				)
 			)
 		)
-		(property "Value" "~"
+		(property "Value" "2p"
 			(at 194.818 123.19 90)
 			(effects
 				(font
@@ -6495,7 +6495,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "~"
+		(property "Value" "120"
 			(at 167.132 107.95 0)
 			(effects
 				(font
