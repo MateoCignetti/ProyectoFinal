@@ -2735,16 +2735,6 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 83.82) (xy 157.48 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "10c16b1f-e62c-4a2c-8b80-52a52eb2dd83")
-	)
-	(wire
-		(pts
 			(xy 104.14 62.23) (xy 110.49 62.23)
 		)
 		(stroke
@@ -2855,13 +2845,13 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 81.28) (xy 157.48 81.28)
+			(xy 154.94 83.82) (xy 157.48 83.82)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "31ce8290-af9b-4f17-a595-be4ed46a5180")
+		(uuid "35c86087-d293-4e03-82e4-1618864b650d")
 	)
 	(wire
 		(pts
@@ -3332,6 +3322,16 @@
 			(type default)
 		)
 		(uuid "bb837bb9-5f2c-44d3-9479-2fd6087b52c4")
+	)
+	(wire
+		(pts
+			(xy 154.94 81.28) (xy 157.48 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bd4b2db8-68dc-4f3a-90b3-0cca9e0ff412")
 	)
 	(wire
 		(pts
@@ -4529,32 +4529,34 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
-		(at 149.86 83.82 180)
+		(at 149.86 81.28 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "3d08ba4b-e686-4173-af90-d8c992e746f5")
 		(property "Reference" "J1"
-			(at 149.86 74.93 0)
+			(at 147.32 81.2799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Value" "Conn_01x02"
-			(at 149.86 77.47 0)
+			(at 147.32 83.8199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal"
-			(at 149.86 83.82 0)
+			(at 149.86 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4563,7 +4565,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 149.86 83.82 0)
+			(at 149.86 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4572,7 +4574,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 149.86 83.82 0)
+			(at 149.86 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
