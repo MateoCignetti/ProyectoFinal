@@ -12,11 +12,15 @@
 | Resistencia THT 1/4 W     | 2,2 k\Omega       | 1         |
 | Resistencia THT 1/4 W     | 4,7 k\Omega       | 1         |
 | Resistencia THT 1/4 W     | 27 \Omega         | 1         |
+| Resistencia THT 1/4 W     | 120 \Omega        | 1         |
+| Resistencia THT 1/4 W     | 33 k \Omega       | 1         |
+| Resistencia THT 1/4 W     | 180 \Omega        | 1         |
 | Capacitor Cerámico        | 400 pF            | 1         |
 | Capacitor Cerámico        | 42 uF             | 1         |
 | Capacitor Cerámico        | 10 uF             | 1         |
 | Capacitor Cerámico        | 65 pF             | 1         |
 | Capacitor Cerámico        | 1 uF              | 1         |
+| Capacitor Cerámico        | 2 pF              | 1         |
 | Diodo Schottky            | Cualquiera 1 A    | 1         |
 | Diodo Schottky            | Cualquiera        | 3         |
 | Terminal                  | Cualquiera        | 2         |
@@ -24,4 +28,4 @@
 
 Para la utilización de otros transistores revisar [hoja de cálculos](../Cálculos/README.md)
 
-La red de Snubber para el transistor BJT y diodo no se encuentra calculada, valores a determinar.
+La diodo no se encuentra calculada, valores a determinar.
