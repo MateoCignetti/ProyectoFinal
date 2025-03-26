@@ -1,4 +1,4 @@
-25136481094412645
+25136481094412741
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -65505,21 +65505,21 @@ solder jumper open
 0
 3
 3
-KICAD-Libraries
+KiCad-Libraries
 SOT23
 <b>SOT-23</b>
 
 0
 3
 3
-KICAD-Libraries
+KiCad-Libraries
 TO254P470X1000X2000-3P
 TO-220AB (SOT78)
 Triac MT
 0
 3
 3
-KICAD-Libraries
+KiCad-Libraries
 TO254P1052X465X1989-3
 
 
