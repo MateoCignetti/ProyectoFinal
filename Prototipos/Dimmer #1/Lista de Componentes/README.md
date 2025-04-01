@@ -17,6 +17,8 @@
 | Resistencia THT 1/4 W &plusmn;5% |  10 $k\Omega$  |        1 |
 | Resistencia THT 1/4 W &plusmn;5% |  12 $k\Omega$  |        1 |
 | Resistencia THT 1/4 W &plusmn;5% |  150 $k\Omega$ |        1 |
+| Terminal 2x1                     |  Cualquiera    |        2 |
+| Tira de pines macho  6x1         |  Cualquiera    |        1 |
 | Transistor BJT NPN               |     BC548B     |        1 |
 | TRIAC                            |      BT137     |        1 |
 
