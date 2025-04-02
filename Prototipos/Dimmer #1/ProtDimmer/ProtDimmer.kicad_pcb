@@ -4402,14 +4402,14 @@
 			)
 		)
 	)
-	(footprint "Package_TO_SOT_THT:TO-92_Inline"
+	(footprint "Package_TO_SOT_THT:TO-92_Inline_Wide"
 		(layer "F.Cu")
 		(uuid "c8cce7c6-2c77-4de0-a94d-ccab68e5f568")
-		(at 132.08 77.47 -90)
-		(descr "TO-92 leads in-line, narrow, oval pads, drill 0.75mm (see NXP sot054_po.pdf)")
+		(at 132.08 76.2 -90)
+		(descr "TO-92 leads in-line, wide, drill 0.75mm (see NXP sot054_po.pdf)")
 		(tags "to-92 sc-43 sc-43a sot54 PA33 transistor")
 		(property "Reference" "Q1"
-			(at 1.27 5.02 90)
+			(at 2.54 -3.56 270)
 			(layer "F.SilkS")
 			(uuid "42843f9e-2bfa-4ec4-abd1-298fdab16748")
 			(effects
@@ -4420,7 +4420,7 @@
 			)
 		)
 		(property "Value" "BC548B"
-			(at 1.27 2.79 90)
+			(at 2.54 2.79 270)
 			(layer "F.Fab")
 			(uuid "d7de7d7a-f90d-423a-9f10-81f745cef2f0")
 			(effects
@@ -4430,7 +4430,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/BC550-D.pdf"
+		(property "Datasheet" ""
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -4443,7 +4443,7 @@
 				)
 			)
 		)
-		(property "Description" "0.1A Ic, 30V Vce, Small Signal NPN Transistor, TO-92"
+		(property "Description" ""
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -4462,111 +4462,133 @@
 		(sheetfile "ProtDimmer.kicad_sch")
 		(attr through_hole)
 		(fp_line
-			(start -0.53 1.85)
-			(end 3.07 1.85)
+			(start 0.74 1.85)
+			(end 4.34 1.85)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "88ae34c3-738b-4bdb-99df-987d7f01822b")
+			(uuid "89974133-c5b6-4fda-b46c-4e44dfe444b3")
 		)
 		(fp_arc
-			(start -0.568478 1.838478)
-			(mid -1.132087 -0.994977)
-			(end 1.27 -2.6)
+			(start 0.74 1.85)
+			(mid 0.446097 1.509328)
+			(end 0.215816 1.122795)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "ba52651b-cdf3-4537-aa4a-fe50994a6969")
+			(uuid "fa088036-ab2d-4810-80a7-63573ac0105c")
 		)
 		(fp_arc
-			(start 1.27 -2.6)
-			(mid 3.672087 -0.994977)
-			(end 3.108478 1.838478)
+			(start 4.864184 1.122795)
+			(mid 4.633903 1.509328)
+			(end 4.34 1.85)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "10b29da3-80e3-4380-8779-7619820215e0")
-		)
-		(fp_line
-			(start 4 2.01)
-			(end -1.46 2.01)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "cf21c460-4e97-4342-b6f9-7bf400e9618d")
-		)
-		(fp_line
-			(start 4 2.01)
-			(end 4 -2.73)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "04f868dc-0027-467f-b68c-9dbbad8a59d1")
-		)
-		(fp_line
-			(start -1.46 -2.73)
-			(end -1.46 2.01)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "b391ede6-89d7-434e-b756-1daac08610b6")
-		)
-		(fp_line
-			(start -1.46 -2.73)
-			(end 4 -2.73)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "c12c7483-ac4c-402d-b138-46df1925c2b8")
-		)
-		(fp_line
-			(start -0.5 1.75)
-			(end 3 1.75)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(layer "F.Fab")
-			(uuid "7f9ae3db-2925-40ab-8753-18c79b1873e6")
+			(uuid "cb78cc05-9576-4c00-a63f-a1923d90dab8")
 		)
 		(fp_arc
-			(start -0.483625 1.753625)
-			(mid -1.021221 -0.949055)
-			(end 1.27 -2.48)
+			(start 0.1836 -1.098807)
+			(mid 1.143021 -2.192817)
+			(end 2.54 -2.6)
 			(stroke
-				(width 0.1)
+				(width 0.12)
 				(type solid)
 			)
-			(layer "F.Fab")
-			(uuid "05be9118-31d6-463b-800a-0bc617dde490")
+			(layer "F.SilkS")
+			(uuid "20a93a4e-20a9-4f04-ade8-0e24c9ef10dc")
 		)
 		(fp_arc
-			(start 1.27 -2.48)
-			(mid 3.561221 -0.949055)
-			(end 3.023625 1.753625)
+			(start 2.54 -2.6)
+			(mid 3.936979 -2.192818)
+			(end 4.8964 -1.098807)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "ee98244b-c234-40ba-b8bc-1fcfd866b4cf")
+		)
+		(fp_line
+			(start 6.09 2.01)
+			(end -1.01 2.01)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "de01363c-06cd-4618-af22-7e633b1177a6")
+		)
+		(fp_line
+			(start 6.09 2.01)
+			(end 6.09 -2.73)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "b05d81bf-ae49-4839-bcb2-c0431189eaf0")
+		)
+		(fp_line
+			(start -1.01 -2.73)
+			(end -1.01 2.01)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "9beddf41-94d9-4cf2-99e5-13d9ee539556")
+		)
+		(fp_line
+			(start -1.01 -2.73)
+			(end 6.09 -2.73)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "f39e1c8f-d936-42eb-b7b3-527b04235706")
+		)
+		(fp_line
+			(start 0.8 1.75)
+			(end 4.3 1.75)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "dd5b6710-9b12-4e69-9bec-5f228ea7e497")
+			(uuid "ec47451f-fe19-4db4-89ab-66e18dfbec64")
+		)
+		(fp_arc
+			(start 0.786375 1.753625)
+			(mid 0.248779 -0.949055)
+			(end 2.54 -2.48)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "4066e031-9c75-4a2d-b1b9-b2a05298891a")
+		)
+		(fp_arc
+			(start 2.54 -2.48)
+			(mid 4.831221 -0.949055)
+			(end 4.293625 1.753625)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "5078643b-43e8-469b-bc31-026a753a7e4d")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 1.27 0 90)
+			(at 2.54 0 270)
 			(layer "F.Fab")
 			(uuid "414d9225-b2ad-443e-ab34-0254ea463a27")
 			(effects
@@ -4577,9 +4599,9 @@
 			)
 		)
 		(pad "1" thru_hole rect
-			(at -1.27 0 270)
-			(size 1.05 1.5)
-			(drill 0.75)
+			(at 0 0 270)
+			(size 1.5 1.5)
+			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 5 "RELAY_T2")
@@ -4587,10 +4609,10 @@
 			(pintype "passive")
 			(uuid "fdf35757-61fa-4ef0-9bb5-a84d4159fef5")
 		)
-		(pad "2" thru_hole oval
-			(at 1.27 0 270)
-			(size 1.05 1.5)
-			(drill 0.75)
+		(pad "2" thru_hole circle
+			(at 2.54 0 270)
+			(size 1.5 1.5)
+			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 7 "Net-(Q1-B)")
@@ -4598,10 +4620,10 @@
 			(pintype "input")
 			(uuid "b062d553-bc17-47f5-9bbf-e059d0894026")
 		)
-		(pad "3" thru_hole oval
-			(at 3.81 0 270)
-			(size 1.05 1.5)
-			(drill 0.75)
+		(pad "3" thru_hole circle
+			(at 5.08 0 270)
+			(size 1.5 1.5)
+			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 6 "GND")
@@ -4610,7 +4632,7 @@
 			(uuid "003468d1-7cc9-4e23-9c48-4216e0f6db29")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/Package_TO_SOT_THT.3dshapes/TO-92_Inline.wrl"
+		(model "${KICAD9_3DMODEL_DIR}/Package_TO_SOT_THT.3dshapes/TO-92_Inline_Wide.wrl"
 			(offset
 				(xyz 0 0 0)
 			)
