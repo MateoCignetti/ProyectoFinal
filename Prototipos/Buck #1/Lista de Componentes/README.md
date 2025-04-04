@@ -10,6 +10,7 @@
 | Capacitor Cerámico        | 42 uF             | 1         |
 | Diodo Schottky            | Cualquiera        | 3         |
 | Diodo Schottky            | Cualquiera 1 A    | 1         |
+| Inductor                  | 370 $\mu$ H       | 1         |
 | Resistencia THT 1/4 W     | 12 $\Omega$       | 1         |
 | Resistencia THT 1/4 W     | 27 $\Omega$       | 1         |
 | Resistencia THT 1/4 W     | 120 $\Omega$      | 1         |
