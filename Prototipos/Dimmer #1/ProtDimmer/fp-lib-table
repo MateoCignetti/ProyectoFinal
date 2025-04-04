@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "ProyectoFinal")(type "KiCad")(uri "/home/mateoc/Documents/ProyectoFinal/KiCad-Libraries")(options "")(descr ""))
+)
