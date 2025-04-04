@@ -5,6 +5,196 @@
 	(uuid "8fe4964a-9912-49f6-ab4d-d9753d9df11d")
 	(paper "A4")
 	(lib_symbols
+		(symbol "Connector:Screw_Terminal_01x02"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Screw_Terminal_01x02"
+				(at 0 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "screw terminal"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "TerminalBlock*:*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Screw_Terminal_01x02_1_1"
+				(rectangle
+					(start -1.27 1.27)
+					(end 1.27 -3.81)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.5334 0.3302) (xy 0.3302 -0.508)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.5334 -2.2098) (xy 0.3302 -3.048)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.3556 0.508) (xy 0.508 -0.3302)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.3556 -2.032) (xy 0.508 -2.8702)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0 0)
+					(radius 0.635)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0 -2.54)
+					(radius 0.635)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:C"
 			(pin_numbers
 				(hide yes)
@@ -393,6 +583,144 @@
 				)
 			)
 			(symbol "R_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:R_Trim"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.54 -2.54 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "R_Trim"
+				(at -2.54 -0.635 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Trimmable resistor (preset resistor)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor variable potentiometer trimmer"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_Trim_0_1"
+				(polyline
+					(pts
+						(xy -1.905 -1.905) (xy 1.905 1.905) (xy 2.54 1.27) (xy 1.27 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_Trim_1_1"
 				(pin passive line
 					(at 0 3.81 270)
 					(length 1.27)
@@ -1192,7 +1520,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Transistor_FET:CSD18534Q5A"
+		(symbol "Transistor_FET:IRF4905"
 			(pin_names
 				(hide yes)
 			)
@@ -1208,7 +1536,7 @@
 					(justify left)
 				)
 			)
-			(property "Value" "CSD18534Q5A"
+			(property "Value" "IRF4905"
 				(at 5.08 0 0)
 				(effects
 					(font
@@ -1217,7 +1545,7 @@
 					(justify left)
 				)
 			)
-			(property "Footprint" "Package_TO_SOT_SMD:TDSON-8-1"
+			(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical"
 				(at 5.08 -1.905 0)
 				(effects
 					(font
@@ -1228,7 +1556,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "http://www.ti.com/lit/gpn/csd18534q5a"
+			(property "Datasheet" "http://www.infineon.com/dgdl/irf4905.pdf?fileId=5546d462533600a4015355e32165197c"
 				(at 5.08 -3.81 0)
 				(effects
 					(font
@@ -1238,7 +1566,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "50A Id, 60V Vds, NexFET N-Channel Power MOSFET, 9.8mOhm Ron, 17nC Qg(typ), SON8 5x6mm"
+			(property "Description" "-74A Id, -55V Vds, Single P-Channel HEXFET Power MOSFET, 20mOhm Ron, TO-220AB"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1247,7 +1575,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "NexFET Power MOSFET N-MOS"
+			(property "ki_keywords" "Single P-Channel HEXFET Power MOSFET"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1256,7 +1584,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_fp_filters" "TDSON*"
+			(property "ki_fp_filters" "TO?220*"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1265,7 +1593,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "CSD18534Q5A_0_1"
+			(symbol "IRF4905_0_1"
 				(polyline
 					(pts
 						(xy 0.254 1.905) (xy 0.254 -1.905)
@@ -1304,6 +1632,18 @@
 				)
 				(polyline
 					(pts
+						(xy 0.762 1.778) (xy 3.302 1.778) (xy 3.302 -1.778) (xy 0.762 -1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
 						(xy 0.762 0.508) (xy 0.762 -0.508)
 					)
 					(stroke
@@ -1326,30 +1666,6 @@
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy 0.762 -1.778) (xy 3.302 -1.778) (xy 3.302 1.778) (xy 0.762 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 0) (xy 2.032 0.381) (xy 2.032 -0.381) (xy 1.016 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
 				(circle
 					(center 1.651 0)
 					(radius 2.794)
@@ -1359,6 +1675,18 @@
 					)
 					(fill
 						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.286 0) (xy 1.27 0.381) (xy 1.27 -0.381) (xy 2.286 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
 					)
 				)
 				(polyline
@@ -1409,7 +1737,7 @@
 				)
 				(polyline
 					(pts
-						(xy 2.794 0.508) (xy 2.921 0.381) (xy 3.683 0.381) (xy 3.81 0.254)
+						(xy 2.794 -0.508) (xy 2.921 -0.381) (xy 3.683 -0.381) (xy 3.81 -0.254)
 					)
 					(stroke
 						(width 0)
@@ -1421,7 +1749,7 @@
 				)
 				(polyline
 					(pts
-						(xy 3.302 0.381) (xy 2.921 -0.254) (xy 3.683 -0.254) (xy 3.302 0.381)
+						(xy 3.302 -0.381) (xy 2.921 0.254) (xy 3.683 0.254) (xy 3.302 -0.381)
 					)
 					(stroke
 						(width 0)
@@ -1432,8 +1760,8 @@
 					)
 				)
 			)
-			(symbol "CSD18534Q5A_1_1"
-				(pin passive line
+			(symbol "IRF4905_1_1"
+				(pin input line
 					(at -5.08 0 0)
 					(length 2.54)
 					(name "G"
@@ -1443,7 +1771,7 @@
 							)
 						)
 					)
-					(number "4"
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1461,43 +1789,6 @@
 							)
 						)
 					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 -5.08 90)
-					(length 2.54)
-					(name "S"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 -5.08 90)
-					(length 2.54)
-					(hide yes)
-					(name "S"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
 					(number "2"
 						(effects
 							(font
@@ -1509,7 +1800,6 @@
 				(pin passive line
 					(at 2.54 -5.08 90)
 					(length 2.54)
-					(hide yes)
 					(name "S"
 						(effects
 							(font
@@ -1822,6 +2112,12 @@
 		(uuid "6084c781-1522-47d9-9e87-1a6bd9b19795")
 	)
 	(junction
+		(at 44.45 76.2)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "60abd4a0-599e-46be-b104-acea4983ab85")
+	)
+	(junction
 		(at 59.69 77.47)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1832,6 +2128,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "8161dcdd-71a9-464a-836f-47965c6111d7")
+	)
+	(junction
+		(at 26.67 53.34)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "84fd76f9-16e7-49a0-97bc-b555be93830b")
 	)
 	(junction
 		(at 59.69 76.2)
@@ -1926,6 +2228,16 @@
 			(type default)
 		)
 		(uuid "03fc2c39-c80f-4104-a750-3925981ce507")
+	)
+	(wire
+		(pts
+			(xy 20.32 57.15) (xy 26.67 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "13fdcc2b-d30d-4635-8e73-2675e071a0c6")
 	)
 	(wire
 		(pts
@@ -2076,6 +2388,16 @@
 			(type default)
 		)
 		(uuid "4c2e6397-4b51-4d9e-8e3a-cb7ca1327b42")
+	)
+	(wire
+		(pts
+			(xy 26.67 57.15) (xy 26.67 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4eaaa0c4-457b-48ff-9fc2-dca7894ee9f4")
 	)
 	(wire
 		(pts
@@ -2339,6 +2661,16 @@
 	)
 	(wire
 		(pts
+			(xy 20.32 59.69) (xy 26.67 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a5945a14-a1e8-4ceb-971a-6a39408e709b")
+	)
+	(wire
+		(pts
 			(xy 30.48 43.18) (xy 26.67 43.18)
 		)
 		(stroke
@@ -2366,6 +2698,16 @@
 			(type default)
 		)
 		(uuid "ac0be5cd-e8ed-426f-85e4-f970b9be6ca5")
+	)
+	(wire
+		(pts
+			(xy 26.67 76.2) (xy 44.45 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b0522620-95f7-471c-8e6a-f62855040442")
 	)
 	(wire
 		(pts
@@ -2466,6 +2808,16 @@
 			(type default)
 		)
 		(uuid "d3a35b1c-aa38-4695-bf10-411291208b90")
+	)
+	(wire
+		(pts
+			(xy 26.67 59.69) (xy 26.67 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d4b676de-af13-475f-9af3-a2dc59133fd5")
 	)
 	(wire
 		(pts
@@ -2891,7 +3243,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline_Wide"
 			(at 163.83 111.125 0)
 			(effects
 				(font
@@ -3078,7 +3430,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
+		(lib_id "Device:R_Trim")
 		(at 80.01 38.1 180)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3104,7 +3456,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Potentiometer_THT:Potentiometer_Bourns_3296W_Vertical"
 			(at 81.788 38.1 90)
 			(effects
 				(font
@@ -3122,7 +3474,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Resistor"
+		(property "Description" "Trimmable resistor (preset resistor)"
 			(at 80.01 38.1 0)
 			(effects
 				(font
@@ -3285,7 +3637,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Transistor_FET:CSD18534Q5A")
+		(lib_id "Transistor_FET:IRF4905")
 		(at 181.61 64.77 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3303,7 +3655,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "CSD18534Q5A"
+		(property "Value" "IRF4905"
 			(at 187.96 66.0399 0)
 			(effects
 				(font
@@ -3323,7 +3675,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/gpn/csd18534q5a"
+		(property "Datasheet" "http://www.infineon.com/dgdl/irf4905.pdf?fileId=5546d462533600a4015355e32165197c"
 			(at 186.69 68.58 0)
 			(effects
 				(font
@@ -3333,7 +3685,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "50A Id, 60V Vds, NexFET N-Channel Power MOSFET, 9.8mOhm Ron, 17nC Qg(typ), SON8 5x6mm"
+		(property "Description" "-74A Id, -55V Vds, Single P-Channel HEXFET Power MOSFET, 20mOhm Ron, TO-220AB"
 			(at 181.61 64.77 0)
 			(effects
 				(font
@@ -3350,12 +3702,6 @@
 		)
 		(pin "2"
 			(uuid "2aa375e5-48f5-43fe-ba8c-954a04c0bab0")
-		)
-		(pin "4"
-			(uuid "321f930c-30cf-4a04-94c9-6dfee0abc64f")
-		)
-		(pin "5"
-			(uuid "836f761a-93fd-4914-a930-b3186f21e9f7")
 		)
 		(instances
 			(project ""
@@ -3427,6 +3773,74 @@
 			(project "Half Bridge Inverter"
 				(path "/8fe4964a-9912-49f6-ab4d-d9753d9df11d"
 					(reference "#PWR04")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Screw_Terminal_01x02")
+		(at 15.24 59.69 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b37990f4-fd73-44bf-af97-e3f12fdbe62a")
+		(property "Reference" "J1"
+			(at 15.24 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Screw_Terminal_01x02"
+			(at 15.24 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal"
+			(at 15.24 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 15.24 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 15.24 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "99a169b2-9c1a-4fc9-be84-7da6f0649e59")
+		)
+		(pin "2"
+			(uuid "cc674891-49a1-48f2-98a0-f88126a6eb1a")
+		)
+		(instances
+			(project ""
+				(path "/8fe4964a-9912-49f6-ab4d-d9753d9df11d"
+					(reference "J1")
 					(unit 1)
 				)
 			)
@@ -3931,7 +4345,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Transistor_FET:CSD18534Q5A")
+		(lib_id "Transistor_FET:IRF4905")
 		(at 181.61 96.52 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3949,7 +4363,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "CSD18534Q5A"
+		(property "Value" "IRF4905"
 			(at 187.96 97.7899 0)
 			(effects
 				(font
@@ -3969,7 +4383,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/gpn/csd18534q5a"
+		(property "Datasheet" "http://www.infineon.com/dgdl/irf4905.pdf?fileId=5546d462533600a4015355e32165197c"
 			(at 186.69 100.33 0)
 			(effects
 				(font
@@ -3979,7 +4393,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "50A Id, 60V Vds, NexFET N-Channel Power MOSFET, 9.8mOhm Ron, 17nC Qg(typ), SON8 5x6mm"
+		(property "Description" "-74A Id, -55V Vds, Single P-Channel HEXFET Power MOSFET, 20mOhm Ron, TO-220AB"
 			(at 181.61 96.52 0)
 			(effects
 				(font
@@ -3996,12 +4410,6 @@
 		)
 		(pin "3"
 			(uuid "ff1a621a-7e92-4198-834f-e8b33a05e8d4")
-		)
-		(pin "5"
-			(uuid "4313cdf5-e29f-4c48-bb68-e17a5aa26336")
-		)
-		(pin "4"
-			(uuid "da3a8df8-c04c-4a21-9f54-1981b0c892bd")
 		)
 		(instances
 			(project ""
