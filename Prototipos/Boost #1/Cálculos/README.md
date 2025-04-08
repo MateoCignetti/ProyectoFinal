@@ -53,6 +53,10 @@ $$3,3 V= \frac{24 V * 4,7 k\Omega}{R_1 + 4,7 k\Omega}$$
 
 $$R_1 = 29,48 k\Omega \approx 27 k\Omega + 2,2 k\Omega$$
 
+## Cálculo red Snubber transistor de conmutación
+
+
+
 ## Diseño Prototipo Boost 12 V a 24 V
 
 ![Circuito Boost](figures/circuito_boost.png)
