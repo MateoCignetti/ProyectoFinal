@@ -55,7 +55,28 @@ $$R_1 = 29,48 k\Omega \approx 27 k\Omega + 2,2 k\Omega$$
 
 ## Cálculo red Snubber transistor de conmutación
 
+Para más detalles sobre el cálculo revisar, [Cáculos Buck](../../Buck%20#1/Cálculos/README.md)
 
+Se supone un valor de inductancia parásita típico de 50 nH. $C_P = C_{OSS}$
+
+* IRFZ44N
+
+$C_{OSS} = 330 pF = C_{snub_{min}}$
+
+
+$$f_{ring} = \frac{1}{2 \pi * \sqrt{L_P * C_P}} = \frac{1}{2 \pi * \sqrt{50 \ nH * 330 \ pF}} = 39,18 \ MHz$$
+
+$$ R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = 12,31 \ \Omega$$
+
+## Filtro RC para entrada de ADC
+
+$f_c = 100 Hz$
+
+$C = 1 \ \mu F$
+
+$f_c = \frac{1}{2\pi * R * C}$
+
+$$R = \frac{1}{2\pi * f_c * C} = 1591 \ \Omega \approx 1,5  \ k\Omega$$
 
 ## Diseño Prototipo Boost 12 V a 24 V
 
