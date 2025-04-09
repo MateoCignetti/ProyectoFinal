@@ -27,7 +27,7 @@ $$D = 1 - \frac{V_{in} * \eta }{V_{out}} = 1 - \frac{12 * 0,8 }{24} = 0,6$$
 
 $$L = \frac{V_{in} * (V_{out} - V_{in})}{\Delta I_L * f_s * V_{out}} = \frac{12V * (24V - 12V)}{0,3A * 15 \times 10^3 Hz * 24V} = 1,33 mH$$
 
-Tal vez sea conveniente la elección de un inductor arbitrario y luego calcular el ripple producto del mismo. Se deja como inquietud para las pruebas prácticas. Este valor se verá afectado en función de la fuente que se utilice para alimentación, 1 A tal vez es poca corriente.
+Tal vez sea conveniente la elección de un inductor arbitrario y luego calcular el ripple producto del mismo. Se deja como inquietud para las pruebas prácticas. Este valor se verá afectado en función de la fuente que se utilice para alimentación, 1 A tal vez es poca corriente. Si la corriente de entrada es de 2 A, el inductor se reduce a la mitad 666,66 uH
 
 ## Selección de Capacitor de entrada
 
@@ -55,7 +55,7 @@ $$R_1 = 29,48 k\Omega \approx 27 k\Omega + 2,2 k\Omega$$
 
 ## Cálculo red Snubber transistor de conmutación
 
-Para más detalles sobre el cálculo revisar, [Cáculos Buck](../../Buck%20#1/Cálculos/README.md)
+Para más detalles sobre el cálculo revisar, [Cáculos Buck](https://github.com/MateoCignetti/ProyectoFinal/tree/main/Prototipos/Buck%20%231/C%C3%A1lculos). Además los transistores utilizados como driver son los mismos, por ende la red de Snubber también lo es (se tendrá que comprobar en la práctica).
 
 Se supone un valor de inductancia parásita típico de 50 nH. $C_P = C_{OSS}$
 
