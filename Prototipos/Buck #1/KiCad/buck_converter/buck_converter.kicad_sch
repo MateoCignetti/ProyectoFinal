@@ -1447,43 +1447,36 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "IRLML6344:IRLML6344"
+		(symbol "Simulation_SPICE:NMOS"
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 1.016)
+				(offset 0)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "Q"
-				(at 7.62 2.54 0)
+			(property "Reference" "Q4"
+				(at 4.318 2.54 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left bottom)
+					(justify left)
 				)
 			)
-			(property "Value" "IRLML6344"
-				(at 7.62 0 0)
+			(property "Value" "NMOS"
+				(at 4.064 -2.54 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left bottom)
+					(justify left)
 				)
 			)
-			(property "Footprint" "IRLML6344:SOT23"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
+			(property "Footprint" ""
+				(at 5.08 2.54 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1491,7 +1484,52 @@
 					(hide yes)
 				)
 			)
-			(property "Description" ""
+			(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#cha_MOSFETs"
+				(at 0 -12.7 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "N-MOSFET transistor, drain/source/gate"
+				(at 2.286 -10.922 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Device" "NMOS"
+				(at 0 -17.145 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Type" "VDMOS"
+				(at 0 -19.05 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Pins" " 1=G 2=D 3=S"
+				(at 0 -15.24 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "transistor NMOS N-MOS N-MOSFET simulation"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1500,90 +1538,10 @@
 					(hide yes)
 				)
 			)
-			(property "MF" "Infineon Technologies"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Description_1" "Trans MOSFET N-CH 30V 5A 3-Pin SOT-23 T/R"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Package" "None"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Price" "None"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "SnapEDA_Link" "https://www.snapeda.com/parts/IRLML6344/Infineon/view-part/?ref=snap"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "MP" "IRLML6344"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Availability" "Not in stock"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Check_prices" "https://www.snapeda.com/parts/IRLML6344/Infineon/view-part/?ref=eda"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(symbol "IRLML6344_0_0"
+			(symbol "NMOS_0_1"
 				(polyline
 					(pts
-						(xy -1.1176 2.413) (xy -1.1176 -2.54)
+						(xy 0.254 1.905) (xy 0.254 -1.905)
 					)
 					(stroke
 						(width 0.254)
@@ -1595,55 +1553,81 @@
 				)
 				(polyline
 					(pts
-						(xy -1.1176 -2.54) (xy -2.54 -2.54)
+						(xy 0.254 0) (xy -2.54 0)
 					)
 					(stroke
-						(width 0.1524)
+						(width 0)
 						(type default)
 					)
 					(fill
 						(type none)
 					)
 				)
-				(rectangle
-					(start -0.254 1.27)
-					(end 0.508 2.54)
+				(polyline
+					(pts
+						(xy 0.762 2.286) (xy 0.762 1.27)
+					)
 					(stroke
-						(width 0.1)
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 0.508) (xy 0.762 -0.508)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.27) (xy 0.762 -2.286)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.778) (xy 3.302 -1.778) (xy 3.302 1.778) (xy 0.762 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.016 0) (xy 2.032 0.381) (xy 2.032 -0.381) (xy 1.016 0)
+					)
+					(stroke
+						(width 0)
 						(type default)
 					)
 					(fill
 						(type outline)
 					)
 				)
-				(rectangle
-					(start -0.254 -0.889)
-					(end 0.508 0.889)
+				(circle
+					(center 1.651 0)
+					(radius 2.794)
 					(stroke
-						(width 0.1)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(rectangle
-					(start -0.254 -2.54)
-					(end 0.508 -1.27)
-					(stroke
-						(width 0.1)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.508 0) (xy 1.778 -0.508)
-					)
-					(stroke
-						(width 0.1524)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -1652,130 +1636,10 @@
 				)
 				(polyline
 					(pts
-						(xy 0.508 -1.905) (xy 2.54 -1.905)
+						(xy 2.54 2.54) (xy 2.54 1.778)
 					)
 					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 0) (xy 1.651 -0.254)
-					)
-					(stroke
-						(width 0.3048)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.651 0.254) (xy 0.762 0)
-					)
-					(stroke
-						(width 0.3048)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.651 0) (xy 1.397 0)
-					)
-					(stroke
-						(width 0.3048)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.651 0) (xy 2.54 0)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.651 -0.254) (xy 1.651 0)
-					)
-					(stroke
-						(width 0.3048)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.778 0.508) (xy 0.508 0)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.778 -0.508) (xy 1.778 0.508)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 2.54) (xy 2.54 1.905)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 1.905) (xy 0.5334 1.905)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 1.905) (xy 5.08 1.905)
-					)
-					(stroke
-						(width 0.1524)
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -1783,45 +1647,33 @@
 					)
 				)
 				(circle
-					(center 2.54 1.905)
-					(radius 0.127)
+					(center 2.54 1.778)
+					(radius 0.254)
 					(stroke
-						(width 0.4064)
+						(width 0)
 						(type default)
 					)
 					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 0) (xy 2.54 -1.905)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 -1.905) (xy 2.54 -2.54)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
+						(type outline)
 					)
 				)
 				(circle
-					(center 2.54 -1.905)
-					(radius 0.127)
+					(center 2.54 -1.778)
+					(radius 0.254)
 					(stroke
-						(width 0.4064)
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -2.54) (xy 2.54 0) (xy 0.762 0)
+					)
+					(stroke
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -1830,10 +1682,10 @@
 				)
 				(polyline
 					(pts
-						(xy 4.445 0.762) (xy 4.191 0.508)
+						(xy 2.794 0.508) (xy 2.921 0.381) (xy 3.683 0.381) (xy 3.81 0.254)
 					)
 					(stroke
-						(width 0.1524)
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -1842,153 +1694,32 @@
 				)
 				(polyline
 					(pts
-						(xy 4.445 0.762) (xy 5.08 0.762)
+						(xy 3.302 0.381) (xy 2.921 -0.254) (xy 3.683 -0.254) (xy 3.302 0.381)
 					)
 					(stroke
-						(width 0.1524)
+						(width 0)
 						(type default)
 					)
 					(fill
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy 4.445 -0.635) (xy 5.715 -0.635)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 5.08 1.905) (xy 5.08 0.762)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 5.08 0.762) (xy 4.445 -0.635)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 5.08 0.762) (xy 5.08 -1.905)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 5.08 0.762) (xy 5.715 0.762)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 5.08 -1.905) (xy 2.54 -1.905)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 5.715 0.762) (xy 5.969 1.016)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 5.715 -0.635) (xy 5.08 0.762)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(text "G"
-					(at -2.54 -1.27 0)
-					(effects
-						(font
-							(size 0.8128 0.8128)
-						)
-						(justify left bottom)
-					)
-				)
-				(text "D"
-					(at 1.27 2.54 0)
-					(effects
-						(font
-							(size 0.8128 0.8128)
-						)
-						(justify left bottom)
-					)
-				)
-				(text "S"
-					(at 1.27 -3.175 0)
-					(effects
-						(font
-							(size 0.8128 0.8128)
-						)
-						(justify left bottom)
-					)
-				)
-				(pin passive line
-					(at -2.54 -2.54 0)
-					(length 0)
-					(name "~"
+			)
+			(symbol "NMOS_1_1"
+				(pin input line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "G"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
 					(number "1"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
@@ -1996,17 +1727,17 @@
 				(pin passive line
 					(at 2.54 5.08 270)
 					(length 2.54)
-					(name "~"
+					(name "D"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "3"
+					(number "2"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
@@ -2014,17 +1745,17 @@
 				(pin passive line
 					(at 2.54 -5.08 90)
 					(length 2.54)
-					(name "~"
+					(name "S"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "2"
+					(number "3"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
@@ -2042,23 +1773,25 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "Q"
-				(at -2.54 7.62 0)
+			(property "Reference" "Q3"
+				(at 5.08 1.2701 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
 			(property "Value" "NPN"
-				(at -2.54 5.08 0)
+				(at 5.08 -1.2699 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline_Wide"
 				(at 63.5 0 0)
 				(effects
 					(font
@@ -2077,7 +1810,7 @@
 				)
 			)
 			(property "Description" "Bipolar transistor symbol for simulation only, substrate tied to the emitter"
-				(at 0 0 0)
+				(at -0.254 -17.272 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2086,7 +1819,7 @@
 				)
 			)
 			(property "Sim.Device" "NPN"
-				(at 0 0 0)
+				(at 18.542 -4.318 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2095,7 +1828,7 @@
 				)
 			)
 			(property "Sim.Type" "GUMMELPOON"
-				(at 0 0 0)
+				(at -5.334 -19.304 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2103,8 +1836,8 @@
 					(hide yes)
 				)
 			)
-			(property "Sim.Pins" "1=C 2=B 3=E"
-				(at 0 0 0)
+			(property "Sim.Pins" "3=C 2=B 1=E"
+				(at -10.668 9.398 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2247,7 +1980,7 @@
 							)
 						)
 					)
-					(number "1"
+					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2265,7 +1998,7 @@
 							)
 						)
 					)
-					(number "3"
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2549,6 +2282,26 @@
 		)
 		(uuid "1c1e3f40-5434-4f24-bffd-5f0fa8a62433")
 	)
+	(text "2N2222"
+		(exclude_from_sim no)
+		(at 183.896 97.79 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "61469cd5-15c1-4fd1-8fc2-7c5d0ffd0402")
+	)
+	(text "IRFZ44N"
+		(exclude_from_sim no)
+		(at 122.428 97.79 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "852574a2-3e41-44bd-aeaf-d9a480730809")
+	)
 	(text "6 V\n2 A"
 		(exclude_from_sim no)
 		(at 185.42 50.038 0)
@@ -2590,6 +2343,12 @@
 		(uuid "f1a82a38-8a94-4ce8-b85b-c2fcc52ed08f")
 	)
 	(junction
+		(at 116.84 127)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0d9be1f1-4dc6-4c27-a8fb-426aff1148dd")
+	)
+	(junction
 		(at 146.05 48.26)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2626,12 +2385,6 @@
 		(uuid "399942a3-6d38-4613-869a-d0454f4110ac")
 	)
 	(junction
-		(at 107.95 118.11)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4136c761-d1a9-434b-8a92-80e6fc787a52")
-	)
-	(junction
 		(at 121.92 74.93)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2656,6 +2409,12 @@
 		(uuid "632b7bc1-0700-4905-b89c-7a2110b0aaab")
 	)
 	(junction
+		(at 116.84 110.49)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "670dc7e0-8e12-4b2b-ba5a-bee3eadd4293")
+	)
+	(junction
 		(at 167.64 129.54)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2666,12 +2425,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "722f65ef-05ed-4a71-92e9-6a203d692ad6")
-	)
-	(junction
-		(at 116.84 110.49)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "813a1476-ea8b-4674-8674-e5ff78983369")
 	)
 	(junction
 		(at 158.75 74.93)
@@ -2716,12 +2469,6 @@
 		(uuid "a2aa59d0-d807-4690-a38d-23666261c1fa")
 	)
 	(junction
-		(at 116.84 127)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "aebae07b-5839-42bf-8c9b-eb620ca245d3")
-	)
-	(junction
 		(at 118.11 48.26)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2744,6 +2491,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "cdce8e5c-104d-42f6-8c29-b1fa9f4c6b1a")
+	)
+	(junction
+		(at 107.95 118.11)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d7bec432-9ebb-432d-bd7a-99844adad496")
 	)
 	(junction
 		(at 128.27 127)
@@ -2967,16 +2720,6 @@
 	)
 	(wire
 		(pts
-			(xy 116.84 127) (xy 116.84 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "28f7f072-71f6-4e85-97ea-eb9fb6671b6a")
-	)
-	(wire
-		(pts
 			(xy 132.08 109.22) (xy 128.27 109.22)
 		)
 		(stroke
@@ -3094,6 +2837,16 @@
 			(type default)
 		)
 		(uuid "403cabbd-b12d-4961-bdb3-82b0a3da8bd8")
+	)
+	(wire
+		(pts
+			(xy 116.84 110.49) (xy 116.84 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "42f30a0f-737a-4adb-a9be-5c6d9dbd76cb")
 	)
 	(wire
 		(pts
@@ -3257,6 +3010,16 @@
 	)
 	(wire
 		(pts
+			(xy 107.95 118.11) (xy 109.22 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "66546c8f-a6d7-437c-9d7a-1176226cc721")
+	)
+	(wire
+		(pts
 			(xy 73.66 29.21) (xy 69.85 29.21)
 		)
 		(stroke
@@ -3264,6 +3027,16 @@
 			(type default)
 		)
 		(uuid "678e4af7-e272-4797-8a13-b118dbb600c6")
+	)
+	(wire
+		(pts
+			(xy 116.84 123.19) (xy 116.84 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "67e8823f-281d-4994-b88d-9622e298e776")
 	)
 	(wire
 		(pts
@@ -3324,16 +3097,6 @@
 			(type default)
 		)
 		(uuid "6d5922e6-4922-48da-9a9b-4a7c5a3e95b3")
-	)
-	(wire
-		(pts
-			(xy 116.84 110.49) (xy 116.84 113.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6f3fca75-a36a-4ea4-af99-addf234f8eb6")
 	)
 	(wire
 		(pts
@@ -3604,16 +3367,6 @@
 			(type default)
 		)
 		(uuid "a6b41715-7135-4bae-b9c1-e01f0254dba7")
-	)
-	(wire
-		(pts
-			(xy 107.95 118.11) (xy 110.49 118.11)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a6f842ac-126c-4662-bfd2-c694940900a5")
 	)
 	(wire
 		(pts
@@ -3897,16 +3650,6 @@
 	)
 	(wire
 		(pts
-			(xy 110.49 118.11) (xy 110.49 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "efd49a2c-beaf-4e46-a5ce-7f61a7d3fdeb")
-	)
-	(wire
-		(pts
 			(xy 176.53 110.49) (xy 176.53 113.03)
 		)
 		(stroke
@@ -3944,16 +3687,6 @@
 			(type default)
 		)
 		(uuid "f2baacb7-418a-4a1e-8cc9-3e10606d1020")
-	)
-	(wire
-		(pts
-			(xy 110.49 120.65) (xy 111.76 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f3d12fac-3780-404c-8a0f-7fc67567f9bb")
 	)
 	(wire
 		(pts
@@ -4810,7 +4543,7 @@
 			)
 		)
 		(property "Description" "Bipolar transistor symbol for simulation only, substrate tied to the emitter"
-			(at 173.99 118.11 0)
+			(at 173.736 135.382 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4819,7 +4552,7 @@
 			)
 		)
 		(property "Sim.Device" "NPN"
-			(at 173.99 118.11 0)
+			(at 192.532 122.428 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4828,7 +4561,7 @@
 			)
 		)
 		(property "Sim.Type" "GUMMELPOON"
-			(at 173.99 118.11 0)
+			(at 168.656 137.414 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4836,8 +4569,8 @@
 				(hide yes)
 			)
 		)
-		(property "Sim.Pins" "1=C 2=B 3=E"
-			(at 173.99 118.11 0)
+		(property "Sim.Pins" "3=C 2=B 1=E"
+			(at 163.322 108.712 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4858,159 +4591,6 @@
 			(project ""
 				(path "/bb8bc01e-43dc-40c7-9cc7-76fd3e77d2b7"
 					(reference "Q3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "IRLML6344:IRLML6344")
-		(at 114.3 118.11 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "280d1304-670e-4f25-8cab-86a4c796e742")
-		(property "Reference" "Q2"
-			(at 112.776 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "IRLML6344"
-			(at 121.412 123.19 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "KICAD-Libraries:SOT23"
-			(at 114.3 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 114.3 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 114.3 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MF" "Infineon Technologies"
-			(at 114.3 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "Trans MOSFET N-CH 30V 5A 3-Pin SOT-23 T/R"
-			(at 114.3 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "None"
-			(at 114.3 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 114.3 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/IRLML6344/Infineon/view-part/?ref=snap"
-			(at 114.3 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "IRLML6344"
-			(at 114.3 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "Not in stock"
-			(at 114.3 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/IRLML6344/Infineon/view-part/?ref=eda"
-			(at 114.3 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "ee4623ce-f45a-4efb-b984-4805ca326a31")
-		)
-		(pin "2"
-			(uuid "7239d6f7-70e0-4cca-9d93-6f38c2e79061")
-		)
-		(pin "1"
-			(uuid "637ae25a-9fae-49e3-bbfd-276ba9a07ee1")
-		)
-		(instances
-			(project "buck_converter"
-				(path "/bb8bc01e-43dc-40c7-9cc7-76fd3e77d2b7"
-					(reference "Q2")
 					(unit 1)
 				)
 			)
@@ -6090,6 +5670,105 @@
 			(project "buck_converter"
 				(path "/bb8bc01e-43dc-40c7-9cc7-76fd3e77d2b7"
 					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Simulation_SPICE:NMOS")
+		(at 114.3 118.11 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "971bae65-6043-4cf9-b094-ce2388a222fe")
+		(property "Reference" "Q4"
+			(at 118.618 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "NMOS"
+			(at 118.364 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical"
+			(at 119.38 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#cha_MOSFETs"
+			(at 114.3 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "N-MOSFET transistor, drain/source/gate"
+			(at 116.586 129.032 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "NMOS"
+			(at 114.3 135.255 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" "VDMOS"
+			(at 114.3 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" " 1=G 2=D 3=S"
+			(at 114.3 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "08b5751c-dc6c-4b49-8548-e5bfe4dafa96")
+		)
+		(pin "2"
+			(uuid "22fd34f7-8b52-446d-bc33-57740596745b")
+		)
+		(pin "1"
+			(uuid "2d8c4d5a-ac3c-4180-bb48-38cfd78ab64c")
+		)
+		(instances
+			(project ""
+				(path "/bb8bc01e-43dc-40c7-9cc7-76fd3e77d2b7"
+					(reference "Q4")
 					(unit 1)
 				)
 			)
