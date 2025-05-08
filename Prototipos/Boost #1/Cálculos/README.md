@@ -15,8 +15,8 @@ El diseño del convertidor fue realizado siguiendo el siguiente documento, [Texa
 
 * $R_{load} = \frac{24 V}{0,5 A} = 48 \Omega$
 * Ripple,
-  * $\Delta I_L = I_{in} * 30 \% = 1 \ A * 0,3 = 0,3 \ A$
-  * $\Delta V_{out} = V_{out} * 5 \% = 1,2 \ V$
+  * $\Delta I_L = I_{in} * 0,3 = 1  A * 0,3 = 0,3 \ A$
+  * $\Delta V_{out} = V_{out} * 0,05 = 1,2 \ V$
 * Frecuencia de conmutación, 15 kHz.
 
 ## Cálculo del Duty Cycle máximo
