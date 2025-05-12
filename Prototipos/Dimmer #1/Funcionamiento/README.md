@@ -28,7 +28,7 @@ Con un circuito driver de Relé, se permite cambiar entre ambos modos, siendo el
 
 ![Control de fase](figures/control-fase.png)
 
-El método más común de control electrónico de potencia de CA se denomina control de fase. La Figura 6.1 ilustra este concepto. Durante la primera parte de cada semiciclo de la onda sinusoidal de CA, se abre un interruptor electrónico para impedir el flujo de corriente. En un ángulo de fase específico, α, este interruptor se cierra para permitir que se aplique toda la tensión de línea a la carga durante el resto de ese semiciclo. La variación de α controlará la parte de la onda sinusoidal total que se aplica a la carga (área sombreada) y, por lo tanto, regulará el flujo de potencia hacia la carga.
+El método más común de control electrónico de potencia de CA se denomina control de fase. La Figura 6.1 ilustra este concepto. Durante la primera parte de cada semiciclo de la onda sinusoidal de CA, se abre un interruptor electrónico para impedir el flujo de corriente. En un ángulo de fase específico $\alpha$, este interruptor se cierra para permitir que se aplique toda la tensión de línea a la carga durante el resto de ese semiciclo. La variación de $\alpha$ controlará la parte de la onda sinusoidal total que se aplica a la carga (área sombreada) y, por lo tanto, regulará el flujo de potencia hacia la carga.
 
 ![Circuito básico de control de fase](figures/fase-simple.png)
 
@@ -36,7 +36,7 @@ El circuito más simple para lograr el control de fase se muestra en la Figura 6
 
 ![Formas de onda de tensión de capacitor](figures/formas-onda.png)
 
-La forma de onda del voltaje a través del capacitor para dos condiciones de control típicas (α = 90° y 150°) se muestra en la Figura 6.3. Si se utiliza un rectificador controlado por silicio en este circuito en lugar del TRIAC, solo se controlará un semiciclo de la forma de onda. El otro semiciclo se bloqueará, lo que genera una salida de CC pulsante cuyo valor promedio puede variarse ajustando el RT. 
+La forma de onda del voltaje a través del capacitor para dos condiciones de control típicas ($\alpha$ = 90° y 150°) se muestra en la Figura 6.3. Si se utiliza un rectificador controlado por silicio en este circuito en lugar del TRIAC, solo se controlará un semiciclo de la forma de onda. El otro semiciclo se bloqueará, lo que genera una salida de CC pulsante cuyo valor promedio puede variarse ajustando el RT. 
 (Referencia: [Thyristor Theory and Design Considerations: Handbook](https://www.rsp-italy.it/Electronics/Databooks/ON/_contents/ON%20Thyristor%20theory%20and%20design%20handbook%20HBD855D%202005.pdf))
 
 Este tipo de control de fase se recomienda solamente para circuitos con carga resistiva o levemente inductiva (ver [AN308 (STMicroelectronics)](https://www.st.com/resource/en/application_note/an308-triac-analog-control-circuits-for-inductive-loads-stmicroelectronics.pdf))
