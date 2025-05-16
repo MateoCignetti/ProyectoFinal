@@ -18,6 +18,7 @@
 #include "driver/gpio.h"
 #include "driver/gptimer.h"
 #include "esp_timer.h"
+#include "esp_log.h"
 #include "math.h"
 
 /*--------------- Defines -----------------*/
@@ -30,10 +31,34 @@ adc_cali_handle_t adc1_cali_handle = NULL;
 gptimer_handle_t gptimer_handle = NULL;
 
 /*--------------- Variables ---------------*/
-const int set_point_v = 6; // set point 6 V
-uint32_t feedback_mv = 0;
+const int setpoint_v = 6; // set point 6 V
+int feedback_mv = 0;
 float feedback_v = 0;
 
+/*--------------- PID Variables -----------*/
+// PID constants and variables
+const float Kp = 0.5381;
+const float Ki = 52.39;
+const float Kd = 0.0002741;
+const float Ts = TIMER_PERIOD_US / 1000000.0;
+const float Nc = 0.001841;
+
+// PID coefficients
+const float a_coefficients[3] = {
+    1,
+    -2 + Nc * Ts,
+    1 - Nc * Ts
+};
+const float b_coefficients[3] = {
+    Kp + Kd * Nc,
+    -2 * Kp - 2 * Kd * Nc + Ki * Ts + Kp * Nc * Ts,
+    Kp + Kd * Nc - Ki * Ts - Kp * Nc * Ts + Ki * Nc * Ts * Ts
+};
+
+// PID input and output arrays
+float input_array[3] = {0, 0, 0};
+float output_array[3] = {0, 0, 0}; 
+int pwm_output_bits = 0;
 
 /*--------------- Function prototypes ------------*/
 void adc_init_and_config(void);
@@ -100,18 +125,39 @@ void ledc_config(void){
 
 static bool gptimer_on_alarm_callback(gptimer_handle_t timer, const gptimer_alarm_event_data_t *edata, void *arg){
     // Read ADC value
-    ESP_ERROR_CHECK(adc_oneshot_get_calibrated_result(adc1_handle, ADC_CHANNEL_0, adc1_cali_handle, &feedback_mv));
+    ESP_ERROR_CHECK(adc_oneshot_get_calibrated_result(adc1_handle, adc1_cali_handle, ADC_CHANNEL_0, &feedback_mv));
     ESP_LOGI("ADC", "ADC Value: %d", feedback_mv);
-    feedback_v = (float)feedback_mv / 1000.0; // Convert to volts
+    feedback_v = (float)feedback_mv / 1000.0; // Convert to volts  
+
+    if (feedback_v > 3.3) {
+        feedback_v = 3.3; // Limit feedback voltage to 3.3V
+    } else if (feedback_v < 0) {
+        feedback_v = 0; // Limit feedback voltage to 0V
+    }    
+
     // Calculate error
-    float error = set_point_v - feedback_v;
+    float error = setpoint_v - feedback_v;
     ESP_LOGI("PID", "Error: %f", error);
     
     // PID control logic here
+    input_array[0] = setpoint_v - feedback_v;
 
-    // Set PWM duty cycle based on PID output
-    uint32_t duty_cycle = (uint32_t)(error * 4095.0 / 3.3);
-    ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, duty_cycle, 0);
+    output_array[0] = b_coefficients[0] * input_array[0] + b_coefficients[1] * input_array[1] + b_coefficients[2] * input_array[2] - a_coefficients[1] * output_array[1] - a_coefficients[2] * output_array[2];
+
+    pwm_output_bits = (int) (output_array[0] * 4095.0 / 3.3); // REVISAR CONVERSIÓN Y CURVA DE LINEALIZACION
+
+    if(pwm_output_bits > 4095){
+        pwm_output_bits = 4095;
+    } else if(pwm_output_bits < 0) {
+        pwm_output_bits = 0;
+    }
+    
+    ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, pwm_output_bits, 0);
+    input_array[2] = input_array[1];
+    input_array[1] = input_array[0];
+    output_array[2] = output_array[1];
+    output_array[1] = output_array[0];
+
     return true;
 }
 
