@@ -4,6 +4,10 @@
 	(generator_version "9.0")
 	(uuid "e3650d37-577f-4fda-9d2e-25068d42f977")
 	(paper "A4")
+	(title_block
+		(title "PCB final Convertidor Buck")
+		(company "Alesandria - Cignetti - Galliano")
+	)
 	(lib_symbols
 		(symbol "Connector:Conn_01x03_Pin"
 			(pin_names
@@ -2144,6 +2148,16 @@
 	)
 	(wire
 		(pts
+			(xy 81.28 38.1) (xy 101.6 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "08cb24a3-15a8-455e-87a5-ee7e9744cf4f")
+	)
+	(wire
+		(pts
 			(xy 102.87 81.28) (xy 133.35 81.28)
 		)
 		(stroke
@@ -2181,16 +2195,6 @@
 			(type default)
 		)
 		(uuid "0fcbe2c9-8987-4cf6-9bbd-fd8ed0cb60f4")
-	)
-	(wire
-		(pts
-			(xy 81.28 38.1) (xy 83.82 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "11f5e492-eb33-4d05-9782-047552f58739")
 	)
 	(wire
 		(pts
@@ -2314,16 +2318,6 @@
 	)
 	(wire
 		(pts
-			(xy 81.28 40.64) (xy 83.82 40.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4474ff7e-fffe-4df8-b6a1-253645b86d3e")
-	)
-	(wire
-		(pts
 			(xy 138.43 64.77) (xy 138.43 69.85)
 		)
 		(stroke
@@ -2351,6 +2345,16 @@
 			(type default)
 		)
 		(uuid "4d5701c1-33dc-4b67-895a-1d812e0fca06")
+	)
+	(wire
+		(pts
+			(xy 83.82 40.64) (xy 81.28 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "593aa8a5-c85e-4e4a-8e3c-560ce9c5a3f2")
 	)
 	(wire
 		(pts
@@ -2794,16 +2798,6 @@
 	)
 	(wire
 		(pts
-			(xy 83.82 40.64) (xy 83.82 41.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cbd19871-39e2-449a-9b85-7fa93a5fc1de")
-	)
-	(wire
-		(pts
 			(xy 156.21 87.63) (xy 156.21 90.17)
 		)
 		(stroke
@@ -2911,6 +2905,16 @@
 			(type default)
 		)
 		(uuid "f0013ac9-c205-4e10-9f12-0ed59c34e436")
+	)
+	(wire
+		(pts
+			(xy 101.6 38.1) (xy 101.6 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f046e3c1-8006-4ce9-a1b7-90b408a5c4c9")
 	)
 	(wire
 		(pts
@@ -3106,7 +3110,7 @@
 	)
 	(global_label "RETRO_MICRO"
 		(shape input)
-		(at 83.82 38.1 0)
+		(at 83.82 40.64 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3116,7 +3120,7 @@
 		)
 		(uuid "b3ac90e4-aa74-4c45-8a60-4a5d69cbee69")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 99.6866 38.1 0)
+			(at 99.6866 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4262,7 +4266,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 83.82 41.91 0)
+		(at 101.6 39.37 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4270,7 +4274,7 @@
 		(dnp no)
 		(uuid "9490cf74-e160-4cc1-ac00-e152ceb4d2ca")
 		(property "Reference" "#PWR01"
-			(at 83.82 48.26 0)
+			(at 101.6 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4279,7 +4283,7 @@
 			)
 		)
 		(property "Value" "AGND"
-			(at 83.82 45.466 0)
+			(at 101.6 42.926 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4287,7 +4291,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 83.82 41.91 0)
+			(at 101.6 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4296,7 +4300,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 83.82 41.91 0)
+			(at 101.6 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4305,7 +4309,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 83.82 41.91 0)
+			(at 101.6 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
