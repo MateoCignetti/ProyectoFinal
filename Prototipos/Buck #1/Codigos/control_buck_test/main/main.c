@@ -24,7 +24,7 @@
 #include "math.h"
 
 /*--------------- Defines -----------------*/
-#define PWM_FREQUENCY 15000 // Frequency of PWM signal
+#define PWM_FREQUENCY 19000 // Frequency of PWM signal
 #define TIMER_PERIOD_US 200 // Timer period in microseconds, (Ts)
 #define PRINT_LOGS 1 // Set to 1 to print logs, 0 to disable
 
@@ -100,7 +100,8 @@ void app_main(void){
 }
 
 /**
- * @brief 
+ * @brief PID task function that runs when the notification from the timer is recieived.
+ * It calculates and applies the PID control.
  * 
  * @param arg 
  */
@@ -109,11 +110,12 @@ void vTaskPid(void *arg){
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY); // Wait for the timer alarm notification
 
         // Read ADC value
-        adc_oneshot_get_calibrated_result(adc1_handle, adc1_cali_handle, ADC_CHANNEL_0, &feedback_mv);
+        adc_oneshot_get_calibrated_result(adc1_handle, adc1_cali_handle, ADC_CHANNEL_3, &feedback_mv);
         feedback_v = (float)feedback_mv / 1000.0; // Convert to volts  
         
         // Here put the linearization function. This function is not implemented yet. It
         // makes the conversion and linearization of the 0-3,3 V feedback voltage to 0-12V
+        feedback_v = 3.60939188455154 * feedback_v + 0.0527492508952863;    // Constant 5% error at the output, recalculate
 
         if (feedback_v < 0) {
             feedback_v = 0; // Limit feedback voltage to 0V
@@ -168,7 +170,7 @@ void adc_init_and_config(void){
         .atten = ADC_ATTEN_DB_12,
         .bitwidth = ADC_BITWIDTH_12,
     };
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc1_handle, ADC_CHANNEL_0, &adc1_config));
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc1_handle, ADC_CHANNEL_3, &adc1_config));
     
     #if PRINT_LOGS
         ESP_LOGI("ADC", "ADC1 initialized and configured");
@@ -230,8 +232,7 @@ void ledc_config(void){
 
 /**
  * @brief Timer callback function that is called when the timer alarm is triggered.
- * It reads the ADC value, and calculates the PID control output based on the feedback voltage.
- * The timer what calls this function is periodically triggered. 
+ * It notifies the PID task.
  * @param timer 
  * @param edata 
  * @param arg 
