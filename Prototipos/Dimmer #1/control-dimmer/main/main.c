@@ -24,7 +24,7 @@
 // Generates a test 50 Hz square wave signal on the defined pin below,
 // to test the dimmer without the need of a real zero crossing detector.
 // Only for testing without the dimmer prototype connected.
-#define USE_TEST_ZCD_SIGNAL 1
+#define USE_TEST_ZCD_SIGNAL 0
 
 #if USE_TEST_ZCD_SIGNAL
 #include "driver/ledc.h"
