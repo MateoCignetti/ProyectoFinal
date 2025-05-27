@@ -1,7 +1,7 @@
 /**
  * @file main.c
- * @author your name (you@domain.com)
- * @brief Programa destinado a controlar un convertidor DC-DC Buck por medio de un PID
+ * @author Alejo Alesandria (aalesandria@facultad.sanfrancisco.utn.edu.ar)
+ * @brief Main file for the DC-DC Buck Converter PID Control using ESP32-S3. Using GPTimer and RTOS Notifications.
  * @version 0.1
  * @date 2025-05-15
  * 
@@ -9,7 +9,7 @@
  * 
  */
 
- /*-------------- Includes ----------------*/
+/*-------------- Includes ----------------*/
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -24,23 +24,21 @@
 #include "math.h"
 
 /*--------------- Defines -----------------*/
-#define PWM_FREQUENCY 19000 // Frequency of PWM signal
-#define TIMER_PERIOD_US 200 // Timer period in microseconds, (Ts)
-#define PRINT_LOGS 1 // Set to 1 to print logs, 0 to disable
+#define PWM_FREQUENCY 19000 // Frequency of PWM signal.
+#define TIMER_PERIOD_US 200 // Timer period in microseconds, (Ts).
+#define PRINT_LOGS 0 // Set to 1 to print logs, 0 to disable.
 
 /*--------------- Handles -----------------*/
-adc_oneshot_unit_handle_t adc1_handle = NULL;   // ADC handle used for feedback reading
-adc_cali_handle_t adc1_cali_handle = NULL;  // ADC calibration handle
-gptimer_handle_t gptimer_handle = NULL; // Timer handle used for PID control and to make the sampling time consistent
-QueueHandle_t queue_handle = NULL; // Queue handle used to send data between tasks
-
-TaskHandle_t xTaskPID = NULL; // Task handle used to notify the task when the timer alarm is triggered
+adc_oneshot_unit_handle_t adc1_handle = NULL;   // ADC handle. Used to save the ADC configurations.
+adc_cali_handle_t adc1_cali_handle = NULL;  // ADC calibration handle.
+gptimer_handle_t gptimer_handle = NULL; // Timer handle used for PID control and to make the sampling time consistent.
+TaskHandle_t xTaskPID = NULL; // PID task handle. Used to notify the PID task when the timer is triggered.
 
 /*--------------- Variables ---------------*/
 const int setpoint_v = 4; // Setpoint voltage in volts
 int feedback_mv = 0;    // Feedback voltage in millivolts
 float feedback_v = 0.0;   // Feedback voltage in volts. It is used to compare with the setpoint voltage
-float error = 0.0;
+float error = 0.0;  // Error between setpoint and feedback voltage.
 
 /*--------------- PID Variables -----------*/
 // PID constants and variables
@@ -100,7 +98,7 @@ void app_main(void){
 }
 
 /**
- * @brief PID task function that runs when the notification from the timer is recieived.
+ * @brief PID task function that runs when the notification from the timer is received.
  * It calculates and applies the PID control.
  * 
  * @param arg 
@@ -110,18 +108,18 @@ void vTaskPid(void *arg){
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY); // Wait for the timer alarm notification
 
         // Read ADC value
-        adc_oneshot_get_calibrated_result(adc1_handle, adc1_cali_handle, ADC_CHANNEL_3, &feedback_mv);
+        adc_oneshot_get_calibrated_result(adc1_handle, adc1_cali_handle, ADC_CHANNEL_3, &feedback_mv);  // Return mV value.
         feedback_v = (float)feedback_mv / 1000.0; // Convert to volts  
         
-        // Here put the linearization function. This function is not implemented yet. It
-        // makes the conversion and linearization of the 0-3,3 V feedback voltage to 0-12V
-        //feedback_v = 3.6052 * feedback_v + 0.0704;    // Constant 5% error at the output, recalculate
+        // Here insert the linearization function. Both equations are similar, but it needs to test which is better. 
+        // It's necessary to test them with noise-free source.
+        //feedback_v = 3.6052 * feedback_v + 0.0704;
         feedback_v = -0.0058 * pow(feedback_v, 3) - 0.0146 * pow(feedback_v, 2) + 3.6873 * feedback_v + 0.0328;
 
         if (feedback_v < 0) {
             feedback_v = 0; // Limit feedback voltage to 0V
         } else if (feedback_v > 12) {
-            feedback_v = 12; // Limit feedback voltage to 12SV
+            feedback_v = 12; // Limit feedback voltage to 12V
         }    
 
         // Calculate error
@@ -132,7 +130,7 @@ void vTaskPid(void *arg){
 
         output_array[0] = b_coefficients[0] * input_array[0] + b_coefficients[1] * input_array[1] + b_coefficients[2] * input_array[2] - a_coefficients[1] * output_array[1] - a_coefficients[2] * output_array[2];
 
-        pwm_output_bits = (int) (output_array[0] * 4095.0 / 12.0); // REVISAR CONVERSIÓN Y CURVA DE LINEALIZACION
+        pwm_output_bits = (int) (output_array[0] * 4095.0 / 12.0);
 
         if(pwm_output_bits > 4095){
             pwm_output_bits = 4095;
@@ -140,16 +138,19 @@ void vTaskPid(void *arg){
             pwm_output_bits = 0;
         }
         
-        ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, pwm_output_bits, 0);
+        ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, pwm_output_bits, 0);  // Set new duty cycle based on PID output
         input_array[2] = input_array[1];
         input_array[1] = input_array[0];
         output_array[2] = output_array[1];
         output_array[1] = output_array[0];
-        static TickType_t last_print = 0;
-        if (xTaskGetTickCount() - last_print >= pdMS_TO_TICKS(1000)) {
-            last_print = xTaskGetTickCount();
-            ESP_LOGI("STATUS", "Feedback = %.2f V, Error = %.2f, PWM = %d", feedback_v, error, pwm_output_bits);
-        }
+        
+        #if PRINT_LOGS
+            static TickType_t last_print = 0;
+            if (xTaskGetTickCount() - last_print >= pdMS_TO_TICKS(1000)) {
+                last_print = xTaskGetTickCount();
+                ESP_LOGI("STATUS", "Feedback = %.2f V, Error = %.2f, PWM = %d", feedback_v, error, pwm_output_bits);
+            }
+        #endif
     }
 }
 
@@ -162,7 +163,7 @@ void adc_init_and_config(void){
     // Initialize ADC
     adc_oneshot_unit_init_cfg_t adc1_init_config = {
         .unit_id = ADC_UNIT_1,
-        .clk_src = ADC_RTC_CLK_SRC_DEFAULT, // Maybe change to 0
+        .clk_src = ADC_RTC_CLK_SRC_DEFAULT,
         .ulp_mode = ADC_ULP_MODE_DISABLE,
     };
     ESP_ERROR_CHECK(adc_oneshot_new_unit(&adc1_init_config, &adc1_handle));
@@ -199,14 +200,14 @@ void adc_cali_config(void){
 }
 
 /**
- * @brief Configures the LEDC (LED Controller) for PWM output.
+ * @brief Configures the LEDC for PWM output.
  * It sets the frequency of the PWM signal and the resolution of the duty cycle.
  * Also, it initializes the LEDC channel with the configurations and installs the fade function.
+ * Perhaps it could be better to use MCPWM insted of LEDC.
  * 
  */
 void ledc_config(void){
     // Initialize LEDC
-
     ledc_timer_config_t ledc_timer_cfg = {
         .speed_mode = LEDC_LOW_SPEED_MODE,
         .timer_num = LEDC_TIMER_0,
@@ -244,7 +245,9 @@ static bool gptimer_on_alarm_callback(gptimer_handle_t timer, const gptimer_alar
 
     BaseType_t xHigherPriorityTaskWoken = pdFALSE; // Variable to check if a higher priority task was woken up
 
-    // Notify the PID task that the timer alarm has been triggered
+    // Notify the PID task that the timer alarm has been triggered.
+    // FreeRTOS task notification is used because it's more efficient and lightweight
+    // compared to semaphores or queues. The limitation is that only one task can be notified.
     vTaskNotifyGiveFromISR(xTaskPID, &xHigherPriorityTaskWoken);
     
     return xHigherPriorityTaskWoken == pdTRUE; // Return true if a higher priority task was woken up
