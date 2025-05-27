@@ -48,7 +48,7 @@ static gptimer_handle_t dimmer_pulse_timer = NULL; // Handle for the pulse timer
 static adc_oneshot_unit_handle_t adc1_handle = NULL; // Handle for the ADC1 unit
 static TaskHandle_t xTaskAdcRead_handle = NULL; // Task handle for the ADC read task
 
-static bool timer_is_running = false; // Aux flag to ensure proper timer operation, additional
+static volatile bool timer_is_running = false; // Aux flag to ensure proper timer operation, additional
                                       // safety measure in case an interrupt happens mid timer
                                       // (shouldn't happen in normal operation)
 static uint16_t dimmer_wait_alarm_count = DIMMER_TIMER_COUNT_DEFAULT; // Static variable to store the alarm count
@@ -101,7 +101,7 @@ static void IRAM_ATTR zcd_isr_handler(){
 
         gptimer_start(dimmer_wait_timer); // Start the timer
     } else {
-        ESP_LOGW("ZCD ISR", "Interrupt happened mid timer, check ZCD signal"); // Log a warning if the timer is already running
+        ESP_DRAM_LOGW("ZCD ISR", "Interrupt happened mid timer, check ZCD signal"); // Log a warning if the timer is already running
     }
     
 }
@@ -223,8 +223,9 @@ void configure_adc(){
 }
 
 // Function to map the ADC value to the timer alarm count
-uint16_t map(uint32_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max) {
-    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+uint16_t get_mapped_value(uint32_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max) {
+    float result = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    return (uint16_t) result; // Map the value and return it as uint16_t
 }
 
 // Task to read the ADC value and update the timer alarm count
@@ -236,7 +237,7 @@ void vTaskAdcRead(void *pvParameters){
     while(true){
         ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, ADC_READ_CHANNEL, &adc_value)); // Read the ADC value
         ESP_LOGI("ADC", "ADC Value: %d", adc_value); // Print the ADC value
-        dimmer_wait_alarm_count = map((uint16_t) adc_value, 0, 4095, 100, 9900); // Map the ADC value to the timer count
+        dimmer_wait_alarm_count = get_mapped_value((uint16_t) adc_value, 0, 4095, 100, 9900); // Map the ADC value to the timer count
         ESP_LOGI("ADC", "Dimmer alarm count: %d", dimmer_wait_alarm_count); // Print the ADC value
 
         vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(sampling_period)); // Delay the task for the sampling period
