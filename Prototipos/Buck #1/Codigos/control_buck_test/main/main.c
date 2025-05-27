@@ -37,18 +37,18 @@ QueueHandle_t queue_handle = NULL; // Queue handle used to send data between tas
 TaskHandle_t xTaskPID = NULL; // Task handle used to notify the task when the timer alarm is triggered
 
 /*--------------- Variables ---------------*/
-const int setpoint_v = 6; // Setpoint voltage in volts
+const int setpoint_v = 4; // Setpoint voltage in volts
 int feedback_mv = 0;    // Feedback voltage in millivolts
 float feedback_v = 0.0;   // Feedback voltage in volts. It is used to compare with the setpoint voltage
 float error = 0.0;
 
 /*--------------- PID Variables -----------*/
 // PID constants and variables
-const float Kp = 0.5381;
-const float Ki = 52.39;
-const float Kd = 0.0002741;
+const float Kp = 0.5;
+const float Ki = 62.4;
+const float Kd = 0.002741;
 const float Ts = TIMER_PERIOD_US / 1000000.0;
-const float Nc = 0.001841;
+const float Nc = 3;
 
 // PID coefficients. These coefficients are obtained from the PID with derivative filter
 const float a_coefficients[3] = {
@@ -115,7 +115,8 @@ void vTaskPid(void *arg){
         
         // Here put the linearization function. This function is not implemented yet. It
         // makes the conversion and linearization of the 0-3,3 V feedback voltage to 0-12V
-        feedback_v = 3.60939188455154 * feedback_v + 0.0527492508952863;    // Constant 5% error at the output, recalculate
+        //feedback_v = 3.6052 * feedback_v + 0.0704;    // Constant 5% error at the output, recalculate
+        feedback_v = -0.0058 * pow(feedback_v, 3) - 0.0146 * pow(feedback_v, 2) + 3.6873 * feedback_v + 0.0328;
 
         if (feedback_v < 0) {
             feedback_v = 0; // Limit feedback voltage to 0V
