@@ -24,7 +24,7 @@
 // Generates a test 50 Hz square wave signal on the defined pin below,
 // to test the dimmer without the need of a real zero crossing detector.
 // Only for testing without the dimmer prototype connected.
-#define USE_TEST_ZCD_SIGNAL 0
+#define USE_TEST_ZCD_SIGNAL 1
 
 #if USE_TEST_ZCD_SIGNAL
 #include "driver/ledc.h"
@@ -48,8 +48,9 @@ static gptimer_handle_t dimmer_pulse_timer = NULL; // Handle for the pulse timer
 static adc_oneshot_unit_handle_t adc1_handle = NULL; // Handle for the ADC1 unit
 static TaskHandle_t xTaskAdcRead_handle = NULL; // Task handle for the ADC read task
 
-static bool timer_is_running = false; // Aux flag to ensure proper timer operation, shouldn't be needed
-                                      // under normal operation, but it's a safety measure (I guess?)
+static bool timer_is_running = false; // Aux flag to ensure proper timer operation, additional
+                                      // safety measure in case an interrupt happens mid timer
+                                      // (shouldn't happen in normal operation)
 static uint16_t dimmer_wait_alarm_count = DIMMER_TIMER_COUNT_DEFAULT; // Static variable to store the alarm count
 
 
@@ -59,7 +60,7 @@ static bool dimmer_wait_callback(gptimer_handle_t timer, const gptimer_alarm_eve
     
     gptimer_stop(timer); // Stop the timer as soon as possible
     gptimer_set_raw_count(timer, 0); // Set the timer count to 0. Very important, if not reset
-                                     // the timer will execute the alarm event immediately
+                                     // the timer will execute the alarm event-31.41762112683969, -62.10131892041877 immediately
 
     gpio_set_level(PIN_TRIAC_OUT, 1); // Set TRIAC pin high to start the pulse
     
@@ -99,6 +100,8 @@ static void IRAM_ATTR zcd_isr_handler(){
         gptimer_set_alarm_action(dimmer_wait_timer, &wait_alarm_config);
 
         gptimer_start(dimmer_wait_timer); // Start the timer
+    } else {
+        ESP_LOGW("ZCD ISR", "Interrupt happened mid timer, check ZCD signal"); // Log a warning if the timer is already running
     }
     
 }
@@ -108,7 +111,7 @@ void configure_gpios(void){
     
     // Configuration for the zero crossing detector pin
     gpio_config_t zcd_pin_conf = {
-        .pin_bit_mask = 1ULL << PIN_ZCD_IN,
+        .pin_bit_mask = (1ULL << PIN_ZCD_IN),
         .mode = GPIO_MODE_INPUT,
         .pull_up_en = GPIO_PULLUP_ENABLE,
         .pull_down_en = GPIO_PULLDOWN_DISABLE,
@@ -121,7 +124,7 @@ void configure_gpios(void){
 
     // Configuration for the TRIAC pin
     gpio_config_t triac_pin_conf = {
-        .pin_bit_mask = 1ULL << PIN_TRIAC_OUT | 1ULL,
+        .pin_bit_mask = (1ULL << PIN_TRIAC_OUT),
         .mode = GPIO_MODE_OUTPUT,
         .pull_up_en = GPIO_PULLUP_DISABLE,
         .pull_down_en = GPIO_PULLDOWN_ENABLE,
@@ -220,7 +223,7 @@ void configure_adc(){
 }
 
 // Function to map the ADC value to the timer alarm count
-float map(long x, long in_min, long in_max, long out_min, long out_max) {
+uint16_t map(uint32_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max) {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
@@ -233,7 +236,7 @@ void vTaskAdcRead(void *pvParameters){
     while(true){
         ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, ADC_READ_CHANNEL, &adc_value)); // Read the ADC value
         ESP_LOGI("ADC", "ADC Value: %d", adc_value); // Print the ADC value
-        dimmer_wait_alarm_count = (uint16_t) map(adc_value, 0, 4095, 100, 9900); // Map the ADC value to the timer count
+        dimmer_wait_alarm_count = map((uint16_t) adc_value, 0, 4095, 100, 9900); // Map the ADC value to the timer count
         ESP_LOGI("ADC", "Dimmer alarm count: %d", dimmer_wait_alarm_count); // Print the ADC value
 
         vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(sampling_period)); // Delay the task for the sampling period
