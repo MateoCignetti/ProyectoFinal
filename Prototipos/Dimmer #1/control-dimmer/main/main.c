@@ -42,6 +42,8 @@
 #define DIMMER_TIMER_COUNT_DEFAULT 9900 // Turns on TRIAC at 9,9 ms after zero crossing
                                         // (basically starts the dimmer off)
 #define ADC_SAMPLING_FREQUENCY 40 // ADC sampling frequency in Hz
+#define ALARM_COUNT_MIN 100 // Minimum alarm count for the dimmer
+#define ALARM_COUNT_MAX 9900 // Maximum alarm count for the dimmer
 
 static gptimer_handle_t dimmer_wait_timer = NULL; // Handle for the wait timer
 static gptimer_handle_t dimmer_pulse_timer = NULL; // Handle for the pulse timer
@@ -136,7 +138,7 @@ void configure_gpios(void){
 // Function to configure the timers
 void configure_timers(void){
 
-    // Configuration for both timers (couting up, and 1 us resolution)
+    // Configuration for both timers (counting up, and 1 us resolution)
     gptimer_config_t gptimer_config = {
         .clk_src = GPTIMER_CLK_SRC_DEFAULT,
         .direction = GPTIMER_COUNT_UP,
@@ -224,8 +226,7 @@ void configure_adc(){
 
 // Function to map the ADC value to the timer alarm count
 uint16_t get_mapped_value(uint32_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max) {
-    float result = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-    return (uint16_t) result; // Map the value and return it as uint16_t
+    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
 // Task to read the ADC value and update the timer alarm count
@@ -237,7 +238,7 @@ void vTaskAdcRead(void *pvParameters){
     while(true){
         ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, ADC_READ_CHANNEL, &adc_value)); // Read the ADC value
         ESP_LOGI("ADC", "ADC Value: %d", adc_value); // Print the ADC value
-        dimmer_wait_alarm_count = get_mapped_value((uint16_t) adc_value, 0, 4095, 100, 9900); // Map the ADC value to the timer count
+        dimmer_wait_alarm_count = get_mapped_value((uint16_t) adc_value, 0, 4095, ALARM_COUNT_MIN, ALARM_COUNT_MAX); // Map the ADC value to the timer count
         ESP_LOGI("ADC", "Dimmer alarm count: %d", dimmer_wait_alarm_count); // Print the ADC value
 
         vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(sampling_period)); // Delay the task for the sampling period
