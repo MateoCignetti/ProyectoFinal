@@ -27,6 +27,8 @@
 #define PWM_FREQUENCY 19000 // Frequency of PWM signal.
 #define TIMER_PERIOD_US 200 // Timer period in microseconds, (Ts).
 #define PRINT_LOGS 0 // Set to 1 to print logs, 0 to disable.
+#define MAX_PWM_DUTY_CYCLE 4095.0 // Maximum duty cycle for the PWM signal (12-bit resolution).
+#define MAX_OUTPUT_VOLTAGE 12.0 // Maximum output voltage of the buck converter in volts.
 
 /*--------------- Handles -----------------*/
 adc_oneshot_unit_handle_t adc1_handle = NULL;   // ADC handle. Used to save the ADC configurations.
@@ -111,15 +113,15 @@ void vTaskPid(void *arg){
         adc_oneshot_get_calibrated_result(adc1_handle, adc1_cali_handle, ADC_CHANNEL_3, &feedback_mv);  // Return mV value.
         feedback_v = (float)feedback_mv / 1000.0; // Convert to volts  
         
-        // Here insert the linearization function. Both equations are similar, but it needs to test which is better. 
-        // It's necessary to test them with noise-free source.
+        // TODO: Evaluate the alternative linearization function
         //feedback_v = 3.6052 * feedback_v + 0.0704;
+        // with a noise-free source to determine its accuracy and performance compared to the current funcion.
         feedback_v = -0.0058 * pow(feedback_v, 3) - 0.0146 * pow(feedback_v, 2) + 3.6873 * feedback_v + 0.0328;
 
         if (feedback_v < 0) {
             feedback_v = 0; // Limit feedback voltage to 0V
-        } else if (feedback_v > 12) {
-            feedback_v = 12; // Limit feedback voltage to 12V
+        } else if (feedback_v > MAX_OUTPUT_VOLTAGE) {
+            feedback_v = MAX_OUTPUT_VOLTAGE; // Limit feedback voltage to 12V
         }    
 
         // Calculate error
@@ -130,10 +132,10 @@ void vTaskPid(void *arg){
 
         output_array[0] = b_coefficients[0] * input_array[0] + b_coefficients[1] * input_array[1] + b_coefficients[2] * input_array[2] - a_coefficients[1] * output_array[1] - a_coefficients[2] * output_array[2];
 
-        pwm_output_bits = (int) (output_array[0] * 4095.0 / 12.0);
+        pwm_output_bits = (int) (output_array[0] * MAX_PWM_DUTY_CYCLE / MAX_OUTPUT_VOLTAGE);
 
-        if(pwm_output_bits > 4095){
-            pwm_output_bits = 4095;
+        if(pwm_output_bits > MAX_PWM_DUTY_CYCLE){
+            pwm_output_bits = MAX_PWM_DUTY_CYCLE;
         } else if(pwm_output_bits < 0) {
             pwm_output_bits = 0;
         }
@@ -246,7 +248,7 @@ static bool gptimer_on_alarm_callback(gptimer_handle_t timer, const gptimer_alar
     BaseType_t xHigherPriorityTaskWoken = pdFALSE; // Variable to check if a higher priority task was woken up
 
     // Notify the PID task that the timer alarm has been triggered.
-    // FreeRTOS task notification is used because it's more efficient and lightweight
+    // NOTE: FreeRTOS task notification is used because it's more efficient and lightweight
     // compared to semaphores or queues. The limitation is that only one task can be notified.
     vTaskNotifyGiveFromISR(xTaskPID, &xHigherPriorityTaskWoken);
     
