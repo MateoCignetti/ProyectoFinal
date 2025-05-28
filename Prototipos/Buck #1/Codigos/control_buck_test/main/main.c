@@ -205,7 +205,7 @@ void adc_cali_config(void){
  * @brief Configures the LEDC for PWM output.
  * It sets the frequency of the PWM signal and the resolution of the duty cycle.
  * Also, it initializes the LEDC channel with the configurations and installs the fade function.
- * Perhaps it could be better to use MCPWM insted of LEDC.
+ * Perhaps it could be better to use MCPWM instead of LEDC.
  * 
  */
 void ledc_config(void){
@@ -256,7 +256,7 @@ static bool gptimer_on_alarm_callback(gptimer_handle_t timer, const gptimer_alar
 }
 
 /**
- * @brief GPTimer configuration funcition. It initializes the timer with a specified resolution
+ * @brief GPTimer configuration function. It initializes the timer with a specified resolution
  * and sets the timer direction. In addition, it configures the timer alarm action with the
  * specified period and registers the callback function for the timer alarm event.
  * 
