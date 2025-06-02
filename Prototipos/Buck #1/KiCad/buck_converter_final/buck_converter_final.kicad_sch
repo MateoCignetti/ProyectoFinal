@@ -2944,6 +2944,16 @@
 	)
 	(wire
 		(pts
+			(xy 257.81 71.12) (xy 254 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4ec73aa1-f9a9-45f2-9411-386f500ccc5a")
+	)
+	(wire
+		(pts
 			(xy 201.93 31.75) (xy 201.93 33.02)
 		)
 		(stroke
@@ -2984,16 +2994,6 @@
 	)
 	(wire
 		(pts
-			(xy 254 50.8) (xy 256.54 50.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6324be2b-bea0-4486-a847-12915820c52c")
-	)
-	(wire
-		(pts
 			(xy 149.86 71.12) (xy 149.86 81.28)
 		)
 		(stroke
@@ -3004,16 +3004,6 @@
 	)
 	(wire
 		(pts
-			(xy 254 48.26) (xy 256.54 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "663ca48f-0c6b-470f-9de4-27b91117a018")
-	)
-	(wire
-		(pts
 			(xy 167.64 88.9) (xy 166.37 88.9)
 		)
 		(stroke
@@ -3021,6 +3011,16 @@
 			(type default)
 		)
 		(uuid "6688e758-b5cc-4724-a04f-86a3d9254b7f")
+	)
+	(wire
+		(pts
+			(xy 256.54 48.26) (xy 254 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "66b798c8-8122-4797-9539-4da7d2145b72")
 	)
 	(wire
 		(pts
@@ -3640,7 +3640,7 @@
 	)
 	(global_label "PWM_CONTROL"
 		(shape output)
-		(at 256.54 48.26 0)
+		(at 257.81 71.12 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3650,7 +3650,7 @@
 		)
 		(uuid "1cc1ab70-bc20-4f8b-8e9a-75f1545d1ea2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 273.1928 48.26 0)
+			(at 274.4628 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3750,7 +3750,7 @@
 	)
 	(global_label "RETRO_MICRO"
 		(shape input)
-		(at 256.54 50.8 0)
+		(at 256.54 48.26 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3760,7 +3760,7 @@
 		)
 		(uuid "d9fec3ce-b248-4807-a8ca-e6d78aa45993")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 272.4066 50.8 0)
+			(at 272.4066 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
