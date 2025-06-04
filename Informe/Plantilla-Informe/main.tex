@@ -1,0 +1,134 @@
+\documentclass[11pt, a4paper, fleqn]{article}
+
+% Símbolos y lenguaje español %
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{times}       % Para usar Times New Roman
+
+% Márgenes %
+\usepackage[left=2.5cm, right=1cm, top=3cm, bottom=2cm, bindingoffset=1cm]{geometry}
+
+% Paquetes de matemática, símbolos y gráficos %
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{mathtools} % Para splitfrac
+%\usepackage{textcomp}
+%\usepackage{gensymb}
+%\usepackage{xfrac}
+%\usepackage{amsfonts}
+%\usepackage{siunitx}
+
+% Tablas %
+\usepackage{longtable}
+\usepackage{tabularx}
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
+
+% Figuras %
+\usepackage{graphicx}
+\usepackage{subcaption}
+%\usepackage{caption}
+\graphicspath{{./figures/}}
+
+% Interlineado y sangría %
+\usepackage[indent=0.5cm]{parskip}
+\setlength{\mathindent}{0cm}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\onehalfspacing
+\setlength{\parskip}{0.1cm}
+
+% Encabezado y pie de página %
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\headheight}{70pt}
+\addtolength{\topmargin}{-50pt}
+
+\setlength{\headsep}{0cm}
+
+\usepackage{wrapfig}
+\usepackage[bottom]{footmisc}
+
+% Paquetes para enumerar items %
+\usepackage{enumitem}
+
+% Paquetes de Bibliografía %
+\usepackage[sorting=none,backend=biber,style=numeric,citestyle=authoryear,urldate=long]{biblatex}
+\usepackage{csquotes}
+
+\bibliography{referencias}
+
+% Hipervínculos %
+\usepackage[hidelinks]{hyperref}
+
+% Justificado %
+\usepackage[]{ragged2e}
+
+% Configuracion de secciones y subsecciones %
+%\usepackage{titlesec}
+%\titleformat{\section}
+%  [block]              % estilo de la sección
+%  {\normalfont\bfseries\Large\centering} % formato del texto
+%  {}                   % aquí va el número, lo dejamos vacío para no mostrar
+%  {0pt}                % separación entre número (vacío) y título
+%  {}                   % código antes del título
+
+% Configuracion de la tabla de contenidos
+%\usepackage{tocloft}
+
+% ALEJO:  Hay que ver como hacer el índice porque si trabajas las secciones con \section*{title} por
+% defecto las omite de la tabla de contenidos. Por eso despues de cada section*{}, \addcontentsline{toc}{section}{DEDICATORIA}
+% el tema es que eso no me convence para nada, todavía no encontré un buen resultado como me gustaría.
+% Además cuando agrego el índice no se que onda, pero se pone en todas las paginas como si fuese
+% un encabezado
+
+\begin{document}
+
+    \pagenumbering{Roman}
+    \input{encabezado_pdp}
+    \input{portada}
+
+    \input{dedicatoria}
+    \newpage
+    \input{resumen}
+    \newpage
+
+    % ÍNDICE ANTES DE INTRODUCCIÓN
+    %\tableofcontents
+    %\newpage
+
+    \pagenumbering{arabic}
+    \input{introduccion}
+    \newpage
+    \input{metas}
+    \newpage
+    \input{descripcion}
+    \newpage
+    \input{objetivo}
+    \newpage
+    \input{justificacion}
+    \newpage
+    \input{alternativas-propuestas}
+    \newpage
+    \input{aspectos-mercado}
+    \newpage
+    \input{aspectos-financieros}
+    \newpage
+    \input{aspectos-institucionales}
+    \newpage
+    \input{aspecto-impacto-ambiental}
+    \newpage
+    \input{desarrollo}
+    \newpage
+    \input{conclusion}
+    \newpage
+    \input{apendice}
+    \newpage
+    %\renewcommand{\refname}{\large REFERENCIAS}
+    \begin{minipage}{0.96\textwidth}
+    \nocite{*} % Despues hay que eliminar esta linea
+    \printbibliography
+    \end{minipage}
+
+    % DECLARACIÓN JURADA CON FIRMA NUESTRA, SUPONGO QUE SE HACE A MANO ESO
+\end{document}
