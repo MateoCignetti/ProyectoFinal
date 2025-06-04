@@ -1,0 +1,5 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Proyecto_Final")(type "KiCad")(uri "${KIPRJMOD}/../../../../KiCad-Libraries/Proyecto_Final.pretty")(options "")(descr ""))
+  (lib (name "ProyectoFinal")(type "KiCad")(uri "${KIPRJMOD}/../../../../KiCad-Libraries")(options "")(descr ""))
+)
