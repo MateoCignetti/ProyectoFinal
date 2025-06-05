@@ -1,0 +1,1 @@
+![nombre](ESP32-S3_DevKitC-1_pinlayout_v1.1.jpg)
