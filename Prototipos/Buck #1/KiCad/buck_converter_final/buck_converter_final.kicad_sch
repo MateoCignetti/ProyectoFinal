@@ -3337,7 +3337,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "5a401ad1-de3d-4dcd-9b97-b259c04a09bc")
+		(uuid "52b77728-7e1d-417f-9b27-02b8ebff8aa7")
 	)
 	(wire
 		(pts
@@ -3531,6 +3531,16 @@
 	)
 	(wire
 		(pts
+			(xy 35.56 54.61) (xy 38.1 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8305ca77-1370-4d2c-8ece-26c4fc33a7e4")
+	)
+	(wire
+		(pts
 			(xy 158.75 101.6) (xy 166.37 101.6)
 		)
 		(stroke
@@ -3701,6 +3711,16 @@
 	)
 	(wire
 		(pts
+			(xy 35.56 52.07) (xy 38.1 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a14f5476-dfb7-4aa3-a459-73d3789aef5d")
+	)
+	(wire
+		(pts
 			(xy 158.75 97.79) (xy 158.75 101.6)
 		)
 		(stroke
@@ -3848,16 +3868,6 @@
 			(type default)
 		)
 		(uuid "bc9b534d-1615-4622-9842-f4e7cec442f9")
-	)
-	(wire
-		(pts
-			(xy 35.56 52.07) (xy 38.1 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "be2c724d-4d96-4a8e-b15c-f1cfdfc3cb22")
 	)
 	(wire
 		(pts
@@ -4018,16 +4028,6 @@
 			(type default)
 		)
 		(uuid "db5d2be8-e4f7-43e6-ad7d-6b7aeb06c3bb")
-	)
-	(wire
-		(pts
-			(xy 35.56 54.61) (xy 38.1 54.61)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dd41e639-8929-4da0-8a97-9df25ed3f2c6")
 	)
 	(wire
 		(pts
@@ -4563,7 +4563,7 @@
 	)
 	(global_label "RETRO_MICRO"
 		(shape input)
-		(at 35.56 54.61 180)
+		(at 35.56 57.15 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4573,7 +4573,7 @@
 		)
 		(uuid "58f96511-5780-4484-856e-8e7793467436")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 19.6934 54.61 0)
+			(at 19.6934 57.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4849,7 +4849,7 @@
 	)
 	(global_label "PWM_CONTROL"
 		(shape output)
-		(at 35.56 57.15 180)
+		(at 35.56 52.07 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4859,7 +4859,7 @@
 		)
 		(uuid "bd646726-1828-4fc5-9ec7-cd83e15ad684")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 18.9072 57.15 0)
+			(at 18.9072 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4915,7 +4915,7 @@
 	)
 	(global_label "UC_RELAY"
 		(shape output)
-		(at 35.56 52.07 180)
+		(at 35.56 54.61 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4925,7 +4925,7 @@
 		)
 		(uuid "c863c344-ef6e-4b66-b4ce-464bad296f74")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 23.3824 52.07 0)
+			(at 23.3824 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
