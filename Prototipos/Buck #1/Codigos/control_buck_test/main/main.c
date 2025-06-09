@@ -26,18 +26,18 @@
 /*--------------- Defines -----------------*/
 #define PWM_FREQUENCY 19000 // Frequency of PWM signal.
 #define TIMER_PERIOD_US 200 // Timer period in microseconds, (Ts).
-#define PRINT_LOGS 0 // Set to 1 to print logs, 0 to disable.
+#define PRINT_LOGS 1 // Set to 1 to print logs, 0 to disable.
 #define MAX_PWM_DUTY_CYCLE 4095.0 // Maximum duty cycle for the PWM signal (12-bit resolution).
 #define MAX_OUTPUT_VOLTAGE 12.0 // Maximum output voltage of the buck converter in volts.
 
 /*--------------- Handles -----------------*/
-adc_oneshot_unit_handle_t adc1_handle = NULL;   // ADC handle. Used to save the ADC configurations.
-adc_cali_handle_t adc1_cali_handle = NULL;  // ADC calibration handle.
-gptimer_handle_t gptimer_handle = NULL; // Timer handle used for PID control and to make the sampling time consistent.
-TaskHandle_t xTaskPID = NULL; // PID task handle. Used to notify the PID task when the timer is triggered.
+static adc_oneshot_unit_handle_t adc1_handle = NULL;   // ADC handle. Used to save the ADC configurations.
+static adc_cali_handle_t adc1_cali_handle = NULL;  // ADC calibration handle.
+static gptimer_handle_t gptimer_handle = NULL; // Timer handle used for PID control and to make the sampling time consistent.
+static TaskHandle_t xTaskPID = NULL; // PID task handle. Used to notify the PID task when the timer is triggered.
 
 /*--------------- Variables ---------------*/
-const int setpoint_v = 4; // Setpoint voltage in volts
+const uint32_t setpoint_v = 4; // Setpoint voltage in volts
 int feedback_mv = 0;    // Feedback voltage in millivolts
 float feedback_v = 0.0;   // Feedback voltage in volts. It is used to compare with the setpoint voltage
 float error = 0.0;  // Error between setpoint and feedback voltage.
@@ -45,8 +45,8 @@ float error = 0.0;  // Error between setpoint and feedback voltage.
 /*--------------- PID Variables -----------*/
 // PID constants and variables
 const float Kp = 0.5;
-const float Ki = 62.4;
-const float Kd = 0.002741;
+const float Ki = 65.0;
+const float Kd = 0;
 const float Ts = TIMER_PERIOD_US / 1000000.0;
 const float Nc = 3;
 
@@ -68,18 +68,28 @@ float output_array[3] = {0, 0, 0};
 int pwm_output_bits = 0;
 
 /*--------------- Function prototypes ------------*/
-void adc_init_and_config(void); // ADC initialization and configuration
-void adc_cali_config(void); // ADC calibration configuration
-void ledc_config(void); // LEDC configuration
-void gptimer_config(void);  // Timer configuration
+static void adc_init_and_config(void); // ADC initialization and configuration
+static void adc_cali_config(void); // ADC calibration configuration
+static void ledc_config(void); // LEDC configuration
+static void gptimer_config(void);  // Timer configuration
 static bool gptimer_on_alarm_callback(gptimer_handle_t timer, const gptimer_alarm_event_data_t *edata, void *arg);  // Timer callback function
-void vTaskPid(void *arg); // PID task function
+static void vTaskPid(void *arg); // PID task function
+static void create_pid_task(void); // Function to create the PID task
 
 void app_main(void){
     adc_init_and_config();
     adc_cali_config();
     ledc_config();
-    
+    create_pid_task();
+    gptimer_config();
+
+}
+
+/**
+ * @brief Create a pid task object
+ * 
+ */
+static void create_pid_task(void){
     BaseType_t task_create = xTaskCreatePinnedToCore(vTaskPid,
                             "vTaskPid", 
                             configMINIMAL_STACK_SIZE * 4, 
@@ -94,9 +104,6 @@ void app_main(void){
     } else {
         ESP_LOGI("Task", "PID task created successfully");
     }
-
-    gptimer_config();
-
 }
 
 /**
@@ -105,13 +112,13 @@ void app_main(void){
  * 
  * @param arg 
  */
-void vTaskPid(void *arg){
+static void vTaskPid(void *arg){
     while(true){
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY); // Wait for the timer alarm notification
 
         // Read ADC value
         adc_oneshot_get_calibrated_result(adc1_handle, adc1_cali_handle, ADC_CHANNEL_3, &feedback_mv);  // Return mV value.
-        feedback_v = (float)feedback_mv / 1000.0; // Convert to volts  
+        feedback_v = feedback_mv / 1000.0; // Convert to volts  
         
         // TODO: Evaluate the alternative linearization function
         //feedback_v = 3.6052 * feedback_v + 0.0704;
@@ -161,7 +168,7 @@ void vTaskPid(void *arg){
  * It sets the ADC unit, clock source, and attenuation. 
  * 
  */
-void adc_init_and_config(void){
+static void adc_init_and_config(void){
     // Initialize ADC
     adc_oneshot_unit_init_cfg_t adc1_init_config = {
         .unit_id = ADC_UNIT_1,
@@ -186,7 +193,7 @@ void adc_init_and_config(void){
  * and sets the ADC calibration parameters like attenuation and bitwidth.
  * 
  */
-void adc_cali_config(void){
+static void adc_cali_config(void){
     // Initialize ADC calibration
     adc_cali_curve_fitting_config_t adc1_cali_config = {
         .unit_id = ADC_UNIT_1,
@@ -208,7 +215,7 @@ void adc_cali_config(void){
  * Perhaps it could be better to use MCPWM instead of LEDC.
  * 
  */
-void ledc_config(void){
+static void ledc_config(void){
     // Initialize LEDC
     ledc_timer_config_t ledc_timer_cfg = {
         .speed_mode = LEDC_LOW_SPEED_MODE,
@@ -261,7 +268,7 @@ static bool gptimer_on_alarm_callback(gptimer_handle_t timer, const gptimer_alar
  * specified period and registers the callback function for the timer alarm event.
  * 
  */
-void gptimer_config(void){
+static void gptimer_config(void){
     #if PRINT_LOGS
         ESP_LOGI("GPTIMER", "GPTIMER initializing...");
     #endif
