@@ -3218,6 +3218,16 @@
 	)
 	(wire
 		(pts
+			(xy 228.6 78.74) (xy 226.06 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "39a471dc-e344-4260-bc8b-115589d5f509")
+	)
+	(wire
+		(pts
 			(xy 110.49 67.31) (xy 109.22 67.31)
 		)
 		(stroke
@@ -3235,6 +3245,16 @@
 			(type default)
 		)
 		(uuid "3b6ad951-2221-4c29-b29d-0bd499722471")
+	)
+	(wire
+		(pts
+			(xy 228.6 76.2) (xy 226.06 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3d813b0f-0400-4358-9b39-e552967368d1")
 	)
 	(wire
 		(pts
@@ -3718,16 +3738,6 @@
 	)
 	(wire
 		(pts
-			(xy 194.31 66.04) (xy 195.58 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b1f3829c-9cc0-47d9-aec5-517396c23be2")
-	)
-	(wire
-		(pts
 			(xy 129.54 57.15) (xy 129.54 64.77)
 		)
 		(stroke
@@ -3925,16 +3935,6 @@
 			(type default)
 		)
 		(uuid "e16092b8-6c84-4edb-84ee-7bc422a7669c")
-	)
-	(wire
-		(pts
-			(xy 194.31 63.5) (xy 195.58 63.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e2ae0d17-8162-4fb2-ad41-cc8abe3ef2f1")
 	)
 	(wire
 		(pts
@@ -4494,22 +4494,22 @@
 	)
 	(global_label "UC_PHASE"
 		(shape input)
-		(at 194.31 63.5 180)
+		(at 228.6 78.74 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "cbf5ae84-d3a9-46e2-aaac-c775d9b96d74")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 181.7091 63.5 0)
+			(at 241.2009 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -4648,22 +4648,22 @@
 	)
 	(global_label "UC_DOUT"
 		(shape output)
-		(at 194.31 66.04 180)
+		(at 228.6 76.2 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "fb7626f9-0f37-4ed8-b4e6-3b48efce826e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 182.8581 66.04 0)
+			(at 240.0519 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
