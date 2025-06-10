@@ -6379,7 +6379,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KiCad-Libraries:TO254P470X1000X2000-3P"
+		(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Horizontal_TabDown"
 			(at 134.62 50.8 0)
 			(effects
 				(font
