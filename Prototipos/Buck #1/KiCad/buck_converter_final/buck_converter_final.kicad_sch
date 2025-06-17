@@ -7655,7 +7655,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "Diode_THT:D_DO-15_P12.70mm_Horizontal"
+		(property "Footprint" "Diode_THT:D_DO-201AD_P12.70mm_Horizontal"
 			(at 147.32 63.5 90)
 			(effects
 				(font
