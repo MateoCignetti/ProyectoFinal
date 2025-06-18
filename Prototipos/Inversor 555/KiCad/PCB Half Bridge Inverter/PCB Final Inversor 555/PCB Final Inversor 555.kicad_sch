@@ -2520,6 +2520,16 @@
 	)
 	(wire
 		(pts
+			(xy 71.12 52.07) (xy 92.71 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0ade068f-a8c7-4149-8809-70012d3fb62f")
+	)
+	(wire
+		(pts
 			(xy 71.12 92.71) (xy 71.12 95.25)
 		)
 		(stroke
@@ -2690,16 +2700,6 @@
 	)
 	(wire
 		(pts
-			(xy 106.68 52.07) (xy 71.12 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4e99ef17-a24b-47ab-bf6d-e7206dcde784")
-	)
-	(wire
-		(pts
 			(xy 53.34 76.2) (xy 53.34 72.39)
 		)
 		(stroke
@@ -2857,6 +2857,16 @@
 			(type default)
 		)
 		(uuid "7006d3f0-7284-46e1-8f5f-3ec95c707297")
+	)
+	(wire
+		(pts
+			(xy 100.33 52.07) (xy 106.68 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "73380cd0-8ff4-4f26-8a20-959aab2e0461")
 	)
 	(wire
 		(pts
@@ -4056,7 +4066,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "144.3K"
+		(property "Value" "50k"
 			(at 108.966 59.69 0)
 			(effects
 				(font
@@ -4546,6 +4556,74 @@
 			(project "PCB Final Inversor 555"
 				(path "/9702be3b-5b84-4252-93e8-eb8d98955803"
 					(reference "#PWR04")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 96.52 52.07 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a26c96ca-186e-4f29-8f8c-5da5f77d7ec1")
+		(property "Reference" "R9"
+			(at 96.52 45.72 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "120k"
+			(at 96.52 48.26 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+			(at 96.52 53.848 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 96.52 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 96.52 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "1e537851-7427-40e7-924c-ea9657fb47dd")
+		)
+		(pin "1"
+			(uuid "4dde8d0d-e256-49a2-b6e8-7d65f43aa3f1")
+		)
+		(instances
+			(project "PCB Final Inversor 555"
+				(path "/9702be3b-5b84-4252-93e8-eb8d98955803"
+					(reference "R9")
 					(unit 1)
 				)
 			)
