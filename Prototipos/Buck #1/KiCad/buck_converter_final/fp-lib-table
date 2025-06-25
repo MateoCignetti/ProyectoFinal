@@ -3,5 +3,4 @@
   (lib (name "KiCad-Libraries")(type "KiCad")(uri "${KIPRJMOD}/../../../../KiCad-Libraries/")(options "")(descr ""))
   (lib (name "Proyecto_final")(type "KiCad")(uri "${KIPRJMOD}/../../../../KiCad-Libraries/Proyecto_Final.pretty")(options "")(descr ""))
   (lib (name "TL071H")(type "KiCad")(uri "${KIPRJMOD}/../../../../KiCad-Libraries/TL071H.pretty")(options "")(descr ""))
-  (lib (name "JumperWires")(type "KiCad")(uri "C:/Users/aleal/Downloads/JumperWires/JumperWires")(options "")(descr ""))
 )

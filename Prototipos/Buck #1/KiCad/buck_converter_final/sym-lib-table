@@ -2,5 +2,5 @@
   (version 7)
   (lib (name "Proyecto_Final")(type "KiCad")(uri "${KIPRJMOD}/../../../../KiCad-Libraries/Proyecto_Final.kicad_sym")(options "")(descr ""))
   (lib (name "IRF9540NPBF")(type "KiCad")(uri "${KIPRJMOD}/../../../../KiCad-Libraries/IRF9540NPBF.kicad_sym")(options "")(descr ""))
-  (lib (name "TL071HIDBVR")(type "KiCad")(uri "${PROYECTO_FINAL}/TL071HIDBVR.kicad_sym")(options "")(descr ""))
+  (lib (name "TL071HIDBVR")(type "KiCad")(uri "${KIPRJMOD}/../../../../KiCad-Libraries/TL071HIDBVR.kicad_sym")(options "")(descr ""))
 )

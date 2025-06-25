@@ -5410,7 +5410,7 @@
 	)
 	(wire
 		(pts
-			(xy 45.72 125.73) (xy 46.99 125.73)
+			(xy 45.72 128.27) (xy 46.99 128.27)
 		)
 		(stroke
 			(width 0)
@@ -5704,7 +5704,7 @@
 	)
 	(global_label "AGND"
 		(shape input)
-		(at 46.99 125.73 0)
+		(at 46.99 128.27 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5714,7 +5714,7 @@
 		)
 		(uuid "164d119f-7412-4803-a797-97d5634b9b66")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 54.9343 125.73 0)
+			(at 54.9343 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7346,7 +7346,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 45.72 125.73 90)
+		(at 45.72 128.27 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7354,15 +7354,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "476445ef-c670-40b9-91e2-e931a8ca6bb9")
-		(property "Reference" "TP8"
-			(at 42.418 120.65 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "AGND"
+		(property "Reference" "REF_AGND1"
 			(at 42.418 123.19 90)
 			(effects
 				(font
@@ -7370,8 +7362,16 @@
 				)
 			)
 		)
+		(property "Value" "AGND"
+			(at 42.418 125.73 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(property "Footprint" "TestPoint:TestPoint_Loop_D1.80mm_Drill1.0mm_Beaded"
-			(at 45.72 120.65 0)
+			(at 45.72 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7380,7 +7380,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 45.72 120.65 0)
+			(at 45.72 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7389,7 +7389,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 45.72 125.73 0)
+			(at 45.72 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7403,7 +7403,7 @@
 		(instances
 			(project "buck_converter_final"
 				(path "/e3650d37-577f-4fda-9d2e-25068d42f977"
-					(reference "TP8")
+					(reference "REF_AGND1")
 					(unit 1)
 				)
 			)
@@ -8043,7 +8043,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "859aea01-adce-4993-ba0a-551bbf943f08")
-		(property "Reference" "TP7"
+		(property "Reference" "REF_PGND1"
 			(at 42.418 113.03 90)
 			(effects
 				(font
@@ -8092,7 +8092,7 @@
 		(instances
 			(project "buck_converter_final"
 				(path "/e3650d37-577f-4fda-9d2e-25068d42f977"
-					(reference "TP7")
+					(reference "REF_PGND1")
 					(unit 1)
 				)
 			)
