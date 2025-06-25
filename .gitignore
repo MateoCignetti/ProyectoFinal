@@ -21,9 +21,6 @@
 # *.eps
 # *.pdf
 
-## Generated if empty string is given at "Please type another file name for output:"
-.pdf
-
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
 *.bcf
@@ -332,7 +329,7 @@ Mkfile.old
 dkms.conf
 
 # ESP-IDF default build directory name
-build
+#**/build
 
 # Vscode config
 .vscode
@@ -371,3 +368,9 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+
+# For latex build main.pdf
+# Ignorar todo excepto main.pdf
+**/build/**
+!**/build/
+!**/build/main.pdf
