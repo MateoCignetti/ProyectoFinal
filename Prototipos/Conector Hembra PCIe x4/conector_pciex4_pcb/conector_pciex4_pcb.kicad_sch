@@ -1464,160 +1464,140 @@
 		)
 	)
 	(junction
-		(at 147.32 71.12)
+		(at 114.3 60.96)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "11c4cd43-9d61-408c-8556-e9eface0d7d9")
+		(uuid "46b7ce70-14b7-4d4d-b7c8-61aad77c800a")
 	)
 	(junction
-		(at 147.32 55.88)
+		(at 114.3 55.88)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "49f372e5-f64a-4fd5-bd0d-9adc7b00dbff")
 	)
 	(junction
-		(at 147.32 68.58)
+		(at 114.3 68.58)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5fa868ef-0333-4e92-a1e9-9a9e150e2616")
 	)
 	(junction
-		(at 147.32 53.34)
+		(at 114.3 53.34)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "df10d2bb-b023-43c9-8014-468cb75598a6")
+		(uuid "6baf0e81-30c8-45f7-a39f-0d9fefc1dab9")
 	)
 	(junction
-		(at 147.32 66.04)
+		(at 114.3 66.04)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "e3e94a4c-cb09-4fc2-8d27-43ed700a8c25")
+		(uuid "bfc460e5-cef3-48fc-8820-2381d5c81106")
 	)
 	(junction
-		(at 147.32 60.96)
+		(at 114.3 71.12)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "e71368da-0af0-4505-96e8-f0cfaa310cdb")
+		(uuid "cfc232eb-a8b7-458f-8dc0-ebeb9385cfa7")
 	)
 	(junction
-		(at 147.32 58.42)
+		(at 114.3 58.42)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f8ecf950-02ee-4191-b947-9f484ccd16f3")
 	)
 	(wire
 		(pts
-			(xy 147.32 76.2) (xy 143.51 76.2)
+			(xy 114.3 109.22) (xy 118.11 109.22)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "04a75fc8-262b-4003-8c95-8e9cfae9695f")
+		(uuid "00a0644e-d5b2-4712-9a2b-c9bab9cade45")
 	)
 	(wire
 		(pts
-			(xy 147.32 91.44) (xy 143.51 91.44)
+			(xy 114.3 99.06) (xy 118.11 99.06)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0c112bd2-bfb1-46e6-b294-e8bc2827a155")
+		(uuid "012b5bff-f948-405c-9a6f-2f5784b3c68f")
 	)
 	(wire
 		(pts
-			(xy 147.32 55.88) (xy 143.51 55.88)
+			(xy 114.3 58.42) (xy 118.11 58.42)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "136cdaf2-6750-4aa3-a0af-04a03df955a0")
+		(uuid "0feebb5e-7ac9-4864-b3eb-2413037055ed")
 	)
 	(wire
 		(pts
-			(xy 147.32 83.82) (xy 143.51 83.82)
+			(xy 114.3 121.92) (xy 118.11 121.92)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "1816f503-ba63-4395-957d-55e28c7f56a2")
+		(uuid "171d49dc-690e-43f8-b450-0ae3221be717")
 	)
 	(wire
 		(pts
-			(xy 147.32 86.36) (xy 143.51 86.36)
+			(xy 114.3 104.14) (xy 118.11 104.14)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "204c4aed-907f-4e33-88d8-2ca4d007a8ef")
+		(uuid "1e1f1793-e61e-4266-a2af-b7329ae438b2")
 	)
 	(wire
 		(pts
-			(xy 147.32 106.68) (xy 143.51 106.68)
+			(xy 114.3 86.36) (xy 118.11 86.36)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "276b6975-fc9b-4e71-a8eb-273c1aa865d0")
+		(uuid "24d5f09c-3af3-4b71-8255-e3abab01b975")
 	)
 	(wire
 		(pts
-			(xy 147.32 119.38) (xy 143.51 119.38)
+			(xy 114.3 111.76) (xy 118.11 111.76)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "2e73d641-f0b5-45dc-b956-74530eb1447e")
+		(uuid "2ba9885a-0f71-4bb4-aff1-a4597697dcdc")
 	)
 	(wire
 		(pts
-			(xy 147.32 101.6) (xy 143.51 101.6)
+			(xy 114.3 119.38) (xy 118.11 119.38)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "32301b76-eb93-4b5d-8bb1-8510558b3661")
+		(uuid "342d449c-f07b-4359-89b4-9fe32fffb0c4")
 	)
 	(wire
 		(pts
-			(xy 147.32 111.76) (xy 143.51 111.76)
+			(xy 114.3 114.3) (xy 118.11 114.3)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3471ee85-5ca5-401c-bd74-9de267e05001")
+		(uuid "374f677c-c3d6-4b00-819b-7d37f64e1986")
 	)
 	(wire
 		(pts
-			(xy 147.32 129.54) (xy 143.51 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "35e2a26e-cbc5-429a-a2df-d5dc42423f07")
-	)
-	(wire
-		(pts
-			(xy 147.32 73.66) (xy 143.51 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "38c77dac-b517-4bbe-9b6a-54e3cc4f8025")
-	)
-	(wire
-		(pts
-			(xy 147.32 53.34) (xy 147.32 55.88)
+			(xy 114.3 53.34) (xy 114.3 55.88)
 		)
 		(stroke
 			(width 0)
@@ -1627,57 +1607,37 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 60.96) (xy 143.51 60.96)
+			(xy 114.3 55.88) (xy 118.11 55.88)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3cae193f-cfc6-4c58-afdd-cc60de281f32")
+		(uuid "42f850c8-467c-4c90-a9b5-4090f9240c84")
 	)
 	(wire
 		(pts
-			(xy 147.32 88.9) (xy 143.51 88.9)
+			(xy 114.3 124.46) (xy 118.11 124.46)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3f5f3b3e-62c3-4307-bc04-555c8297cf44")
+		(uuid "4751add1-706e-4c5e-883a-323600546965")
 	)
 	(wire
 		(pts
-			(xy 147.32 71.12) (xy 143.51 71.12)
+			(xy 114.3 96.52) (xy 118.11 96.52)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "41f278a0-a6a8-4603-a3f5-fe24ed39957d")
+		(uuid "4a615c7f-9dd3-488a-a45c-89ed5c36c922")
 	)
 	(wire
 		(pts
-			(xy 147.32 104.14) (xy 143.51 104.14)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "49461fa7-d611-4c05-9c7e-82aea332b550")
-	)
-	(wire
-		(pts
-			(xy 147.32 58.42) (xy 143.51 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4b768cac-eafb-44a0-8e41-46d03e7a31d6")
-	)
-	(wire
-		(pts
-			(xy 147.32 58.42) (xy 147.32 60.96)
+			(xy 114.3 58.42) (xy 114.3 60.96)
 		)
 		(stroke
 			(width 0)
@@ -1687,17 +1647,37 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 116.84) (xy 143.51 116.84)
+			(xy 114.3 127) (xy 118.11 127)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "60fb4982-54dc-4917-afed-43851d135289")
+		(uuid "53e836f3-7048-4eb0-82bc-45c7f99f2db2")
 	)
 	(wire
 		(pts
-			(xy 147.32 68.58) (xy 147.32 71.12)
+			(xy 114.3 132.08) (xy 118.11 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5cbf02c5-9842-4a81-9e49-d69e873edf9b")
+	)
+	(wire
+		(pts
+			(xy 114.3 68.58) (xy 118.11 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "634384e0-4ed9-4047-928e-34c11a89ac86")
+	)
+	(wire
+		(pts
+			(xy 114.3 68.58) (xy 114.3 71.12)
 		)
 		(stroke
 			(width 0)
@@ -1707,67 +1687,67 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 68.58) (xy 143.51 68.58)
+			(xy 114.3 129.54) (xy 118.11 129.54)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "66e440b5-3d6c-4970-8abb-2f6338d24eff")
+		(uuid "6ba39759-b0ba-439d-8eba-eb3d45ba0a7c")
 	)
 	(wire
 		(pts
-			(xy 147.32 132.08) (xy 143.51 132.08)
+			(xy 114.3 50.8) (xy 118.11 50.8)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "6f9b83c3-a11c-403e-b9a7-1c58735f9b5b")
+		(uuid "6f288785-7f3d-4831-aa4d-6142ffb1ca72")
 	)
 	(wire
 		(pts
-			(xy 147.32 99.06) (xy 143.51 99.06)
+			(xy 114.3 88.9) (xy 118.11 88.9)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "76190c18-fd08-4a3a-92f0-b6f633afd47b")
+		(uuid "734fa3da-d398-4955-a3b7-d244c9f6714d")
 	)
 	(wire
 		(pts
-			(xy 147.32 121.92) (xy 143.51 121.92)
+			(xy 114.3 53.34) (xy 118.11 53.34)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "7a918b13-6e72-4860-8a08-c5b0ce7bb2b6")
+		(uuid "920c5ea5-0e7a-469d-a49d-b708a5f719d4")
 	)
 	(wire
 		(pts
-			(xy 147.32 81.28) (xy 143.51 81.28)
+			(xy 114.3 91.44) (xy 118.11 91.44)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "865b2028-21b0-4711-921c-405423682e5b")
+		(uuid "992170a5-1362-4ba7-8e0b-1488f7066f77")
 	)
 	(wire
 		(pts
-			(xy 147.32 109.22) (xy 143.51 109.22)
+			(xy 114.3 60.96) (xy 118.11 60.96)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "8a60fec3-c0db-4845-b967-184ced3d2b83")
+		(uuid "a025d157-d28b-4a8d-bc2f-6cb535648eda")
 	)
 	(wire
 		(pts
-			(xy 147.32 55.88) (xy 147.32 58.42)
+			(xy 114.3 55.88) (xy 114.3 58.42)
 		)
 		(stroke
 			(width 0)
@@ -1777,67 +1757,87 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 124.46) (xy 143.51 124.46)
+			(xy 114.3 76.2) (xy 118.11 76.2)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a9aa5542-d4d1-4e61-8698-1952b207846b")
+		(uuid "afbdb753-e08a-4f69-8324-a7bf0175244c")
 	)
 	(wire
 		(pts
-			(xy 147.32 93.98) (xy 143.51 93.98)
+			(xy 114.3 101.6) (xy 118.11 101.6)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ab169f99-09ab-4754-b4d2-45d4fc45a59a")
+		(uuid "b2279200-2c9e-4f10-95d9-7f884a70b734")
 	)
 	(wire
 		(pts
-			(xy 147.32 66.04) (xy 143.51 66.04)
+			(xy 114.3 106.68) (xy 118.11 106.68)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b0e15b21-4bc5-41d3-9579-0c9c7484fab7")
+		(uuid "b35ff4be-4bc6-43df-96f9-9e47d64ebaf9")
 	)
 	(wire
 		(pts
-			(xy 147.32 53.34) (xy 143.51 53.34)
+			(xy 114.3 81.28) (xy 118.11 81.28)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b256409f-de4d-4786-beba-ed9c72abc3ee")
+		(uuid "b8b026a9-f332-4bf0-9469-76b3f2d4f203")
 	)
 	(wire
 		(pts
-			(xy 147.32 96.52) (xy 143.51 96.52)
+			(xy 114.3 83.82) (xy 118.11 83.82)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d269330d-d904-4104-97f5-fbc5683552bf")
+		(uuid "bc5748aa-d3be-43d4-bbba-9205de7dfd35")
 	)
 	(wire
 		(pts
-			(xy 147.32 114.3) (xy 143.51 114.3)
+			(xy 114.3 71.12) (xy 118.11 71.12)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d3253881-26c0-433e-9b15-582b254f7afc")
+		(uuid "c5528f67-0593-40a0-a4f2-75a39ce10cac")
 	)
 	(wire
 		(pts
-			(xy 147.32 66.04) (xy 147.32 68.58)
+			(xy 114.3 63.5) (xy 118.11 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d178fbe9-7c7b-46a0-8430-79998aa5584e")
+	)
+	(wire
+		(pts
+			(xy 114.3 116.84) (xy 118.11 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d4644c7a-4e07-404d-8549-d9f5b7380569")
+	)
+	(wire
+		(pts
+			(xy 114.3 66.04) (xy 114.3 68.58)
 		)
 		(stroke
 			(width 0)
@@ -1847,37 +1847,38 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 127) (xy 143.51 127)
+			(xy 114.3 93.98) (xy 118.11 93.98)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e53c08a1-84bd-42c9-97ad-3755f22e9203")
+		(uuid "e1251b44-823d-498d-bddd-037985965d36")
 	)
 	(wire
 		(pts
-			(xy 147.32 63.5) (xy 143.51 63.5)
+			(xy 114.3 66.04) (xy 118.11 66.04)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e652e20a-d96e-49c5-ba55-18ddf67146e0")
+		(uuid "e939b230-8a28-4728-af4d-ba580fc3192b")
 	)
 	(wire
 		(pts
-			(xy 147.32 50.8) (xy 143.51 50.8)
+			(xy 114.3 73.66) (xy 118.11 73.66)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "f067fc6a-3ccb-4ac3-a9bd-d09ab4659bf7")
+		(uuid "ed755fbe-0abf-4cbd-b2cf-6d112848e605")
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 101.6 270)
+		(at 114.3 101.6 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1886,7 +1887,7 @@
 		(fields_autoplaced yes)
 		(uuid "058cd608-727c-40cd-b8e9-5cf0a605d534")
 		(property "Reference" "TP20"
-			(at 151.892 101.6 90)
+			(at 109.728 101.6 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1895,7 +1896,7 @@
 			)
 		)
 		(property "Value" "S7"
-			(at 157.226 101.6 90)
+			(at 104.394 101.6 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1904,7 +1905,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 106.68 0)
+			(at 114.3 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1913,7 +1914,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 106.68 0)
+			(at 114.3 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1922,7 +1923,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 101.6 0)
+			(at 114.3 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1944,7 +1945,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 114.3 270)
+		(at 114.3 114.3 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1953,7 +1955,7 @@
 		(fields_autoplaced yes)
 		(uuid "084b7b40-4336-417b-8cbc-b25fc02d1aaa")
 		(property "Reference" "TP25"
-			(at 151.892 114.3 90)
+			(at 109.728 114.3 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1962,7 +1964,7 @@
 			)
 		)
 		(property "Value" "S12"
-			(at 157.226 114.3 90)
+			(at 104.394 114.3 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1971,7 +1973,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 119.38 0)
+			(at 114.3 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1980,7 +1982,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 119.38 0)
+			(at 114.3 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1989,7 +1991,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 114.3 0)
+			(at 114.3 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2011,7 +2013,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 132.08 270)
+		(at 114.3 132.08 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2019,7 +2022,7 @@
 		(dnp no)
 		(uuid "15749846-193a-4b2a-9261-69c48de7ba8f")
 		(property "Reference" "TP32"
-			(at 151.892 132.08 90)
+			(at 109.728 132.08 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2028,7 +2031,7 @@
 			)
 		)
 		(property "Value" "HP_Signal"
-			(at 157.226 132.08 90)
+			(at 104.394 132.08 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2037,7 +2040,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 137.16 0)
+			(at 114.3 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2046,7 +2049,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 137.16 0)
+			(at 114.3 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2055,7 +2058,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 132.08 0)
+			(at 114.3 132.08 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2077,7 +2080,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 129.54 270)
+		(at 114.3 129.54 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2085,7 +2089,7 @@
 		(dnp no)
 		(uuid "195cb90c-5346-469e-9018-6ab1d9c34c37")
 		(property "Reference" "TP31"
-			(at 151.892 129.54 90)
+			(at 109.728 129.54 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2094,7 +2098,7 @@
 			)
 		)
 		(property "Value" "AGND"
-			(at 157.226 129.54 90)
+			(at 104.394 129.54 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2103,7 +2107,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 134.62 0)
+			(at 114.3 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2112,7 +2116,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 134.62 0)
+			(at 114.3 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2121,7 +2125,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 129.54 0)
+			(at 114.3 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2143,7 +2147,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 116.84 270)
+		(at 114.3 116.84 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2152,7 +2157,7 @@
 		(fields_autoplaced yes)
 		(uuid "1e753891-4682-4444-945e-76805c188061")
 		(property "Reference" "TP26"
-			(at 151.892 116.84 90)
+			(at 109.728 116.84 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2161,7 +2166,7 @@
 			)
 		)
 		(property "Value" "S13"
-			(at 157.226 116.84 90)
+			(at 104.394 116.84 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2170,7 +2175,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 121.92 0)
+			(at 114.3 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2179,7 +2184,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 121.92 0)
+			(at 114.3 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2188,7 +2193,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 116.84 0)
+			(at 114.3 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2210,7 +2215,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 83.82 270)
+		(at 114.3 83.82 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2218,7 +2224,7 @@
 		(dnp no)
 		(uuid "240bbee6-ba7e-48bc-9fbd-34e522605f2d")
 		(property "Reference" "TP13"
-			(at 151.892 83.82 90)
+			(at 109.728 83.82 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2227,7 +2233,7 @@
 			)
 		)
 		(property "Value" "3,3Vdc_Signal"
-			(at 157.226 83.82 90)
+			(at 104.394 83.82 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2236,7 +2242,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 88.9 0)
+			(at 114.3 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2245,7 +2251,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 88.9 0)
+			(at 114.3 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2254,7 +2260,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 83.82 0)
+			(at 114.3 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2276,7 +2282,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 81.28 270)
+		(at 114.3 81.28 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2284,7 +2291,7 @@
 		(dnp no)
 		(uuid "2c6bcebb-d032-42d2-b0e0-2c45b65824d0")
 		(property "Reference" "TP12"
-			(at 151.892 81.28 90)
+			(at 109.728 81.28 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2293,7 +2300,7 @@
 			)
 		)
 		(property "Value" "AGND"
-			(at 157.226 81.28 90)
+			(at 104.394 81.28 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2302,7 +2309,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 86.36 0)
+			(at 114.3 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2311,7 +2318,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 86.36 0)
+			(at 114.3 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2320,7 +2327,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 81.28 0)
+			(at 114.3 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2342,7 +2349,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 91.44 270)
+		(at 114.3 91.44 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2350,7 +2358,7 @@
 		(dnp no)
 		(uuid "2d44285c-115a-4f33-9480-e6e60450b62b")
 		(property "Reference" "TP16"
-			(at 151.892 91.44 90)
+			(at 109.728 91.44 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2359,7 +2367,7 @@
 			)
 		)
 		(property "Value" "S3"
-			(at 157.226 91.44 90)
+			(at 104.394 91.44 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2368,7 +2376,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 96.52 0)
+			(at 114.3 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2377,7 +2385,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 96.52 0)
+			(at 114.3 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2386,7 +2394,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 91.44 0)
+			(at 114.3 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2408,7 +2416,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 124.46 270)
+		(at 114.3 124.46 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2417,7 +2426,7 @@
 		(fields_autoplaced yes)
 		(uuid "342a2d59-bfcd-433e-b4c5-51138e15db51")
 		(property "Reference" "TP29"
-			(at 151.892 124.46 90)
+			(at 109.728 124.46 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2426,7 +2435,7 @@
 			)
 		)
 		(property "Value" "S16"
-			(at 157.226 124.46 90)
+			(at 104.394 124.46 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2435,7 +2444,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 129.54 0)
+			(at 114.3 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2444,7 +2453,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 129.54 0)
+			(at 114.3 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2453,7 +2462,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 124.46 0)
+			(at 114.3 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2475,7 +2484,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 106.68 270)
+		(at 114.3 106.68 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2484,7 +2494,7 @@
 		(fields_autoplaced yes)
 		(uuid "352d5732-ec4d-4990-87e7-3cc8acc72df5")
 		(property "Reference" "TP22"
-			(at 151.892 106.68 90)
+			(at 109.728 106.68 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2493,7 +2503,7 @@
 			)
 		)
 		(property "Value" "S9"
-			(at 157.226 106.68 90)
+			(at 104.394 106.68 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2502,7 +2512,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 111.76 0)
+			(at 114.3 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2511,7 +2521,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 111.76 0)
+			(at 114.3 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2520,7 +2530,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 106.68 0)
+			(at 114.3 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2542,7 +2552,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 58.42 270)
+		(at 114.3 58.42 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2550,7 +2561,7 @@
 		(dnp no)
 		(uuid "3ab3d310-9d3e-4798-a090-24c5e4a077bb")
 		(property "Reference" "TP4"
-			(at 151.892 58.42 90)
+			(at 109.728 58.42 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2559,7 +2570,7 @@
 			)
 		)
 		(property "Value" "PGND"
-			(at 157.226 58.42 90)
+			(at 104.394 58.42 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2568,7 +2579,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 63.5 0)
+			(at 114.3 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2577,7 +2588,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 63.5 0)
+			(at 114.3 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2586,7 +2597,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 58.42 0)
+			(at 114.3 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2608,7 +2619,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 53.34 270)
+		(at 114.3 53.34 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2616,7 +2628,7 @@
 		(dnp no)
 		(uuid "41c2c409-ca52-45e7-9c0b-d4fc3c62e5b4")
 		(property "Reference" "TP2"
-			(at 151.892 53.34 90)
+			(at 109.728 53.34 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2625,7 +2637,7 @@
 			)
 		)
 		(property "Value" "PGND"
-			(at 157.226 53.34 90)
+			(at 104.394 53.34 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2634,7 +2646,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 58.42 0)
+			(at 114.3 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2643,7 +2655,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 58.42 0)
+			(at 114.3 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2652,7 +2664,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 53.34 0)
+			(at 114.3 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2674,7 +2686,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 121.92 270)
+		(at 114.3 121.92 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2683,7 +2696,7 @@
 		(fields_autoplaced yes)
 		(uuid "4d622d9c-b930-41a8-bb03-44c801e6a7fa")
 		(property "Reference" "TP28"
-			(at 151.892 121.92 90)
+			(at 109.728 121.92 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2692,7 +2705,7 @@
 			)
 		)
 		(property "Value" "S15"
-			(at 157.226 121.92 90)
+			(at 104.394 121.92 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2701,7 +2714,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 127 0)
+			(at 114.3 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2710,7 +2723,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 127 0)
+			(at 114.3 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2719,7 +2732,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 121.92 0)
+			(at 114.3 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2741,7 +2754,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 50.8 270)
+		(at 114.3 50.8 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2749,7 +2763,7 @@
 		(dnp no)
 		(uuid "5d7e81a1-2d15-4fcf-a935-bc68156bcf58")
 		(property "Reference" "TP1"
-			(at 151.892 50.8 90)
+			(at 109.728 50.8 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2758,7 +2772,7 @@
 			)
 		)
 		(property "Value" "HP_Power"
-			(at 157.226 50.8 90)
+			(at 104.394 50.8 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2767,7 +2781,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 55.88 0)
+			(at 114.3 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2776,7 +2790,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 55.88 0)
+			(at 114.3 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2785,7 +2799,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 50.8 0)
+			(at 114.3 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2807,7 +2821,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 88.9 270)
+		(at 114.3 88.9 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2815,7 +2830,7 @@
 		(dnp no)
 		(uuid "6fceeb0d-9ace-4251-8461-135f877b78e5")
 		(property "Reference" "TP15"
-			(at 151.892 88.9 90)
+			(at 109.728 88.9 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2824,7 +2839,7 @@
 			)
 		)
 		(property "Value" "S2"
-			(at 157.226 88.9 90)
+			(at 104.394 88.9 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2833,7 +2848,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 93.98 0)
+			(at 114.3 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2842,7 +2857,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 93.98 0)
+			(at 114.3 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2851,7 +2866,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 88.9 0)
+			(at 114.3 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2873,7 +2888,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 63.5 270)
+		(at 114.3 63.5 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2881,7 +2897,7 @@
 		(dnp no)
 		(uuid "6feb48bb-930e-480e-aee1-383b33cdaef3")
 		(property "Reference" "TP6"
-			(at 151.892 63.5 90)
+			(at 109.728 63.5 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2890,7 +2906,7 @@
 			)
 		)
 		(property "Value" "5Vdc"
-			(at 157.226 63.5 90)
+			(at 104.394 63.5 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2899,7 +2915,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 68.58 0)
+			(at 114.3 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2908,7 +2924,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 68.58 0)
+			(at 114.3 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2917,7 +2933,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 63.5 0)
+			(at 114.3 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2939,7 +2955,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 93.98 270)
+		(at 114.3 93.98 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2947,7 +2964,7 @@
 		(dnp no)
 		(uuid "7206df42-56d4-4557-a5f3-d9d333f99dcb")
 		(property "Reference" "TP17"
-			(at 151.892 93.98 90)
+			(at 109.728 93.98 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2956,7 +2973,7 @@
 			)
 		)
 		(property "Value" "S4"
-			(at 157.226 93.98 90)
+			(at 104.394 93.98 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2965,7 +2982,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 99.06 0)
+			(at 114.3 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2974,7 +2991,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 99.06 0)
+			(at 114.3 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2983,7 +3000,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 93.98 0)
+			(at 114.3 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3005,7 +3022,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 73.66 270)
+		(at 114.3 73.66 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3013,7 +3031,7 @@
 		(dnp no)
 		(uuid "76bdb01d-71dd-4514-8a0d-ec2e6f0d42d4")
 		(property "Reference" "TP10"
-			(at 151.892 73.66 90)
+			(at 109.728 73.66 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3022,7 +3040,7 @@
 			)
 		)
 		(property "Value" "48Vac_L"
-			(at 157.226 73.66 90)
+			(at 104.394 73.66 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3031,7 +3049,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 78.74 0)
+			(at 114.3 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3040,7 +3058,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 78.74 0)
+			(at 114.3 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3049,7 +3067,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 73.66 0)
+			(at 114.3 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3071,7 +3089,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 55.88 270)
+		(at 114.3 55.88 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3079,7 +3098,7 @@
 		(dnp no)
 		(uuid "796daac3-ef41-4a49-806a-32d355f93d1c")
 		(property "Reference" "TP3"
-			(at 151.892 55.88 90)
+			(at 109.728 55.88 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3088,7 +3107,7 @@
 			)
 		)
 		(property "Value" "PGND"
-			(at 157.226 55.88 90)
+			(at 104.394 55.88 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3097,7 +3116,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 60.96 0)
+			(at 114.3 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3106,7 +3125,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 60.96 0)
+			(at 114.3 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3115,7 +3134,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 55.88 0)
+			(at 114.3 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3137,7 +3156,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 104.14 270)
+		(at 114.3 104.14 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3146,7 +3166,7 @@
 		(fields_autoplaced yes)
 		(uuid "8038f46e-944f-4a4e-822d-2741d920b91e")
 		(property "Reference" "TP21"
-			(at 151.892 104.14 90)
+			(at 109.728 104.14 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3155,7 +3175,7 @@
 			)
 		)
 		(property "Value" "S8"
-			(at 157.226 104.14 90)
+			(at 104.394 104.14 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3164,7 +3184,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 109.22 0)
+			(at 114.3 109.22 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3173,7 +3193,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 109.22 0)
+			(at 114.3 109.22 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3182,7 +3202,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 104.14 0)
+			(at 114.3 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3204,7 +3224,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 99.06 270)
+		(at 114.3 99.06 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3213,7 +3234,7 @@
 		(fields_autoplaced yes)
 		(uuid "a0114504-a2c5-4052-a251-94f857129074")
 		(property "Reference" "TP19"
-			(at 151.892 99.06 90)
+			(at 109.728 99.06 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3222,7 +3243,7 @@
 			)
 		)
 		(property "Value" "S6"
-			(at 157.226 99.06 90)
+			(at 104.394 99.06 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3231,7 +3252,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 104.14 0)
+			(at 114.3 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3240,7 +3261,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 104.14 0)
+			(at 114.3 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3249,7 +3270,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 99.06 0)
+			(at 114.3 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3271,7 +3292,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 66.04 270)
+		(at 114.3 66.04 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3279,7 +3301,7 @@
 		(dnp no)
 		(uuid "a5d2a45f-95d8-4422-abc9-4700585a9eab")
 		(property "Reference" "TP7"
-			(at 151.892 66.04 90)
+			(at 109.728 66.04 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3288,7 +3310,7 @@
 			)
 		)
 		(property "Value" "12Vdc"
-			(at 157.226 66.04 90)
+			(at 104.394 66.04 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3297,7 +3319,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 71.12 0)
+			(at 114.3 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3306,7 +3328,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 71.12 0)
+			(at 114.3 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3315,7 +3337,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 66.04 0)
+			(at 114.3 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3337,7 +3359,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 76.2 270)
+		(at 114.3 76.2 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3345,7 +3368,7 @@
 		(dnp no)
 		(uuid "af1114d1-afde-4689-96bc-f34def4efb19")
 		(property "Reference" "TP11"
-			(at 151.892 76.2 90)
+			(at 109.728 76.2 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3354,7 +3377,7 @@
 			)
 		)
 		(property "Value" "48Vac_N"
-			(at 157.226 76.2 90)
+			(at 104.394 76.2 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3363,7 +3386,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 81.28 0)
+			(at 114.3 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3372,7 +3395,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 81.28 0)
+			(at 114.3 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3381,7 +3404,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 76.2 0)
+			(at 114.3 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3403,7 +3426,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 96.52 270)
+		(at 114.3 96.52 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3411,7 +3435,7 @@
 		(dnp no)
 		(uuid "b3cef354-88d9-4570-ab2a-bc6b8ad06c0d")
 		(property "Reference" "TP18"
-			(at 151.892 96.52 90)
+			(at 109.728 96.52 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3420,7 +3444,7 @@
 			)
 		)
 		(property "Value" "S5"
-			(at 157.226 96.52 90)
+			(at 104.394 96.52 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3429,7 +3453,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 101.6 0)
+			(at 114.3 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3438,7 +3462,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 101.6 0)
+			(at 114.3 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3447,7 +3471,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 96.52 0)
+			(at 114.3 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3469,7 +3493,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 60.96 270)
+		(at 114.3 60.96 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3477,7 +3502,7 @@
 		(dnp no)
 		(uuid "b9b60f47-415a-4d49-b07d-4b3c52bfe49b")
 		(property "Reference" "TP5"
-			(at 151.892 60.96 90)
+			(at 109.728 60.96 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3486,7 +3511,7 @@
 			)
 		)
 		(property "Value" "PGND"
-			(at 157.226 60.96 90)
+			(at 104.394 60.96 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3495,7 +3520,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 66.04 0)
+			(at 114.3 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3504,7 +3529,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 66.04 0)
+			(at 114.3 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3513,7 +3538,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 60.96 0)
+			(at 114.3 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3920,7 +3945,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 111.76 270)
+		(at 114.3 111.76 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3929,7 +3955,7 @@
 		(fields_autoplaced yes)
 		(uuid "c5fb5d4d-a896-4dea-8f32-2513f0a5a1b9")
 		(property "Reference" "TP24"
-			(at 151.892 111.76 90)
+			(at 109.728 111.76 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3938,7 +3964,7 @@
 			)
 		)
 		(property "Value" "S11"
-			(at 157.226 111.76 90)
+			(at 104.394 111.76 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3947,7 +3973,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 116.84 0)
+			(at 114.3 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3956,7 +3982,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 116.84 0)
+			(at 114.3 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3965,7 +3991,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 111.76 0)
+			(at 114.3 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3987,7 +4013,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 86.36 270)
+		(at 114.3 86.36 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3995,7 +4022,7 @@
 		(dnp no)
 		(uuid "d313afe7-e219-447c-9eb7-874a2ace2d2e")
 		(property "Reference" "TP14"
-			(at 151.892 86.36 90)
+			(at 109.728 86.36 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4004,7 +4031,7 @@
 			)
 		)
 		(property "Value" "S1"
-			(at 157.226 86.36 90)
+			(at 104.394 86.36 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4013,7 +4040,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 91.44 0)
+			(at 114.3 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4022,7 +4049,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 91.44 0)
+			(at 114.3 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4031,7 +4058,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 86.36 0)
+			(at 114.3 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4053,7 +4080,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 109.22 270)
+		(at 114.3 109.22 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4062,7 +4090,7 @@
 		(fields_autoplaced yes)
 		(uuid "d3b14572-23e0-42ee-b2a4-c9997c1ce2ee")
 		(property "Reference" "TP23"
-			(at 151.892 109.22 90)
+			(at 109.728 109.22 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4071,7 +4099,7 @@
 			)
 		)
 		(property "Value" "S10"
-			(at 157.226 109.22 90)
+			(at 104.394 109.22 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4080,7 +4108,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 114.3 0)
+			(at 114.3 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4089,7 +4117,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 114.3 0)
+			(at 114.3 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4098,7 +4126,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 109.22 0)
+			(at 114.3 109.22 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4120,7 +4148,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 68.58 270)
+		(at 114.3 68.58 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4128,7 +4157,7 @@
 		(dnp no)
 		(uuid "e495e105-16b4-46bc-a7be-5a094f4dcb4b")
 		(property "Reference" "TP8"
-			(at 151.892 68.58 90)
+			(at 109.728 68.58 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4137,7 +4166,7 @@
 			)
 		)
 		(property "Value" "12Vdc"
-			(at 157.226 68.58 90)
+			(at 104.394 68.58 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4146,7 +4175,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 73.66 0)
+			(at 114.3 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4155,7 +4184,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 73.66 0)
+			(at 114.3 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4164,7 +4193,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 68.58 0)
+			(at 114.3 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4186,7 +4215,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 119.38 270)
+		(at 114.3 119.38 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4195,7 +4225,7 @@
 		(fields_autoplaced yes)
 		(uuid "e537ca71-c127-4987-946c-69c1c635d376")
 		(property "Reference" "TP27"
-			(at 151.892 119.38 90)
+			(at 109.728 119.38 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4204,7 +4234,7 @@
 			)
 		)
 		(property "Value" "S14"
-			(at 157.226 119.38 90)
+			(at 104.394 119.38 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4213,7 +4243,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 124.46 0)
+			(at 114.3 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4222,7 +4252,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 124.46 0)
+			(at 114.3 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4231,7 +4261,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 119.38 0)
+			(at 114.3 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4253,7 +4283,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 127 270)
+		(at 114.3 127 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4261,7 +4292,7 @@
 		(dnp no)
 		(uuid "ece5703e-22c2-4158-be6c-e480f2467c08")
 		(property "Reference" "TP30"
-			(at 151.892 127 90)
+			(at 109.728 127 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4270,7 +4301,7 @@
 			)
 		)
 		(property "Value" "MODULE_IDENT"
-			(at 157.226 127 90)
+			(at 104.394 127 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4279,7 +4310,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 132.08 0)
+			(at 114.3 132.08 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4288,7 +4319,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 132.08 0)
+			(at 114.3 132.08 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4297,7 +4328,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 127 0)
+			(at 114.3 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4319,7 +4350,8 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 147.32 71.12 270)
+		(at 114.3 71.12 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4327,7 +4359,7 @@
 		(dnp no)
 		(uuid "ee56d411-7c71-4bbc-9783-6134b513ab34")
 		(property "Reference" "TP9"
-			(at 151.892 71.12 90)
+			(at 109.728 71.12 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4336,7 +4368,7 @@
 			)
 		)
 		(property "Value" "12Vdc"
-			(at 157.226 71.12 90)
+			(at 104.394 71.12 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4345,7 +4377,7 @@
 			)
 		)
 		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 147.32 76.2 0)
+			(at 114.3 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4354,7 +4386,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 147.32 76.2 0)
+			(at 114.3 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4363,7 +4395,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 147.32 71.12 0)
+			(at 114.3 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)

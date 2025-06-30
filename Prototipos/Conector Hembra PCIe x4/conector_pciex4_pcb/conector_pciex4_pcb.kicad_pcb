@@ -79,75 +79,75 @@
 		)
 	)
 	(net 0 "")
-	(net 1 "Net-(J1-PadB21)")
-	(net 2 "unconnected-(J1-PadA15)")
-	(net 3 "unconnected-(J1-PadA3)")
-	(net 4 "Net-(J1-PadB31)")
-	(net 5 "unconnected-(J1-PadA6)")
-	(net 6 "unconnected-(J1-PadA30)")
-	(net 7 "Net-(J1-PadB24)")
-	(net 8 "unconnected-(J1-PadA9)")
-	(net 9 "Net-(J1-PadB10)")
-	(net 10 "unconnected-(J1-PadA21)")
-	(net 11 "unconnected-(J1-PadA13)")
-	(net 12 "Net-(J1-PadB2)")
-	(net 13 "unconnected-(J1-PadA8)")
-	(net 14 "unconnected-(J1-PadA26)")
-	(net 15 "Net-(J1-PadB28)")
-	(net 16 "unconnected-(J1-PadA4)")
-	(net 17 "unconnected-(J1-PadA18)")
-	(net 18 "unconnected-(J1-PadA5)")
-	(net 19 "unconnected-(J1-PadA20)")
-	(net 20 "unconnected-(J1-PadA25)")
-	(net 21 "unconnected-(J1-PadA16)")
-	(net 22 "Net-(J1-PadB20)")
-	(net 23 "Net-(J1-PadB30)")
-	(net 24 "unconnected-(J1-PadA29)")
-	(net 25 "Net-(J1-PadB15)")
-	(net 26 "unconnected-(J1-PadA22)")
-	(net 27 "unconnected-(J1-PadA10)")
-	(net 28 "Net-(J1-PadB11)")
-	(net 29 "Net-(J1-PadB7)")
-	(net 30 "Net-(J1-PadB12)")
-	(net 31 "unconnected-(J1-PadA11)")
-	(net 32 "Net-(J1-PadB18)")
-	(net 33 "unconnected-(J1-PadA17)")
-	(net 34 "Net-(J1-PadB29)")
-	(net 35 "unconnected-(J1-PadA2)")
-	(net 36 "Net-(J1-PadB16)")
-	(net 37 "Net-(J1-PadB26)")
-	(net 38 "Net-(J1-PadB19)")
-	(net 39 "unconnected-(J1-PadA19)")
-	(net 40 "Net-(J1-PadB13)")
-	(net 41 "Net-(J1-PadB14)")
-	(net 42 "unconnected-(J1-PadA31)")
-	(net 43 "unconnected-(J1-PadA27)")
-	(net 44 "Net-(J1-PadB32)")
-	(net 45 "Net-(J1-PadB23)")
-	(net 46 "Net-(J1-PadB17)")
-	(net 47 "Net-(J1-PadB22)")
-	(net 48 "Net-(J1-PadB27)")
-	(net 49 "unconnected-(J1-PadA12)")
-	(net 50 "unconnected-(J1-PadA14)")
-	(net 51 "Net-(J1-PadB1)")
-	(net 52 "unconnected-(J1-PadA24)")
-	(net 53 "Net-(J1-PadB25)")
-	(net 54 "unconnected-(J1-PadA32)")
-	(net 55 "unconnected-(J1-PadA1)")
-	(net 56 "unconnected-(J1-PadA28)")
-	(net 57 "Net-(J1-PadB6)")
-	(net 58 "unconnected-(J1-PadA23)")
-	(net 59 "unconnected-(J1-PadA7)")
+	(net 1 "unconnected-(J1-PadB21)")
+	(net 2 "Net-(J1-PadA15)")
+	(net 3 "Net-(J1-PadA2)")
+	(net 4 "unconnected-(J1-PadB31)")
+	(net 5 "Net-(J1-PadA6)")
+	(net 6 "Net-(J1-PadA30)")
+	(net 7 "unconnected-(J1-PadB24)")
+	(net 8 "Net-(J1-PadA7)")
+	(net 9 "unconnected-(J1-PadB10)")
+	(net 10 "unconnected-(J1-PadB5)")
+	(net 11 "Net-(J1-PadA21)")
+	(net 12 "Net-(J1-PadA13)")
+	(net 13 "unconnected-(J1-PadB2)")
+	(net 14 "Net-(J1-PadA26)")
+	(net 15 "unconnected-(J1-PadB28)")
+	(net 16 "unconnected-(J1-PadB9)")
+	(net 17 "Net-(J1-PadA18)")
+	(net 18 "Net-(J1-PadA20)")
+	(net 19 "Net-(J1-PadA25)")
+	(net 20 "Net-(J1-PadA16)")
+	(net 21 "unconnected-(J1-PadB20)")
+	(net 22 "unconnected-(J1-PadB30)")
+	(net 23 "Net-(J1-PadA29)")
+	(net 24 "unconnected-(J1-PadB15)")
+	(net 25 "Net-(J1-PadA22)")
+	(net 26 "Net-(J1-PadA10)")
+	(net 27 "unconnected-(J1-PadB11)")
+	(net 28 "unconnected-(J1-PadB7)")
+	(net 29 "unconnected-(J1-PadB12)")
+	(net 30 "Net-(J1-PadA11)")
+	(net 31 "unconnected-(J1-PadB18)")
+	(net 32 "Net-(J1-PadA17)")
+	(net 33 "unconnected-(J1-PadB29)")
+	(net 34 "unconnected-(J1-PadB4)")
+	(net 35 "unconnected-(J1-PadB16)")
+	(net 36 "unconnected-(J1-PadB26)")
+	(net 37 "unconnected-(J1-PadB19)")
+	(net 38 "Net-(J1-PadA19)")
+	(net 39 "unconnected-(J1-PadB13)")
+	(net 40 "unconnected-(J1-PadB14)")
+	(net 41 "Net-(J1-PadA31)")
+	(net 42 "Net-(J1-PadA27)")
+	(net 43 "unconnected-(J1-PadB32)")
+	(net 44 "unconnected-(J1-PadB23)")
+	(net 45 "unconnected-(J1-PadB17)")
+	(net 46 "unconnected-(J1-PadB22)")
+	(net 47 "unconnected-(J1-PadB27)")
+	(net 48 "Net-(J1-PadA12)")
+	(net 49 "Net-(J1-PadA14)")
+	(net 50 "unconnected-(J1-PadB3)")
+	(net 51 "unconnected-(J1-PadB1)")
+	(net 52 "Net-(J1-PadA24)")
+	(net 53 "unconnected-(J1-PadB25)")
+	(net 54 "Net-(J1-PadA32)")
+	(net 55 "Net-(J1-PadA1)")
+	(net 56 "Net-(J1-PadA28)")
+	(net 57 "unconnected-(J1-PadB6)")
+	(net 58 "Net-(J1-PadA23)")
+	(net 59 "unconnected-(J1-PadB8)")
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "0a5e7d48-c569-4c20-aaa2-47d1e0ea65a5")
-		(at 124.35 67.65 180)
+		(at 140.375 67.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP4"
-			(at 2.05 0 180)
+			(at -2.016667 -0.025603 180)
 			(layer "F.SilkS")
-			(uuid "6b3fc9af-77ea-466a-8e0e-6b4ac15633b4")
+			(uuid "bf07c0a7-493b-4935-bda7-925cf18942d9")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -158,7 +158,7 @@
 		(property "Value" "PGND"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "37bc751f-8d0f-4dc2-8118-c4b85ede37f2")
+			(uuid "db5675b8-7edf-44d3-ba63-a17dc411d234")
 			(effects
 				(font
 					(size 1 1)
@@ -171,7 +171,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "3543e9f8-e151-4c9d-8e0c-546827f45335")
+			(uuid "fc2751fd-c43f-4a16-af4b-efdf2a9015b1")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -184,7 +184,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "8dbe67f2-40ab-4f03-8dc1-9b15e8b03339")
+			(uuid "90c8ad3a-dd4e-47ba-b9f1-03d18cef9a0a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -236,7 +236,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 12 "Net-(J1-PadB2)")
+			(net 3 "Net-(J1-PadA2)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "f5b27d96-ad90-4c11-80f4-7fc21698f704")
@@ -246,13 +246,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "0d1204c0-aafd-49a7-a3ad-7d64919735ce")
-		(at 124.35 81.65 180)
+		(at 140.375 81.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP16"
-			(at 2.4 0 180)
+			(at -2.35 -0.025603 180)
 			(layer "F.SilkS")
-			(uuid "0a19d19b-de87-4ed4-9f98-843206a47033")
+			(uuid "e30f33cf-8df7-40ed-8d15-1d1f9b9a4700")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -263,7 +263,7 @@
 		(property "Value" "S3"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "42c4d6d7-e66e-40a2-8919-cc9845ab2426")
+			(uuid "77575820-e4fd-462a-a33f-6984cb419371")
 			(effects
 				(font
 					(size 1 1)
@@ -276,7 +276,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "9d734204-ce12-4d0e-ba0a-7011d501447e")
+			(uuid "09054176-c74e-4394-81bb-e3d8034f16b7")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -289,7 +289,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "cd54f3ea-e3bf-4431-bf91-dacaf64d5c22")
+			(uuid "310c94a9-71e0-4661-b082-048773317406")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -341,7 +341,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 36 "Net-(J1-PadB16)")
+			(net 20 "Net-(J1-PadA16)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "3b79714d-59d2-414a-9b4b-af9875f5f191")
@@ -351,13 +351,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "12a998e2-f3ff-48f7-8b2f-ef917ae65a1d")
-		(at 124.35 91.65 180)
+		(at 140.375 91.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP26"
-			(at 2.4 -0.010484 180)
+			(at -2.35 -0.036087 180)
 			(layer "F.SilkS")
-			(uuid "5c174101-5f79-4c46-8225-64579df61339")
+			(uuid "8680ea89-4065-45d0-8d2b-bd7d7c4b7b86")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -368,7 +368,7 @@
 		(property "Value" "S13"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "06c9e4ef-eb0b-4b1e-b21f-12d5dd5adb81")
+			(uuid "bdc7b0c9-1d93-435e-a227-536dddf60299")
 			(effects
 				(font
 					(size 1 1)
@@ -381,7 +381,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "5a99c330-7191-49c8-8432-fdc4d1cda375")
+			(uuid "62250ec9-2c59-4c6f-95ed-1c61d543a2c0")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -394,7 +394,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "854e93f5-7288-4f2c-947a-0ba35c56d041")
+			(uuid "566b0774-191a-42b4-9cd7-418482807bbc")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -446,7 +446,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 37 "Net-(J1-PadB26)")
+			(net 14 "Net-(J1-PadA26)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "0f6b8c40-4413-413a-a628-6c29bde11bd2")
@@ -456,13 +456,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "17c42481-411e-4a05-9075-c9da2d0aa025")
-		(at 124.35 85.65 180)
+		(at 140.375 85.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP20"
-			(at 2.4 0 180)
+			(at -2.35 -0.025603 180)
 			(layer "F.SilkS")
-			(uuid "bdcf6b1f-6f0a-4396-a981-4746ed860152")
+			(uuid "57d5c36b-9e05-49db-b64f-6c1c2557a415")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -473,7 +473,7 @@
 		(property "Value" "S7"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "80eafe4d-cd8d-4590-9453-4c568c4bf32b")
+			(uuid "e72e24cf-0fa8-45c2-bf15-453f72048ea9")
 			(effects
 				(font
 					(size 1 1)
@@ -486,7 +486,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "341aa0ac-b90c-4928-b3f2-1d5c0eeb16f0")
+			(uuid "b1536b10-cad1-4e55-bfb7-63f0d31cb891")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -499,7 +499,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "8ceed794-1c74-4d56-8c5b-150d7a10f14b")
+			(uuid "2b53da13-ad3e-4430-900a-883561ce9ae3")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -551,7 +551,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 22 "Net-(J1-PadB20)")
+			(net 18 "Net-(J1-PadA20)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "e22ebea5-5515-4eff-a0f8-3a7f725a9de8")
@@ -561,13 +561,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "1a6c0c3e-4550-4915-87aa-175884f216e8")
-		(at 126.35 70.65 180)
+		(at 138.175 70.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP7"
-			(at 4.05 0 180)
+			(at -4.216667 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "bcf72bab-c02b-42b7-ba1c-596515f2590c")
+			(uuid "53ec6728-4284-4759-8e1e-5e571fe793b6")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -578,7 +578,7 @@
 		(property "Value" "12Vdc"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "6c52e37f-22c3-42fe-9757-cb2ad79bc38a")
+			(uuid "496e605c-9895-4224-b01f-85f898dcb20a")
 			(effects
 				(font
 					(size 1 1)
@@ -591,7 +591,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f7cd5787-bae0-4e69-bdcb-9c65fed22f64")
+			(uuid "40543b1d-903b-44d1-9a36-4971b0593cae")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -604,7 +604,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "06fc89ef-6506-44d7-a668-7b4f743012dd")
+			(uuid "7b515e3e-1077-406d-bac6-0f9a9c6328b6")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -656,7 +656,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 29 "Net-(J1-PadB7)")
+			(net 8 "Net-(J1-PadA7)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "c5151ab4-c1a6-488c-9d05-15e3c90ce969")
@@ -666,13 +666,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "28abd425-01ac-413f-bcfe-35c134e605a6")
-		(at 126.35 86.65 180)
+		(at 138.175 86.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP21"
-			(at 4.4 0 180)
+			(at -4.55 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "5bb9ab53-7782-4daf-8aeb-64f6579e7f75")
+			(uuid "43826724-9e82-4894-ae41-b399f6952a8f")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -683,7 +683,7 @@
 		(property "Value" "S8"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "f17964e2-fc91-427d-82b2-ea96ea094240")
+			(uuid "6a7d7b0f-951e-42db-b8a4-6aa66a20fae3")
 			(effects
 				(font
 					(size 1 1)
@@ -696,7 +696,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f8ba86ae-ad14-4458-bff5-24288b8c9e54")
+			(uuid "a7695549-0051-416a-945c-eda02989ddc5")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -709,7 +709,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6f57fd04-8f69-4d3f-8a51-714262ee2bfb")
+			(uuid "a7471dbe-3c11-4398-8a35-e31b49942cdb")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -761,7 +761,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 1 "Net-(J1-PadB21)")
+			(net 11 "Net-(J1-PadA21)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "31c6391e-d7ab-41d1-969f-0d9fc74e01c1")
@@ -771,13 +771,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "2ba7f1ee-1d44-4b58-b819-e1cf8b96d5cb")
-		(at 126.35 92.65 180)
+		(at 138.175 92.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP27"
-			(at 4.4 0 180)
+			(at -4.55 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "7b8eae0d-29c0-4697-a508-19329ffdfae6")
+			(uuid "955a22c5-bcaa-40f3-90af-25b9e9ee819a")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -788,7 +788,7 @@
 		(property "Value" "S14"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "6b9b0632-7399-4277-aa74-fce346865f48")
+			(uuid "3574ed14-027b-4c48-ab61-30395e934458")
 			(effects
 				(font
 					(size 1 1)
@@ -801,7 +801,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "153b0182-71c5-47f3-a490-1c53e668ba77")
+			(uuid "2d61a875-0eb4-42de-979b-77917c93ac1a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -814,7 +814,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "c0097f75-4aeb-460f-8266-2cba6b082082")
+			(uuid "586a1243-2937-4628-8a25-6ccf25c3ebdb")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -866,7 +866,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 48 "Net-(J1-PadB27)")
+			(net 42 "Net-(J1-PadA27)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "0e4128a5-ad68-4f8d-84e3-18c42536d0d3")
@@ -876,13 +876,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "2dc8bc5b-29cd-4e12-8af5-09ccc9d58747")
-		(at 126.35 94.65 180)
+		(at 138.175 94.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP29"
-			(at 4.4 0 180)
+			(at -4.55 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "ee41c6d1-dfa8-440d-bc0c-62272b47ac8f")
+			(uuid "f1a0d0a0-b2a8-47de-abaf-6e22bff68703")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -893,7 +893,7 @@
 		(property "Value" "S16"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "f838ed26-edcf-443d-9876-dec3a04d6c23")
+			(uuid "7a489f41-fe33-4c90-bf6e-5f4da561feb8")
 			(effects
 				(font
 					(size 1 1)
@@ -906,7 +906,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "63ecda04-fb26-4e43-a69e-fa7701e28fbc")
+			(uuid "7995fcd6-73db-4caf-8d93-68c20fef558a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -919,7 +919,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "689e41ea-dd72-4b3f-905a-2a819f0f05f0")
+			(uuid "c74969dc-da3d-48d3-a553-28debe028af1")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -971,7 +971,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 34 "Net-(J1-PadB29)")
+			(net 23 "Net-(J1-PadA29)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "efb882e4-809a-474a-9674-76713029c800")
@@ -981,13 +981,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "392fb273-2a54-49d3-a478-35c9ed8d5bf0")
-		(at 124.35 69.65 180)
+		(at 140.375 69.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP6"
-			(at 2.05 0 180)
+			(at -2.016667 -0.025603 180)
 			(layer "F.SilkS")
-			(uuid "a6c8e087-1a16-4314-8ee5-4c840afe20b4")
+			(uuid "88aca99a-9320-49d2-b84a-e74dc4443d46")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -998,7 +998,7 @@
 		(property "Value" "5Vdc"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "c47d5b97-fb94-4404-bb46-d823a21d9cd7")
+			(uuid "496c412f-ee87-4e40-9a33-580c614610e7")
 			(effects
 				(font
 					(size 1 1)
@@ -1011,7 +1011,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "afcef8d4-3e6b-4cb2-953e-893f65937479")
+			(uuid "9a4a0138-a25c-40f3-a24a-a07a6b8568ef")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1024,7 +1024,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "c6446e02-6928-4768-95af-1b38006446d8")
+			(uuid "b3286166-1e2f-44b4-abd5-578ee1d56d4a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1076,7 +1076,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 57 "Net-(J1-PadB6)")
+			(net 5 "Net-(J1-PadA6)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "0b8c8771-de5c-46cd-8e82-b70240305daf")
@@ -1086,13 +1086,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "3c598898-1f46-490e-84df-35df3fefd7a9")
-		(at 124.35 93.65 180)
+		(at 140.375 93.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP28"
-			(at 2.4 0 180)
+			(at -2.35 -0.025603 180)
 			(layer "F.SilkS")
-			(uuid "36f9b6b7-4859-4a72-b431-1a147b9c9dd6")
+			(uuid "b6fc1495-a4f9-47bd-97ed-384235c488f2")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -1103,7 +1103,7 @@
 		(property "Value" "S15"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "656c775f-ae4e-4f6b-8daf-087316f9e4d4")
+			(uuid "6e25551d-945d-4fdd-8119-3babb52ff52e")
 			(effects
 				(font
 					(size 1 1)
@@ -1116,7 +1116,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "25d59170-a7c8-47d9-8e6b-7122f4985afc")
+			(uuid "9d6bd6f9-c7bd-4413-96a1-84eb7b830041")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1129,7 +1129,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "d1b2cddb-b758-468c-8d83-e0465a0991dd")
+			(uuid "e1f5573a-d8a7-4740-a73b-a9b4a79c93ea")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1181,7 +1181,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 15 "Net-(J1-PadB28)")
+			(net 56 "Net-(J1-PadA28)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "d7eb83fd-2e5f-4232-95cf-774010b1e714")
@@ -1191,13 +1191,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "40844e79-7c85-4017-8275-2ca0f6b8538f")
-		(at 124.35 77.65 180)
+		(at 140.375 77.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP12"
-			(at 2.45 0 180)
+			(at -2.35 -0.025603 180)
 			(layer "F.SilkS")
-			(uuid "c18a2c43-05d6-46cf-a33b-d0d47d5a07bf")
+			(uuid "380b9cbf-5158-48b4-8725-2797d13b4c09")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -1208,7 +1208,7 @@
 		(property "Value" "AGND"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "a08190c1-9b4e-43ad-8770-d91598bac476")
+			(uuid "a3f8c668-1734-404d-bd3c-8fa810663f9b")
 			(effects
 				(font
 					(size 1 1)
@@ -1221,7 +1221,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "ac4df075-7ea6-4670-a160-d1412db1c76f")
+			(uuid "7d45fd74-ece0-458f-9a82-e03a678bfca6")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1234,7 +1234,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "efde9788-f468-4df3-b8ad-ab584efdcb8d")
+			(uuid "819bc5c8-5c89-4c79-b980-23e4682de0a8")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1286,7 +1286,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 30 "Net-(J1-PadB12)")
+			(net 48 "Net-(J1-PadA12)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "32f5466e-eca9-437e-a67c-ab7fb591dbad")
@@ -1296,13 +1296,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "40cd621a-5069-4f8a-b31c-33df2cbf44a0")
-		(at 124.35 73.65 180)
+		(at 140.375 73.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP10"
-			(at 2.4 0 180)
+			(at -2.35 -0.025603 180)
 			(layer "F.SilkS")
-			(uuid "6463141d-91c4-439b-a68a-bff2054a5bf1")
+			(uuid "a9ce68d5-97f0-4ed8-9d10-206126bc90f4")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -1313,7 +1313,7 @@
 		(property "Value" "48Vac_L"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "4b38e8cd-1267-4828-ae79-cf3eb47f13fa")
+			(uuid "6143c61b-c648-4ac0-9245-cb6b8fd22cb4")
 			(effects
 				(font
 					(size 1 1)
@@ -1326,7 +1326,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e12ff35b-a13c-4a57-9ae7-861a2611695e")
+			(uuid "3e2448e3-fd80-41c8-b52e-acebdb0ec32c")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1339,7 +1339,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "5021dfac-20cd-4d34-9edf-978d25bffaca")
+			(uuid "4783aeda-e239-474f-a81a-8a3cb8844ab1")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1391,7 +1391,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 9 "Net-(J1-PadB10)")
+			(net 26 "Net-(J1-PadA10)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "de4035ac-5243-48ab-8691-ae257c65fcb6")
@@ -1401,13 +1401,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "49c0c0cd-59f2-4665-ba16-b4536fd39105")
-		(at 126.35 68.65 180)
+		(at 138.175 68.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP5"
-			(at 4.05 0 180)
+			(at -4.216667 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "614cbc11-a7ea-4ca7-9fb2-05bd0fda4703")
+			(uuid "91fc7bac-88e3-436f-8b25-bceb588f252a")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -1418,7 +1418,7 @@
 		(property "Value" "PGND"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "159059bf-ebc3-47f7-87ae-72dfa2797142")
+			(uuid "885e291f-4739-4c7f-9ac4-8871ebad34c0")
 			(effects
 				(font
 					(size 1 1)
@@ -1431,7 +1431,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "158056fd-7363-474d-b9da-cb6bcded7e59")
+			(uuid "c0ff0a65-77ab-4e14-99f4-66164d1fba93")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1444,7 +1444,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "ca9ba621-93c9-42ce-b9ea-0efc4fd94423")
+			(uuid "eed1cc42-5d38-431e-b10f-2251525151c3")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1496,7 +1496,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 12 "Net-(J1-PadB2)")
+			(net 3 "Net-(J1-PadA2)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "3218b290-a519-4ee8-b2e1-4a408022c04c")
@@ -1506,13 +1506,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "51f6183b-9688-41c7-be18-39ca2152fdaf")
-		(at 126.35 90.65 180)
+		(at 138.175 90.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP25"
-			(at 4.4 0 180)
+			(at -4.55 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "aa0fc423-e3c0-4eac-98b0-a357697cdddc")
+			(uuid "5be1e15b-2026-493b-b4ef-23b623520632")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -1523,7 +1523,7 @@
 		(property "Value" "S12"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "ef5f7308-e42b-4aca-a248-060486671f63")
+			(uuid "4d0f6e53-86c7-45c7-b2e2-cb28a52333b0")
 			(effects
 				(font
 					(size 1 1)
@@ -1536,7 +1536,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "4cadf35c-588a-4959-9f43-54e0360e196e")
+			(uuid "bc7602a9-1c9c-4c30-8301-2e115c35625e")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1549,7 +1549,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "0e59337f-c627-444f-8ea6-60f51ef9b12a")
+			(uuid "dbaf7df2-5429-4c3d-a4d6-bf0281f61438")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1601,7 +1601,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 53 "Net-(J1-PadB25)")
+			(net 19 "Net-(J1-PadA25)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "6d9c9110-82e9-4fe2-b716-bc8a38ace838")
@@ -1611,13 +1611,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "546aea8b-cbde-45da-979d-b97441b4821d")
-		(at 126.35 80.65 180)
+		(at 138.175 80.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP15"
-			(at 4.4 0 180)
+			(at -4.55 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "303ed309-e9f3-49d2-88b1-ed6d8d227739")
+			(uuid "6f89b1e4-5f05-4b97-a0b8-36e40b35d5a8")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -1628,7 +1628,7 @@
 		(property "Value" "S2"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "289af9bc-9d95-4a53-818c-5d390039e126")
+			(uuid "8533c52f-7b1a-4085-b9d9-d371a6667eed")
 			(effects
 				(font
 					(size 1 1)
@@ -1641,7 +1641,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "129807de-ac8a-4d34-ab4c-7fd2d3fb7f1c")
+			(uuid "37f6760e-1cde-4ecc-96f0-61af8f214a9c")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1654,7 +1654,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f571aec8-80d2-427e-926a-54d46ab6b1a7")
+			(uuid "cdd1b184-2821-4b64-aaa1-b2f079239163")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1706,7 +1706,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 25 "Net-(J1-PadB15)")
+			(net 2 "Net-(J1-PadA15)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "1afca01e-cd08-487d-bbba-71462b31b489")
@@ -1716,13 +1716,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "5f02f8d3-2763-4757-ae26-4766ad0c81ea")
-		(at 126.35 96.65 180)
+		(at 138.175 96.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP31"
-			(at 4.4 0 180)
+			(at -4.55 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "cdd022f3-59a2-441a-9de4-83c9ddf065c7")
+			(uuid "a085992f-e301-47ed-b1f9-4d82c614277a")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -1733,7 +1733,7 @@
 		(property "Value" "AGND"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "bab85ba0-3981-4071-be31-c8055eae16b5")
+			(uuid "7a96a2d8-4005-4aef-8fd5-328a592c7f12")
 			(effects
 				(font
 					(size 1 1)
@@ -1746,7 +1746,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f77bd27f-fbae-4582-80af-bde6340947d5")
+			(uuid "667089a2-1d21-4355-b5e2-18d2085750e2")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1759,7 +1759,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "606d4bbe-8cff-413d-bdf6-2adf7b55032d")
+			(uuid "b1ab9746-30d2-417b-b626-77979d1bd5f4")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1811,7 +1811,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 4 "Net-(J1-PadB31)")
+			(net 41 "Net-(J1-PadA31)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "47c8e131-dfcf-4b33-8764-d8a33a628c74")
@@ -1821,13 +1821,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "6bd7fd6f-6d72-4dc2-a572-a86930b61288")
-		(at 124.35 97.65 180)
+		(at 140.375 97.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP32"
-			(at 2.4 0 180)
+			(at -2.35 -0.025603 180)
 			(layer "F.SilkS")
-			(uuid "d1102ac5-1d63-4e39-a682-ea9ed289fd0f")
+			(uuid "f1e9d386-b2dd-4983-b96f-9f8943969994")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -1838,7 +1838,7 @@
 		(property "Value" "HP_Signal"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "4a462507-b12a-460f-94bb-1c48bc4eb8ec")
+			(uuid "0ad59810-1830-46aa-9e80-fcc3846cc12a")
 			(effects
 				(font
 					(size 1 1)
@@ -1851,7 +1851,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "28bc96fd-a63d-474f-ad5f-c4714e71b539")
+			(uuid "817ec9ad-d4c9-47a4-8469-329095f8b762")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1864,7 +1864,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "a2e596f5-fd1c-45c3-ae53-1255d7e2004f")
+			(uuid "e0e7498a-bae4-4a5e-a31e-7ae9933eacc4")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1916,7 +1916,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 44 "Net-(J1-PadB32)")
+			(net 54 "Net-(J1-PadA32)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "bd9e3a0b-782b-4934-8667-c027abab734e")
@@ -1926,13 +1926,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "75c1ec3f-3ce7-4006-9dde-0c3019a4bde1")
-		(at 126.35 82.65 180)
+		(at 138.175 82.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP17"
-			(at 4.4 0 180)
+			(at -4.55 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "9de7c9df-2a3c-43da-9d19-84da4665c666")
+			(uuid "7c8116d2-0214-44fe-a771-c735bc56207d")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -1943,7 +1943,7 @@
 		(property "Value" "S4"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "c0b1fb45-99b6-4d14-8c85-ae433995eb9e")
+			(uuid "11ad8322-4088-4595-8e77-6d8aa47e3570")
 			(effects
 				(font
 					(size 1 1)
@@ -1956,7 +1956,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "50014d19-1a3c-4dd5-a193-feca6261a6a1")
+			(uuid "fc04be51-ebbf-447b-99d4-67aa64b16827")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1969,7 +1969,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "43bb5514-618d-4555-a015-0f61d1156885")
+			(uuid "c1e4bb5f-69e3-46b4-a93d-aba44203bd9f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2021,7 +2021,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 46 "Net-(J1-PadB17)")
+			(net 32 "Net-(J1-PadA17)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "d3329573-7f45-46fe-8033-dcec63dfa689")
@@ -2031,13 +2031,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "77193070-8bdb-477c-8834-24f49fa22a08")
-		(at 124.35 83.65 180)
+		(at 140.375 83.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP18"
-			(at 2.4 0.025 180)
+			(at -2.35 -0.000603 180)
 			(layer "F.SilkS")
-			(uuid "ea3cb5e5-45b1-42f0-99a8-07989a0e2d91")
+			(uuid "8f25d941-65f9-4b37-a4fb-7f0582e26678")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -2048,7 +2048,7 @@
 		(property "Value" "S5"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "4c9d76bb-13d6-4c28-af30-0be604a8a4f4")
+			(uuid "1e2ed329-b764-432a-b6e0-7800c21511bf")
 			(effects
 				(font
 					(size 1 1)
@@ -2061,7 +2061,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "fa2d0dc9-3004-4b41-869e-2868510889c8")
+			(uuid "90660a96-684b-473f-ac7d-decd928953b0")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2074,7 +2074,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "dff2b11e-eae9-4fb0-b012-5cee5778439e")
+			(uuid "5502705c-fe22-4fe3-b49f-3256e6d35011")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2126,7 +2126,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 32 "Net-(J1-PadB18)")
+			(net 17 "Net-(J1-PadA18)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "595036e8-2dbf-4dd3-b370-5ef5b79ee67a")
@@ -2136,13 +2136,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "7d97a124-68b1-4f74-ab71-a4aa4e4f3d94")
-		(at 124.35 79.65 180)
+		(at 140.375 79.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP14"
-			(at 2.4 0 180)
+			(at -2.35 -0.025603 180)
 			(layer "F.SilkS")
-			(uuid "cde97eb0-1a41-4198-9d81-0029834baf6b")
+			(uuid "b2429038-c305-414e-b749-11c306c01941")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -2153,7 +2153,7 @@
 		(property "Value" "S1"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "df5ddd00-a6ee-40c4-b323-fcd127eaa83c")
+			(uuid "b8d62ff0-5345-4aa1-8ae8-45b80c70c800")
 			(effects
 				(font
 					(size 1 1)
@@ -2166,7 +2166,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "0601be5a-3934-48ac-976b-d348f67c26d1")
+			(uuid "eb67524e-e65d-4b9d-959a-572cdc22aa78")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2179,7 +2179,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "02ab833c-2284-4c36-82fa-ffc45aec507f")
+			(uuid "5a9c6837-cd20-4846-923e-63b6305f03ed")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2231,7 +2231,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 41 "Net-(J1-PadB14)")
+			(net 49 "Net-(J1-PadA14)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "c6f24c06-94c5-4f3e-9870-21aa34ec7d7d")
@@ -2241,13 +2241,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "8cd717f9-69c3-4bae-93a5-17509a39cf26")
-		(at 124.35 95.65 180)
+		(at 140.375 95.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP30"
-			(at 2.4 0 180)
+			(at -2.35 -0.025603 180)
 			(layer "F.SilkS")
-			(uuid "752d6a39-3602-48b0-995b-9523289020c4")
+			(uuid "acefea30-6f8d-476e-9412-b02acee98c78")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -2258,7 +2258,7 @@
 		(property "Value" "MODULE_IDENT"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "09676b50-72d6-4a22-a5e0-39a68edd1858")
+			(uuid "57e45d77-27eb-43bc-b359-48752f60b2e4")
 			(effects
 				(font
 					(size 1 1)
@@ -2271,7 +2271,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e16498b4-2ee1-4b05-bf61-959c5c8b9637")
+			(uuid "21e74b92-3647-4d94-8e7b-a5acc4ed60af")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2284,7 +2284,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "43ea1623-f764-458e-9f3e-292ea83dfd5b")
+			(uuid "f3ce788b-29eb-439f-8315-359f7bdc408b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2336,7 +2336,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 23 "Net-(J1-PadB30)")
+			(net 6 "Net-(J1-PadA30)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "ebc71c27-7563-4a6f-850a-fa5b9aad4a02")
@@ -2346,13 +2346,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "91dc39ac-465f-4199-b56a-a58829aab7b2")
-		(at 124.35 87.65 180)
+		(at 140.375 87.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP22"
-			(at 2.4 0 180)
+			(at -2.35 -0.025603 180)
 			(layer "F.SilkS")
-			(uuid "d4d6759b-4fcf-43da-93ea-b2b373901304")
+			(uuid "c9ab7f30-f9d5-4544-ba75-c34b760f0976")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -2363,7 +2363,7 @@
 		(property "Value" "S9"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "1fc03faf-13fe-440b-97e5-f7feb8122f6f")
+			(uuid "f68f0a20-66b4-4a18-9820-6afed001a3d5")
 			(effects
 				(font
 					(size 1 1)
@@ -2376,7 +2376,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e2055b61-25e1-4689-a0d3-067c33ec160a")
+			(uuid "aa571692-2d11-4c85-9a7d-83ebc7e27595")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2389,7 +2389,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "8d654041-5113-4d5f-9add-c83ebdfc49fc")
+			(uuid "dbc9aa92-5a78-4331-94ec-571d0dd8bd79")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2441,7 +2441,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 47 "Net-(J1-PadB22)")
+			(net 25 "Net-(J1-PadA22)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "e938b40f-2fbf-4a1a-8926-b78f34ae7aa8")
@@ -2451,13 +2451,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "945e710d-752a-485d-b41a-b1425ca133f7")
-		(at 126.35 78.65 180)
+		(at 138.175 78.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP13"
-			(at 4.4 0 180)
+			(at -4.55 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "c81a4c1a-d31f-42bb-bb0a-4d2379b424df")
+			(uuid "4335f2d4-0e80-4d7e-bb26-fe8a17102398")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -2468,7 +2468,7 @@
 		(property "Value" "3,3Vdc_Signal"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "a4b2abbf-2b78-4d22-bae6-983e338770d8")
+			(uuid "413454a8-492f-4341-97b3-e9d163ebb20b")
 			(effects
 				(font
 					(size 1 1)
@@ -2481,7 +2481,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "af5c8ed6-5de7-46f1-a126-9f674b5b2539")
+			(uuid "586ad57f-edd2-4f28-830c-7d97bc1485ab")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2494,7 +2494,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "17a83920-ad1d-46c1-85e6-b90319ba16ae")
+			(uuid "a5223802-08f6-46fb-b987-c01f2938194b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2546,7 +2546,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 40 "Net-(J1-PadB13)")
+			(net 12 "Net-(J1-PadA13)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "70139f79-e57d-474b-95de-b2e1f502f981")
@@ -2556,13 +2556,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "9de3a035-814f-411e-a89e-96fc37e8fae7")
-		(at 126.35 66.65 180)
+		(at 138.175 66.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP3"
-			(at 4.05 0 180)
+			(at -4.216667 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "f1f4aba3-17df-4179-aa90-543630093a25")
+			(uuid "92d0b56a-030e-4952-94fc-c7f003a1809f")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -2573,7 +2573,7 @@
 		(property "Value" "PGND"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "95f7114a-cf00-4378-a6a6-04e8243e002e")
+			(uuid "4cbbb9fb-b84f-4713-89e7-78e9e01bab0f")
 			(effects
 				(font
 					(size 1 1)
@@ -2586,7 +2586,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "29c9c53d-644f-45da-a6b2-d6108b0122f0")
+			(uuid "a1112eee-9fc1-40bd-bbb3-9d7a9ee9f68f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2599,7 +2599,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b94066e7-ba53-4bed-b969-9c0d008fcdd5")
+			(uuid "b57e1a2f-edeb-4eb2-a7d0-c1d3c346e0fb")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2651,7 +2651,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 12 "Net-(J1-PadB2)")
+			(net 3 "Net-(J1-PadA2)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "6d3e3de5-3ee4-4ac8-89cc-16bb046b1947")
@@ -2661,13 +2661,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "a79a15bf-2a26-4857-bf48-b76eadfe67be")
-		(at 126.35 72.65 180)
+		(at 138.175 72.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP9"
-			(at 4.066666 -0.05 180)
+			(at -4.216667 -0.075 180)
 			(layer "F.SilkS")
-			(uuid "d605a2e0-94c5-4a6c-9120-4fe05946c9f9")
+			(uuid "57eead57-0fd1-45a7-b893-a362c39e34e1")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -2678,7 +2678,7 @@
 		(property "Value" "12Vdc"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "66d879d9-3e0c-4e7a-b8db-aacd828d4265")
+			(uuid "d3ec39b4-e139-4b02-9dd2-59c9ae706510")
 			(effects
 				(font
 					(size 1 1)
@@ -2691,7 +2691,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "0bb20ba0-6c9d-4272-bb91-ebbbdf86d5b7")
+			(uuid "5809ae56-e302-424c-bbf4-3f33c3d27868")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2704,7 +2704,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "96b70520-d207-47d1-84f7-b76b13f8636b")
+			(uuid "5dd4f0fe-4f1c-4227-b280-fed41b7e6be2")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2756,7 +2756,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 29 "Net-(J1-PadB7)")
+			(net 8 "Net-(J1-PadA7)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "afb0493a-3df2-4696-a4db-f3480f29b78e")
@@ -2766,13 +2766,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "b22ecd54-d071-4a98-b91f-636b5d5f2529")
-		(at 126.35 84.65 180)
+		(at 138.175 84.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP19"
-			(at 4.4 0 180)
+			(at -4.55 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "6afbc401-bfdf-440c-9ee3-bf5e42fcfbce")
+			(uuid "6ce3315d-96cb-40b8-83df-d4b841d6572a")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -2783,7 +2783,7 @@
 		(property "Value" "S6"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "ce95d5e2-9bf6-414c-8fe7-af5750424dde")
+			(uuid "b34b7c3b-83a5-479e-8113-11a681604091")
 			(effects
 				(font
 					(size 1 1)
@@ -2796,7 +2796,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "51cb83d6-f9c4-425f-b6c0-caa1fc1a6222")
+			(uuid "adbb660e-3fa8-44bb-96f6-9c8a0812e45b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2809,7 +2809,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e0d85d32-d37d-4867-a71f-c4bb96e201b5")
+			(uuid "4af7293e-ea0c-40ae-9084-84b708c8e67c")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2861,7 +2861,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 38 "Net-(J1-PadB19)")
+			(net 38 "Net-(J1-PadA19)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "fef61c6b-7cd0-4a34-b805-6768a75cb20d")
@@ -2871,13 +2871,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "c04f9114-8969-4871-9bc6-178b73efbcdc")
-		(at 126.35 74.65 180)
+		(at 138.175 74.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP11"
-			(at 4.4 0 180)
+			(at -4.55 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "8c46bd0a-de47-4b13-852e-88d252d9d637")
+			(uuid "42c91f69-7859-49cf-a599-2d6e3e2836e1")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -2888,7 +2888,7 @@
 		(property "Value" "48Vac_N"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "fa80c7b8-219e-4681-97f0-aa05504814cb")
+			(uuid "347d6209-b405-4a2a-aca0-8c962954f596")
 			(effects
 				(font
 					(size 1 1)
@@ -2901,7 +2901,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "a5994b0d-884e-4fb5-81a4-697b515588ab")
+			(uuid "e1cd15c9-6d49-4c0e-8e71-f2dcad45d1f7")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2914,7 +2914,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "a061ae37-7405-4612-8d11-1f99f41dbb1e")
+			(uuid "ebb433bf-24fd-49dc-b418-1f0e7a39747f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2966,7 +2966,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 28 "Net-(J1-PadB11)")
+			(net 30 "Net-(J1-PadA11)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "d74fd3f0-307c-462b-a694-1a05c06dd26f")
@@ -2976,13 +2976,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "c3055540-0978-40bc-a94d-ff799f0737f1")
-		(at 126.35 64.65 180)
+		(at 138.175 64.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP1"
-			(at 4.066666 0 180)
+			(at -4.216667 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "8080a22d-4b07-47fb-aeba-a4fccc39f782")
+			(uuid "3dd9af60-6d6c-46b6-ad0c-fea150752b62")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -2993,7 +2993,7 @@
 		(property "Value" "HP_Power"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "c43597d9-3951-4ed3-b0c2-adfb9b562bbc")
+			(uuid "181621c2-98b0-4738-990b-1d71be72338e")
 			(effects
 				(font
 					(size 1 1)
@@ -3006,7 +3006,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b302a7c5-66f6-42a3-af63-d57f3b811d77")
+			(uuid "ba6503dd-2683-4486-87b2-51342ae3cc78")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3019,7 +3019,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6cc826ab-e55a-42a5-a70c-bb63a4261bcc")
+			(uuid "6c4fcfe6-351f-4f17-9a52-d9b2b469c049")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3071,7 +3071,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 51 "Net-(J1-PadB1)")
+			(net 55 "Net-(J1-PadA1)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "4249ffc0-efe8-483c-a8e2-7b27c1b6e98f")
@@ -3494,7 +3494,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 55 "unconnected-(J1-PadA1)")
+			(net 55 "Net-(J1-PadA1)")
 			(pinfunction "A1")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3506,7 +3506,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 35 "unconnected-(J1-PadA2)")
+			(net 3 "Net-(J1-PadA2)")
 			(pinfunction "A2")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3518,7 +3518,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 3 "unconnected-(J1-PadA3)")
+			(net 3 "Net-(J1-PadA2)")
 			(pinfunction "A3")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3530,7 +3530,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 16 "unconnected-(J1-PadA4)")
+			(net 3 "Net-(J1-PadA2)")
 			(pinfunction "A4")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3542,7 +3542,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 18 "unconnected-(J1-PadA5)")
+			(net 3 "Net-(J1-PadA2)")
 			(pinfunction "A5")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3554,7 +3554,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 5 "unconnected-(J1-PadA6)")
+			(net 5 "Net-(J1-PadA6)")
 			(pinfunction "A6")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3566,7 +3566,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 59 "unconnected-(J1-PadA7)")
+			(net 8 "Net-(J1-PadA7)")
 			(pinfunction "A7")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3578,7 +3578,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 13 "unconnected-(J1-PadA8)")
+			(net 8 "Net-(J1-PadA7)")
 			(pinfunction "A8")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3590,7 +3590,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 8 "unconnected-(J1-PadA9)")
+			(net 8 "Net-(J1-PadA7)")
 			(pinfunction "A9")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3602,7 +3602,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 27 "unconnected-(J1-PadA10)")
+			(net 26 "Net-(J1-PadA10)")
 			(pinfunction "A10")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3614,7 +3614,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 31 "unconnected-(J1-PadA11)")
+			(net 30 "Net-(J1-PadA11)")
 			(pinfunction "A11")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3626,7 +3626,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 49 "unconnected-(J1-PadA12)")
+			(net 48 "Net-(J1-PadA12)")
 			(pinfunction "A12")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3638,7 +3638,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 11 "unconnected-(J1-PadA13)")
+			(net 12 "Net-(J1-PadA13)")
 			(pinfunction "A13")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3650,7 +3650,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 50 "unconnected-(J1-PadA14)")
+			(net 49 "Net-(J1-PadA14)")
 			(pinfunction "A14")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3662,7 +3662,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 2 "unconnected-(J1-PadA15)")
+			(net 2 "Net-(J1-PadA15)")
 			(pinfunction "A15")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3674,7 +3674,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 21 "unconnected-(J1-PadA16)")
+			(net 20 "Net-(J1-PadA16)")
 			(pinfunction "A16")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3686,7 +3686,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 33 "unconnected-(J1-PadA17)")
+			(net 32 "Net-(J1-PadA17)")
 			(pinfunction "A17")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3698,7 +3698,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 17 "unconnected-(J1-PadA18)")
+			(net 17 "Net-(J1-PadA18)")
 			(pinfunction "A18")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3710,7 +3710,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 39 "unconnected-(J1-PadA19)")
+			(net 38 "Net-(J1-PadA19)")
 			(pinfunction "A19")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3722,7 +3722,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 19 "unconnected-(J1-PadA20)")
+			(net 18 "Net-(J1-PadA20)")
 			(pinfunction "A20")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3734,7 +3734,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 10 "unconnected-(J1-PadA21)")
+			(net 11 "Net-(J1-PadA21)")
 			(pinfunction "A21")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3746,7 +3746,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 26 "unconnected-(J1-PadA22)")
+			(net 25 "Net-(J1-PadA22)")
 			(pinfunction "A22")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3758,7 +3758,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 58 "unconnected-(J1-PadA23)")
+			(net 58 "Net-(J1-PadA23)")
 			(pinfunction "A23")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3770,7 +3770,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 52 "unconnected-(J1-PadA24)")
+			(net 52 "Net-(J1-PadA24)")
 			(pinfunction "A24")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3782,7 +3782,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 20 "unconnected-(J1-PadA25)")
+			(net 19 "Net-(J1-PadA25)")
 			(pinfunction "A25")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3794,7 +3794,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 14 "unconnected-(J1-PadA26)")
+			(net 14 "Net-(J1-PadA26)")
 			(pinfunction "A26")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3806,7 +3806,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 43 "unconnected-(J1-PadA27)")
+			(net 42 "Net-(J1-PadA27)")
 			(pinfunction "A27")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3818,7 +3818,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 56 "unconnected-(J1-PadA28)")
+			(net 56 "Net-(J1-PadA28)")
 			(pinfunction "A28")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3830,7 +3830,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 24 "unconnected-(J1-PadA29)")
+			(net 23 "Net-(J1-PadA29)")
 			(pinfunction "A29")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3842,7 +3842,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 6 "unconnected-(J1-PadA30)")
+			(net 6 "Net-(J1-PadA30)")
 			(pinfunction "A30")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3854,7 +3854,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 42 "unconnected-(J1-PadA31)")
+			(net 41 "Net-(J1-PadA31)")
 			(pinfunction "A31")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3866,7 +3866,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 54 "unconnected-(J1-PadA32)")
+			(net 54 "Net-(J1-PadA32)")
 			(pinfunction "A32")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3878,7 +3878,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 51 "Net-(J1-PadB1)")
+			(net 51 "unconnected-(J1-PadB1)")
 			(pinfunction "B1")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3890,7 +3890,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 12 "Net-(J1-PadB2)")
+			(net 13 "unconnected-(J1-PadB2)")
 			(pinfunction "B2")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3902,7 +3902,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 12 "Net-(J1-PadB2)")
+			(net 50 "unconnected-(J1-PadB3)")
 			(pinfunction "B3")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3914,7 +3914,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 12 "Net-(J1-PadB2)")
+			(net 34 "unconnected-(J1-PadB4)")
 			(pinfunction "B4")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3926,7 +3926,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 12 "Net-(J1-PadB2)")
+			(net 10 "unconnected-(J1-PadB5)")
 			(pinfunction "B5")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3938,7 +3938,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 57 "Net-(J1-PadB6)")
+			(net 57 "unconnected-(J1-PadB6)")
 			(pinfunction "B6")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3950,7 +3950,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 29 "Net-(J1-PadB7)")
+			(net 28 "unconnected-(J1-PadB7)")
 			(pinfunction "B7")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3962,7 +3962,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 29 "Net-(J1-PadB7)")
+			(net 59 "unconnected-(J1-PadB8)")
 			(pinfunction "B8")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3974,7 +3974,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 29 "Net-(J1-PadB7)")
+			(net 16 "unconnected-(J1-PadB9)")
 			(pinfunction "B9")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3986,7 +3986,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 9 "Net-(J1-PadB10)")
+			(net 9 "unconnected-(J1-PadB10)")
 			(pinfunction "B10")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -3998,7 +3998,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 28 "Net-(J1-PadB11)")
+			(net 27 "unconnected-(J1-PadB11)")
 			(pinfunction "B11")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4010,7 +4010,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 30 "Net-(J1-PadB12)")
+			(net 29 "unconnected-(J1-PadB12)")
 			(pinfunction "B12")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4022,7 +4022,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 40 "Net-(J1-PadB13)")
+			(net 39 "unconnected-(J1-PadB13)")
 			(pinfunction "B13")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4034,7 +4034,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 41 "Net-(J1-PadB14)")
+			(net 40 "unconnected-(J1-PadB14)")
 			(pinfunction "B14")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4046,7 +4046,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 25 "Net-(J1-PadB15)")
+			(net 24 "unconnected-(J1-PadB15)")
 			(pinfunction "B15")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4058,7 +4058,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 36 "Net-(J1-PadB16)")
+			(net 35 "unconnected-(J1-PadB16)")
 			(pinfunction "B16")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4070,7 +4070,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 46 "Net-(J1-PadB17)")
+			(net 45 "unconnected-(J1-PadB17)")
 			(pinfunction "B17")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4082,7 +4082,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 32 "Net-(J1-PadB18)")
+			(net 31 "unconnected-(J1-PadB18)")
 			(pinfunction "B18")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4094,7 +4094,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 38 "Net-(J1-PadB19)")
+			(net 37 "unconnected-(J1-PadB19)")
 			(pinfunction "B19")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4106,7 +4106,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 22 "Net-(J1-PadB20)")
+			(net 21 "unconnected-(J1-PadB20)")
 			(pinfunction "B20")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4118,7 +4118,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 1 "Net-(J1-PadB21)")
+			(net 1 "unconnected-(J1-PadB21)")
 			(pinfunction "B21")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4130,7 +4130,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 47 "Net-(J1-PadB22)")
+			(net 46 "unconnected-(J1-PadB22)")
 			(pinfunction "B22")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4142,7 +4142,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 45 "Net-(J1-PadB23)")
+			(net 44 "unconnected-(J1-PadB23)")
 			(pinfunction "B23")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4154,7 +4154,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 7 "Net-(J1-PadB24)")
+			(net 7 "unconnected-(J1-PadB24)")
 			(pinfunction "B24")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4166,7 +4166,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 53 "Net-(J1-PadB25)")
+			(net 53 "unconnected-(J1-PadB25)")
 			(pinfunction "B25")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4178,7 +4178,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 37 "Net-(J1-PadB26)")
+			(net 36 "unconnected-(J1-PadB26)")
 			(pinfunction "B26")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4190,7 +4190,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 48 "Net-(J1-PadB27)")
+			(net 47 "unconnected-(J1-PadB27)")
 			(pinfunction "B27")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4202,7 +4202,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 15 "Net-(J1-PadB28)")
+			(net 15 "unconnected-(J1-PadB28)")
 			(pinfunction "B28")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4214,7 +4214,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 34 "Net-(J1-PadB29)")
+			(net 33 "unconnected-(J1-PadB29)")
 			(pinfunction "B29")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4226,7 +4226,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 23 "Net-(J1-PadB30)")
+			(net 22 "unconnected-(J1-PadB30)")
 			(pinfunction "B30")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4238,7 +4238,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 4 "Net-(J1-PadB31)")
+			(net 4 "unconnected-(J1-PadB31)")
 			(pinfunction "B31")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4250,7 +4250,7 @@
 			(drill 0.78)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 44 "Net-(J1-PadB32)")
+			(net 43 "unconnected-(J1-PadB32)")
 			(pinfunction "B32")
 			(pintype "passive")
 			(solder_mask_margin 0.102)
@@ -4272,13 +4272,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "d2073c6e-c187-4282-93d7-b34bc1372f64")
-		(at 124.35 89.65 180)
+		(at 140.375 89.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP24"
-			(at 2.4 0 180)
+			(at -2.35 -0.025603 180)
 			(layer "F.SilkS")
-			(uuid "db82f17c-bbf2-47fe-ac82-58defb278de1")
+			(uuid "50b6ce74-b49a-422a-8e2c-67adb36421b7")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -4289,7 +4289,7 @@
 		(property "Value" "S11"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "70ec9ff0-ecd9-404a-851c-4794e50df922")
+			(uuid "8a4512bd-02be-4236-ba09-64e0e62d9181")
 			(effects
 				(font
 					(size 1 1)
@@ -4302,7 +4302,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "4241b964-6ac0-4c97-92e3-6b5634ccc718")
+			(uuid "7f66aae4-2a0c-41b7-99eb-e054fb20f76d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4315,7 +4315,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "389461bb-eaad-40c3-abb4-2ca016aca0a5")
+			(uuid "d03d8d22-1b58-46e5-83f2-e1df3c0c7dac")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4367,7 +4367,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 7 "Net-(J1-PadB24)")
+			(net 52 "Net-(J1-PadA24)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "9f755449-4335-4c60-8a26-ec3c992457e3")
@@ -4377,13 +4377,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "dbba824d-b3e1-4557-97d5-c30891e8f4b5")
-		(at 124.35 65.65 180)
+		(at 140.375 65.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP2"
-			(at 2.066666 0 180)
+			(at -2.016667 -0.025603 180)
 			(layer "F.SilkS")
-			(uuid "2c50559d-2701-4d56-a61d-6f14d8f08514")
+			(uuid "8a3b119c-4dc9-4268-9d5d-954ce9277e16")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -4394,7 +4394,7 @@
 		(property "Value" "PGND"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "c2910758-47e9-4ab6-af30-44bd7396dcb4")
+			(uuid "89de7a55-1236-41c3-9449-2df4ce4ee77a")
 			(effects
 				(font
 					(size 1 1)
@@ -4407,7 +4407,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "88e78b59-d8cc-43b1-9e7f-e33ae9169d42")
+			(uuid "17ba7712-a6d8-46ce-8eb1-1b096c4876c2")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4420,7 +4420,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "2708e294-1ffc-4c7a-b7ef-916a30b3dd88")
+			(uuid "2f578ec3-173d-43dd-9fc0-6475e125bacc")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4472,7 +4472,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 12 "Net-(J1-PadB2)")
+			(net 3 "Net-(J1-PadA2)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "3bf2b670-830e-4775-bc60-c187c12ec14e")
@@ -4482,13 +4482,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "eb290d84-ea78-46dc-afb1-03f9e14db283")
-		(at 126.35 88.65 180)
+		(at 138.175 88.65 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP23"
-			(at 4.4 0 180)
+			(at -4.55 -0.025 180)
 			(layer "F.SilkS")
-			(uuid "79841ad6-817e-49a3-b146-1fe2b7e4635e")
+			(uuid "6130d127-d1f6-4c2c-9bc6-0939078624ff")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -4499,7 +4499,7 @@
 		(property "Value" "S10"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "8676f092-0ec7-4c9d-baab-be7aeffe2db5")
+			(uuid "52277765-936f-42a8-b55c-91c8dffab977")
 			(effects
 				(font
 					(size 1 1)
@@ -4512,7 +4512,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "fce7f11c-6175-4f83-9ada-6c4ed8e789d1")
+			(uuid "ab0b9060-a765-4fa1-a401-a09213522bf5")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4525,7 +4525,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "83b20398-9a7c-4db9-9995-01956e942452")
+			(uuid "faeea7ae-18a1-48b3-b65d-f34bf6bff910")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4577,7 +4577,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 45 "Net-(J1-PadB23)")
+			(net 58 "Net-(J1-PadA23)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "8c431fa4-b95c-44cb-9e6a-b5ae08c0a41f")
@@ -4587,13 +4587,13 @@
 	(footprint "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
 		(layer "F.Cu")
 		(uuid "fc8c8025-b6d9-4096-85c1-41107664cd85")
-		(at 124.35 71.65 180)
+		(at 140.375 71.649397 180)
 		(descr "THT pad as test Point, diameter 1.5mm, hole diameter 0.7mm")
 		(tags "test point THT pad")
 		(property "Reference" "TP8"
-			(at 2.05 0 180)
+			(at -2.016667 -0.025603 180)
 			(layer "F.SilkS")
-			(uuid "675b2a39-7941-4436-842f-27414252abdb")
+			(uuid "7a374525-605b-478d-bfd8-fffbd410c83f")
 			(effects
 				(font
 					(size 0.7 0.7)
@@ -4604,7 +4604,7 @@
 		(property "Value" "12Vdc"
 			(at 0 1.75 180)
 			(layer "F.Fab")
-			(uuid "36135f83-41bc-4a55-a37e-6b0f6569e1d2")
+			(uuid "b09019a2-96c2-4380-8550-6e5cce35c241")
 			(effects
 				(font
 					(size 1 1)
@@ -4617,7 +4617,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "d559d0f5-2cc0-4a36-ba09-e4ee3bfbbc15")
+			(uuid "5c737db7-7ab8-42a5-bbfb-f59db0624b4c")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4630,7 +4630,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "dacfbfce-d116-4b4e-8f7a-abc520869df3")
+			(uuid "72190b71-b959-4507-85b9-7dc56292402e")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4682,7 +4682,7 @@
 			(drill 0.7)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 29 "Net-(J1-PadB7)")
+			(net 8 "Net-(J1-PadA7)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "8d7881bb-f869-422b-a631-c748e532ec69")
@@ -4690,8 +4690,8 @@
 		(embedded_fonts no)
 	)
 	(gr_rect
-		(start 120.525 61.3)
-		(end 136.9 101)
+		(start 127.275 60.575)
+		(end 144.2 101)
 		(stroke
 			(width 0.05)
 			(type default)
@@ -4701,264 +4701,392 @@
 		(uuid "58f7f3ba-62fa-406c-af16-c450f399be68")
 	)
 	(segment
-		(start 126.35 86.65)
-		(end 131.4 86.65)
+		(start 138.175 80.65)
+		(end 133.9 80.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 1)
-		(uuid "ade23e56-ff3d-4705-9cee-5b515b86f6a4")
+		(net 2)
+		(uuid "aa225054-8c58-487a-a2be-b59b5a83438c")
 	)
 	(segment
-		(start 126.35 96.65)
-		(end 131.4 96.65)
+		(start 135.900603 67.649397)
+		(end 135.9 67.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 4)
-		(uuid "20f547ff-bc00-4dff-919f-c697e4a40c37")
+		(net 3)
+		(uuid "12e3db0c-9913-4daf-aaeb-001179446675")
 	)
 	(segment
-		(start 124.35 89.65)
-		(end 129.4 89.65)
+		(start 140.374397 65.65)
+		(end 135.9 65.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 7)
-		(uuid "e0974798-d944-4543-a461-198e79585d19")
+		(net 3)
+		(uuid "24247164-aa85-4b6d-bf10-1ed96ad6f3ba")
 	)
 	(segment
-		(start 124.35 73.65)
-		(end 129.4 73.65)
+		(start 138.175 66.65)
+		(end 133.9 66.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 9)
-		(uuid "e9ef0cf8-49e7-482c-a032-afb1460ec9dd")
+		(net 3)
+		(uuid "2fc2cc42-8313-4483-a5f9-a17a21c8206e")
 	)
 	(segment
-		(start 124.35 67.65)
-		(end 129.4 67.65)
+		(start 140.375 67.649397)
+		(end 135.900603 67.649397)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 3)
+		(uuid "42142ea7-027b-46d8-830d-05f5d5f7ea81")
+	)
+	(segment
+		(start 138.175 68.65)
+		(end 133.9 68.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 3)
+		(uuid "9eb576e3-0d61-497c-992d-f99eb01cef15")
+	)
+	(segment
+		(start 140.375 65.649397)
+		(end 140.374397 65.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 3)
+		(uuid "a162fbb4-f893-4046-b522-e158633b8d2e")
+	)
+	(segment
+		(start 140.374397 69.65)
+		(end 135.9 69.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 5)
+		(uuid "787e5624-4c0a-4173-900e-e9fe5212e2b2")
+	)
+	(segment
+		(start 140.375 69.649397)
+		(end 140.374397 69.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 5)
+		(uuid "c02daad1-2684-4807-8834-6b3cb610177d")
+	)
+	(segment
+		(start 140.374397 95.65)
+		(end 135.9 95.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 6)
+		(uuid "2001a73b-ea71-4ded-a43b-26bf9d68ba38")
+	)
+	(segment
+		(start 140.375 95.649397)
+		(end 140.374397 95.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 6)
+		(uuid "f0e6b63a-ba15-4f9b-8fdd-c7f5229d3adf")
+	)
+	(segment
+		(start 138.175 70.65)
+		(end 133.9 70.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 8)
+		(uuid "2d91536b-dfd7-4c96-80d8-c34b645056d7")
+	)
+	(segment
+		(start 140.375 71.649397)
+		(end 135.900603 71.649397)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 8)
+		(uuid "7584dd02-f854-4c8f-8b87-97082b8578d9")
+	)
+	(segment
+		(start 138.175 72.65)
+		(end 133.9 72.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 8)
+		(uuid "a2e7a28c-236a-412c-89e2-c8582acd248f")
+	)
+	(segment
+		(start 135.900603 71.649397)
+		(end 135.9 71.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 8)
+		(uuid "b50a3ceb-6a6a-443d-84b9-1cde2be6fbb0")
+	)
+	(segment
+		(start 138.175 86.65)
+		(end 133.9 86.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 11)
+		(uuid "9f2468b8-eaa9-4e5c-a7a7-2fd9fb3a5681")
+	)
+	(segment
+		(start 138.175 78.65)
+		(end 133.9 78.65)
 		(width 0.3)
 		(layer "B.Cu")
 		(net 12)
-		(uuid "705ade58-f12e-4060-878b-c0c8a220d36a")
+		(uuid "b711044f-6bab-42d4-84da-c5bb92876659")
 	)
 	(segment
-		(start 124.35 65.65)
-		(end 129.4 65.65)
+		(start 140.375 91.649397)
+		(end 140.374397 91.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 12)
-		(uuid "b92aff4d-4bf4-4dbc-8fdd-4d62cb562722")
+		(net 14)
+		(uuid "6310650e-dfb2-4339-980e-34422d35914f")
 	)
 	(segment
-		(start 126.35 66.65)
-		(end 131.4 66.65)
+		(start 140.374397 91.65)
+		(end 135.9 91.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 12)
-		(uuid "c15bafb6-1968-4f89-81a8-f30a56a7dce3")
+		(net 14)
+		(uuid "d3fb01d7-6aa2-4711-aaae-e5868700064b")
 	)
 	(segment
-		(start 126.35 68.65)
-		(end 131.4 68.65)
+		(start 140.374397 83.65)
+		(end 135.9 83.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 12)
-		(uuid "d65bc99e-f0ff-4084-9740-290fd638eddc")
+		(net 17)
+		(uuid "4628a013-fa1d-4f47-b6c1-fbe60b7e2c7c")
 	)
 	(segment
-		(start 124.35 93.65)
-		(end 129.4 93.65)
+		(start 140.375 83.649397)
+		(end 140.374397 83.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 15)
-		(uuid "a3fe3c60-eb77-4f9a-a8b6-d66c1fc35138")
+		(net 17)
+		(uuid "9cda64fb-166b-437e-bcbf-bc13f482ad8c")
 	)
 	(segment
-		(start 124.35 85.65)
-		(end 129.4 85.65)
+		(start 140.375 85.649397)
+		(end 140.374397 85.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 22)
-		(uuid "a414b09a-0ca2-4417-ace0-31f266c744c4")
+		(net 18)
+		(uuid "3388438d-82ea-4132-a47b-5357d1299222")
 	)
 	(segment
-		(start 124.35 95.65)
-		(end 129.4 95.65)
+		(start 140.374397 85.65)
+		(end 135.9 85.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 18)
+		(uuid "5083a593-fee3-450e-8d82-f775e252c534")
+	)
+	(segment
+		(start 138.175 90.65)
+		(end 133.9 90.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 19)
+		(uuid "0c7f7b6e-0c7c-4deb-abb3-312e1d0db102")
+	)
+	(segment
+		(start 140.374397 81.65)
+		(end 135.9 81.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 20)
+		(uuid "3faa4e49-4ddb-495c-8ed5-70cd9a54a1bf")
+	)
+	(segment
+		(start 140.375 81.649397)
+		(end 140.374397 81.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 20)
+		(uuid "ffaad889-b755-4418-bab5-fdeaae8a2f5e")
+	)
+	(segment
+		(start 133.9 94.65)
+		(end 138.175 94.65)
 		(width 0.3)
 		(layer "B.Cu")
 		(net 23)
-		(uuid "09f15615-c3da-4f70-85cd-b57f889fa757")
+		(uuid "a1c8013c-3880-4f9c-9216-967012fd7075")
 	)
 	(segment
-		(start 126.35 80.65)
-		(end 131.4 80.65)
+		(start 140.375 87.649397)
+		(end 140.374397 87.65)
 		(width 0.3)
 		(layer "B.Cu")
 		(net 25)
-		(uuid "1e65508c-e7fc-4f97-9da0-d4e3d7a6413b")
+		(uuid "7704acd0-6d3a-4398-b612-5c10da2e8c9d")
 	)
 	(segment
-		(start 126.35 74.65)
-		(end 131.4 74.65)
+		(start 140.374397 87.65)
+		(end 135.9 87.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 28)
-		(uuid "ddd8f6f1-3557-4f14-8f57-85f76aeb2851")
+		(net 25)
+		(uuid "af2761df-987e-460d-881a-08177982b416")
 	)
 	(segment
-		(start 124.35 71.65)
-		(end 129.4 71.65)
+		(start 140.375 73.649397)
+		(end 140.374397 73.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 29)
-		(uuid "5b35dce0-503e-4874-aa81-6257a5c58c59")
+		(net 26)
+		(uuid "2b0d29ad-0cc4-4a8c-9c97-091987264eef")
 	)
 	(segment
-		(start 126.35 72.65)
-		(end 131.4 72.65)
+		(start 140.374397 73.65)
+		(end 135.9 73.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 29)
-		(uuid "75a64b53-ba34-491d-a20a-259e4bbfb300")
+		(net 26)
+		(uuid "ae81eacd-a3ac-4209-811f-7765262fd9ab")
 	)
 	(segment
-		(start 126.35 70.65)
-		(end 131.4 70.65)
-		(width 0.3)
-		(layer "B.Cu")
-		(net 29)
-		(uuid "9b86c146-0179-4f82-8f7a-ba7e4a2a4c47")
-	)
-	(segment
-		(start 124.35 77.65)
-		(end 129.4 77.65)
+		(start 138.175 74.65)
+		(end 133.9 74.65)
 		(width 0.3)
 		(layer "B.Cu")
 		(net 30)
-		(uuid "725ecd0e-a944-448a-8135-497f425276c4")
+		(uuid "c0fcd2a9-b76a-4568-8f9c-985904c16713")
 	)
 	(segment
-		(start 124.35 83.65)
-		(end 129.4 83.65)
+		(start 138.175 82.65)
+		(end 133.9 82.65)
 		(width 0.3)
 		(layer "B.Cu")
 		(net 32)
-		(uuid "a741a54a-3b6d-4b8f-8d60-54571513c937")
+		(uuid "c073be56-0b3a-4ece-b562-6f6509a466b6")
 	)
 	(segment
-		(start 126.35 94.65)
-		(end 131.4 94.65)
-		(width 0.3)
-		(layer "B.Cu")
-		(net 34)
-		(uuid "08e60128-389b-4290-82af-8288678acecb")
-	)
-	(segment
-		(start 124.35 81.65)
-		(end 129.4 81.65)
-		(width 0.3)
-		(layer "B.Cu")
-		(net 36)
-		(uuid "5c57be92-acd2-4e2d-b720-af77bd3ce54b")
-	)
-	(segment
-		(start 124.35 91.65)
-		(end 129.4 91.65)
-		(width 0.3)
-		(layer "B.Cu")
-		(net 37)
-		(uuid "66797706-12dd-4c9b-90fa-cbd9c5635e1c")
-	)
-	(segment
-		(start 126.35 84.65)
-		(end 131.4 84.65)
+		(start 138.175 84.65)
+		(end 133.9 84.65)
 		(width 0.3)
 		(layer "B.Cu")
 		(net 38)
-		(uuid "88f307d4-16d6-4d1c-99e3-611393f04ba4")
+		(uuid "5d60622f-36a7-407b-b360-ca874a78e0ea")
 	)
 	(segment
-		(start 126.35 78.65)
-		(end 131.4 78.65)
-		(width 0.3)
-		(layer "B.Cu")
-		(net 40)
-		(uuid "69a4a024-2741-40b3-b2d6-4a027ad3f520")
-	)
-	(segment
-		(start 124.35 79.65)
-		(end 129.4 79.65)
+		(start 133.9 96.65)
+		(end 138.175 96.65)
 		(width 0.3)
 		(layer "B.Cu")
 		(net 41)
-		(uuid "3656b59d-6b31-4c26-9495-c68e29ed39d6")
+		(uuid "a4641408-d4c9-43da-a1e8-b185e0f861c7")
 	)
 	(segment
-		(start 124.35 97.65)
-		(end 129.4 97.65)
+		(start 138.175 92.65)
+		(end 133.9 92.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 44)
-		(uuid "98ede943-9ebc-49d0-bc85-558dad188616")
+		(net 42)
+		(uuid "ea6242ec-53ec-4ac8-9690-8a496e668f66")
 	)
 	(segment
-		(start 126.35 88.65)
-		(end 131.4 88.65)
-		(width 0.3)
-		(layer "B.Cu")
-		(net 45)
-		(uuid "f2e17b4d-bbed-4dff-8036-91ae2452d75a")
-	)
-	(segment
-		(start 126.35 82.65)
-		(end 131.4 82.65)
-		(width 0.3)
-		(layer "B.Cu")
-		(net 46)
-		(uuid "04a09601-b1ed-443c-9352-7deba3e0c489")
-	)
-	(segment
-		(start 124.35 87.65)
-		(end 129.4 87.65)
-		(width 0.3)
-		(layer "B.Cu")
-		(net 47)
-		(uuid "3cf8a997-a8b3-41e0-add0-463a62c42085")
-	)
-	(segment
-		(start 126.35 92.65)
-		(end 131.4 92.65)
+		(start 135.900603 77.649397)
+		(end 135.9 77.65)
 		(width 0.3)
 		(layer "B.Cu")
 		(net 48)
-		(uuid "0731c65b-da5f-415d-a81b-4dbbe0176c97")
+		(uuid "6d7f33da-5a34-42e6-9e13-c19fbdad8971")
 	)
 	(segment
-		(start 126.35 64.65)
-		(end 131.4 64.65)
+		(start 140.375 77.649397)
+		(end 135.900603 77.649397)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 51)
-		(uuid "47d6db55-4d6e-4a5a-a146-6c2caebc55ae")
+		(net 48)
+		(uuid "edb810b8-26dd-4c38-bedf-f6ca34a3a4a3")
 	)
 	(segment
-		(start 126.35 90.65)
-		(end 131.4 90.65)
+		(start 140.374397 79.65)
+		(end 135.9 79.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 53)
-		(uuid "ca7c97d0-8785-4d3f-bd29-2363f6d97f0c")
+		(net 49)
+		(uuid "130dc73e-8114-4a16-ac2a-f1010cf71bfe")
 	)
 	(segment
-		(start 124.35 69.65)
-		(end 129.4 69.65)
+		(start 140.375 79.649397)
+		(end 140.374397 79.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net 57)
-		(uuid "779df782-f399-4850-b82a-a33390f7f680")
+		(net 49)
+		(uuid "f55b8ab7-8323-4cbb-80f3-7c0fac490bac")
+	)
+	(segment
+		(start 140.374397 89.65)
+		(end 135.9 89.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 52)
+		(uuid "ca37fbf9-9c8e-4ad9-86e7-7dcdc17ae26e")
+	)
+	(segment
+		(start 140.375 89.649397)
+		(end 140.374397 89.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 52)
+		(uuid "d5314980-59f6-426a-80c8-86228257eebc")
+	)
+	(segment
+		(start 140.374397 97.65)
+		(end 135.9 97.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 54)
+		(uuid "d2573abe-f1db-498d-994f-788d5b2851ce")
+	)
+	(segment
+		(start 140.375 97.649397)
+		(end 140.374397 97.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 54)
+		(uuid "d4142d0a-6f72-44b4-9c94-8d188b016fa7")
+	)
+	(segment
+		(start 138.175 64.65)
+		(end 133.9 64.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 55)
+		(uuid "3e2bad89-bdaf-40d4-9085-b7202b304679")
+	)
+	(segment
+		(start 140.374397 93.65)
+		(end 140.375 93.649397)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 56)
+		(uuid "453f99d5-4e30-4010-9153-197197b08711")
+	)
+	(segment
+		(start 135.9 93.65)
+		(end 140.374397 93.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 56)
+		(uuid "a99f0680-85a9-4ae0-821c-0da38396e447")
+	)
+	(segment
+		(start 138.175 88.65)
+		(end 133.9 88.65)
+		(width 0.3)
+		(layer "B.Cu")
+		(net 58)
+		(uuid "6eba37f5-29c7-4c0a-8c42-9befcf0e7066")
 	)
 	(zone
-		(net 29)
-		(net_name "Net-(J1-PadB7)")
+		(net 8)
+		(net_name "Net-(J1-PadA7)")
 		(layer "B.Cu")
 		(uuid "c16fc9a0-830d-41f3-ad6f-5ba90e54925c")
 		(hatch edge 0.5)
@@ -4974,44 +5102,47 @@
 		)
 		(polygon
 			(pts
-				(xy 132.15 70.3625) (xy 131.6875 69.9) (xy 124.9 69.9) (xy 123.5 71.3) (xy 123.5 72) (xy 125 73.5)
-				(xy 131.6 73.5) (xy 132.15 72.95)
+				(xy 133.125 70.363103) (xy 133.5875 69.900603) (xy 140.375 69.900603) (xy 141.775 71.300603) (xy 141.775 72.000603)
+				(xy 140.275 73.500603) (xy 133.675 73.500603) (xy 133.125 72.950603)
 			)
 		)
 		(filled_polygon
 			(layer "B.Cu")
 			(pts
-				(xy 131.701852 69.914352) (xy 132.135648 70.348148) (xy 132.15 70.382796) (xy 132.15 72.929704)
-				(xy 132.135648 72.964352) (xy 131.614352 73.485648) (xy 131.579704 73.5) (xy 130.271421 73.5) (xy 130.236773 73.485648)
-				(xy 130.223362 73.460559) (xy 130.212046 73.403668) (xy 130.148386 73.249979) (xy 130.055966 73.111663)
-				(xy 129.938337 72.994034) (xy 129.800021 72.901614) (xy 129.800018 72.901612) (xy 129.800017 72.901612)
-				(xy 129.646339 72.837956) (xy 129.646333 72.837954) (xy 129.646332 72.837954) (xy 129.646329 72.837953)
-				(xy 129.64632 72.837951) (xy 129.483181 72.8055) (xy 129.483176 72.8055) (xy 129.316824 72.8055)
-				(xy 129.316818 72.8055) (xy 129.153679 72.837951) (xy 129.15366 72.837956) (xy 128.999982 72.901612)
-				(xy 128.861663 72.994033) (xy 128.744033 73.111663) (xy 128.651613 73.24998) (xy 128.643631 73.269252)
-				(xy 128.617112 73.29577) (xy 128.598361 73.2995) (xy 125.266373 73.2995) (xy 125.231725 73.285148)
-				(xy 125.221103 73.269252) (xy 125.192322 73.19977) (xy 125.192322 73.199769) (xy 125.088302 73.044092)
-				(xy 124.955908 72.911698) (xy 124.940816 72.901614) (xy 124.917381 72.885955) (xy 124.800231 72.807678)
-				(xy 124.800227 72.807676) (xy 124.800225 72.807675) (xy 124.627258 72.736029) (xy 124.627248 72.736026)
-				(xy 124.553194 72.721296) (xy 124.443616 72.6995) (xy 124.256384 72.6995) (xy 124.246739 72.701418)
-				(xy 124.234623 72.703828) (xy 124.19784 72.69651) (xy 124.190417 72.690417) (xy 123.514352 72.014352)
-				(xy 123.5 71.979704) (xy 123.5 71.320295) (xy 123.514351 71.285648) (xy 124.19042 70.609579) (xy 124.225065 70.595229)
-				(xy 124.234614 70.596169) (xy 124.256384 70.6005) (xy 124.256385 70.6005) (xy 124.443613 70.6005)
-				(xy 124.443616 70.6005) (xy 124.627251 70.563973) (xy 124.800231 70.492322) (xy 124.955908 70.388302)
-				(xy 125.088302 70.255908) (xy 125.192322 70.100231) (xy 125.221103 70.030748) (xy 125.247622 70.00423)
-				(xy 125.266373 70.0005) (xy 128.598361 70.0005) (xy 128.633009 70.014852) (xy 128.64363 70.030747)
-				(xy 128.651614 70.050021) (xy 128.744034 70.188337) (xy 128.861663 70.305966) (xy 128.999979 70.398386)
-				(xy 129.067005 70.426149) (xy 129.15366 70.462043) (xy 129.153662 70.462043) (xy 129.153668 70.462046)
-				(xy 129.234087 70.478042) (xy 129.316818 70.494499) (xy 129.316824 70.4945) (xy 129.483176 70.4945)
-				(xy 129.646332 70.462046) (xy 129.800021 70.398386) (xy 129.938337 70.305966) (xy 130.055966 70.188337)
-				(xy 130.148386 70.050021) (xy 130.197998 69.930248) (xy 130.224517 69.90373) (xy 130.243268 69.9)
-				(xy 131.667204 69.9)
+				(xy 135.091631 69.914955) (xy 135.102253 69.930852) (xy 135.137046 70.014852) (xy 135.151614 70.050021)
+				(xy 135.244034 70.188337) (xy 135.361663 70.305966) (xy 135.499979 70.398386) (xy 135.567005 70.426149)
+				(xy 135.65366 70.462043) (xy 135.653662 70.462043) (xy 135.653668 70.462046) (xy 135.734087 70.478042)
+				(xy 135.816818 70.494499) (xy 135.816824 70.4945) (xy 135.983176 70.4945) (xy 136.146332 70.462046)
+				(xy 136.300021 70.398386) (xy 136.438337 70.305966) (xy 136.555966 70.188337) (xy 136.648386 70.050021)
+				(xy 136.656369 70.030747) (xy 136.682888 70.00423) (xy 136.701639 70.0005) (xy 139.458877 70.0005)
+				(xy 139.493525 70.014852) (xy 139.504147 70.030748) (xy 139.512128 70.050017) (xy 139.532678 70.099628)
+				(xy 139.636698 70.255305) (xy 139.769092 70.387699) (xy 139.924769 70.491719) (xy 139.931483 70.4945)
+				(xy 140.097741 70.563367) (xy 140.097743 70.563367) (xy 140.097749 70.56337) (xy 140.281384 70.599897)
+				(xy 140.281387 70.599897) (xy 140.468613 70.599897) (xy 140.468616 70.599897) (xy 140.652251 70.56337)
+				(xy 140.825231 70.491719) (xy 140.87625 70.457628) (xy 140.913031 70.450312) (xy 140.93812 70.463723)
+				(xy 141.760648 71.286251) (xy 141.775 71.320899) (xy 141.775 71.980306) (xy 141.760648 72.014954)
+				(xy 140.939565 72.836036) (xy 140.904917 72.850388) (xy 140.877694 72.84213) (xy 140.825231 72.807075)
+				(xy 140.652256 72.735426) (xy 140.652254 72.735425) (xy 140.652248 72.735423) (xy 140.578194 72.720693)
+				(xy 140.468616 72.698897) (xy 140.281384 72.698897) (xy 140.189986 72.717077) (xy 140.097751 72.735423)
+				(xy 140.097741 72.735426) (xy 139.924774 72.807072) (xy 139.92477 72.807074) (xy 139.924769 72.807075)
+				(xy 139.885195 72.833517) (xy 139.769092 72.911094) (xy 139.636697 73.043489) (xy 139.532676 73.199169)
+				(xy 139.503647 73.269252) (xy 139.477128 73.29577) (xy 139.458377 73.2995) (xy 136.701639 73.2995)
+				(xy 136.666991 73.285148) (xy 136.656369 73.269252) (xy 136.648386 73.24998) (xy 136.648386 73.249979)
+				(xy 136.555966 73.111663) (xy 136.438337 72.994034) (xy 136.300021 72.901614) (xy 136.300018 72.901612)
+				(xy 136.300017 72.901612) (xy 136.146339 72.837956) (xy 136.146333 72.837954) (xy 136.146332 72.837954)
+				(xy 136.146329 72.837953) (xy 136.14632 72.837951) (xy 135.983181 72.8055) (xy 135.983176 72.8055)
+				(xy 135.816824 72.8055) (xy 135.816818 72.8055) (xy 135.653679 72.837951) (xy 135.65366 72.837956)
+				(xy 135.499982 72.901612) (xy 135.361663 72.994033) (xy 135.244033 73.111663) (xy 135.151612 73.249982)
+				(xy 135.087954 73.403665) (xy 135.087951 73.403676) (xy 135.076517 73.461162) (xy 135.055682 73.492345)
+				(xy 135.028459 73.500603) (xy 133.695296 73.500603) (xy 133.660648 73.486251) (xy 133.139352 72.964955)
+				(xy 133.125 72.930307) (xy 133.125 70.383399) (xy 133.139352 70.348751) (xy 133.573148 69.914955)
+				(xy 133.607796 69.900603) (xy 135.056983 69.900603)
 			)
 		)
 	)
 	(zone
-		(net 12)
-		(net_name "Net-(J1-PadB2)")
+		(net 3)
+		(net_name "Net-(J1-PadA2)")
 		(layer "B.Cu")
 		(uuid "e2fae770-3e9b-4076-87f6-08f2ffb0d2aa")
 		(hatch edge 0.5)
@@ -5026,38 +5157,38 @@
 		)
 		(polygon
 			(pts
-				(xy 123.5 65.275) (xy 124.075 64.7) (xy 130.49375 64.7) (xy 132.2 66.40625) (xy 132.2 68.925) (xy 131.725 69.4)
-				(xy 124.88125 69.4) (xy 123.5 68.01875)
+				(xy 141.825 65.275603) (xy 141.25 64.700603) (xy 134.83125 64.700603) (xy 133.125 66.406853) (xy 133.125 68.925603)
+				(xy 133.6 69.400603) (xy 140.44375 69.400603) (xy 141.825 68.019353)
 			)
 		)
 		(filled_polygon
 			(layer "B.Cu")
 			(pts
-				(xy 125.385441 64.714352) (xy 125.398242 64.741411) (xy 125.399031 64.741255) (xy 125.3995 64.743612)
-				(xy 125.3995 64.743616) (xy 125.421567 64.854559) (xy 125.436026 64.927248) (xy 125.436029 64.927258)
-				(xy 125.507675 65.100225) (xy 125.507676 65.100227) (xy 125.507678 65.100231) (xy 125.611698 65.255908)
-				(xy 125.744092 65.388302) (xy 125.899769 65.492322) (xy 125.899774 65.492324) (xy 126.072741 65.56397)
-				(xy 126.072743 65.56397) (xy 126.072749 65.563973) (xy 126.256384 65.6005) (xy 126.256387 65.6005)
-				(xy 126.443613 65.6005) (xy 126.443616 65.6005) (xy 126.627251 65.563973) (xy 126.800231 65.492322)
-				(xy 126.955908 65.388302) (xy 127.088302 65.255908) (xy 127.192322 65.100231) (xy 127.221103 65.030748)
-				(xy 127.247622 65.00423) (xy 127.266373 65.0005) (xy 130.598361 65.0005) (xy 130.633009 65.014852)
-				(xy 130.64363 65.030747) (xy 130.651614 65.050021) (xy 130.744034 65.188337) (xy 130.861663 65.305966)
-				(xy 130.999979 65.398386) (xy 131.153668 65.462046) (xy 131.266578 65.484505) (xy 131.291665 65.497915)
-				(xy 132.185648 66.391898) (xy 132.2 66.426546) (xy 132.2 68.904704) (xy 132.185648 68.939352) (xy 131.739352 69.385648)
-				(xy 131.704704 69.4) (xy 130.243268 69.4) (xy 130.20862 69.385648) (xy 130.197998 69.369752) (xy 130.148387 69.249982)
-				(xy 130.148386 69.24998) (xy 130.148386 69.249979) (xy 130.055966 69.111663) (xy 129.938337 68.994034)
-				(xy 129.800021 68.901614) (xy 129.800018 68.901612) (xy 129.800017 68.901612) (xy 129.646339 68.837956)
-				(xy 129.646333 68.837954) (xy 129.646332 68.837954) (xy 129.646329 68.837953) (xy 129.64632 68.837951)
-				(xy 129.483181 68.8055) (xy 129.483176 68.8055) (xy 129.316824 68.8055) (xy 129.316818 68.8055)
-				(xy 129.153679 68.837951) (xy 129.15366 68.837956) (xy 128.999982 68.901612) (xy 128.861663 68.994033)
-				(xy 128.744033 69.111663) (xy 128.651613 69.24998) (xy 128.643631 69.269252) (xy 128.617112 69.29577)
-				(xy 128.598361 69.2995) (xy 125.266373 69.2995) (xy 125.231725 69.285148) (xy 125.221103 69.269252)
-				(xy 125.192322 69.19977) (xy 125.192322 69.199769) (xy 125.088302 69.044092) (xy 124.955908 68.911698)
-				(xy 124.940816 68.901614) (xy 124.917381 68.885955) (xy 124.800231 68.807678) (xy 124.800227 68.807676)
-				(xy 124.800225 68.807675) (xy 124.627258 68.736029) (xy 124.627248 68.736026) (xy 124.553194 68.721296)
-				(xy 124.443616 68.6995) (xy 124.256384 68.6995) (xy 124.218985 68.706939) (xy 124.182202 68.699622)
-				(xy 124.174778 68.693528) (xy 123.514352 68.033102) (xy 123.5 67.998454) (xy 123.5 65.295296) (xy 123.514352 65.260648)
-				(xy 124.060648 64.714352) (xy 124.095296 64.7) (xy 125.350793 64.7)
+				(xy 141.264352 64.714955) (xy 141.810648 65.261251) (xy 141.825 65.295899) (xy 141.825 67.999056)
+				(xy 141.810648 68.033704) (xy 140.980778 68.863573) (xy 140.94613 68.877925) (xy 140.918907 68.869667)
+				(xy 140.825228 68.807073) (xy 140.652258 68.735426) (xy 140.652248 68.735423) (xy 140.578194 68.720693)
+				(xy 140.468616 68.698897) (xy 140.281384 68.698897) (xy 140.189986 68.717077) (xy 140.097751 68.735423)
+				(xy 140.097741 68.735426) (xy 139.924774 68.807072) (xy 139.92477 68.807074) (xy 139.924769 68.807075)
+				(xy 139.885195 68.833517) (xy 139.769092 68.911094) (xy 139.636697 69.043489) (xy 139.532676 69.199169)
+				(xy 139.503647 69.269252) (xy 139.477128 69.29577) (xy 139.458377 69.2995) (xy 136.701639 69.2995)
+				(xy 136.666991 69.285148) (xy 136.656369 69.269252) (xy 136.648386 69.24998) (xy 136.648386 69.249979)
+				(xy 136.555966 69.111663) (xy 136.438337 68.994034) (xy 136.300021 68.901614) (xy 136.300018 68.901612)
+				(xy 136.300017 68.901612) (xy 136.146339 68.837956) (xy 136.146333 68.837954) (xy 136.146332 68.837954)
+				(xy 136.146329 68.837953) (xy 136.14632 68.837951) (xy 135.983181 68.8055) (xy 135.983176 68.8055)
+				(xy 135.816824 68.8055) (xy 135.816818 68.8055) (xy 135.653679 68.837951) (xy 135.65366 68.837956)
+				(xy 135.499982 68.901612) (xy 135.361663 68.994033) (xy 135.244033 69.111663) (xy 135.151612 69.249982)
+				(xy 135.101753 69.370354) (xy 135.075235 69.396873) (xy 135.056483 69.400603) (xy 133.620296 69.400603)
+				(xy 133.585648 69.386251) (xy 133.139352 68.939955) (xy 133.125 68.905307) (xy 133.125 66.427149)
+				(xy 133.139352 66.392501) (xy 134.023001 65.508852) (xy 134.057649 65.4945) (xy 134.563745 65.4945)
+				(xy 134.563748 65.4945) (xy 134.622231 65.482867) (xy 134.688552 65.438552) (xy 134.732867 65.372231)
+				(xy 134.7445 65.313748) (xy 134.7445 65.0495) (xy 134.758852 65.014852) (xy 134.7935 65.0005) (xy 137.258627 65.0005)
+				(xy 137.293275 65.014852) (xy 137.303897 65.030748) (xy 137.332675 65.100225) (xy 137.332678 65.100231)
+				(xy 137.436698 65.255908) (xy 137.569092 65.388302) (xy 137.724769 65.492322) (xy 137.724774 65.492324)
+				(xy 137.897741 65.56397) (xy 137.897743 65.56397) (xy 137.897749 65.563973) (xy 138.081384 65.6005)
+				(xy 138.081387 65.6005) (xy 138.268613 65.6005) (xy 138.268616 65.6005) (xy 138.452251 65.563973)
+				(xy 138.625231 65.492322) (xy 138.780908 65.388302) (xy 138.913302 65.255908) (xy 139.017322 65.100231)
+				(xy 139.088973 64.927251) (xy 139.1255 64.743616) (xy 139.1255 64.743612) (xy 139.125969 64.741255)
+				(xy 139.127155 64.741491) (xy 139.143053 64.711732) (xy 139.174147 64.700603) (xy 141.229704 64.700603)
 			)
 		)
 	)
