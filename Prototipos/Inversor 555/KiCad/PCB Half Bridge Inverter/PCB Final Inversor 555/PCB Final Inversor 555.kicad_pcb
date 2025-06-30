@@ -64,7 +64,6 @@
 			(psnegative no)
 			(psa4output no)
 			(plot_black_and_white yes)
-			(plotinvisibletext no)
 			(sketchpadsonfab no)
 			(plotpadnumbers no)
 			(hidednponfab no)
@@ -5202,7 +5201,7 @@
 			(uuid "13c026b8-95b7-4367-a8e1-851edcebc3a9")
 		)
 		(embedded_fonts no)
-		(model "D:/Repositorio/ProyectoFinal/KiCAD-Libraries/RV09AF-40-20K-B10K--3DModel-STEP-510211.STEP"
+		(model "${KIPRJMOD}/../../../../../KiCad-Libraries/RV09AF-40-20K-B10K--3DModel-STEP-510211.STEP"
 			(offset
 				(xyz 7 -2.5 0.5)
 			)
