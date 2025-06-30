@@ -1,0 +1,92 @@
+\snsubsection{Convertidor reductor o Buck}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        % Paths, nodes and wires:
+        \draw (4.625, 15.125) to[american voltage source] (4.625, 13.125);
+        \draw node[pigfete, solderdot, rotate=90] at (6.395, 15.625) {};
+        \draw (7.875, 15.625) to[american inductor] (9.875, 15.625);
+        \draw (7.625, 13.125) to[empty Schottky diode] (7.625, 15.125);
+        \draw (10.125, 13.125) to[capacitor] (10.125, 15.125);
+        \draw node[circ] at (7.625, 15.625) {};
+        \draw node[circ] at (7.625, 15.625) {};
+        \draw node[circ] at (7.625, 12.625) {};
+        \draw node[circ] at (7.625, 12.625) {};
+        \draw node[circ] at (10.125, 15.625) {};
+        \draw node[circ] at (10.125, 15.625) {};
+        \draw node[circ] at (10.125, 12.625) {};
+        \draw node[circ] at (10.125, 12.625) {};
+        \draw (7.625, 15.125) -| (7.625, 15.625);
+        \draw (7.625, 13.125) -| (7.625, 12.625);
+        \draw (10.125, 12.625) -| (10.125, 13.125);
+        \draw (10.125, 15.125) -| (10.125, 15.625);
+        \draw (4.625, 15.125) |- (5.125, 15.625) -- (5.625, 15.625);
+        \draw (4.625, 13.125) -- (4.625, 12.625);
+        \node[shape=rectangle, draw, line width=1pt, inner sep=0, minimum width=1.215cm, minimum height=0.965cm](Rect1) at (6.125, 13.625){} node[anchor=center] at (Rect1.center){$\mu C$};
+        \draw node[circ] at (6.125, 14.125) {};
+        \draw (6.125, 14.645) |- (6.125, 14.125);
+        \node[shape=rectangle, draw, line width=1pt, inner sep=0, minimum width=1.215cm, minimum height=1.215cm](Rect2) at (14.375, 14){} node[anchor=center] at (Rect2.center){$Carga$};
+        \draw node[circ] at (14.375, 14.625) {};
+        \draw node[circ] at (14.375, 13.375) {};
+        \draw (11.625, 15.625) -| (14.375, 14.625);
+        \draw (11.625, 12.625) -| (14.375, 13.375);
+        \draw (4.625, 12.625) -- (10.125, 12.625);
+        \draw (7.165, 15.625) -- (7.875, 15.625);
+        \draw (9.875, 15.625) -- (10.125, 15.625);
+        \draw (11.625, 15.625) to[american resistor] (11.625, 14.125);
+        \draw (11.625, 14.125) to[american resistor] (11.625, 12.625);
+        \draw (11.625, 15.625) -- (10.125, 15.625);
+        \draw (11.625, 12.625) |- (10.125, 12.625);
+        \draw node[circ] at (11.625, 15.625) {};
+        \draw node[circ] at (11.625, 12.625) {};
+        \draw node[circ] at (11.625, 14.125) {};
+        \node[shape=rectangle, draw, line width=1pt, inner sep=0, minimum width=1.215cm, minimum height=0.965cm](Rect3) at (12.875, 13.375){} node[anchor=center] at (Rect3.center){$Retro$};
+        \draw (11.625, 14.125) -- (12.375, 14.125) -| (12.875, 13.875);
+        \draw node[circ] at (12.875, 13.875) {};
+    \end{tikzpicture}
+    \caption{Circuito básico del convertidor Buck.}
+    \label{fig:buck}
+\end{figure}
+
+Un convertidor Buck básico consiste en una conmutación controlada de un interruptor, un diodo, un filtro de salida, y un circuito de realimentación. El interruptor es el encargado de traspasar la potencia de entrada a la salida, dependiendo de la velocidad de conmutación o del tiempo que esté encendido, la tensión en la salida puede ser aumentar o disminuir, manteniéndose siempre por debajo de la tensión de entrada.
+
+El voltaje medio de salida del convertidor puede ser controlado de 2 formas, PWM (pulse width modulation) o PFM (pulse frequency modulation). En el primero de los casos lo que se modifica es el tiempo de encendido, manteniéndose el periodo constante. A diferencia de PFM donde el periodo es el que se modifica (cambia la frecuencia de conmutación), pero el tiempo de encendido se mantiene constante, por ejemplo en un 50 % del duty. El método más elegido para los convertidores buck es el PWM.
+
+Otro punto importante de los convertidores es el modo de operación, el mismo puede operar en dos modos de conducción, CCM (continuous conduction mode) y DCM (discontinuous conduction mode); en el primero la corriente en el inductor de salida permanece en un valor positivo, haciendo que nunca tenga corriente cero a través del mismo en el periodo de conmutación. En cambio para el caso de DCM, la corriente en el inductor se hace cero en algunos momentos del periodo de conmutación.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{buck/CCM-DCM-Graphs.png}
+    \caption{Modos de funcionamiento.}
+    \label{fig:CCM-DCM}
+\end{figure}
+
+\snsubsubsection{Modo encendido}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{buck/buck-encendido.png}
+    \caption{.}
+    \label{fig:buck-encendido}
+\end{figure}
+
+En este momento el diodo queda polarizado de forma inversa, haciendo que toda la corriente de entrada se aplique en el inductor; el inductor se carga.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{buck/buck-waveform.png}
+    \caption{.}
+    \label{fig:buck-waveform}
+\end{figure}
+
+En la figura anterior se observa que, mientras el interruptor (en la mayoría de casos un transistor) conduce, la corriente a través del inductor aumenta llegando a su valor máximo; en el momento en que se apaga el interruptor la corriente comienza a disminuir.
+
+\snsubsubsection{Modo apagado}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{buck/buck-apagado.png}
+    \caption{.}
+    \label{fig:buck-apagado}
+\end{figure}
+
+En este momento, el interruptor se encuentra abierto, y el inductor cambia su polaridad para oponerse a la descarga que está sufriendo el mismo, y el diodo queda polarizado en forma directa.
