@@ -3862,7 +3862,7 @@
 			(uuid "a61a2356-f72a-45c5-b519-5796776e9583")
 		)
 		(embedded_fonts no)
-		(model "/home/mateoc/Documents/ProyectoFinal/KiCad-Libraries/MOC3021.step"
+		(model "${KIPRJMOD}/../../../../KiCad-Libraries/MOC3021.step"
 			(offset
 				(xyz 0 0 0)
 			)
