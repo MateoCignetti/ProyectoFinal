@@ -49,11 +49,24 @@
     \label{fig:buck}
 \end{figure}
 
-Un convertidor Buck básico consiste en una conmutación controlada de un interruptor, un diodo, un filtro de salida, y un circuito de realimentación. El interruptor es el encargado de traspasar la potencia de entrada a la salida, dependiendo de la velocidad de conmutación o del tiempo que esté encendido, la tensión en la salida puede ser aumentar o disminuir, manteniéndose siempre por debajo de la tensión de entrada.
+% Citar el RASHID, si bien no lo estoy usando mucho, estoy leyendo y redactando más o menos con eso
+Un convertidor Buck consta de un diodo, un filtro de salida, un circuito de realimentación y un interruptor al cual se le controla su conmutación, Fig.~\ref{fig:buck}; siendo el objetivo lograr una tensión de salida menor a la tensión de entrada sin prescindir de eficiencia. 
 
-El voltaje medio de salida del convertidor puede ser controlado de 2 formas, PWM (pulse width modulation) o PFM (pulse frequency modulation). En el primero de los casos lo que se modifica es el tiempo de encendido, manteniéndose el periodo constante. A diferencia de PFM donde el periodo es el que se modifica (cambia la frecuencia de conmutación), pero el tiempo de encendido se mantiene constante, por ejemplo en un 50 % del duty. El método más elegido para los convertidores buck es el PWM.
+El interruptor es encargado de traspasar la potencia de la entrada a la salida, dependiendo de la velocidad de conmutación o del tiempo que esté encendido, la tensión en la salida puede aumentar o disminuir, pero manteniéndose siempre por debajo de la tensión de entrada.
 
-Otro punto importante de los convertidores es el modo de operación, el mismo puede operar en dos modos de conducción, CCM (continuous conduction mode) y DCM (discontinuous conduction mode); en el primero la corriente en el inductor de salida permanece en un valor positivo, haciendo que nunca tenga corriente cero a través del mismo en el periodo de conmutación. En cambio para el caso de DCM, la corriente en el inductor se hace cero en algunos momentos del periodo de conmutación.
+%% Por qué se prefiere ese en lugar del otro. Me enredé 
+En este tipo de topología de convertidores DC-DC suele emplear un transistor MOSFET canal p como interruptor en lugar de un MOSFET canal n, debido a la facilidad de implementación que entrega el primero mencionado.
+
+El voltaje medio de salida del convertidor puede ser controlado de 2 formas, PWM (pulse width modulation) o PFM (pulse frequency modulation). En el primero de los casos lo que se modifica es el tiempo de encendido, manteniéndose el periodo constante. A diferencia de PFM donde el periodo es el que se modifica (cambia la frecuencia de conmutación), pero el tiempo de encendido se mantiene constante, por ejemplo en un 50 \% del duty. El método más elegido para los convertidores buck es el PWM.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{buck/pfm-pwm.png}
+    \caption{Tipos de modulaciones más usados.}
+    \label{fig:pfm-pwm}
+\end{figure}
+
+Otro punto importante de los convertidores es el modo de operación, el mismo puede operar en dos modos de conducción, CCM (continuous conduction mode) y DCM (discontinuous conduction mode); en el primero la corriente a través del inductor de salida permanece en un valor positivo, haciendo que nunca tenga corriente cero a través del mismo en el periodo de conmutación. En cambio para el caso de DCM, la corriente en el inductor se hace cero en algunos momentos del periodo de conmutación.
 
 \begin{figure}[H]
     \centering
@@ -66,7 +79,7 @@ Otro punto importante de los convertidores es el modo de operación, el mismo pu
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{buck/buck-encendido.png}
-    \caption{.}
+    \caption{Interruptor en conducción.}
     \label{fig:buck-encendido}
 \end{figure}
 
@@ -75,11 +88,11 @@ En este momento el diodo queda polarizado de forma inversa, haciendo que toda la
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{buck/buck-waveform.png}
-    \caption{.}
+    \caption{Tensión y corriente en el inductor.}
     \label{fig:buck-waveform}
 \end{figure}
 
-En la figura anterior se observa que, mientras el interruptor (en la mayoría de casos un transistor) conduce, la corriente a través del inductor aumenta llegando a su valor máximo; en el momento en que se apaga el interruptor la corriente comienza a disminuir.
+En la figura anterior se observa que, mientras el interruptor conduce, la corriente a través del inductor aumenta llegando a su valor máximo; en el momento en que se apaga el interruptor la corriente comienza a disminuir.
 
 \snsubsubsection{Modo apagado}
 \begin{figure}[H]
@@ -89,4 +102,117 @@ En la figura anterior se observa que, mientras el interruptor (en la mayoría de
     \label{fig:buck-apagado}
 \end{figure}
 
-En este momento, el interruptor se encuentra abierto, y el inductor cambia su polaridad para oponerse a la descarga que está sufriendo el mismo, y el diodo queda polarizado en forma directa.
+En este momento, el interruptor se encuentra abierto, y el inductor cambia su polaridad para oponerse a la descarga que está sufriendo el mismo, quedando el diodo polarizado en forma directa.
+
+
+\snsubsubsection{Cálculos para el diseño}
+
+Criterios de diseño
+* R = 1,5 $\Omega$
+* Ripple
+  * $\Delta V_{out} = 0,02 \ V_{out} = 0,02 * 6 V = 0,12 \ V$ 
+  * $\Delta I_L = 0,3 \ I_{out} = 0,3 * 2 A = 0,6 \ A$
+* Frecuencia de conmutación ($f_s$), 15 kHz
+
+Cálculo de Duty Cycle máximo
+
+$$D_{max} = \frac{V_{out}}{V_{in} * \eta} = \frac{6 V}{12 V * 0,9} = 0,55$$
+
+Se determina un rendimiento teórico del 90%, se lo toma como criterio de diseño.
+
+Cálculo de capacitor de salida
+
+$$C_{min} = \frac{\Delta I_L}{8 * f_s * \Delta V_{out}} = \frac{0,6 A}{8*15\times10^3 Hz * 0,12 V} = 41,66 \ \mu F$$
+
+Se recomienda el uso de capacitores cerámicos de bajo ESR con material dieléctrico
+X5R. Cualquier capacidad mayor a la calculada puede ser utilizada, sin perder el funcionamiento 
+del convertidor.
+
+Cálculo de inductor
+
+$$L = \frac{(V_{in}-V_{out})*D_{max}}{f_s * \Delta I_L} = \frac{(12 V-6 V)*0,55}{15\times10^3 Hz * 0,6 A} = 366,66 \ \mu H$$
+
+Cálculo diodo
+
+$$I_D = I_{out} *(1-D) = 2 \ A * (1-0.55) = 0,9 \ A$$
+
+Corriente media aplicada en el diodo de rectificación. Se recomienda utilizar un Schottky, la 
+tensión soportada por el diodo debe ser al menos un 30% más que la tensión de salida del convertidor
+
+Red Snubber 
+
+Para este cálculo se utilizó el siguiente documento
+No se pudo seguir por completo, pero se realizaron algunas consideraciones para el cálculo.
+
+Se supone un valor de inductancia parásita típico de 50 nH. $C_P = C_{OSS}$
+
++ IRF9540
+
+$C_{OSS} = 400 \ pF \approx C_{snub}(min)$
+
+$$f_{ring} = \frac{1}{2 \pi * \sqrt{L_P * C_P}} = \frac{1}{2 \pi * \sqrt{50 \ nH * 400 \ pF}} = 35,6 MHz$$
+
+$$ R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = 11,2 \ \Omega$$
+
+$f_{ring}$, representa la frecuencia de las oscilaciones existentes en la conmutación del transistor, no se
+tiene este valor, pero se calcula en función de un valor estimado de Inductancia parásita, lo ideal es
+medirlo uno vez el circuito se encuentre armado.
+
++ IRLML6344
+
+$C_{OSS} = 65 \ pF \approx C_{snub}(min)$
+
+$$f_{ring} = \frac{1}{2 \pi * \sqrt{L_P * C_P}} = \frac{1}{2 \pi * \sqrt{50 \ nH * 65 \ pF}} = 88,3 MHz$$
+
+$$ R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = 27,7 \ \Omega$$
+
+**Puede ser necesario una red de snubber para el diodo rectificador**
+
+Filtro RC para entrada de ADC
+
+$f_c = 100 Hz$
+
+$C = 10 \ \mu F$
+
+$f_c = \frac{1}{2\pi * R * C}$
+
+$$R = \frac{1}{2\pi * f_c * C} = 159.15 \ \Omega \approx 150 \ \Omega$$
+
+Divisor de tensión (retroalimentación micro)
+
+Tensión de salida requerida 3,3 V.
+
+$$V_{out} = \frac{V_{in}*R_2}{R_1+R_2}$$
+
+$$3,3 \ V= \frac{12 \ V*4,7 \ k\Omega}{R_1+4,7 \ k\Omega}$$
+
+$$R_1 = 12,39 \ k\Omega$$
+
+Resistencia limitadora de corriente para carga de capacitancia de gate de transistor utilizado como driver
+
+Microcontrolador a utilizar ESP32-S3, según la hoja de datos la corriente acumulada de todos los pines
+es de 1,5 A.
+
+$$R_{min} = \frac{V}{I} = \frac{3,3 \ V}{33,33 mA} = 99 \Omega$$
+
+Se elige una resistencia de 150 $\Omega$. Esta resistencia es necesaria porque el microcontrolador
+vería un cortocircuito cuando el capacitor de entrada está descargado generando una alta corriente,
+además ayuda a prevenir corrientes residuales de oscilación. A tener en cuenta, cuanto mayor es el valor
+de resistencia, la respuesta del transistor disminuye.
+
+
+Tener en cuenta que el transistor utilizado es un MOSFET de nivel lógico, se puede utilizar un transistor BJT en caso de que la primer solución no entregue resultados acordes a lo esperado. Una opción en transistores BJT es el uso de 2N2222, BC548,  2N2219. IRL540 (MOSFET)
+
+Resistencia para transistor de conmutación
+
+La corriente requerida para cargar la gate del transistor está determinada por su capacitancia de gate, y
+el período de conmutación.
+
+$t=1/f_s = 66,66 \ \mu s$
+
+$$I_g = \frac{Q_g}{t} = \frac{97 \ nC}{66,66 \ \mu s} = 1,455 \ mA$$
+
+$$R_{max} = \frac{V_{in}}{I_g} = \frac{12 \ V}{1,455 \ mA} = 8,25 \ k\Omega$$
+
+Este valor fue probado en simulación pero generaba una disminución drástica en el tiempo de respuesta del 
+transistor, por ello se probará en la práctica para determinar si este cálculo es adecuado o no.
