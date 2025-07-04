@@ -1,4 +1,4 @@
-\snsubsection{Convertidor reductor o Buck}
+\snsection{Convertidor reductor o Buck}
 
 \begin{figure}[H]
     \centering
@@ -75,7 +75,7 @@ Otro punto importante de los convertidores es el modo de operación, el mismo pu
     \label{fig:CCM-DCM}
 \end{figure}
 
-\snsubsubsection{Modo encendido}
+\snsubsection{Modo encendido}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{buck/buck-encendido.png}
@@ -94,7 +94,7 @@ En este momento el diodo queda polarizado de forma inversa, haciendo que toda la
 
 En la figura anterior se observa que, mientras el interruptor conduce, la corriente a través del inductor aumenta llegando a su valor máximo; en el momento en que se apaga el interruptor la corriente comienza a disminuir.
 
-\snsubsubsection{Modo apagado}
+\snsubsection{Modo apagado}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{buck/buck-apagado.png}
@@ -104,42 +104,51 @@ En la figura anterior se observa que, mientras el interruptor conduce, la corrie
 
 En este momento, el interruptor se encuentra abierto, y el inductor cambia su polaridad para oponerse a la descarga que está sufriendo el mismo, quedando el diodo polarizado en forma directa.
 
+% Referenciar texas instruments
+\snsubsection{Cálculos para el diseño}
 
-\snsubsubsection{Cálculos para el diseño}
+El módulo convertidor reductor se diseña para una tensión de entrada de 12 V, y una corriente de entrada de 3 A; para que resulte didáctico la tensión de salida tiene un rango completo de 0 a 12 V, al igual que la corriente. Esto es debido a que aumenta las posibilidades de pruebas en el laboratorio, y genera una mayor versatilidad para visualizar el funcionamiento del módulo en cuestión.
 
-Criterios de diseño
-* R = 1,5 $\Omega$
-* Ripple
-  * $\Delta V_{out} = 0,02 \ V_{out} = 0,02 * 6 V = 0,12 \ V$ 
-  * $\Delta I_L = 0,3 \ I_{out} = 0,3 * 2 A = 0,6 \ A$
-* Frecuencia de conmutación ($f_s$), 15 kHz
+\snsubsubsection{Criterios de diseño}
+\begin{itemize}
+    \item $R = \frac{12 \ V}{2,4 \ A} = 5 \ \Omega$
+    \item Ripple
+    \begin{itemize}
+        \item $\Delta V_{out} = 2\% \ V_{out} = 0,02 * 12 V = 0,24 \ V$ 
+        \item $\Delta I_L = 30\% \ I_{out} = 0,3 * 2,4 A = 0,72 \ A$
+    \end{itemize}
+    \item Frecuencia de conmutación ($f_s$), 19 kHz
+\end{itemize}
+  
+\snsubsubsection{Cálculo de Duty Cycle máximo}
+\begin{equation}
+    D_{max} = \frac{V_{out}}{V_{in} * \eta} = \frac{6 V}{12 V * 0,9} = 0,55    
+\end{equation}
 
-Cálculo de Duty Cycle máximo
 
-$$D_{max} = \frac{V_{out}}{V_{in} * \eta} = \frac{6 V}{12 V * 0,9} = 0,55$$
+Se determina un rendimiento teórico del 90\%, se lo toma como criterio de diseño.
 
-Se determina un rendimiento teórico del 90%, se lo toma como criterio de diseño.
+\snsubsubsection{Cálculo de capacitor de salida mínimo}
+\begin{equation}
+    C_{out_{min}} = \frac{\Delta I_L}{8 * f_s * \Delta V_{out}} = \frac{0,72 A}{8*19\times10^3 Hz * 0,24 V} = 19,74 \ \mu F
+\end{equation}
 
-Cálculo de capacitor de salida
+Se recomienda el uso de capacitores cerámicos de bajo ESR con material dieléctrico X5R. Cualquier capacidad mayor a la calculada puede ser utilizada, sin perder el funcionamiento del convertidor.
 
-$$C_{min} = \frac{\Delta I_L}{8 * f_s * \Delta V_{out}} = \frac{0,6 A}{8*15\times10^3 Hz * 0,12 V} = 41,66 \ \mu F$$
+% Revisar otros cálculos por las dudas, no se si es estrictamente el valor mínimo, pero si se que si pones más grande mejoras el ripple de salida.
+\snsubsubsection{Cálculo de inductor mínimo}
+\begin{equation}
+    L = \frac{(V_{in}-V_{out})*D_{max}}{f_s * \Delta I_L} = \frac{(12 V-6 V)*0,55}{19\times10^3 Hz * 0,72 A} = 241.23 \ \mu H
+\end{equation}
 
-Se recomienda el uso de capacitores cerámicos de bajo ESR con material dieléctrico
-X5R. Cualquier capacidad mayor a la calculada puede ser utilizada, sin perder el funcionamiento 
-del convertidor.
+\snsubsubsection{Cálculo diodo}
+\begin{equation}
+    I_D = I_{out} *(1-D) = 2,4 \ A * (1-0.55) = 1,08 \ A
+\end{equation}
 
-Cálculo de inductor
+Corriente media aplicada en el diodo de rectificación. Se recomienda utilizar un Schottky, la  tensión soportada por el diodo debe ser al menos un 30\% más que la tensión de salida del convertidor
 
-$$L = \frac{(V_{in}-V_{out})*D_{max}}{f_s * \Delta I_L} = \frac{(12 V-6 V)*0,55}{15\times10^3 Hz * 0,6 A} = 366,66 \ \mu H$$
-
-Cálculo diodo
-
-$$I_D = I_{out} *(1-D) = 2 \ A * (1-0.55) = 0,9 \ A$$
-
-Corriente media aplicada en el diodo de rectificación. Se recomienda utilizar un Schottky, la 
-tensión soportada por el diodo debe ser al menos un 30% más que la tensión de salida del convertidor
-
-Red Snubber 
+\snsubsubsection{Red Snubber}
 
 Para este cálculo se utilizó el siguiente documento
 No se pudo seguir por completo, pero se realizaron algunas consideraciones para el cálculo.
@@ -158,17 +167,9 @@ $f_{ring}$, representa la frecuencia de las oscilaciones existentes en la conmut
 tiene este valor, pero se calcula en función de un valor estimado de Inductancia parásita, lo ideal es
 medirlo uno vez el circuito se encuentre armado.
 
-+ IRLML6344
-
-$C_{OSS} = 65 \ pF \approx C_{snub}(min)$
-
-$$f_{ring} = \frac{1}{2 \pi * \sqrt{L_P * C_P}} = \frac{1}{2 \pi * \sqrt{50 \ nH * 65 \ pF}} = 88,3 MHz$$
-
-$$ R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = 27,7 \ \Omega$$
-
 **Puede ser necesario una red de snubber para el diodo rectificador**
 
-Filtro RC para entrada de ADC
+\snsubsubsection{Filtro RC para entrada de ADC}
 
 $f_c = 100 Hz$
 
@@ -178,7 +179,7 @@ $f_c = \frac{1}{2\pi * R * C}$
 
 $$R = \frac{1}{2\pi * f_c * C} = 159.15 \ \Omega \approx 150 \ \Omega$$
 
-Divisor de tensión (retroalimentación micro)
+\snsubsubsection{Divisor de tensión (retroalimentación micro)}
 
 Tensión de salida requerida 3,3 V.
 
@@ -188,7 +189,7 @@ $$3,3 \ V= \frac{12 \ V*4,7 \ k\Omega}{R_1+4,7 \ k\Omega}$$
 
 $$R_1 = 12,39 \ k\Omega$$
 
-Resistencia limitadora de corriente para carga de capacitancia de gate de transistor utilizado como driver
+\snsubsubsection{Resistencia limitadora de corriente para carga de capacitancia de gate de transistor utilizado como driver}
 
 Microcontrolador a utilizar ESP32-S3, según la hoja de datos la corriente acumulada de todos los pines
 es de 1,5 A.
@@ -203,7 +204,7 @@ de resistencia, la respuesta del transistor disminuye.
 
 Tener en cuenta que el transistor utilizado es un MOSFET de nivel lógico, se puede utilizar un transistor BJT en caso de que la primer solución no entregue resultados acordes a lo esperado. Una opción en transistores BJT es el uso de 2N2222, BC548,  2N2219. IRL540 (MOSFET)
 
-Resistencia para transistor de conmutación
+\snsubsubsection{Resistencia para transistor de conmutación}
 
 La corriente requerida para cargar la gate del transistor está determinada por su capacitancia de gate, y
 el período de conmutación.
@@ -216,3 +217,10 @@ $$R_{max} = \frac{V_{in}}{I_g} = \frac{12 \ V}{1,455 \ mA} = 8,25 \ k\Omega$$
 
 Este valor fue probado en simulación pero generaba una disminución drástica en el tiempo de respuesta del 
 transistor, por ello se probará en la práctica para determinar si este cálculo es adecuado o no.
+
+
+
+
+
+
+\newpage
