@@ -9,7 +9,7 @@
  * 
 */
 
-#include "module_dimmer.h"
+#include "dimmer_control.h"
 
 // IMPORTANT: The prototype's relay pin must be shorted to 3.3 V for the dimmer to be set in digital control mode.
 //            This was not included in this program to keep test components to a minimum.
@@ -82,7 +82,7 @@ static void vTaskStartDimmerModule(void *pvParameters);
 static void vTaskStopDimmerModule(void *pvParameters);
 
 // Public functions
-esp_err_t start_dimmer_module() {
+void start_dimmer_module() {
     // Create the task to start the dimmer module
     BaseType_t xReturned = xTaskCreate(vTaskStartDimmerModule,
                                        "Start Dimmer Module Task",
@@ -92,12 +92,11 @@ esp_err_t start_dimmer_module() {
                                        NULL);
     if (xReturned != pdPASS) {
         ESP_LOGE(MODULE_TAG, "Failed to start dimmer module");
-        return ESP_FAIL; // Return error if task creation failed
+        //return ESP_FAIL; // Return error if task creation failed
     }
-    return ESP_OK; // Return success
 }
 
-esp_err_t stop_dimmer_module() {
+void stop_dimmer_module() {
     // Create the task to stop the dimmer module
     BaseType_t xReturned = xTaskCreate(vTaskStopDimmerModule,
                                        "Stop Dimmer Module Task",
@@ -107,9 +106,8 @@ esp_err_t stop_dimmer_module() {
                                        NULL);
     if (xReturned != pdPASS) {
         ESP_LOGE(MODULE_TAG, "Failed to create the Stop Dimmer Module Task");
-        return ESP_FAIL; // Return error if task creation failed
+        //return ESP_FAIL; // Return error if task creation failed
     }
-    return ESP_OK; // Return success
 }
 //
 
@@ -340,12 +338,14 @@ static void vTaskAdcRead(void *pvParameters){
 // Function to start adc task
 static void start_adc_task(){
     // Create the ADC read task
-    xTaskCreate(vTaskAdcRead,
-                "ADC Read Task",
-                5*2048,
-                NULL,
-                5,
-                &xTaskAdcRead_handle);
+    if(xTaskAdcRead_handle == NULL){
+        xTaskCreate(vTaskAdcRead,
+                    "ADC Read Task",
+                    5*2048,
+                    NULL,
+                    5,
+                    &xTaskAdcRead_handle);
+    }
 }
 
 static void stop_adc_task(){
@@ -394,4 +394,10 @@ static void vTaskStopDimmerModule(void *pvParameters){
 
     vTaskDelete(NULL); // Delete the task
 }
+
+const module_t dimmer_module = {
+    .name = "Dimmer Module", // Name of the module
+    .start_function = start_dimmer_module, // Function pointer to start the module
+    .stop_function = stop_dimmer_module, // Function pointer to stop the module
+};
 //
