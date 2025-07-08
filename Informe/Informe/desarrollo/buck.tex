@@ -52,10 +52,10 @@
 % Citar el RASHID, si bien no lo estoy usando mucho, estoy leyendo y redactando más o menos con eso
 Un convertidor Buck consta de un diodo, un filtro de salida, un circuito de realimentación y un interruptor al cual se le controla su conmutación, Fig.~\ref{fig:buck}; siendo el objetivo lograr una tensión de salida menor a la tensión de entrada sin prescindir de eficiencia. 
 
-El interruptor es encargado de traspasar la potencia de la entrada a la salida, dependiendo de la velocidad de conmutación o del tiempo que esté encendido, la tensión en la salida puede aumentar o disminuir, pero manteniéndose siempre por debajo de la tensión de entrada.
+El interruptor se encarga de traspasar la potencia de la entrada a la salida, dependiendo de la velocidad de conmutación o del tiempo que se encuentre encendido la tensión en la salida puede aumentar o disminuir, pero manteniéndose siempre por debajo de la tensión de entrada, o en casos puede alcanzar el valor de la entrada, \textcolor{red}{CITAR RASHID}.
 
 %% Por qué se prefiere ese en lugar del otro. Me enredé 
-En este tipo de topología de convertidores DC-DC suele emplear un transistor MOSFET canal p como interruptor en lugar de un MOSFET canal n, debido a la facilidad de implementación que entrega el primero mencionado.
+En este tipo de topología de convertidores DC-DC se suele emplear un transistor MOSFET canal p como interruptor en lugar de un MOSFET canal n, debido a la facilidad de implementación que entrega el primero mencionado. Para conmutar entre corte y saturación es suficiente colocando el terminal de gate del MOSFET-p entre $V_{in}$ (corte) y GND (saturación); en cambio, utilizar un MOSFET-n implica una mayor dificultad de implementación para conmutar el mismo, ya que la tensión aplicada en la gate debe ser de al menos $V_{in}+V_{th}$, \textcolor{red}{VER DE PONER IMAGEN O ALGO PARA QUE SE ENTIENDA MEJOR}.
 
 El voltaje medio de salida del convertidor puede ser controlado de 2 formas, PWM (pulse width modulation) o PFM (pulse frequency modulation). En el primero de los casos lo que se modifica es el tiempo de encendido, manteniéndose el periodo constante. A diferencia de PFM donde el periodo es el que se modifica (cambia la frecuencia de conmutación), pero el tiempo de encendido se mantiene constante, por ejemplo en un 50 \% del duty. El método más elegido para los convertidores buck es el PWM.
 
@@ -65,6 +65,8 @@ El voltaje medio de salida del convertidor puede ser controlado de 2 formas, PWM
     \caption{Tipos de modulaciones más usados.}
     \label{fig:pfm-pwm}
 \end{figure}
+
+\textcolor{red}{\href{https://control.com/technical-articles/pulse-frequency-modulation-pfm-its-not-pwm-but-related/}{LA IMAGEN ESTÁ SACADA DE ACÁ}}.
 
 Otro punto importante de los convertidores es el modo de operación, el mismo puede operar en dos modos de conducción, CCM (continuous conduction mode) y DCM (discontinuous conduction mode); en el primero la corriente a través del inductor de salida permanece en un valor positivo, haciendo que nunca tenga corriente cero a través del mismo en el periodo de conmutación. En cambio para el caso de DCM, la corriente en el inductor se hace cero en algunos momentos del periodo de conmutación.
 
