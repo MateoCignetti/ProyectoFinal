@@ -317,4 +317,26 @@ Se opta por utilizar una resistencia shunt de $5 \ m\Omega$.
 
 \snsubsubsection{Cálculo de disipador para MOSFET de conmutación}
 
+IRF9540
+
+\begin{equation}
+    P_{TOTAL} = P_{resistive} + P_{switching} 
+\end{equation}
+\begin{align}
+    R_{ds(hot)} =& R_{ds(on)_{spec}} * \left[ 1 + 0,005 * (T_{J(hot)}-T_{spec}) \right] \\
+    =& 0,117 * \left[ 1 + 0,005 * (70^{\circ} - 25^{\circ}) \right] = 0,1433
+\end{align}
+\textcolor{red}{PASAR A KELVIN}
+
+\begin{equation}
+    P_{D_{resistive}} = \left[ I_{load}^2 * R_{DS(on)(hot)} \right] * \frac{V_{out}}{V_{in}}
+\end{equation}
+
+
+
+
+
+
+
+
 \newpage
