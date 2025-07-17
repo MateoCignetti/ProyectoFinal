@@ -127,7 +127,9 @@ Cuando el convertidor es controlado de forma digital estos modos de conducción 
 
 % Acá debería explicar el tema de la corriente y todo lo que pasa con las curvas, ver que hace en el video, https://www.youtube.com/watch?v=IyiCHMHE5Qg&list=PLaAA5jT_5f5LRl9TgsN0nq5VtwB-iXzuq&index=2
 
-En este momento el diodo queda polarizado de forma inversa, haciendo que toda la corriente de entrada se aplique en el inductor; el inductor se carga.
+En un primer momento cuando el interruptor está abierto, la corriente en el circuito es cero; luego de que se cierra por primera vez, la corriente comienza a incrementarse, haciendo que el inductor genere una tensión opuesta en respuesta a la corriente de la fuente. En este momento el diodo queda polarizado de forma inversa, haciendo que toda la corriente de entrada se aplique en el inductor; haciendo que el mismo almacene energía en forma de campo magnético.
+
+El voltaje de caída mencionado contrarresta el voltaje de la fuente, generando una reducción en el voltaje a través de la carga. Luego de algunos ciclos de conmutación, la tasa de cambio de la corriente disminuye, y el voltaje a través del inductor también lo hace, haciendo que la tensión en la carga aumente.
 
 \begin{figure}[H]
     \centering
@@ -139,6 +141,9 @@ En este momento el diodo queda polarizado de forma inversa, haciendo que toda la
 En la Fig.~\ref{fig:buck-waveform} se observa que, mientras el interruptor conduce, la corriente a través del inductor aumenta llegando a su valor máximo; en el momento en que se apaga el interruptor la corriente comienza a disminuir.
 
 \snsubsection{Modo apagado}
+
+Cuando el dispositivo de conmutación pasa a su estado de no conducción, la fuente es removida del circuito, haciendo que la corriente disminuya. La disminución de la corriente produce un caída de tensión en el inductor, inversa a la que había cuando se encontraba en estado de encendido, esto hace que la bobina funcione como una fuente de corriente hacia la carga por medio del campo magnético almacenado. Esta corriente solo fluye mientras la fuente se mantiene desconectada del circuito.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{buck/buck-apagado.png}
@@ -148,20 +153,28 @@ En la Fig.~\ref{fig:buck-waveform} se observa que, mientras el interruptor condu
 
 El interruptor se encuentra abierto, y el inductor cambia su polaridad para oponerse a la descarga que está sufriendo el mismo, quedando el diodo polarizado en forma directa.
 
-% Referenciar texas instruments
+Una vez que el convertidor se encuentra en un modo normal de funcionamiento, la corriente por la carga queda determinada por la suma de la corriente aportada por la fuente de alimentación, junto con la corriente producto del campo magnético almacenado por el inductor, siempre se tendrá una corriente mayor en la carga.Ese aumento de corriente debido a la corriente de fuente y a la corriente del inductor, hacen que el voltaje se vea disminuido en la carga para preservar la potencia del convertidor.
+
+% Cosas sacadas de https://en.wikipedia.org/wiki/Buck_converter
+
 \snsubsection{Cálculos para el diseño}
 
-El módulo convertidor reductor se diseña para una tensión de entrada de 12 V, y una corriente de entrada de 3 A; para que resulte didáctico la tensión de salida tiene un rango completo de 0 a 12 V, al igual que la corriente. Esto es debido a que aumenta las posibilidades de pruebas en el laboratorio, y genera una mayor versatilidad para visualizar el funcionamiento del módulo en cuestión.
+El módulo convertidor reductor se diseña para una tensión de entrada de 12 V, y una corriente de entrada de 3 A; para facilitar la visualización de las distintas señales tanto de corriente como de tensión necesarias para la interpretación del circuito, la tensión de salida tiene un rango completo de 0 a 12 V, al igual que la corriente. Esto se debe a que aumenta las posibilidades de pruebas en el laboratorio, y genera una mayor versatilidad para visualizar el funcionamiento del módulo en cuestión.
 
+% Referenciar texas instruments para el cálculo
 \snsubsubsection{Criterios de diseño}
+
+Se calcula para una corriente de 2,4 A la cual representa un 80\% de la corriente entregada por la fuente, esto es con el objetivo de mantener un margen de seguridad evitando exigir los componentes.
+
 \begin{itemize}
-    \item $R = \frac{12 \ V}{2,4 \ A} = 5 \ \Omega$
+    \item Potencia del convertidor 36 W.
+    \item $R = \frac{12 \ V}{2,4 \ A} = 5 \ \Omega$.
     \item Ripple
     \begin{itemize}
         \item $\Delta V_{out} = 2\% \ V_{out} = 0,02 * 12 V = 0,24 \ V$ 
         \item $\Delta I_L = 30\% \ I_{out} = 0,3 * 2,4 A = 0,72 \ A$
     \end{itemize}
-    \item Frecuencia de conmutación ($f_s$), 19 kHz
+    \item Frecuencia de conmutación ($f_s$), 19 kHz.
 \end{itemize}
   
 \snsubsubsection{Cálculo de Duty Cycle máximo}
@@ -169,30 +182,33 @@ El módulo convertidor reductor se diseña para una tensión de entrada de 12 V,
     D_{max} = \frac{V_{out}}{V_{in} * \eta} = \frac{6 V}{12 V * 0,9} = 0,55    
 \end{equation}
 
-Se determina un rendimiento teórico del 90\%, se lo toma como criterio de diseño.
+Se considera un rendimiento teórico del 90\%.
 
 \snsubsubsection{Cálculo de capacitor de salida mínimo}
 \begin{equation} \label{eq:capacitancia-salida}
     C_{out_{min}} = \frac{\Delta I_L}{8 * f_s * \Delta V_{out}} = \frac{0,72 A}{8*19\times10^3 Hz * 0,24 V} = 19,74 \ \mu F
 \end{equation}
 
-Se recomienda el uso de capacitores cerámicos de bajo ESR con material dieléctrico X5R. Cualquier capacidad mayor a la calculada puede ser utilizada, sin perder el funcionamiento del convertidor.
+Cualquier capacidad mayor a la calculada puede ser utilizada, sin afectar el correcto funcionamiento del convertidor.
 
 % Revisar otros cálculos por las dudas, no se si es estrictamente el valor mínimo, pero si se que si pones más grande mejoras el ripple de salida.
 \snsubsubsection{Cálculo de inductor mínimo}
 \begin{equation} \label{eq:inductancia-minima}
-    L = \frac{(V_{in}-V_{out})*D_{max}}{f_s * \Delta I_L} = \frac{(12 V-6 V)*0,55}{19\times10^3 Hz * 0,72 A} = 241.23 \ \mu H
+    L_{min} = \frac{(V_{in}-V_{out})*D_{max}}{f_s * \Delta I_L} = \frac{(12 V-6 V)*0,55}{19\times10^3 Hz * 0,72 A} = 241.23 \ \mu H
 \end{equation}
+
+% Podría agregar como se calcula y se bobina el inductor, por más que no lo hicimos.
 
 \snsubsubsection{Cálculo diodo}
 \begin{equation} \label{eq:corriente-diodo-rectificacion}
     I_D = I_{out} *(1-D) = 2,4 \ A * (1-0.55) = 1,08 \ A
 \end{equation}
 
-Corriente media aplicada en el diodo de rectificación. Se recomienda utilizar un Schottky, la  tensión soportada por el diodo debe ser al menos un 30\% más que la tensión de salida del convertidor
+Este valor determina la corriente media aplicada en el diodo de rectificación, es recomendable utilizar un Schottky debido a la frecuencia de trabajo del convertidor. Además, la tensión soportada por el diodo debe ser al menos un 30\% más que la tensión de salida del convertidor.
 
 \snsubsubsection{Red Snubber}
-
+\textcolor{red}{Esta sección requiere de pruebas con la PCB que todavía no se realizaron}
+\begin{comment}
 Para este cálculo se utilizó el siguiente documento \textcolor{red}{PONER DOCUMENTO TOSHIBA}. No se pudo seguir por completo, pero se realizaron algunas consideraciones para el cálculo.
 
 Se supone un valor de inductancia parásita típico de 50 nH. $C_P = C_{OSS}$
@@ -213,18 +229,7 @@ $C_{OSS} = 400 \ pF \approx C_{snub}(min)$
 $f_{ring}$, representa la frecuencia de las oscilaciones existentes en la conmutación del transistor, no se tiene este valor, pero se calcula en función de un valor estimado de inductancia parásita, lo ideal es medirlo uno vez el circuito se encuentre armado.
 
 **Puede ser necesario una red de snubber para el diodo rectificador**
-
-\snsubsubsection{Filtro RC para entrada de ADC}
-
-$f_c = 100 Hz$
-
-$C = 10 \ \mu F$
-
-$f_c = \frac{1}{2\pi * R * C}$
-
-\begin{equation} \label{eq:resistencia-filtro-adc}
-    R = \frac{1}{2\pi * f_c * C} = 159.15 \ \Omega \approx 150 \ \Omega
-\end{equation}
+\end{comment}
 
 \snsubsubsection{Divisor de tensión (retroalimentación micro)}
 
@@ -235,32 +240,44 @@ Tensión de salida requerida 3,3 V.
     R_1 =& 12,39 \ k\Omega \nonumber
 \end{align}
 
-\snsubsubsection{Resistencia limitadora de corriente para carga de capacitancia de gate de transistor utilizado como driver}
+\textcolor{red}{poner imagen divisor de tensión}
 
-Microcontrolador a utilizar ESP32-S3, según la hoja de datos la corriente acumulada de todos los pines es de 1,5 A.
+\snsubsubsection{Filtro RC para entrada de ADC}
+\textbf{Criterios de diseño - filtro pasa-bajos}
+    \begin{itemize}
+        \item $f_c = 100 Hz$
+        \item $C = 10 \ \mu F$
+        \item $f_c = \frac{1}{2\pi * R * C}$
+    \end{itemize}
 
-\begin{equation} \label{eq:resistencia-limitadora-corriente}
-    R_{min} = \frac{V}{I} = \frac{3,3 \ V}{33,33 mA} = 99 \Omega
+\begin{equation} \label{eq:resistencia-filtro-adc}
+    R = \frac{1}{2\pi * f_c * C} = 159.15 \ \Omega \approx 150 \ \Omega
 \end{equation}
 
-Se elige una resistencia de 150 $\Omega$. Esta resistencia es necesaria porque el microcontrolador vería un cortocircuito cuando el capacitor de entrada está descargado generando una alta corriente, además ayuda a prevenir corrientes residuales de oscilación. A tener en cuenta, cuanto mayor es el valor de resistencia, la respuesta del transistor disminuye.
+\textcolor{red}{poner imagen filtro adc}
 
+\snsubsubsection{Resistencia limitadora de corriente para base de transistor utilizado como driver}
 
-Tener en cuenta que el transistor utilizado es un MOSFET de nivel lógico, se puede utilizar un transistor BJT en caso de que la primer solución no entregue resultados acordes a lo esperado. Una opción en transistores BJT es el uso de 2N2222, BC548,  2N2219. IRL540 (MOSFET)
+Microcontrolador a utilizar ESP32-S3, según la hoja de datos la corriente acumulada de todos los pines es de 1,5 A, por ende si el microcontrolador posee 45 pines físicos, cada uno contará de $33,33 \ mA$ de corriente. El transistor elegido para este uso es el 2N2222, posee una corriente de colector máxima de 600 mA y un $\beta$ de 100 para una corriente de colector de 150 mA.
+
+\begin{equation} \label{eq:resistencia-limitadora-corriente}
+    R_{min} = \frac{V}{I} = \frac{3,3 \ V}{\frac{150 \ mA}{100}} = 2,2 \ k\Omega
+\end{equation}
+
+Se elige una resistencia de 2,2 $k\Omega$. Esta resistencia es necesaria para que tanto el microcontrolador como el transistor no se dañen debido a corrientes indeseadas o parásitas mayores a la corriente deseada para el correcto funcionamiento. Una consideración a tener es que, cuanto mayor es el valor de resistencia, la respuesta del transistor disminuye.
 
 \snsubsubsection{Resistencia para transistor de conmutación}
 \textcolor{red}{ESTA SECCIÓN ESTÁ EN EVALUACIÓN}
 
 La corriente requerida para cargar la gate del transistor está determinada por su capacitancia de gate, y el período de conmutación.
 
-$t=1/f_s = 66,66 \ \mu s$
+$t=1/f_s = 52,63 \ \mu s$
 
-$$I_g = \frac{Q_g}{t} = \frac{97 \ nC}{66,66 \ \mu s} = 1,455 \ mA$$
+$$I_g = \frac{Q_g}{t} = \frac{97 \ nC}{52,63 \ \mu s} = 1,843 \ mA$$
 
-$$R_{max} = \frac{V_{in}}{I_g} = \frac{12 \ V}{1,455 \ mA} = 8,25 \ k\Omega$$
+$$R_{max} = \frac{V_{in}}{I_g} = \frac{12 \ V}{1,843 \ mA} = 6,5 \ k\Omega$$
 
 Este valor fue probado en simulación pero generaba una disminución drástica en el tiempo de respuesta del transistor, por ello se probará en la práctica para determinar si este cálculo es adecuado o no.
-
 
 \snsubsubsection{Medición de corriente en inductor - Unidireccional}
 
@@ -281,13 +298,12 @@ Para facilitar la medición de corriente y poder visualizar el comportamiento de
     \item $R_{shunt} =$ $6,8 \ m\Omega$ a $15 \ m\Omega$.
     \item $P_{R_{shunt}} =$ $61,2 \ mW$ a $135 \ mW$. 
 \end{itemize}
-\begin{align}
+\begin{align} \label{eq:salida-amplificador-unidireccional}
     V_{out} =& Ganancia * V_{R_{shunt}} \\
     4,8 \ V =& 100 * V_{R_{shunt}} \nonumber \\ 
     V_{R_{shunt}} =& \frac{4,8 \ V}{100} = 48 mV \nonumber 
 \end{align}
-
-\begin{equation}
+\begin{equation} \label{eq:resistencia-shunt-unidireccional}
     R_{shunt} = \frac{48 \ mV}{3 \ A} = 0,016 \ \Omega
 \end{equation}
 
@@ -303,12 +319,12 @@ Como la corriente en el capacitor es bidireccional, se debe realizar un arreglo 
 \begin{itemize}
     \item $V_{ref} =$ $\frac{5 \ V * 10 \ k\Omega}{10 \ k\Omega + 10 \ k\Omega} = 2,5 \ V$.
 \end{itemize}
-\begin{align}
+\begin{align} \label{eq:salida-amplificador-bidireccional}
     V_{out} =& V_{ref} + Ganancia * V_{R_{shunt}} \\
     4,8 \ V =& 2,5 \ V + 100 * V_{R_{shunt}} \nonumber \\
     V_{R_{shunt}} =& \frac{4,8 \ V - 2,5 \ V}{100} = 0,023 \ V \nonumber
 \end{align}
-\begin{equation}
+\begin{equation} \label{eq:resistencia-shunt-bidireccional}
     R_{shunt} = \frac{V_{R_{shunt}}}{I_{load}} = \frac{23 \ mV}{3 \ A} = 7,67 \ m\Omega
 \end{equation}
 
@@ -319,23 +335,25 @@ Se opta por utilizar una resistencia shunt de $5 \ m\Omega$.
 \url{https://www.analog.com/en/resources/technical-articles/mosfet-power-dissipation-calculation-in-highpower-supply.html}
 
 IRF9540
-$T_{J(hot)} = 70^\circ$
+
+$T_{J(hot)} = 70^\circ = 343,15 \ K$
+
 \begin{equation} \label{eq:potencia-total}
     P_{total} = P_{resistive} + P_{switching} 
 \end{equation}
-\begin{align}
+\begin{align} \label{eq:resistencia-ds-hot}
     R_{DS(on)hot} =& R_{DS(on)spec} * \left[ 1 + 0,005 * (T_{J(hot)}-T_{spec}) \right] \\
-    =& 0,117 * \left[ 1 + 0,005 * (70^{\circ} - 25^{\circ}) \right] \nonumber \\
+    =& 0,117 * \left[ 1 + 0,005 * (343,15 \ K - 298,15 \ K) \right] \nonumber \\
     =& 0,1433 \ \Omega \nonumber
 \end{align}
 \textcolor{red}{PASAR A KELVIN}
-\begin{align}
+\begin{align} \label{eq:potencia-resistiva}
     P_{D_{resistive}} =& \left[ I_{load}^2 * R_{DS(on)hot} \right] * \frac{V_{out}}{V_{in}} \\
     =& \left[ (3 \ A)^2 * 0,1433 \ \Omega\right] * 1 \nonumber \\
     =& 1,29 \ W \nonumber
 \end{align}
 
-\begin{align}
+\begin{align} \label{eq:potencia-conmutación}
     P_{switching} =& \frac{C_{rss} * V_{in}^2 * f_{sw} * I_{load}}{I_{gate}} \\
     =& \frac{240 \ pF * (12 \ V)^2 * 19 \ kHz * 3 \ A}{100 \ mA} \nonumber \\
     =& 0,02 \ W \nonumber
@@ -348,14 +366,15 @@ Partiendo de la Ec.~\ref{eq:potencia-total} se obtiene la potencia que debe disi
 \end{equation*}
 
 \snsubsubsection{Resistencia térmica}
-\begin{align}
+\begin{align} \label{eq:temperatura-juntura-rise}
     T_{J(rise)} =& P_{total} * \Theta_{JA} \\
     =& 1,31 \ W * 62 \ \frac{^\circ{C}}{W} \nonumber \\
     =& 81,22 \ ^\circ{C} \nonumber
 \end{align}
-\begin{align}
+\begin{align} \label{eq:temperatura-ambiente}
     T_{ambiente} =& T_{J(hot)} - T_{J(rise)} \\
-    =& 70 \ ^\circ{C} - 81,22 \ ^\circ{C} \nonumber
+    =& 70 \ ^\circ{C} - 81,22 \ ^\circ{C} \nonumber \\
+    =& -11,22 \ ^\circ \nonumber
 \end{align}
 
 
