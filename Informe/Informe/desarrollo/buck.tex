@@ -55,7 +55,7 @@ Un convertidor Buck consta de un diodo, un filtro de salida, un circuito de real
 El interruptor se encarga de traspasar la potencia de la entrada a la salida, dependiendo de la velocidad de conmutación o del tiempo que se encuentre encendido la tensión en la salida puede aumentar o disminuir, pero manteniéndose siempre por debajo de la tensión de entrada, o en casos puede alcanzar el valor de la entrada, \textcolor{red}{CITAR RASHID}.
 
 %% Por qué se prefiere ese en lugar del otro. Me enredé 
-En este tipo de topología de convertidores DC-DC se suele emplear un transistor MOSFET canal p como interruptor en lugar de un MOSFET canal n, debido a la facilidad de implementación que entrega el primero mencionado. Para conmutar entre corte y saturación es condición suficiente colocar el terminal de gate del MOSFET-p entre $V_{in}$ (corte) y GND (saturación); en cambio, utilizar un MOSFET-n implica una mayor dificultad de implementación para conmutar el mismo, ya que la tensión aplicada en la gate debe ser de al menos $V_{in}+V_{th}$, \textcolor{red}{VER DE PONER IMAGEN O ALGO PARA QUE SE ENTIENDA MEJOR}. El método utilizado para cumplir con la condición mencionada se lo llama bootstrapping o circuito de bootstrap.
+En este tipo de topología de convertidores DC-DC se suele emplear un transistor MOSFET canal p como interruptor en lugar de un MOSFET canal n, debido a la facilidad de implementación que entrega el primero mencionado. Para conmutar entre corte y saturación, es condición suficiente colocar el terminal de gate del MOSFET-p a potencial de $V_{in}$ (corte) o GND (saturación); en cambio, utilizar un MOSFET-n implica una mayor dificultad de implementación para conmutar el mismo, ya que la tensión aplicada en la gate debe ser de al menos $V_{in}+V_{th}$, \textcolor{red}{VER DE PONER IMAGEN O ALGO PARA QUE SE ENTIENDA MEJOR}. El método utilizado para cumplir con la condición mencionada se lo llama bootstrapping o circuito de bootstrap.
 
 El voltaje medio de salida del convertidor puede ser controlado de 2 formas, PWM (pulse width modulation) o PFM (pulse frequency modulation). En el primero de los casos lo que se modifica es el tiempo de encendido, manteniéndose el periodo constante. A diferencia de PFM donde el periodo es el que se modifica (cambia la frecuencia de conmutación), pero el tiempo de encendido se mantiene constante, por ejemplo en un 50 \% del duty. El método más elegido para los convertidores buck es el PWM.
 
@@ -153,7 +153,7 @@ Cuando el dispositivo de conmutación pasa a su estado de no conducción, la fue
 
 El interruptor se encuentra abierto, y el inductor cambia su polaridad para oponerse a la descarga que está sufriendo el mismo, quedando el diodo polarizado en forma directa.
 
-Una vez que el convertidor se encuentra en un modo normal de funcionamiento, la corriente por la carga queda determinada por la suma de la corriente aportada por la fuente de alimentación, junto con la corriente producto del campo magnético almacenado por el inductor, siempre se tendrá una corriente mayor en la carga.Ese aumento de corriente debido a la corriente de fuente y a la corriente del inductor, hacen que el voltaje se vea disminuido en la carga para preservar la potencia del convertidor.
+Una vez que el convertidor se encuentra en un modo normal de funcionamiento, la corriente por la carga queda determinada por la suma de la corriente aportada por la fuente de alimentación, junto con la corriente producto del campo magnético almacenado por el inductor, siempre se tendrá una corriente mayor en la carga. Ese aumento de corriente debido a la corriente de fuente y a la corriente del inductor, hacen que el voltaje se vea disminuido en la carga para preservar la potencia del convertidor.
 
 % Cosas sacadas de https://en.wikipedia.org/wiki/Buck_converter
 
@@ -161,6 +161,7 @@ Una vez que el convertidor se encuentra en un modo normal de funcionamiento, la 
 
 El módulo convertidor reductor se diseña para una tensión de entrada de 12 V, y una corriente de entrada de 3 A; para facilitar la visualización de las distintas señales tanto de corriente como de tensión necesarias para la interpretación del circuito, la tensión de salida tiene un rango completo de 0 a 12 V, al igual que la corriente. Esto se debe a que aumenta las posibilidades de pruebas en el laboratorio, y genera una mayor versatilidad para visualizar el funcionamiento del módulo en cuestión.
 
+\textcolor{red}{Referenciar texas instruments}
 % Referenciar texas instruments para el cálculo
 \snsubsubsection{Criterios de diseño}
 
@@ -175,6 +176,7 @@ Se calcula para una corriente de 2,4 A la cual representa un 80\% de la corrient
         \item $\Delta I_L = 30\% \ I_{out} = 0,3 * 2,4 A = 0,72 \ A$
     \end{itemize}
     \item Frecuencia de conmutación ($f_s$), 19 kHz.
+    \item Rendimiento teórico considerado, $\eta = 90\%$.
 \end{itemize}
   
 \snsubsubsection{Cálculo de Duty Cycle máximo}
@@ -182,20 +184,22 @@ Se calcula para una corriente de 2,4 A la cual representa un 80\% de la corrient
     D_{max} = \frac{V_{out}}{V_{in} * \eta} = \frac{6 V}{12 V * 0,9} = 0,55    
 \end{equation}
 
-Se considera un rendimiento teórico del 90\%.
+Dentro del cálculo es considerado el rendimiento porque el convertidor también produce energía disipada. Este cálculo otorga un valor más realista del duty cycle máximo que la ecuación sin el factor de rendimiento.
 
 \snsubsubsection{Cálculo de capacitor de salida mínimo}
 \begin{equation} \label{eq:capacitancia-salida}
     C_{out_{min}} = \frac{\Delta I_L}{8 * f_s * \Delta V_{out}} = \frac{0,72 A}{8*19\times10^3 Hz * 0,24 V} = 19,74 \ \mu F
 \end{equation}
 
-Cualquier capacidad mayor a la calculada puede ser utilizada, sin afectar el correcto funcionamiento del convertidor.
+Cualquier capacidad mayor a la calculada puede ser utilizada, sin afectar el correcto funcionamiento del convertidor. Este tipo de cálculos se pueden realizar para convertidores con compensación externa, para el caso de que se encuentren internamente compensados, como puese ser un integrado buck, es recomendable utilizar los valores determinados en el datasheet dependiendo del uso del convertidor.
 
 % Revisar otros cálculos por las dudas, no se si es estrictamente el valor mínimo, pero si se que si pones más grande mejoras el ripple de salida.
 \snsubsubsection{Cálculo de inductor mínimo}
 \begin{equation} \label{eq:inductancia-minima}
     L_{min} = \frac{(V_{in}-V_{out})*D_{max}}{f_s * \Delta I_L} = \frac{(12 V-6 V)*0,55}{19\times10^3 Hz * 0,72 A} = 241.23 \ \mu H
 \end{equation}
+
+Se lo considera como un valor mínimo, ya que si se utiliza un valor mayor el ripple se mejora y por consiguiente la corriente de salida aumenta, pero también se debe tener en cuenta que el tamaño del inductor aumenta. En cambio si se reduce el valor de inductancia, el ripple aumenta y la corriente de salida disminuye, pero el tamaño del inductor también disminuye. Por lo tanto, se debe encontrar un equilibrio entre el tamaño del inductor y el ripple de salida.
 
 % Podría agregar como se calcula y se bobina el inductor, por más que no lo hicimos.
 
@@ -233,14 +237,31 @@ $f_{ring}$, representa la frecuencia de las oscilaciones existentes en la conmut
 
 \snsubsubsection{Divisor de tensión (retroalimentación micro)}
 
-Tensión de salida requerida 3,3 V.
+Para poder realizar un control digital es necesario tener una variable manipulada y una controlada. La primera, para el caso del convertidor Buck es el PWM que se aplica a la terminal GATE del transistor MOSFET-p; la segunda se corresponde a la tensión de salida realimentada al microcontrolador. 
+
+Para lograr realimentar la tensión de salida se utiliza un divisor de tensión encargado del mapeo de la tensión de salida con rango $0 a 12 \ V$, a tensiones coherentes con el microcontrolador utilizado, rango $0 a 3,3 \ V$, Fig.~\ref{fig:divisor-tensión}. 
 \begin{align} \label{eq:resistencia-divisor-tension}
     V_{out} =& \frac{V_{in}*R_2}{R_1+R_2} \\
     3,3 \ V=& \frac{12 \ V*4,7 \ k\Omega}{R_1+4,7 \ k\Omega} \nonumber \\
     R_1 =& 12,39 \ k\Omega \nonumber
 \end{align}
 
-\textcolor{red}{poner imagen divisor de tensión}
+\begin{figure}[H]
+    \centering
+    \resizebox{0.3\linewidth}{!}{
+        \begin{circuitikz}
+            % Paths, nodes and wires:
+            \draw (2, 6) to[american resistor, l={$R1$}, label distance=0.02cm] (2, 3);
+            \draw (2, 3) to[american resistor, l={$R2$}, label distance=0.02cm] (2, -0);
+            \draw node[sground] at (2, -0) {};
+            \node[shape=rectangle, draw, line width=1pt, inner sep=0, minimum width=3.465cm, minimum height=0.965cm] at (5.25, 3){} node [anchor=center, align=center, text width=3.077cm, inner sep=5.5pt] at (5.25, 3){Microcontrolador};
+            \draw (2, 3) -- (3.5, 3);
+            \draw node[vcc] (N1) at (2, 6) {} node[anchor=south] at (N1.north){$12 \ V$};
+        \end{circuitikz}
+    }
+    \caption{Divisor de tensión genérico.}
+    \label{fig:divisor-tensión}
+\end{figure}
 
 \snsubsubsection{Filtro RC para entrada de ADC}
 \textbf{Criterios de diseño - filtro pasa-bajos}
@@ -254,7 +275,36 @@ Tensión de salida requerida 3,3 V.
     R = \frac{1}{2\pi * f_c * C} = 159.15 \ \Omega \approx 150 \ \Omega
 \end{equation}
 
-\textcolor{red}{poner imagen filtro adc}
+En la Fig.~\ref{fig:filtro-adc} se presenta el filtro pasa-bajos utilizado en la entrada del ADC del microcontrolador.
+
+\begin{figure}[H]
+    \centering
+    \resizebox{0.5\linewidth}{!}{
+        \begin{circuitikz}
+            % Paths, nodes and wires:
+            \draw (2, 7) to[american resistor, l={$R$}, label distance=0.02cm] (5, 7);
+            \draw (5, 7) to[capacitor, l={$C$}, label distance=0.02cm] (5, 4);
+            \draw (2, 4) -- (6.75, 4);
+            \draw (5, 7) -- (6.75, 7);
+            \draw node[circ] at (5, 7) {};
+            \draw node[circ] at (5, 7) {};
+            \draw node[circ] at (5, 4) {};
+            \draw node[circ] at (5, 4) {};
+            \draw node[ocirc] at (2, 7) {};
+            \draw node[ocirc] at (2, 7) {};
+            \draw node[ocirc] at (2, 4) {};
+            \draw node[ocirc] at (2, 4) {};
+            \draw node[ocirc] at (6.75, 4) {};
+            \draw node[ocirc] at (6.75, 4) {};
+            \draw node[ocirc] at (6.75, 7) {};
+            \draw node[ocirc] at (6.75, 7) {};
+            \node[shape=rectangle, inner sep=0, minimum width=2.5cm, minimum height=1.25cm] at (2, 5.5){} node [anchor=center, align=center, text width=2.147cm, inner sep=5pt] at (2, 5.5){Entrada};
+            \node[shape=rectangle, inner sep=0, minimum width=2.5cm, minimum height=1.25cm] at (6.75, 5.5){} node [anchor=center, align=center, text width=2.147cm, inner sep=5pt] at (6.75, 5.5){Salida};
+        \end{circuitikz}
+    }
+    \caption{Filtro pasa-bajos genérico.}
+    \label{fig:filtro-adc}
+\end{figure}
 
 \snsubsubsection{Resistencia limitadora de corriente para base de transistor utilizado como driver}
 
