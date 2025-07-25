@@ -333,7 +333,7 @@ Este valor fue probado en simulación pero generaba una disminución drástica e
 
 \textcolor{red}{Poner imagen de circuito con INA199}
 
-Para facilitar la medición de corriente y poder visualizar el comportamiento de la misma en operación normal del convertidor; se utilizó un amplificador de corriente INA199B2, consiste en un amplificador operacional utilizado en su configuración diferencial, Fig.~\textcolor{red}{Referencia Imagen y referenciar datasheet}.
+Para facilitar la medición de corriente y poder visualizar el comportamiento de la misma en operación normal del convertidor, se utilizó un amplificador de corriente INA199B2, consiste en un amplificador operacional utilizado en su configuración diferencial, Fig.~\textcolor{red}{Referencia Imagen y referenciar datasheet}.
 
 \textbf{Información útil para cálculos}
 \begin{itemize}
@@ -378,56 +378,66 @@ Como la corriente en el capacitor es bidireccional, se debe realizar un arreglo 
     R_{shunt} = \frac{V_{R_{shunt}}}{I_{load}} = \frac{23 \ mV}{3 \ A} = 7,67 \ m\Omega
 \end{equation}
 
-Se opta por utilizar una resistencia shunt de $5 \ m\Omega$.
+Se opta por utilizar una resistencia shunt de $5 \ m\Omega$, ya que si se eigiese una resistencia mayor, el rango de corriente medido sería menor.
 
 \snsubsubsection{Cálculo de disipador para MOSFET de conmutación}
-
 \url{https://www.analog.com/en/resources/technical-articles/mosfet-power-dissipation-calculation-in-highpower-supply.html}
 
-IRF9540
-
-$T_{J(hot)} = 70^\circ = 343,15 \ K$
+Una vez seleccionado el transistor MOSFET-p es necesario determina la disipación de potencia que sufrirá en la operación normal del convertidor, para ello se divide la potencia total en resistiva y de conmutación. Como lo indica el nombre, la primera se debe a la resistencia drenador-surtidor de transistor; y la otra es debido a la conmutación del mismo en la operación del convertidor buck.
 
 \begin{equation} \label{eq:potencia-total}
     P_{total} = P_{resistive} + P_{switching} 
 \end{equation}
+
+IRF9540
+
+Para determinar si es necesario el uso de un disipador en el transistor, el primer paso es asumir una temperatura de juntura máxima, respetando el rango determinado por el datasheet de cada componente. Para el caso de el IRF9540 se asume una temperatura de juntura de $T_{J(hot)} = 120^\circ$.
+
+Una vez determinado este valor se procede a calcular el valor de $R_{DS(on)}$ con ese valor que se asumió de temperatura de juntura.
 \begin{align} \label{eq:resistencia-ds-hot}
     R_{DS(on)hot} =& R_{DS(on)spec} * \left[ 1 + 0,005 * (T_{J(hot)}-T_{spec}) \right] \\
-    =& 0,117 * \left[ 1 + 0,005 * (343,15 \ K - 298,15 \ K) \right] \nonumber \\
-    =& 0,1433 \ \Omega \nonumber
+    =& 0,117 * \left[ 1 + 0,005 * (120^\circ - 25^\circ) \right] \nonumber \\
+    =& 0,172 \ \Omega \nonumber
 \end{align}
 \textcolor{red}{PASAR A KELVIN}
+
+Luego, se calcula la potencia disipada debido a la resistencia anteriormente calculada.
 \begin{align} \label{eq:potencia-resistiva}
     P_{D_{resistive}} =& \left[ I_{load}^2 * R_{DS(on)hot} \right] * \frac{V_{out}}{V_{in}} \\
-    =& \left[ (3 \ A)^2 * 0,1433 \ \Omega\right] * 1 \nonumber \\
-    =& 1,29 \ W \nonumber
+    =& \left[ (3 \ A)^2 * 0,72 \ \Omega\right] * 1 \nonumber \\
+    =& 1,55 \ W \nonumber
 \end{align}
 
+A su vez, se determina cuanto es la cantidad de potencia disipada debida a la conmutación del transistor.
 \begin{align} \label{eq:potencia-conmutación}
     P_{switching} =& \frac{C_{rss} * V_{in}^2 * f_{sw} * I_{load}}{I_{gate}} \\
     =& \frac{240 \ pF * (12 \ V)^2 * 19 \ kHz * 3 \ A}{100 \ mA} \nonumber \\
     =& 0,02 \ W \nonumber
 \end{align}
 
-Partiendo de la Ec.~\ref{eq:potencia-total} se obtiene la potencia que debe disipar el transistor MOSFET-p. Los valores fueron calculados para una potencia de salida de 36 W.
-
+Partiendo de la Ec.~\ref{eq:potencia-total} se obtiene la potencia que debe disipar el transistor MOSFET-p. Los valores se calcularon para una potencia de salida de 36 W.
 \begin{equation*}
-    P_{total} = 1,29 \ W + 0,02 \ W = 1,31 \ W
+    P_{total} = 1,55 \ W + 0,02 \ W = 1,57 \ W
 \end{equation*}
 
 \snsubsubsection{Resistencia térmica}
+
+Partiendo de la potencia total, es necesario calcular cuanto es el aumento de la temperatura de juntura.
 \begin{align} \label{eq:temperatura-juntura-rise}
     T_{J(rise)} =& P_{total} * \Theta_{JA} \\
-    =& 1,31 \ W * 62 \ \frac{^\circ{C}}{W} \nonumber \\
-    =& 81,22 \ ^\circ{C} \nonumber
+    =& 1,57 \ W * 62 \ \frac{^\circ{C}}{W} \nonumber \\
+    =& 97,22 \ ^\circ{C} \nonumber
 \end{align}
+
+Luego se debe determinar el valor de la temperatura ambiente teórica que debe existir para lograr la temperatura de juntura anteriormente calculada.
 \begin{align} \label{eq:temperatura-ambiente}
     T_{ambiente} =& T_{J(hot)} - T_{J(rise)} \\
-    =& 70 \ ^\circ{C} - 81,22 \ ^\circ{C} \nonumber \\
-    =& -11,22 \ ^\circ \nonumber
+    =& 120 \ ^\circ{C} - 97,22 \ ^\circ{C} \nonumber \\
+    =& 22,78 \ ^\circ \nonumber
 \end{align}
+\textcolor{red}{REVISAR SI ESTO LO DEJO ASí, si pongo disipador tengo que cambiar esto}
 
-
+Si esta temperatura ambiente es menor que la temperatura de encapsulado máxima se debe asumir una temperatura de juntura mayor o utilizar un disipador; en cambio, si la temperatura ambiente no es menor que la temperatura de encapsulado y a su ves no es considerablemente mayor que la temperatura de encapsulado, el transistor no necesita un disipador para el correcto funcionamiento del mismo.
 
 
 
