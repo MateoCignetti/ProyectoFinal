@@ -402,6 +402,13 @@ Para lograr la tensión de referencia se usa un divisor de tensión para obtener
 
 Se opta por utilizar una resistencia shunt de $5 \ m\Omega$, ya que si se eigiese una resistencia mayor, el rango de corriente medido sería menor.
 
+\snsubsubsection{Selección de carga con Relé}
+\textcolor{red}{Dependiendo que modulo va primero esto lo agrego o no, posiblemente sea mejor dimmer antes que buck.}
+
+Para experimentar el comportamiento del convertidor Buck frente a diferentes cargas, se utiliza un relé controlado por un microcontrolador permitiendo elegir entre dos cargas, una resistiva y otra inductiva, con el fin de notar las diferencias que puede causar un simple cambio de carga en la operación normal del convertidor.
+
+\textcolor{red}{Falta carga inductiva.}
+
 \snsubsubsection{Cálculo de disipador para MOSFET de conmutación}
 \url{https://www.analog.com/en/resources/technical-articles/mosfet-power-dissipation-calculation-in-highpower-supply.html}
 
@@ -458,13 +465,25 @@ Luego se debe determinar el valor de la temperatura ambiente teórica que debe e
 
 Si esta temperatura ambiente es menor que la temperatura ambiente especificada se debe asumir una temperatura de juntura mayor o utilizar un disipador; en cambio, si la temperatura ambiente no es menor que la temperatura ambiente especificada y a su ves no es considerablemente mayor que la temperatura ambiente especificada, el transistor no necesita un disipador para el correcto funcionamiento del mismo.
 
-\snsubsubsection{Selección de carga con Relé}
-\textcolor{red}{Dependiendo que modulo va primero esto lo agrego o no, posiblemente sea mejor dimmer antes que buck.}
+\snsubsubsection{Eficiencia del convertidor}
+\begin{equation} \label{eq:rendimiento}
+    \eta = \frac{P_O}{P_O + P_D}  
+\end{equation}
 
-Para experimentar el comportamiento del convertidor Buck frente a diferentes cargas, se utiliza un relé controlado por un microcontrolador permitiendo elegir entre dos cargas, una resistiva y otra inductiva, con el fin de notar las diferencias que puede causar un simple cambio de carga en la operación normal del convertidor.
+En la potencia de disipación $P_D$ se incluye la propia del transistor MOSFET-p y la correspondiente al inductor.
+\begin{equation} \label{eq:potencia-inductor}
+    P_L = I_O^2 \times R_{DCR} = (3 \ A)^2 \times 150 \ m\Omega = 1,35 \ W
+\end{equation}
 
-\textcolor{red}{Falta carga inductiva.}
+\begin{equation} \label{eq:potencia-disipativa}
+    P_D = P_L + P_{total} = 1,35 \ W + 1,55 \ W = 2,9 \ W
+\end{equation}
 
+\begin{align} \label{eq:rendimiento-teorico-calculado}
+    \eta &= \frac{P_O}{P_O + P_D} \\
+    &= \frac{36 \ W}{36 \ W + 2,9 W} \nonumber \\
+    &= 0,925 \approx 92,5 \%
+\end{align}
 
 
 \newpage
