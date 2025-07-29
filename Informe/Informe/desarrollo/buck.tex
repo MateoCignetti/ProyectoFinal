@@ -146,7 +146,7 @@ Cuando el dispositivo de conmutación pasa a su estado de no conducción, la fue
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{buck/buck-apagado.png}
-    \caption{.}
+    \caption{Interruptor en estado de no conducción.}
     \label{fig:buck-apagado}
 \end{figure}
 
@@ -178,14 +178,16 @@ Se calcula para una corriente de 2,4 A la cual representa un 80\% de la corrient
     \item Rendimiento teórico considerado, $\eta = 90\%$.
 \end{itemize}
   
-\snsubsubsection{Cálculo de Duty Cycle máximo}
+Se elige como transistor de conmutación de potencia el IRF9540, la selección del mismo se baso en la disponibilidad y en su amplio campo de aplicación; otro de los motivos de la elección de este transistor es, en caso de falla o rotura del módulo sean componentes fáciles de conseguir.
+
+\snsubsubsection{Duty Cycle máximo}
 \begin{equation} \label{eq:duty-cycle}
     D_{max} = \frac{V_{out}}{V_{in} * \eta} = \frac{6 V}{12 V * 0,9} = 0,55    
 \end{equation}
 
 Dentro del cálculo es considerado el rendimiento porque el convertidor también produce energía disipada. Este cálculo otorga un valor más realista del duty cycle máximo que la ecuación sin el factor de rendimiento.
 
-\snsubsubsection{Cálculo de capacitor de salida mínimo}
+\snsubsubsection{Capacitor de salida mínimo}
 \begin{equation} \label{eq:capacitancia-salida}
     C_{out_{min}} = \frac{\Delta I_L}{8 * f_s * \Delta V_{out}} = \frac{0,72 A}{8*19\times10^3 Hz * 0,24 V} = 19,74 \ \mu F
 \end{equation}
@@ -193,16 +195,16 @@ Dentro del cálculo es considerado el rendimiento porque el convertidor también
 Cualquier capacidad mayor a la calculada puede ser utilizada, sin afectar el correcto funcionamiento del convertidor. Este tipo de cálculos se pueden realizar para convertidores con compensación externa, para el caso de que se encuentren internamente compensados, como puese ser un integrado buck, es recomendable utilizar los valores determinados en el datasheet dependiendo del uso del convertidor.
 
 % Revisar otros cálculos por las dudas, no se si es estrictamente el valor mínimo, pero si se que si pones más grande mejoras el ripple de salida.
-\snsubsubsection{Cálculo de inductor mínimo}
+\snsubsubsection{Inductor mínimo}
 \begin{equation} \label{eq:inductancia-minima}
     L_{min} = \frac{(V_{in}-V_{out})*D_{max}}{f_s * \Delta I_L} = \frac{(12 V-6 V)*0,55}{19\times10^3 Hz * 0,72 A} = 241.23 \ \mu H
 \end{equation}
 
-Se lo considera como un valor mínimo, ya que si se utiliza un valor mayor el ripple se mejora y por consiguiente la corriente de salida aumenta, pero también se debe tener en cuenta que el tamaño del inductor aumenta. En cambio si se reduce el valor de inductancia, el ripple aumenta y la corriente de salida disminuye, pero el tamaño del inductor también disminuye. Por lo tanto, se debe encontrar un equilibrio entre el tamaño del inductor y el ripple de salida.
+Es considerado como un valor mínimo, ya que si se utiliza un valor mayor el ripple es menor y por consiguiente la corriente de salida aumenta, pero también se debe tener en cuenta que el tamaño del inductor aumenta. En cambio si se reduce el valor de inductancia, el ripple aumenta y la corriente de salida disminuye, pero el tamaño del inductor también disminuye. Por lo tanto, se debe encontrar un equilibrio entre el tamaño del inductor y el ripple de salida.
 
 % Podría agregar como se calcula y se bobina el inductor, por más que no lo hicimos.
 
-\snsubsubsection{Cálculo diodo}
+\snsubsubsection{Corriente media en diodo}
 \begin{equation} \label{eq:corriente-diodo-rectificacion}
     I_D = I_{out} *(1-D) = 2,4 \ A * (1-0.55) = 1,08 \ A
 \end{equation}
@@ -234,11 +236,11 @@ $f_{ring}$, representa la frecuencia de las oscilaciones existentes en la conmut
 **Puede ser necesario una red de snubber para el diodo rectificador**
 \end{comment}
 
-\snsubsubsection{Divisor de tensión (retroalimentación micro)}
+\snsubsubsection{Realimentación microcontrolador}
 
-Para poder realizar un control digital es necesario tener una variable manipulada y una controlada. La primera, para el caso del convertidor Buck es el PWM que se aplica a la terminal GATE del transistor MOSFET-p; la segunda se corresponde a la tensión de salida realimentada al microcontrolador. 
+Para poder realizar un control digital es necesario tener una variable manipulada y una controlada. La primera, para el caso del convertidor Buck, es el PWM que se aplica a la terminal GATE del transistor MOSFET-p; la segunda se corresponde a la tensión de salida realimentada al microcontrolador. 
 
-Para lograr realimentar la tensión de salida se utiliza un divisor de tensión encargado del mapeo de la tensión de salida con rango $0 a 12 \ V$, a tensiones coherentes con el microcontrolador utilizado, rango $0 a 3,3 \ V$, Fig.~\ref{fig:divisor-tensión}. 
+Para lograr realimentar la tensión de salida se utiliza un divisor de tensión, encargado de adecuar la tensión de salida con rango $0 a 12 \ V$, a tensiones manejables por el microcontrolador utilizado, rango $0 a 3,3 \ V$, Fig.~\ref{fig:divisor-tensión}. 
 \begin{align} \label{eq:resistencia-divisor-tension}
     V_{out} =& \frac{V_{in}*R_2}{R_1+R_2} \\
     3,3 \ V=& \frac{12 \ V*4,7 \ k\Omega}{R_1+4,7 \ k\Omega} \nonumber \\
@@ -262,7 +264,7 @@ Para lograr realimentar la tensión de salida se utiliza un divisor de tensión 
     \label{fig:divisor-tensión}
 \end{figure}
 
-\snsubsubsection{Filtro RC para entrada de ADC}
+\snsubsubsection{Filtro RC para ADC}
 \textbf{Criterios de diseño - filtro pasa-bajos}
     \begin{itemize}
         \item $f_c = 100 Hz$
@@ -274,7 +276,7 @@ Para lograr realimentar la tensión de salida se utiliza un divisor de tensión 
     R = \frac{1}{2\pi * f_c * C} = 159.15 \ \Omega \approx 150 \ \Omega
 \end{equation}
 
-En la Fig.~\ref{fig:filtro-adc} se presenta el filtro pasa-bajos utilizado en la entrada del ADC del microcontrolador.
+En la Fig.~\ref{fig:filtro-adc} se presenta el filtro pasa-bajos utilizado en la entrada del ADC del microcontrolador, este filtro tambien es conocido como RC.
 
 \begin{figure}[H]
     \centering
@@ -305,17 +307,24 @@ En la Fig.~\ref{fig:filtro-adc} se presenta el filtro pasa-bajos utilizado en la
     \label{fig:filtro-adc}
 \end{figure}
 
-\snsubsubsection{Resistencia limitadora de corriente para base de transistor utilizado como driver}
+\snsubsubsection{Transistor BJT como driver de MOSFET}
 
-Microcontrolador a utilizar ESP32-S3, según la hoja de datos la corriente acumulada de todos los pines es de 1,5 A, por ende si el microcontrolador posee 45 pines físicos, cada uno contará de $33,33 \ mA$ de corriente. El transistor elegido para este uso es el 2N2222, posee una corriente de colector máxima de 600 mA y un $\beta$ de 100 para una corriente de colector de 150 mA.
+Como el microcontrolador elegido es el ESP32-S3, el mismo presenta en la hoja de datos que la corriente acumulada de todos los pines es de 1,5 A, por ende si el microcontrolador posee 45 pines físicos, cada uno contará de $33,33 \ mA$ de corriente. El transistor elegido para este uso es el 2N2222, posee una corriente de colector máxima de 600 mA y un $\beta$ de 100 para una corriente de colector de 150 mA.
 
 \begin{equation} \label{eq:resistencia-limitadora-corriente}
-    R_{min} = \frac{V}{I} = \frac{3,3 \ V}{\frac{150 \ mA}{100}} = 2,2 \ k\Omega
+    R_{b(min)} = \frac{V}{I_{b}} = \frac{3,3 \ V}{\frac{150 \ mA}{100}} = 2,2 \ k\Omega
 \end{equation}
 
-Se elige una resistencia de 2,2 $k\Omega$. Esta resistencia es necesaria para que tanto el microcontrolador como el transistor no se dañen debido a corrientes indeseadas o parásitas mayores a la corriente deseada para el correcto funcionamiento. Una consideración a tener es que, cuanto mayor es el valor de resistencia, la respuesta del transistor disminuye.
+Se elige una resistencia de 2,2 $k\Omega$, Fig.~\ref{fig:bjt-driver-mosfet}. La principal función de utilizar esta resistencia es limitar la corriente que se demanda al microcontrolador, pero a su vez es necesaria para que tanto el microcontrolador como el transistor no se dañen debido a corrientes indeseadas o parásitas mayores a la corriente deseada para el correcto funcionamiento. Una consideración a tener es que, cuanto mayor es el valor de resistencia, la respuesta del transistor disminuye.
 
-\snsubsubsection{Resistencia para transistor de conmutación}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{buck/bjt-driver.png}
+    \caption{Transistor 2N2222 como driver de MOSFET-p.}
+    \label{fig:bjt-driver-mosfet}
+\end{figure}
+
+\snsubsubsection{Resistencia de gate}
 \textcolor{red}{ESTA SECCIÓN ESTÁ EN EVALUACIÓN}
 
 La corriente requerida para cargar la gate del transistor está determinada por su capacitancia de gate, y el período de conmutación.
@@ -338,7 +347,6 @@ Para facilitar la medición de corriente y poder visualizar el comportamiento de
     \caption{Medición de corriente unidireccional con INA199B2.}
     \label{fig:ina199-unidireccional}
 \end{figure}
-\textcolor{red}{La imagen está sacada de texas instruments, tiene copyright}
 
 \textbf{Información útil para cálculos}
 \begin{itemize}
@@ -378,7 +386,6 @@ Para lograr la tensión de referencia se usa un divisor de tensión para obtener
     \caption{Medición de corriente bidireccional con INA199B2.}
     \label{fig:ina199-bidireccional}
 \end{figure}
-\textcolor{red}{La imagen está sacada de texas instruments, tiene copyright}
 
 \textbf{Criterio de diseño}
 \begin{itemize}
@@ -402,8 +409,6 @@ Una vez seleccionado el transistor MOSFET-p es necesario determina la disipació
 \begin{equation} \label{eq:potencia-total}
     P_{total} = P_{resistive} + P_{switching} 
 \end{equation}
-
-\textcolor{red}{IRF9540, justificar elección en algun título}
 
 Para determinar si es necesario el uso de un disipador en el transistor, el primer paso es asumir una temperatura de juntura máxima, respetando el rango determinado por la hoja de datos. Para el caso de el IRF9540 se asume una temperatura de juntura de $T_{J(hot)} = 120^\circ$.
 
@@ -453,7 +458,12 @@ Luego se debe determinar el valor de la temperatura ambiente teórica que debe e
 
 Si esta temperatura ambiente es menor que la temperatura ambiente especificada se debe asumir una temperatura de juntura mayor o utilizar un disipador; en cambio, si la temperatura ambiente no es menor que la temperatura ambiente especificada y a su ves no es considerablemente mayor que la temperatura ambiente especificada, el transistor no necesita un disipador para el correcto funcionamiento del mismo.
 
+\snsubsubsection{Selección de carga con Relé}
+\textcolor{red}{Dependiendo que modulo va primero esto lo agrego o no, posiblemente sea mejor dimmer antes que buck.}
 
+Para experimentar el comportamiento del convertidor Buck frente a diferentes cargas, se utiliza un relé controlado por un microcontrolador permitiendo elegir entre dos cargas, una resistiva y otra inductiva, con el fin de notar las diferencias que puede causar un simple cambio de carga en la operación normal del convertidor.
+
+\textcolor{red}{Falta carga inductiva.}
 
 
 
