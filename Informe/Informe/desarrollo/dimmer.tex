@@ -1,4 +1,12 @@
-\snsection{Recortador de onda}
+\snsection{Módulo recortador de onda}
+
+Uno de los métodos más simples para controlar la potencia entregada a una carga de corriente alterna es mediante el uso de un rectortador. Este método se basa en la utilización de un tiristor para recortar la onda de tensión aplicada a la carga, permitiendo así regular la potencia entregada. Al recortar la onda, se reduce la tensión RMS aplicada a la carga, lo que a su vez produce una reducción de potencia entregada.
+
+Este método tiene varias desventajas, como una baja eficiencia y alta distorsión armónica. Sin embargo, su simplicidad y bajo costo es la razón por la cual se sigue utilizando en aplicaciones específicas donde se requiere un control de potencia simple y económico.
+
+Se decidió elegir este módulo para el proyecto ya que es un buen primer paso en la electrónica de potencia, donde se puede apreciar el funcionamiento de un semiconductor como el tiristor y su control.
+
+\snsubsection{El TRIAC}
 
 \begin{figure}[H]
     \centering
@@ -31,7 +39,7 @@ El control digital se compone de dos circuitos distintos: el Zero Crossing Detec
 
 Con un circuito driver de Relé, se permite cambiar entre ambos modos, siendo el control analógico el activado por defecto (contacto normal-cerrado).
 
-\subsection*{Entradas y salidas}
+\snsubsection{Entradas y salidas}
 \begin{table}[H]
     \centering
     \begin{tabular}{|l|l|}
@@ -49,18 +57,18 @@ Con un circuito driver de Relé, se permite cambiar entre ambos modos, siendo el
     \label{tab:entradas_salidas_dimmer}
 \end{table}
 
-\subsection*{Resumen}
+\snsubsection{Resumen}
 
 \begin{figure}[H]
     \centering
 
     \includegraphics[width=\textwidth]{dimmer/circuito.png}
 
-    \caption{Circuito básico recortador de onda analógico.}
+    \caption{Circuito completo del módulo recortador de onda.}
     \label{fig:dimmer:circuito}
 \end{figure}
 
-\subsection*{Control de fase con tiristores}
+\snsubsection{Control de fase con tiristores}
 
 El método más común de control electrónico de potencia de CA se denomina control de fase. La Figura \ref{fig:dimmer:control_fase} ilustra este concepto. Durante la primera parte de cada semiciclo de la onda sinusoidal de CA, se abre un interruptor electrónico para impedir el flujo de corriente. En un ángulo de fase específico $\alpha$, este interruptor se cierra para permitir que se aplique toda la tensión de línea a la carga durante el resto de ese semiciclo. La variación de $\alpha$ controlará la parte de la onda sinusoidal total que se aplica a la carga (área sombreada) y, por lo tanto, regulará el flujo de potencia hacia la carga.
 
@@ -85,7 +93,7 @@ El circuito más simple para lograr el control de fase se muestra en la Figura \
 \end{figure}
 
 La forma de onda del voltaje a través del capacitor para dos condiciones de control típicas ($\alpha$ = 90° y $\alpha$ = 150°) se muestra en la Figura \ref{fig:dimmer:formas_onda}. Si se utiliza un rectificador controlado por silicio en este circuito en lugar del TRIAC, solo se controlará un semiciclo de la forma de onda. El otro semiciclo se bloqueará, lo que genera una salida de CC pulsante cuyo valor promedio puede variarse ajustando el RT.
-(Referencia)
+\textcolor{red}{text}((Referencia: Thyristor Theory and Design Considerations: Handbook))
 
 \begin{figure}[H]
     \centering
@@ -96,9 +104,9 @@ La forma de onda del voltaje a través del capacitor para dos condiciones de con
     \label{fig:dimmer:formas_onda}
 \end{figure}
 
-Este tipo de control de fase se recomienda solamente para circuitos con carga resistiva o levemente inductiva (ver AN308 (STMicroelectronics))
+Este tipo de control de fase se recomienda solamente para circuitos con carga resistiva o levemente inductiva \textcolor{red}{(ver AN308 (STMicroelectronics))}
 
-\subsection*{Circuito detector de cruce por cero (ZCD)}
+\snsubsection{Circuito detector de cruce por cero (ZCD)}
 
 \begin{figure}[H]
     \centering
@@ -113,7 +121,7 @@ Este simple circuito convierte la señal de entrada de CA sinusoidal en una señ
 
 En el semiciclo positivo de la tensión de CA, se enciende el led interno del optoacoplador, lo que polariza el transistor de salida, que lleva la tensión $UC_{phase}$ a 0 V. En el semiciclo negativo, la corriente fluye por el diodo D2, manteniendo la tensión reversa del led interno fija y menor a la máxima permitida (6 V para el EL817).
 
-\subsection*{Driver de TRIAC}
+\snsubsection{Driver de TRIAC}
 
 \begin{figure}[H]
     \centering
@@ -126,7 +134,7 @@ En el semiciclo positivo de la tensión de CA, se enciende el led interno del op
 
 Con este circuito se permite disparar el TRIAC en cualquier momento de forma aislada, solamente enviando un pulso con el microcontrolador a $UC_{Dout}$. No es necesario mantener la señal por más que unos pocos microsegundos, ya que una vez disparado el TRIAC, no deja de conducir hasta que la tensión aplicada entre ambos ánodos cruza por cero.
 
-\subsection*{Driver de relé}
+\snsubsection{Driver de relé}
 
 \begin{figure}[H]
     \centering
@@ -137,9 +145,15 @@ Con este circuito se permite disparar el TRIAC en cualquier momento de forma ais
     \label{fig:dimmer:rele}
 \end{figure}
 
-Simple circuito que permite conmutar el relé, para así cambiar entre ambos modos de control (analógico y digital). Cuando $UC_{Relay}$ es de 0 V, el circuito utilizado es el de control analógico, mientras que cuando $UC_{Relay}$ es de 3,3 V, se activa el control digital.
+Simple circuito que permite conmutar el relé, para así cambiar entre ambos modos de control (analógico y digital). Cuando $UC_{Relay} = 0 V$, el circuito utilizado es el de control analógico, mientras que cuando $UC_{Relay} = 3,3 V$, se activa el control digital.
 
-\subsection*{Red Snubber}
+\snsubsection{Red Snubber}
+
+Es imperativo implementar algún método para restringir la tasa de aumento de la tensión reaplicada del triac a un valor que permita la desactivación del TRIAC en condiciones de carga inductiva. 
+
+Un método comúnmente aceptado para mantener la $dv/dt$ de conmutación dentro de niveles tolerables es utilizar una red Snubber RC en paralelo con los terminales principales del TRIAC. Dado que la tasa de aumento de la tensión aplicada en los terminales del triac depende de la impedancia de carga y de la red Snubber RC, el circuito puede evaluarse en las peores condiciones de temperatura de funcionamiento y corriente principal máxima. Los valores de resistencia y capacitancia en red Snubber se ajustan entonces para que la tasa de aumento de la tensión $dv/dt$ de conmutación se encuentre dentro del límite mínimo especificado en cualquiera de las condiciones mencionadas anteriormente. El valor de la resistencia del Snubber debe ser lo suficientemente alto como para limitar las corrientes de descarga de la capacitancia del Snubber durante el encendido y amortiguar la oscilación del LC durante la conmutación. Generalmente, se prefiere la combinación de valores de Snubber con la mayor resistencia y la menor capacitancia que proporcione un funcionamiento satisfactorio.
+
+\textcolor{red}{(Referencia: Thyristor Theory and Design Considerations: Handbook)}
 
 \begin{figure}[H]
     \centering
@@ -150,8 +164,8 @@ Simple circuito que permite conmutar el relé, para así cambiar entre ambos mod
     \label{fig:dimmer:snubber}
 \end{figure}
 
-Este circuito se utiliza para proteger el TRIAC de sobretensiones y transitorios de voltaje que puedan dañarlo. La red snubber está compuesta por un resistor y un capacitor en serie, que se conectan en paralelo con la carga. Su función es absorber los picos de tensión y limitar la tasa de cambio de la corriente, evitando así que el TRIAC se dispare de manera no deseada.
-
+Como se observa en la figura \ref{fig:dimmer:snubber}, un alto dv/dt puede causar un falso disparo del TRIAC, afectando negativamente al circuito control de fase. \textcolor{red}{(Más info, ver AN437 STMicroelectronics)
+}
 
 
 \begin{comment}
