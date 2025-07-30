@@ -52,9 +52,11 @@
 % Citar el RASHID, si bien no lo estoy usando mucho, estoy leyendo y redactando más o menos con eso
 Un convertidor buck consta de un diodo, un filtro de salida, un circuito de realimentación y un interruptor al cual se le controla su conmutación, \cref{fig:buck:circuito_generico}; siendo el objetivo lograr una tensión de salida menor a la tensión de entrada sin prescindir de eficiencia. 
 
-El interruptor se encarga de traspasar la potencia, de la entrada a la salida, dependiendo de la velocidad de conmutación o del tiempo que se encuentre encendido, la tensión en la salida puede aumentar o disminuir pero manteniéndose siempre por debajo de la tensión de entrada, o en casos puede alcanzar el valor de la entrada, \textcolor{red}{CITAR RASHID}.
+El interruptor se encarga de traspasar la potencia, de la entrada a la salida, dependiendo de la velocidad de conmutación o del tiempo que se encuentre encendido, la tensión en la salida puede aumentar o disminuir pero manteniéndose siempre por debajo de la tensión de entrada, o en casos puede alcanzar el valor de la entrada, \parencite{RASHID}.
 
 En este tipo de topología de convertidores DC-DC se suele emplear un transistor MOSFET canal p como interruptor en lugar de un MOSFET canal n, debido a la facilidad de implementación que entrega el primero mencionado. Para conmutar entre corte y saturación, es condición suficiente colocar el terminal de gate del MOSFET-p a potencial de $V_{in}$ (transistor en corte) o GND (transistor en saturación); en cambio, utilizar un MOSFET-n implica una mayor dificultad de implementación para conmutar el mismo, ya que la tensión aplicada en la gate debe ser de al menos $V_{in}+V_{th}$ para que el mismo pueda encontrarse en máxima saturación\textcolor{red}{VER DE PONER IMAGEN O ALGO PARA QUE SE ENTIENDA MEJOR}. El método utilizado para cumplir con la condición mencionada se lo llama bootstrapping o circuito de bootstrap.
+
+% Buscar documento de comparativa de MOSFET-p vs MOSFET-n, explicar la dificultad que tiene la fabricación del MOSFET-p y algun documento que respalde todo eso.
 
 Existen diversas formas de controlar el voltaje medio de salida del convertidor, entre las dos formas más conocidas se encuentra el PWM (pulse width modulation) y el PFM (pulse frequency modulation). En el primero de los casos lo que se modifica es el tiempo de encendido, manteniéndose el periodo constante. A diferencia de PFM donde el periodo es el que se modifica (cambia la frecuencia de conmutación), pero el tiempo de encendido se mantiene constante, por ejemplo en un $50\%$ del duty. El método más elegido para los convertidores buck es el PWM.
 
@@ -160,23 +162,23 @@ Una vez que el convertidor se encuentra en un modo normal de funcionamiento, la 
 
 \snsubsection{Cálculos para el diseño}
 
-El módulo convertidor reductor se diseña para una tensión de entrada de $12 \, \unit{\volt}$, y una corriente de entrada de $3 \, \unit{\ampere}$; para facilitar la visualización de las distintas señales tanto de corriente como de tensión necesarias para la interpretación del circuito, la tensión de salida tiene un rango completo de $0$ a $12 \, \unit{\volt}$, al igual que la corriente. Esto se debe a que aumenta las posibilidades de pruebas en el laboratorio, y genera una mayor versatilidad para visualizar el funcionamiento del módulo en cuestión.
+El módulo convertidor reductor se diseña para una tensión de entrada de \SI{12}{\volt}, y una corriente de entrada de \SI{3}{\ampere}; para facilitar la visualización de las distintas señales tanto de corriente como de tensión necesarias para la interpretación del circuito, la tensión de salida tiene un rango completo de \SIrange{0}{12}{\volt}, al igual que la corriente. Esto se debe a que aumenta las posibilidades de pruebas en el laboratorio, y genera una mayor versatilidad para visualizar el funcionamiento del módulo en cuestión.
 
 \textcolor{red}{Referenciar texas instruments}
 % Referenciar texas instruments para el cálculo
 \snsubsubsection{Criterios de diseño}
 
-Se calcula para una corriente de $2,4 \, \unit{\ampere}$ la cual representa un $80\%$ de la corriente entregada por la fuente, esto es con el objetivo de mantener un margen de seguridad evitando exigir los componentes.
+Se calcula para una corriente de \SI{2,4}{\ampere} la cual representa un $80\%$ de la corriente entregada por la fuente, esto es con el objetivo de mantener un margen de seguridad evitando exigir los componentes.
 
 \begin{itemize}
-    \item Potencia del convertidor $36 \, \unit{\watt}$.
-    \item $R = \frac{12 \, \unit{\volt}}{2,4 \, \unit{\ampere}} = 5 \, \unit{\ohm}$.
+    \item Potencia del convertidor \SI{36}{\watt}.
+    \item $R = \frac{\SI{12}{\volt}}{\SI{2,4}{\ampere}} = \SI{5}{\ohm}$.
     \item Ripple
     \begin{itemize}
-        \item $\Delta V_{out} = 2\% ~ V_{out} = 0,02 \cdot 12 \, \unit{\volt} = 0,24 \, \unit{\volt}$ 
-        \item $\Delta I_L = 30\% ~ I_{out} = 0,3 \cdot 2,4 \, \unit{\ampere} = 0,72 \, \unit{\ampere}$
+        \item $\Delta V_{out} = 2\% ~ V_{out} = 0,02 \cdot \SI{12}{\volt} = \SI{0,24}{\volt}$
+        \item $\Delta I_L = 30\% ~ I_{out} = 0,3 \cdot \SI{2,4}{\ampere} = \SI{0,72}{\ampere}$
     \end{itemize}
-    \item Frecuencia de conmutación ($f_s$), $19 \, \unit{\kilo\hertz}$.
+    \item Frecuencia de conmutación ($f_s$), \SI{19}{\kilo\hertz}.
     \item Rendimiento teórico considerado, $\eta = 90\%$.
 \end{itemize}
   
@@ -184,14 +186,14 @@ Se elige como transistor de conmutación de potencia el IRF9540, la selección d
 
 \snsubsubsection{Duty Cycle máximo}
 \begin{equation} \label{eq:buck:duty_cycle}
-    D_{max} = \frac{V_{out}}{V_{in} \, \eta} = \frac{6 \, \unit{\volt}}{12 \, \unit{\volt} \, 0,9} = 0,55    
+    D_{max} = \frac{V_{out}}{V_{in} \, \eta} = \frac{\SI{6}{\volt}}{\SI{12}{\volt} \, 0,9} = 0,55    
 \end{equation}
 
 Dentro del cálculo es considerado el rendimiento porque el convertidor también produce energía disipada. Este cálculo otorga un valor más realista del duty cycle máximo que la ecuación sin el factor de rendimiento.
 
 \snsubsubsection{Capacitor de salida mínimo}
 \begin{equation} \label{eq:buck:capacitancia_salida}
-    C_{out_{min}} = \frac{\Delta I_L}{8 \, f_s \, \Delta V_{out}} = \frac{0,72 A}{(8) \, 19\times10^3 Hz \, 0,24 V} = 19,74 \ \mu F
+    C_{out_{min}} = \frac{\Delta I_L}{8 \, f_s \, \Delta V_{out}} = \frac{\SI{0,72}{\ampere}}{8 \cdot \, \SI{19e3}{\hertz} \, \SI{0,24}{\volt}} = \SI{19,74}{\micro\farad}
 \end{equation}
 
 Cualquier capacidad mayor a la calculada puede ser utilizada, sin afectar el correcto funcionamiento del convertidor. Este tipo de cálculos se pueden realizar para convertidores con compensación externa, para el caso de que se encuentren internamente compensados, como puese ser un integrado buck, es recomendable utilizar los valores determinados en el datasheet dependiendo del uso del convertidor.
@@ -199,7 +201,7 @@ Cualquier capacidad mayor a la calculada puede ser utilizada, sin afectar el cor
 % Revisar otros cálculos por las dudas, no se si es estrictamente el valor mínimo, pero si se que si pones más grande mejoras el ripple de salida.
 \snsubsubsection{Inductor mínimo}
 \begin{equation} \label{eq:buck:inductancia_minima}
-    L_{min} = \frac{(V_{in}-V_{out}) \, D_{max}}{f_s \, \Delta I_L} = \frac{(12 V-6 V) \, 0,55}{19\times10^3 Hz \, 0,72 A} = 241,23 \ \mu H
+    L_{min} = \frac{(V_{in}-V_{out}) \, D_{max}}{f_s \, \Delta I_L} = \frac{(\SI{12}{\volt} - \SI{6}{\volt}) \, 0,55}{\SI{19e3}{\hertz} \, \SI{0,72}{\ampere}} = \SI{241,23}{\micro\henry}
 \end{equation}
 
 Es considerado como un valor mínimo, ya que si se utiliza un valor mayor el ripple es menor y por consiguiente la corriente de salida aumenta, pero también se debe tener en cuenta que el tamaño del inductor aumenta. En cambio si se reduce el valor de inductancia, el ripple aumenta y la corriente de salida disminuye, pero el tamaño del inductor también disminuye. Por lo tanto, se debe encontrar un equilibrio entre el tamaño del inductor y el ripple de salida.
@@ -208,10 +210,10 @@ Es considerado como un valor mínimo, ya que si se utiliza un valor mayor el rip
 
 \snsubsubsection{Corriente media en diodo}
 \begin{equation} \label{eq:buck:corriente_diodo_rectificacion}
-    I_D = I_{out} \, (1-D) = 2,4 \ A \, (1-0.55) = 1,08 \ A
+    I_D = I_{out} \, (1-D) = \SI{2,4}{\ampere} \, (1-0.55) = \SI{1,08}{\ampere}
 \end{equation}
 
-Este valor determina la corriente media aplicada en el diodo de rectificación, es recomendable utilizar un Schottky debido a la frecuencia de trabajo del convertidor. Además, la tensión soportada por el diodo debe ser al menos un 30\% más que la tensión de salida del convertidor.
+Este valor determina la corriente media aplicada en el diodo de rectificación, es recomendable utilizar un Schottky debido a la frecuencia de trabajo del convertidor. Además, la tensión soportada por el diodo debe ser al menos un $30\%$ más que la tensión de salida del convertidor.
 
 \snsubsubsection{Red Snubber}
 \textcolor{red}{Esta sección requiere de pruebas con la PCB que todavía no se realizaron}
@@ -242,11 +244,11 @@ $f_{ring}$, representa la frecuencia de las oscilaciones existentes en la conmut
 
 Para poder realizar un control digital es necesario tener una variable manipulada y una controlada. La primera, para el caso del convertidor buck, es el PWM que se aplica a la terminal GATE del transistor MOSFET-p; la segunda se corresponde a la tensión de salida realimentada al microcontrolador. 
 
-Para lograr realimentar la tensión de salida se utiliza un divisor de tensión, encargado de adecuar la tensión de salida con rango $0 a 12 \ V$, a tensiones manejables por el microcontrolador utilizado, rango $0 a 3,3 \ V$, \cref{fig:buck:divisor_tensión}. 
+Para lograr realimentar la tensión de salida se utiliza un divisor de tensión, encargado de adecuar la tensión de salida con rango \SIrange{0}{12}{\volt}, a tensiones manejables por el microcontrolador utilizado, rango \SIrange{0}{3,3}{V}, \cref{fig:buck:divisor_tensión}. 
 \begin{align} \label{eq:buck:resistencia_divisor_tension}
     V_{out} =& \frac{V_{in} \, R_2}{R_1+R_2} \\
-    3,3 \ V=& \frac{12 \ V \, 4,7 \ k\Omega}{R_1+4,7 \ k\Omega} \nonumber \\
-    R_1 =& 12,39 \ k\Omega \nonumber
+    \SI{3,3}{\volt} =& \frac{\SI{12}{\volt} \, \SI{4,7}{\kilo\ohm}}{R_1+\SI{4,7}{\kilo\ohm}} \nonumber \\
+    R_1 =& \SI{12,39}{\kilo\ohm} \nonumber
 \end{align}
 
 \begin{figure}[H]
@@ -269,13 +271,13 @@ Para lograr realimentar la tensión de salida se utiliza un divisor de tensión,
 \snsubsubsection{Filtro RC para ADC}
 \textbf{Criterios de diseño - filtro pasa-bajos}
     \begin{itemize}
-        \item $f_c = 100 Hz$
-        \item $C = 10 \ \mu F$
-        \item $f_c = \frac{1}{2\pi * R * C}$
+        \item $f_c = \SI{100}{\hertz}$
+        \item $C = \SI{10}{\micro\farad}$
+        \item $f_c = \frac{1}{2\pi \, R \, C}$
     \end{itemize}
 
 \begin{equation} \label{eq:buck:resistencia_filtro_adc}
-    R = \frac{1}{2\pi \, f_c \, C} = 159,15 \ \Omega \approx 150 \ \Omega
+    R = \frac{1}{2\pi \, f_c \, C} = \SI{159,15}{\ohm} \approx \SI{150}{\ohm}
 \end{equation}
 
 En la \cref{fig:buck:filtro_adc} se presenta el filtro pasa-bajos utilizado en la entrada del ADC del microcontrolador, este filtro tambien es conocido como RC.
@@ -309,15 +311,23 @@ En la \cref{fig:buck:filtro_adc} se presenta el filtro pasa-bajos utilizado en l
     \label{fig:buck:filtro_adc}
 \end{figure}
 
+Tanto el filtro como el divisor de tensión ateriormente mencionados y calculados son importantes para poder realizar correctamente un control digital.
+
+El objetivo de esta medición es poder realizar un control preciso de la tensión y corriente entregada a la carga, por ello se aplica un lazo cerrado donde la tensión de salida se la compara con una tensión de referencia (set-point), para así aplicar la corrección del ciclo de trabajo del PWM para lograr la conmutación correcta del transistor.
+
+Si la carga demanda menos corriente, la tensión tiende a subir y viceversa, por ello la utilidad de un control para ajustar el D en función de la carga conectada al convertidor.
+
+Hay diversas técnicas de control, dentro de las más utilizadas, PID.
+
 \snsubsubsection{Transistor BJT como driver de MOSFET}
 
-Como el microcontrolador elegido es el ESP32-S3, el mismo presenta en la hoja de datos que la corriente acumulada de todos los pines es de 1,5 A, por ende si el microcontrolador posee 45 pines físicos, cada uno contará de $33,33 \ mA$ de corriente. El transistor elegido para este uso es el 2N2222, posee una corriente de colector máxima de 600 mA y un $\beta$ de 100 para una corriente de colector de 150 mA.
+Como el microcontrolador elegido es el ESP32-S3, el mismo presenta en la hoja de datos que la corriente acumulada de todos los pines es de \SI{1,5}{\ampere}, por ende si el microcontrolador posee 45 pines físicos, cada uno contará de \SI{33,33}{\milli\ampere} de corriente. El transistor elegido para este uso es el 2N2222, posee una corriente de colector máxima de \SI{600}{\milli\ampere} y un $\beta$ de 100 para una corriente de colector de \SI{150}{\milli\ampere}.
 
 \begin{equation} \label{eq:buck:resistencia_limitadora_corriente}
-    R_{b(min)} = \frac{V}{I_{b}} = \frac{3,3 \ V}{\frac{150 \ mA}{100}} = 2,2 \ k\Omega
+    R_{b(min)} = \frac{V}{I_{b}} = \frac{\SI{3,3}{\volt}}{\frac{\SI{150}{\milli\ohm}}{100}} = \SI{2,2}{\kilo\ohm}
 \end{equation}
 
-Se elige una resistencia de 2,2 $k\Omega$, \cref{fig:buck:bjt_driver_mosfet}. La principal función de utilizar esta resistencia es limitar la corriente que se demanda al microcontrolador, pero a su vez es necesaria para que tanto el microcontrolador como el transistor no se dañen debido a corrientes indeseadas o parásitas mayores a la corriente deseada para el correcto funcionamiento. Una consideración a tener es que, cuanto mayor es el valor de resistencia, la respuesta del transistor disminuye.
+Se elige una resistencia de \SI{2,2}{\kilo\ohm}, \cref{fig:buck:bjt_driver_mosfet}. La principal función de utilizar esta resistencia es limitar la corriente que se demanda al microcontrolador, pero a su vez es necesaria para que tanto el microcontrolador como el transistor no se dañen debido a corrientes indeseadas o parásitas mayores a la corriente deseada para el correcto funcionamiento. Una consideración a tener es que, cuanto mayor es el valor de resistencia, la respuesta del transistor disminuye.
 
 \begin{figure}[H]
     \centering
@@ -331,11 +341,15 @@ Se elige una resistencia de 2,2 $k\Omega$, \cref{fig:buck:bjt_driver_mosfet}. La
 
 La corriente requerida para cargar la gate del transistor está determinada por su capacitancia de gate, y el período de conmutación.
 
-$t=1/f_s = 52,63 \ \mu s$
+$t=1/f_s = \SI{52,63}{\micro\second}$
 
-$$I_g = \frac{Q_g}{t} = \frac{97 \ nC}{52,63 \ \mu s} = 1,843 \ mA$$
+\begin{equation} \label{eq:buck:corriente-gate}
+    I_g = \frac{Q_g}{t} = \frac{\SI{97}{\nano\coulomb}}{\SI{52,63}{\micro\second}} = \SI{1,843}{\milli\ampere}  
+\end{equation}
 
-$$R_{max} = \frac{V_{in}}{I_g} = \frac{12 \ V}{1,843 \ mA} = 6,5 \ k\Omega$$
+\begin{equation} \label{eq:buck:resistencia-gate-maxima}
+    R_{max} = \frac{V_{in}}{I_g} = \frac{\SI{12}{\volt}}{\SI{1,843}{\milli\ampere}} = \SI{6,5}{\kilo\ohm}
+\end{equation}
 
 Este valor fue probado en simulación pero generaba una disminución drástica en el tiempo de respuesta del transistor, por ello se probará en la práctica para determinar si este cálculo es adecuado o no.
 
@@ -352,27 +366,27 @@ Para facilitar la medición de corriente y poder visualizar el comportamiento de
 
 \textbf{Información útil para cálculos}
 \begin{itemize}
-    \item Ganancia = 100 V/V.
-    \item $V_{CC} = 5 \ V$.
-    \item $V_{out}=$ $0,05$ a $4,8 \ V$.
+    \item Ganancia = \SI[per-mode=symbol]{100}{\volt\per\volt}.
+    \item $V_{CC} = \SI{5}{\volt}$.
+    \item $V_{out}= \SIrange{0,05}{4,8}{\volt}$.
 \end{itemize}
 
 \textbf{Criterio de diseño}
 \begin{itemize}
-    \item $V_{R_{shunt}} =$ $20 \ mV$ a $50 \ mV$.
-    \item $R_{shunt} =$ $6,8 \ m\Omega$ a $15 \ m\Omega$.
-    \item $P_{R_{shunt}} =$ $61,2 \ mW$ a $135 \ mW$. 
+    \item $V_{R_{shunt}} = \SIrange{20}{50}{\milli\volt}$.
+    \item $R_{shunt} = \SIrange{6,8}{15}{\milli\ohm}$.
+    \item $P_{R_{shunt}} = \SIrange{61,2}{135}{\milli\watt}$. 
 \end{itemize}
 \begin{align} \label{eq:buck:salida_amplificador_unidireccional}
     V_{out} =& Ganancia \, V_{R_{shunt}} \\
-    4,8 \ V =& 100 \, V_{R_{shunt}} \nonumber \\ 
-    V_{R_{shunt}} =& \frac{4,8 \ V}{100} = 48 mV \nonumber 
+    \SI{4,8}{\volt} =& 100 \, V_{R_{shunt}} \nonumber \\ 
+    V_{R_{shunt}} =& \frac{\SI{4,8}{\volt}}{100} = \SI{48}{\milli\volt}\nonumber 
 \end{align}
 \begin{equation} \label{eq:buck:resistencia_shunt_unidireccional}
-    R_{shunt} = \frac{48 \ mV}{3 \ A} = 0,016 \ \Omega
+    R_{shunt} = \frac{\SI{48e-3}{\volt}}{\SI{3}{\ampere}} = \SI{0,016}{\ohm}
 \end{equation}
 
-Se elige una resistencia shunt de $10 \ m\Omega$ por la disipación de potencia, además entrega un buen rango de tensión a la salida del amplificador, $V_{out} = 0,05 \ \ a \ \ 3 \ V$.
+Se elige una resistencia shunt de $\SI{10}{\milli\ohm}$ por la disipación de potencia, además entrega un buen rango de tensión a la salida del amplificador, $V_{out} = \SIrange{0,05}{3}{\volt}$.
 
 \snsubsubsection{Medición de corriente en capacitor - Bidireccional}
 
@@ -380,7 +394,7 @@ Como la corriente en el capacitor es bidireccional, se debe realizar un arreglo 
 
 Es común en esta configuración de amplificador diferencial la necesidad de utilizar una tensión de referencia del $50\%$ de la tensión de alimentación del integrado, con el fin de lograr que la corriente en la resistencia shunt pueda ser medida en ambos sentidos, cuando $V_{shunt} < V_{ref}$ la corriente circuila en un sentido, y cuando $V_{shunt} > V_{ref}$ la corriente circula en sentido contrario al anterior. 
 
-Para lograr la tensión de referencia se usa un divisor de tensión para obtener el voltaje, $2,5 \, V$; a su vez se aplica un operacional como seguidor de tensión por recomendación propia del fabricante.
+Para lograr la tensión de referencia se usa un divisor de tensión para obtener el voltaje, $\SI{2,5}{\volt}$; a su vez se aplica un operacional como seguidor de tensión por recomendación propia del fabricante.
 
 \begin{figure}[H]
     \centering
@@ -391,18 +405,18 @@ Para lograr la tensión de referencia se usa un divisor de tensión para obtener
 
 \textbf{Criterio de diseño}
 \begin{itemize}
-    \item $V_{ref} =$ $\frac{5 \ V \, 10 \ k\Omega}{10 \ k\Omega + 10 \ k\Omega} = 2,5 \ V$.
+    \item $V_{ref} =$ $\frac{\SI{5}{\volt} \, \SI{10}{\kilo\ohm}}{\SI{10}{\kilo\ohm} + \SI{10}{\kilo\ohm}} = \SI{2,5}{\volt}$.
 \end{itemize}
 \begin{align} \label{eq:buck:salida_amplificador_bidireccional}
     V_{out} =& V_{ref} + Ganancia \, V_{R_{shunt}} \\
-    4,8 \ V =& 2,5 \ V + 100 \, V_{R_{shunt}} \nonumber \\
-    V_{R_{shunt}} =& \frac{4,8 \ V - 2,5 \ V}{100} = 0,023 \ V \nonumber
+    \SI{4,8}{\volt} =& \SI{2,5}{\volt} + 100 \, V_{R_{shunt}} \nonumber \\
+    V_{R_{shunt}} =& \frac{\SI{4,8}{\volt} - \SI{2,5}{\volt}}{100} = \SI{0,023}{\volt} \nonumber
 \end{align}
 \begin{equation} \label{eq:buck:resistencia_shunt_bidireccional}
-    R_{shunt} = \frac{V_{R_{shunt}}}{I_{load}} = \frac{23 \ mV}{3 \ A} = 7,67 \ m\Omega
+    R_{shunt} = \frac{V_{R_{shunt}}}{I_{load}} = \frac{\SI{23}{\milli\ohm}}{\SI{3}{\ampere}} = \SI{7,67}{\milli\ohm}
 \end{equation}
 
-Se opta por utilizar una resistencia shunt de $5 \ m\Omega$, ya que si se eigiese una resistencia mayor, el rango de corriente medido sería menor.
+Se opta por utilizar una resistencia shunt de \SI{5}{\milli\ohm}, ya que si se eigiese una resistencia mayor, el rango de corriente medido sería menor.
 
 \snsubsubsection{Selección de carga con Relé}
 \textcolor{red}{Dependiendo que modulo va primero esto lo agrego o no, posiblemente sea mejor dimmer antes que buck.}
@@ -419,33 +433,33 @@ Una vez seleccionado el transistor MOSFET-p es necesario determina la disipació
     P_{total} = P_{resistive} + P_{switching} 
 \end{equation}
 
-Para determinar si es necesario el uso de un disipador en el transistor, el primer paso es asumir una temperatura de juntura máxima, respetando el rango determinado por la hoja de datos. Para el caso de el IRF9540 se asume una temperatura de juntura de $T_{J(hot)} = 120^\circ$.
+Para determinar si es necesario el uso de un disipador en el transistor, el primer paso es asumir una temperatura de juntura máxima, respetando el rango determinado por la hoja de datos. Para el caso de el IRF9540 se asume una temperatura de juntura de $T_{J(hot)} = \SI{120}{\degree}$.
 
 Una vez determinado este valor se procede a calcular el valor de $R_{DS(on)}$ con el valor elegido de temperatura de juntura.
 \begin{align} \label{eq:buck:resistencia_ds_hot}
     R_{DS(on)hot} =& R_{DS(on)spec} \, \left[ 1 + 0,005 \, (T_{J(hot)}-T_{spec}) \right] \\
-    =& 0,117 \, \left[ 1 + 0,005 \, (120^\circ - 25^\circ) \right] \nonumber \\
-    =& 0,172 \ \Omega \nonumber
+    =& \SI{0,117}{\ohm} \, \left[ 1 + 0,005 \, (\SI{120}{\degree} - \SI{25}{\degree}) \right] \nonumber \\
+    =& \SI{0,172}{\ohm} \nonumber
 \end{align}
 \textcolor{red}{No creo que sea necesario pasar a Kelvin}
 
 Luego, se calcula la potencia disipada debido a la resistencia anteriormente calculada.
 \begin{align} \label{eq:buck:potencia_resistiva}
     P_{resistive} =& \left[ I_{load}^2 \, R_{DS(on)hot} \right] \, \frac{V_{out}}{V_{in}} \\
-    =& \left[ (3 \ A)^2 \, 0,72 \ \Omega\right] \, 1 \nonumber \\
-    =& 1,55 \ W \nonumber
+    =& \left[ (\SI{3}{\ampere})^2 \, \SI{0,72}{\ohm}\right] \, 1 \nonumber \\
+    =& \SI{1,55}{\watt} \nonumber
 \end{align}
 
 A su vez, se determina cuanto es la cantidad de potencia disipada debida a la conmutación del transistor.
 \begin{align} \label{eq:buck:potencia_conmutación}
     P_{switching} =& \frac{C_{rss} \, V_{in}^2 \, f_{sw} \, I_{load}}{I_{gate}} \\
-    =& \frac{240 \ pF \, (12 \ V)^2 \, 19 \ kHz \, 3 \ A}{100 \ mA} \nonumber \\
-    =& 0,02 \, W \nonumber
+    =& \frac{\SI{240}{\pico\farad} \, (\SI{12}{\volt})^2 \, \SI{19}{\kilo\hertz} \, \SI{3}{\ampere}}{\SI{100}{\milli\ampere}} \nonumber \\
+    =& \SI{0,02}{\watt} \nonumber
 \end{align}
 
-Partiendo de la \cref{eq:buck:potencia_total} se obtiene la potencia que debe disipar el transistor MOSFET-p. Los valores se calcularon para una potencia de salida de 36 W.
+Partiendo de la \cref{eq:buck:potencia_total} se obtiene la potencia que debe disipar el transistor MOSFET-p. Los valores se calcularon para una potencia de salida de \SI{36}{W}.
 \begin{equation*}
-    P_{total} = 1,55 \ W + 0,02 \, W = 1,57 \ W
+    P_{total} = \SI{1,55}{\watt} + \SI{0,02}{\watt} = \SI{1,57}{\watt}
 \end{equation*}
 
 \snsubsubsection{Resistencia térmica}
@@ -453,15 +467,15 @@ Partiendo de la \cref{eq:buck:potencia_total} se obtiene la potencia que debe di
 Partiendo de la potencia total, es requisito determinar cuanto es el aumento de la temperatura de juntura debido a la potencia disipada.
 \begin{align} \label{eq:buck:temperatura_juntura_rise}
     T_{J(rise)} =& P_{total} \, \Theta_{JA} \\
-    =& 1,57 \ W \, 62 \ \frac{^\circ{C}}{W} \nonumber \\
-    =& 97,22^\circ \nonumber
+    =& \SI{1,57}{\watt} \, \SI[per-mode=symbol]{62}{\celsius\per\watt} \nonumber \\
+    =& \SI{97,22}{\celsius} \nonumber
 \end{align}
 
 Luego se debe determinar el valor de la temperatura ambiente teórica que debe existir para lograr la temperatura de juntura anteriormente calculada.
 \begin{align} \label{eq:buck:temperatura_ambiente}
     T_{ambiente} =& T_{J(hot)} - T_{J(rise)} \\
-    =& 120^\circ - 97,22^\circ \nonumber \\
-    =& 22,78^\circ \nonumber
+    =& \SI{120}{\celsius} - \SI{97,22}{\celsius} \nonumber \\
+    =& \SI{22,78}{\celsius} \nonumber
 \end{align}
 \textcolor{red}{REVISAR SI ESTO LO DEJO ASí, si pongo disipador tengo que cambiar esto}
 
@@ -478,21 +492,21 @@ La eficiencia es un término útil para determinar cuanto de la potencia que se 
 
 Las pédidas por disipación incluyen tanto las pérdidas de conmutación y conducción del transistor, como así tambien las pérdidas en el núcleo magnético del inductor. Las pérdidas parásitas en capacitores, o pistas del circuito no se las considera para el calculo ya que son valores despreciables, en comparación a las otras pérdidas mencionadas.
 \begin{equation} \label{eq:buck:potencia_inductor}
-    P_L = I_O^2 \, R_{DCR} = (3 \ A)^2 \, 150 \ m\Omega = 1,35 \ W
+    P_L = I_O^2 \, R_{DCR} = (\SI{3}{\ampere})^2 \, \SI{150}{\milli\ohm} = \SI{1,35}{\watt}
 \end{equation}
 
 Una vez calculada la disipación debido al núcleo magnético del inductor, \cref{eq:buck:potencia_inductor} y la disipación total producto del transistor de conmutación, \cref{eq:buck:potencia_total}; se puede calcular la potencia disipativa o de pérdidas teórica que tiene el circuito, \cref{eq:buck:potencia_disipativa}.
 
 \begin{equation} \label{eq:buck:potencia_disipativa}
-    P_D = P_L + P_{total} = 1,35 \ W + 1,55 \ W = 2,9 \ W
+    P_D = P_L + P_{total} = \SI{1,35}{\watt} + \SI{1,55}{\watt} = \SI{2,9}{\watt}
 \end{equation}
 
 El rendimiento teórico del convertidor está dado por, \cref{eq:buck:rendimiento_teorico_calculado}.
 
 \begin{align} \label{eq:buck:rendimiento_teorico_calculado}
     \eta &= \frac{P_O}{P_O + P_D} \\
-    &= \frac{36 \ W}{36 \ W + 2,9 W} \nonumber \\
-    &= 0,925 \approx 92,5 \%
+    &= \frac{\SI{36}{\watt}}{\SI{36}{\watt} + \SI{2,9}{\watt}} \nonumber \\
+    &= 0,925 \approx 92,5\%
 \end{align}
 
 \textcolor{red}{Faltaría calcular el rendimiento real del circuito}
