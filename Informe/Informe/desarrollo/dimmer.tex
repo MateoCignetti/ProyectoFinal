@@ -6,7 +6,49 @@ Este método tiene varias desventajas, como una baja eficiencia y alta distorsi�
 
 Se decidió elegir este módulo para el proyecto ya que es un buen primer paso en la electrónica de potencia, donde se puede apreciar el funcionamiento de un semiconductor como el tiristor y su control.
 
-\snsubsection{El TRIAC}
+\snsubsection{Tiristores y el TRIAC}
+
+Los tiristores pueden adoptar diversas formas, pero comparten ciertas características. Todos son interruptores de estado sólido que actúan como circuitos abiertos capaces de soportar la tensión nominal hasta su activación. Al activarse, los tiristores se convierten en circuitos de corriente de baja impedancia y permanecen en esa condición hasta que la corriente se detiene o cae por debajo de un valor mínimo denominado nivel de retención. Una vez activado un tiristor, la corriente de activación puede eliminarse sin apagar el dispositivo. \textcolor{red}{REFERENCIA Thyristor Theory and Design Considerations}
+
+El TRIAC (Triode for Alternating Current, Triodo para Corriente Alterna en español) es un tiristor bidireccional ampliamente utilizado en la electrónica de potencia, en especial en aplicaciones menores a 40 A. Puede ser pensado como dos SCR en paralelo con su terminal de compuerta unidos. Además, puede ser disparado por una señal de corriente alterna o una de corriente continua positiva o negativa.
+
+\snsubsubsection{Características del TRIAC}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[height=5cm]{dimmer/triac_simbolo.png}
+        \caption{}
+        \label{fig:dimmer:triac_simbolo}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[height=5cm]{dimmer/triac_estructura.png}
+        \caption{}
+        \label{fig:dimmer:triac_estructura}
+    \end{subfigure}
+
+    %\vspace{-0.25cm}
+    \caption{Símbolo y estructura del TRIAC \textcolor{red}{REFERENCIA Thyristor Theory and Design Considerations}} 
+    \label{fig:dimmer:triac_simbolo_estructura}
+\end{figure}
+% SACAR ESTRUCTURA, NO VALE LA PENA EN VERLO TAN ASÍ
+
+La \cref{fig:dimmer:triac_simbolo} muestra el símbolo del TRIAC y su relación con un encapsulado típico. Dado que el TRIAC es un dispositivo bilateral, los términos ``ánodo'' y ``cátodo'' utilizados para dispositivos unilaterales carecen de significado. Por lo tanto, los terminales se designan simplemente como MT1, MT2 y G, donde MT1 y MT2 son los terminales que transportan la corriente y G es el terminal de compuerta utilizado para el disparo del TRIAC. Para evitar confusiones, se ha convertido en práctica estándar especificar todas las corrientes y tensiones utilizando MT1 como punto de referencia. \textcolor{red}{REFERENCIA Thyristor Theory and Design Considerations}
+
+La estructura básica de un TRIAC se muestra en la \cref{fig:dimmer:triac_estructura}. Este dibujo muestra por qué el símbolo adoptado para el TRIAC consiste en dos SCR complementarios con una compuerta común. El TRIAC es un dispositivo de cinco capas cuya región entre MT1 y MT2 es un interruptor P-N-P-N (SCR) en paralelo con un interruptor N-P-N-P (SCR complementario). Además, su estructura ofrece una idea de la capacidad del TRIAC para activarse con una señal de compuerta positiva o negativa. La región entre MT1 y G consta de dos diodos complementarios. Una señal de compuerta positiva o negativa polariza directamente uno de estos diodos, provocando la misma acción del transistor que se encuentra en el SCR. Esta acción rompe la unión de bloqueo independientemente de la polaridad de MT1. El flujo de corriente entre MT2 y MT1 hace que el dispositivo proporcione corriente de compuerta internamente. Permanecerá activo hasta que se interrumpa este flujo de corriente. \textcolor{red}{REFERENCIA Thyristor Theory and Design Considerations}
+
+\begin{figure}[H]
+    \centering
+
+    \includegraphics[width=\textwidth]{dimmer/circuito.png}
+
+    \caption{Curva característica vi del TRIAC}
+    \label{fig:dimmer:triac_curva}
+\end{figure}
+
+
 
 \begin{figure}[H]
     \centering
