@@ -1,83 +1,128 @@
-\snsection{Módulo recortador de onda}
+\section{Módulo recortador de onda}
 
 Uno de los métodos más simples para controlar la potencia entregada a una carga de corriente alterna es mediante el uso de un rectortador. Este método se basa en la utilización de un tiristor para recortar la onda de tensión aplicada a la carga, permitiendo así regular la potencia entregada. Al recortar la onda, se reduce la tensión RMS aplicada a la carga, lo que a su vez produce una reducción de potencia entregada.
 
 Este método tiene varias desventajas, como una baja eficiencia y alta distorsión armónica. Sin embargo, su simplicidad y bajo costo es la razón por la cual se sigue utilizando en aplicaciones específicas donde se requiere un control de potencia simple y económico.
 
-Se decidió elegir este módulo para el proyecto ya que es un buen primer paso en la electrónica de potencia, donde se puede apreciar el funcionamiento de un semiconductor como el tiristor y su control.
+Se decidió elegir este módulo para el proyecto ya que es un buen primer paso en la electrónica de potencia, donde se puede realizar un enfoque centralizado en el funcionamiento y control de un semiconductor como el TRIAC.
 
-\snsubsection{Tiristores y el TRIAC}
+\subsection{Base teórica}
+
+\subsubsection{Tiristores y el TRIAC}
 
 Los tiristores pueden adoptar diversas formas, pero comparten ciertas características. Todos son interruptores de estado sólido que actúan como circuitos abiertos capaces de soportar la tensión nominal hasta su activación. Al activarse, los tiristores se convierten en circuitos de corriente de baja impedancia y permanecen en esa condición hasta que la corriente se detiene o cae por debajo de un valor mínimo denominado nivel de retención. Una vez activado un tiristor, la corriente de activación puede eliminarse sin apagar el dispositivo. \textcolor{red}{REFERENCIA Thyristor Theory and Design Considerations}
 
-El TRIAC (Triode for Alternating Current, Triodo para Corriente Alterna en español) es un tiristor bidireccional ampliamente utilizado en la electrónica de potencia, en especial en aplicaciones menores a 40 A. Puede ser pensado como dos SCR en paralelo con su terminal de compuerta unidos. Además, puede ser disparado por una señal de corriente alterna o una de corriente continua positiva o negativa.
+El TRIAC (Triode for Alternating Current, Triodo para Corriente Alterna en español) es un tiristor bidireccional ampliamente utilizado en la electrónica de potencia, en especial en aplicaciones menores a 40 A. Puede ser pensado como dos SCR en antiparalelo con su terminal de compuerta unidos. Además, puede ser disparado por una señal de corriente alterna o una de corriente continua positiva o negativa.
 
-\snsubsubsection{Características del TRIAC}
+\subsubsection{Características del TRIAC}
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.49\textwidth}
+    \begin{subfigure}[b]{\columnwidth}
         \centering
-        \includegraphics[height=5cm]{dimmer/triac_simbolo.png}
-        \caption{}
+        \includegraphics[height=4cm]{dimmer/triac_simbolo.png}
+        \caption{Símbolo del TRIAC}
         \label{fig:dimmer:triac_simbolo}
     \end{subfigure}
-    \begin{subfigure}[b]{0.49\textwidth}
+    \begin{subfigure}[b]{\columnwidth}
         \centering
-        \includegraphics[height=5cm]{dimmer/triac_estructura.png}
-        \caption{}
-        \label{fig:dimmer:triac_estructura}
+        \includegraphics[height=6cm]{dimmer/triac_curva.png}
+        \caption{Curva corriente-voltaje de un TRIAC}
+        \label{fig:dimmer:triac_curva}
     \end{subfigure}
 
     %\vspace{-0.25cm}
-    \caption{Símbolo y estructura del TRIAC \textcolor{red}{REFERENCIA Thyristor Theory and Design Considerations}} 
-    \label{fig:dimmer:triac_simbolo_estructura}
+    \caption{Características del TRIAC \textcolor{red}{REFERENCIA RASHID ESPAÑOL}} 
+    \label{fig:dimmer:triac_caracteristicas}
 \end{figure}
-% SACAR ESTRUCTURA, NO VALE LA PENA EN VERLO TAN ASÍ
 
-La \cref{fig:dimmer:triac_simbolo} muestra el símbolo del TRIAC y su relación con un encapsulado típico. Dado que el TRIAC es un dispositivo bilateral, los términos ``ánodo'' y ``cátodo'' utilizados para dispositivos unilaterales carecen de significado. Por lo tanto, los terminales se designan simplemente como MT1, MT2 y G, donde MT1 y MT2 son los terminales que transportan la corriente y G es el terminal de compuerta utilizado para el disparo del TRIAC. Para evitar confusiones, se ha convertido en práctica estándar especificar todas las corrientes y tensiones utilizando MT1 como punto de referencia. \textcolor{red}{REFERENCIA Thyristor Theory and Design Considerations}
+Como un TRIAC es un dispositivo bidireccional, sus terminales no se pueden designar como ánodo y cátodo. Si la terminal MT2 es positiva con respecto a la terminal MT1, el TRIAC se puede encender aplicando una señal de compuerta positiva entre la compuerta G y la terminal MT1. Si la terminal MT2 es negativa con respecto a la terminal MT1, se enciende aplicando una señal de compuerta negativa entre la compuerta G y la terminal MT1. No es necesario tener ambas polaridades de señales de compuerta, y un TRIAC se puede encender con una señal de compuerta ya sea positiva o negativa. En la práctica, las sensibilidades varían de uno a otro cuadrante y por lo común los TRIAC funcionan en el cuadrante I+ (voltaje y corriente de compuerta positivos), o en el cuadrante III - (voltaje y corriente de compuerta negativos). \textcolor{red}{REFERENCIA RASHID ESPAÑOL} 
 
-La estructura básica de un TRIAC se muestra en la \cref{fig:dimmer:triac_estructura}. Este dibujo muestra por qué el símbolo adoptado para el TRIAC consiste en dos SCR complementarios con una compuerta común. El TRIAC es un dispositivo de cinco capas cuya región entre MT1 y MT2 es un interruptor P-N-P-N (SCR) en paralelo con un interruptor N-P-N-P (SCR complementario). Además, su estructura ofrece una idea de la capacidad del TRIAC para activarse con una señal de compuerta positiva o negativa. La región entre MT1 y G consta de dos diodos complementarios. Una señal de compuerta positiva o negativa polariza directamente uno de estos diodos, provocando la misma acción del transistor que se encuentra en el SCR. Esta acción rompe la unión de bloqueo independientemente de la polaridad de MT1. El flujo de corriente entre MT2 y MT1 hace que el dispositivo proporcione corriente de compuerta internamente. Permanecerá activo hasta que se interrumpa este flujo de corriente. \textcolor{red}{REFERENCIA Thyristor Theory and Design Considerations}
+En la electrónica de potencia, el TRIAC puede ser utilizado en diversas aplicaciones: Interruptor de CA, conmutador de punto zero, control de fase, entre otras. La aplicación del TRIAC utilizada en este módulo es la de control de fase, para subsecuentemente regular la potencia entregada a la carga.
+
+\subsubsection{Control de fase con tiristores}
+\label{sec:control_fase_tiristores}
+
+El control de fase es un método que utiliza el triac para aplicar la alimentación de CA a la carga durante una fracción controlada de cada ciclo. En este modo de funcionamiento, el triac se mantiene en estado de apagado o abierto durante una parte de cada ciclo positivo y negativo, y luego se activa en un momento del semiciclo determinado por el circuito de control. En estado de encendido, la corriente del circuito está limitada únicamente por la carga; es decir, toda la tensión de línea (menos la caída de tensión directa del triac) se aplica a la carga. \textcolor{red}{REFERENCIA Thyristor Theory and Design Considerations}
+
+El método más común de control electrónico de potencia de CA se denomina control de fase. La Figura \ref{fig:dimmer:control_fase} ilustra este concepto. Durante la primera parte de cada semiciclo de la onda sinusoidal de CA, se abre un interruptor electrónico para impedir el flujo de corriente. En un ángulo de fase específico $\alpha$, este interruptor se cierra para permitir que se aplique toda la tensión de línea a la carga durante el resto de ese semiciclo. La variación de $\alpha$ controlará la parte de la onda sinusoidal total que se aplica a la carga (área sombreada) y, por lo tanto, regulará el flujo de potencia hacia la carga. \textcolor{red}{REFERENCIA Thyristor Theory and Design Considerations}
 
 \begin{figure}[H]
     \centering
 
-    \includegraphics[width=\textwidth]{dimmer/circuito.png}
+    \includegraphics[width=0.5\textwidth]{dimmer/control-fase.png}
 
-    \caption{Curva característica vi del TRIAC}
-    \label{fig:dimmer:triac_curva}
+    \caption{Control de fase de onda de corriente alterna. \textcolor{red}{REFERENCIA Thyristor Theory and Design Considerations}}
+    \label{fig:dimmer:control_fase}
 \end{figure}
 
-
+El circuito más simple para lograr el control de fase se muestra en la Figura \ref{fig:dimmer:control_fase_simple}. En este caso, el interruptor electrónico es un TRIAC (Q) que se activa mediante un pequeño pulso de corriente en su compuerta. El TRIAC se desactiva automáticamente cuando la corriente que lo atraviesa pasa por cero. En el circuito mostrado, el capacitor CT se carga durante cada semiciclo mediante la corriente que fluye a través de la resistencia RT y la carga. El hecho de que la carga esté en serie con RT durante esta parte del ciclo tiene poca importancia, ya que la resistencia de RT es mucho mayor que la de la carga. Cuando la tensión en el CT alcanza la tensión de ruptura del disparador bilateral DIAC (D), se libera la energía almacenada en el capacitor CT. Esta energía produce un pulso de corriente en el DIAC, que fluye a través de la compuerta del TRIAC y lo activa. Dado que tanto el DIAC como el TRIAC son dispositivos bidireccionales, los valores de RT y CT determinarán el ángulo de fase en el que se activará el TRIAC en los semiciclos positivo y negativo de la onda sinusoidal de CA.
 
 \begin{figure}[H]
     \centering
 
     \begin{tikzpicture}
         % Paths, nodes and wires:
-        \draw (6, 6) to[sinusoidal voltage source,/tikz/circuitikz/bipoles/length=2.10cm] (6, -0);
-        \draw (9, 3) to[variable american resistor, mirror,/tikz/circuitikz/bipoles/length=2.10cm] (9, 6);
-        \draw (9, 3) to[empty bidirectionaldiode,/tikz/circuitikz/bipoles/length=2.10cm] (11.595, 3);
-        \draw (12.75, 6) to[empty triac, mirror,/tikz/circuitikz/bipoles/length=2.10cm] (12.75, 2.101);
-        \node[shape=rectangle, draw, line width=1pt, inner sep=0, minimum width=1.465cm, minimum height=1.465cm] at (7.5, -0){} node [anchor=center, align=center, text width=1.077cm, inner sep=5.5pt] at (7.5, -0){Carga};
-        \draw (9, 3) to[capacitor,/tikz/circuitikz/bipoles/length=2.10cm] (9, -0);
-        \draw (9, -0) -- (12.75, -0) -- (12.75, 2.101);
+        \draw (6, 6) to[sinusoidal voltage source, l={$V_{CA}$}, label distance=0.1cm] (6, -0);
+        \draw (9, 3) to[variable american resistor, l={$R_T$}, label distance=0.1cm, mirror] (9, 6);
+        \draw (11.98, 2.996) to[empty bidirectionaldiode, l={$D$}, label distance=-0.3cm] (9, 3);
+        \draw (12.75, 6) to[empty triac, l={$Q$}, label distance=-0.3cm, mirror] (12.75, 1.393);
+        \node[shape=rectangle, draw, line width=1pt, inner sep=0, minimum width=1.465cm, minimum height=0.817cm] at (7.5, -0.001){} node [anchor=center, align=center, text width=1.077cm, inner sep=5.5pt] at (7.5, -0.001){Carga};
+        \draw (9, 0) to[capacitor, l={$C_T$}, label distance=0.1cm] (9, 3);
+        \draw (9, -0) -- (12.75, -0) |- (12.745, 1.393);
         \draw (12.75, 6) -- (9, 6);
         \draw (6, 6) -- (9, 6);
         \draw (6.75, -0) -- (6, -0);
         \draw (8.25, -0) -- (9, -0);
     \end{tikzpicture}
 
-    \caption{Circuito básico recortador de onda analógico.}
-    \label{fig:dimmer_analogico}
+    \caption{Circuito básico de control de fase.}
+    \label{fig:dimmer:control_fase_simple}
 \end{figure}
 
+La forma de onda del voltaje a través del capacitor para dos condiciones de control típicas ($\alpha$ = 90° y $\alpha$ = 150°) se muestra en la Figura \ref{fig:dimmer:formas_onda}. Si se utiliza un rectificador controlado por silicio en este circuito en lugar del TRIAC, solo se controlará un semiciclo de la forma de onda. El otro semiciclo se bloqueará, lo que genera una salida de CC pulsante cuyo valor promedio puede variarse ajustando el RT.
+\textcolor{red}{((Referencia: Thyristor Theory and Design Considerations: Handbook))}
 
-El recortador de onda tiene como objetivo regular la potencia entregada a la carga, mediante el uso de un tiristor, recortando la onda de tensión aplicada a la carga. En esta placa, se utilizan dos métodos distintos de control: analógico y digital.
+\begin{figure}[H]
+    \centering
 
-El control analógico permite cambiar el ángulo de disparo del tiristor TRIAC. Con un simple circuito R-C, se varía la resistencia y, por lo tanto, la constante de tiempo de carga del capacitor para retardar el disparo del DIAC, encargado de disparar el TRIAC. Debido al comportamiento del TRIAC, una vez "disparado", no deja de conducir hasta el cruce por cero de la tensión aplicada entre ambos ánodos.
+    \includegraphics[width=0.5\textwidth]{dimmer/formas-onda.png}
 
-El control digital se compone de dos circuitos distintos: el Zero Crossing Detector (detector de cruce por cero) y el driver de TRIAC. El primero permite al microcontrolador sincronizarse con la tensión de corriente alterna y el segundo permite al microcontrolador "disparar" el TRIAC cuando se quiera.
+    \caption{Formas de onda de tensión de capacitor.}
+    \label{fig:dimmer:formas_onda}
+\end{figure}
+
+Este tipo de control de fase se recomienda solamente para circuitos con carga resistiva o levemente inductiva \textcolor{red}{(ver AN308 (STMicroelectronics))}
+
+\subsection{Cálculos e implmentación}
+
+\subsubsection{CALCULOS RC ANALOGICO}
+
+\subsubsection{Control de fase digital con TRIAC}
+
+El control de fase explicado en \cref{sec:control_fase_tiristores} anteriormente puede ser controlado digitalmente, permitiendo remover la rama R-C y el DIAC del circuto de la \cref{fig:dimmer:control_fase_simple}. El control digital se compone de dos circuitos distintos: el Zero Crossing Detector (detector de cruce por cero) y el driver de TRIAC. El primero permite al microcontrolador sincronizarse con la tensión de corriente alterna y el segundo permite al microcontrolador ''disparar'' el TRIAC cuando se quiera.
+
+\subsubsection{Circuito detector de cruce por cero (ZCD)} %No se puede hacer un subsubsub :( ver como cambiar
+
+\begin{figure}[H]
+    \centering
+
+    \includegraphics[width=0.8\textwidth]{dimmer/zcd.png}
+
+    \caption{Circuito detector de cruce por zero.}
+    \label{fig:dimmer:zcd}
+\end{figure}
+
+Este simple circuito convierte la señal de entrada de CA sinusoidal en una señal aislada cuadrada, que permite al microcontrolador conocer el momento de cruce por cero (cuando la onda cuadrada pasa de 3,3 V a 0 V o 0 V a 3,3 V).
+
+En el semiciclo positivo de la tensión de CA, se enciende el led interno del optoacoplador, lo que polariza el transistor de salida, que lleva la tensión $UC_{phase}$ a 0 V. En el semiciclo negativo, la corriente fluye por el diodo D2, manteniendo la tensión reversa del led interno fija y menor a la máxima permitida (6 V para el EL817).
+
+
+
+
+
+
+- - - - - - - - -
 
 Con un circuito driver de Relé, se permite cambiar entre ambos modos, siendo el control analógico el activado por defecto (contacto normal-cerrado).
 
@@ -110,58 +155,9 @@ Con un circuito driver de Relé, se permite cambiar entre ambos modos, siendo el
     \label{fig:dimmer:circuito}
 \end{figure}
 
-\snsubsection{Control de fase con tiristores}
 
-El método más común de control electrónico de potencia de CA se denomina control de fase. La Figura \ref{fig:dimmer:control_fase} ilustra este concepto. Durante la primera parte de cada semiciclo de la onda sinusoidal de CA, se abre un interruptor electrónico para impedir el flujo de corriente. En un ángulo de fase específico $\alpha$, este interruptor se cierra para permitir que se aplique toda la tensión de línea a la carga durante el resto de ese semiciclo. La variación de $\alpha$ controlará la parte de la onda sinusoidal total que se aplica a la carga (área sombreada) y, por lo tanto, regulará el flujo de potencia hacia la carga.
 
-\begin{figure}[H]
-    \centering
 
-    \includegraphics[width=0.5\textwidth]{dimmer/control-fase.png}
-
-    \caption{Control de fase de onda de corriente alterna.}
-    \label{fig:dimmer:control_fase}
-\end{figure}
-
-El circuito más simple para lograr el control de fase se muestra en la Figura \ref{fig:dimmer:control_fase_simple}. En este caso, el interruptor electrónico es un TRIAC (Q) que se activa mediante un pequeño pulso de corriente en su compuerta. El TRIAC se desactiva automáticamente cuando la corriente que lo atraviesa pasa por cero. En el circuito mostrado, el capacitor CT se carga durante cada semiciclo mediante la corriente que fluye a través de la resistencia RT y la carga. El hecho de que la carga esté en serie con RT durante esta parte del ciclo tiene poca importancia, ya que la resistencia de RT es mucho mayor que la de la carga. Cuando la tensión en el CT alcanza la tensión de ruptura del disparador bilateral DIAC (D), se libera la energía almacenada en el capacitor CT. Esta energía produce un pulso de corriente en el DIAC, que fluye a través de la compuerta del TRIAC y lo activa. Dado que tanto el DIAC como el TRIAC son dispositivos bidireccionales, los valores de RT y CT determinarán el ángulo de fase en el que se activará el TRIAC en los semiciclos positivo y negativo de la onda sinusoidal de CA.
-
-\begin{figure}[H]
-    \centering
-
-    \includegraphics[width=0.5\textwidth]{dimmer/fase-simple.png}
-
-    \caption{Circuito básico de control de fase.}
-    \label{fig:dimmer:control_fase_simple}
-\end{figure}
-
-La forma de onda del voltaje a través del capacitor para dos condiciones de control típicas ($\alpha$ = 90° y $\alpha$ = 150°) se muestra en la Figura \ref{fig:dimmer:formas_onda}. Si se utiliza un rectificador controlado por silicio en este circuito en lugar del TRIAC, solo se controlará un semiciclo de la forma de onda. El otro semiciclo se bloqueará, lo que genera una salida de CC pulsante cuyo valor promedio puede variarse ajustando el RT.
-\textcolor{red}{text}((Referencia: Thyristor Theory and Design Considerations: Handbook))
-
-\begin{figure}[H]
-    \centering
-
-    \includegraphics[width=0.5\textwidth]{dimmer/formas-onda.png}
-
-    \caption{Formas de onda de tensión de capacitor.}
-    \label{fig:dimmer:formas_onda}
-\end{figure}
-
-Este tipo de control de fase se recomienda solamente para circuitos con carga resistiva o levemente inductiva \textcolor{red}{(ver AN308 (STMicroelectronics))}
-
-\snsubsection{Circuito detector de cruce por cero (ZCD)}
-
-\begin{figure}[H]
-    \centering
-
-    \includegraphics[width=0.5\textwidth]{dimmer/zcd.png}
-
-    \caption{Circuito ZCD.}
-    \label{fig:dimmer:zcd}
-\end{figure}
-
-Este simple circuito convierte la señal de entrada de CA sinusoidal en una señal aislada cuadrada, que permite al microcontrolador conocer el momento de cruce por cero (cuando la onda cuadrada pasa de 3,3 V a 0 V o 0 V a 3,3 V).
-
-En el semiciclo positivo de la tensión de CA, se enciende el led interno del optoacoplador, lo que polariza el transistor de salida, que lleva la tensión $UC_{phase}$ a 0 V. En el semiciclo negativo, la corriente fluye por el diodo D2, manteniendo la tensión reversa del led interno fija y menor a la máxima permitida (6 V para el EL817).
 
 \snsubsection{Driver de TRIAC}
 
