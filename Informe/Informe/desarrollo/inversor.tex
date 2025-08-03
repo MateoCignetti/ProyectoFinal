@@ -302,6 +302,8 @@ V_R(t) = \frac{V_\mathrm{CC}}{2} \times e^{-t / RC}
 \label{eq:inversor:vrt_descarga}
 \end{equation}
 
+La descarga completa del capacitor se da cuando \(V_\mathrm{t} = \frac{T}{2}\).
+
 \begin{equation}
 V_R\left(\frac{T}{2}\right) = \frac{V_\mathrm{CC}}{2} \times \beta
 \label{eq:inversor:vr_beta}
@@ -332,6 +334,9 @@ C \geq \left| \frac{\SI{20}{\milli\second}}{2 \times \SI{100}{\ohm} \times \ln(0
 
 \textbf{Gate del MOSFET:}
 
+La resistencia de gate del mosfet que conecta directamente con la salida del ic555, se calcula teniendo dos consideraciones, por un lado, el pico de corriente al momento de conducir y por otro la corriente máxima de salida del ic555.
+Según el mosfet que se utilice tendremos distintos Qg, sin embargo, ronda los \SI{70}{\nano C}. El tiempo de carga seleccionado será de \SI{1}{\micro S}.
+
 \begin{align*}
 Q_g &= \SI{70}{\nano\coulomb} \\
 t_\mathrm{sw} &= \SI{1}{\micro\second}
@@ -342,21 +347,22 @@ I_g = \frac{Q_g}{t_\mathrm{sw}} = \frac{\SI{70}{\nano\coulomb}}{\SI{1}{\micro\se
 \label{eq:inversor:ig}
 \end{equation}
 
+Por ley de ohm
+
 \begin{equation}
 R_g = \frac{V}{I_g} = \frac{\SI{12}{\volt}}{\SI{70}{\milli\ampere}} = \SI{171.4}{\ohm}
 \label{eq:inversor:rg}
 \end{equation}
 
-\textbf{Resistencia elegida:} \SI{180}{\ohm}, corriente resultante \(> \SI{66}{\milli\ampere}\)
+La corriente máxima de salida del ic555 es de \SI{200}{\mA}\ por lo que si utilizamos una resistencia de \SI{180}{\ohm}\ nos dará una corriente de poco más de \SI{66}{\mA}.
 
 \textbf{Base del BJT:}
 
-\begin{equation}
-R_\mathrm{base} = \SI{5.6}{\kilo\ohm} \Rightarrow I_\mathrm{base} = \frac{\SI{12}{\volt}}{\SI{5.6}{\kilo\ohm}} \approx \SI{2.14}{\milli\ampere}
-\label{eq:inversor:ibase}
-\end{equation}
+La resistencia de base del transistor BJT tiene que ser lo suficientemente grande para limitar la corriente en la misma. En este caso se seleccionó una resistencia de \SI{5,6}{k\ohm}\ lo cual nos da una corriente de \SI{2.14}{\mA}.
 
 \textbf{Pull-up:}
+
+La resistencia pull-up se coloca para limitar la corriente de colector del BJT la cual es de \SI{100}{\mA}. 
 
 \begin{equation}
 R = \frac{\SI{12}{\volt}}{\SI{100}{\milli\ampere}} = \SI{120}{\ohm}
