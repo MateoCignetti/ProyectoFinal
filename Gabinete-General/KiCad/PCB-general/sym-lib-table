@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "Espressif")(type "KiCad")(uri "/home/mateoc/Documents/ProyectoFinal/KiCad-Libraries/Espressif.kicad_sym")(options "")(descr ""))
+  (lib (name "display_tft")(type "KiCad")(uri "/home/mateoc/Documents/ProyectoFinal/KiCad-Libraries/display_tft.kicad_sym")(options "")(descr ""))
+)
