@@ -1,21 +1,19 @@
 \snsubsection{INVERSOR}
 
 La función de un inversor es cambiar un voltaje de entrada de cd a un voltaje simétrico de salida de ca de magnitud y frecuencia
-deseadas. El voltaje de salida podría ser fijo o variable a una frecuencia fija o variable. Se puede obtener un voltaje de salida variable si se varía el voltaje de cd de entrada y se mantiene constante la ganancia del inversor. Por otra parte, si el voltaje de entrada de cd
-es fijo y no es controlable, se puede obtener un voltaje de salida variable si se hace que la ganancia del inversor varíe, lo que normalmente se consigue mediante el control de modulación por ancho de pulso (PWM) dentro del inversor. La ganancia del inversor se puede definir como la relación del voltaje de salida de ca al voltaje de entrada de cd.
-Las formas de onda del voltaje de salida de los inversores ideales debería ser senoidal. Pero las formas de onda de los inversores prácticos no son senoidales y contienen ciertos armónicos. Para aplicaciones de baja y mediana frecuencia, se pueden aceptar voltajes de onda cuadrada o de onda cuasi cuadrada; para aplicaciones de alta potencia, se requieren formas de onda senoidales poco distorsionadas. \textcolor{red}{Muhammad H. Rashid - Electrónica de Potencia 4 Ed. (2015)}
+deseadas. El voltaje de salida podría ser fijo o variable a una frecuencia fija o variable. Se puede obtener un voltaje de salida variable si se varía el voltaje de cd de entrada y se mantiene constante la ganancia del inversor. Por otra parte, si el voltaje de entrada de cd es fijo y no es controlable, se puede obtener un voltaje de salida variable si se hace que la ganancia del inversor varíe, lo que normalmente se consigue mediante el control de modulación por ancho de pulso (PWM) dentro del inversor. La ganancia del inversor se puede definir como la relación del voltaje de salida de ca al voltaje de entrada de cd.
+
+Las formas de onda del voltaje de salida de los inversores ideales debería ser senoidal. Pero las formas de onda de los inversores prácticos no son senoidales y contienen ciertos armónicos. 
+
+Para aplicaciones de baja y mediana frecuencia, se pueden aceptar voltajes de onda cuadrada o de onda cuasi cuadrada; para aplicaciones de alta potencia, se requieren formas de onda senoidales poco distorsionadas. \textcolor{red}{Muhammad H. Rashid - Electrónica de Potencia 4 Ed. (2015)}
 
 \snsubsubsection{Descripción de funcionamiento de un oscilador 555}
-
-RESUMEN
 
 El circuito integrado 555 es un dispositivo de temporización de precisión muy económico, popular y útil, que puede funcionar como un temporizador simple para generar pulsos únicos o retardos largos, o como un oscilador que produce una serie de formas de onda estabilizadas con ciclos de trabajo variables del 50 al 100\%.
 
 El chip temporizador 555 es un dispositivo de 8 pines extremadamente robusto y estable, que puede operar con gran precisión en modo monoestable, biestable o astable. Esto le permite ser utilizado en una amplia variedad de aplicaciones, como temporizadores de un solo disparo o con retardo, generación de pulsos, fuentes de alimentación y convertidores, entre otros. En realidad, puede utilizarse en cualquier circuito que requiera algún tipo de control de tiempo, ya que sus aplicaciones son prácticamente ilimitadas.
 
-El uso más común del temporizador 555 como oscilador es en modo astable, conectando dos resistencias y un capacitor a sus terminales para generar un tren de pulsos con un período de tiempo determinado por la constante de tiempo de la red RC.
-
-FUNCIONAMIENTO
+El uso más común del temporizador 555 como oscilador es en modo astable, conectando dos resistencias y un capacitor a sus terminales para generar un tren de pulsos con un período de tiempo determinado por la constante de tiempo de la red RC, como se puede ver en la \cref{fig:inversor:IC555}.
 
 \begin{figure}[H]
     \centering
@@ -64,11 +62,11 @@ FUNCIONAMIENTO
     \label{fig:inversor:IC555}
 \end{figure}
 
-El circuito integrado 555 puede conectarse en su modo astable para generar un circuito oscilador muy estable, capaz de producir formas de onda de oscilación libre altamente precisas. La frecuencia de salida puede ajustarse mediante un circuito tanque RC externo compuesto por solo dos resistencias y un capacitor.
+En modo astable genera un circuito oscilador muy estable, capaz de producir formas de onda de oscilación libre altamente precisas. La frecuencia de salida puede ajustarse mediante un circuito tanque RC externo compuesto por solo dos resistencias y un capacitor.
 
 El oscilador 555 genera formas de onda cuadradas estabilizadas, ya sea con una frecuencia fija de hasta 500 kHz o con ciclos de trabajo variables entre el 50\% y el 100\%.
 
-En configuración astable requiere que el CI se re-dispare continuamente tras cada ciclo de temporización. Este re-disparo se logra conectando juntos la entrada de disparo (pin 2) y la entrada de umbral (pin 6), permitiendo que el dispositivo funcione como un oscilador astable. Así, un oscilador 555 no tiene estados estables, ya que cambia continuamente de un estado al otro. 
+En configuración astable requiere que el IC se dispare continuamente tras cada ciclo de temporización. Este reincio se logra conectando juntos la entrada de disparo (pin 2) y la entrada de umbral (pin 6), permitiendo que el dispositivo funcione como un oscilador astable. Así, un oscilador 555 no tiene estados estables, ya que cambia continuamente de un estado al otro. 
 
 Para que el oscilador produzca un ciclo de trabajo del 50\%, el capacitor de temporización, conectado al pin 6, se tiene que cargar y descargar a través de la resistencia R2 (variable).
 
@@ -77,17 +75,15 @@ Cuando la salida del oscilador 555 está en ALTO, el capacitor se carga a travé
 El reset (pin 4) debe conectarse a Vcc para evitar que el circuito se desactive involuntariamente, mientras que el control de voltaje (pin 5) se conecta con un capacitor de bajo valor a tierra para mejorar la estabilidad y reducir el ruido. El pin 7 (Descarga) no se usa en esta configuración, ya que la carga y descarga del capacitor ocurren exclusivamente a través de la resistencia R2.
 \textcolor{red}{\url{https://www.electronics-tutorials.ws/waveforms/555_oscillator.html}}
 
-\snsubsubsection{Descripción de funcionamiento de un inverosr de medio puente}
+\snsubsubsection{Descripción de funcionamiento de un inversor de medio puente}
 
-RESUMEN
-
-Un inversor es un convertidor que transfiere potencia desde una fuente de continua a una carga de alterna. La función de un inversor es, entonces, cambiar la tensión de entrada de corriente continua en una tensión simétrica de salida en corriente alterna con una magnitud, frecuencia y fase deseada.
+Como se mencionó anteriormente, un inversor es un convertidor que transfiere potencia desde una fuente de continua a una carga de alterna. La función de un inversor es, entonces, cambiar la tensión de entrada de corriente continua en una tensión simétrica de salida en corriente alterna con una magnitud, frecuencia y fase deseada.
 
 Para aplicaciones de baja y mediana potencia, tensiones con formas de onda cuadrada suelen ser suficientes.
 
-En inversores monofásico se utilizan dos topologías básicas: medio puente, el utilizado en este caso, y puente completo. 
+En inversores monofásico se utilizan dos topologías básicas: medio puente \cref{fig:inversor:Medio-Puente}, el utilizado en este caso, y puente completo. 
 
-FUNCIONAMIENTO
+La principal desventaja de utilizar un inversor de medio puente es que obtendromos solo la mitad de la tensión que se proporciona en la entrada.
 
 \begin{figure}[H]
     \centering
@@ -128,7 +124,7 @@ FUNCIONAMIENTO
 
 En este circuito tenemos dos etapas, una de potencia en la cual encontramos el medio puente conformado por dos transistores mosfet y dos capacitores electrolíticos, y una etapa de control que depende del oscilador 555 visto anteriormente.
 
-Etapa de control
+\snsubsubsection{Etapa de control}
 
 El control del medio puente se realiza a través de la señal de salida del oscilador 555, que se divide en dos ramas. Una de estas ramas se conecta a la gate del transistor Q1 mediante una resistencia, mientras que la otra rama lo hace a la base de un transistor BJT, también a través de una resistencia.
 
@@ -138,7 +134,7 @@ Cuando la salida del oscilador pasa a un impulso bajo, el comportamiento se invi
 
 Así, se logra que solo uno de los dos MOSFETs conduzca en cada ciclo de conmutación, lo que genera la acción complementaria.
 
-Etapa de potencia
+\snsubsubsection{Etapa de potencia}
 Los capacitores electrolíticos conforman un divisor de tensión y estos se mantienen cargados gracias a la tensión entregada por el regulador.
 
 Cuando la salida del oscilador esta en ALTO, como mencionamos, Q1 se activa y Q2 no lo hace. Al activarse Q1 tendremos la tensión que nos otorga el capacitor C1 aplicada en la carga, y el sentido de la corriente es el siguiente:
@@ -147,10 +143,12 @@ Cuando la salida del oscilador esta en ALTO, como mencionamos, Q1 se activa y Q2
     \centering
     \begin{tikzpicture}
         % Paths, nodes and wires:
-        \draw (16, 10) to[curved capacitor] (16, 8);
-        \draw (16, 5) to[curved capacitor] (16, 3);
-        \draw node[nigfete] at (20, 9) {};
-        \draw node[nigfete] at (20, 4.02) {};
+        \draw (16, 10) to[curved capacitor, l={$C1$}, label distance=0.02cm] (16, 8);
+        \draw (16, 5) to[curved capacitor, l={$C2$}, label distance=0.02cm] (16, 3);
+        \draw node[nigfete] (N1) at (20, 9) {} node
+        [anchor=west] at (N1.text){$Q1$};
+        \draw node[nigfete] (N2) at (20, 4.02) {} node
+        [anchor=west] at (N2.text){$Q2$};
         \draw (20, 8.23) -- (20, 4.79);
         \draw (16, 8) -| (16, 5);
         \draw (16, 10) -- (16, 10) -| (20, 9.77);
@@ -175,10 +173,12 @@ Cuando el oscilador pasa a estado BAJO, ahora el que se activa es Q2 y ya no lo 
     \centering
     \begin{tikzpicture}
         % Paths, nodes and wires:
-        \draw (4.25, 7.96) to[curved capacitor] (4.25, 5.96);
-        \draw (4.25, 2.96) to[curved capacitor] (4.25, 0.96);
-        \draw node[nigfete] at (8.25, 6.96) {};
-        \draw node[nigfete] at (8.25, 1.98) {};
+        \draw (4.25, 7.96) to[curved capacitor, l={$C1$}, label distance=0.02cm] (4.25, 5.96);
+        \draw (4.25, 2.96) to[curved capacitor, l={$C2$}, label distance=0.02cm] (4.25, 0.96);
+        \draw node[nigfete] (N1) at (8.25, 6.96) {} node 
+        [anchor=west] at (N1.text){$Q1$};
+        \draw node[nigfete] (N2) at (8.25, 1.98) {} node
+        [anchor=west] at (N2.text){$Q2$};
         \draw (8.25, 6.19) -- (8.25, 2.75);
         \draw (4.25, 5.96) -| (4.25, 2.96);
         \draw (4.25, 7.96) -- (4.25, 7.96) -| (8.25, 7.73);
@@ -197,7 +197,7 @@ Cuando el oscilador pasa a estado BAJO, ahora el que se activa es Q2 y ya no lo 
     \label{fig:inversor:Conmutacion2}
 \end{figure}
 
-Forma de onda
+Así podemos realizar las gráficas correspondiente a cada estado de conmutación, como se ve en la \cref{fig:inversor:Forma-onda}.
 
 \begin{figure}[H]
     \centering
@@ -220,11 +220,13 @@ Forma de onda
 
 Las dos primeras formas de onda muestran los pulsos aplicados a los mosfet, donde cada uno recibe el pulso cuando el interruptor complementario está desactivado. El tercer gráfico muestra la forma de onda de voltaje a través de la carga. Esto muestra que la polaridad del voltaje cambia con respecto a la conmutación.
 
-\snsubsubsection{Cálculos}
+\snsubsection{Cálculos}
 
-\section*{Temporizador 555 configurado como oscilador con ciclo de trabajo del 50\%}
+\snsubsubsection{Temporizador 555 configurado como oscilador con ciclo de trabajo del 50\%}
 
-Durante cada ciclo, el capacitor se carga hasta el límite superior del comparador \(\left(\frac{2}{3} \times V_\mathrm{DD}\right)\) a través del resistor externo \(R\) y el capacitor \(C\), y luego se descarga hasta el límite inferior del comparador \(\left(\frac{1}{3} \times V_\mathrm{DD}\right)\) a través de los mismos componentes.
+\textcolor{red}{\url{https://www.ti.com/lit/an/slaae33/slaae33.pdf?ts=1742896496094}}
+
+Durante cada ciclo, el capacitor se carga hasta el límite superior del comparador \(\left(\frac{2}{3} \times V_\mathrm{CC}\right)\) a través del resistor externo \(R\) y el capacitor \(C\), y luego se descarga hasta el límite inferior del comparador \(\left(\frac{1}{3} \times V_\mathrm{CC}\right)\) a través de los mismos componentes.
 
 La ecuación del voltaje del capacitor en un circuito RC es:
 \begin{equation}
@@ -232,13 +234,13 @@ V_\mathrm{CAP}(t) = V \left( 1 - e^{-t / RC} \right)
 \label{eq:inversor:vcap}
 \end{equation}
 
-Reorganizando para obtener el tiempo de carga desde \(\frac{1}{3} \times V_\mathrm{DD}\) hasta \(\frac{2}{3} \times V_\mathrm{DD}\):
+Reorganizando para obtener el tiempo de carga desde \(\frac{1}{3} \times V_\mathrm{CC}\) hasta \(\frac{2}{3} \times V_\mathrm{CC}\):
 \begin{equation}
 t_\mathrm{carga} = -RC \times \ln\left(1 - \frac{V_\mathrm{CAP}}{V} \right)
 \label{eq:inversor:tcarga_general}
 \end{equation}
 
-Si \(V = V_\mathrm{DD}\), \(V_\mathrm{CAP}(t_1) = \frac{1}{3}V_\mathrm{DD}\) y \(V_\mathrm{CAP}(t_2) = \frac{2}{3}V_\mathrm{DD}\), se obtiene:
+Si \(V = V_\mathrm{CC}\), \(V_\mathrm{CAP}(t_1) = \frac{1}{3}V_\mathrm{CC}\) y \(V_\mathrm{CAP}(t_2) = \frac{2}{3}V_\mathrm{CC}\), se obtiene:
 \begin{equation}
 t_\mathrm{carga} = t_2 - t_1 = -RC \times \ln\left( \frac{1}{3} \right) + RC \times \ln\left( \frac{2}{3} \right)
 \label{eq:inversor:tcarga_log}
@@ -269,7 +271,7 @@ R = \frac{1}{2 \times 0{,}693 \times \SI{50}{\hertz} \times \SI{0.1}{\micro\fara
 
 se emplea una resistencia adicional de \SI{10}{\mega\ohm} para asegurar la carga completa del capacitor.
 
-Dentro de las opciones de mosfet a seleccionar, el umbral de conducción \(V_\mathrm{GS(th)} = \SI{2}{\volt} \text{ a } \SI{3}{\volt}\), por lo que VDD tendrá que ser mayor a VCC por \SI{3}{\volt}\, para obtener esta diferencia entre gate y surtidor.
+Dentro de las opciones de mosfet a seleccionar, el umbral de conducción \(V_\mathrm{GS(th)} = \SI{2}{\volt} \text{ a } \SI{3}{\volt}\), por lo que la tensión de alimentación del IC555 será mayor por \SI{3}{\volt}\ al de alimentación de mosfets, para obtener esta diferencia entre gate y surtidor.
 
 \begin{figure}[H]
     \centering
@@ -293,7 +295,9 @@ Dentro de las opciones de mosfet a seleccionar, el umbral de conducción \(V_\ma
     \label{figure:inversor:calculo-medio-puente}
 \end{figure}
 
-\section*{Cálculo de la capacitancia mínima}
+\snsubsubsection{Cálculo de la capacitancia mínima}
+
+
 
 \begin{align*}
 V_\mathrm{CC} &= \SI{9}{\volt} \\
@@ -335,9 +339,7 @@ C \geq \left| \frac{\SI{20}{\milli\second}}{2 \times \SI{100}{\ohm} \times \ln(0
 \label{eq:inversor:c_numerico}
 \end{equation}
 
-\section*{Resistencias}
-
-\textbf{Gate del MOSFET:}
+\snsubsubsection{Gate del MOSFET:}
 
 La resistencia de gate del mosfet que conecta directamente con la salida del ic555, se calcula teniendo dos consideraciones, por un lado, el pico de corriente al momento de conducir y por otro la corriente máxima de salida del ic555.
 Según el mosfet que se utilice tendremos distintos Qg, sin embargo, ronda los \SI{70}{\nano C}. El tiempo de carga seleccionado será de \SI{1}{\micro S}.
@@ -361,11 +363,11 @@ R_g = \frac{V}{I_g} = \frac{\SI{12}{\volt}}{\SI{70}{\milli\ampere}} = \SI{171.4}
 
 La corriente máxima de salida del ic555 es de \SI{200}{\mA}\ por lo que si utilizamos una resistencia de \SI{180}{\ohm}\ nos dará una corriente de poco más de \SI{66}{\mA}.
 
-\textbf{Base del BJT:}
+\snsubsubsection{Base del BJT:}
 
 La resistencia de base del transistor BJT tiene que ser lo suficientemente grande para limitar la corriente en la misma. En este caso se seleccionó una resistencia de \SI{5,6}{k\ohm}\ lo cual nos da una corriente de \SI{2.14}{\mA}.
 
-\textbf{Pull-up:}
+\snsubsubsection{Pull-up:}
 
 La resistencia pull-up se coloca para limitar la corriente de colector del BJT la cual es de \SI{100}{\mA}. 
 
