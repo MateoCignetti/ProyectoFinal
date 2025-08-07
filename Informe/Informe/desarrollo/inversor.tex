@@ -297,7 +297,7 @@ Dentro de las opciones de mosfet a seleccionar, el umbral de conducción \(V_\ma
 
 \snsubsubsection{Cálculo de la capacitancia mínima}
 
-
+Considerando las caracteristicas del mosfet a seleccionar, teniendo una carga puramente resitiva y una frecuencia de 50Hz, se plantea la ecuación de descarga de un capacitor.
 
 \begin{align*}
 V_\mathrm{CC} &= \SI{9}{\volt} \\
@@ -307,21 +307,25 @@ T &= \SI{20}{\milli\second}
 \end{align*}
 
 \begin{equation}
-V_R(t) = \frac{V_\mathrm{CC}}{2} \times e^{-t / RC}
+V(t) = {V_\mathrm{0}} \times e^{-t / RC}
 \label{eq:inversor:vrt_descarga}
 \end{equation}
 
-La descarga completa del capacitor se da cuando \(V_\mathrm{t} = \frac{T}{2}\).
+La descarga completa del capacitor se da cuando \(V_\mathrm{t} = \frac{T}{2}\) y sabemos que la tensión es \(\frac{V_\mathrm{CC}}{2}\). Reescribiendo nos queda la \cref{eq:inversor:vr_beta}
 
 \begin{equation}
-V_R\left(\frac{T}{2}\right) = \frac{V_\mathrm{CC}}{2} \times \beta
+V\left(\frac{T}{2}\right) = \frac{V_\mathrm{CC}}{2} \times \beta
 \label{eq:inversor:vr_beta}
 \end{equation}
+
+Donde \(\beta\) es:
 
 \begin{equation}
 \beta = e^{-\frac{T}{2RC}}
 \label{eq:inversor:beta}
 \end{equation}
+
+Aplicando logaritmo:
 
 \begin{equation}
 \ln(\beta) = -\frac{T}{2RC}
@@ -333,15 +337,18 @@ C \geq \left| \frac{T}{2R \ln(\beta)} \right|
 \label{eq:inversor:c_general}
 \end{equation}
 
-Con \(\beta = 0{,}9\):
+Si seleccionamos un \(\beta = 0{,}9\), que es un valor razonable:
+
 \begin{equation}
 C \geq \left| \frac{\SI{20}{\milli\second}}{2 \times \SI{100}{\ohm} \times \ln(0{,}9)} \right| = \SI{950}{\micro\farad}
 \label{eq:inversor:c_numerico}
 \end{equation}
 
+Siendo \SI{950}{\micro\farad} el valor minimo de capacitancia. Al aumentar el valor de la misma se obtendran mejores resultados de rizado.
+
 \snsubsubsection{Gate del MOSFET:}
 
-La resistencia de gate del mosfet que conecta directamente con la salida del ic555, se calcula teniendo dos consideraciones, por un lado, el pico de corriente al momento de conducir y por otro la corriente máxima de salida del ic555.
+La resistencia de gate del mosfet que conecta directamente con la salida del IC555, se calcula teniendo en cuenta dos consideraciones, por un lado, el pico de corriente al momento de conducir y por otro la corriente máxima de salida del IC555.
 Según el mosfet que se utilice tendremos distintos Qg, sin embargo, ronda los \SI{70}{\nano C}. El tiempo de carga seleccionado será de \SI{1}{\micro S}.
 
 \begin{align*}
@@ -361,7 +368,7 @@ R_g = \frac{V}{I_g} = \frac{\SI{12}{\volt}}{\SI{70}{\milli\ampere}} = \SI{171.4}
 \label{eq:inversor:rg}
 \end{equation}
 
-La corriente máxima de salida del ic555 es de \SI{200}{\mA}\ por lo que si utilizamos una resistencia de \SI{180}{\ohm}\ nos dará una corriente de poco más de \SI{66}{\mA}.
+La corriente máxima de salida del IC555 es de \SI{200}{\mA}\ por lo que si utilizamos una resistencia de \SI{180}{\ohm}\ nos dará una corriente de poco más de \SI{66}{\mA}.
 
 \snsubsubsection{Base del BJT:}
 
