@@ -1,3 +1,4 @@
 (fp_lib_table
   (version 7)
+  (lib (name "Espressif")(type "KiCad")(uri "/home/mateoc/Documents/ProyectoFinal/KiCad-Libraries/Espressif.pretty")(options "")(descr ""))
 )
