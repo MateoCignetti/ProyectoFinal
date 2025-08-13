@@ -2963,16 +2963,6 @@
 	)
 	(wire
 		(pts
-			(xy 96.52 147.32) (xy 92.71 147.32)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0405bd62-92ff-472a-9fb0-50d4ae2cbcef")
-	)
-	(wire
-		(pts
 			(xy 86.36 40.64) (xy 86.36 43.18)
 		)
 		(stroke
@@ -3190,16 +3180,6 @@
 			(type default)
 		)
 		(uuid "306ee227-d774-4fd9-a650-364faf3ee0fc")
-	)
-	(wire
-		(pts
-			(xy 96.52 149.86) (xy 92.71 149.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3bc891ed-5d77-4359-a5e6-21278420ce31")
 	)
 	(wire
 		(pts
@@ -3520,6 +3500,16 @@
 			(type default)
 		)
 		(uuid "75011380-75a0-4172-b2bd-5614344fd511")
+	)
+	(wire
+		(pts
+			(xy 92.71 147.32) (xy 96.52 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "775fb634-8817-47c4-95b1-3843762a2332")
 	)
 	(wire
 		(pts
@@ -4143,6 +4133,16 @@
 	)
 	(wire
 		(pts
+			(xy 92.71 149.86) (xy 96.52 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "faa99b66-4e02-4af7-9b8f-557d418d435e")
+	)
+	(wire
+		(pts
 			(xy 252.73 45.72) (xy 256.54 45.72)
 		)
 		(stroke
@@ -4681,7 +4681,7 @@
 	)
 	(global_label "ROTARY_CLK"
 		(shape input)
-		(at 96.52 147.32 0)
+		(at 96.52 149.86 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4691,7 +4691,7 @@
 		)
 		(uuid "589fe953-a87d-49a5-a4e0-4b9fbca21959")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 111.0562 147.32 0)
+			(at 111.0562 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4857,7 +4857,7 @@
 	)
 	(global_label "ROTARY_DATA"
 		(shape input)
-		(at 96.52 149.86 0)
+		(at 96.52 147.32 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4867,7 +4867,7 @@
 		)
 		(uuid "68419b89-4cc8-4729-b834-235fe9869155")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 111.9029 149.86 0)
+			(at 111.9029 147.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)

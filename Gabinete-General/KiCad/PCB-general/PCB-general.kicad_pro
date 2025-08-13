@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 1.0,
-          "height": 1.7,
-          "width": 1.7
+          "drill": 0.8,
+          "height": 2.0,
+          "width": 1.4
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -58,7 +58,16 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "lib_footprint_mismatch|180000000|103939840|828cbc41-2a3e-43ae-8e8f-72d3b8e34bae|00000000-0000-0000-0000-000000000000",
+          "Modified library for non-OEM devkit"
+        ],
+        [
+          "lib_footprint_mismatch|198000000|122000000|53c8ac90-bbb7-4a9f-a760-37289bbbec1b|00000000-0000-0000-0000-000000000000",
+          "Modified library to mount the Rotary Encoder externally"
+        ]
+      ],
       "meta": {
         "version": 2
       },
@@ -223,6 +232,10 @@
         {
           "diameter": 0.0,
           "drill": 0.0
+        },
+        {
+          "diameter": 1.0,
+          "drill": 0.6
         }
       ],
       "zones_allow_external_fillets": false
@@ -486,8 +499,8 @@
         "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.3,
-        "via_diameter": 0.6,
-        "via_drill": 0.3,
+        "via_diameter": 1.0,
+        "via_drill": 0.6,
         "wire_width": 6
       }
     ],
