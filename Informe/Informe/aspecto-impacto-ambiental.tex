@@ -5,6 +5,9 @@ Se denomina impacto ambiental a todo cambio que tiene lugar en el medio ambiente
 
 En el presente proyecto, impacto ambiental negativo de mayor consideración es producto de las impresiones 3D donde, en lugar de utilizar un filamento biodegradable como lo es el PLA (ácido poliláctico), se utiliza el PETG (tereftalato de polietileno glicol), él cual es un filamento que presenta mayor resistencia mecánica, durabilidad y flexibilidad, además soporta mayores temperaturas antes de comenzar a deformarse. Si bien no es biodegradable como el PLA, él mismo es reciclable al $100\%$, \parencite{pla_petg}.
 
-El impacto ambiental respecto a la fabricación de las PCB se limita a la fabricación y transporte de los componentes desde la fábrica al proveedor, y desde el mismo a la ciudad de destino.
+El impacto ambiental respecto a la elaboración de las PCB se limita a la fabricación y transporte de los componentes desde la fábrica al proveedor, y desde el mismo a la ciudad de destino. Considerando el consumo del dispositivo, se tiene la fuente de alimentación de corriente continua y el transformador. La primera tiene un consumo máximo dependiendo de los módulos, siendo que los mismos se determinaron para \SI{12}{\volt} y \SI{3}{\ampere} máximos, siendo el consumo máximo de \SI{36}{\watt}. El transformador utilizado es de \SI{50}{\voltampere} con una potencia activa de \SI{48}{\watt}. Considerando estos consumos se calcula la potencia máxima total con un $25\%$ adicional para abarcar cualquier pérdida no incluida en el cálculo.
+\begin{equation} \label{eq:IA:potencia-total}
+    P_{total} = (\SI{36}{\watt} + \SI{48}{\watt}) 1,25 = \SI{105}{\watt}
+\end{equation}
 
-% No se que poner respecto al consumo energético, o sea, no se calculo mucho respecto de eso, pero bueno.
+Este consumo, si bien pude parecer elevado, es menor al consumo que puede tener una computadora de escritorio en funcionamiento.
