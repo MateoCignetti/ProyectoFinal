@@ -8,6 +8,9 @@
 % Márgenes %
 \usepackage[left=2.5cm, right=1cm, top=3cm, bottom=2cm, bindingoffset=1cm]{geometry}
 
+% Para begin y end comment %
+\usepackage{comment}
+
 % Paquetes de matemática, símbolos y gráficos %
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -17,7 +20,7 @@
 %\usepackage{gensymb}
 %\usepackage{xfrac}
 %\usepackage{amsfonts}
-%\usepackage{siunitx}
+\usepackage{siunitx}
 
 % Tablas %
 \usepackage{longtable}
@@ -28,7 +31,8 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{tikz}
-%\usepackage{caption}
+\usepackage{circuitikz}
+\usepackage[justification = centering]{caption}
 \graphicspath{{./figures/}}
 
 % Interlineado y sangría %
@@ -54,13 +58,17 @@
 \usepackage{enumitem}
 
 % Paquetes de Bibliografía %
-\usepackage[sorting=none,backend=biber,style=numeric,citestyle=authoryear,urldate=long]{biblatex}
+\usepackage[sorting=none,backend=biber,style=apa,citestyle=authoryear,urldate=long]{biblatex}
 \usepackage{csquotes}
 
 \bibliography{referencias}
 
 % Hipervínculos %
-\usepackage[hidelinks]{hyperref}
+%\usepackage[hidelinks]{hyperref}
+\usepackage{hyperref}
+
+% Referencias cruzadas %
+\usepackage[capitalise, nameinlink, spanish]{cleveref}
 
 % Justificado %
 \usepackage[]{ragged2e}
@@ -148,7 +156,7 @@
     \begin{minipage}{0.96\textwidth}
     \phantomsection
     \addcontentsline{toc}{section}{REFERENCIAS}
-    \nocite{*} % Despues hay que eliminar esta linea
+    %\nocite{*} % Despues hay que eliminar esta linea
     \printbibliography
     \end{minipage}
 
