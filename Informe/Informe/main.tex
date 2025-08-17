@@ -101,13 +101,6 @@
 % Configuracion de la tabla de contenidos
 %\usepackage{tocloft}
 
-% ALEJO:  Hay que ver como hacer el índice porque si trabajas las secciones con \section*{title} por
-% defecto las omite de la tabla de contenidos. Por eso despues de cada section*{}, \addcontentsline{toc}{section}{DEDICATORIA}
-% el tema es que eso no me convence para nada, todavía no encontré un buen resultado como me gustaría.
-
-% Rta Alejo para Alejo: Ya encontré la solución, el problema es que en lugar de usar \section*{} se usa \snsection{} y así
-% se agrega automáticamente a la tabla de contenidos. Además, se puede usar \snsubsection{} y \snsubsubsection{} para subsecciones y subsubsecciones. Es la mejor solución que encontré para que los títulos de las secciones no tengan númeración y aparezcan en la tabla, sino la otra es directamente usar \section{} y que aparezcan los números y te evitas todo el inconveniente, pero no respetarías al 100% el formato APA
-
 \begin{document}
 
     \pagenumbering{Roman}
