@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "PCIe_x4_male")(type "KiCad")(uri "${KIPRJMOD}/../../../KiCad-Libraries/PCIe_x4_male.kicad_sym")(options "")(descr ""))
+)
