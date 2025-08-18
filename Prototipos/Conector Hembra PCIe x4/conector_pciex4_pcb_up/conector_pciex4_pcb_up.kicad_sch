@@ -1,0 +1,5544 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "e2d6e389-0a42-4a8f-8e3e-3e47362e72aa")
+	(paper "A4")
+	(lib_symbols
+		(symbol "10018783-10211TLF:10018783-10211TLF"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at -7.62 44.069 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "10018783-10211TLF"
+				(at -7.62 -45.72 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Footprint" "10018783-10211TLF:AMPHENOL_10018783-10211TLF"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "MF" "Amphenol ICC (FCI)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MAXIMUM_PACKAGE_HEIGHT" "11.25mm"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Package" "None"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Price" "None"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Check_prices" "https://www.snapeda.com/parts/10018783-10211TLF/Amphenol+FCI/view-part/?ref=eda"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "STANDARD" "Manufacturer Recommendations"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "PARTREV" "AA"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "SnapEDA_Link" "https://www.snapeda.com/parts/10018783-10211TLF/Amphenol+FCI/view-part/?ref=snap"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MP" "10018783-10211TLF"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Description_1" "PCI Express GEN 3 Card Edge, Storage and Server Connector, Vertical, Through Hole, x4, 64 Positions, 1.00mm (0.039in) Pitch"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MANUFACTURER" "Amphenol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Availability" "In Stock"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "SNAPEDA_PN" "10018783-10211TLF"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(symbol "10018783-10211TLF_0_0"
+				(rectangle
+					(start -7.62 -43.18)
+					(end 7.62 43.18)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at -12.7 40.64 0)
+					(length 5.08)
+					(name "A1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 38.1 0)
+					(length 5.08)
+					(name "A2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 35.56 0)
+					(length 5.08)
+					(name "A3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 33.02 0)
+					(length 5.08)
+					(name "A4"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A4"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 30.48 0)
+					(length 5.08)
+					(name "A5"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A5"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 27.94 0)
+					(length 5.08)
+					(name "A6"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A6"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 25.4 0)
+					(length 5.08)
+					(name "A7"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A7"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 22.86 0)
+					(length 5.08)
+					(name "A8"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A8"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 20.32 0)
+					(length 5.08)
+					(name "A9"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A9"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 17.78 0)
+					(length 5.08)
+					(name "A10"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A10"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 15.24 0)
+					(length 5.08)
+					(name "A11"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A11"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 10.16 0)
+					(length 5.08)
+					(name "A12"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A12"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 7.62 0)
+					(length 5.08)
+					(name "A13"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A13"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 5.08 0)
+					(length 5.08)
+					(name "A14"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A14"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 2.54 0)
+					(length 5.08)
+					(name "A15"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A15"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 0 0)
+					(length 5.08)
+					(name "A16"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A16"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -2.54 0)
+					(length 5.08)
+					(name "A17"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A17"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -5.08 0)
+					(length 5.08)
+					(name "A18"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A18"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -7.62 0)
+					(length 5.08)
+					(name "A19"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A19"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -10.16 0)
+					(length 5.08)
+					(name "A20"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A20"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -12.7 0)
+					(length 5.08)
+					(name "A21"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A21"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -15.24 0)
+					(length 5.08)
+					(name "A22"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A22"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -17.78 0)
+					(length 5.08)
+					(name "A23"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A23"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -20.32 0)
+					(length 5.08)
+					(name "A24"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A24"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -22.86 0)
+					(length 5.08)
+					(name "A25"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A25"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -25.4 0)
+					(length 5.08)
+					(name "A26"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A26"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -27.94 0)
+					(length 5.08)
+					(name "A27"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A27"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -30.48 0)
+					(length 5.08)
+					(name "A28"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A28"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -33.02 0)
+					(length 5.08)
+					(name "A29"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A29"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -35.56 0)
+					(length 5.08)
+					(name "A30"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A30"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -38.1 0)
+					(length 5.08)
+					(name "A31"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A31"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -40.64 0)
+					(length 5.08)
+					(name "A32"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A32"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 40.64 180)
+					(length 5.08)
+					(name "B1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 38.1 180)
+					(length 5.08)
+					(name "B2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 35.56 180)
+					(length 5.08)
+					(name "B3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 33.02 180)
+					(length 5.08)
+					(name "B4"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B4"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 30.48 180)
+					(length 5.08)
+					(name "B5"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B5"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 27.94 180)
+					(length 5.08)
+					(name "B6"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B6"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 25.4 180)
+					(length 5.08)
+					(name "B7"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B7"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 22.86 180)
+					(length 5.08)
+					(name "B8"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B8"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 20.32 180)
+					(length 5.08)
+					(name "B9"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B9"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 17.78 180)
+					(length 5.08)
+					(name "B10"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B10"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 15.24 180)
+					(length 5.08)
+					(name "B11"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B11"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 10.16 180)
+					(length 5.08)
+					(name "B12"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B12"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 7.62 180)
+					(length 5.08)
+					(name "B13"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B13"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 5.08 180)
+					(length 5.08)
+					(name "B14"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B14"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 2.54 180)
+					(length 5.08)
+					(name "B15"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B15"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 0 180)
+					(length 5.08)
+					(name "B16"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B16"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -2.54 180)
+					(length 5.08)
+					(name "B17"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B17"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -5.08 180)
+					(length 5.08)
+					(name "B18"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B18"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -7.62 180)
+					(length 5.08)
+					(name "B19"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B19"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -10.16 180)
+					(length 5.08)
+					(name "B20"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B20"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -12.7 180)
+					(length 5.08)
+					(name "B21"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B21"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -15.24 180)
+					(length 5.08)
+					(name "B22"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B22"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -17.78 180)
+					(length 5.08)
+					(name "B23"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B23"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -20.32 180)
+					(length 5.08)
+					(name "B24"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B24"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -22.86 180)
+					(length 5.08)
+					(name "B25"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B25"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -25.4 180)
+					(length 5.08)
+					(name "B26"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B26"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -27.94 180)
+					(length 5.08)
+					(name "B27"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B27"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -30.48 180)
+					(length 5.08)
+					(name "B28"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B28"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -33.02 180)
+					(length 5.08)
+					(name "B29"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B29"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -35.56 180)
+					(length 5.08)
+					(name "B30"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B30"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -38.1 180)
+					(length 5.08)
+					(name "B31"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B31"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -40.64 180)
+					(length 5.08)
+					(name "B32"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B32"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Connector:TestPoint"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.762)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "TP"
+				(at 0 6.858 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "TestPoint"
+				(at 0 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "test point"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "test point tp"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Pin* Test*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "TestPoint_0_1"
+				(circle
+					(center 0 3.302)
+					(radius 0.762)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "TestPoint_1_1"
+				(pin passive line
+					(at 0 0 90)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(junction
+		(at 154.94 77.47)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1e7e4441-3d36-478a-bf9e-eb06c6807d63")
+	)
+	(junction
+		(at 154.94 74.93)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1efdfe2d-77e9-42cb-889c-0497cc89dfdb")
+	)
+	(junction
+		(at 149.86 110.49)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "20fe7728-ebe5-4fad-bef6-986bbc3120db")
+	)
+	(junction
+		(at 149.86 135.89)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "257c5a4b-bb34-4281-92b1-2b9d0d63eb21")
+	)
+	(junction
+		(at 149.86 82.55)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3162f01d-fa24-44ce-b602-85da92a33bbd")
+	)
+	(junction
+		(at 149.86 133.35)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3175ffcb-3bce-4f89-837b-484381aee6e2")
+	)
+	(junction
+		(at 149.86 92.71)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "31a14eba-e66a-4387-9e9a-40ebb1745510")
+	)
+	(junction
+		(at 154.94 64.77)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "403db973-d6e0-40b2-812f-32a2f45315ad")
+	)
+	(junction
+		(at 154.94 62.23)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "40703f86-9fdc-4649-8973-fd8d196bd2f3")
+	)
+	(junction
+		(at 149.86 100.33)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4aa58131-407e-4617-90b2-bcaceda2a434")
+	)
+	(junction
+		(at 149.86 59.69)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4c4f87ab-1de1-4f08-b446-6963d1e92bf9")
+	)
+	(junction
+		(at 149.86 72.39)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "5ca72462-2917-48ec-9c29-381fdef18bd4")
+	)
+	(junction
+		(at 149.86 123.19)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "651ec599-2e50-45f3-982d-1aa969d6f313")
+	)
+	(junction
+		(at 149.86 74.93)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6987befa-a969-458d-90fe-6e73d2261654")
+	)
+	(junction
+		(at 149.86 118.11)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6afdd8ed-ca79-4e8d-8926-b7be986efe25")
+	)
+	(junction
+		(at 149.86 115.57)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6ca9e006-7de1-4af9-96ee-bb969523d2db")
+	)
+	(junction
+		(at 149.86 85.09)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7f92007e-62b9-4ef6-94ad-8df4116f3979")
+	)
+	(junction
+		(at 149.86 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "857cb336-5c10-4974-b574-0cacc2392195")
+	)
+	(junction
+		(at 154.94 80.01)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "85c2616c-9f7e-4ac8-a1c3-a6e5aa9086dd")
+	)
+	(junction
+		(at 149.86 90.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8bb969d2-48f0-41f4-9854-e5f626021c8e")
+	)
+	(junction
+		(at 149.86 80.01)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8bbb3fc8-a5a7-4614-b1e9-78d2e19c0907")
+	)
+	(junction
+		(at 149.86 97.79)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "92bb6643-0779-49b9-a40a-1873cd63c5fa")
+	)
+	(junction
+		(at 149.86 64.77)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9378b3ba-724b-4db9-a6e9-ec5f2e870701")
+	)
+	(junction
+		(at 154.94 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "96f3a87a-f8af-479f-af15-c034c173a98b")
+	)
+	(junction
+		(at 154.94 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a43d6b3d-4066-4eb8-87a8-4cd9a815ab2e")
+	)
+	(junction
+		(at 149.86 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a52a1e6b-1cc3-4648-951d-8c242d442b9e")
+	)
+	(junction
+		(at 149.86 140.97)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bbc30be7-c508-4a12-8625-5484c5e7380e")
+	)
+	(junction
+		(at 149.86 77.47)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bd591d29-6b80-481a-b9ab-a82a4dd50ce8")
+	)
+	(junction
+		(at 149.86 128.27)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c7f9d460-457a-478e-b759-3a0be186b928")
+	)
+	(junction
+		(at 149.86 138.43)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cab9e61e-af59-4134-a3bf-6d2c90bd5e5f")
+	)
+	(junction
+		(at 149.86 62.23)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d858868a-3e04-4b5c-809b-3dcaee2ee0ec")
+	)
+	(junction
+		(at 149.86 120.65)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d95ec82a-79b0-4ff4-b11c-7369786b2121")
+	)
+	(junction
+		(at 149.86 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "dd35a90f-0ff6-4091-8104-00182ee20ac6")
+	)
+	(junction
+		(at 149.86 105.41)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "debdcb7c-6994-45cf-90a2-36bb8dee5620")
+	)
+	(junction
+		(at 149.86 130.81)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ede8ffde-ea65-403c-a20f-76be8ef47520")
+	)
+	(junction
+		(at 149.86 107.95)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f85835de-dd46-45ae-88e2-eba5bc032cce")
+	)
+	(junction
+		(at 149.86 113.03)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fbfdcd00-8027-4819-9c81-1b9c049f8454")
+	)
+	(junction
+		(at 149.86 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fcc4beb0-4460-4b31-b88d-e3927b3a1521")
+	)
+	(junction
+		(at 149.86 102.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fd11b453-b338-4067-847b-488af8a140ec")
+	)
+	(wire
+		(pts
+			(xy 149.86 138.43) (xy 149.86 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "010a00cd-bca2-4c99-a99a-006fc6901724")
+	)
+	(wire
+		(pts
+			(xy 149.86 129.54) (xy 124.46 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "08421a33-7d4e-4954-bd3c-028840fceea8")
+	)
+	(wire
+		(pts
+			(xy 124.46 68.58) (xy 149.86 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "08f93752-50f8-4fa7-a4e5-f6e1cf913f42")
+	)
+	(wire
+		(pts
+			(xy 154.94 133.35) (xy 149.86 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0a9f3a89-aff6-4375-9dfe-eda8239d1a85")
+	)
+	(wire
+		(pts
+			(xy 154.94 110.49) (xy 149.86 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c113029-04c3-4ac9-8bea-0087f9d46759")
+	)
+	(wire
+		(pts
+			(xy 149.86 73.66) (xy 149.86 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0f6d1332-8b0e-4467-b13e-ffa975c213a6")
+	)
+	(wire
+		(pts
+			(xy 149.86 80.01) (xy 154.94 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0fb67650-56d0-4388-8170-42e8d6cc35c1")
+	)
+	(wire
+		(pts
+			(xy 149.86 133.35) (xy 149.86 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1703333e-d96e-4de8-872c-b12650fa162c")
+	)
+	(wire
+		(pts
+			(xy 149.86 90.17) (xy 149.86 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b419edb-724a-4c9d-a8ae-0b208b402b97")
+	)
+	(wire
+		(pts
+			(xy 149.86 123.19) (xy 149.86 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b77c953-959f-41a8-bc4a-a5730c9afc4f")
+	)
+	(wire
+		(pts
+			(xy 154.94 135.89) (xy 149.86 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1bbd88a6-1951-475c-bec6-55285e597109")
+	)
+	(wire
+		(pts
+			(xy 149.86 120.65) (xy 149.86 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1c57afea-470d-4f28-85ac-85832783493a")
+	)
+	(wire
+		(pts
+			(xy 124.46 69.85) (xy 124.46 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "23ac7e29-5bbf-46a5-b616-0a068c65af92")
+	)
+	(wire
+		(pts
+			(xy 149.86 63.5) (xy 149.86 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "242409b0-6c1e-4c39-a273-c468c9dd5816")
+	)
+	(wire
+		(pts
+			(xy 149.86 82.55) (xy 149.86 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "271fac4f-c647-4cd0-8951-b5aa6e0b5f09")
+	)
+	(wire
+		(pts
+			(xy 149.86 137.16) (xy 124.46 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "28287aad-28c4-4a61-9dd5-8091afe1c3cd")
+	)
+	(wire
+		(pts
+			(xy 124.46 63.5) (xy 124.46 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "28d9d231-a371-4d0c-bbac-d22d12043c59")
+	)
+	(wire
+		(pts
+			(xy 149.86 93.98) (xy 124.46 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2b97ed42-cee9-4a5e-9e77-1f60b2d430b0")
+	)
+	(wire
+		(pts
+			(xy 124.46 78.74) (xy 149.86 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2c1c789a-7ba8-44b9-aa2e-1a849e66ff4f")
+	)
+	(wire
+		(pts
+			(xy 149.86 114.3) (xy 124.46 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2ff8b1ce-ffd8-4a65-9bd5-d6165b886274")
+	)
+	(wire
+		(pts
+			(xy 154.94 128.27) (xy 149.86 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30a4a970-a249-41ad-9e41-b1bae1c70c93")
+	)
+	(wire
+		(pts
+			(xy 149.86 77.47) (xy 154.94 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "31dfd3d6-5cff-4af3-92a9-172d1ba1368f")
+	)
+	(wire
+		(pts
+			(xy 149.86 64.77) (xy 154.94 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "323fec1c-f55b-4eb2-9b8a-1462fbd9c874")
+	)
+	(wire
+		(pts
+			(xy 149.86 74.93) (xy 154.94 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "348cc32c-da23-4cca-907e-d8876e33bfeb")
+	)
+	(wire
+		(pts
+			(xy 149.86 140.97) (xy 149.86 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "381a0c95-81e5-4ded-a27c-3cf63f042dc0")
+	)
+	(wire
+		(pts
+			(xy 149.86 116.84) (xy 124.46 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3901eed2-25af-4c13-8deb-ccb9abbc2445")
+	)
+	(wire
+		(pts
+			(xy 149.86 142.24) (xy 124.46 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3b4fe6b6-7cbf-477b-9c73-c4b8c9278100")
+	)
+	(wire
+		(pts
+			(xy 154.94 125.73) (xy 149.86 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3ca7cca8-268c-4b40-8e7d-81655469ad0d")
+	)
+	(wire
+		(pts
+			(xy 124.46 78.74) (xy 124.46 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3dd47e55-d43e-44c0-b3a4-03181a143343")
+	)
+	(wire
+		(pts
+			(xy 149.86 99.06) (xy 124.46 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f6cef6a-ebcd-492f-a332-321894b4ca05")
+	)
+	(wire
+		(pts
+			(xy 149.86 68.58) (xy 149.86 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "42709685-3faa-4ac8-8b41-693607981e75")
+	)
+	(wire
+		(pts
+			(xy 149.86 107.95) (xy 149.86 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4433edbd-cf1b-46e5-9be6-518619fdf80f")
+	)
+	(wire
+		(pts
+			(xy 124.46 63.5) (xy 149.86 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4598dbc2-127c-4ab7-9dc4-a6e0064ced34")
+	)
+	(wire
+		(pts
+			(xy 154.94 77.47) (xy 154.94 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4762edea-9946-47f2-97ce-fcb0b353affb")
+	)
+	(wire
+		(pts
+			(xy 154.94 85.09) (xy 149.86 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4808cfeb-bf5a-4525-94f8-6621025a1562")
+	)
+	(wire
+		(pts
+			(xy 149.86 130.81) (xy 149.86 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "481678af-69c9-4638-a15b-9723e4eefef7")
+	)
+	(wire
+		(pts
+			(xy 149.86 92.71) (xy 149.86 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4b6339cf-d823-423c-a550-f554eea5b525")
+	)
+	(wire
+		(pts
+			(xy 149.86 66.04) (xy 149.86 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "50e51a54-4762-445e-b739-654763d5a564")
+	)
+	(wire
+		(pts
+			(xy 149.86 124.46) (xy 124.46 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "50fda8c1-0d6a-4a95-a7a2-4fbd87fe2d29")
+	)
+	(wire
+		(pts
+			(xy 154.94 67.31) (xy 154.94 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "51daaf88-f6c1-44ac-9c04-e4305bf67eea")
+	)
+	(wire
+		(pts
+			(xy 154.94 113.03) (xy 149.86 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5685db39-f879-46b6-a3c1-9b95474c5cbf")
+	)
+	(wire
+		(pts
+			(xy 154.94 97.79) (xy 149.86 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5702d7e0-0fbb-4955-84f6-02b911ee7ce5")
+	)
+	(wire
+		(pts
+			(xy 154.94 105.41) (xy 149.86 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "57e53d01-72a2-4d9f-95ac-e49816d2992c")
+	)
+	(wire
+		(pts
+			(xy 154.94 82.55) (xy 149.86 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "59519f89-251c-487c-918d-de20a5cce470")
+	)
+	(wire
+		(pts
+			(xy 124.46 110.49) (xy 124.46 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5b2eb745-4fe6-416d-a257-80a729a03b72")
+	)
+	(wire
+		(pts
+			(xy 149.86 113.03) (xy 149.86 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5d5ec209-25ec-40ac-8473-06bfbcb54589")
+	)
+	(wire
+		(pts
+			(xy 154.94 130.81) (xy 149.86 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5f33d416-5cd2-4b1e-9daa-efd7be976db5")
+	)
+	(wire
+		(pts
+			(xy 124.46 81.28) (xy 124.46 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5fd2aa23-a32f-42dc-ac34-03d379f6f5fd")
+	)
+	(wire
+		(pts
+			(xy 124.46 76.2) (xy 124.46 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "69b6c896-3c7c-439a-b2ca-71ae26d1a4ac")
+	)
+	(wire
+		(pts
+			(xy 149.86 60.96) (xy 124.46 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6afe23d9-f2fe-4f54-be39-c9d9700c03a0")
+	)
+	(wire
+		(pts
+			(xy 149.86 101.6) (xy 124.46 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6b15d764-ea3b-4066-a002-b05e68fe6aa3")
+	)
+	(wire
+		(pts
+			(xy 124.46 73.66) (xy 149.86 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6bd7e716-56bd-4161-bbc1-002c58179d63")
+	)
+	(wire
+		(pts
+			(xy 124.46 127) (xy 124.46 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7adfd0ea-b0d3-4ff0-8ef8-53eafcb91a55")
+	)
+	(wire
+		(pts
+			(xy 149.86 132.08) (xy 124.46 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7d5f791d-2d6c-4d46-867c-7a1b36db217c")
+	)
+	(wire
+		(pts
+			(xy 154.94 107.95) (xy 149.86 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7dac7694-28ca-4a5b-a128-8d53d1543410")
+	)
+	(wire
+		(pts
+			(xy 149.86 110.49) (xy 149.86 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "80a565bb-8bd9-4203-93c7-bb2f90c8db67")
+	)
+	(wire
+		(pts
+			(xy 154.94 118.11) (xy 149.86 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "80aa5215-91fa-433f-ac95-708d01e5b200")
+	)
+	(wire
+		(pts
+			(xy 124.46 81.28) (xy 149.86 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "853b74c2-6d8d-494a-8e82-f755f7fd4bc6")
+	)
+	(wire
+		(pts
+			(xy 149.86 118.11) (xy 149.86 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8c40c46f-c326-4ce6-9670-47b506d9d2f3")
+	)
+	(wire
+		(pts
+			(xy 149.86 106.68) (xy 124.46 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8eac35f7-be08-4c34-b96f-e159aa88e901")
+	)
+	(wire
+		(pts
+			(xy 124.46 95.25) (xy 124.46 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f12892b-c089-42f7-90bc-35a8e9bf57a8")
+	)
+	(wire
+		(pts
+			(xy 124.46 101.6) (xy 124.46 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f399781-d762-40d5-9817-3f43788484d4")
+	)
+	(wire
+		(pts
+			(xy 149.86 109.22) (xy 124.46 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f7cecba-f629-4d98-b97e-183c40b9afee")
+	)
+	(wire
+		(pts
+			(xy 124.46 118.11) (xy 124.46 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9034bc47-9cdb-4957-8951-1c4afc97a789")
+	)
+	(wire
+		(pts
+			(xy 124.46 92.71) (xy 124.46 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "91056a33-5fd5-4104-b11b-92e807c0bd62")
+	)
+	(wire
+		(pts
+			(xy 149.86 128.27) (xy 149.86 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "93cf0888-a8e2-434f-88d4-b2708bac7cb3")
+	)
+	(wire
+		(pts
+			(xy 124.46 97.79) (xy 124.46 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "95fea6a1-ca67-47e5-8e53-62c76975f320")
+	)
+	(wire
+		(pts
+			(xy 124.46 134.62) (xy 124.46 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "96556fa4-eb3b-4366-b548-94673004a730")
+	)
+	(wire
+		(pts
+			(xy 124.46 71.12) (xy 149.86 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "98d21730-53f5-4b98-a88e-11bcb2429d11")
+	)
+	(wire
+		(pts
+			(xy 149.86 76.2) (xy 149.86 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9a7aae4e-ca6a-4b39-975a-085e590aea91")
+	)
+	(wire
+		(pts
+			(xy 154.94 100.33) (xy 149.86 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9db41cde-aded-4161-ba3b-967517a9bce1")
+	)
+	(wire
+		(pts
+			(xy 149.86 78.74) (xy 149.86 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ecbd409-5b2f-4991-97a1-7bbfabe6e3b7")
+	)
+	(wire
+		(pts
+			(xy 154.94 59.69) (xy 149.86 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a0022f9a-edf9-416e-95a2-002825c6e8a7")
+	)
+	(wire
+		(pts
+			(xy 149.86 127) (xy 124.46 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a16d8d9a-ec7f-4928-be81-8bd8b13fa69d")
+	)
+	(wire
+		(pts
+			(xy 154.94 138.43) (xy 149.86 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a34c13de-ca77-4c28-9392-3127991fdd85")
+	)
+	(wire
+		(pts
+			(xy 149.86 91.44) (xy 124.46 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a3991d84-3e54-4df0-84c5-599662726529")
+	)
+	(wire
+		(pts
+			(xy 124.46 76.2) (xy 149.86 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a46355b5-9e4a-45f4-9e63-ec0d208810c1")
+	)
+	(wire
+		(pts
+			(xy 124.46 120.65) (xy 124.46 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a4f98eb4-981e-4b36-b205-55dc13915e6b")
+	)
+	(wire
+		(pts
+			(xy 154.94 64.77) (xy 154.94 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a59b3cc7-b84a-4319-a189-a8701dd5d9ea")
+	)
+	(wire
+		(pts
+			(xy 154.94 140.97) (xy 149.86 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ab18c8d8-7caa-483c-907b-7bb5f40b2815")
+	)
+	(wire
+		(pts
+			(xy 124.46 68.58) (xy 124.46 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac63dfd5-eb96-47ae-a721-52618784d9b6")
+	)
+	(wire
+		(pts
+			(xy 124.46 66.04) (xy 149.86 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac980ee2-88cc-4525-9ae3-99db696327ac")
+	)
+	(wire
+		(pts
+			(xy 124.46 66.04) (xy 124.46 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "acd6fc26-5952-4ee7-b1dc-4dd35ed82359")
+	)
+	(wire
+		(pts
+			(xy 124.46 139.7) (xy 124.46 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "afb0759e-b018-4ac3-9816-af7acf3df5ba")
+	)
+	(wire
+		(pts
+			(xy 149.86 121.92) (xy 124.46 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b0fcf435-ede3-45bf-950c-804bebcb4336")
+	)
+	(wire
+		(pts
+			(xy 124.46 106.68) (xy 124.46 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b1385d75-a346-4ba6-8855-9ca0ad724647")
+	)
+	(wire
+		(pts
+			(xy 149.86 67.31) (xy 154.94 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b2b964ba-4c2b-46ef-8317-ee4bbb58e8b6")
+	)
+	(wire
+		(pts
+			(xy 124.46 102.87) (xy 124.46 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b5291c0a-4a81-4257-a1c5-6097db2f7578")
+	)
+	(wire
+		(pts
+			(xy 124.46 91.44) (xy 124.46 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b66c10b8-db5e-46e7-966e-68101df69b03")
+	)
+	(wire
+		(pts
+			(xy 154.94 62.23) (xy 154.94 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b8b1d0b5-349a-496c-9669-71ddfcb6e4f2")
+	)
+	(wire
+		(pts
+			(xy 124.46 137.16) (xy 124.46 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "baf2173b-52a7-404b-badb-475fd4510fad")
+	)
+	(wire
+		(pts
+			(xy 124.46 142.24) (xy 124.46 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bbf27af0-22ad-45af-acd4-a9d0f13b2666")
+	)
+	(wire
+		(pts
+			(xy 124.46 124.46) (xy 124.46 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bc28c5e5-a2bb-4555-a24c-43c8dba813a1")
+	)
+	(wire
+		(pts
+			(xy 124.46 59.69) (xy 124.46 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bd8ea2ec-0e2a-4655-a7d4-1861a0be4c5d")
+	)
+	(wire
+		(pts
+			(xy 149.86 104.14) (xy 124.46 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c0c6995d-e2bd-4d5b-b63b-404c48129373")
+	)
+	(wire
+		(pts
+			(xy 149.86 115.57) (xy 149.86 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c20816bb-1509-4971-b7a4-83494021e94e")
+	)
+	(wire
+		(pts
+			(xy 124.46 86.36) (xy 124.46 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c384a2ee-8a84-4c47-8adb-78767be1feef")
+	)
+	(wire
+		(pts
+			(xy 149.86 111.76) (xy 124.46 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c9a26b6c-298f-4375-affd-55c830584bbf")
+	)
+	(wire
+		(pts
+			(xy 124.46 72.39) (xy 124.46 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ca64c7c4-49a6-4789-964a-3189208ec949")
+	)
+	(wire
+		(pts
+			(xy 154.94 92.71) (xy 149.86 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cc8796b4-a57a-471b-9f23-e865baf86eac")
+	)
+	(wire
+		(pts
+			(xy 149.86 81.28) (xy 149.86 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cffa1c94-e0cd-4866-89fd-36ef8ba36132")
+	)
+	(wire
+		(pts
+			(xy 124.46 107.95) (xy 124.46 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d1149685-e4d6-4142-bedd-99bc7daa9ff0")
+	)
+	(wire
+		(pts
+			(xy 149.86 83.82) (xy 124.46 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d19a8bcc-6e09-4f35-8cd5-406975b310c0")
+	)
+	(wire
+		(pts
+			(xy 149.86 105.41) (xy 149.86 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d22811ff-d38a-47f7-8a9c-20ed2ffe4b81")
+	)
+	(wire
+		(pts
+			(xy 149.86 86.36) (xy 124.46 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d2ff7f48-4f39-4a6d-8a0f-912fbc10757d")
+	)
+	(wire
+		(pts
+			(xy 149.86 139.7) (xy 124.46 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d40a83d7-0205-478e-be7f-d26dfdad6bd3")
+	)
+	(wire
+		(pts
+			(xy 149.86 85.09) (xy 149.86 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d4826197-800a-439a-a69a-8f60c9d311da")
+	)
+	(wire
+		(pts
+			(xy 149.86 72.39) (xy 154.94 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d4c8f4e4-8017-4746-8a9a-9699ad82267c")
+	)
+	(wire
+		(pts
+			(xy 154.94 102.87) (xy 149.86 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d612b5f3-24fd-4a6a-9c63-584dfd55a6fd")
+	)
+	(wire
+		(pts
+			(xy 154.94 95.25) (xy 149.86 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d72f3c5b-a647-4965-93cd-57c9f54e0c6c")
+	)
+	(wire
+		(pts
+			(xy 124.46 132.08) (xy 124.46 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d7911f2e-7c15-47dc-bb64-e42374ebe906")
+	)
+	(wire
+		(pts
+			(xy 154.94 120.65) (xy 149.86 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d7b58da0-ffe7-4068-a194-3770ea082c4c")
+	)
+	(wire
+		(pts
+			(xy 149.86 71.12) (xy 149.86 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d93fb9a9-e4bf-45ec-aa36-33f5cea69034")
+	)
+	(wire
+		(pts
+			(xy 149.86 96.52) (xy 124.46 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d9d6f6e7-4984-4135-b99c-79bd85c590a6")
+	)
+	(wire
+		(pts
+			(xy 149.86 59.69) (xy 149.86 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d9e6d842-a5be-4b09-8ad1-5ce23105df75")
+	)
+	(wire
+		(pts
+			(xy 149.86 134.62) (xy 124.46 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dbafc24d-bd6f-49be-a26c-1b5a6c5dd7d9")
+	)
+	(wire
+		(pts
+			(xy 149.86 69.85) (xy 154.94 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "df7448de-1e25-48f3-a770-9ec478e79a85")
+	)
+	(wire
+		(pts
+			(xy 149.86 125.73) (xy 149.86 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e000e031-f5fe-4291-84ce-b1378c3156c1")
+	)
+	(wire
+		(pts
+			(xy 154.94 62.23) (xy 149.86 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e06a7e23-14f0-4cc7-98ac-cfe73615144b")
+	)
+	(wire
+		(pts
+			(xy 124.46 83.82) (xy 124.46 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e2cb6658-44bc-451f-a696-d329c92be2f1")
+	)
+	(wire
+		(pts
+			(xy 154.94 74.93) (xy 154.94 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e2ee576d-9925-4cda-b24d-00c0d0b3755c")
+	)
+	(wire
+		(pts
+			(xy 124.46 129.54) (xy 124.46 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e4cd9ea2-a1d0-4124-8f0c-e2a9d54616cf")
+	)
+	(wire
+		(pts
+			(xy 149.86 100.33) (xy 149.86 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e5ba9d6b-6eca-4a48-ba70-9fb8afd2d9b5")
+	)
+	(wire
+		(pts
+			(xy 154.94 90.17) (xy 149.86 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e7aac4eb-ea52-40ab-b195-6e0cb23b22a0")
+	)
+	(wire
+		(pts
+			(xy 149.86 97.79) (xy 149.86 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e7c0a71f-b304-49af-b231-047df6c01509")
+	)
+	(wire
+		(pts
+			(xy 149.86 95.25) (xy 149.86 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e8108466-7df2-4150-ab35-4ef68635fca7")
+	)
+	(wire
+		(pts
+			(xy 124.46 113.03) (xy 124.46 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed59b56f-cebb-4a44-9c04-7b0fc7e401e5")
+	)
+	(wire
+		(pts
+			(xy 149.86 135.89) (xy 149.86 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ef0ba71b-3c06-40bb-a9e7-1b5595da8e12")
+	)
+	(wire
+		(pts
+			(xy 154.94 123.19) (xy 149.86 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ef631d2b-514c-4549-b47e-68928614f951")
+	)
+	(wire
+		(pts
+			(xy 154.94 115.57) (xy 149.86 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f43ec74d-0888-46f5-9869-57a731236bb1")
+	)
+	(wire
+		(pts
+			(xy 149.86 119.38) (xy 124.46 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f7d373d2-67ab-4316-bebc-0c613b48f55c")
+	)
+	(wire
+		(pts
+			(xy 124.46 115.57) (xy 124.46 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fc9de3ba-b393-453d-9b55-b4b5473f0b24")
+	)
+	(wire
+		(pts
+			(xy 149.86 102.87) (xy 149.86 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fcaeb1b9-b339-47b3-8e73-25f0cba3221a")
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 110.49 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "058cd608-727c-40cd-b8e9-5cf0a605d534")
+		(property "Reference" "TP20"
+			(at 159.512 110.49 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S7"
+			(at 164.846 110.49 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c7f274d5-d032-495a-8130-94973cc27bbc")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP20")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 123.19 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "084b7b40-4336-417b-8cbc-b25fc02d1aaa")
+		(property "Reference" "TP25"
+			(at 159.512 123.19 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S12"
+			(at 164.846 123.19 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f90b7d62-c4d8-4898-a339-0152e92dc919")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP25")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 140.97 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "15749846-193a-4b2a-9261-69c48de7ba8f")
+		(property "Reference" "TP32"
+			(at 159.512 140.97 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "HP_Signal"
+			(at 164.846 140.97 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bf47b3f2-f89b-41ff-abd7-e8fa9da1b01f")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP32")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 138.43 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "195cb90c-5346-469e-9018-6ab1d9c34c37")
+		(property "Reference" "TP31"
+			(at 159.512 138.43 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "AGND"
+			(at 164.846 138.43 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a6a5af4d-b9ae-413b-946b-78540b22fab7")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP31")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 125.73 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1e753891-4682-4444-945e-76805c188061")
+		(property "Reference" "TP26"
+			(at 159.512 125.73 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S13"
+			(at 164.846 125.73 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "30bb274a-f00f-43e0-803d-d20dd5727038")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP26")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 92.71 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "240bbee6-ba7e-48bc-9fbd-34e522605f2d")
+		(property "Reference" "TP13"
+			(at 159.512 92.71 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "3,3Vdc_Signal"
+			(at 164.846 92.71 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7bed5c24-3a4c-4a11-a382-1b02815a1bee")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 90.17 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2c6bcebb-d032-42d2-b0e0-2c45b65824d0")
+		(property "Reference" "TP12"
+			(at 159.512 90.17 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "AGND"
+			(at 164.846 90.17 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a0dff52d-6a52-4594-83b2-9f28da62b8f7")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 100.33 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2d44285c-115a-4f33-9480-e6e60450b62b")
+		(property "Reference" "TP16"
+			(at 159.512 100.33 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S3"
+			(at 164.846 100.33 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7071c8bc-b4e4-4f05-bc19-adee86a5a72a")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 133.35 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "342a2d59-bfcd-433e-b4c5-51138e15db51")
+		(property "Reference" "TP29"
+			(at 159.512 133.35 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S16"
+			(at 164.846 133.35 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7b0161cb-038d-4af7-8802-a4fc7869350b")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP29")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 115.57 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "352d5732-ec4d-4990-87e7-3cc8acc72df5")
+		(property "Reference" "TP22"
+			(at 159.512 115.57 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S9"
+			(at 164.846 115.57 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9c72b9ee-1080-4e52-88aa-8cadf4469ab6")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP22")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 67.31 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3ab3d310-9d3e-4798-a090-24c5e4a077bb")
+		(property "Reference" "TP4"
+			(at 159.512 67.31 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "PGND"
+			(at 164.846 67.31 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "500f23ee-8b7d-4dad-9825-0c6b14d0192a")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 62.23 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "41c2c409-ca52-45e7-9c0b-d4fc3c62e5b4")
+		(property "Reference" "TP2"
+			(at 159.512 62.23 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "PGND"
+			(at 164.846 62.23 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bb16d55f-1db9-451c-b21f-0d275a96ecf9")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 130.81 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4d622d9c-b930-41a8-bb03-44c801e6a7fa")
+		(property "Reference" "TP28"
+			(at 159.512 130.81 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S15"
+			(at 164.846 130.81 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d99ee7c9-7c53-4f5e-bc08-faef7b45b97a")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP28")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 59.69 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5d7e81a1-2d15-4fcf-a935-bc68156bcf58")
+		(property "Reference" "TP1"
+			(at 159.512 59.69 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "HP_Power"
+			(at 164.846 59.69 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4b0bae56-6b06-46d3-aca6-18827b922b84")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 97.79 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "6fceeb0d-9ace-4251-8461-135f877b78e5")
+		(property "Reference" "TP15"
+			(at 159.512 97.79 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S2"
+			(at 164.846 97.79 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b6458d71-4180-4328-bfc9-69918f4ea301")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 72.39 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "6feb48bb-930e-480e-aee1-383b33cdaef3")
+		(property "Reference" "TP6"
+			(at 159.512 72.39 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "5Vdc"
+			(at 164.846 72.39 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2de40727-9ed7-4b85-b3fd-117b17e66ed6")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 102.87 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7206df42-56d4-4557-a5f3-d9d333f99dcb")
+		(property "Reference" "TP17"
+			(at 159.512 102.87 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S4"
+			(at 164.846 102.87 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "26865b01-f86a-4a02-9e5b-fcd53f5b6786")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 82.55 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "76bdb01d-71dd-4514-8a0d-ec2e6f0d42d4")
+		(property "Reference" "TP10"
+			(at 159.512 82.55 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "48Vac_L"
+			(at 164.846 82.55 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8bdd0447-f5c0-4aa8-bedb-59d7183c3583")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 64.77 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "796daac3-ef41-4a49-806a-32d355f93d1c")
+		(property "Reference" "TP3"
+			(at 159.512 64.77 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "PGND"
+			(at 164.846 64.77 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7fdcff90-8736-4cd9-8624-8fe8b094e05f")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 113.03 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8038f46e-944f-4a4e-822d-2741d920b91e")
+		(property "Reference" "TP21"
+			(at 159.512 113.03 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S8"
+			(at 164.846 113.03 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ab02a660-1c40-446d-bc38-54a6f435a853")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP21")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 107.95 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a0114504-a2c5-4052-a251-94f857129074")
+		(property "Reference" "TP19"
+			(at 159.512 107.95 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S6"
+			(at 164.846 107.95 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ba0bc939-adff-4fb5-a274-308724c5aad7")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 74.93 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a5d2a45f-95d8-4422-abc9-4700585a9eab")
+		(property "Reference" "TP7"
+			(at 159.512 74.93 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "12Vdc"
+			(at 164.846 74.93 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "37ec52ac-11ba-4dd3-89e4-7b304379792a")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 85.09 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "af1114d1-afde-4689-96bc-f34def4efb19")
+		(property "Reference" "TP11"
+			(at 159.512 85.09 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "48Vac_N"
+			(at 164.846 85.09 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "20e8f1cd-0d38-460c-bc4c-8b19c9c9d661")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 105.41 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b3cef354-88d9-4570-ab2a-bc6b8ad06c0d")
+		(property "Reference" "TP18"
+			(at 159.512 105.41 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S5"
+			(at 164.846 105.41 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7d8b9486-62fb-4af4-9ae8-2ce79418ff6f")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP18")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 69.85 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b9b60f47-415a-4d49-b07d-4b3c52bfe49b")
+		(property "Reference" "TP5"
+			(at 159.512 69.85 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "PGND"
+			(at 164.846 69.85 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2f0597c9-5101-4189-8ec8-1e96dd5dafce")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "10018783-10211TLF:10018783-10211TLF")
+		(at 137.16 100.33 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bc0fbee5-b28b-45db-95c0-97dd3d1445f8")
+		(property "Reference" "J1"
+			(at 137.16 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10018783-10211TLF"
+			(at 137.16 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "KiCad-Libraries:AMPHENOL_PCIe-x4_10018783-10211TLF"
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MF" "Amphenol ICC (FCI)"
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MAXIMUM_PACKAGE_HEIGHT" "11.25mm"
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "None"
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/10018783-10211TLF/Amphenol+FCI/view-part/?ref=eda"
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "STANDARD" "Manufacturer Recommendations"
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PARTREV" "AA"
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/10018783-10211TLF/Amphenol+FCI/view-part/?ref=snap"
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "10018783-10211TLF"
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "PCI Express GEN 3 Card Edge, Storage and Server Connector, Vertical, Through Hole, x4, 64 Positions, 1.00mm (0.039in) Pitch"
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Amphenol"
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SNAPEDA_PN" "10018783-10211TLF"
+			(at 137.16 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "A6"
+			(uuid "5f372415-604a-4747-8c15-1d88fe109c71")
+		)
+		(pin "A8"
+			(uuid "1e618d09-ca6d-4e56-98f6-8cfb11b71a15")
+		)
+		(pin "A18"
+			(uuid "07bc7a84-0677-4e48-8f14-be312fe13d5a")
+		)
+		(pin "A22"
+			(uuid "e2bef828-55db-426b-a50c-c7fa1c8a2b62")
+		)
+		(pin "A14"
+			(uuid "78479572-c2df-4984-b236-d700fd54ed17")
+		)
+		(pin "A24"
+			(uuid "f5833102-0ac6-4ec7-a34c-28a96a4a0aca")
+		)
+		(pin "A4"
+			(uuid "3ba94df3-f122-49ee-9a0d-5fcde33df53e")
+		)
+		(pin "A32"
+			(uuid "b16f1a1c-92f4-4012-b8f9-d93e39ba2aa0")
+		)
+		(pin "A29"
+			(uuid "142a10bd-52c5-4c18-8a82-4b3009f5038b")
+		)
+		(pin "A2"
+			(uuid "6df392f1-619e-44db-909a-1f0cdb5b4d2a")
+		)
+		(pin "A5"
+			(uuid "d09f37cd-fa47-4772-a8c4-17a27d660ea0")
+		)
+		(pin "A10"
+			(uuid "0edd193a-4726-4c8d-92d3-1575537f0a2c")
+		)
+		(pin "A12"
+			(uuid "4b82813a-b57d-4191-9acd-edb638c2f5d7")
+		)
+		(pin "A9"
+			(uuid "85c40855-14ab-468d-ade7-ecaecaf9f183")
+		)
+		(pin "A13"
+			(uuid "67fea8ce-889c-477b-8cf6-203aaa8fc463")
+		)
+		(pin "A17"
+			(uuid "65a6e9c4-1dde-413e-a493-7e93a3daf585")
+		)
+		(pin "A3"
+			(uuid "19f95df6-b1b5-4efb-a246-9eae37058c56")
+		)
+		(pin "A26"
+			(uuid "505e9d1d-67d2-4f58-a7ba-49c5b3757c69")
+		)
+		(pin "A7"
+			(uuid "8269d20f-cbe8-4425-b628-284e0ffdf4c4")
+		)
+		(pin "A30"
+			(uuid "b9fa11b2-92de-4596-91d2-89da7e986935")
+		)
+		(pin "A11"
+			(uuid "47e6e835-b1f8-4f9c-80ac-8e33c574dd62")
+		)
+		(pin "A28"
+			(uuid "6b71bee2-f3cb-440f-8ebb-6373a92b1509")
+		)
+		(pin "A15"
+			(uuid "2d128e9a-2029-424d-99f7-0b6f7dc5dfdc")
+		)
+		(pin "A19"
+			(uuid "5aea880b-d85d-47ff-bbe0-3ea968498392")
+		)
+		(pin "A1"
+			(uuid "19a4e408-044d-4447-82f3-5ef2bdff661c")
+		)
+		(pin "A16"
+			(uuid "f43bbbac-04dc-469f-b643-e5f1f93b5aa2")
+		)
+		(pin "A20"
+			(uuid "b6517a1f-6c04-464a-aaf3-6d8fe9685873")
+		)
+		(pin "A21"
+			(uuid "f96147b6-1aa3-4cd2-a4ba-4a6801a2fe3b")
+		)
+		(pin "A23"
+			(uuid "41bbbe0d-4b4f-42fd-9429-bf7c30cdb28a")
+		)
+		(pin "A25"
+			(uuid "2dfadb01-63a4-4609-9962-35d34389615b")
+		)
+		(pin "A27"
+			(uuid "c36c416a-0328-4aa1-b06f-76ffd20264b7")
+		)
+		(pin "A31"
+			(uuid "8ba3883c-9fa6-4f14-b9cc-ad8c4aa9b7c8")
+		)
+		(pin "B10"
+			(uuid "f1078df7-3c90-48d8-9802-87e89df44b3c")
+		)
+		(pin "B16"
+			(uuid "35019c19-2f51-47fb-a03f-780b3887900c")
+		)
+		(pin "B19"
+			(uuid "812782eb-0b20-44f0-9983-6df6df1a1fc5")
+		)
+		(pin "B23"
+			(uuid "d1709924-4982-4a13-a984-71b68c3e7f46")
+		)
+		(pin "B5"
+			(uuid "214dccb5-5a2e-4f9d-8385-0325b804fcb2")
+		)
+		(pin "B7"
+			(uuid "70c20f82-283a-4609-9022-fa91509d6d37")
+		)
+		(pin "B29"
+			(uuid "4cb220ab-be8f-4868-9c3b-d29d078bafc4")
+		)
+		(pin "B31"
+			(uuid "8ee39eab-59d8-4fc4-8b11-2d57b4942f81")
+		)
+		(pin "B26"
+			(uuid "e264d11d-f153-448e-8e78-1dde63960194")
+		)
+		(pin "B32"
+			(uuid "7718e8e1-964a-4be9-91fb-1c8b594e6f86")
+		)
+		(pin "B3"
+			(uuid "b0d5c124-dd36-45d4-b94c-cd0170c7175a")
+		)
+		(pin "B21"
+			(uuid "0d616db5-fd93-4fbe-8ac2-781fef96f268")
+		)
+		(pin "B15"
+			(uuid "0f5e932f-692f-4a5b-bcff-3d1f969cafe6")
+		)
+		(pin "B14"
+			(uuid "c83f59d2-a52e-42ac-bfce-0c5dc2051b7e")
+		)
+		(pin "B4"
+			(uuid "7add3ba7-b69d-408f-934b-124b93bf8bb2")
+		)
+		(pin "B9"
+			(uuid "f9dc30cd-bdb1-45ec-bdd8-4bc55160ec3a")
+		)
+		(pin "B8"
+			(uuid "b52762ad-b4ea-4d9c-9ee9-cdf7c278053a")
+		)
+		(pin "B17"
+			(uuid "d6c5f533-d4f7-45ec-9775-48d890be067b")
+		)
+		(pin "B20"
+			(uuid "fb355072-56bd-4e23-a77c-a64134082224")
+		)
+		(pin "B13"
+			(uuid "41e06c1c-ea52-4b9e-9993-a884f9d87064")
+		)
+		(pin "B24"
+			(uuid "3ec56126-9cf8-4660-97a9-b506fd7a2718")
+		)
+		(pin "B1"
+			(uuid "5dc789a8-dba9-49d8-a609-7b4ee070dc4a")
+		)
+		(pin "B6"
+			(uuid "d78f7113-1aaa-4436-a250-a8202316045f")
+		)
+		(pin "B11"
+			(uuid "875a66a6-fb06-45c1-b4bf-0760e6dc2932")
+		)
+		(pin "B2"
+			(uuid "7b788255-f6b4-4ea0-9651-564be53decb6")
+		)
+		(pin "B12"
+			(uuid "ac6bb5a8-ba07-4f24-92d6-35041f8cf8fa")
+		)
+		(pin "B18"
+			(uuid "bf88af45-cd1a-4099-9ba6-87e70458ea5e")
+		)
+		(pin "B22"
+			(uuid "adf491fa-f469-4b58-b5f3-fb51fef41d96")
+		)
+		(pin "B25"
+			(uuid "76dc42ff-2d2b-4632-ace8-2faf55be3318")
+		)
+		(pin "B27"
+			(uuid "8ca8c7ce-e2a3-495f-a6bd-87dd555fb083")
+		)
+		(pin "B28"
+			(uuid "53e41c99-f143-4cdd-968c-2263f3c8cc58")
+		)
+		(pin "B30"
+			(uuid "ceb1773c-3300-4524-8920-31c6115e9efd")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "J1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 120.65 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c5fb5d4d-a896-4dea-8f32-2513f0a5a1b9")
+		(property "Reference" "TP24"
+			(at 159.512 120.65 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S11"
+			(at 164.846 120.65 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "08157b85-8df1-4833-9303-eb83e2ddefa7")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP24")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 95.25 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d313afe7-e219-447c-9eb7-874a2ace2d2e")
+		(property "Reference" "TP14"
+			(at 159.512 95.25 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S1"
+			(at 164.846 95.25 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7fe18884-89d4-4de1-8d91-a0eb5df6acb9")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 118.11 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d3b14572-23e0-42ee-b2a4-c9997c1ce2ee")
+		(property "Reference" "TP23"
+			(at 159.512 118.11 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S10"
+			(at 164.846 118.11 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "39cc52e2-903f-4196-a20b-f560eb3d5c57")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP23")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 77.47 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e495e105-16b4-46bc-a7be-5a094f4dcb4b")
+		(property "Reference" "TP8"
+			(at 159.512 77.47 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "12Vdc"
+			(at 164.846 77.47 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ff7676ca-9501-41e8-bac6-d7ade6a3c350")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 128.27 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e537ca71-c127-4987-946c-69c1c635d376")
+		(property "Reference" "TP27"
+			(at 159.512 128.27 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "S14"
+			(at 164.846 128.27 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5d87063a-51cb-40df-a537-8ede1bda5874")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP27")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 135.89 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ece5703e-22c2-4158-be6c-e480f2467c08")
+		(property "Reference" "TP30"
+			(at 159.512 135.89 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MODULE_IDENT"
+			(at 164.846 135.89 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "05145a0c-d3c0-4267-a8bb-9c8c4d33c6d6")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP30")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 154.94 80.01 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ee56d411-7c71-4bbc-9783-6134b513ab34")
+		(property "Reference" "TP9"
+			(at 159.512 80.01 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "12Vdc"
+			(at 164.846 80.01 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "pin_hole_pcie:TestPoint_THTPad_D1.5mm_Drill0.7mm"
+			(at 154.94 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 154.94 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 154.94 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9910b705-1752-4a02-a04c-4af6d658d0a6")
+		)
+		(instances
+			(project "conector_pciex4_pcb_up"
+				(path "/e2d6e389-0a42-4a8f-8e3e-3e47362e72aa"
+					(reference "TP9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)
