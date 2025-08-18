@@ -1,0 +1,5 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "pin_hole_pcie")(type "KiCad")(uri "${KIPRJMOD}/../../../KiCad-Libraries/pin_hole_pcie.pretty")(options "")(descr ""))
+  (lib (name "KiCad-Libraries")(type "KiCad")(uri "${KIPRJMOD}/../../../KiCad-Libraries")(options "")(descr ""))
+)

@@ -4487,7 +4487,7 @@
 			)
 		)
 	)
-	(global_label "UC_PHASE"
+	(global_label "uC_PHASE"
 		(shape output)
 		(at 143.51 119.38 0)
 		(fields_autoplaced yes)
@@ -4499,7 +4499,7 @@
 		)
 		(uuid "72dd732e-94b8-47f6-a40c-9b846f7a648f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 156.1109 119.38 0)
+			(at 155.9294 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6789,7 +6789,7 @@
 				)
 			)
 		)
-		(property "Value" "D_Small"
+		(property "Value" "1N4007"
 			(at 105.41 121.92 0)
 			(effects
 				(font

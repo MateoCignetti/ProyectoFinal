@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage{times}       % Para usar Times New Roman
+\usepackage{comment}     % Para comentarios en el código
 
 % Márgenes %
 \usepackage[left=2.5cm, right=1cm, top=3cm, bottom=2cm, bindingoffset=1cm]{geometry}
@@ -29,7 +30,7 @@
 \usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{circuitikz}
-%\usepackage{caption}
+\usepackage[justification = centering]{caption}
 \graphicspath{{./figures/}}
 
 % Interlineado y sangría %
@@ -55,16 +56,16 @@
 \usepackage{enumitem}
 
 % Paquetes de Bibliografía %
-\usepackage[sorting=none,backend=biber,style=numeric,citestyle=authoryear,urldate=long]{biblatex}
+\usepackage[sorting=none,backend=biber,style=apa,urldate=long]{biblatex}
 \usepackage{csquotes}
 
 \bibliography{referencias}
 
 % Hipervínculos %
-\usepackage[hidelinks]{hyperref}
+\usepackage{hyperref} % Agregar hidelinks para que no figure el recuadro
 
 % Referencias cruzadas %
-\usepackage[capitalise, nameinlink]{cleveref}
+\usepackage[capitalise, nameinlink, spanish]{cleveref}
 
 % Justificado %
 \usepackage[]{ragged2e}
