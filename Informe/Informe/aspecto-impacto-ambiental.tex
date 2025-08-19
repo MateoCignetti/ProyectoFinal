@@ -1,12 +1,21 @@
 \snsection{ASPECTOS DE IMPACTO AMBIENTAL}
 \justifying
 
-Escriba aquí una evaluación de los aspectos ambientales del proyecto, contemplando
-entre otros aspectos:
+Se denomina impacto ambiental a todo cambio que tiene lugar en el medio ambiente o en alguno de sus componentes, ya sea perjudicial o beneficioso, como resultado de una acción, conjunto de acciones o actividad. En este contexto, se considera que existe un impacto ambiental cuando existe una diferencia entre la situación del medio ambiente futuro producto de la realización de un proyecto, y la situación del medio ambiente futuro sin este, \parencite{chaer2020impacto}.
 
-Que el proyecto a presentar cumpla con todos los requerimientos de la legislación
-ambiental y de recursos naturales del país.
+En el presente proyecto, uno de los impactos ambientales negativos de mayor consideración es producto de las impresiones 3D, donde en lugar de utilizar un filamento biodegradable como lo es el PLA (ácido poliláctico), se utiliza el PETG (tereftalato de polietileno glicol), el cual es un filamento que presenta mayor resistencia mecánica, durabilidad y flexibilidad, además soporta mayores temperaturas antes de superar el umbral de deformación térmica. Si bien no es biodegradable como el PLA, el mismo es reciclable al $100\%$, \parencite{pla_petg}.
 
-El criterio ambiental se debe integrar en todas las etapas del ciclo de vida del proyecto. Identificar los impactos ambientales negativos y positivos que estén directa e indirectamente vinculados con el proyecto.
+También se empleó en la elaboración del sistema un policarbonato transparente, utilizado como tapa de cada gabinete individual de los módulos. Este cumple la función de impedir que el usuario acceda con las manos a la PCB, y por otro lado, señalar los puntos de prueba disponibles dentro del módulo en uso. Es de destacar que el material fue cedido por UTN Facultad Regional San Francisco en forma de un retazo sobrante, lo que permitió su reutilización y contribuyó a reducir el impacto ambiental asociado al desecho de plásticos.
 
-Si el tipo de proyecto lo amerita, se deberá incluir el diseño de Programas de Proyección Ambiental (PPAs), con todas las medidas para evitar, mitigar, corregir o compensar los impactos ambientales negativos que estén indirectamente vinculados con el mismo.
+Además, se hizo uso de un transformador para reducir la tensión de línea doméstica, si bien la fabricación no estuvo a cargo del grupo de trabajo, debe considerarse como un impacto ambiental total dentro del proyecto. El proceso de manufactura del transformador implica el consumo de materias primas, como el cobre y acero, además de la energía necesaria para las maquinarias utilizadas en el proceso. No obstante, al tratarse de un componente estándar y de larga vida útil, el impacto ambiental relacionado al mismo puede verse atenuado en el tiempo y reducido en relación al ciclo de vida del dispositivo completo.
+
+El impacto ambiental respecto a la elaboración de las PCB se limita a la fabricación y transporte de los componentes desde la fábrica al proveedor, y desde el mismo a la ciudad de destino. Considerando el consumo del dispositivo, se tiene la fuente de alimentación de corriente continua y el transformador. La primera tiene un consumo máximo dependiendo de los módulos, siendo que los mismos se desarrollaron para \SI{12}{\volt} y \SI{3}{\ampere} máximos, dando así un consumo máximo de \SI{36}{\watt}. El transformador utilizado es de \SI{50}{\voltampere} con una potencia activa máxima de \SI{48}{\watt}. Para estimar el impacto energético asociado al uso del dispositivo, se considera la potencia máxima con un $25\%$ adicional para abarcar el rendimiento de las etapas de potencia y cualquier pérdida no considerada.
+\begin{equation} \label{eq:IA:potencia-total}
+    P_{total} = (\SI{36}{\watt} + \SI{48}{\watt}) 1,25 = \SI{105}{\watt}
+\end{equation}
+
+Se trata de un consumo reducido, incluso menor que el de una computadora de escritorio en funcionamiento, lo que se traduce en una menor demanda energética y, en consecuencia, en un impacto ambiental reducido.
+
+\begin{comment}
+    Habría que hablar del transformador? o sea del impacto que produce? o como es algo que no nos involucra la elaboración no se pone nada.
+\end{comment}
