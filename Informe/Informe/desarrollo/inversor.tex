@@ -17,47 +17,49 @@ El uso más común del temporizador 555 como oscilador es en modo astable, conec
 
 \begin{figure}[H]
     \centering
-    \begin{tikzpicture}
-        % Paths, nodes and wires:
-        \draw (2, 7) to[american resistor, l={$R1$}, label distance=0.02cm] (5, 7);
-        \draw (13.25, 4) to[capacitor, l={$C1$}, label distance=0.02cm] (13.25, 1);
-        \draw (15.25, 4) to[capacitor, l={$C2$}, label distance=0.02cm] (15.25, 1);
-        \draw (5, 6) to[variable american resistor, l={$R2$}, label distance=0.02cm, mirror] (8, 6);
-        \draw node[ground] at (9, 1) {};
-        \draw (1, 1) -- (1, 8) |- (1.86, 8);
-        \draw (5, 7) -- (9.25, 7);
-        \draw (4.86, 5) |- (2, 5) -| (2, 7);
-        \draw (13.25, 4) -| (13.25, 5) -- (12.25, 5);
-        \draw (15.25, 4) -| (15.25, 6) -- (12.25, 6);
-        \draw (13.25, 1) -- (1, 1);
-        \draw (15.25, 1) -- (13.25, 1);
-        \draw (8, 6) -- (9.25, 6);
-        \draw (5, 6) -| (5, 7);
-        \draw (8.75, 6) -| (8.75, 5.5) -- (8.5, 5.5);
-        \draw node[jump crossing] at (2, 8) {};
-        \draw (2, 7) -| (2, 7.86);
-        \draw (2, 8.14) -- (2, 9.5) -| (14, 8.75) -| (14, 8) -- (12.25, 8);
-        \draw node[jump crossing] at (13.25, 3.5) {};
-        \draw (13.39, 3.5) -- (15.25, 3.5);
-        \draw (13.11, 3.5) |- (5, 3.5) -- (5, 4.86);
-        \draw (2.14, 8) -- (9.25, 8);
-        \draw node[jump crossing] at (5, 5) {};
-        \draw (5.14, 5) -- (9.25, 5);
-        \draw (5, 5.14) -| (5, 6);
-        \draw (17, 7) to[american voltage source, l={$Vcc$}, label distance=0.02cm] (17, 5);
-        \draw (17, 7) |- (14, 9.5);
-        \draw (17, 5) |- (15.25, 1);
-        \node[shape=rectangle, draw, line width=1pt, inner sep=0, minimum width=2.965cm, minimum height=4.965cm](Rect1) at (10.75, 6.5){} node[anchor=center] at (Rect1.center){$IC555$};
-        \node[shape=rectangle, inner sep=0, minimum width=0.465cm, minimum height=0.465cm](Rect2) at (9.5, 8){} node[anchor=center] at (Rect2.center){$1$};
-        \node[shape=rectangle, inner sep=0, minimum width=0.465cm, minimum height=0.465cm](Rect3) at (9.5, 7){} node[anchor=center] at (Rect3.center){$2$};
-        \node[shape=rectangle, inner sep=0, minimum width=0.465cm, minimum height=0.465cm](Rect4) at (9.5, 6){} node[anchor=center] at (Rect4.center){$3$};
-        \node[shape=rectangle, inner sep=0, minimum width=0.465cm, minimum height=0.465cm](Rect5) at (9.5, 5){} node[anchor=center] at (Rect5.center){$4$};
-        \node[shape=rectangle, inner sep=0, minimum width=0.465cm, minimum height=0.465cm](Rect6) at (12, 8){} node[anchor=center] at (Rect6.center){$8$};
-        \node[shape=rectangle, inner sep=0, minimum width=0.436cm, minimum height=0.465cm](Rect7) at (11.985, 7){} node[anchor=center] at (Rect7.center){$7$};
-        \node[shape=rectangle, inner sep=0, minimum width=0.465cm, minimum height=0.465cm](Rect8) at (12, 6){} node[anchor=center] at (Rect8.center){$6$};
-        \node[shape=rectangle, inner sep=0, minimum width=0.465cm, minimum height=0.465cm](Rect9) at (12, 5){} node[anchor=center] at (Rect9.center){$5$};
-        \path[draw, line width=1pt] (7.5, 5.75) -- (7.25, 5.5) -- (7.5, 5.25) -- (8.5, 5.25) -- (8.5, 5.75) -- (7.5, 5.75) -- cycle  node[anchor=center] at (7.875, 5.5){$555$};
-    \end{tikzpicture}
+    \resizebox{\textwidth}{!}{
+        \begin{tikzpicture}
+            % Paths, nodes and wires:
+            \draw (2, 7) to[american resistor, l={$R1$}, label distance=0.02cm] (5, 7);
+            \draw (13.25, 4) to[capacitor, l={$C1$}, label distance=0.02cm] (13.25, 1);
+            \draw (15.25, 4) to[capacitor, l={$C2$}, label distance=0.02cm] (15.25, 1);
+            \draw (5, 6) to[variable american resistor, l={$R2$}, label distance=0.02cm, mirror] (8, 6);
+            \draw node[ground] at (9, 1) {};
+            \draw (1, 1) -- (1, 8) |- (1.86, 8);
+            \draw (5, 7) -- (9.25, 7);
+            \draw (4.86, 5) |- (2, 5) -| (2, 7);
+            \draw (13.25, 4) -| (13.25, 5) -- (12.25, 5);
+            \draw (15.25, 4) -| (15.25, 6) -- (12.25, 6);
+            \draw (13.25, 1) -- (1, 1);
+            \draw (15.25, 1) -- (13.25, 1);
+            \draw (8, 6) -- (9.25, 6);
+            \draw (5, 6) -| (5, 7);
+            \draw (8.75, 6) -| (8.75, 5.5) -- (8.5, 5.5);
+            \draw node[jump crossing] at (2, 8) {};
+            \draw (2, 7) -| (2, 7.86);
+            \draw (2, 8.14) -- (2, 9.5) -| (14, 8.75) -| (14, 8) -- (12.25, 8);
+            \draw node[jump crossing] at (13.25, 3.5) {};
+            \draw (13.39, 3.5) -- (15.25, 3.5);
+            \draw (13.11, 3.5) |- (5, 3.5) -- (5, 4.86);
+            \draw (2.14, 8) -- (9.25, 8);
+            \draw node[jump crossing] at (5, 5) {};
+            \draw (5.14, 5) -- (9.25, 5);
+            \draw (5, 5.14) -| (5, 6);
+            \draw (17, 7) to[american voltage source, l={$Vcc$}, label distance=0.02cm] (17, 5);
+            \draw (17, 7) |- (14, 9.5);
+            \draw (17, 5) |- (15.25, 1);
+            \node[shape=rectangle, draw, line width=1pt, inner sep=0, minimum width=2.965cm, minimum height=4.965cm](Rect1) at (10.75, 6.5){} node[anchor=center] at (Rect1.center){$IC555$};
+            \node[shape=rectangle, inner sep=0, minimum width=0.465cm, minimum height=0.465cm](Rect2) at (9.5, 8){} node[anchor=center] at (Rect2.center){$1$};
+            \node[shape=rectangle, inner sep=0, minimum width=0.465cm, minimum height=0.465cm](Rect3) at (9.5, 7){} node[anchor=center] at (Rect3.center){$2$};
+            \node[shape=rectangle, inner sep=0, minimum width=0.465cm, minimum height=0.465cm](Rect4) at (9.5, 6){} node[anchor=center] at (Rect4.center){$3$};
+            \node[shape=rectangle, inner sep=0, minimum width=0.465cm, minimum height=0.465cm](Rect5) at (9.5, 5){} node[anchor=center] at (Rect5.center){$4$};
+            \node[shape=rectangle, inner sep=0, minimum width=0.465cm, minimum height=0.465cm](Rect6) at (12, 8){} node[anchor=center] at (Rect6.center){$8$};
+            \node[shape=rectangle, inner sep=0, minimum width=0.436cm, minimum height=0.465cm](Rect7) at (11.985, 7){} node[anchor=center] at (Rect7.center){$7$};
+            \node[shape=rectangle, inner sep=0, minimum width=0.465cm, minimum height=0.465cm](Rect8) at (12, 6){} node[anchor=center] at (Rect8.center){$6$};
+            \node[shape=rectangle, inner sep=0, minimum width=0.465cm, minimum height=0.465cm](Rect9) at (12, 5){} node[anchor=center] at (Rect9.center){$5$};
+            \path[draw, line width=1pt] (7.5, 5.75) -- (7.25, 5.5) -- (7.5, 5.25) -- (8.5, 5.25) -- (8.5, 5.75) -- (7.5, 5.75) -- cycle  node[anchor=center] at (7.875, 5.5){$555$};
+        \end{tikzpicture}
+    }
     \caption{Circuito oscilador astable.}
     \label{fig:inversor:IC555}
 \end{figure}
