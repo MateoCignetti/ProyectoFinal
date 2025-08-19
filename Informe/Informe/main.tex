@@ -4,12 +4,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage{times}       % Para usar Times New Roman
+\usepackage{comment}     % Para comentarios en el código
 
 % Márgenes %
 \usepackage[left=2.5cm, right=1cm, top=3cm, bottom=2cm, bindingoffset=1cm]{geometry}
-
-% Para begin y end comment %
-\usepackage{comment}
 
 % Paquetes de matemática, símbolos y gráficos %
 \usepackage{amsmath}
@@ -67,8 +65,7 @@
 \bibliography{referencias}
 
 % Hipervínculos %
-%\usepackage[hidelinks]{hyperref}
-\usepackage{hyperref}
+\usepackage{hyperref} % Agregar hidelinks para que no figure el recuadro
 
 % Referencias cruzadas %
 \usepackage[capitalise, nameinlink, spanish]{cleveref}
@@ -159,7 +156,7 @@
     \begin{minipage}{0.96\textwidth}
     \phantomsection
     \addcontentsline{toc}{section}{REFERENCIAS}
-    %\nocite{*} % Despues hay que eliminar esta linea
+    \nocite{*} % Despues hay que eliminar esta linea
     \printbibliography
     \end{minipage}
 
