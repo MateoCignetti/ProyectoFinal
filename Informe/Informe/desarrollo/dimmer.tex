@@ -101,8 +101,72 @@ Este tipo de control de fase se recomienda solamente para circuitos con carga re
 \subsection{Cálculos e implmentación}
 
 \subsubsection{Rama R-C de control analógico}
-\textcolor{red}{CÁLCULOS}
+\noindent\textit{Criterios de diseño}
+\begin{itemize}[noitemsep]
+    \item $C1 = \SI{330}{\nano\farad}$
+    \item $\hat{V}_{DIAC} = \SI{32}{\volt}$, \parencite{DB3}
+    \item $f = \SI{50}{\hertz}$
+\end{itemize}
 
+\noindent\textit{Desarrollo de fórmulas}
+
+Las siguientes fórmulas se desarrollan teniendo en cuenta el circuito de la \cref{fig:dimmer:control_fase_simple}. El objetivo es obtener el valor máximo de la resistencia variable $R_T$ para el cual se obtiene una tensión pico en el capacitor $C_T$ equivalente a la tensión de disparo del DIAC $D$.
+
+\begin{equation} \label{eq:dimmer:corriente_rms}
+V_{\text{DIAC}} = I_{\text{RMS}} X_{C_T}
+\end{equation}
+
+\begin{equation} \label{eq:dimmer:vdiac_ix}
+I_{\text{RMS}} = \frac{V_{CA}}{|Z|} = \frac{V_{CA}}{\sqrt{R^2 + {X_{C_T}}^2}}
+\end{equation}
+
+Reemplazando la \cref{eq:dimmer:vdiac_ix} en la \cref{eq:dimmer:corriente_rms}:
+
+\begin{equation}
+V_{\text{DIAC}} = \frac{V_{CA}}{\sqrt{R^2 + {X_{C_T}}^2}} X_{C_T}
+\end{equation}
+
+Teniendo en cuenta que:
+
+\begin{equation}
+\hat{V}_{\text{DIAC}} = \frac{V_{\text{DIAC}}}{\sqrt{2}}
+\end{equation}
+
+Se obtiene:
+
+\begin{equation}
+\hat{V}_{\text{DIAC}} = \frac{\sqrt{2} V_{CA} X_{C_T}}{\sqrt{R^2 + {X_{C_T}}^2}}
+\end{equation}
+
+La cual se desarrolla hasta obtener la siguiente ecuación:
+
+\begin{equation}
+R = \frac{1}{2 \pi f C} \sqrt{ \frac{2 {V_{CA}}^2}{\hat{V}_{\text{DIAC}}^2} - 1}
+\end{equation}
+
+Reemplazando valores para obtener el valor de la resistencia:
+
+\begin{equation}
+R = \frac{1}{2 \pi \cdot \SI{50}{\hertz} \cdot \SI{330}{\nano\farad}} \cdot \sqrt{\frac{2 \cdot (\SI{48}{\volt})^2}{(\SI{32}{\volt})^2} - 1} = \SI{18.04}{\kilo\ohm}
+\end{equation}
+
+Se establece una resistencia mínima $R4 = \SI{470}{\ohm}$ y se decide utilizar un potenciómetro $R3 = \SI{100}{\kilo\ohm}$. Para obtener el rango desde la resistencia mínima a la calculada con el potenciómetro, se decide agregar una resistencia en paralelo $R1$ con el mismo, la cual se calcula a continuación:
+
+\begin{equation}
+R1 \parallel R3 = R - R4
+\end{equation}
+
+Reemplazando valores:
+
+\begin{equation}
+\left( (R1)^{-1} + (\SI{100}{\kilo\ohm})^{-1} \right)^{-1} = \SI{18.04}{\kilo\ohm} - \SI{470}{\ohm}
+\end{equation}
+
+\begin{equation}
+R1 = \SI{21.31}{\kilo\ohm} \approx \SI{22}{\kilo\ohm}
+\end{equation}
+
+Debido a la tolerancia de los componentes y al hecho que estos cálculos son solamente una estimación (ya que el capacitor no se comporta exactamente igual que una simple rama R-C), este valor representa un punto de inicio en la práctica. Finalmente, se obtuvieron mejores resultados con una resistencia de \SI{47}{\kilo\ohm}.
 
 \subsubsection{Circuito detector de cruce por cero (ZCD)}
 
