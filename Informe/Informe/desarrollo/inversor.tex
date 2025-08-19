@@ -1,19 +1,26 @@
 \snsubsection{INVERSOR}
 
-La función de un inversor es cambiar un voltaje de entrada de cd a un voltaje simétrico de salida de ca de magnitud y frecuencia
-deseadas. El voltaje de salida podría ser fijo o variable a una frecuencia fija o variable. Se puede obtener un voltaje de salida variable si se varía el voltaje de cd de entrada y se mantiene constante la ganancia del inversor. Por otra parte, si el voltaje de entrada de cd es fijo y no es controlable, se puede obtener un voltaje de salida variable si se hace que la ganancia del inversor varíe, lo que normalmente se consigue mediante el control de modulación por ancho de pulso (PWM) dentro del inversor. La ganancia del inversor se puede definir como la relación del voltaje de salida de ca al voltaje de entrada de cd.
+% Mateo: cambié dc por CC y ca por CA
+La función de un inversor es cambiar un voltaje de entrada de corriente continua (CC) a un voltaje simétrico de salida de corriente alterna (CA) de magnitud y frecuencia
+deseadas. El voltaje de salida podría ser fijo o variable a una frecuencia también fija o variable. Se puede obtener un voltaje de salida variable si se varía el voltaje de CC de entrada y se mantiene constante la ganancia del inversor. Por otra parte, si el voltaje de entrada de CC es fijo y no es controlable, se puede obtener un voltaje de salida variable si se hace que la ganancia del inversor varíe, lo que normalmente se consigue mediante el control de modulación por ancho de pulso (PWM) dentro del inversor. La ganancia del inversor se puede definir como la relación del voltaje de salida de CA al voltaje de entrada de CC.
 
+% Mateo: formas de onda de los inversores prácticos?? Pondría que los circuitos más simples de inversores generan una onda de salida cuadrada y que eso ya basta para algunas aplicaciones. Aunque esto venga de la referencia, me suena muy raro eso de prácticos.
 Las formas de onda del voltaje de salida de los inversores ideales debería ser senoidal. Pero las formas de onda de los inversores prácticos no son senoidales y contienen ciertos armónicos. 
 
+% Mateo: Dice "para aplicaciones de baja y mediana frecuencia", comparado a "aplicaciones de alta potencia". Creo que está mal, sería baja y mediana potencia. 
 Para aplicaciones de baja y mediana frecuencia, se pueden aceptar voltajes de onda cuadrada o de onda cuasi cuadrada; para aplicaciones de alta potencia, se requieren formas de onda senoidales poco distorsionadas. \textcolor{red}{Muhammad H. Rashid - Electrónica de Potencia 4 Ed. (2015)}
 
 \snsubsubsection{Descripción de funcionamiento de un oscilador 555}
 
-El circuito integrado 555 es un dispositivo de temporización de precisión muy económico, popular y útil, que puede funcionar como un temporizador simple para generar pulsos únicos o retardos largos, o como un oscilador que produce una serie de formas de onda estabilizadas con ciclos de trabajo variables del 50 al 100\%.
+%Mateo: Agregué el \% en el 50\%
+El circuito integrado 555 es un dispositivo de temporización de precisión muy económico, popular y útil, que puede funcionar como un temporizador simple para generar pulsos únicos o retardos largos, o como un oscilador que produce una serie de formas de onda estabilizadas con ciclos de trabajo variables del 50\% al 100\%.
 
+% Chip no me gusta mucho, se podría poner CI (de circuito integrado). Para eso habría que aclararlo en el párrafo an terior (ej: El Circuito Integrado (CI) 555...)
 El chip temporizador 555 es un dispositivo de 8 pines extremadamente robusto y estable, que puede operar con gran precisión en modo monoestable, biestable o astable. Esto le permite ser utilizado en una amplia variedad de aplicaciones, como temporizadores de un solo disparo o con retardo, generación de pulsos, fuentes de alimentación y convertidores, entre otros. En realidad, puede utilizarse en cualquier circuito que requiera algún tipo de control de tiempo, ya que sus aplicaciones son prácticamente ilimitadas.
 
 El uso más común del temporizador 555 como oscilador es en modo astable, conectando dos resistencias y un capacitor a sus terminales para generar un tren de pulsos con un período de tiempo determinado por la constante de tiempo de la red RC, como se puede ver en la \cref{fig:inversor:IC555}.
+
+% Mateo: hay q agregarle a todos los circuitos los puntos en todos los nodos.
 
 \begin{figure}[H]
     \centering
@@ -68,7 +75,8 @@ En modo astable genera un circuito oscilador muy estable, capaz de producir form
 
 El oscilador 555 genera formas de onda cuadradas estabilizadas, ya sea con una frecuencia fija de hasta 500 kHz o con ciclos de trabajo variables entre el 50\% y el 100\%.
 
-En configuración astable requiere que el IC se dispare continuamente tras cada ciclo de temporización. Este reincio se logra conectando juntos la entrada de disparo (pin 2) y la entrada de umbral (pin 6), permitiendo que el dispositivo funcione como un oscilador astable. Así, un oscilador 555 no tiene estados estables, ya que cambia continuamente de un estado al otro. 
+% Mateo: Cambié IC por CI, con más razon hay q aplicar lo que dije anteriormente en el comentario de la línea 18
+En configuración astable requiere que el CI se dispare continuamente tras cada ciclo de temporización. Este reincio se logra conectando juntos la entrada de disparo (pin 2) y la entrada de umbral (pin 6), permitiendo que el dispositivo funcione como un oscilador astable. Así, un oscilador 555 no tiene estados estables, ya que cambia continuamente de un estado al otro. 
 
 Para que el oscilador produzca un ciclo de trabajo del 50\%, el capacitor de temporización, conectado al pin 6, se tiene que cargar y descargar a través de la resistencia R2 (variable).
 
