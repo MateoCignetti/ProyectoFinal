@@ -103,7 +103,7 @@ Este tipo de control de fase se recomienda solamente para circuitos con carga re
 \subsubsection{Rama R-C de control analógico}
 \noindent\textit{Criterios de diseño}
 \begin{itemize}[noitemsep]
-    \item $C1 = \SI{330}{\nano\farad}$
+    \item $C_T = \SI{330}{\nano\farad}$
     \item $\hat{V}_{DIAC} = \SI{32}{\volt}$, \parencite{DB3}
     \item $f = \SI{50}{\hertz}$
 \end{itemize}
@@ -169,6 +169,7 @@ R1 = \SI{21.31}{\kilo\ohm} \approx \SI{22}{\kilo\ohm}
 Debido a la tolerancia de los componentes y al hecho que estos cálculos son solamente una estimación (ya que el capacitor no se comporta exactamente igual que una simple rama R-C), este valor representa un punto de inicio en la práctica. Finalmente, se obtuvieron mejores resultados con una resistencia de \SI{47}{\kilo\ohm}.
 
 \subsubsection{Circuito detector de cruce por cero (ZCD)}
+\label{sec:dimmer:zcd}
 
 El control de fase explicado anteriormente puede ser reemplazado por un control digital, prescindiendo de la rama R-C y del DIAC del circuto de la \cref{fig:dimmer:control_fase_simple}. El control digital se compone de dos circuitos distintos: el Zero Crossing Detector (detector de cruce por cero) y el driver de TRIAC. 
 
@@ -196,9 +197,30 @@ Este simple circuito convierte la señal de entrada de CA sinusoidal en una señ
 
 En el semiciclo positivo de la señal de entrada de CA, se enciende el led interno del optoacoplador, que polariza el transistor de salida, llevando la tensión $uC_{phase}$ de \SI{3,3}{\volt} a \SI{0}{\volt}. En el semiciclo negativo, la corriente fluye por el diodo D2, manteniendo la tensión reversa del led interno fija y menor a la máxima permitida (\SI{6}{\volt} para el EL817), \parencite{EL817}
 
-\textit{Cálculos}
+\noindent\textit{Criterios de diseño}
 
-\textcolor{red}{CÁLCULOS}
+\begin{itemize}
+    \item $I_{F(max)} = \SI{60}{\milli\ampere}$, \parencite{EL817} 
+    \item $V_{F(typ)} = \SI{1.2}{\volt}$, \parencite{EL817}
+\end{itemize}
+
+\noindent\textit{Desarrollo de fórmulas}
+
+Para poder utilizar resistencias de $\SI{0.25}{\watt}$, se calcula primero la resistencia mínima a colocar:
+
+\begin{equation}
+R_{min} = \frac{{V_{CA}}^2}{P_{max}} = \frac{{\SI{48}{\volt}}^2}{\SI{0.25}{\watt}} = \SI{9.2}{\kilo\ohm} \implies R6 = \SI{10}{\kilo\ohm}
+\end{equation}
+
+Se verifica entonces que el valor de resistencia seleccionado cumpla con los criterios de diseño:
+
+\begin{equation}
+I_F = \frac{V_{CA}}{R6} = \frac{\SI{48}{\volt}}{\SI{10}{\kilo\ohm}} = \SI{4.8}{\milli\ampere} < \SI{60}{\milli\ampere}
+\end{equation}
+
+La resistencia $R8$ es simplemente de pull-up para la señal que va al microcontrolador, por lo que se establece arbitrariamente $R8 = \SI{10}{\kilo\ohm}$. Puede ver de reducirse a valores menores hasta $\SI{1}{\kilo\ohm}$ en caso de presentar problemas.
+
+Se debe agregar un diodo $D2$ en antiparalelo con la entrada del optoacoplador debido a que el mismo tiene una tensión de reversa de \SI{6}{V}, lo cual es sustancialmente baja. Se optó por utilizar el 1N4007 porque es uno de los diodos más comunes encontrados en diversos dispositivos electrónicos, pero cualquier diodo que tenga la capacidad de conmutar a \SI{50}{\hertz} y soporte una tensión reversa de $\SI{48}{\volt} \sqrt{2} \approx \SI{68}{\voltpeak}$ puede utilizarse.
 
 \snsubsection{Driver de TRIAC}
 
@@ -215,7 +237,32 @@ Como el microcontrolador se encuentra aislado galvánicamente del circuito de co
 
 El único fin de este circuito es de poder disparar la gate del TRIAC con la señal del microcontrolador. Solamente es necesario calcular resistencias limitadoras de corriente para el uso correcto del optoacoplador:
 
-\textcolor{red}{CÁLCULOS}
+\noindent\textit{Criterios de diseño - Emisor}
+
+\begin{itemize}
+    \item $I_{F(max)} = \SI{60}{\milli\ampere} \implies I_F = \SI{30}{\milli\ampere}$, \parencite{MOC3021}
+    \item $V_{F(typ)} = \SI{1.15}{\volt}$, \parencite{MOC3021}
+\end{itemize}
+
+\noindent\textit{Desarrollo de fórmulas - Emisor}
+
+\begin{equation}
+R12 = \frac{V_{UCdout} - V_{F(typ)}}{I_F} = \frac{\SI{3.3}{\volt} - \SI{1.15}{\volt}}{\SI{30}{\milli\ampere}} = \SI{71.6}{\ohm} \approx \SI{82}{\ohm}
+\end{equation}
+
+\noindent\textit{Criterios de diseño - Detector}
+
+\begin{itemize}
+    \item $I_{TSM(max)} = \SI{1}{\ampere} \implies I_{TSM} = \SI{0.8}{\ampere}$ (corriente pico repetitiva máxima), \parencite{MOC3021}
+\end{itemize}
+
+\noindent\textit{Desarrollo de fórmulas - Detector}
+
+\begin{equation}
+R13 = \frac{\hat{V}_{ca}}{I_{TSM}} = \frac{V_{ca} \cdot \sqrt{2}}{I_{TSM}} = \frac{\SI{48}{\volt} \cdot \sqrt{2}}{\SI{0.8}{\ampere}} = \SI{84.85}{\ohm} \approx \SI{82}{\ohm}
+\end{equation}
+
+No es necesario tener en cuenta la disipación de potencia de la resistencia $R13$ ya que, una vez disparada la gate, la corriente disminuye sustancialmente.
 
 \snsubsection{Driver de relé}
 
@@ -232,7 +279,35 @@ Para poder intercambiar entre ambos modos de control, el analógico y el digital
 
 En la \cref{fig:dimmer:rele} se observa el circuito que permite conmutar el relé para cambiar entre ambos modos de control (analógico y digital). Cuando $UC_{Relay} = 0 V$, el circuito utilizado es el de control analógico, mientras que cuando $UC_{Relay} = 3,3 V$, se activa el control digital.
 
-\textcolor{red}{CÁLCULOS}
+\noindent\textit{Criterios de diseño}
+
+\begin{itemize}
+    \item $I_L = I_C = \SI{72}{\milli\ampere}$, \parencite{SRD-RELAY}
+    \item $\beta_{min} = 200\ ; \beta_{max} = 450$, \parencite{BC548}
+    \item $V_{BE} = \SI{0.72}{\volt}$, \parencite{BC548}
+\end{itemize}
+
+\noindent\textit{Desarrollo de fórmulas}
+
+Se calcula un beta promedio para el transistor:
+
+\begin{equation}
+\beta_{avg} = \frac{\beta_{min} + \beta_{max}}{2} = \frac{200 + 450}{2} = 325
+\end{equation}
+
+Aplicando ley de las tensiones de Kirchoff:
+
+\begin{equation}
+V_{UC} = \frac{I_C}{\beta_{avg}} \cdot R14 + V_{BE}
+\end{equation}
+
+Despejando $R14$:
+
+\begin{equation}
+R14 = \frac{(V_{UC} - V_{BE}) \cdot \beta_{avg}}{I_C} = \frac{(\SI{3.3}{\volt} - \SI{0.72}{\volt}) \cdot 325}{\SI{72}{\milli\ampere}} = \SI{11.65}{\kilo\ohm} \approx \SI{12}{\kilo\ohm}
+\end{equation}
+
+Como en el \cref{sec:dimmer:zcd}, se elige el 1N4007 como diodo flyback para la bobina del relé.
 
 \textcolor{red}{FALTA REVISAR LA PRÓXIMA SECCIÓN}
 
