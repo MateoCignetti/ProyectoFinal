@@ -1,4 +1,4 @@
-\section{Módulo recortador de onda}
+\section{Diseño de circuito - módulo recortador de onda}
 
 Uno de los métodos más simples para controlar la potencia entregada a una carga de corriente alterna es mediante el uso de un rectortador. Este método se basa en la utilización de un tiristor para recortar la onda de tensión aplicada a la carga, permitiendo así regular la potencia entregada. Al recortar la onda, se reduce la tensión RMS aplicada a la carga, lo que a su vez produce una reducción de potencia entregada.
 
@@ -41,7 +41,6 @@ Como un TRIAC es un dispositivo bidireccional, sus terminales no se pueden desig
 En la electrónica de potencia, el TRIAC puede ser utilizado en diversas aplicaciones: Interruptor de CA, conmutador de punto zero, control de fase, entre otras. La aplicación del TRIAC utilizada en este módulo es la de control de fase, para subsecuentemente regular la potencia entregada a la carga.
 
 \subsubsection{Control de fase con tiristores}
-\label{sec:control_fase_tiristores}
 
 El control de fase es un método que utiliza el triac para aplicar la alimentación de CA a la carga durante una fracción controlada de cada ciclo. En este modo de funcionamiento, el triac se mantiene en estado de apagado o abierto durante una parte de cada ciclo positivo y negativo, y luego se activa en un momento del semiciclo determinado por el circuito de control. En estado de encendido, la corriente del circuito está limitada únicamente por la carga; es decir, toda la tensión de línea (menos la caída de tensión directa del triac) se aplica a la carga, \parencite{ON-ThyristorHandbook}.
 
@@ -100,7 +99,9 @@ Este tipo de control de fase se recomienda solamente para circuitos con carga re
 
 \subsection{Cálculos e implmentación}
 
-\subsubsection{Rama R-C de control analógico}
+\subsubsection{Rama R-C de control analógico} 
+\label{sec:dimmer:rama-rc}
+
 \noindent\textit{Criterios de diseño}
 \begin{itemize}[noitemsep]
     \item $C_T = \SI{330}{\nano\farad}$
@@ -117,13 +118,13 @@ V_{\text{DIAC}} = I_{\text{RMS}} X_{C_T}
 \end{equation}
 
 \begin{equation} \label{eq:dimmer:vdiac_ix}
-I_{\text{RMS}} = \frac{V_{CA}}{|Z|} = \frac{V_{CA}}{\sqrt{R^2 + {X_{C_T}}^2}}
+I_{\text{RMS}} = \frac{V_{CA}}{|Z|} = \frac{V_{CA}}{\sqrt{{R_T}^2 + {X_{C_T}}^2}}
 \end{equation}
 
 Reemplazando la \cref{eq:dimmer:vdiac_ix} en la \cref{eq:dimmer:corriente_rms}:
 
 \begin{equation}
-V_{\text{DIAC}} = \frac{V_{CA}}{\sqrt{R^2 + {X_{C_T}}^2}} X_{C_T}
+V_{\text{DIAC}} = \frac{V_{CA}}{\sqrt{{R_T}^2 + {X_{C_T}}^2}} X_{C_T}
 \end{equation}
 
 Teniendo en cuenta que:
@@ -135,19 +136,19 @@ Teniendo en cuenta que:
 Se obtiene:
 
 \begin{equation}
-\hat{V}_{\text{DIAC}} = \frac{\sqrt{2} V_{CA} X_{C_T}}{\sqrt{R^2 + {X_{C_T}}^2}}
+\hat{V}_{\text{DIAC}} = \frac{\sqrt{2} V_{CA} X_{C_T}}{\sqrt{{R_T}^2 + {X_{C_T}}^2}}
 \end{equation}
 
 La cual se desarrolla hasta obtener la siguiente ecuación:
 
 \begin{equation}
-R = \frac{1}{2 \pi f C} \sqrt{ \frac{2 {V_{CA}}^2}{\hat{V}_{\text{DIAC}}^2} - 1}
+{R_T} = \frac{1}{2 \pi f C} \sqrt{ \frac{2 {V_{CA}}^2}{\hat{V}_{\text{DIAC}}^2} - 1}
 \end{equation}
 
 Reemplazando valores para obtener el valor de la resistencia:
 
 \begin{equation}
-R = \frac{1}{2 \pi \cdot \SI{50}{\hertz} \cdot \SI{330}{\nano\farad}} \cdot \sqrt{\frac{2 \cdot (\SI{48}{\volt})^2}{(\SI{32}{\volt})^2} - 1} = \SI{18.04}{\kilo\ohm}
+{R_T} = \frac{1}{2 \pi \cdot \SI{50}{\hertz} \cdot \SI{330}{\nano\farad}} \cdot \sqrt{\frac{2 \cdot (\SI{48}{\volt})^2}{(\SI{32}{\volt})^2} - 1} = \SI{18.04}{\kilo\ohm}
 \end{equation}
 
 Se establece una resistencia mínima $R4 = \SI{470}{\ohm}$ y se decide utilizar un potenciómetro $R3 = \SI{100}{\kilo\ohm}$. Para obtener el rango desde la resistencia mínima a la calculada con el potenciómetro, se decide agregar una resistencia en paralelo $R1$ con el mismo, la cual se calcula a continuación:
@@ -247,7 +248,7 @@ El único fin de este circuito es de poder disparar la gate del TRIAC con la se�
 \noindent\textit{Desarrollo de fórmulas - Emisor}
 
 \begin{equation}
-R12 = \frac{V_{UCdout} - V_{F(typ)}}{I_F} = \frac{\SI{3.3}{\volt} - \SI{1.15}{\volt}}{\SI{30}{\milli\ampere}} = \SI{71.6}{\ohm} \approx \SI{82}{\ohm}
+R5 = \frac{V_{UCdout} - V_{F(typ)}}{I_F} = \frac{\SI{3.3}{\volt} - \SI{1.15}{\volt}}{\SI{30}{\milli\ampere}} = \SI{71.6}{\ohm} \approx \SI{82}{\ohm}
 \end{equation}
 
 \noindent\textit{Criterios de diseño - Detector}
@@ -259,10 +260,10 @@ R12 = \frac{V_{UCdout} - V_{F(typ)}}{I_F} = \frac{\SI{3.3}{\volt} - \SI{1.15}{\v
 \noindent\textit{Desarrollo de fórmulas - Detector}
 
 \begin{equation}
-R13 = \frac{\hat{V}_{ca}}{I_{TSM}} = \frac{V_{ca} \cdot \sqrt{2}}{I_{TSM}} = \frac{\SI{48}{\volt} \cdot \sqrt{2}}{\SI{0.8}{\ampere}} = \SI{84.85}{\ohm} \approx \SI{82}{\ohm}
+R7 = \frac{\hat{V}_{ca}}{I_{TSM}} = \frac{V_{ca} \cdot \sqrt{2}}{I_{TSM}} = \frac{\SI{48}{\volt} \cdot \sqrt{2}}{\SI{0.8}{\ampere}} = \SI{84.85}{\ohm} \approx \SI{82}{\ohm}
 \end{equation}
 
-No es necesario tener en cuenta la disipación de potencia de la resistencia $R13$ ya que, una vez disparada la gate, la corriente disminuye sustancialmente.
+No es necesario tener en cuenta la disipación de potencia de la resistencia $R7$ ya que, una vez disparada la gate, la corriente disminuye sustancialmente.
 
 \snsubsection{Driver de relé}
 
@@ -298,35 +299,87 @@ Se calcula un beta promedio para el transistor:
 Aplicando ley de las tensiones de Kirchoff:
 
 \begin{equation}
-V_{UC} = \frac{I_C}{\beta_{avg}} \cdot R14 + V_{BE}
+V_{UC} = \frac{I_C}{\beta_{avg}} \cdot R2 + V_{BE}
 \end{equation}
 
-Despejando $R14$:
+Despejando $R2$:
 
 \begin{equation}
-R14 = \frac{(V_{UC} - V_{BE}) \cdot \beta_{avg}}{I_C} = \frac{(\SI{3.3}{\volt} - \SI{0.72}{\volt}) \cdot 325}{\SI{72}{\milli\ampere}} = \SI{11.65}{\kilo\ohm} \approx \SI{12}{\kilo\ohm}
+R2 = \frac{(V_{UC} - V_{BE}) \cdot \beta_{avg}}{I_C} = \frac{(\SI{3.3}{\volt} - \SI{0.72}{\volt}) \cdot 325}{\SI{72}{\milli\ampere}} = \SI{11.65}{\kilo\ohm} \approx \SI{12}{\kilo\ohm}
 \end{equation}
 
 Como en el \cref{sec:dimmer:zcd}, se elige el 1N4007 como diodo flyback para la bobina del relé.
 
-\textcolor{red}{FALTA REVISAR LA PRÓXIMA SECCIÓN}
+\subsubsection{Red Snubber}
 
-\subsection{Red Snubber}
-
-Es imperativo implementar algún método para restringir la tasa de aumento de la tensión reaplicada del TRIAC a un valor que permita la desactivación del TRIAC en condiciones de carga inductiva. 
+Es imperativo implementar algún método para restringir la tasa de aumento de la tensión reaplicada del TRIAC a un valor que permita la desactivación del TRIAC en condiciones de carga inductiva, \parencite{ON-ThyristorHandbook}.
 
 Un método comúnmente aceptado para mantener la $dv/dt$ de conmutación dentro de niveles tolerables es utilizar una red Snubber RC en paralelo con los terminales principales del TRIAC. Dado que la tasa de aumento de la tensión aplicada en los terminales del TRIAC depende de la impedancia de carga y de la red Snubber RC, el circuito puede evaluarse en las peores condiciones de temperatura de funcionamiento y corriente principal máxima. Los valores de resistencia y capacitancia en red Snubber se ajustan entonces para que la tasa de aumento de la tensión $dv/dt$ de conmutación se encuentre dentro del límite mínimo especificado en cualquiera de las condiciones mencionadas anteriormente. El valor de la resistencia del Snubber debe ser lo suficientemente alto como para limitar las corrientes de descarga de la capacitancia del Snubber durante el encendido y amortiguar la oscilación del LC durante la conmutación. Generalmente, se prefiere la combinación de valores de Snubber con la mayor resistencia y la menor capacitancia que proporcione un funcionamiento satisfactorio, \parencite{ON-ThyristorHandbook}.
+
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        \includegraphics[height=6cm]{dimmer/snubber_circuito.png}
+        \caption{Rama R-C Snubber implementada}
+        \label{fig:dimmer:snubber_circuito}
+    \end{subfigure}
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        \includegraphics[height=7cm]{dimmer/snubber_curvas.png}
+        \caption{Curva (dI/dt)c según (dV/dt)c para TRIACs Z01, con y sin red Snubber, \parencite{ST-AN437}}
+        \label{fig:dimmer:snubber_curvas}
+    \end{subfigure}
+
+    %\vspace{-0.25cm}
+    \caption{Características de la red Snubber en TRIACs} 
+    \label{fig:dimmer:snubber_caracteristicas}
+\end{figure}
+
+En la \cref{fig:dimmer:snubber_curvas} se observa la tasa crítica de disminución de la corriente de conmutación en estado activo ((dI/dt)c) respecto a la tasa crítica de aumento de la tensión de conmutación en estado inactivo ((dV/dt)c), \parencite{ST-AN437}. Se aprecia que, en el caso de la curva con el TRIAC Z0103, el punto de operación se encuentra en la área de disparos espúreos, lo cual se soluciona con la implementación de una red Snubber.
+
+Se selecciona una resistencia de \SI{51}{\ohm} y un capacitor de \SI{10}{\nano\farad} ya que una red R-C de estas características suele ser suficiente para evitar disparos espúreos, \parencite{ST-AN437}.
+
+\subsection{Simulación}
+
+Para verificar el correcto funcionamiento del circuito control de fase analógico del \cref{sec:dimmer:rama-rc}, se realizó una simple simulación con el software gratuito LTSpice, \parencite{LTSPICE}.
 
 \begin{figure}[H]
     \centering
 
-    \includegraphics[width=0.9\textwidth]{dimmer/snubber.png}
+    \includegraphics[width=0.6\textwidth]{dimmer/simulacion_circuito.png}
 
-    \caption{Red Snubber.} % CAMBIAR
-    \label{fig:dimmer:snubber}
+    \caption{Circuito en LTSpice\protect\footnotemark}
+    \label{fig:dimmer:simulacion_circuito}
 \end{figure}
+\footnotetext{Se utilizó el TRIAC Z0402M por disponibilidad de modelo de simulación. Sus caracteristicas son similares a las del BT137.}
 
-Como se observa en la \cref{fig:dimmer:snubber}, un alto dv/dt puede causar un falso disparo del TRIAC, afectando negativamente al circuito control de fase, \parencite{ST-AN437}.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} % Aumenté un poco el ancho para que sea más robusto
+        \centering
+        \includegraphics[height=6.5cm]{dimmer/simulacion_001.png}
+        \caption{Resistencia $R3 = \SI{0.01}{\ohm}$}
+        \label{fig:dimmer:simulacion_001}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[height=6.5cm]{dimmer/simulacion_50k.png}
+        \caption{Resistencia $R3 = \SI{50}{\kilo\ohm}$}
+        \label{fig:dimmer:simulacion_50k}
+    \end{subfigure}
+  
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        \includegraphics[height=6.5cm]{dimmer/simulacion_100k.png}
+        \caption{Resistencia $R3 = \SI{100}{\kilo\ohm}$}
+        \label{fig:dimmer:simulacion_100k}
+    \end{subfigure}
+    \caption{Resultados de la simulación}
+    \label{fig:dimmer:simulacion_resultados}
+\end{figure}
 
 \begin{comment}
 
