@@ -223,7 +223,7 @@ La resistencia $R8$ es simplemente de pull-up para la señal que va al microcont
 
 Se debe agregar un diodo $D2$ en antiparalelo con la entrada del optoacoplador debido a que el mismo tiene una tensión de reversa de \SI{6}{V}, lo cual es sustancialmente baja. Se optó por utilizar el 1N4007 porque es uno de los diodos más comunes encontrados en diversos dispositivos electrónicos, pero cualquier diodo que tenga la capacidad de conmutar a \SI{50}{\hertz} y soporte una tensión reversa de $\SI{48}{\volt} \sqrt{2} \approx \SI{68}{\voltpeak}$ puede utilizarse.
 
-\snsubsection{Driver de TRIAC}
+\subsubsection{Driver de TRIAC}
 
 Como el microcontrolador se encuentra aislado galvánicamente del circuito de corriente alterna del TRIAC y la carga, se diseñó un simple driver con un optoacoplador con salida TRIAC MOC3021M, \parencite{MOC3021}.
 
@@ -265,7 +265,7 @@ R7 = \frac{\hat{V}_{ca}}{I_{TSM}} = \frac{V_{ca} \cdot \sqrt{2}}{I_{TSM}} = \fra
 
 No es necesario tener en cuenta la disipación de potencia de la resistencia $R7$ ya que, una vez disparada la gate, la corriente disminuye sustancialmente.
 
-\snsubsection{Driver de relé}
+\subsubsection{Driver de relé}
 
 Para poder intercambiar entre ambos modos de control, el analógico y el digital, se diseñó un simple circuito con un relé en la gate del TRIAC. En el contacto normal-cerrado, el relé conecta la gate del TRIAC con la salida del DIAC perteneciente al circuito de control analógico; mientras que en el contacto normal-abierto, conecta la gate con la salida del optoacoplador del circuito de control digital.
 
