@@ -1,0 +1,101 @@
+\section{Desarrollo de Hardware}
+
+\textcolor{red}{Agregar pequeña introducción}
+
+\subsection{Prototipado con placas experimentales perforadas}
+
+Para confirmar el correcto funcionamiento de los circuitos diseñados anteriormente, se confeccionaron prototipos con placas experimentales perforadas para poder realizar pruebas y correcciones de componentes lo antes posible, con costos mínimos.
+
+\textcolor{red}{FOTOS DE PLACAS PERFORADAS, y de resultados si es que los hay?}
+
+Si bien los resultados fueron positivos y se pudo realizar las pruebas necesarias para realizar mínimas correcciones necesarias tanto de circuito como componentes, es muy probable que el diseño de PCBs directamente (en lugar de confeccionar en placas perforadas) hubiese sido un mejor curso de acción. Las placas perforadas no solo son considerablemente más costosas que placas de cobre, sino que también las que se adquirieron resultaron ser de pésima calidad, con pads de cobre que se desprendían fácilmente al intentar soldar componentes.
+
+Fue una equivocación no tener en cuenta el mayor tiempo que demanda trabajar con placas experimentales perforadas con circuitos de elevada cantidad de componentes, que en este caso, superó el tiempo que hubiese llevado realizar simples diseño de PCBs prototipo y luego confeccionarlas.
+
+\subsection{Diseño de PCBs finales}
+
+Una vez obtenidos los circuitos finales con sus respectivos valores de componentes, se procedió a realizar los diseños de las PCBs necesarias para el proyecto:
+
+\begin{enumerate}[noitemsep]
+    \item PCB Módulo recortador de onda.
+    \item PCB Módulo convertidor reductor CC-CC.
+    \item PCB Módulo inversor de onda cuadrada.
+    \item Mini-PCB conector hembra PCIe X4.
+    \item PCB Gabinete general.
+\end{enumerate}
+
+Para diseñarlas, se utilizó el conjunto de software de código abierto para Automatización del Diseño Electrónico (EDA) KiCad 9, \parencite{KiCad}. Se tomaron los siguientes criterios de diseño para las PCBs:
+
+\begin{itemize}[noitemsep]
+    \item Tamaño de PCB: $\SI{5}{\milli\meter} \times \SI{10}{\milli\meter}$
+    \item Separación mínima entre trazas: \SI{0.3}{\milli\meter}
+    \item Ancho mínimo de traza: \SI{0.3}{\milli\meter}
+    \item Diámetro mínimo de pad: \SI{1.5}{\milli\meter}
+    \item Diámetro mínimo de agujero: \SI{1}{\milli\meter}
+    \item Diámetro mínimo de pad de vías: \SI{1}{\milli\meter}
+    \item Diámetro mínimo de agujero de vías: \SI{1}{\milli\meter}
+    \item Separación mínima de relleno: \SI{0.8}{\milli\meter}
+    \item Ancho mínimo de relleno: \SI{0.8}{\milli\meter}
+\end{itemize}
+
+El ancho de las trazas de potencia se calcula según el estándar IPC-2221A, \parencite{IPC-2221A}:
+
+\begin{equation}
+    I = K {\Delta T}^{0.44} {(W H)}^{0.725}
+    \label{eq:pcb:corriente_traza}
+\end{equation}
+
+Donde:
+\begin{itemize}
+    \item $I$ es la corriente máxima en amperios.
+    \item $K$ es 0.024 para trazas internas y 0.048 para trazas externas.
+    \item $\Delta T$ es el aumento de temperatura sobre la de ambiente en grados Celsius.
+    \item $W$ es el ancho de traza en milésimas de pulgada.
+    \item $H$ es el grosor (altura) de traza en milésimas de pulgada.
+\end{itemize}
+
+El conector seleccionado para los módulos es el PCIe X4, el cual tiene un ancho de traza por pin de $W = \SI{0.3}{\milli\meter} = 11.84 \text{ mils}$. Con placas vírgenes de cobre con un espesor $H = \SI{35}{\micro\meter} = 1.378 \text{ mils}$ y si se establece un $\Delta T = \SI{10}{\degreeCelsius}$ se puede calcular la corriente máxima por pin del conector para trazas externas:
+
+\begin{equation}
+    I = 0.048 \cdot 10^{0.44} \cdot (11.81 \cdot 1.378)^{0.725} = \SI{0.999}{\ampere} \approx \SI{1}{\ampere}
+\end{equation}
+
+Por lo tanto, cada pin soporta un máximo de \SI{1}{\ampere}. Para cumplir con los requisitos del módulo convertidor, con un consumo máximo de 3 A, se destinan 3 pines del conector para el suministro de 12 V, y 4 para el PGND. Se aprovechan también dos pines ``Hot Plug'' para poder sensar la correcta conección del conector desde el microcontrolador.
+
+La asignación de pines del conector, con su símbolo y huella para PCB, se observa a continuación:
+
+\textcolor{red}{FIGURA PCIE FOOTPRINT Y PCIE SIMBOLO}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Pad huella PCIe x4} & \textbf{Pin símbolo PCIe x4} & \textbf{GPIO ESP32-S3} \\ \hline
+    1                           & HP\_Power                    & 35                     \\ \hline
+    2                           & PNGD                         & N/A                    \\ \hline
+    3                           & 5Vdc                         & 5V                     \\ \hline
+    4                           & 12Vdc                        & N/A                    \\ \hline
+    5                           & 48Vac\_L                     & N/A                    \\ \hline
+    6                           & 48Vac\_N                     & N/A                    \\ \hline
+    7                           & AGND                         & GND                    \\ \hline
+    8                           & 3,3Vdc\_Signal               & 3V3                    \\ \hline
+    9                           & S1                           & 4 (ADC1\_3)            \\ \hline
+    10                          & S2                           & 5 (ADC1\_4)            \\ \hline
+    11                          & S3                           & 6 (ADC1\_5)            \\ \hline
+    12                          & S4                           & 7 (ADC1\_6)            \\ \hline
+    13                          & S5                           & 15 (ADC2\_4)           \\ \hline
+    14                          & S6                           & 16 (ADC2\_5)           \\ \hline
+    15                          & S7                           & 17 (ADC2\_6)           \\ \hline
+    16                          & S8                           & 18 (ADC2\_7)           \\ \hline
+    17                          & S9                           & 8 (ADC1\_7)            \\ \hline
+    18                          & S10                          & 36                     \\ \hline
+    19                          & S11                          & 37                     \\ \hline
+    20                          & S12                          & 38                     \\ \hline
+    21                          & S13                          & 39                     \\ \hline
+    22                          & S14                          & 40                     \\ \hline
+    23                          & S15                          & 41                     \\ \hline
+    24                          & S16                          & 2 (ADC1\_1)            \\ \hline
+    25                          & MODULE\_IDENT                & 3 (ADC1\_0)            \\ \hline
+    26                          & HP\_Signal                   & 42                     \\ \hline
+    \end{tabular}
+\end{table}
