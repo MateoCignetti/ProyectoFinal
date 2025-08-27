@@ -598,6 +598,7 @@ El rendimiento teórico del convertidor está dado por, \cref{eq:buck:rendimient
 \textcolor{red}{Faltaría calcular el rendimiento real del circuito}
 
 \snsubsection{Simulación}
+Para corroborar el correcto funcionamiento del circuito previo a su elaboración física, se realizó la simulación del mismo utilizando el software gratuito LTSpice, \parencite{LTSPICE}.
 
 \begin{figure}[H]
     \centering
@@ -618,11 +619,14 @@ El rendimiento teórico del convertidor está dado por, \cref{eq:buck:rendimient
     \begin{subfigure}[b]{\columnwidth}
         \centering
         \includegraphics[height=6.5cm]{buck/circuito-simulacion.png}
-        \caption{Circuito utilizado para simular.}
+        \caption{Circuito utilizado para simular\protect \footnotemark.}
         \label{fig:buck:circuito_simulacion}
     \end{subfigure}
     \caption{Resultados de la simulación con un duty cycle del 50\%.}
     \label{fig:buck:resultados-simulacion}
 \end{figure}
+\footnotetext{Se utilizó el diodo RBR5LAM60A por disponibilidad del modelo para simulación. Las características se corresponden con las de SR560.}
+
+Como se observa en la \cref{fig:buck:resultados-simulacion} el circuito funciona según lo esperado, donde al aplicar un duty cycle del 50\% aproximadamente, la tensión de salida es de \SI{6}{\volt}. Cabe aclarar que las \cref{fig:buck:simulacion-1,fig:buck:simulacion-2} estan tomadas en régimen permanente.
 
 \newpage
