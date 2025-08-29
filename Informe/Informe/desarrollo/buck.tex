@@ -604,14 +604,14 @@ Para corroborar el correcto funcionamiento del circuito previo a su elaboración
     \centering
     \begin{subfigure}[b]{0.49\textwidth} % Aumenté un poco el ancho para que sea más robusto
         \centering
-        \includegraphics[height=10cm]{buck/grafico-tension-drenador.png}
+        \includegraphics[height=5.5cm]{buck/tension-drenador-simulacion.png}
         \caption{Tensión en drenador de transistor de conmutación.}
         \label{fig:buck:simulacion-1}
     \end{subfigure}
     \hfill 
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[height=10cm]{buck/grafico_tension-salida-simulacion.png}
+        \includegraphics[height=5.5cm]{buck/tension-salida-simulacion.png}
         \caption{Tensión de salida en simulación.}
         \label{fig:buck:simulacion-2}
     \end{subfigure}
@@ -627,6 +627,6 @@ Para corroborar el correcto funcionamiento del circuito previo a su elaboración
 \end{figure}
 \footnotetext{Se utilizó el diodo RBR5LAM60A por disponibilidad del modelo para simulación. Las características se corresponden con las de SR560.}
 
-Como se observa en la \cref{fig:buck:resultados-simulacion} el circuito funciona según lo esperado, donde al aplicar un duty cycle del 50\% aproximadamente, la tensión de salida es de \SI{6}{\volt}. Cabe aclarar que las \cref{fig:buck:simulacion-1,fig:buck:simulacion-2} estan tomadas en régimen permanente.
+Como se observa en la \cref{fig:buck:resultados-simulacion} el circuito funciona según lo esperado, donde al aplicar un duty cycle del 50\% aproximadamente, la tensión de salida es de \SI{6}{\volt}. Cabe aclarar que las \cref{fig:buck:simulacion-1,fig:buck:simulacion-2} están tomadas en régimen permanente, sin considerar los posibles efectos transitorios del circuito.
 
 \newpage
