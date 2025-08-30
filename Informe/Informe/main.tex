@@ -26,6 +26,8 @@
 % Tablas %
 \usepackage{longtable}
 \usepackage{tabularx}
+\usepackage{float}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
 \addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
 
 % Figuras %
@@ -69,6 +71,7 @@
 
 % Referencias cruzadas %
 \usepackage[capitalise, nameinlink, spanish]{cleveref}
+\crefname{table}{Tabla}{Tablas}
 
 % Justificado %
 \usepackage[]{ragged2e}
