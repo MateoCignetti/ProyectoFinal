@@ -436,7 +436,6 @@ R_B = \frac{(V_{555} - V_{BE}) \cdot \beta}{I_C} = \frac{(\SI{12}{\volt} - \SI{0
 
 Para verificar el correcto funcionamiento del circuito oscilador IC555 y la tensión en la carga, se realizó una simple simulación con el software gratuito LTSpice, \parencite{LTSPICE}.
 
-\textcolor{red}{MODIFICAR VALORES DE R EN IMAGEN}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{inversor/circuito_simulacion.png}
@@ -448,18 +447,17 @@ Para verificar el correcto funcionamiento del circuito oscilador IC555 y la tens
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[width=0.6\textwidth]{inversor/Señal_IC555.png}
+        \includegraphics[width=\textwidth]{inversor/Señal_IC555.png}
         \caption{Señal a la salida del IC555.}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[width=0.6\textwidth]{inversor/Señal_carga.png}
+        \includegraphics[width=0.9\textwidth]{inversor/Señal_carga.png}
         \caption{Señal en la carga.}
     \end{subfigure}
+    \caption{Gráficos de simulación}
     \label{fig:inversor:simulacion}
 \end{figure}
 
 Como se observa en la \cref{fig:inversor:simulacion}, el circuito se comporta según lo esperado.
-
-\textcolor{red}{VER PORQUE DICE APARTADO 1.3 EN LUGAR DE LA FIGURA}
