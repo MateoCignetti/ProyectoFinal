@@ -1,6 +1,5 @@
 \section{Desarrollo de Hardware}
 
-\textcolor{red}{Agregar pequeña introducción}
 El desarrollo de hardware del proyecto implicó una transición del diseño teórico de los circuitos electrónicos a la validación experimental de los mismos. En esta etapa, se llevaron a cabo pruebas sobre prototipos armados en placas experimentales perforadas, permitiendo detectar y corregir posibles errores antes de avanzar con el diseño y fabricación de las placas de circuito impreso (PCBs) finales. 
 
 \subsection{Prototipado con placas experimentales perforadas}
@@ -35,7 +34,7 @@ Para diseñarlas, se utilizó el conjunto de software de código abierto para Au
     \item Diámetro mínimo de pad: \SI{1.5}{\milli\meter}
     \item Diámetro mínimo de agujero: \SI{1}{\milli\meter}
     \item Diámetro mínimo de pad de vías: \SI{1}{\milli\meter}
-    \item Diámetro mínimo de agujero de vías: \SI{1}{\milli\meter}
+    \item Diámetro mínimo de agujero de vías: \SI{0.6}{\milli\meter}
     \item Separación mínima de relleno: \SI{0.8}{\milli\meter} (\SI{1}{\milli\meter} para módulo inversor)
     \item Ancho mínimo de relleno: \SI{0.8}{\milli\meter} (\SI{0.5}{\milli\meter} para módulo inversor)
 \end{itemize}
@@ -62,8 +61,9 @@ El conector seleccionado para los módulos es el PCIe X4, el cual tiene un ancho
     I = 0.048 \cdot 10^{0.44} \cdot (11.81 \cdot 1.378)^{0.725} = \SI{0.999}{\ampere} \approx \SI{1}{\ampere}
 \end{equation}
 
-Por lo tanto, cada pin soporta un máximo de \SI{1}{\ampere}. Para cumplir con los requisitos del módulo convertidor, con un consumo máximo de \SI{3}{\ampere}, se destinan 3 pines del conector para el suministro de \SI{12}{\volt}, y 4 para el PGND. Se aprovechan también dos pines ``Hot Plug'' para poder sensar la correcta conección del conector desde el microcontrolador. El ancho de traza para los módulos que utilizan la corriente máxima establecida fue establecido de \SI{2}{\milli\meter}.
+Por lo tanto, cada pin soporta un máximo de \SI{1}{\ampere}. Para cumplir con los requisitos del módulo convertidor, con un consumo máximo de \SI{3}{\ampere}, se destinan 3 pines del conector para el suministro de \SI{12}{\volt}, y 4 para el PGND. Se aprovechan también dos pines ``Hot Plug'' para poder sensar la correcta conección del conector desde el microcontrolador. El ancho de traza para los módulos que utilizan la corriente máxima establecida fue fijado en \SI{2}{\milli\meter}.
 
+\textcolor{red}{PONER LA HUELLA EN VERTICAL}
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{\columnwidth}
@@ -146,7 +146,7 @@ Para el diseño de los módulos de la \cref{fig:pcb:modulos_front_back}, se prio
     \label{fig:pcb:modulos_front_back}
 \end{figure}
 
-Para la PCB del gabinete general se puede visualizar en la \cref{fig:pcb:pcbgeneral_front_back}, se priorizó mantener la distancia de las trazas de potencia lo mínimo posible para evitar pérdidas y caídas de tensión indeseadas. Se diseñó una huella más separada del conector PCIe X4 para soldar directamente el cable plano sobre la placa.
+La PCB del gabinete general se puede visualizar en la \cref{fig:pcb:pcbgeneral_front_back}, se priorizó mantener la distancia de las trazas de potencia lo mínimo posible para evitar pérdidas y caídas de tensión indeseadas. Se diseñó una huella más separada del conector PCIe X4 para soldar directamente el cable plano sobre la placa.
 
 \begin{figure}[H]
     \centering
