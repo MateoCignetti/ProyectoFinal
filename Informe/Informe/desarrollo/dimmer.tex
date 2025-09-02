@@ -315,7 +315,7 @@ Como en el \cref{sec:dimmer:zcd}, se elige el 1N4007 como diodo flyback para la 
 
 Es imperativo implementar algún método para restringir la tasa de aumento de la tensión reaplicada del TRIAC a un valor que permita la desactivación del TRIAC en condiciones de carga inductiva, \parencite{ON-ThyristorHandbook}.
 
-Un método comúnmente aceptado para mantener la $dv/dt$ de conmutación dentro de niveles tolerables es utilizar una red Snubber RC en paralelo con los terminales principales del TRIAC. Dado que la tasa de aumento de la tensión aplicada en los terminales del TRIAC depende de la impedancia de carga y de la red Snubber RC, el circuito puede evaluarse en las peores condiciones de temperatura de funcionamiento y corriente principal máxima. Los valores de resistencia y capacitancia en red Snubber se ajustan entonces para que la tasa de aumento de la tensión $dv/dt$ de conmutación se encuentre dentro del límite mínimo especificado en cualquiera de las condiciones mencionadas anteriormente. El valor de la resistencia del Snubber debe ser lo suficientemente alto como para limitar las corrientes de descarga de la capacitancia del Snubber durante el encendido y amortiguar la oscilación del LC durante la conmutación. Generalmente, se prefiere la combinación de valores de Snubber con la mayor resistencia y la menor capacitancia que proporcione un funcionamiento satisfactorio, \parencite{ON-ThyristorHandbook}.
+Un método comúnmente aceptado para mantener la $dv/dt$ de conmutación dentro de niveles tolerables es utilizar una red Snubber RC en paralelo con los terminales principales del TRIAC. Dado que la tasa de aumento de la tensión aplicada en los terminales del TRIAC depende de la impedancia de carga y de la red Snubber RC, el circuito puede evaluarse en las peores condiciones de temperatura de funcionamiento y corriente principal máxima. Los valores de resistencia y capacitancia en red Snubber se ajustan para que la tasa de aumento de la tensión $dv/dt$ de conmutación se encuentre dentro del límite mínimo especificado en cualquiera de las condiciones mencionadas anteriormente. El valor de la resistencia del Snubber debe ser lo suficientemente alto como para limitar las corrientes de descarga de la capacitancia del Snubber durante el encendido y amortiguar la oscilación del LC durante la conmutación. Generalmente, se prefiere la combinación de valores de Snubber con la mayor resistencia y la menor capacitancia que proporcione un funcionamiento satisfactorio, \parencite{ON-ThyristorHandbook}.
 
 
 \begin{figure}[H]
@@ -360,21 +360,21 @@ Para verificar el correcto funcionamiento del circuito control de fase analógic
     \centering
     \begin{subfigure}[b]{0.49\textwidth} % Aumenté un poco el ancho para que sea más robusto
         \centering
-        \includegraphics[height=6.5cm]{dimmer/simulacion_001.png}
+        \includegraphics[width=\textwidth]{dimmer/simulacion_001.png}
         \caption{Resistencia $R3 = \SI{0.01}{\ohm}$}
         \label{fig:dimmer:simulacion_001}
     \end{subfigure}
     \hfill 
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[height=6.5cm]{dimmer/simulacion_50k.png}
+        \includegraphics[width=\textwidth]{dimmer/simulacion_50k.png}
         \caption{Resistencia $R3 = \SI{50}{\kilo\ohm}$}
         \label{fig:dimmer:simulacion_50k}
     \end{subfigure}
   
     \begin{subfigure}[b]{\columnwidth}
         \centering
-        \includegraphics[height=6.5cm]{dimmer/simulacion_100k.png}
+        \includegraphics[width=0.49\textwidth]{dimmer/simulacion_100k.png}
         \caption{Resistencia $R3 = \SI{100}{\kilo\ohm}$}
         \label{fig:dimmer:simulacion_100k}
     \end{subfigure}
@@ -382,7 +382,7 @@ Para verificar el correcto funcionamiento del circuito control de fase analógic
     \label{fig:dimmer:simulacion_resultados}
 \end{figure}
 
-Como se observa en la \cref{fig:dimmer:simulacion_resultados}, el circuito se comporta según lo esperado, cambiando el ángulo de disparo del TRIAC con distintos valores de resistencia del potenciómetro.
+Como se observa en la \cref{fig:dimmer:simulacion_resultados}, el circuito se comporta según lo esperado, cambiando el ángulo de disparo del TRIAC con distintos valores de resistencia del potenciómetro. La simulación comienza a los \SI{40}{\milli\second} para visualizar el comportamiento del circuito en régimen permanente.
 
 \begin{comment}
 
