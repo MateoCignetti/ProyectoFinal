@@ -382,32 +382,31 @@ Siendo \SI{950}{\micro\farad} el valor minimo de capacitancia. Al aumentar el va
 \snsubsubsection{Gate del MOSFET:}
 
 La resistencia de gate del mosfet que conecta directamente con la salida del IC555, se calcula teniendo en cuenta dos consideraciones, por un lado, el pico de corriente al momento de conducir y por otro la corriente máxima de salida del IC555.
-El mosfet tiene una Qg que ronda los \SI{70}{\nano C}, y por criterio de diseño, el tiempo de carga seleccionado será de \SI{1}{\micro S}.
+El mosfet tiene una Qg que ronda los \SI{70}{\nano C}, y por criterio de diseño, el tiempo de carga seleccionado debe estar dentro de los \SI{10}{\micro S}.
 
 \begin{itemize}
     \item $Q_g = \SI{70}{\nano\coulomb}$, \parencite{IRFZ44N}
-    \item $t_\mathrm{sw} = \SI{1}{\micro\second}$
+    \item $t_\mathrm{sw} = \SI{10}{\micro\second}$
 \end{itemize}
 
 \begin{equation}
-I_g = \frac{Q_g}{t_\mathrm{sw}} = \frac{\SI{70}{\nano\coulomb}}{\SI{1}{\micro\second}} = \SI{70}{\milli\ampere}
+I_g = \frac{Q_g}{t_\mathrm{sw}} = \frac{\SI{70}{\nano\coulomb}}{\SI{10}{\micro\second}} = \SI{7}{\milli\ampere}
 \label{eq:inversor:ig}
 \end{equation}
 
 Por ley de ohm
 
 \begin{equation}
-R_g = \frac{V}{I_g} = \frac{\SI{12}{\volt}}{\SI{70}{\milli\ampere}} = \SI{171.4}{\ohm}
+R_g = \frac{V}{I_g} = \frac{\SI{12}{\volt}}{\SI{7}{\milli\ampere}} = \SI{1714}{\ohm}
 \label{eq:inversor:rg}
 \end{equation}
+Sin embargo, con una resistencia de \SI{1.2}{\kilo\ohm}, bajamos el tiempo de conmutación a \SI{7}{\micro\second}, y se mantiene la potencia disipada por debajo de medio Watt.
 
-\textcolor{red}{VER POTENCIA, A LO MEJOR CONVIENE 1K}
-
-La corriente máxima de salida del IC555 es de \SI{200}{\mA}\ por lo que si utilizamos una resistencia de \SI{180}{\ohm}\ nos dará una corriente de poco más de \SI{66}{\mA}.
+La corriente máxima de salida del IC555 es de \SI{200}{\mA}\ por lo que si utilizamos una resistencia de \SI{1.2}{\kilo\ohm}\ nos dará una corriente de poco más de \SI{10}{\mA}.
 
 \snsubsubsection{Driver de mosfet:}
 Para intercalar el funcionamiento de los mosfet y que solo uno conduzaca por cada oscilación, se utiliza un transistor BJT BC548, en saturación como driver del segundo mosfet.
-Se coloca entoneces, una resistencia pull-up para limitar la corriente en el colector del BC548. 
+Se coloca entonces, una resistencia pull-up para limitar la corriente en el colector del BC548. 
 
 \begin{itemize}
     \item $V_{CE_{Sat}} = \SI{0.2}{\volt}$, \parencite{BC548}
@@ -420,18 +419,17 @@ R_{pull up} = \frac{(V_{CC} - V_{CE_{Sat}})}{{I_{C}}} =\frac{\SI{12}{\volt} - \S
 \label{eq:inversor:pullup}
 \end{equation}
 
-Para que el BJT opere en saturación, necesitamos que la corriente de base sea suficiente para "sobre-saturarlo". Esto se logra eligiendo un factor de saturación $SF$. Un $SF = 10\ $ es un buen valor inicial para garantizar la saturación.
+Para que el BJT opere en saturación, necesitamos que la corriente de base sea suficiente para "sobre-saturarlo". 
 Para calcular la resistencia de base, se aplica la ley de tensiones de Kirchoff:
 
 \begin{itemize}
-    \item $SF = 10\ $ 
-    \item $I_C = \SI{10}{\milli\ampere}$
-    \item $\beta = 400\ $, \parencite{BC548} 
+    \item $I_C = \SI{50}{\milli\ampere}$
+    \item $\beta = 200\ $, \parencite{BC548} 
     \item $V_{BE} = \SI{0.7}{\volt}$, \parencite{BC548}  
 \end{itemize}
 
 \begin{equation}
-R_B = \frac{(V_{555} - V_{BE}) \cdot \beta}{I_C \cdot SF} = \frac{(\SI{12}{\volt} - \SI{0.7}{\volt}) \cdot 400}{\SI{10}{\milli\ampere} \cdot 10} = \SI{45.2}{\kilo\ohm} \approx \SI{47}{\kilo\ohm}
+R_B = \frac{(V_{555} - V_{BE}) \cdot \beta}{I_C} = \frac{(\SI{12}{\volt} - \SI{0.7}{\volt}) \cdot 200}{\SI{50}{\milli\ampere}} = \SI{45.2}{\kilo\ohm} \approx \SI{47}{\kilo\ohm}
 \end{equation}
 
 \snsubsection{Simulación}
