@@ -5,7 +5,7 @@ deseadas. El voltaje de salida podría ser fijo o variable a una frecuencia tamb
 
 Las formas de onda del voltaje de salida de los inversores ideales debería ser senoidal. Sin embargo, los circuitos más simples de inversores generan una onda de salida cuadrada lo cual es suficiente para algunas aplicaciones sencillas.
  
-Para aplicaciones de baja y mediana frecuencia, se pueden aceptar voltajes de onda cuadrada o de onda cuasi cuadrada; para aplicaciones de alta potencia, se requieren formas de onda senoidales poco distorsionadas. \textcolor{red}{Muhammad H. Rashid - Electrónica de Potencia 4 Ed. (2015)}
+Para aplicaciones de baja y mediana frecuencia, se pueden aceptar voltajes de onda cuadrada o de onda cuasi cuadrada; para aplicaciones de alta potencia, se requieren formas de onda senoidales poco distorsionadas, \Parencite{RASHID-SPANISH}.
 
 Para operar correctamente el inversor, se deben cumplir las siguientes reglas: 
 
@@ -13,7 +13,7 @@ Para operar correctamente el inversor, se deben cumplir las siguientes reglas:
     \item Los interruptores de la misma rama no pueden estar encendidos simultáneamente, ya que se produciría un cortocircuito a través de la fuente de tensión de continua.
     \item Debe colocarse un diodo en antiparalelo con cada interruptor para proporcionar un camino de corriente a las cargas inductivas. Si el interruptor comercial ya incluye este diodo, entonces el circuito está completo.
     \item En la implementación práctica, debe considerarse un tiempo muerto (también conocido como tiempo de bloqueo) en las señales de control de los interruptores de la rama, para evitar la violación de la regla 1.
-\end{enumerate} \textcolor{red}{Muhammad H. Rashid - Power Electronics Handbook, 5e (2024, Butterworth-Heinemann)}
+\end{enumerate} \parencite{RASHID}
 
 \snsubsection{Descripción de funcionamiento de un oscilador 555}
 
@@ -90,8 +90,8 @@ Para que el oscilador produzca un ciclo de trabajo del 50\%, el capacitor de tem
 
 Cuando la salida del oscilador 555 está en ALTO, el capacitor se carga a través de R2, y cuando la salida está en BAJO, el capacitor se descarga a través de R2. La resistencia R1 tiene un valor alto y se utiliza para garantizar que el capacitor se cargue completamente hasta alcanzar el mismo valor que la tensión de alimentación.  
 
-El reset (pin 4) debe conectarse a Vcc para evitar que el circuito se desactive involuntariamente, mientras que el control de voltaje (pin 5) se conecta con un capacitor de bajo valor a tierra para mejorar la estabilidad y reducir el ruido. El pin 7 (Descarga) no se usa en esta configuración, ya que la carga y descarga del capacitor ocurren exclusivamente a través de la resistencia R2.
-\textcolor{red}{\url{https://www.electronics-tutorials.ws/waveforms/555_oscillator.html}}
+El reset (pin 4) debe conectarse a Vcc para evitar que el circuito se desactive involuntariamente, mientras que el control de voltaje (pin 5) se conecta con un capacitor de bajo valor a tierra para mejorar la estabilidad y reducir el ruido. El pin 7 (Descarga) no se usa en esta configuración, ya que la carga y descarga del capacitor ocurren exclusivamente a través de la resistencia R2, \parencite{electronics-tutorial-555}.
+
 
 \snsubsection{Descripción de funcionamiento de un inversor de medio puente}
 
@@ -251,9 +251,7 @@ Las dos primeras formas de onda muestran los pulsos aplicados a los mosfet, dond
 
 \snsubsubsection{Temporizador 555 configurado como oscilador con ciclo de trabajo del 50\%}
 
-\textcolor{red}{\url{https://www.ti.com/lit/an/slaae33/slaae33.pdf?ts=1742896496094}}
-
-Durante cada ciclo, el capacitor se carga hasta el límite superior del comparador \(\left(\frac{2}{3} \times V_\mathrm{CC}\right)\) a través del resistor externo \(R\) y el capacitor \(C\), y luego se descarga hasta el límite inferior del comparador \(\left(\frac{1}{3} \times V_\mathrm{CC}\right)\) a través de los mismos componentes.
+Durante cada ciclo, el capacitor se carga hasta el límite superior del comparador \(\left(\frac{2}{3} \times V_\mathrm{CC}\right)\) a través del resistor externo \(R{2}\) y el capacitor \(C{1}\), y luego se descarga hasta el límite inferior del comparador \(\left(\frac{1}{3} \times V_\mathrm{CC}\right)\) a través de los mismos componentes, \parencite{ti-555calculation}.
 
 La ecuación del voltaje del capacitor en un circuito RC es:
 \begin{equation}
@@ -273,32 +271,38 @@ t_\mathrm{carga} = t_2 - t_1 = -RC \times \ln\left( \frac{1}{3} \right) + RC \ti
 \label{eq:inversor:tcarga_log}
 \end{equation}
 
+Simplificando:
 \begin{equation}
 t_\mathrm{carga} = 0{,}693 \times RC
 \label{eq:inversor:tcarga_final}
 \end{equation}
 
-El tiempo de descarga es igual:
+El tiempo de carga y descarga son iguales:
 \begin{equation}
 t_\mathrm{descarga} = 0{,}693 \times RC
 \label{eq:inversor:tdescarga}
 \end{equation}
 
-La frecuencia resultante es:
+Por lo que la frecuencia resultante es:
 \begin{equation}
 f = \frac{1}{t_\mathrm{carga} + t_\mathrm{descarga}} = \frac{1}{2 \times 0{,}693 \times RC}
 \label{eq:inversor:frecuencia}
 \end{equation}
 
-Para \(C = \SI{0.1}{\micro\farad}\) y \(f = \SI{50}{\hertz}\), la resistencia es:
+Por criterio de diseño, se toma \(C = \SI{0.1}{\micro\farad}\) y \(f = \SI{50}{\hertz}\), la resistencia resultante es:
 \begin{equation}
 R = \frac{1}{2 \times 0{,}693 \times \SI{50}{\hertz} \times \SI{0.1}{\micro\farad}} = \SI{144.3}{\kilo\ohm}
 \label{eq:inversor:resistencia_frecuencia}
 \end{equation}
 
-se emplea una resistencia adicional de \SI{10}{\mega\ohm} para asegurar la carga completa del capacitor.
+Ya que no es un valor comercial, se emplea una resistencia de \SI{100}{\kilo\ohm} en serie con un potenciometro de \SI{50}{\kilo\ohm}, para tener un ajuste preciso de la frecuencia deseada.
+Además, se utiliza una resistencia adicional \(R{1}\) de \SI{10}{\mega\ohm} para asegurar la carga completa del capacitor, y así un dutty cycle del 50\%.
+En cuanto a la alimentación del integrado, se utiliza la tensión proporcionada por el módulo general \SI{12}{Vcc}.
 
-Dentro de las opciones de mosfet a seleccionar, el umbral de conducción \(V_\mathrm{GS(th)} = \SI{2}{\volt} \text{ a } \SI{3}{\volt}\), por lo que la tensión de alimentación del IC555 será mayor por \SI{3}{\volt}\ al de alimentación de mosfets, para obtener esta diferencia entre gate y surtidor.
+\snsubsubsection{Regulador de voltaje}
+El mosfet seleccionado es el IRFZ44N, \parencite{IRFZ44N}, y el umbral de conducción \(V_\mathrm{GS(th)} = \SI{2}{\volt} \text{ a } \SI{4}{\volt}\), por lo que la tensión de alimentación del IC555 debe ser mayor por \SI{3}{\volt}\ al de alimentación de mosfets, para obtener esta diferencia entre gate y surtidor. Para ello se utiliza un regulador LM7809, el cual se alimenta con \SI{12}{V} y entrega \SI{9}{V} a la salida, con los que se alimeta el surtidor del mosfet.
+
+\snsubsubsection{Cálculo de la capacitancia mínima}
 
 \begin{figure}[H]
     \centering
@@ -327,23 +331,20 @@ Dentro de las opciones de mosfet a seleccionar, el umbral de conducción \(V_\ma
     \label{figure:inversor:calculo-medio-puente}
 \end{figure}
 
-\snsubsubsection{Cálculo de la capacitancia mínima}
+Considerando las caracteristicas del mosfet seleccionado, teniendo una carga puramente resitiva y una frecuencia de 50Hz, se plantea la ecuación de descarga de un capacitor.
 
-Considerando las caracteristicas del mosfet a seleccionar, teniendo una carga puramente resitiva y una frecuencia de 50Hz, se plantea la ecuación de descarga de un capacitor.
-
-\begin{align*}
-V_\mathrm{CC} &= \SI{9}{\volt} \\
-R_\mathrm{LOAD} &= \SI{100}{\ohm} \\
-R_\mathrm{DS(on)} &= \SI{2}{\ohm} \\
-T &= \SI{20}{\milli\second}
-\end{align*}
+\begin{itemize}
+    \item $V_\mathrm{CC} = \SI{9}{\volt}$ 
+    \item $R_\mathrm{LOAD} = \SI{100}{\ohm}$
+    \item $T = \SI{20}{\milli\second}$
+\end{itemize}
 
 \begin{equation}
 V(t) = {V_\mathrm{0}} \times e^{-t / RC}
 \label{eq:inversor:vrt_descarga}
 \end{equation}
 
-La descarga completa del capacitor se da cuando \(V_\mathrm{t} = \frac{T}{2}\) y sabemos que la tensión es \(\frac{V_\mathrm{CC}}{2}\). Reescribiendo nos queda la \cref{eq:inversor:vr_beta}
+La descarga completa del capacitor se da cuando \(V_\mathrm{t} = \frac{T}{2}\) y como se mencionó anteriormente la tensión en este modelo de inversor es la mitad de la tensión de alimentación por lo que es \(\frac{V_\mathrm{CC}}{2}\). Reescribiendo nos queda la \cref{eq:inversor:vr_beta}
 
 \begin{equation}
 V\left(\frac{T}{2}\right) = \frac{V_\mathrm{CC}}{2} \times \beta
@@ -357,7 +358,7 @@ Donde \(\beta\) es:
 \label{eq:inversor:beta}
 \end{equation}
 
-Aplicando logaritmo:
+Aplicando logaritmo y despejando \({C}\):
 
 \begin{equation}
 \ln(\beta) = -\frac{T}{2RC}
@@ -376,17 +377,17 @@ C \geq \left| \frac{\SI{20}{\milli\second}}{2 \times \SI{100}{\ohm} \times \ln(0
 \label{eq:inversor:c_numerico}
 \end{equation}
 
-Siendo \SI{950}{\micro\farad} el valor minimo de capacitancia. Al aumentar el valor de la misma se obtendran mejores resultados de rizado.
+Siendo \SI{950}{\micro\farad} el valor minimo de capacitancia. Al aumentar el valor de la misma se obtendran mejores resultados de rizado, por lo que mediante pruebas de laboratorio se estableció un valor de \SI{1500}{\micro\farad}.
 
 \snsubsubsection{Gate del MOSFET:}
 
 La resistencia de gate del mosfet que conecta directamente con la salida del IC555, se calcula teniendo en cuenta dos consideraciones, por un lado, el pico de corriente al momento de conducir y por otro la corriente máxima de salida del IC555.
-Según el mosfet que se utilice tendremos distintos Qg, sin embargo, ronda los \SI{70}{\nano C}. El tiempo de carga seleccionado será de \SI{1}{\micro S}.
+El mosfet tiene una Qg que ronda los \SI{70}{\nano C}, y por criterio de diseño, el tiempo de carga seleccionado será de \SI{1}{\micro S}.
 
-\begin{align*}
-Q_g &= \SI{70}{\nano\coulomb} \\
-t_\mathrm{sw} &= \SI{1}{\micro\second}
-\end{align*}
+\begin{itemize}
+    \item $Q_g = \SI{70}{\nano\coulomb}$, \parencite{IRFZ44N}
+    \item $t_\mathrm{sw} = \SI{1}{\micro\second}$
+\end{itemize}
 
 \begin{equation}
 I_g = \frac{Q_g}{t_\mathrm{sw}} = \frac{\SI{70}{\nano\coulomb}}{\SI{1}{\micro\second}} = \SI{70}{\milli\ampere}
@@ -400,18 +401,67 @@ R_g = \frac{V}{I_g} = \frac{\SI{12}{\volt}}{\SI{70}{\milli\ampere}} = \SI{171.4}
 \label{eq:inversor:rg}
 \end{equation}
 
+\textcolor{red}{VER POTENCIA, A LO MEJOR CONVIENE 1K}
+
 La corriente máxima de salida del IC555 es de \SI{200}{\mA}\ por lo que si utilizamos una resistencia de \SI{180}{\ohm}\ nos dará una corriente de poco más de \SI{66}{\mA}.
 
-\snsubsubsection{Base del BJT:}
+\snsubsubsection{Driver de mosfet:}
+Para intercalar el funcionamiento de los mosfet y que solo uno conduzaca por cada oscilación, se utiliza un transistor BJT BC548, en saturación como driver del segundo mosfet.
+Se coloca entoneces, una resistencia pull-up para limitar la corriente en el colector del BC548. 
 
-La resistencia de base del transistor BJT tiene que ser lo suficientemente grande para limitar la corriente en la misma. En este caso se seleccionó una resistencia de \SI{5,6}{k\ohm}\ lo cual nos da una corriente de \SI{2.14}{\mA}.
-
-\snsubsubsection{Pull-up:}
-
-La resistencia pull-up se coloca para limitar la corriente de colector del BJT la cual es de \SI{100}{\mA}. 
+\begin{itemize}
+    \item $V_{CE_{Sat}} = \SI{0.2}{\volt}$, \parencite{BC548}
+    \item $I_C = \SI{10}{\milli\ampere}$
+    \item $V_{BE} = \SI{0.7}{\volt}$, \parencite{BC548} 
+\end{itemize}
 
 \begin{equation}
-R = \frac{\SI{12}{\volt}}{\SI{100}{\milli\ampere}} = \SI{120}{\ohm}
+R_{pull up} = \frac{(V_{CC} - V_{CE_{Sat}})}{{I_{C}}} =\frac{\SI{12}{\volt} - \SI{0.2}{\volt}}{\SI{10}{\milli\ampere}} = \SI{1180}{\ohm} \approx \SI{1.2}{\kilo\ohm}
 \label{eq:inversor:pullup}
 \end{equation}
 
+Para que el BJT opere en saturación, necesitamos que la corriente de base sea suficiente para "sobre-saturarlo". Esto se logra eligiendo un factor de saturación $SF$. Un $SF = 10\ $ es un buen valor inicial para garantizar la saturación.
+Para calcular la resistencia de base, se aplica la ley de tensiones de Kirchoff:
+
+\begin{itemize}
+    \item $SF = 10\ $ 
+    \item $I_C = \SI{10}{\milli\ampere}$
+    \item $\beta = 400\ $, \parencite{BC548} 
+    \item $V_{BE} = \SI{0.7}{\volt}$, \parencite{BC548}  
+\end{itemize}
+
+\begin{equation}
+R_B = \frac{(V_{555} - V_{BE}) \cdot \beta}{I_C \cdot SF} = \frac{(\SI{12}{\volt} - \SI{0.7}{\volt}) \cdot 400}{\SI{10}{\milli\ampere} \cdot 10} = \SI{45.2}{\kilo\ohm} \approx \SI{47}{\kilo\ohm}
+\end{equation}
+
+\snsubsection{Simulación}
+
+Para verificar el correcto funcionamiento del circuito oscilador IC555 y la tensión en la carga, se realizó una simple simulación con el software gratuito LTSpice, \parencite{LTSPICE}.
+
+\textcolor{red}{MODIFICAR VALORES DE R EN IMAGEN}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{inversor/circuito_simulacion.png}
+    \caption{Circuito en LTSpice.}
+    \label{fig:inversor:cicuito_simulacion}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.6\textwidth]{inversor/Señal_IC555.png}
+        \caption{Señal a la salida del IC555.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.6\textwidth]{inversor/Señal_carga.png}
+        \caption{Señal en la carga.}
+    \end{subfigure}
+    \label{fig:inversor:simulacion}
+\end{figure}
+
+Como se observa en la \cref{fig:inversor:simulacion}, el circuito se comporta según lo esperado.
+
+\textcolor{red}{VER PORQUE DICE APARTADO 1.3 EN LUGAR DE LA FIGURA}
