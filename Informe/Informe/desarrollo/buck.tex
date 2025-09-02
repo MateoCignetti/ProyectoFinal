@@ -257,7 +257,7 @@ Se calcula para una corriente de \SI{2,4}{\ampere} la cual representa un $80\%$ 
   
 Se elige como transistor de conmutación de potencia el IRF9540, la selección del mismo se basó en la disponibilidad y en su amplio campo de aplicación; otro de los motivos de la elección de este transistor es para que, en caso de falla o rotura del módulo, los componentes sean fáciles de conseguir.
 
-\snsubsubsection{Duty Cycle máximo}
+\snsubsubsection{ciclo de trabajo máximo}
 \begin{equation} \label{eq:buck:duty_cycle}
     D_{max} = \frac{V_{out}}{V_{in} \, \eta} = \frac{\SI{6}{\volt}}{\SI{12}{\volt} \, 0,9} = 0,55    
 \end{equation}
@@ -386,7 +386,7 @@ En la \cref{fig:buck:filtro_adc} se presenta el filtro pasa-bajos utilizado en l
 
 Tanto el filtro como el divisor de tensión anteriormente mencionados, \cref{fig:buck:divisor_tensión,fig:buck:filtro_adc}; y calculados, \cref{eq:buck:resistencia_divisor_tension,eq:buck:resistencia_filtro_adc}, son importantes para poder realizar correctamente un control digital.
 
-El objetivo de esta medición es poder realizar un control preciso de la tensión entregada a la carga, por ello se aplica un lazo cerrado donde la tensión de salida se la compara con una tensión de referencia (setpoint), para así aplicar la corrección del ciclo de trabajo del PWM y lograr la conmutación correcta del transistor. Si la carga demanda menos corriente, la tensión tiende a subir y viceversa, por ello la utilidad de un control para ajustar el duty cycle en función de la carga conectada al convertidor. Hay diversas técnicas de control, dentro de las más utilizadas, PID (control proporcional, integrador y derivativo).
+El objetivo de esta medición es poder realizar un control preciso de la tensión entregada a la carga, por ello se aplica un lazo cerrado donde la tensión de salida se la compara con una tensión de referencia (setpoint), para así aplicar la corrección del ciclo de trabajo del PWM y lograr la conmutación correcta del transistor. Si la carga demanda menos corriente, la tensión tiende a subir y viceversa, por ello la utilidad de un control para ajustar el ciclo de trabajo en función de la carga conectada al convertidor. Hay diversas técnicas de control, dentro de las más utilizadas, PID (control proporcional, integrador y derivativo).
 
 \snsubsubsection{Transistor BJT como driver de MOSFET}
 
@@ -622,11 +622,11 @@ Para corroborar el correcto funcionamiento del circuito previo a su elaboración
         \caption{Circuito utilizado para simular\protect \footnotemark.}
         \label{fig:buck:circuito_simulacion}
     \end{subfigure}
-    \caption{Resultados de la simulación con un duty cycle del 50\%.}
+    \caption{Resultados de la simulación con un ciclo de trabajo del 50\%.}
     \label{fig:buck:resultados-simulacion}
 \end{figure}
 \footnotetext{Se utilizó el diodo RBR5LAM60A por disponibilidad del modelo para simulación. Las características se corresponden con las de SR560.}
 
-Como se observa en la \cref{fig:buck:resultados-simulacion} el circuito funciona según lo esperado, donde al aplicar un duty cycle del 50\% aproximadamente, la tensión de salida es de \SI{6}{\volt}. Cabe aclarar que las \cref{fig:buck:simulacion-1,fig:buck:simulacion-2} están tomadas en régimen permanente, sin considerar los posibles efectos transitorios del circuito.
+Como se observa en la \cref{fig:buck:resultados-simulacion} el circuito funciona según lo esperado, donde al aplicar un ciclo de trabajo del 50\% aproximadamente, la tensión de salida es de \SI{6}{\volt}. Cabe aclarar que las \cref{fig:buck:simulacion-1,fig:buck:simulacion-2} están tomadas en régimen permanente, sin considerar los posibles efectos transitorios del circuito.
 
 \newpage
