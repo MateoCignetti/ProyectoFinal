@@ -3,7 +3,7 @@
 La función de un inversor es cambiar un voltaje de entrada de corriente continua (CC) a un voltaje simétrico de salida de corriente alterna (CA) de magnitud y frecuencia
 deseadas. El voltaje de salida podría ser fijo o variable a una frecuencia también fija o variable. Se puede obtener un voltaje de salida variable si se varía el voltaje de CC de entrada y se mantiene constante la ganancia del inversor. Por otra parte, si el voltaje de entrada de CC es fijo y no es controlable, se puede obtener un voltaje de salida variable si se hace que la ganancia del inversor varíe, lo que normalmente se consigue mediante el control de modulación por ancho de pulso (PWM) dentro del inversor. La ganancia del inversor se puede definir como la relación del voltaje de salida de CA al voltaje de entrada de CC.
 
-Las formas de onda del voltaje de salida de los inversores ideales debería ser senoidal. Sin embargo, los circuitos más simples de inversores generan una onda de salida cuadrada lo cual es suficiente para algunas aplicaciones sencillas.
+Las formas de onda del voltaje de salida de los inversores ideales deberían ser senoidal. Sin embargo, los circuitos más simples de inversores generan una onda de salida cuadrada lo cual es suficiente para algunas aplicaciones sencillas.
  
 Para aplicaciones de baja y mediana frecuencia, se pueden aceptar voltajes de onda cuadrada o de onda cuasi cuadrada; para aplicaciones de alta potencia, se requieren formas de onda senoidales poco distorsionadas, \Parencite{RASHID-SPANISH}.
 
@@ -17,11 +17,11 @@ Para operar correctamente el inversor, se deben cumplir las siguientes reglas:
 
 \snsubsection{Descripción de funcionamiento de un oscilador 555}
 
-El circuito integrado (CI) 555 es un dispositivo de temporización de precisión muy económico, popular y útil, que puede funcionar como un temporizador simple para generar pulsos únicos o retardos largos, o como un oscilador que produce una serie de formas de onda estabilizadas con ciclos de trabajo variables del 50\% al 100\%.
+El circuito integrado IC555 es un dispositivo de temporización de precisión muy económico, popular y útil, que puede funcionar como un temporizador simple para generar pulsos únicos o retardos largos, o como un oscilador que produce una serie de formas de onda estabilizadas con ciclos de trabajo variables del 50\% al 100\%.
 
-El CI temporizador 555 es un dispositivo de 8 pines extremadamente robusto y estable, que puede operar con gran precisión en modo monoestable, biestable o astable. Esto le permite ser utilizado en una amplia variedad de aplicaciones, como temporizadores de un solo disparo o con retardo, generación de pulsos, fuentes de alimentación y convertidores, entre otros. En realidad, puede utilizarse en cualquier circuito que requiera algún tipo de control de tiempo, ya que sus aplicaciones son prácticamente ilimitadas.
+El  IC555 es un dispositivo de 8 pines extremadamente robusto y estable, que puede operar con gran precisión en modo monoestable, biestable o astable. Esto le permite ser utilizado en una amplia variedad de aplicaciones, como temporizadores de un solo disparo o con retardo, generación de pulsos, fuentes de alimentación y convertidores, entre otros. En realidad, puede utilizarse en cualquier circuito que requiera algún tipo de control de tiempo, ya que sus aplicaciones son prácticamente ilimitadas.
 
-El uso más común del temporizador 555 como oscilador es en modo astable, conectando dos resistencias y un capacitor a sus terminales para generar un tren de pulsos con un período de tiempo determinado por la constante de tiempo de la red RC, como se puede ver en la \cref{fig:inversor:IC555}.
+El uso más común del dispositivo es como oscilador en modo astable, conectando dos resistencias y un capacitor a sus terminales para generar un tren de pulsos con un período de tiempo determinado por la constante de tiempo de la red RC, como se puede ver en la \cref{fig:inversor:IC555}.
 
 \begin{figure}[H]
     \centering
@@ -84,11 +84,11 @@ En modo astable genera un circuito oscilador muy estable, capaz de producir form
 El oscilador 555 genera formas de onda cuadradas estabilizadas, ya sea con una frecuencia fija de hasta 500 kHz o con ciclos de trabajo variables entre el 50\% y el 100\%.
 
 
-En configuración astable requiere que el CI se dispare continuamente tras cada ciclo de temporización. Este reincio se logra conectando juntos la entrada de disparo (pin 2) y la entrada de umbral (pin 6), permitiendo que el dispositivo funcione como un oscilador astable. Así, un oscilador 555 no tiene estados estables, ya que cambia continuamente de un estado al otro. 
+En configuración astable requiere que el IC se dispare continuamente tras cada ciclo de temporización. Este reinicio se logra conectando juntos la entrada de disparo (pin 2) y la entrada de umbral (pin 6), permitiendo que el dispositivo funcione como un oscilador astable. Así, un oscilador 555 no tiene estados estables, ya que cambia continuamente de un estado al otro. 
 
-Para que el oscilador produzca un ciclo de trabajo del 50\%, el capacitor de temporización, conectado al pin 6, se tiene que cargar y descargar a través de la resistencia R2 (variable).
+Para que produzca un ciclo de trabajo del 50\%, el capacitor de temporización, conectado al pin 6, se tiene que cargar y descargar a través de la resistencia R2 (variable).
 
-Cuando la salida del oscilador 555 está en ALTO, el capacitor se carga a través de R2, y cuando la salida está en BAJO, el capacitor se descarga a través de R2. La resistencia R1 tiene un valor alto y se utiliza para garantizar que el capacitor se cargue completamente hasta alcanzar el mismo valor que la tensión de alimentación.  
+Cuando la salida está en ALTO, el capacitor se carga a través de R2, y cuando la salida está en BAJO, el capacitor se descarga a través de R2. La resistencia R1 tiene un valor alto y se utiliza para garantizar que el capacitor se cargue completamente hasta alcanzar el mismo valor que la tensión de alimentación.  
 
 El reset (pin 4) debe conectarse a Vcc para evitar que el circuito se desactive involuntariamente, mientras que el control de voltaje (pin 5) se conecta con un capacitor de bajo valor a tierra para mejorar la estabilidad y reducir el ruido. El pin 7 (Descarga) no se usa en esta configuración, ya que la carga y descarga del capacitor ocurren exclusivamente a través de la resistencia R2, \parencite{electronics-tutorial-555}.
 
@@ -97,9 +97,7 @@ El reset (pin 4) debe conectarse a Vcc para evitar que el circuito se desactive 
 
 Como se mencionó anteriormente, un inversor es un convertidor que transfiere potencia desde una fuente de continua a una carga de alterna. La función de un inversor es, entonces, cambiar la tensión de entrada de corriente continua en una tensión simétrica de salida en corriente alterna con una magnitud, frecuencia y fase deseada.
 
-En inversores monofásico se utilizan dos topologías básicas: medio puente \cref{fig:inversor:Medio-Puente}, el utilizado en este caso, y puente completo. 
-
-La principal desventaja de utilizar un inversor de medio puente es que obtendromos solo la mitad de la tensión que se proporciona en la entrada.
+En inversores monofásico se utilizan dos topologías básicas: medio puente \cref{fig:inversor:Medio-Puente}, el utilizado en este caso, y puente completo. La principal desventaja de utilizar un inversor de medio puente es que obtendremos solo la mitad de la tensión que se proporciona en la entrada.
 
 \begin{figure}[H]
     \centering
@@ -295,12 +293,12 @@ R = \frac{1}{2 \times 0{,}693 \times \SI{50}{\hertz} \times \SI{0.1}{\micro\fara
 \label{eq:inversor:resistencia_frecuencia}
 \end{equation}
 
-Ya que no es un valor comercial, se emplea una resistencia de \SI{100}{\kilo\ohm} en serie con un potenciometro de \SI{50}{\kilo\ohm}, para tener un ajuste preciso de la frecuencia deseada.
-Además, se utiliza una resistencia adicional \(R{1}\) de \SI{10}{\mega\ohm} para asegurar la carga completa del capacitor, y así un dutty cycle del 50\%.
+Ya que no es un valor comercial, se emplea una resistencia de \SI{100}{\kilo\ohm} en serie con un potenciómetro de \SI{50}{\kilo\ohm}, para tener un ajuste preciso de la frecuencia deseada.
+Además, se utiliza una resistencia adicional \(R{1}\) de \SI{10}{\mega\ohm} para asegurar la carga completa del capacitor, y así un ciclo de trabajo del 50\%.
 En cuanto a la alimentación del integrado, se utiliza la tensión proporcionada por el módulo general \SI{12}{Vcc}.
 
 \snsubsubsection{Regulador de voltaje}
-El mosfet seleccionado es el IRFZ44N, \parencite{IRFZ44N}, y el umbral de conducción \(V_\mathrm{GS(th)} = \SI{2}{\volt} \text{ a } \SI{4}{\volt}\), por lo que la tensión de alimentación del IC555 debe ser mayor por \SI{3}{\volt}\ al de alimentación de mosfets, para obtener esta diferencia entre gate y surtidor. Para ello se utiliza un regulador LM7809, el cual se alimenta con \SI{12}{V} y entrega \SI{9}{V} a la salida, con los que se alimeta el surtidor del mosfet.
+El MOSFET seleccionado es el IRFZ44N, \parencite{IRFZ44N}, y el umbral de conducción \(V_\mathrm{GS(th)} = \SI{2}{\volt} \text{ a } \SI{4}{\volt}\), por lo que la tensión de alimentación del IC555 debe ser mayor por \SI{3}{\volt}\ al de alimentación de MOSFETs, para obtener esta diferencia entre gate y surtidor. Para ello se utiliza un regulador LM7809, el cual se alimenta con \SI{12}{V} y entrega \SI{9}{V} a la salida, con los que se alimenta el surtidor del MOSFET.
 
 \snsubsubsection{Cálculo de la capacitancia mínima}
 
@@ -331,7 +329,7 @@ El mosfet seleccionado es el IRFZ44N, \parencite{IRFZ44N}, y el umbral de conduc
     \label{figure:inversor:calculo-medio-puente}
 \end{figure}
 
-Considerando las caracteristicas del mosfet seleccionado, teniendo una carga puramente resitiva y una frecuencia de 50Hz, se plantea la ecuación de descarga de un capacitor.
+Considerando las características del MOSFET seleccionado, teniendo una carga puramente resistiva y una frecuencia de 50Hz, se plantea la ecuación de descarga de un capacitor.
 
 \begin{itemize}
     \item $V_\mathrm{CC} = \SI{9}{\volt}$ 
@@ -344,7 +342,7 @@ V(t) = {V_\mathrm{0}} \times e^{-t / RC}
 \label{eq:inversor:vrt_descarga}
 \end{equation}
 
-La descarga completa del capacitor se da cuando \(V_\mathrm{t} = \frac{T}{2}\) y como se mencionó anteriormente la tensión en este modelo de inversor es la mitad de la tensión de alimentación por lo que es \(\frac{V_\mathrm{CC}}{2}\). Reescribiendo nos queda la \cref{eq:inversor:vr_beta}
+La descarga completa del capacitor se da cuando \(V_\mathrm{t} = \frac{T}{2}\) y como se mencionó anteriormente, la tensión en este modelo de inversor es la mitad de la tensión de alimentación, \(\frac{V_\mathrm{CC}}{2}\). Reescribiendo nos queda la \cref{eq:inversor:vr_beta}
 
 \begin{equation}
 V\left(\frac{T}{2}\right) = \frac{V_\mathrm{CC}}{2} \times \beta
@@ -377,7 +375,7 @@ C \geq \left| \frac{\SI{20}{\milli\second}}{2 \times \SI{100}{\ohm} \times \ln(0
 \label{eq:inversor:c_numerico}
 \end{equation}
 
-Siendo \SI{950}{\micro\farad} el valor minimo de capacitancia. Al aumentar el valor de la misma se obtendran mejores resultados de rizado, por lo que mediante pruebas de laboratorio se estableció un valor de \SI{1500}{\micro\farad}.
+Siendo \SI{950}{\micro\farad} el valor mínimo de capacitancia. Al aumentar el valor de la misma se obtendrán mejores resultados de rizado, por lo que mediante pruebas de laboratorio se estableció un valor de \SI{1500}{\micro\farad}.
 
 \snsubsubsection{Gate del MOSFET:}
 
@@ -404,8 +402,8 @@ Sin embargo, con una resistencia de \SI{1.2}{\kilo\ohm}, bajamos el tiempo de co
 
 La corriente máxima de salida del IC555 es de \SI{200}{\mA}\ por lo que si utilizamos una resistencia de \SI{1.2}{\kilo\ohm}\ nos dará una corriente de poco más de \SI{10}{\mA}.
 
-\snsubsubsection{Driver de mosfet:}
-Para intercalar el funcionamiento de los mosfet y que solo uno conduzaca por cada oscilación, se utiliza un transistor BJT BC548, en saturación como driver del segundo mosfet.
+\snsubsubsection{Driver de MOSFET:}
+Para intercalar el funcionamiento de los MOSFETs y que solo uno conduzca por cada oscilación, se utiliza un transistor BJT BC548, en saturación como driver del segundo mosfet.
 Se coloca entonces, una resistencia pull-up para limitar la corriente en el colector del BC548. 
 
 \begin{itemize}
@@ -419,7 +417,7 @@ R_{pull up} = \frac{(V_{CC} - V_{CE_{Sat}})}{{I_{C}}} =\frac{\SI{12}{\volt} - \S
 \label{eq:inversor:pullup}
 \end{equation}
 
-Para que el BJT opere en saturación, necesitamos que la corriente de base sea suficiente para "sobre-saturarlo". 
+Para que el BJT opere en saturación, necesitamos que la corriente de base sea suficiente para "sobresaturarlo". 
 Para calcular la resistencia de base, se aplica la ley de tensiones de Kirchoff:
 
 \begin{itemize}
