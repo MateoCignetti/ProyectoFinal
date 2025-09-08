@@ -1,5 +1,5 @@
 \snsection{Diseños 3D}
-Para la construcción de los gabinetes que contienen cada módulo y del gabinete general del prototipo se decidió recurrir a la impresión 3D, ya que esta tecnología permite fabricarlos a medida y con las especificaciones necesarias. Los diseños se realizaron utilizando el software FreeCAD, elegido por ser libre y por su facilidad de uso y versatilidad.
+Para la construcción de los gabinetes que contienen cada módulo y del gabinete general del prototipo se decidió recurrir a la impresión 3D, ya que esta tecnología permite fabricarlos a medida y con las especificaciones necesarias. Los diseños se realizaron utilizando el software FreeCAD \parencite{FreeCAD}, elegido por ser libre y por su facilidad de uso y versatilidad.
 
 \snsubsection{Gabinete individual}
 El gabinete destinado a cada módulo se concibió inicialmente como una caja cuadrada en la cual pudiera fijarse una placa PCB de 10 x 10 [cm], separada un centímetro del fondo mediante cuatro separadores huecos que permiten el paso de tornillos.  
@@ -9,8 +9,24 @@ Posteriormente se consideró que los módulos solo requerirían una PCB de 10 x 
 
 La última consideración fue la conexión de los módulos. Se buscó una solución que evitara tener que desmontar la PCB para realizar las conexiones. Esto se resolvió diseñando el gabinete con una ventana lateral del tamaño exacto del conector, de modo que la PCB pueda alojar el conector en su borde y conectarse directamente desde el exterior.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{3d/Gabinete_chico.png}
+    \caption{Gabinete individual.}
+    \label{fig:3d:gabinete_individual}
+\end{figure}
+
+
 \snsubsubsection{Conector PCIe x4}
 El conector PCIe x4 se monta sobre una PCB desde la cual se desprenden los cables correspondientes. Para su protección, se diseñó una caja negra en la que, en su cara frontal, queda accesible el conector, mientras que en la cara posterior se colocó una tapa con una abertura lo suficientemente amplia para permitir el paso de los cables.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{3d/Carcasa_conector.png}
+    \caption{Carcasa para conector PCIe x4.}
+    \label{fig:3d:carcasa_conector}
+\end{figure}
+
 
 \snsubsection{Gabinete general}
 El gabinete principal, encargado de controlar todo el sistema, debía tener la capacidad suficiente para alojar en su interior la fuente de tensión de 12 Vcc, el transformador de 48 Vca y la PCB general de control y distribución de energía. Además, en la superficie debía quedar espacio para ubicar el gabinete individual en prueba, junto con la pantalla interactiva y el encoder rotativo.
@@ -19,4 +35,23 @@ En base a estos requerimientos, se diseñó un gabinete compuesto por dos partes
 
 Asimismo, se diseñó un soporte en ángulo para el display, que cumple la doble función de mejorar su visualización y proteger la PCB del mismo.
 
-Las dimensiones finales del gabinete fueron de 20 x 15 [cm]. Ambas piezas se unen mediante tornillos de cabeza hexagonal. En la base se realizaron todas las perforaciones necesarias para fijar la PCB, la fuente de continua y el transformador de alterna con tornillos allen de cabeza fresada. Finalmente, en el lateral posterior se incorporó una rejilla de ventilación y una abertura para instalar un conector interlock, mientras que en el lateral izquierdo se dejó una ventana destinada al paso de cables.
+Las dimensiones finales del gabinete fueron de 20 x 15 [cm]. Ambas piezas se unen mediante tornillos. En la base se realizaron todas las perforaciones necesarias para fijar la PCB, la fuente de continua y el transformador de alterna con tornillos allen de cabeza fresada. Finalmente, en el lateral posterior se incorporó una rejilla de ventilación y una abertura para instalar un conector interlock, mientras que en el lateral izquierdo se dejó una ventana destinada al paso de cables.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=0.6\textwidth]{3d/Gabinete_general_base.png}
+        \caption{Base de gabinete general.}
+        \label{fig:3d:base_gabinete_general}
+    \end{subfigure}
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=0.6\textwidth]{3d/Gabinete_general_superior.png}
+        \caption{Tapa superior de gabinete general.}
+        \label{fig:3d:superior_gabinete_general}
+    \end{subfigure}
+    \caption{Piezas que componen el gabinete general.} 
+    \label{fig:3d:gabinete_general}
+\end{figure}
+
