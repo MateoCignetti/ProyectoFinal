@@ -63,28 +63,51 @@ El conector seleccionado para los módulos es el PCIe X4, el cual tiene un ancho
 
 Por lo tanto, cada pin soporta un máximo de \SI{1}{\ampere}. Para cumplir con los requisitos del módulo convertidor, con un consumo máximo de \SI{3}{\ampere}, se destinan 3 pines del conector para el suministro de \SI{12}{\volt}, y 4 para el PGND. Se aprovechan también dos pines ``Hot Plug'' para poder sensar la correcta conección del conector desde el microcontrolador. El ancho de traza para los módulos que utilizan la corriente máxima establecida fue fijado en \SI{2}{\milli\meter}.
 
-\textcolor{red}{PONER LA HUELLA EN VERTICAL}
+Para la interfaz de usuario, se decidió utilizar un display LCD TFT de \SI{2.9}{''} y un encoder rotativo. Su asignación de pines respecto al ESP32-S3 se observa en la \cref{tab:pcb:interfaz_pins}
+
+\begin{table}[H]
+\centering
+\caption{Mapeo de pines de dispositivos para la interfaz de usuario a GPIOs del ESP32-S3}
+\begin{tabularx}{\linewidth}{CC}
+\hline
+\textbf{Pin dispositivo} & \textbf{GPIO ESP32-S3} \\ \hline
+TFT\_MISO                & 9                      \\
+TFT\_SCK                 & 10                     \\
+TFT\_MOSI                & 11                     \\
+TFT\_DC                  & 12                     \\
+TFT\_RESET               & 13                     \\
+TFT\_CS                  & 14                     \\
+ROTARY\_SW               & 21                     \\
+ROTARY\_CLK              & 47                     \\
+ROTARY\_DATA             & 48                     \\
+\label{tab:pcb:interfaz_pins}
+\end{tabularx}
+\end{table}
+
+En la \cref{fig:pcb:pcie_footprint_simbolo}, se observa la footprint y símbolo del conector PCIe X4 utilizado, con su asignación de pads a pines. En la \cref{tab:pcb:pads_pins} se observa el mapeo del conector a los GPIOs del microcontrolador ESP32-S3.
+
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{\columnwidth}
+    \begin{subfigure}[b]{0.48\columnwidth}
         \centering
-        \includegraphics[height=3.5cm]{pcb/pcie_footprint.png}
+        \includegraphics[height=8cm]{pcb/pcie_footprint.png}
         \caption{Huella}
         \label{fig:pcb:pcie_footprint}
     \end{subfigure}
-    \begin{subfigure}[b]{\columnwidth}
+    \begin{subfigure}[b]{0.48\columnwidth}
         \centering
-        \includegraphics[height=7.5cm]{pcb/pcie_simbolo.png}
+        \includegraphics[height=8cm]{pcb/pcie_simbolo.png}
         \caption{Símbolo}
         \label{fig:pcb:pcie_simbolo}
     \end{subfigure}
 
     %\vspace{-0.25cm}
     \caption{Símbolo y huella del conector PCIe X4} 
-    \label{fig:pcb_pcie_footprint_simbolo}
+    \label{fig:pcb:pcie_footprint_simbolo}
 \end{figure}
 
 La asignación de pines del conector, con su símbolo y huella para PCB, se observa a continuación en la \cref{tab:pcb:pads_pins}.
+
 
 \begin{table}[H]
 \centering
