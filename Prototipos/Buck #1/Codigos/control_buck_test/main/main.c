@@ -117,7 +117,8 @@ static void vTaskPid(void *arg){
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY); // Wait for the timer alarm notification
 
         // Read ADC value
-        adc_oneshot_get_calibrated_result(adc1_handle, adc1_cali_handle, ADC_CHANNEL_3, &feedback_mv);  // Return mV value.
+        adc_oneshot_get_calibrated_result(adc1_handle, adc1_cali_handle, ADC_CHANNEL_7, &feedback_mv);  // Return mV value.
+        //printf("Feedback (mV): %d\n", feedback_mv);
         feedback_v = feedback_mv / 1000.0; // Convert to volts  
         
         // TODO: Evaluate the alternative linearization function
@@ -147,7 +148,8 @@ static void vTaskPid(void *arg){
             pwm_output_bits = 0;
         }
         
-        ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, pwm_output_bits, 0);  // Set new duty cycle based on PID output
+        //ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, pwm_output_bits, 0);  // Set new duty cycle based on PID output
+        ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, 2252, 0);  // Set new duty cycle based on PID output
         input_array[2] = input_array[1];
         input_array[1] = input_array[0];
         output_array[2] = output_array[1];
@@ -181,7 +183,7 @@ static void adc_init_and_config(void){
         .atten = ADC_ATTEN_DB_12,
         .bitwidth = ADC_BITWIDTH_12,
     };
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc1_handle, ADC_CHANNEL_3, &adc1_config));
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc1_handle, ADC_CHANNEL_7, &adc1_config));
     
     #if PRINT_LOGS
         ESP_LOGI("ADC", "ADC1 initialized and configured");
@@ -227,7 +229,7 @@ static void ledc_config(void){
     ESP_ERROR_CHECK(ledc_timer_config(&ledc_timer_cfg));
 
     ledc_channel_config_t ledc_channel_cfg ={
-        .gpio_num = GPIO_NUM_18,
+        .gpio_num = GPIO_NUM_17,
         .channel = LEDC_CHANNEL_0,
         .speed_mode = LEDC_LOW_SPEED_MODE,
         .timer_sel = LEDC_TIMER_0,
