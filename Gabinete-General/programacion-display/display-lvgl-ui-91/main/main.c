@@ -25,23 +25,130 @@
 #include "esp_log.h"
 #include "lvgl.h"
 #include "esp_lcd_ili9341.h"
+#include "encoder.h"
 #include "ui.h"
 
-#define LCD_HOST    SPI2_HOST
+// Rotary encoder pin configuration
+#define PIN_NUM_CLOCKWISE GPIO_NUM_48
+#define PIN_NUM_COUNTERCLOCKWISE GPIO_NUM_47
+#define PIN_NUM_BUTTON GPIO_NUM_21
 
-/* VER LOS PINES*/
+/* Display pin configuration */
+#define LCD_HOST    SPI2_HOST
 #define PIN_NUM_SCLK GPIO_NUM_10
 #define PIN_NUM_MOSI GPIO_NUM_11
 #define PIN_NUM_DC   GPIO_NUM_12
 #define PIN_NUM_CS GPIO_NUM_14
 #define PIN_NUM_RST GPIO_NUM_13
 
+// Display parameters configuration
 #define LCD_H_RES  240
 #define LCD_V_RES  320
 #define PARALLEL_LINES     16
 #define ROTATE_FRAME       30
 
+// LVGL related defines
+#define LVGL_TICK_INCREMENT_MS 2  // LVGL tick increment in milliseconds
+
+// Handles
+QueueHandle_t encoder_queue = NULL;  // Queue to handle rotary encoder events
+rotary_encoder_event_t encoder_event;  // Buffer to allocate events from the encoder
+esp_lcd_panel_io_handle_t io_handle = NULL;
+esp_lcd_panel_handle_t panel_handle = NULL;
+
+// Encoder variables
+lv_indev_t *indev_encoder = NULL; // Input device for LVGL
+
+// Variable para acumular diff desde última lectura
+static int32_t accumulated_diff = 0;
+static lv_indev_state_t button_state = LV_INDEV_STATE_RELEASED;
+
+// Display screen variables
+lv_group_t *screen1 = NULL;
+lv_group_t *screen2 = NULL;
+lv_group_t *screen3 = NULL;
+lv_group_t *screen4 = NULL;
+lv_group_t *screen5 = NULL;
+static lv_group_t *current_group;  // Current active group
+
+// State for screen management
+typedef enum {
+    SCREEN_1,
+    SCREEN_2,
+    SCREEN_3,
+    SCREEN_4,
+    SCREEN_5,
+    SCREEN_COUNT
+} screen_state_t;
+
+static screen_state_t current_screen = SCREEN_1;
+
+// Mutex for LVGL API calls 
 static _lock_t lvgl_api_lock;
+
+static void initialize_rotary_encoder(void){
+    encoder_queue = xQueueCreate(10, sizeof(rotary_encoder_event_t));
+    if (encoder_queue == NULL) {
+        ESP_LOGE("ENCODER", "Failed to create encoder queue");
+        return;
+    }
+
+    ESP_ERROR_CHECK(rotary_encoder_init(encoder_queue));
+    
+    rotary_encoder_t display_encoder ={
+        .pin_a = PIN_NUM_CLOCKWISE,
+        .pin_b = PIN_NUM_COUNTERCLOCKWISE,
+        .pin_btn = PIN_NUM_BUTTON,
+        .btn_pressed_time_us = 0,
+        .btn_state = RE_BTN_RELEASED,
+        .acceleration = {0, 0}
+    };
+
+    ESP_ERROR_CHECK(rotary_encoder_add(&display_encoder));
+}
+
+static void init_spi(void){
+    spi_bus_config_t bus_config = {
+        .sclk_io_num = PIN_NUM_SCLK,      // SPI clock pin
+        .mosi_io_num = PIN_NUM_MOSI,      // SPI MOSI pin
+        .miso_io_num = -1,                // Not used
+        .quadwp_io_num = -1,              // Not used
+        .quadhd_io_num = -1,              // Not used
+        .max_transfer_sz = 4096,          // Max transfer size in bytes
+    };
+    ESP_ERROR_CHECK(spi_bus_initialize(LCD_HOST, &bus_config, SPI_DMA_CH_AUTO)); // Initialize SPI bus
+
+    // Configure the SPI panel IO for the LCD
+    esp_lcd_panel_io_spi_config_t io_config = {
+        .dc_gpio_num = PIN_NUM_DC,        // Data/Command pin
+        .cs_gpio_num = PIN_NUM_CS,        // Chip select pin
+        .pclk_hz = 10 * 1000 * 1000,      // SPI clock frequency (10 MHz)
+        .lcd_cmd_bits = 8,                // Command length in bits
+        .lcd_param_bits = 8,              // Parameter length in bits
+        .spi_mode = 0,                    // SPI mode 0
+        .trans_queue_depth = 10,          // Transaction queue depth
+    };
+    ESP_ERROR_CHECK(esp_lcd_new_panel_io_spi((esp_lcd_spi_bus_handle_t)LCD_HOST, &io_config, &io_handle)); // Create new SPI panel IO
+}
+
+static void init_lcd_panel(void){
+    // Configure the LCD panel driver (ILI9341)
+    esp_lcd_panel_dev_config_t panel_config = {
+        .reset_gpio_num = PIN_NUM_RST,            // Reset pin
+        .color_space = LCD_RGB_ELEMENT_ORDER_BGR, // Color space (BGR)
+        .bits_per_pixel = 16,                     // 16 bits per pixel
+    };
+    ESP_ERROR_CHECK(esp_lcd_new_panel_ili9341(io_handle, &panel_config, &panel_handle)); // Create new ILI9341 panel
+
+    ESP_ERROR_CHECK(esp_lcd_panel_reset(panel_handle));      // Reset the panel
+    ESP_ERROR_CHECK(esp_lcd_panel_init(panel_handle));       // Initialize the panel
+
+    // OPCIÓN 3: Rotación 180° (portrait invertido)
+    ESP_ERROR_CHECK(esp_lcd_panel_swap_xy(panel_handle, false));
+    ESP_ERROR_CHECK(esp_lcd_panel_mirror(panel_handle, false, true));
+
+    ESP_ERROR_CHECK(esp_lcd_panel_disp_on_off(panel_handle, true)); // Turn on display
+}
 
 static bool notify_lvgl_flush_ready(esp_lcd_panel_io_handle_t panel_io, esp_lcd_panel_io_event_data_t *edata, void *user_ctx){
     lv_display_t *disp = (lv_display_t *)user_ctx;
@@ -63,7 +170,7 @@ static void lvgl_flush_callback(lv_display_t *disp, const lv_area_t *area, uint8
 
 static void increase_lvgl_tick(void *arg){
     /* Tell LVGL how many milliseconds has elapsed */
-    lv_tick_inc(2);
+    lv_tick_inc(LVGL_TICK_INCREMENT_MS);
 }
 
 static void lvgl_port_task(void *arg){
@@ -80,52 +187,140 @@ static void lvgl_port_task(void *arg){
     }
 }
 
+void read_encoder_callback(lv_indev_t *indev_drv, lv_indev_data_t *data){
+    bool button_clicked = false;
+
+    if (xQueueReceive(encoder_queue, &encoder_event, 0) == pdTRUE){
+        switch (encoder_event.type) {
+            case RE_ET_CHANGED:
+                //ESP_LOGI(TAG, "Encoder turned, diff: %d", encoder_event.diff);
+                printf("Encoder turned, diff: %ld\n", encoder_event.diff);
+                accumulated_diff += encoder_event.diff;
+                break;
+            case RE_ET_BTN_PRESSED:
+                //ESP_LOGI(TAG, "Button pressed");
+                printf("Button pressed\n");
+                button_state = LV_INDEV_STATE_PRESSED;
+                break;
+            case RE_ET_BTN_CLICKED:
+                //button_clicked = true;
+                _lock_acquire(&lvgl_api_lock);
+                lv_obj_t *focused = lv_group_get_focused(current_group);  // CORREGIDO: Tipo lv_obj_t *
+                if (focused) {
+                    lv_obj_send_event(focused, LV_EVENT_CLICKED, NULL);  // CORREGIDO: NULL directo (o (void *)NULL si persiste)
+                }
+                _lock_release(&lvgl_api_lock);
+                ESP_LOGI("ENCODER", "Button clicked");
+                break;
+            case RE_ET_BTN_RELEASED:
+                //ESP_LOGI(TAG, "Button released");
+                printf("Button released\n");
+                button_state = LV_INDEV_STATE_RELEASED;
+                break;
+            default:
+                //ESP_LOGI(TAG, "Unknown event");
+                printf("Unknown event\n");
+                break;
+        }
+    }
+
+    data->enc_diff = accumulated_diff;
+    data->state = button_state;
+    accumulated_diff = 0; // Reset after reading
+
+    /*if (button_clicked) {
+        current_screen = (current_screen + 1) % SCREEN_COUNT;  // Cicla entre pantallas
+        switch (current_screen) {
+            case SCREEN_1:
+                lv_scr_load(ui_Screen1);
+                lv_indev_set_group(indev_encoder, screen1);
+                current_group = screen1;
+                break;
+            case SCREEN_2:
+                lv_scr_load(ui_Screen2);
+                lv_indev_set_group(indev_encoder, screen2);
+                current_group = screen2;
+                break;
+            case SCREEN_3:
+                lv_scr_load(ui_Screen3);
+                lv_indev_set_group(indev_encoder, screen3);
+                current_group = screen3;
+                break;
+            case SCREEN_4:
+                lv_scr_load(ui_Screen4);
+                lv_indev_set_group(indev_encoder, screen4);
+                current_group = screen4;
+                break;
+            case SCREEN_5:
+                lv_scr_load(ui_Screen5);
+                lv_indev_set_group(indev_encoder, screen5);
+                current_group = screen5;
+                break;
+        }
+        ESP_LOGI("SCREEN", "Switched to screen %d", current_screen);
+    }*/
+}
+
+void create_groups_for_ui(void){
+    _lock_acquire(&lvgl_api_lock);
+    screen1 = lv_group_create();
+    screen2 = lv_group_create();
+    screen3 = lv_group_create();
+    screen4 = lv_group_create();
+    screen5 = lv_group_create();
+
+    current_group = screen1;  // Grupo inicial
+    lv_group_set_default(screen1);
+    lv_indev_set_group(indev_encoder, screen1);
+
+    // Add interactive objects to screen1 group
+    lv_group_add_obj(screen1, ui_Function1);
+    lv_group_add_obj(screen1, ui_Function2);
+    lv_group_add_obj(screen1, ui_Function3);
+    lv_group_add_obj(screen1, ui_Function4);
+
+    lv_obj_add_event_cb(ui_Function1, ui_event_Function1, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(ui_Function2, ui_event_Function2, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(ui_Function3, ui_event_Function3, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(ui_Function4, ui_event_Function4, LV_EVENT_CLICKED, NULL);
+
+    // Add interactive objects to screen2 group
+    lv_group_add_obj(screen2, ui_Button2);
+    lv_group_add_obj(screen2, ui_Slider2);
+
+    lv_obj_add_event_cb(ui_Button2, ui_event_Button2, LV_EVENT_CLICKED, NULL);
+    //lv_obj_add_event_cb(ui_Slider2, ui_event_Slider2, LV_EVENT_VALUE_CHANGED, NULL);
+
+    // Add interactive objects to screen3 group
+    lv_group_add_obj(screen3, ui_Button3);
+    lv_group_add_obj(screen3, ui_Slider3);
+
+    lv_obj_add_event_cb(ui_Button3, ui_event_Button3, LV_EVENT_CLICKED, NULL);
+    //lv_obj_add_event_cb(ui_Slider3, ui_event_Slider3, LV_EVENT_VALUE_CHANGED, NULL);
+
+    // Add interactive objects to screen4 group
+    lv_group_add_obj(screen4, ui_Button1);
+    lv_group_add_obj(screen4, ui_Slider4);
+
+    lv_obj_add_event_cb(ui_Button1, ui_event_Button1, LV_EVENT_CLICKED, NULL);
+    //lv_obj_add_event_cb(ui_Slider4, ui_event_Slider4, LV_EVENT_VALUE_CHANGED, NULL);
+    
+    // Add interactive objects to screen5 group
+    lv_group_add_obj(screen5, ui_Button4);
+    lv_group_add_obj(screen5, ui_Button5);
+    lv_group_add_obj(screen5, ui_Button6);
+
+    lv_obj_add_event_cb(ui_Button4, ui_event_Button4, LV_EVENT_CLICKED, NULL);
+    //lv_obj_add_event_cb(ui_Button5, ui_event_Button5, LV_EVENT_CLICKED, NULL);
+    //lv_obj_add_event_cb(ui_Button6, ui_event_Button6, LV_EVENT_CLICKED, NULL);
+    _lock_release(&lvgl_api_lock);
+}
+
 void app_main(void){
-    spi_bus_config_t bus_config = {
-        .sclk_io_num = PIN_NUM_SCLK,      // SPI clock pin
-        .mosi_io_num = PIN_NUM_MOSI,      // SPI MOSI pin
-        .miso_io_num = -1,                // Not used
-        .quadwp_io_num = -1,              // Not used
-        .quadhd_io_num = -1,              // Not used
-        .max_transfer_sz = 4096,          // Max transfer size in bytes
-    };
-    ESP_ERROR_CHECK(spi_bus_initialize(LCD_HOST, &bus_config, SPI_DMA_CH_AUTO)); // Initialize SPI bus
 
-    // Configure the SPI panel IO for the LCD
-    esp_lcd_panel_io_handle_t io_handle = NULL;
-    esp_lcd_panel_io_spi_config_t io_config = {
-        .dc_gpio_num = PIN_NUM_DC,        // Data/Command pin
-        .cs_gpio_num = PIN_NUM_CS,        // Chip select pin
-        .pclk_hz = 10 * 1000 * 1000,      // SPI clock frequency (10 MHz)
-        .lcd_cmd_bits = 8,                // Command length in bits
-        .lcd_param_bits = 8,              // Parameter length in bits
-        .spi_mode = 0,                    // SPI mode 0
-        .trans_queue_depth = 10,          // Transaction queue depth
-    };
-    ESP_ERROR_CHECK(esp_lcd_new_panel_io_spi((esp_lcd_spi_bus_handle_t)LCD_HOST, &io_config, &io_handle)); // Create new SPI panel IO
-
-    // Configure the LCD panel driver (ILI9341)
-    esp_lcd_panel_handle_t panel_handle = NULL;
-    esp_lcd_panel_dev_config_t panel_config = {
-        .reset_gpio_num = PIN_NUM_RST,            // Reset pin
-        .color_space = LCD_RGB_ELEMENT_ORDER_BGR, // Color space (BGR)
-        .bits_per_pixel = 16,                     // 16 bits per pixel
-    };
-    ESP_ERROR_CHECK(esp_lcd_new_panel_ili9341(io_handle, &panel_config, &panel_handle)); // Create new ILI9341 panel
-
-    ESP_ERROR_CHECK(esp_lcd_panel_reset(panel_handle));      // Reset the panel
-    ESP_ERROR_CHECK(esp_lcd_panel_init(panel_handle));       // Initialize the panel
-
-    // OPCIÓN 3: Rotación 180° (portrait invertido)
-    ESP_ERROR_CHECK(esp_lcd_panel_swap_xy(panel_handle, false));
-    ESP_ERROR_CHECK(esp_lcd_panel_mirror(panel_handle, false, true));
-
-    ESP_ERROR_CHECK(esp_lcd_panel_disp_on_off(panel_handle, true)); // Turn on display
-    //ESP_ERROR_CHECK(esp_lcd_panel_invert_color(panel_handle, false)); // Set color inversion off
-    //ESP_ERROR_CHECK(esp_lcd_panel_swap_xy(panel_handle, true)); // Swap X and Y axes
-    // ESP_ERROR_CHECK(esp_lcd_panel_mirror(panel_handle, true, false)); // Mirror X axis
-    //ESP_ERROR_CHECK(gpio_set_level(PIN_NUM_BACKLIGHT, 1)); // Turn on backlight (uncomment if needed)
-
+    initialize_rotary_encoder();
+    init_spi();
+    init_lcd_panel();
     // Initialize LVGL
     lv_init();
 
@@ -160,17 +355,24 @@ void app_main(void){
     };
     ESP_ERROR_CHECK(esp_lcd_panel_io_register_event_callbacks(io_handle, &cbs, display));
     
-    xTaskCreate(
-        lvgl_port_task,
-        "LVGL",
-        4096,
-        NULL,
-        2,
-        NULL
-    );
+    // Create input device for LVGL
+    indev_encoder = lv_indev_create();
+    lv_indev_set_type(indev_encoder, LV_INDEV_TYPE_ENCODER);
+    lv_indev_set_read_cb(indev_encoder, read_encoder_callback);
+
+    xTaskCreate(lvgl_port_task,
+                "LVGL",
+                4096,
+                NULL,
+                2,
+                NULL
+                );
+
+    create_groups_for_ui();
 
     _lock_acquire(&lvgl_api_lock);
     ui_init();
+    lv_scr_load(ui_Screen1);
     _lock_release(&lvgl_api_lock);
 }
 
