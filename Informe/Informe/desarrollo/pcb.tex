@@ -6,11 +6,16 @@ El desarrollo de hardware del proyecto implicó una transición del diseño teó
 
 Para confirmar el correcto funcionamiento de los circuitos diseñados anteriormente, se confeccionaron prototipos con placas experimentales perforadas para poder realizar pruebas y correcciones de componentes lo antes posible, con costos mínimos. Este proceso fue fundamental para asegurar la funcionalidad y confiabilidad del hardware desarrollado.
 
-\textcolor{red}{FOTOS DE PLACAS PERFORADAS, y de resultados si es que los hay?}
+\begin{figure}[H]
+    \centering
 
-Si bien los resultados fueron positivos, permitiendo realizar las pruebas necesarias para refinar el circuito final, es muy probable que el diseño directo de PCBs (en lugar de confeccionar el circuito en placas perforadas) hubiese sido un mejor curso de acción. Las placas perforadas no solo son considerablemente más costosas que las placas vírgenes de cobre, sino que también las que se adquirieron resultaron ser de mala calidad, con pads de cobre que se desprendían fácilmente al intentar soldar componentes.
+    \includegraphics[width=0.75\textwidth]{pcb/foto_placas_perforadas.jpg}
 
-Fue una equivocación no tener en cuenta el mayor tiempo que demanda trabajar con placas experimentales perforadas con circuitos de elevada cantidad de componentes, que en este caso, superó el tiempo que hubiese llevado realizar simples diseño de PCBs prototipo y luego confeccionarlas.
+    \caption{Placas experimentales perforadas. De izquierda a derecha: prototipos de módulo recortador de onda, módulo convertidor Buck, módulo inversor de onda cuadrada.}
+    \label{fig:pcb:foto_perforadas}
+\end{figure}
+
+Los resultados obtenidos fueron satisfactorios, permitiendo realizar las pruebas necesarias para optimizar el circuito final. No obstante, el diseño directo de placas de circuito impreso (PCB) podría haber sido una alternativa más eficiente en comparación con el uso de placas perforadas. Estas últimas, además de tener un costo significativamente mayor que las placas de cobre estándar, presentaron problemas de calidad, como pads de cobre que se desprendían con facilidad durante el proceso de soldadura.
 
 \subsection{Diseño de PCBs finales}
 
@@ -147,8 +152,6 @@ La asignación de pines del conector, con su símbolo y huella para PCB, se obse
 
 Para el diseño de los módulos de la \cref{fig:pcb:modulos_front_back}, se priorizó la ubicación de los componentes en bloque para que el usuario identifique fácilmente las distintas etapas del módulo, con sus respectivos identificadores en la serigrafía frontal. Además, se agregaron puntos de prueba para facilitar las mediciones del usuario con osciloscopio.
 
-\textcolor{red}{Hacer referencia al anexo?}
-
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{\textwidth}
@@ -173,36 +176,33 @@ La PCB del gabinete general se puede visualizar en la \cref{fig:pcb:pcbgeneral_f
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.48\textwidth} % Aumenté un poco el ancho para que sea más robusto
+    \begin{subfigure}[b]{0.3\textwidth}
         \centering
         \includegraphics[height=7cm]{pcb/pcbgeneral_front.png}
         \caption{Vista frontal}
         \label{fig:pcb:pcbgeneral_front}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
         \centering
         \includegraphics[height=7cm]{pcb/pcbgeneral_back.png}
         \caption{Vista trasera}
         \label{fig:pcb:pcbgeneral_back}
     \end{subfigure}
-    %
     \caption{Modelo 3D de las PCB general del control del gabinete.}
     \label{fig:pcb:pcbgeneral_front_back}
 \end{figure}
 
-\textcolor{red}{Hablar sobre la mini-pcb}
+Se diseñó también una mini-pcb, \cref{fig:pcb:minipcb_front_back}, para poder enrutar los pines del conector hembra PCIe X4 y poder soldar el cable plano que lo conecta a la PCB general.
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.48\textwidth} % Aumenté un poco el ancho para que sea más robusto
+    \begin{subfigure}[b]{0.3\textwidth} % Aumenté un poco el ancho para que sea más robusto
         \centering
         \includegraphics[height=7cm]{pcb/minipcb_front.png}
         \caption{Vista frontal}
         \label{fig:pcb:minipcb_front}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
         \centering
         \includegraphics[height=7cm]{pcb/minipcb_back.png}
         \caption{Vista trasera}
@@ -212,3 +212,5 @@ La PCB del gabinete general se puede visualizar en la \cref{fig:pcb:pcbgeneral_f
     \caption{Modelo 3D de la mini-PCB para el conector PCIe X4.}
     \label{fig:pcb:minipcb_front_back}
 \end{figure}
+
+Todos los diseños de las placas están disponibles en el repositorio público del proyecto en GitHub \parencite{git_proyecto}. Se incluyen versiones estándar y alternativas, estas últimas optimizadas para fabricación casera con el método de transferencia térmica y grabado con cloruro férrico. Las versiones estándar utilizan un menor ancho mínimo y separación de trazas.
