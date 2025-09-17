@@ -139,13 +139,6 @@ void read_encoder_callback(lv_indev_t *indev_drv, lv_indev_data_t *data){
             case RE_ET_CHANGED:
                 printf("Encoder turned, diff: %ld\n", encoder_event.diff);
                 accumulated_diff += encoder_event.diff;
-                //if(accumulated_diff == 1){
-                //    // Move to next object in the current group
-                //    lv_group_focus_next(groups[current_screen]);
-                //} else{
-                //    // Move to previous object in the current group
-                //    lv_group_focus_prev(groups[current_screen]);
-                //}
                 break;
             case RE_ET_BTN_PRESSED:
                 printf("Button pressed\n");
@@ -174,7 +167,6 @@ void read_encoder_callback(lv_indev_t *indev_drv, lv_indev_data_t *data){
 static void vTaskUpdateGroups(void *pvParameters){
     TickType_t xLastWakeTime;
     const TickType_t xFrequency = 100;
-    // Initialise the xLastWakeTime variable with the current time.
     xLastWakeTime = xTaskGetTickCount();
 
     while (1) {
@@ -198,8 +190,8 @@ static void vTaskUpdateGroups(void *pvParameters){
         // Actualizar grupo solo si cambió la pantalla
         if (new_screen != current_screen) {
             current_screen = new_screen;
-            //current_group = groups[current_screen];
-            lv_group_set_default(groups[current_screen]);
+            current_group = groups[current_screen];
+            lv_group_set_default(current_group);
             lv_indev_set_group(indev_encoder, groups[current_screen]);
             printf("Cambié a pantalla %d\n", current_screen);
         }
@@ -207,7 +199,7 @@ static void vTaskUpdateGroups(void *pvParameters){
         printf("Cantidad de objetos: %ld\n", count);
         _lock_release(&lvgl_api_lock);
 
-        vTaskDelayUntil( &xLastWakeTime, pdMS_TO_TICKS(xFrequency));
+        vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(xFrequency));
     }
 }
 
@@ -222,10 +214,10 @@ static void create_groups_for_ui(void){
     lv_group_add_obj(groups[SCREEN_1], ui_Function3);
     lv_group_add_obj(groups[SCREEN_1], ui_Function4);
 
-    lv_obj_add_flag(ui_Function1, LV_OBJ_FLAG_CLICK_FOCUSABLE);
-    lv_obj_add_flag(ui_Function2, LV_OBJ_FLAG_CLICK_FOCUSABLE);
-    lv_obj_add_flag(ui_Function3, LV_OBJ_FLAG_CLICK_FOCUSABLE);
-    lv_obj_add_flag(ui_Function4, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    //lv_obj_add_flag(ui_Function1, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    //lv_obj_add_flag(ui_Function2, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    //lv_obj_add_flag(ui_Function3, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    //lv_obj_add_flag(ui_Function4, LV_OBJ_FLAG_CLICK_FOCUSABLE);
     lv_obj_add_event_cb(ui_Function1, ui_event_Function1, LV_EVENT_PRESSED, NULL);
     lv_obj_add_event_cb(ui_Function2, ui_event_Function2, LV_EVENT_PRESSED, NULL);
     lv_obj_add_event_cb(ui_Function3, ui_event_Function3, LV_EVENT_PRESSED, NULL);
@@ -235,8 +227,8 @@ static void create_groups_for_ui(void){
     lv_group_add_obj(groups[SCREEN_2], ui_Button2);
     lv_group_add_obj(groups[SCREEN_2], ui_Slider2);
 
-    lv_obj_add_flag(ui_Button2, LV_OBJ_FLAG_CLICK_FOCUSABLE);
-    lv_obj_add_flag(ui_Slider2, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    //lv_obj_add_flag(ui_Button2, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    //lv_obj_add_flag(ui_Slider2, LV_OBJ_FLAG_CLICK_FOCUSABLE);
     lv_obj_add_event_cb(ui_Button2, ui_event_Button2, LV_EVENT_PRESSED, NULL);
     //lv_obj_add_event_cb(ui_Slider2, ui_event_Slider2, LV_EVENT_VALUE_CHANGED, NULL);
 
@@ -244,8 +236,8 @@ static void create_groups_for_ui(void){
     lv_group_add_obj(groups[SCREEN_3], ui_Button3);
     lv_group_add_obj(groups[SCREEN_3], ui_Slider3);
 
-    lv_obj_add_flag(ui_Button3, LV_OBJ_FLAG_CLICK_FOCUSABLE);
-    lv_obj_add_flag(ui_Slider3, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    //lv_obj_add_flag(ui_Button3, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    //lv_obj_add_flag(ui_Slider3, LV_OBJ_FLAG_CLICK_FOCUSABLE);
     lv_obj_add_event_cb(ui_Button3, ui_event_Button3, LV_EVENT_PRESSED, NULL);
     //lv_obj_add_event_cb(ui_Slider3, ui_event_Slider3, LV_EVENT_VALUE_CHANGED, NULL);
 
@@ -253,8 +245,8 @@ static void create_groups_for_ui(void){
     lv_group_add_obj(groups[SCREEN_4], ui_Button1);
     lv_group_add_obj(groups[SCREEN_4], ui_Slider4);
 
-    lv_obj_add_flag(ui_Button1, LV_OBJ_FLAG_CLICK_FOCUSABLE);
-    lv_obj_add_flag(ui_Slider4, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    //lv_obj_add_flag(ui_Button1, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    //lv_obj_add_flag(ui_Slider4, LV_OBJ_FLAG_CLICK_FOCUSABLE);
     lv_obj_add_event_cb(ui_Button1, ui_event_Button1, LV_EVENT_PRESSED, NULL);
     //lv_obj_add_event_cb(ui_Slider4, ui_event_Slider4, LV_EVENT_VALUE_CHANGED, NULL);
     
@@ -263,14 +255,14 @@ static void create_groups_for_ui(void){
     lv_group_add_obj(groups[SCREEN_5], ui_Button5);
     lv_group_add_obj(groups[SCREEN_5], ui_Button6);
 
-    lv_obj_add_flag(ui_Button4, LV_OBJ_FLAG_CLICK_FOCUSABLE);
-    lv_obj_add_flag(ui_Button5, LV_OBJ_FLAG_CLICK_FOCUSABLE);
-    lv_obj_add_flag(ui_Button6, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    //lv_obj_add_flag(ui_Button4, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    //lv_obj_add_flag(ui_Button5, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    //lv_obj_add_flag(ui_Button6, LV_OBJ_FLAG_CLICK_FOCUSABLE);
     lv_obj_add_event_cb(ui_Button4, ui_event_Button4, LV_EVENT_PRESSED, NULL);
     //lv_obj_add_event_cb(ui_Button5, ui_event_Button5, LV_EVENT_PRESSED, NULL);
     //lv_obj_add_event_cb(ui_Button6, ui_event_Button6, LV_EVENT_PRESSED, NULL);
 
-    //current_group = groups[SCREEN_1];  // Grupo inicial
+    current_group = groups[SCREEN_1];  // Grupo inicial
     current_screen = SCREEN_1;
     lv_group_set_default(groups[current_screen]);
     lv_indev_set_group(indev_encoder, groups[current_screen]);
