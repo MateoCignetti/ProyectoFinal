@@ -61,7 +61,7 @@
       "drc_exclusions": [
         [
           "lib_footprint_mismatch|120060000|60395000|3b9fd164-1ce7-473a-b7b7-8dc18b01071c|00000000-0000-0000-0000-000000000000",
-          "Edited silkscreen"
+          "Modified silkscreen"
         ],
         [
           "lib_footprint_mismatch|135780000|86770000|7643ef18-5850-4f11-9b50-0d1fc6a7f789|00000000-0000-0000-0000-000000000000",
@@ -73,7 +73,7 @@
         ],
         [
           "lib_footprint_mismatch|96230000|94980000|e63412b9-32f8-4f0f-91bb-4d9874b7e75e|00000000-0000-0000-0000-000000000000",
-          "Front copper removed"
+          "Removed F.Cu pads"
         ]
       ],
       "meta": {
