@@ -23,6 +23,16 @@ void ui_event_Button2(lv_event_t * e)
     }
 }
 
+void ui_event_Slider2(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+
+    if(event_code == LV_EVENT_VALUE_CHANGED) {
+        _ui_slider_set_text_value(ui_Label10, target, "", " kHz");
+    }
+}
+
 // build funtions
 
 void ui_Screen2_screen_init(void)
@@ -61,6 +71,7 @@ void ui_Screen2_screen_init(void)
     lv_obj_set_style_text_opa(ui_Label9, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Slider2 = lv_slider_create(ui_Screen2);
+    lv_slider_set_range(ui_Slider2, 10, 30);
     lv_slider_set_value(ui_Slider2, 0, LV_ANIM_OFF);
     if(lv_slider_get_mode(ui_Slider2) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(ui_Slider2, 0, LV_ANIM_OFF);
     lv_obj_set_width(ui_Slider2, 150);
@@ -78,9 +89,10 @@ void ui_Screen2_screen_init(void)
     lv_obj_set_width(ui_Label10, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label10, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_Label10, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label10, "text");
+    lv_label_set_text(ui_Label10, "10 kHz");
 
     lv_obj_add_event_cb(ui_Button2, ui_event_Button2, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_Slider2, ui_event_Slider2, LV_EVENT_ALL, NULL);
 
 }
 

@@ -23,6 +23,16 @@ void ui_event_Button1(lv_event_t * e)
     }
 }
 
+void ui_event_Slider4(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+
+    if(event_code == LV_EVENT_VALUE_CHANGED) {
+        _ui_slider_set_text_value(ui_Label14, target, "", " V");
+    }
+}
+
 // build funtions
 
 void ui_Screen4_screen_init(void)
@@ -64,9 +74,10 @@ void ui_Screen4_screen_init(void)
     lv_obj_set_width(ui_Label14, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label14, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_Label14, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label14, "Fijar Set-point");
+    lv_label_set_text(ui_Label14, "0 V");
 
     ui_Slider4 = lv_slider_create(ui_Screen4);
+    lv_slider_set_range(ui_Slider4, 0, 12);
     lv_slider_set_value(ui_Slider4, 0, LV_ANIM_OFF);
     if(lv_slider_get_mode(ui_Slider4) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(ui_Slider4, 0, LV_ANIM_OFF);
     lv_obj_set_width(ui_Slider4, 150);
@@ -79,6 +90,7 @@ void ui_Screen4_screen_init(void)
     if(lv_obj_get_style_pad_top(ui_Slider4, LV_PART_MAIN) > 0) lv_obj_set_style_pad_right(ui_Slider4,
                                                                                               lv_obj_get_style_pad_right(ui_Slider4, LV_PART_MAIN) + 1, LV_PART_MAIN);
     lv_obj_add_event_cb(ui_Button1, ui_event_Button1, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_Slider4, ui_event_Slider4, LV_EVENT_ALL, NULL);
 
 }
 
