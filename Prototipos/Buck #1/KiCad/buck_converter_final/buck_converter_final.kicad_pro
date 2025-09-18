@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 5.3,
-          "height": 5.3,
-          "width": 5.3
+          "drill": 1.3,
+          "height": 2.6,
+          "width": 2.6
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "min_clearance": 0.3
         }
       },
       "diff_pair_dimensions": [
@@ -58,7 +58,20 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "lib_footprint_mismatch|107900000|84100000|e4e12428-0f46-4f2a-bf85-f84a8a484c1f|00000000-0000-0000-0000-000000000000",
+          "Removed F.Cu pads"
+        ],
+        [
+          "lib_footprint_mismatch|147845000|56005000|e2ff7e3f-a315-4111-90fb-edfb4decfdd9|00000000-0000-0000-0000-000000000000",
+          "Changed pin order and silkscreen"
+        ],
+        [
+          "lib_footprint_mismatch|147845000|67305000|c33b579b-360f-4668-834f-59f62ccf3226|00000000-0000-0000-0000-000000000000",
+          "Modified silkscreen"
+        ]
+      ],
       "meta": {
         "version": 2
       },
