@@ -101,6 +101,17 @@ static void vTaskUpdateGroups(void *pvParameters);  // Task to update LVGL group
 /*----------------------------------------*/
 
 void app_main(void){
+
+    // Configuration for the relay to change the load
+    gpio_config_t relay_pin_conf = {
+        .pin_bit_mask = (1ULL << GPIO_NUM_18),
+        .mode = GPIO_MODE_OUTPUT,
+        .pull_up_en = GPIO_PULLUP_DISABLE,
+        .pull_down_en = GPIO_PULLDOWN_ENABLE,
+        .intr_type = GPIO_INTR_DISABLE,
+    };
+    ESP_ERROR_CHECK(gpio_config(&relay_pin_conf)); // Apply the configuration
+    gpio_set_level(GPIO_NUM_18, 0); // Set initial state to LOW (resistive load)
     encoder_queue = xQueueCreate(10, sizeof(rotary_encoder_event_t));
     if (encoder_queue == NULL) {
         ESP_LOGE("ENCODER", "Failed to create encoder queue");
@@ -408,8 +419,8 @@ static void create_groups_for_ui(void){
     lv_group_add_obj(groups[SCREEN_5], ui_Button6);
 
     lv_obj_add_event_cb(ui_Button4, ui_event_Button4, LV_EVENT_PRESSED, NULL);
-    //lv_obj_add_event_cb(ui_Button5, ui_event_Button5, LV_EVENT_PRESSED, NULL);
-    //lv_obj_add_event_cb(ui_Button6, ui_event_Button6, LV_EVENT_PRESSED, NULL);
+    lv_obj_add_event_cb(ui_Button5, ui_event_Button5, LV_EVENT_PRESSED, NULL);
+    lv_obj_add_event_cb(ui_Button6, ui_event_Button6, LV_EVENT_PRESSED, NULL);
 
     current_group = groups[SCREEN_1];  // Grupo inicial
     current_screen = SCREEN_1;

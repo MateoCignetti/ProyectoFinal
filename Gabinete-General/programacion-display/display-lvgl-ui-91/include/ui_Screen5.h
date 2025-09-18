@@ -19,8 +19,10 @@ extern lv_obj_t * ui_Button4;
 extern lv_obj_t * ui_Label15;
 extern lv_obj_t * ui_Panel4;
 extern lv_obj_t * ui_Label16;
+extern void ui_event_Button5(lv_event_t * e);
 extern lv_obj_t * ui_Button5;
 extern lv_obj_t * ui_Label17;
+extern void ui_event_Button6(lv_event_t * e);
 extern lv_obj_t * ui_Button6;
 extern lv_obj_t * ui_Label18;
 // CUSTOM VARIABLES

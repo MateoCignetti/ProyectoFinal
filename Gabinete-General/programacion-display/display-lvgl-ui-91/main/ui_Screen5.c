@@ -25,6 +25,24 @@ void ui_event_Button4(lv_event_t * e)
     }
 }
 
+void ui_event_Button5(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+    if(event_code == LV_EVENT_PRESSED) {
+        resistive_load(e);
+    }
+}
+
+void ui_event_Button6(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+    if(event_code == LV_EVENT_PRESSED) {
+        inductive_load(e);
+    }
+}
+
 // build funtions
 
 void ui_Screen5_screen_init(void)
@@ -91,6 +109,8 @@ void ui_Screen5_screen_init(void)
     lv_label_set_text(ui_Label18, "Inductiva");
 
     lv_obj_add_event_cb(ui_Button4, ui_event_Button4, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_Button5, ui_event_Button5, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_Button6, ui_event_Button6, LV_EVENT_ALL, NULL);
 
 }
 

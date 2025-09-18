@@ -1,4 +1,4 @@
-idf_component_register(SRCS "encoder.c" "main.c" 
+idf_component_register(SRCS "ui_events.c" "encoder.c" "main.c" 
                             "ui_Screen1.c" 
                             "ui_Screen2.c" 
                             "ui_Screen3.c" 

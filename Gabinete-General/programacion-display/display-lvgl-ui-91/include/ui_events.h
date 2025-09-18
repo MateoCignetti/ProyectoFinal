@@ -10,6 +10,9 @@
 extern "C" {
 #endif
 
+void resistive_load(lv_event_t * e);
+void inductive_load(lv_event_t * e);
+
 #ifdef __cplusplus
 } /*extern "C"*/
 #endif
