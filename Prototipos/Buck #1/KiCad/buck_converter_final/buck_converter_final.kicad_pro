@@ -535,7 +535,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "../../../../../utilities/",
+      "plot": "../../../../../../Desktop/GERBERS/BUCK_FINAL/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "../../../../../../../Downloads/buck_converter_final.step",
