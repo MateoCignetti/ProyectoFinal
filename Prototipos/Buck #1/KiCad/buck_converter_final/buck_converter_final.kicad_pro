@@ -64,12 +64,28 @@
           "Removed F.Cu pads"
         ],
         [
-          "lib_footprint_mismatch|147845000|56005000|e2ff7e3f-a315-4111-90fb-edfb4decfdd9|00000000-0000-0000-0000-000000000000",
-          "Changed pin order and silkscreen"
+          "lib_footprint_mismatch|119600000|85300000|44b27282-1071-4800-bdc7-073f96ae523c|00000000-0000-0000-0000-000000000000",
+          "Removed screw"
         ],
         [
-          "lib_footprint_mismatch|147845000|67305000|c33b579b-360f-4668-834f-59f62ccf3226|00000000-0000-0000-0000-000000000000",
+          "lib_footprint_mismatch|125100000|61850000|cdce3010-2a04-41f7-950b-5c2539091da4|00000000-0000-0000-0000-000000000000",
+          "Excluded silkscreen"
+        ],
+        [
+          "lib_footprint_mismatch|131400000|58000000|59bcf434-dce1-489a-a66b-8441e33305b2|00000000-0000-0000-0000-000000000000",
+          "Edited courtyard"
+        ],
+        [
+          "lib_footprint_mismatch|138350000|59600000|84b47a39-3e1d-4ea4-bf79-ebd1d5bd5b04|00000000-0000-0000-0000-000000000000",
           "Modified silkscreen"
+        ],
+        [
+          "lib_footprint_mismatch|147995000|56005000|e2ff7e3f-a315-4111-90fb-edfb4decfdd9|00000000-0000-0000-0000-000000000000",
+          "Edited pin order and silkscreen"
+        ],
+        [
+          "lib_footprint_mismatch|147995000|67305000|c33b579b-360f-4668-834f-59f62ccf3226|00000000-0000-0000-0000-000000000000",
+          "Edited silkscreen"
         ]
       ],
       "meta": {
@@ -136,22 +152,22 @@
       },
       "rules": {
         "max_error": 0.005,
-        "min_clearance": 0.1,
-        "min_connection": 0.0,
+        "min_clearance": 0.2,
+        "min_connection": 0.3,
         "min_copper_edge_clearance": 0.3,
         "min_groove_width": 0.0,
-        "min_hole_clearance": 0.1,
+        "min_hole_clearance": 0.35,
         "min_hole_to_hole": 0.25,
-        "min_microvia_diameter": 0.2,
-        "min_microvia_drill": 0.1,
+        "min_microvia_diameter": 0.6,
+        "min_microvia_drill": 0.3,
         "min_resolved_spokes": 2,
-        "min_silk_clearance": 0.0,
-        "min_text_height": 0.8,
-        "min_text_thickness": 0.08,
+        "min_silk_clearance": 0.2,
+        "min_text_height": 0.9,
+        "min_text_thickness": 0.15,
         "min_through_hole_diameter": 0.6,
         "min_track_width": 0.3,
         "min_via_annular_width": 0.2,
-        "min_via_diameter": 1.0,
+        "min_via_diameter": 0.5,
         "solder_mask_to_copper_clearance": 0.0,
         "use_height_for_length_calcs": true
       },
