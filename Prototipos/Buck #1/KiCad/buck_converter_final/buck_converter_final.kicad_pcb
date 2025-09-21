@@ -12242,7 +12242,7 @@
 		(uuid "a7cb8026-1c6b-4d32-8bf9-9b34a9f38b80")
 		(effects
 			(font
-				(size 0.9 1)
+				(size 1 1)
 				(thickness 0.15)
 			)
 			(justify left bottom mirror)

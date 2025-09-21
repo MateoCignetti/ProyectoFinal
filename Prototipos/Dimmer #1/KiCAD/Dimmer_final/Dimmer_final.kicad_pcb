@@ -7986,7 +7986,7 @@
 		(uuid "207fdee4-6f41-46fb-8464-1b34683ee91a")
 		(effects
 			(font
-				(size 0.9 1)
+				(size 1 1)
 				(thickness 0.15)
 			)
 			(justify left bottom mirror)
