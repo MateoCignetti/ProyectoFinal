@@ -60,32 +60,40 @@
       ],
       "drc_exclusions": [
         [
-          "lib_footprint_mismatch|107900000|84100000|e4e12428-0f46-4f2a-bf85-f84a8a484c1f|00000000-0000-0000-0000-000000000000",
+          "lib_footprint_mismatch|109000000|83000000|e4e12428-0f46-4f2a-bf85-f84a8a484c1f|00000000-0000-0000-0000-000000000000",
           "Removed F.Cu pads"
         ],
         [
-          "lib_footprint_mismatch|119600000|85300000|44b27282-1071-4800-bdc7-073f96ae523c|00000000-0000-0000-0000-000000000000",
-          "Removed screw"
+          "lib_footprint_mismatch|120700000|84200000|44b27282-1071-4800-bdc7-073f96ae523c|00000000-0000-0000-0000-000000000000",
+          "Removed screw hole"
         ],
         [
-          "lib_footprint_mismatch|125100000|61850000|cdce3010-2a04-41f7-950b-5c2539091da4|00000000-0000-0000-0000-000000000000",
-          "Excluded silkscreen"
-        ],
-        [
-          "lib_footprint_mismatch|131400000|58000000|59bcf434-dce1-489a-a66b-8441e33305b2|00000000-0000-0000-0000-000000000000",
-          "Edited courtyard"
-        ],
-        [
-          "lib_footprint_mismatch|138350000|59600000|84b47a39-3e1d-4ea4-bf79-ebd1d5bd5b04|00000000-0000-0000-0000-000000000000",
+          "lib_footprint_mismatch|126200000|60750000|cdce3010-2a04-41f7-950b-5c2539091da4|00000000-0000-0000-0000-000000000000",
           "Modified silkscreen"
         ],
         [
-          "lib_footprint_mismatch|147995000|56005000|e2ff7e3f-a315-4111-90fb-edfb4decfdd9|00000000-0000-0000-0000-000000000000",
-          "Edited pin order and silkscreen"
+          "lib_footprint_mismatch|132500000|56900000|59bcf434-dce1-489a-a66b-8441e33305b2|00000000-0000-0000-0000-000000000000",
+          "Modified courtyard"
         ],
         [
-          "lib_footprint_mismatch|147995000|67305000|c33b579b-360f-4668-834f-59f62ccf3226|00000000-0000-0000-0000-000000000000",
-          "Edited silkscreen"
+          "lib_footprint_mismatch|139450000|58500000|84b47a39-3e1d-4ea4-bf79-ebd1d5bd5b04|00000000-0000-0000-0000-000000000000",
+          "Modified silkscreen"
+        ],
+        [
+          "lib_footprint_mismatch|149095000|54905000|e2ff7e3f-a315-4111-90fb-edfb4decfdd9|00000000-0000-0000-0000-000000000000",
+          "Modified pin order and silkscreen"
+        ],
+        [
+          "lib_footprint_mismatch|149095000|66205000|c33b579b-360f-4668-834f-59f62ccf3226|00000000-0000-0000-0000-000000000000",
+          "Modified silkscreen"
+        ],
+        [
+          "text_height|151200000|108100000|a7cb8026-1c6b-4d32-8bf9-9b34a9f38b80|00000000-0000-0000-0000-000000000000",
+          "Exception just for names"
+        ],
+        [
+          "text_thickness|154100000|108200000|767c10c8-327c-4293-8ca3-51b152835b3d|00000000-0000-0000-0000-000000000000",
+          "N/A"
         ]
       ],
       "meta": {
