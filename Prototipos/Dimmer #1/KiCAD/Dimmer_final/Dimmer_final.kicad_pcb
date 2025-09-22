@@ -70,7 +70,7 @@
 			(layer "B.SilkS"
 				(type "Bottom Silk Screen")
 			)
-			(copper_finish "None")
+			(copper_finish "HAL SnPb")
 			(dielectric_constraints no)
 			(edge_connector yes)
 		)
