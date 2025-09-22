@@ -155,6 +155,26 @@ Cuando la salida del oscilador pasa a un impulso bajo, el comportamiento se invi
 
 Así, se logra que solo uno de los dos MOSFETs conduzca en cada ciclo de conmutación, lo que genera la acción complementaria.
 
+\snsubsubsection{Acople}
+El uso de un amplificador operacional como seguidor de tensión entre la salida del IC555 y la etapa de potencia resulta conveniente porque actúa como adaptador de impedancia, presentando alta impedancia de entrada y baja impedancia de salida. De esta manera, evita que el IC deba excitar cargas capacitivas directamente, mejora la forma de onda entregada y asegura niveles de tensión más estables.
+
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+	% Paths, nodes and wires:
+	\node[op amp] at (9.81, 6){};
+	\draw (11, 6) -- (11, 7.5) -- (8.25, 7.5) -- (8.25, 6.5) -- (8.62, 6.49);
+	\draw (8.62, 5.51) |- (8, 5.5);
+	\draw (11, 6) -- (12, 6);
+	\node[shape=rectangle, draw, line width=1pt, minimum width=2.065cm, minimum height=0.465cm](N1) at (13, 6){} node[anchor=center] at (N1.text){$MOSFETs$};
+	\node[shape=rectangle, draw, line width=1pt, minimum width=1.215cm, minimum height=0.465cm](N2) at (7.375, 5.5){} node[anchor=center] at (N2.text){$IC555$};
+    \end{tikzpicture}
+    \caption{Seguidor de tensión.}
+    \label{fig:inversor:Seguidor}
+\end{figure}
+
+
 \snsubsubsection{Etapa de potencia}
 Los capacitores electrolíticos conforman un divisor de tensión y estos se mantienen cargados gracias a la tensión entregada por el regulador.
 
@@ -399,8 +419,6 @@ R_g = \frac{V}{I_g} = \frac{\SI{12}{\volt}}{\SI{7}{\milli\ampere}} = \SI{1714}{\
 \label{eq:inversor:rg}
 \end{equation}
 Sin embargo, con una resistencia de \SI{1.2}{\kilo\ohm}, bajamos el tiempo de conmutación a \SI{7}{\micro\second}, y se mantiene la potencia disipada por debajo de medio Watt.
-
-La corriente máxima de salida del IC555 es de \SI{200}{\mA}\ por lo que si utilizamos una resistencia de \SI{1.2}{\kilo\ohm}\ nos dará una corriente de poco más de \SI{10}{\mA}.
 
 \snsubsubsection{Driver de MOSFET:}
 Para intercalar el funcionamiento de los MOSFETs y que solo uno conduzca por cada oscilación, se utiliza un transistor BJT BC548, en saturación como driver del segundo mosfet.
