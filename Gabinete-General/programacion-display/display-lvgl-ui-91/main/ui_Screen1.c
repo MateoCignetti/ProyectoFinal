@@ -6,19 +6,17 @@
 #include "ui.h"
 
 lv_obj_t * ui_Screen1 = NULL;
-lv_obj_t * ui_Function1 = NULL;
+lv_obj_t * ui_freqScreen = NULL;
 lv_obj_t * ui_Label4 = NULL;
-lv_obj_t * ui_Function2 = NULL;
+lv_obj_t * ui_controlScreen = NULL;
 lv_obj_t * ui_Label5 = NULL;
-lv_obj_t * ui_Function3 = NULL;
+lv_obj_t * ui_loadScreen = NULL;
 lv_obj_t * ui_Label6 = NULL;
-lv_obj_t * ui_Function4 = NULL;
-lv_obj_t * ui_Label1 = NULL;
 lv_obj_t * ui_buckImage = NULL;
 lv_obj_t * ui_Image2 = NULL;
 lv_obj_t * ui_Label7 = NULL;
 // event funtions
-void ui_event_Function1(lv_event_t * e)
+void ui_event_freqScreen(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
 
@@ -28,7 +26,7 @@ void ui_event_Function1(lv_event_t * e)
     }
 }
 
-void ui_event_Function2(lv_event_t * e)
+void ui_event_controlScreen(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
 
@@ -38,22 +36,12 @@ void ui_event_Function2(lv_event_t * e)
     }
 }
 
-void ui_event_Function3(lv_event_t * e)
+void ui_event_loadScreen(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
 
     if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_Screen4, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Screen4_screen_init);
-        _ui_screen_delete(&ui_Screen1);
-    }
-}
-
-void ui_event_Function4(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_Screen5, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Screen5_screen_init);
+        _ui_screen_change(&ui_Screen6, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Screen6_screen_init);
         _ui_screen_delete(&ui_Screen1);
     }
 }
@@ -64,62 +52,52 @@ void ui_Screen1_screen_init(void)
 {
     ui_Screen1 = lv_obj_create(NULL);
     lv_obj_remove_flag(ui_Screen1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    ui_object_set_themeable_style_property(ui_Screen1, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_COLOR,
+                                           _ui_theme_color_white);
+    ui_object_set_themeable_style_property(ui_Screen1, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_OPA,
+                                           _ui_theme_alpha_white);
 
-    ui_Function1 = lv_button_create(ui_Screen1);
-    lv_obj_set_width(ui_Function1, 110);
-    lv_obj_set_height(ui_Function1, 60);
-    lv_obj_set_x(ui_Function1, 5);
-    lv_obj_set_y(ui_Function1, 20);
-    lv_obj_add_flag(ui_Function1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_remove_flag(ui_Function1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    ui_freqScreen = lv_button_create(ui_Screen1);
+    lv_obj_set_width(ui_freqScreen, 110);
+    lv_obj_set_height(ui_freqScreen, 60);
+    lv_obj_set_x(ui_freqScreen, 5);
+    lv_obj_set_y(ui_freqScreen, 20);
+    lv_obj_add_flag(ui_freqScreen, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_remove_flag(ui_freqScreen, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    ui_Label4 = lv_label_create(ui_Function1);
+    ui_Label4 = lv_label_create(ui_freqScreen);
     lv_obj_set_width(ui_Label4, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label4, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_Label4, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label4, "Funcion 1");
+    lv_label_set_text(ui_Label4, "Frecuencia de\nconmutacion");
 
-    ui_Function2 = lv_button_create(ui_Screen1);
-    lv_obj_set_width(ui_Function2, 110);
-    lv_obj_set_height(ui_Function2, 60);
-    lv_obj_set_x(ui_Function2, 125);
-    lv_obj_set_y(ui_Function2, 20);
-    lv_obj_add_flag(ui_Function2, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_remove_flag(ui_Function2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    ui_controlScreen = lv_button_create(ui_Screen1);
+    lv_obj_set_width(ui_controlScreen, 110);
+    lv_obj_set_height(ui_controlScreen, 60);
+    lv_obj_set_x(ui_controlScreen, 125);
+    lv_obj_set_y(ui_controlScreen, 20);
+    lv_obj_add_flag(ui_controlScreen, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_remove_flag(ui_controlScreen, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    ui_Label5 = lv_label_create(ui_Function2);
+    ui_Label5 = lv_label_create(ui_controlScreen);
     lv_obj_set_width(ui_Label5, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label5, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_Label5, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label5, "Funcion 2");
+    lv_label_set_text(ui_Label5, "Control");
 
-    ui_Function3 = lv_button_create(ui_Screen1);
-    lv_obj_set_width(ui_Function3, 110);
-    lv_obj_set_height(ui_Function3, 60);
-    lv_obj_set_x(ui_Function3, 5);
-    lv_obj_set_y(ui_Function3, 90);
-    lv_obj_add_flag(ui_Function3, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_remove_flag(ui_Function3, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    ui_loadScreen = lv_button_create(ui_Screen1);
+    lv_obj_set_width(ui_loadScreen, 110);
+    lv_obj_set_height(ui_loadScreen, 60);
+    lv_obj_set_x(ui_loadScreen, 5);
+    lv_obj_set_y(ui_loadScreen, 90);
+    lv_obj_add_flag(ui_loadScreen, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_remove_flag(ui_loadScreen, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    ui_Label6 = lv_label_create(ui_Function3);
+    ui_Label6 = lv_label_create(ui_loadScreen);
     lv_obj_set_width(ui_Label6, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label6, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_Label6, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label6, "Funcion 3");
-
-    ui_Function4 = lv_button_create(ui_Screen1);
-    lv_obj_set_width(ui_Function4, 110);
-    lv_obj_set_height(ui_Function4, 60);
-    lv_obj_set_x(ui_Function4, 125);
-    lv_obj_set_y(ui_Function4, 90);
-    lv_obj_add_flag(ui_Function4, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_remove_flag(ui_Function4, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-
-    ui_Label1 = lv_label_create(ui_Function4);
-    lv_obj_set_width(ui_Label1, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Label1, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_Label1, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label1, "Funcion 4");
+    lv_label_set_text(ui_Label6, "Carga");
 
     ui_buckImage = lv_obj_create(ui_Screen1);
     lv_obj_set_width(ui_buckImage, 240);
@@ -128,8 +106,10 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_y(ui_buckImage, 78);
     lv_obj_set_align(ui_buckImage, LV_ALIGN_CENTER);
     lv_obj_remove_flag(ui_buckImage, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_buckImage, lv_color_hex(0xE6E6E6), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_buckImage, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_buckImage, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui_buckImage, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui_buckImage, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Image2 = lv_image_create(ui_buckImage);
     lv_image_set_src(ui_Image2, &ui_img_buck_png);
@@ -148,10 +128,9 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_style_text_color(ui_Label7, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_Label7, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    lv_obj_add_event_cb(ui_Function1, ui_event_Function1, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_Function2, ui_event_Function2, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_Function3, ui_event_Function3, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_Function4, ui_event_Function4, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_freqScreen, ui_event_freqScreen, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_controlScreen, ui_event_controlScreen, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_loadScreen, ui_event_loadScreen, LV_EVENT_ALL, NULL);
 
 }
 
@@ -161,14 +140,12 @@ void ui_Screen1_screen_destroy(void)
 
     // NULL screen variables
     ui_Screen1 = NULL;
-    ui_Function1 = NULL;
+    ui_freqScreen = NULL;
     ui_Label4 = NULL;
-    ui_Function2 = NULL;
+    ui_controlScreen = NULL;
     ui_Label5 = NULL;
-    ui_Function3 = NULL;
+    ui_loadScreen = NULL;
     ui_Label6 = NULL;
-    ui_Function4 = NULL;
-    ui_Label1 = NULL;
     ui_buckImage = NULL;
     ui_Image2 = NULL;
     ui_Label7 = NULL;

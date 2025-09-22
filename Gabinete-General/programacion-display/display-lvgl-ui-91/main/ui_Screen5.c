@@ -6,40 +6,41 @@
 #include "ui.h"
 
 lv_obj_t * ui_Screen5 = NULL;
-lv_obj_t * ui_Button4 = NULL;
-lv_obj_t * ui_Label15 = NULL;
-lv_obj_t * ui_Panel4 = NULL;
-lv_obj_t * ui_Label16 = NULL;
-lv_obj_t * ui_Button5 = NULL;
-lv_obj_t * ui_Label17 = NULL;
-lv_obj_t * ui_Button6 = NULL;
-lv_obj_t * ui_Label18 = NULL;
+lv_obj_t * ui_ButtonReturn4 = NULL;
+lv_obj_t * ui_Panel1 = NULL;
+lv_obj_t * ui_Label13 = NULL;
+lv_obj_t * ui_setPointValue = NULL;
+lv_obj_t * ui_SliderSP = NULL;
+lv_obj_t * ui_ButtonReturnDefault3 = NULL;
+lv_obj_t * ui_Label1 = NULL;
 // event funtions
-void ui_event_Button4(lv_event_t * e)
+void ui_event_ButtonReturn4(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
 
     if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_Screen1, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Screen1_screen_init);
+        _ui_screen_change(&ui_Screen3, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Screen3_screen_init);
         _ui_screen_delete(&ui_Screen5);
     }
 }
 
-void ui_event_Button5(lv_event_t * e)
+void ui_event_SliderSP(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
 
-    if(event_code == LV_EVENT_PRESSED) {
-        resistive_load(e);
+    if(event_code == LV_EVENT_VALUE_CHANGED) {
+        _ui_slider_set_text_value(ui_setPointValue, target, "", " V");
     }
 }
 
-void ui_event_Button6(lv_event_t * e)
+void ui_event_ButtonReturnDefault3(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
 
-    if(event_code == LV_EVENT_PRESSED) {
-        inductive_load(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_slider_set_property(ui_SliderSP, _UI_SLIDER_PROPERTY_VALUE, 6);
+        _ui_label_set_property(ui_setPointValue, _UI_LABEL_PROPERTY_TEXT, "6 V");
     }
 }
 
@@ -49,68 +50,81 @@ void ui_Screen5_screen_init(void)
 {
     ui_Screen5 = lv_obj_create(NULL);
     lv_obj_remove_flag(ui_Screen5, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    ui_object_set_themeable_style_property(ui_Screen5, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_COLOR,
+                                           _ui_theme_color_white);
+    ui_object_set_themeable_style_property(ui_Screen5, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_OPA,
+                                           _ui_theme_alpha_white);
 
-    ui_Button4 = lv_button_create(ui_Screen5);
-    lv_obj_set_width(ui_Button4, 40);
-    lv_obj_set_height(ui_Button4, 40);
-    lv_obj_add_flag(ui_Button4, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_remove_flag(ui_Button4, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    ui_ButtonReturn4 = lv_button_create(ui_Screen5);
+    lv_obj_set_width(ui_ButtonReturn4, 45);
+    lv_obj_set_height(ui_ButtonReturn4, 40);
+    lv_obj_add_flag(ui_ButtonReturn4, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_remove_flag(ui_ButtonReturn4, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_image_src(ui_ButtonReturn4, &ui_img_arrow_png, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_image_recolor(ui_ButtonReturn4, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_image_recolor_opa(ui_ButtonReturn4, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Label15 = lv_label_create(ui_Button4);
-    lv_obj_set_width(ui_Label15, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Label15, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_Label15, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label15, "Back");
+    ui_Panel1 = lv_obj_create(ui_Screen5);
+    lv_obj_set_width(ui_Panel1, LV_SIZE_CONTENT);   /// 100
+    lv_obj_set_height(ui_Panel1, LV_SIZE_CONTENT);    /// 50
+    lv_obj_set_x(ui_Panel1, 0);
+    lv_obj_set_y(ui_Panel1, -60);
+    lv_obj_set_align(ui_Panel1, LV_ALIGN_CENTER);
+    lv_obj_remove_flag(ui_Panel1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_Panel1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Panel1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui_Panel1, lv_color_hex(0xAEC8FF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui_Panel1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Panel4 = lv_obj_create(ui_Screen5);
-    lv_obj_set_width(ui_Panel4, LV_SIZE_CONTENT);   /// 100
-    lv_obj_set_height(ui_Panel4, LV_SIZE_CONTENT);    /// 50
-    lv_obj_set_x(ui_Panel4, 0);
-    lv_obj_set_y(ui_Panel4, -60);
-    lv_obj_set_align(ui_Panel4, LV_ALIGN_CENTER);
-    lv_obj_remove_flag(ui_Panel4, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_Panel4, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_Panel4, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_Label13 = lv_label_create(ui_Panel1);
+    lv_obj_set_width(ui_Label13, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label13, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label13, LV_ALIGN_LEFT_MID);
+    lv_label_set_text(ui_Label13, "Activar Control PID");
+    lv_obj_set_style_text_color(ui_Label13, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_Label13, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Label16 = lv_label_create(ui_Panel4);
-    lv_obj_set_width(ui_Label16, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Label16, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_Label16, LV_ALIGN_LEFT_MID);
-    lv_label_set_text(ui_Label16, "Elegir carga");
-    lv_obj_set_style_text_color(ui_Label16, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_Label16, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_setPointValue = lv_label_create(ui_Screen5);
+    lv_obj_set_width(ui_setPointValue, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_setPointValue, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_setPointValue, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_setPointValue, "0 V");
+    lv_obj_set_style_text_color(ui_setPointValue, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_setPointValue, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Button5 = lv_button_create(ui_Screen5);
-    lv_obj_set_width(ui_Button5, 110);
-    lv_obj_set_height(ui_Button5, 50);
-    lv_obj_set_x(ui_Button5, 5);
-    lv_obj_set_y(ui_Button5, 150);
-    lv_obj_add_flag(ui_Button5, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_remove_flag(ui_Button5, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    ui_SliderSP = lv_slider_create(ui_Screen5);
+    lv_slider_set_range(ui_SliderSP, 0, 12);
+    lv_slider_set_value(ui_SliderSP, 0, LV_ANIM_OFF);
+    if(lv_slider_get_mode(ui_SliderSP) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(ui_SliderSP, 0, LV_ANIM_OFF);
+    lv_obj_set_width(ui_SliderSP, 150);
+    lv_obj_set_height(ui_SliderSP, 10);
+    lv_obj_set_x(ui_SliderSP, 0);
+    lv_obj_set_y(ui_SliderSP, 20);
+    lv_obj_set_align(ui_SliderSP, LV_ALIGN_CENTER);
+    lv_obj_set_style_bg_color(ui_SliderSP, lv_color_hex(0xAEC8FF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_SliderSP, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Label17 = lv_label_create(ui_Button5);
-    lv_obj_set_width(ui_Label17, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Label17, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_Label17, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label17, "Resistiva");
+    //Compensating for LVGL9.1 draw crash with bar/slider max value when top-padding is nonzero and right-padding is 0
+    if(lv_obj_get_style_pad_top(ui_SliderSP, LV_PART_MAIN) > 0) lv_obj_set_style_pad_right(ui_SliderSP,
+                                                                                               lv_obj_get_style_pad_right(ui_SliderSP, LV_PART_MAIN) + 1, LV_PART_MAIN);
+    ui_ButtonReturnDefault3 = lv_button_create(ui_Screen5);
+    lv_obj_set_width(ui_ButtonReturnDefault3, 100);
+    lv_obj_set_height(ui_ButtonReturnDefault3, 50);
+    lv_obj_set_x(ui_ButtonReturnDefault3, 0);
+    lv_obj_set_y(ui_ButtonReturnDefault3, 90);
+    lv_obj_set_align(ui_ButtonReturnDefault3, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ButtonReturnDefault3, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_remove_flag(ui_ButtonReturnDefault3, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    ui_Button6 = lv_button_create(ui_Screen5);
-    lv_obj_set_width(ui_Button6, 110);
-    lv_obj_set_height(ui_Button6, 50);
-    lv_obj_set_x(ui_Button6, 125);
-    lv_obj_set_y(ui_Button6, 150);
-    lv_obj_add_flag(ui_Button6, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_remove_flag(ui_Button6, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    ui_Label1 = lv_label_create(ui_ButtonReturnDefault3);
+    lv_obj_set_width(ui_Label1, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label1, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label1, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label1, "Valor por \ndefecto");
 
-    ui_Label18 = lv_label_create(ui_Button6);
-    lv_obj_set_width(ui_Label18, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Label18, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_Label18, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label18, "Inductiva");
-
-    lv_obj_add_event_cb(ui_Button4, ui_event_Button4, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_Button5, ui_event_Button5, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_Button6, ui_event_Button6, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ButtonReturn4, ui_event_ButtonReturn4, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_SliderSP, ui_event_SliderSP, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ButtonReturnDefault3, ui_event_ButtonReturnDefault3, LV_EVENT_ALL, NULL);
 
 }
 
@@ -120,13 +134,12 @@ void ui_Screen5_screen_destroy(void)
 
     // NULL screen variables
     ui_Screen5 = NULL;
-    ui_Button4 = NULL;
-    ui_Label15 = NULL;
-    ui_Panel4 = NULL;
-    ui_Label16 = NULL;
-    ui_Button5 = NULL;
-    ui_Label17 = NULL;
-    ui_Button6 = NULL;
-    ui_Label18 = NULL;
+    ui_ButtonReturn4 = NULL;
+    ui_Panel1 = NULL;
+    ui_Label13 = NULL;
+    ui_setPointValue = NULL;
+    ui_SliderSP = NULL;
+    ui_ButtonReturnDefault3 = NULL;
+    ui_Label1 = NULL;
 
 }

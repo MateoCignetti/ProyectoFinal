@@ -6,14 +6,15 @@
 #include "ui.h"
 
 lv_obj_t * ui_Screen2 = NULL;
-lv_obj_t * ui_Button2 = NULL;
-lv_obj_t * ui_Label8 = NULL;
+lv_obj_t * ui_ButtonReturn1 = NULL;
 lv_obj_t * ui_Panel3 = NULL;
 lv_obj_t * ui_Label9 = NULL;
-lv_obj_t * ui_Slider2 = NULL;
-lv_obj_t * ui_Label10 = NULL;
+lv_obj_t * ui_SliderFreq1 = NULL;
+lv_obj_t * ui_freqValue = NULL;
+lv_obj_t * ui_ButtonReturnDefault1 = NULL;
+lv_obj_t * ui_Label2 = NULL;
 // event funtions
-void ui_event_Button2(lv_event_t * e)
+void ui_event_ButtonReturn1(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
 
@@ -23,13 +24,23 @@ void ui_event_Button2(lv_event_t * e)
     }
 }
 
-void ui_event_Slider2(lv_event_t * e)
+void ui_event_SliderFreq1(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
 
     if(event_code == LV_EVENT_VALUE_CHANGED) {
-        _ui_slider_set_text_value(ui_Label10, target, "", " kHz");
+        _ui_slider_set_text_value(ui_freqValue, target, "", " kHz");
+    }
+}
+
+void ui_event_ButtonReturnDefault1(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_slider_set_property(ui_SliderFreq1, _UI_SLIDER_PROPERTY_VALUE, 19);
+        _ui_label_set_property(ui_freqValue, _UI_LABEL_PROPERTY_TEXT, "19 kHz");
     }
 }
 
@@ -39,18 +50,19 @@ void ui_Screen2_screen_init(void)
 {
     ui_Screen2 = lv_obj_create(NULL);
     lv_obj_remove_flag(ui_Screen2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    ui_object_set_themeable_style_property(ui_Screen2, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_COLOR,
+                                           _ui_theme_color_white);
+    ui_object_set_themeable_style_property(ui_Screen2, LV_PART_MAIN | LV_STATE_DEFAULT, LV_STYLE_BG_OPA,
+                                           _ui_theme_alpha_white);
 
-    ui_Button2 = lv_button_create(ui_Screen2);
-    lv_obj_set_width(ui_Button2, 40);
-    lv_obj_set_height(ui_Button2, 40);
-    lv_obj_add_flag(ui_Button2, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_remove_flag(ui_Button2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-
-    ui_Label8 = lv_label_create(ui_Button2);
-    lv_obj_set_width(ui_Label8, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Label8, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_Label8, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label8, "Back");
+    ui_ButtonReturn1 = lv_button_create(ui_Screen2);
+    lv_obj_set_width(ui_ButtonReturn1, 45);
+    lv_obj_set_height(ui_ButtonReturn1, 40);
+    lv_obj_add_flag(ui_ButtonReturn1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_remove_flag(ui_ButtonReturn1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_image_src(ui_ButtonReturn1, &ui_img_arrow_png, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_image_recolor(ui_ButtonReturn1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_image_recolor_opa(ui_ButtonReturn1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Panel3 = lv_obj_create(ui_Screen2);
     lv_obj_set_width(ui_Panel3, LV_SIZE_CONTENT);   /// 100
@@ -61,6 +73,8 @@ void ui_Screen2_screen_init(void)
     lv_obj_remove_flag(ui_Panel3, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_bg_color(ui_Panel3, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_Panel3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui_Panel3, lv_color_hex(0xAEC8FF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui_Panel3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Label9 = lv_label_create(ui_Panel3);
     lv_obj_set_width(ui_Label9, LV_SIZE_CONTENT);   /// 1
@@ -70,29 +84,47 @@ void ui_Screen2_screen_init(void)
     lv_obj_set_style_text_color(ui_Label9, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_Label9, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Slider2 = lv_slider_create(ui_Screen2);
-    lv_slider_set_range(ui_Slider2, 10, 30);
-    lv_slider_set_value(ui_Slider2, 0, LV_ANIM_OFF);
-    if(lv_slider_get_mode(ui_Slider2) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(ui_Slider2, 0, LV_ANIM_OFF);
-    lv_obj_set_width(ui_Slider2, 150);
-    lv_obj_set_height(ui_Slider2, 10);
-    lv_obj_set_x(ui_Slider2, 0);
-    lv_obj_set_y(ui_Slider2, 30);
-    lv_obj_set_align(ui_Slider2, LV_ALIGN_CENTER);
-    lv_obj_set_style_bg_color(ui_Slider2, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_Slider2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_SliderFreq1 = lv_slider_create(ui_Screen2);
+    lv_slider_set_range(ui_SliderFreq1, 10, 30);
+    lv_slider_set_value(ui_SliderFreq1, 0, LV_ANIM_OFF);
+    if(lv_slider_get_mode(ui_SliderFreq1) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(ui_SliderFreq1, 0, LV_ANIM_OFF);
+    lv_obj_set_width(ui_SliderFreq1, 150);
+    lv_obj_set_height(ui_SliderFreq1, 10);
+    lv_obj_set_x(ui_SliderFreq1, 0);
+    lv_obj_set_y(ui_SliderFreq1, 30);
+    lv_obj_set_align(ui_SliderFreq1, LV_ALIGN_CENTER);
+    lv_obj_set_style_bg_color(ui_SliderFreq1, lv_color_hex(0xAEC8FF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_SliderFreq1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     //Compensating for LVGL9.1 draw crash with bar/slider max value when top-padding is nonzero and right-padding is 0
-    if(lv_obj_get_style_pad_top(ui_Slider2, LV_PART_MAIN) > 0) lv_obj_set_style_pad_right(ui_Slider2,
-                                                                                              lv_obj_get_style_pad_right(ui_Slider2, LV_PART_MAIN) + 1, LV_PART_MAIN);
-    ui_Label10 = lv_label_create(ui_Screen2);
-    lv_obj_set_width(ui_Label10, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Label10, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_Label10, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label10, "10 kHz");
+    if(lv_obj_get_style_pad_top(ui_SliderFreq1, LV_PART_MAIN) > 0) lv_obj_set_style_pad_right(ui_SliderFreq1,
+                                                                                                  lv_obj_get_style_pad_right(ui_SliderFreq1, LV_PART_MAIN) + 1, LV_PART_MAIN);
+    ui_freqValue = lv_label_create(ui_Screen2);
+    lv_obj_set_width(ui_freqValue, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_freqValue, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_freqValue, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_freqValue, "10 kHz");
+    lv_obj_set_style_text_color(ui_freqValue, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_freqValue, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    lv_obj_add_event_cb(ui_Button2, ui_event_Button2, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_Slider2, ui_event_Slider2, LV_EVENT_ALL, NULL);
+    ui_ButtonReturnDefault1 = lv_button_create(ui_Screen2);
+    lv_obj_set_width(ui_ButtonReturnDefault1, 100);
+    lv_obj_set_height(ui_ButtonReturnDefault1, 50);
+    lv_obj_set_x(ui_ButtonReturnDefault1, 0);
+    lv_obj_set_y(ui_ButtonReturnDefault1, 90);
+    lv_obj_set_align(ui_ButtonReturnDefault1, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ButtonReturnDefault1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_remove_flag(ui_ButtonReturnDefault1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+    ui_Label2 = lv_label_create(ui_ButtonReturnDefault1);
+    lv_obj_set_width(ui_Label2, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label2, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label2, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label2, "Valor por \ndefecto");
+
+    lv_obj_add_event_cb(ui_ButtonReturn1, ui_event_ButtonReturn1, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_SliderFreq1, ui_event_SliderFreq1, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ButtonReturnDefault1, ui_event_ButtonReturnDefault1, LV_EVENT_ALL, NULL);
 
 }
 
@@ -102,11 +134,12 @@ void ui_Screen2_screen_destroy(void)
 
     // NULL screen variables
     ui_Screen2 = NULL;
-    ui_Button2 = NULL;
-    ui_Label8 = NULL;
+    ui_ButtonReturn1 = NULL;
     ui_Panel3 = NULL;
     ui_Label9 = NULL;
-    ui_Slider2 = NULL;
-    ui_Label10 = NULL;
+    ui_SliderFreq1 = NULL;
+    ui_freqValue = NULL;
+    ui_ButtonReturnDefault1 = NULL;
+    ui_Label2 = NULL;
 
 }

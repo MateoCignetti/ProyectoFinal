@@ -14,14 +14,16 @@ extern "C" {
 extern void ui_Screen2_screen_init(void);
 extern void ui_Screen2_screen_destroy(void);
 extern lv_obj_t * ui_Screen2;
-extern void ui_event_Button2(lv_event_t * e);
-extern lv_obj_t * ui_Button2;
-extern lv_obj_t * ui_Label8;
+extern void ui_event_ButtonReturn1(lv_event_t * e);
+extern lv_obj_t * ui_ButtonReturn1;
 extern lv_obj_t * ui_Panel3;
 extern lv_obj_t * ui_Label9;
-extern void ui_event_Slider2(lv_event_t * e);
-extern lv_obj_t * ui_Slider2;
-extern lv_obj_t * ui_Label10;
+extern void ui_event_SliderFreq1(lv_event_t * e);
+extern lv_obj_t * ui_SliderFreq1;
+extern lv_obj_t * ui_freqValue;
+extern void ui_event_ButtonReturnDefault1(lv_event_t * e);
+extern lv_obj_t * ui_ButtonReturnDefault1;
+extern lv_obj_t * ui_Label2;
 // CUSTOM VARIABLES
 
 #ifdef __cplusplus

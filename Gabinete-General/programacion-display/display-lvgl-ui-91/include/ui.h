@@ -24,6 +24,8 @@ extern "C" {
 
 #include "ui_helpers.h"
 #include "ui_events.h"
+#include "ui_theme_manager.h"
+#include "ui_themes.h"
 
 ///////////////////// SCREENS ////////////////////
 
@@ -32,6 +34,7 @@ extern "C" {
 #include "ui_Screen3.h"
 #include "ui_Screen4.h"
 #include "ui_Screen5.h"
+#include "ui_Screen6.h"
 
 ///////////////////// VARIABLES ////////////////////
 
@@ -42,6 +45,7 @@ extern lv_obj_t * ui____initial_actions0;
 
 // IMAGES AND IMAGE SETS
 LV_IMG_DECLARE(ui_img_buck_png);    // assets/buck.png
+LV_IMG_DECLARE(ui_img_arrow_png);    // assets/arrow.png
 
 // UI INIT
 void ui_init(void);

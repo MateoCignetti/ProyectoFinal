@@ -10,6 +10,8 @@
 extern "C" {
 #endif
 
+void controlFixedPWM(lv_event_t * e);
+void controlPID(lv_event_t * e);
 void resistive_load(lv_event_t * e);
 void inductive_load(lv_event_t * e);
 
