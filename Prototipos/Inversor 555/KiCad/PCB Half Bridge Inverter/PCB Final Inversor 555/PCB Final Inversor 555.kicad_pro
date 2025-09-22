@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 1.0,
-          "height": 1.8,
-          "width": 1.8
+          "drill": 2.1,
+          "height": 3.0,
+          "width": 4.0
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -64,8 +64,8 @@
           "Removed F.Cu pads"
         ],
         [
-          "lib_footprint_mismatch|66950000|69500000|a1249eff-06d6-4ac2-af0b-83a571f91149|00000000-0000-0000-0000-000000000000",
-          "Modified pin nets"
+          "lib_footprint_mismatch|66700000|69200000|a1249eff-06d6-4ac2-af0b-83a571f91149|00000000-0000-0000-0000-000000000000",
+          "Edited silkscreen"
         ],
         [
           "lib_footprint_mismatch|89000000|106500000|42411766-a176-4aa5-a6ca-858b1462b283|00000000-0000-0000-0000-000000000000",
@@ -78,6 +78,18 @@
         [
           "lib_footprint_mismatch|89000000|95000000|4a351297-069b-44b0-ad65-33fb754c8709|00000000-0000-0000-0000-000000000000",
           "Modified silkscreen"
+        ],
+        [
+          "net_conflict|64200000|75250000|0e75bb96-3426-446a-91fe-9af2b8f41349|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "net_conflict|64200000|75250000|9039ec51-157c-4b2f-bdec-f8c964be6867|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "text_thickness|99800000|113250000|0f236adc-8075-4139-a662-7078bee439b4|00000000-0000-0000-0000-000000000000",
+          ""
         ]
       ],
       "meta": {

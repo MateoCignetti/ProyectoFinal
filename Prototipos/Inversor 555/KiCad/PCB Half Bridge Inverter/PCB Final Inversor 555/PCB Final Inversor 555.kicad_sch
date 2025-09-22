@@ -798,144 +798,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:R_Trim"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "R"
-				(at 2.54 -2.54 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "R_Trim"
-				(at -2.54 -0.635 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at -1.778 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Trimmable resistor (preset resistor)"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "R res resistor variable potentiometer trimmer"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "R_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "R_Trim_0_1"
-				(polyline
-					(pts
-						(xy -1.905 -1.905) (xy 1.905 1.905) (xy 2.54 1.27) (xy 1.27 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.016 -2.54)
-					(end 1.016 2.54)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "R_Trim_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:R_US"
 			(pin_numbers
 				(hide yes)
@@ -1070,6 +932,144 @@
 				)
 			)
 			(symbol "R_US_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:R_Variable"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.54 -2.54 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "R_Variable"
+				(at -2.54 -1.27 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Variable resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor variable potentiometer rheostat"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_Variable_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 1.524) (xy 2.54 2.54) (xy 1.524 2.54) (xy 2.54 2.54) (xy -2.032 -2.032)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_Variable_1_1"
 				(pin passive line
 					(at 0 3.81 270)
 					(length 1.27)
@@ -2599,7 +2599,7 @@
 		)
 		(uuid "2ff1a79d-eab4-483b-a3c9-869fd5e2290b")
 	)
-	(text_box "Squuare Wave Generator"
+	(text_box "Square Wave Generator"
 		(exclude_from_sim no)
 		(at 50.8 34.29 0)
 		(size 95.25 68.58)
@@ -2808,6 +2808,18 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f5d02dad-9425-4126-81dd-b5a4b4bf3b1b")
+	)
+	(no_connect
+		(at 223.52 157.48)
+		(uuid "070f06f0-bee5-4d22-9e6c-be63032ceb2c")
+	)
+	(no_connect
+		(at 223.52 152.4)
+		(uuid "3a655029-c211-4121-8730-be45d3dd1ccc")
+	)
+	(no_connect
+		(at 238.76 154.94)
+		(uuid "f7662573-be81-470a-9ef6-469ede3b5710")
 	)
 	(wire
 		(pts
@@ -3801,7 +3813,7 @@
 			)
 		)
 	)
-	(global_label "PGND"
+	(global_label "GND"
 		(shape input)
 		(at 118.11 91.44 180)
 		(fields_autoplaced yes)
@@ -3813,7 +3825,7 @@
 		)
 		(uuid "33b528f4-055f-46b0-ba71-b4d1cdfed82a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 109.9843 91.44 0)
+			(at 111.2543 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3823,7 +3835,7 @@
 			)
 		)
 	)
-	(global_label "AGND"
+	(global_label "GND"
 		(shape output)
 		(at 115.57 151.13 180)
 		(fields_autoplaced yes)
@@ -3835,7 +3847,7 @@
 		)
 		(uuid "3500eb10-0982-45e1-9ff7-2dcd444c2035")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 107.6257 151.13 0)
+			(at 108.7143 151.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3867,7 +3879,7 @@
 			)
 		)
 	)
-	(global_label "AGND"
+	(global_label "GND"
 		(shape output)
 		(at 73.66 160.02 0)
 		(fields_autoplaced yes)
@@ -3879,7 +3891,7 @@
 		)
 		(uuid "45a44cd0-5c27-4cbc-85d6-2e3f680149fe")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.6043 160.02 0)
+			(at 80.5157 160.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3999,7 +4011,7 @@
 			)
 		)
 	)
-	(global_label "PGND"
+	(global_label "GND"
 		(shape input)
 		(at 31.75 120.65 180)
 		(fields_autoplaced yes)
@@ -4011,7 +4023,7 @@
 		)
 		(uuid "66da91f4-02a8-4d8d-af61-51225c2fa651")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 23.6243 120.65 0)
+			(at 24.8943 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4087,7 +4099,7 @@
 			)
 		)
 	)
-	(global_label "PGND"
+	(global_label "GND"
 		(shape input)
 		(at 246.38 123.19 0)
 		(fields_autoplaced yes)
@@ -4099,7 +4111,7 @@
 		)
 		(uuid "9a924ae1-a9ac-4488-b5d0-9554325ea21a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 254.5057 123.19 0)
+			(at 253.2357 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4175,7 +4187,7 @@
 			)
 		)
 	)
-	(global_label "AGND"
+	(global_label "GND"
 		(shape input)
 		(at 39.37 129.54 180)
 		(fields_autoplaced yes)
@@ -4187,7 +4199,7 @@
 		)
 		(uuid "d15b4803-1746-41c2-aacf-39cf52f11705")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 31.4257 129.54 0)
+			(at 32.5143 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4241,7 +4253,7 @@
 			)
 		)
 	)
-	(global_label "PGND"
+	(global_label "GND"
 		(shape input)
 		(at 93.98 68.58 180)
 		(fields_autoplaced yes)
@@ -4253,7 +4265,7 @@
 		)
 		(uuid "e1e09e8a-0825-4bde-b621-8fa773e5f65f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 85.8543 68.58 0)
+			(at 87.1243 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4263,7 +4275,7 @@
 			)
 		)
 	)
-	(global_label "PGND"
+	(global_label "GND"
 		(shape input)
 		(at 161.29 137.16 180)
 		(fields_autoplaced yes)
@@ -4275,7 +4287,7 @@
 		)
 		(uuid "ee8dc7e0-5166-47fc-9b52-99c535995666")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 153.1643 137.16 0)
+			(at 154.4343 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4285,7 +4297,7 @@
 			)
 		)
 	)
-	(global_label "PGND"
+	(global_label "GND"
 		(shape input)
 		(at 181.61 97.79 180)
 		(fields_autoplaced yes)
@@ -4297,7 +4309,7 @@
 		)
 		(uuid "eef7691d-fb75-403c-b470-4c0c1f105dd9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 173.4843 97.79 0)
+			(at 174.7543 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4716,7 +4728,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "Load+"
 			(at 208.28 66.5479 0)
 			(effects
 				(font
@@ -4837,8 +4849,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Trim")
-		(at 76.2 71.12 180)
+		(lib_id "Device:R_Variable")
+		(at 76.2 71.12 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4846,7 +4858,7 @@
 		(dnp no)
 		(uuid "4d984c8e-a508-49f5-8e87-36155a98d19e")
 		(property "Reference" "R2"
-			(at 78.994 71.882 0)
+			(at 82.042 70.104 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4855,7 +4867,7 @@
 			)
 		)
 		(property "Value" "50k"
-			(at 78.486 73.66 0)
+			(at 83.058 72.136 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4864,7 +4876,7 @@
 			)
 		)
 		(property "Footprint" "Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical"
-			(at 77.978 71.12 90)
+			(at 74.422 71.12 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4881,7 +4893,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Trimmable resistor (preset resistor)"
+		(property "Description" "Variable resistor"
 			(at 76.2 71.12 0)
 			(effects
 				(font
@@ -4959,28 +4971,28 @@
 			)
 		)
 		(pin "3"
-			(uuid "2d120cf7-0056-41d9-8f27-65056d32de4b")
+			(uuid "2d120cf7-0056-41d9-8f27-65056d32de4c")
 		)
 		(pin "5"
-			(uuid "0a8c8ba7-0921-48ed-95d6-a250985f275c")
+			(uuid "0a8c8ba7-0921-48ed-95d6-a250985f275d")
 		)
 		(pin "2"
-			(uuid "9a7365da-fed8-4758-a99b-d06d19e8872d")
+			(uuid "9a7365da-fed8-4758-a99b-d06d19e8872e")
 		)
 		(pin "1"
-			(uuid "f8020960-cf78-4550-b5eb-a7cd3438d10b")
+			(uuid "f8020960-cf78-4550-b5eb-a7cd3438d10c")
 		)
 		(pin "6"
-			(uuid "ce9d3df7-d01e-46ff-8d8b-b02f8fe078fc")
+			(uuid "ce9d3df7-d01e-46ff-8d8b-b02f8fe078fd")
 		)
 		(pin "7"
-			(uuid "b4e28fab-753e-4260-a6dc-ccd3b768fc77")
+			(uuid "b4e28fab-753e-4260-a6dc-ccd3b768fc78")
 		)
 		(pin "8"
-			(uuid "1f4d107d-0378-4922-9851-914f96254b7f")
+			(uuid "1f4d107d-0378-4922-9851-914f96254b80")
 		)
 		(pin "4"
-			(uuid "3ca7b0c8-b1b3-4d5b-91bc-ef22158f74b9")
+			(uuid "3ca7b0c8-b1b3-4d5b-91bc-ef22158f74ba")
 		)
 		(instances
 			(project ""
@@ -5289,7 +5301,7 @@
 				)
 			)
 		)
-		(property "Value" "Carga"
+		(property "Value" "Load"
 			(at 222.25 64.77 90)
 			(effects
 				(font
@@ -5458,7 +5470,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "Regulator_output"
 			(at 222.25 38.6079 0)
 			(effects
 				(font
@@ -5670,10 +5682,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "c7cb5d0c-c250-45fa-8c62-d3f7c636dc27")
 		(property "Reference" "TP5"
-			(at 66.04 71.6279 0)
+			(at 64.77 72.136 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5681,8 +5692,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
-			(at 66.04 74.1679 0)
+		(property "Value" "555_OUT"
+			(at 64.77 74.422 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5818,7 +5829,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "Load-"
 			(at 231.14 66.5479 0)
 			(effects
 				(font
@@ -6060,28 +6071,28 @@
 			)
 		)
 		(pin "3"
-			(uuid "2d120cf7-0056-41d9-8f27-65056d32de4b")
+			(uuid "2d120cf7-0056-41d9-8f27-65056d32de4d")
 		)
 		(pin "5"
-			(uuid "0a8c8ba7-0921-48ed-95d6-a250985f275c")
+			(uuid "0a8c8ba7-0921-48ed-95d6-a250985f275e")
 		)
 		(pin "2"
-			(uuid "9a7365da-fed8-4758-a99b-d06d19e8872d")
+			(uuid "9a7365da-fed8-4758-a99b-d06d19e8872f")
 		)
 		(pin "1"
-			(uuid "f8020960-cf78-4550-b5eb-a7cd3438d10b")
+			(uuid "f8020960-cf78-4550-b5eb-a7cd3438d10d")
 		)
 		(pin "6"
-			(uuid "ce9d3df7-d01e-46ff-8d8b-b02f8fe078fc")
+			(uuid "ce9d3df7-d01e-46ff-8d8b-b02f8fe078fe")
 		)
 		(pin "7"
-			(uuid "b4e28fab-753e-4260-a6dc-ccd3b768fc77")
+			(uuid "b4e28fab-753e-4260-a6dc-ccd3b768fc79")
 		)
 		(pin "8"
-			(uuid "1f4d107d-0378-4922-9851-914f96254b7f")
+			(uuid "1f4d107d-0378-4922-9851-914f96254b81")
 		)
 		(pin "4"
-			(uuid "3ca7b0c8-b1b3-4d5b-91bc-ef22158f74b9")
+			(uuid "3ca7b0c8-b1b3-4d5b-91bc-ef22158f74bb")
 		)
 		(instances
 			(project ""
@@ -6251,7 +6262,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "GND"
 			(at 224.79 91.9479 0)
 			(effects
 				(font
