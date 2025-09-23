@@ -16,12 +16,13 @@
 \usepackage{mathtools} % Para splitfrac
 %\usepackage{textcomp}
 %\usepackage{gensymb}
-%\usepackage{xfrac}
+\usepackage{xfrac}
 %\usepackage{amsfonts}
 \usepackage{siunitx}
 
 % Declaración de unidades para siunitx %
 \DeclareSIUnit{\voltampere}{VA}
+\DeclareSIUnit{\voltpeak}{V_P}
 
 % Tablas %
 \usepackage{longtable}
@@ -158,7 +159,7 @@
     \renewcommand{\refname}{\Large REFERENCIAS}
     %\begin{minipage}{0.96\textwidth}
     %\phantomsection
-    %\addcontentsline{toc}{section}{REFERENCIAS}
+    \addcontentsline{toc}{section}{REFERENCIAS}
     \printbibliography
     %\end{minipage}
 

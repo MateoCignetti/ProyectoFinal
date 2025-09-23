@@ -35,11 +35,12 @@
 
 
 #define ESP_INTR_FLAG_DEFAULT 0 // Default interrupt flag
-#define PIN_ZCD_IN GPIO_NUM_11 // Zero crossing detector input pin
-#define PIN_TRIAC_OUT GPIO_NUM_12 // TRIAC output pin
+#define PIN_RELAY_OUT GPIO_NUM_4
+#define PIN_ZCD_IN GPIO_NUM_2 // Zero crossing detector input pin
+#define PIN_TRIAC_OUT GPIO_NUM_41 // TRIAC output pin
 #define ADC_READ_CHANNEL ADC_CHANNEL_2 // ADC channel to read (GPIO 3)
 #define PULSE_WIDTH_US 25 // Pulse width for driving the triac, in microseconds
-#define DIMMER_TIMER_COUNT_DEFAULT 9900 // Turns on TRIAC at 9,9 ms after zero crossing
+#define DIMMER_TIMER_COUNT_DEFAULT 8500 // Turns on TRIAC at 9,9 ms after zero crossing
                                         // (basically starts the dimmer off)
 #define ADC_SAMPLING_FREQUENCY 40 // ADC sampling frequency in Hz
 #define ALARM_COUNT_MIN 100 // Minimum alarm count for the dimmer
@@ -125,14 +126,16 @@ void configure_gpios(void){
     ESP_ERROR_CHECK(gpio_isr_handler_add(PIN_ZCD_IN, zcd_isr_handler, NULL)); // Add ISR handler for the ZCD pin
 
     // Configuration for the TRIAC pin
+    // Configuration for the TRIAC and RELAY pins
     gpio_config_t triac_pin_conf = {
-        .pin_bit_mask = (1ULL << PIN_TRIAC_OUT),
+        .pin_bit_mask = (1ULL << PIN_TRIAC_OUT) | (1ULL << PIN_RELAY_OUT),
         .mode = GPIO_MODE_OUTPUT,
         .pull_up_en = GPIO_PULLUP_DISABLE,
         .pull_down_en = GPIO_PULLDOWN_ENABLE,
         .intr_type = GPIO_INTR_DISABLE,
     };
     ESP_ERROR_CHECK(gpio_config(&triac_pin_conf)); // Apply the configuration
+    gpio_set_level(PIN_RELAY_OUT, 1);
 }
 
 // Function to configure the timers
@@ -263,8 +266,8 @@ void app_main(void){
     configure_test_signal();
     #endif
     //
-    configure_adc(); // Configure the ADC
-    configure_tasks(); // Configure the tasks
+    //configure_adc(); // Configure the ADC
+    //configure_tasks(); // Configure the tasks
 
     configure_timers(); // Configure the timers
     configure_gpios(); // Configure the GPIOs
