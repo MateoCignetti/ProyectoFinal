@@ -4,18 +4,18 @@ El desarrollo de hardware del proyecto implicó una transición del diseño teó
 
 \subsection{Prototipado con placas experimentales perforadas}
 
-Para confirmar el correcto funcionamiento de los circuitos diseñados anteriormente, se confeccionaron prototipos con placas experimentales perforadas para poder realizar pruebas y correcciones de componentes lo antes posible, con costos mínimos. Este proceso fue fundamental para asegurar la funcionalidad y confiabilidad del hardware desarrollado.
+Para confirmar el correcto funcionamiento de los circuitos diseñados anteriormente, se confeccionaron prototipos con placas experimentales perforadas para poder realizar pruebas y correcciones de componentes lo antes posible, con costos mínimos. Este proceso fue fundamental para asegurar la funcionalidad y confiabilidad del hardware desarrollado. Para minimizar el tiempo de fabricación, se realizó su diseño en computadora anteriormente:
 
 \begin{figure}[H]
     \centering
 
-    \includegraphics[width=0.75\textwidth]{pcb/foto_placas_perforadas.jpg}
-
-    \caption{Placas experimentales perforadas. De izquierda a derecha: prototipos de módulo recortador de onda, módulo convertidor Buck, módulo inversor de onda cuadrada.}
-    \label{fig:pcb:foto_perforadas}
+    \includegraphics[height=8cm]{pcb/perforadas_front.png}
+    
+    \caption{Vista frontal de los modelos 3D de las placas experimentales perforadas. De izquierda a derecha: módulo recortador de onda, módulo convertidor Buck, módulo inversor de onda cuadrada}
+    \label{fig:pcb:perforadas_front}
 \end{figure}
 
-Los resultados obtenidos fueron satisfactorios, permitiendo realizar las pruebas necesarias para optimizar el circuito final. No obstante, el diseño directo de placas de circuito impreso (PCB) podría haber sido una alternativa más eficiente en comparación con el uso de placas perforadas. Estas últimas, además de tener un costo significativamente mayor que las placas de cobre estándar, presentaron problemas de calidad, como pads de cobre que se desprendían con facilidad durante el proceso de soldadura.
+Los resultados obtenidos fueron satisfactorios, permitiendo realizar las pruebas necesarias para optimizar el circuito final. No obstante, el diseño directo de simples placas de circuito impreso (PCB) podría haber sido una alternativa más eficiente para corroborar el funcionamiento del circuito diseñado. Las placas experimentales perforadas, además de tener un costo significativamente mayor que las placas vírgenes de cobre, presentaron problemas de calidad, como pads de cobre que se desprendían con facilidad durante el proceso de soldadura.
 
 \subsection{Diseño de PCBs finales}
 
@@ -29,22 +29,21 @@ Una vez obtenidos los circuitos finales con sus respectivos valores de component
     \item PCB Gabinete general.
 \end{enumerate}
 
-Para diseñarlas, se utilizó el conjunto de software de código abierto para Automatización del Diseño Electrónico (EDA) KiCad 9, \parencite{KiCad}. Se tomaron los siguientes criterios de diseño para las PCBs:
+Para diseñarlas, se utilizó el conjunto de software de código abierto para Automatización del Diseño Electrónico (EDA) KiCad 9, \parencite{KiCad}. Se tomaron los siguientes criterios de diseño para las PCBs de los módulos:
 
 \begin{itemize}[noitemsep]
     \item Tamaño de PCB: $\SI{5}{\milli\meter} \times \SI{10}{\milli\meter}$
-    \item Cantidad de capas: 1 (solo capa trasera, con vías para puentes en la capa frontal)
-    \item Separación mínima entre trazas: \SI{0.3}{\milli\meter}
+    \item Cantidad de capas: 2
+    \item Separación mínima entre trazas: \SI{0.2}{\milli\meter}
     \item Ancho mínimo de traza: \SI{0.3}{\milli\meter}
-    \item Diámetro mínimo de pad: \SI{1.5}{\milli\meter}
-    \item Diámetro mínimo de agujero: \SI{1}{\milli\meter}
-    \item Diámetro mínimo de pad de vías: \SI{1}{\milli\meter}
-    \item Diámetro mínimo de agujero de vías: \SI{0.6}{\milli\meter}
-    \item Separación mínima de relleno: \SI{0.8}{\milli\meter} (\SI{1}{\milli\meter} para módulo inversor)
-    \item Ancho mínimo de relleno: \SI{0.8}{\milli\meter} (\SI{0.5}{\milli\meter} para módulo inversor)
+    \item Diámetro mínimo de agujero: \SI{0.6}{\milli\meter}
+    \item Diámetro mínimo de pad de vías: \SI{0.5}{\milli\meter}
+    \item Diámetro mínimo de agujero de vías: \SI{0.3}{\milli\meter}
+    \item Separación mínima de relleno: \SI{0.3}{\milli\meter}
+    \item Ancho mínimo de relleno: \SI{0.3}{\milli\meter}
 \end{itemize}
 
-El ancho de las trazas de potencia se calcula según el estándar IPC-2221A, \parencite{IPC-2221A}:
+El ancho mínimo para las trazas se calcula según el estándar IPC-2221A, \parencite{IPC-2221A}:
 
 \begin{equation}
     I = K {\Delta T}^{0.44} {(W H)}^{0.725}
@@ -67,9 +66,9 @@ El conector seleccionado para los módulos es el PCIe X4, el cual tiene un ancho
 \end{equation}
 
 Por lo tanto, cada pin soporta un máximo de \SI{1.85}{\ampere}. Sin embargo, por limitaciones de espacio, se utilizaron trazas de \SI{0.3
-}{\milli\meter} (\SI{1}{\ampere} máximo) en la mini-pcb que contiene el conector PCIe X4 hembra y el cable plano de comunicación. Para cumplir con los requisitos del módulo convertidor, con un consumo máximo establecido de \SI{3}{\ampere}, se destinan 3 pines del conector para el suministro de \SI{12}{\volt}, y 4 para el PGND. Se aprovechan también dos pines ``Hot Plug'' para poder sensar la correcta conección del conector desde el microcontrolador. El ancho de traza para los módulos que utilizan la corriente máxima establecida fue fijado en \SI{2}{\milli\meter}.
+}{\milli\meter} (\SI{1}{\ampere} máximo) en la mini-pcb que contiene el conector PCIe X4 hembra y el cable plano de comunicación, \cref{fig:pcb:minipcb_front_back}. Para cumplir con los requisitos del módulo convertidor, con un consumo máximo establecido de \SI{3}{\ampere}, se destinan 3 pines del conector para el suministro de \SI{12}{\volt}, y 4 para el PGND. Se aprovechan también dos pines ``Hot Plug'' para poder sensar la correcta conección del conector desde el microcontrolador. El ancho de traza para los módulos que utilizan la corriente máxima establecida fue fijado en \SI{2}{\milli\meter}.
 
-Para la interfaz de usuario, se decidió utilizar un display LCD TFT de \SI{2.9}{''} y un encoder rotativo. Su asignación de pines respecto al ESP32-S3 se observa en la \cref{tab:pcb:interfaz_pins}
+Para la interfaz de usuario, se decidió utilizar un display LCD TFT de \SI{2.9}{''} y un encoder rotativo. Su asignación de pines respecto al ESP32-S3 se observa en la \cref{tab:pcb:interfaz_pins}.
 
 \begin{table}[H]
 \centering
@@ -151,29 +150,29 @@ La asignación de pines del conector, con su símbolo y huella para PCB, se obse
 \end{tabularx}
 \end{table}
 
-Para el diseño de los módulos de la \cref{fig:pcb:modulos_front_back}, se priorizó la ubicación de los componentes en bloque para que el usuario identifique fácilmente las distintas etapas del módulo, con sus respectivos identificadores en la serigrafía frontal. Además, se agregaron puntos de prueba para facilitar las mediciones del usuario con osciloscopio.
+En la \cref{fig:pcb:modulos_front_back} se pueden observar los diseños de las PCB de los módulos. Se priorizó la ubicación de los componentes en bloque para que el usuario identifique fácilmente las distintas etapas del módulo, con sus respectivos identificadores en la serigrafía frontal. Además, se agregaron puntos de prueba para facilitar las mediciones del usuario con osciloscopio. Estas placas fueron enviadas para su fabricación en el exterior.
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[height=7cm]{pcb/modulos_front.png}
+        \includegraphics[height=8cm]{pcb/modulos_front.png}
         \caption{Vista frontal}
         \label{fig:pcb:modulos_front}
     \end{subfigure}
     %
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[height=7cm]{pcb/modulos_back.png}
+        \includegraphics[height=8cm]{pcb/modulos_back.png}
         \caption{Vista trasera}
         \label{fig:pcb:modulos_back}
     \end{subfigure}
     %
-    \caption{Modelo 3D de las PCB de los módulos. De izquierda a derecha: módulo recortador de onda, módulo convertidor buck, módulo inversor de onda cuadrada}
+    \caption{Modelos 3D de las PCB de los módulos. De izquierda a derecha: módulo recortador de onda, módulo convertidor buck, módulo inversor de onda cuadrada}
     \label{fig:pcb:modulos_front_back}
 \end{figure}
 
-La PCB del gabinete general se puede visualizar en la \cref{fig:pcb:pcbgeneral_front_back}, se priorizó mantener la distancia de las trazas de potencia lo mínimo posible para evitar pérdidas y caídas de tensión indeseadas. Se diseñó una huella más separada del conector PCIe X4 para soldar directamente el cable plano sobre la placa.
+La PCB del gabinete general se puede visualizar en la \cref{fig:pcb:pcbgeneral_front_back}. Se priorizó mantener la distancia de las trazas de potencia lo mínimo posible para evitar pérdidas y caídas de tensión indeseadas. Se diseñó una huella más separada del conector PCIe X4 para soldar directamente el cable plano sobre la placa.
 
 \begin{figure}[H]
     \centering
@@ -214,4 +213,4 @@ Se diseñó también una mini-pcb, \cref{fig:pcb:minipcb_front_back}, para poder
     \label{fig:pcb:minipcb_front_back}
 \end{figure}
 
-Todos los diseños de las placas están disponibles en el repositorio público del proyecto en GitHub \parencite{git_proyecto}. Se incluyen versiones estándar y alternativas, estas últimas optimizadas para fabricación casera con el método de transferencia térmica y grabado con cloruro férrico. Las versiones estándar utilizan un menor ancho mínimo y separación de trazas.
+Todos los diseños de las placas están disponibles en el repositorio público del proyecto en GitHub \parencite{git_proyecto}. Se incluyen versiones estándar y alternativas, estas últimas optimizadas para fabricación casera con el método de transferencia térmica y grabado con cloruro férrico. Las placas utilizadas en el prototipo final son las estándar para los módulos, y las alternativas para la PCB general y la mini-pcb.
