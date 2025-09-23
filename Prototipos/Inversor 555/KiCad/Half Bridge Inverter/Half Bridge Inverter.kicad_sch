@@ -3874,7 +3874,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_DIP:DIP-8_W10.16mm"
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm"
 			(at 81.28 58.42 0)
 			(effects
 				(font
