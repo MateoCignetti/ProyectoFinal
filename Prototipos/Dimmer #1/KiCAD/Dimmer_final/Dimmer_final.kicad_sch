@@ -3070,6 +3070,12 @@
 		(uuid "69225baa-5e1b-4570-8ce2-fdbc962e903d")
 	)
 	(junction
+		(at 46.99 82.55)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6db96994-6512-4b41-b971-d3c288c86687")
+	)
+	(junction
 		(at 107.95 115.57)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3156,16 +3162,6 @@
 			(type default)
 		)
 		(uuid "0860226f-350b-4d4b-93e4-dec6de916f9b")
-	)
-	(wire
-		(pts
-			(xy 52.07 82.55) (xy 46.99 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0dde2f5d-348c-416e-b247-adb4e5d435ae")
 	)
 	(wire
 		(pts
@@ -3586,6 +3582,16 @@
 			(type default)
 		)
 		(uuid "6ed56113-5efb-4744-a35e-73adb965325a")
+	)
+	(wire
+		(pts
+			(xy 38.1 82.55) (xy 46.99 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "72a939a6-3362-4508-a862-834bdff845cb")
 	)
 	(wire
 		(pts
@@ -4139,6 +4145,16 @@
 	)
 	(wire
 		(pts
+			(xy 46.99 82.55) (xy 52.07 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ef9f244b-43ae-4deb-b242-0dea29ef45ff")
+	)
+	(wire
+		(pts
 			(xy 127 67.31) (xy 125.73 67.31)
 		)
 		(stroke
@@ -4333,7 +4349,7 @@
 			)
 		)
 	)
-	(global_label "UC_DOUT"
+	(global_label "uC_DOUT"
 		(shape input)
 		(at 82.55 49.53 180)
 		(fields_autoplaced yes)
@@ -4345,7 +4361,7 @@
 		)
 		(uuid "3438ff33-4cac-40cd-ae41-ac13b878cd5c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 71.0981 49.53 0)
+			(at 71.2796 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4531,7 +4547,7 @@
 			)
 		)
 	)
-	(global_label "UC_RELAY"
+	(global_label "uC_RELAY"
 		(shape output)
 		(at 194.31 60.96 180)
 		(fields_autoplaced yes)
@@ -4543,7 +4559,7 @@
 		)
 		(uuid "9eb53e2a-4c10-4fa1-a5d0-74e292da2207")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 182.1324 60.96 0)
+			(at 182.3139 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4575,7 +4591,7 @@
 			)
 		)
 	)
-	(global_label "UC_RELAY"
+	(global_label "uC_RELAY"
 		(shape input)
 		(at 53.34 119.38 180)
 		(fields_autoplaced yes)
@@ -4587,7 +4603,7 @@
 		)
 		(uuid "b247a4b0-102a-4dcb-b431-6d671455cab4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 41.1624 119.38 0)
+			(at 41.3439 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4663,7 +4679,7 @@
 			)
 		)
 	)
-	(global_label "UC_PHASE"
+	(global_label "uC_PHASE"
 		(shape input)
 		(at 228.6 78.74 0)
 		(fields_autoplaced yes)
@@ -4675,7 +4691,7 @@
 		)
 		(uuid "cbf5ae84-d3a9-46e2-aaac-c775d9b96d74")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 241.2009 78.74 0)
+			(at 241.0194 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4817,7 +4833,7 @@
 			)
 		)
 	)
-	(global_label "UC_DOUT"
+	(global_label "uC_DOUT"
 		(shape output)
 		(at 228.6 76.2 0)
 		(fields_autoplaced yes)
@@ -4829,7 +4845,7 @@
 		)
 		(uuid "fb7626f9-0f37-4ed8-b4e6-3b48efce826e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 240.0519 76.2 0)
+			(at 239.8704 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4943,7 +4959,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D10.5mm_W5.0mm_P7.50mm"
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.7mm_W2.5mm_P5.00mm"
 			(at 63.5 74.93 0)
 			(effects
 				(font
@@ -5518,6 +5534,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 38.1 82.55 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "76fda9f3-5c60-4482-a3ce-3a8a29b6a78f")
+		(property "Reference" "REF_VcaN1"
+			(at 36.322 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 31.75 79.502 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Loop_D1.80mm_Drill1.0mm_Beaded"
+			(at 43.18 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 43.18 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 38.1 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "36374f24-04e3-4865-9553-7c954c9ed94b")
+		)
+		(instances
+			(project "Dimmer_final"
+				(path "/7934e872-2b7f-4f8f-a0b6-741d97320597"
+					(reference "REF_VcaN1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R_Small")
 		(at 57.15 119.38 90)
 		(unit 1)
@@ -5676,7 +5759,7 @@
 				)
 			)
 		)
-		(property "Value" "D_Small"
+		(property "Value" "1N4007"
 			(at 118.11 80.01 0)
 			(effects
 				(font
@@ -6010,7 +6093,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D10.5mm_W5.0mm_P7.50mm"
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.7mm_W2.5mm_P5.00mm"
 			(at 154.94 69.85 0)
 			(effects
 				(font
