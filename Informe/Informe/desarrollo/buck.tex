@@ -291,7 +291,7 @@ Este valor determina la corriente media aplicada en el diodo de rectificación, 
 \subsubsection{Red Snubber}
 %\textcolor{red}{Esta sección requiere de pruebas con la PCB que todavía no se realizaron}
 %\begin{comment}
-Para este cálculo se utilizó el siguiente documento \parencite{toshiba_2018_power}. No se siguió por completo, pero se realizaron algunas consideraciones para el cálculo.
+El cálculo de la red Snubber se basó en una nota de aplicación de Toshiba \parencite{toshiba_2018_power}, tomando como referencia algunos de sus criterios, aunque no se siguió todo el procedimiento de manera estricta.
 
 Se supone un valor de inductancia parásita típico de 50 nH. $C_P = C_{OSS}$
 
@@ -319,7 +319,7 @@ $C_{obo} = 8 \ pF \approx C_{snub}(min)$
     R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = 79 \ \Omega
 \end{equation}
 
-$f_{ring}$, representa la frecuencia de las oscilaciones existentes en la conmutación del transistor, no se tiene este valor, pero se calcula en función de un valor estimado de inductancia parásita, esto con el fin de probar el circuito con red de snubber y sin la misma. Esto para seguir la técnica implementada en, \parencite{ti_2016_snubber}.
+$f_{ring}$, representa la frecuencia de las oscilaciones existentes en la conmutación del transistor, no se tiene este valor, pero se calcula en función de un valor estimado de inductancia parásita, con el fin de probar el circuito con red de snubber y sin la misma. Esto se realiza para seguir la técnica implementada en artículo técnico de Texas Instruments, \parencite{ti_2016_snubber}.
 
 Esta técnica consiste en probar el circuito en 2 condiciones, la primera es sin ninguna red de Snubber para poder determinar la frecuencia de oscilación real; la segunda condición es conectando un capacitor en paralelo al transistor y medir la frecuencia nuevamente. El objetivo de esta prueba es que al conectar el capacitor, la frecuencia medida sea de al menos un $50\%$ menor a la frecuencia real de oscilación del circuito. 
 
@@ -362,7 +362,7 @@ Esta técnica consiste en probar el circuito en 2 condiciones, la primera es sin
 \end{figure}
 \footnotetext{Se utiliza un capacitor de \SI{2}{\pico\farad} en lugar del utilizado para el cálculo en la \cref{eq:buck:frecuencia-oscilacion-bjt-snubber}, ya que el corrimiento necesario de frecuencia fue más coherente con el mismo.}
 
-En las \cref{fig:buck:freq-oscilacion-mosfet,fig:buck:freq-oscilacion-bjt} se puede observar el corriemiento de frecuencia necesario para los siguientes cálculos.
+En las \cref{fig:buck:freq-oscilacion-mosfet,fig:buck:freq-oscilacion-bjt} se puede observar el corrimiento de frecuencia necesario para los siguientes cálculos.
 
 \textbf{IRF9540}
 
@@ -388,7 +388,7 @@ Se calcula la capacitancia e inductancia parásita.
     L = \frac{m^2 - 1}{\left(2\pi \, f_0\right)^2 \, C_1} = \SI{278,17}{\nano\henry}
 \end{equation*}
 
-Se determinan los nuevos valores de red de Snubber en función del corriemiento de frecuencia.
+Se determinan los nuevos valores de red de Snubber en función del corrimiento de frecuencia.
 \begin{equation} \label{eq:buck:cap-snub-mosfet}
     C_{snub} = 3 \, C_0 = \SI{738,72}{\pico\farad}
 \end{equation}
@@ -423,7 +423,7 @@ Se calcula la capacitancia e inductancia parásita.
     L = \frac{m^2 - 1}{\left(2\pi \, f_0\right)^2 \, C_1} = \SI{53,43}{\nano\henry}
 \end{equation*}
 
-Se determinan los nuevos valores de red de Snubber en función del corriemiento de frecuencia.
+Se determinan los nuevos valores de red de Snubber en función del corrimiento de frecuencia.
 \begin{equation} \label{eq:buck:cap-snub-bjt}
     C_{snub} = 3 \, C_0 = \SI{3,84}{\pico\farad}
 \end{equation}
