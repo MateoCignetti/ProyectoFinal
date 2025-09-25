@@ -1,0 +1,63 @@
+\snsection{Diseño de gabinetes}
+Para la construcción de los gabinetes de cada módulo y del gabinete general del prototipo, se optó por la impresión 3D, ya que esta tecnología permite fabricarlos a medida con las especificaciones requeridas, además de ofrecer costos accesibles y una rápida producción. Los diseños se realizaron en FreeCAD \parencite{FreeCAD}, seleccionado por ser un software libre, fácil de usar y altamente versátil.
+
+\snsubsection{Gabinete individual}
+El gabinete destinado a cada módulo se concibió inicialmente como una caja cuadrada en la cual pudiera fijarse una placa de circuito impreso (PCB) de 10 x 10 [cm], separada un centímetro del fondo mediante cuatro separadores huecos que permiten el paso de tornillos.  
+En un primer diseño, la caja no contemplaba tapa, lo que implicaba un contacto directo del usuario con la PCB. Para evitarlo, se incorporó una tapa de acrílico transparente que cubre la totalidad de la superficie superior del gabinete. De esta forma se impide el contacto directo con la electrónica, pero al mismo tiempo se mantiene la visibilidad de la placa. No obstante, esta solución dificultaba la realización de mediciones directas, por lo que se añadieron perforaciones en el acrílico, de tamaño suficiente para permitir el ingreso de las puntas de un multímetro u osciloscopio, sin comprometer la seguridad del usuario.
+
+Posteriormente se consideró que los módulos solo requerirían una PCB de 10 x 5 [cm]. Sin embargo, se decidió mantener el diseño original para conservar una línea de universalidad que brinde libertad al usuario en el desarrollo de distintos módulos. Para ello, se añadieron dos separadores adicionales que permiten fijar también placas de 10 x 5 [cm] por sus cuatro esquinas.
+
+La última consideración fue la conexión de los módulos. Se buscó una solución que evitara tener que desmontar la PCB para realizar las conexiones. Esto se resolvió diseñando el gabinete con una ventana lateral del tamaño exacto del conector, de modo que la PCB pueda alojar el conector en su borde y conectarse directamente desde el exterior.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{3d/Gabinete_chico.png}
+    \caption{Gabinete individual.}
+    \label{fig:3d:gabinete_individual}
+\end{figure}
+
+
+\snsubsubsection{Conector PCIe x4}
+El conector PCIe x4 se monta sobre una PCB desde la cual se desprenden los cables correspondientes. Para su protección, se diseñó una caja negra en la que, en su cara frontal, queda accesible el conector; mientras que en la cara posterior se colocó una tapa con una abertura lo suficientemente amplia para permitir el paso de los cables.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{3d/Carcasa_conector.png}
+    \caption{Carcasa para conector PCIe x4.}
+    \label{fig:3d:carcasa_conector}
+\end{figure}
+
+\snsubsection{Gabinete general}
+El gabinete principal, encargado de controlar todo el sistema, debía tener la capacidad suficiente para alojar en su interior la fuente de tensión de 12 Vcc, el transformador de 48 Vca y la PCB general de control y distribución de energía. Además, en la superficie debía quedar espacio para ubicar el gabinete individual en prueba, junto con la pantalla interactiva y el encoder rotativo.
+
+En base a estos requerimientos, se diseñó un gabinete compuesto por dos partes: una inferior (base), destinada a la fijación de los elementos de alimentación y control, y una superior, en la cual se instalaron el display de \SI{2.8}{''} con el encoder, además del espacio para apoyar el gabinete individual.  
+
+Asimismo, se diseñó un soporte en ángulo para el display, que cumple la doble función de mejorar su visualización y proteger la PCB del mismo.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{3d/Angulo_pantalla.png}
+    \caption{Soporte en ángulo para el display.}
+    \label{fig:3d:soporte_pantalla}
+\end{figure} 
+
+Las dimensiones finales del gabinete fueron de 20 x 15 [cm], con sus piezas unidas mediante tornillos. En la base se realizaron todas las perforaciones necesarias para fijar la PCB, la fuente de corriente continua y el transformador de corriente alterna con tornillos Allen de cabeza fresada. Finalmente, en el lateral posterior se incorporó una rejilla de ventilación y una abertura para instalar un conector macho interlock. En el lateral izquierdo se dejó una ventana destinada al paso del cable plano que conecta el gabinete general a los módulos.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=0.6\textwidth]{3d/Gabinete_general_base.png}
+        \caption{Base de gabinete general.}
+        \label{fig:3d:base_gabinete_general}
+    \end{subfigure}
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=0.6\textwidth]{3d/Gabinete_general_superior.png}
+        \caption{Tapa superior de gabinete general.}
+        \label{fig:3d:superior_gabinete_general}
+    \end{subfigure}
+    \caption{Piezas que componen el gabinete general.} 
+    \label{fig:3d:gabinete_general}
+\end{figure}
+
