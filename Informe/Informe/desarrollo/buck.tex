@@ -1,4 +1,4 @@
-\snsection{Convertidor reductor o Buck}
+\section{Convertidor reductor o Buck}
 
 \begin{figure}[H]
     \centering
@@ -111,7 +111,7 @@ Cuando el convertidor es controlado de forma digital, estos modos de conducción
     \label{fig:buck:CCM_DCM}
 \end{figure}
 
-\snsubsection{Modo encendido}
+\subsection{Modo encendido}
 \begin{figure}[H]
     \centering
     \resizebox{0.8\textwidth}{!}{
@@ -174,7 +174,7 @@ El voltaje de caída mencionado contrarresta el voltaje de la fuente, generando 
 
 En la \cref{fig:buck:formas_onda} se observa que, mientras el interruptor conduce, la corriente a través del inductor aumenta llegando a su valor máximo. En el momento en que se apaga el interruptor la corriente comienza a disminuir.
 
-\snsubsection{Modo apagado}
+\subsection{Modo apagado}
 
 Cuando el dispositivo de conmutación pasa a su estado de no conducción, la fuente es removida del circuito, haciendo que la corriente disminuya. La disminución de la corriente produce una caída de tensión en el inductor, inversa a la que había cuando se encontraba en estado de encendido, esto hace que la bobina funcione como una fuente de corriente hacia la carga por medio del campo magnético almacenado. Esta corriente solo fluye mientras la fuente se mantiene desconectada del circuito.
 
@@ -233,13 +233,13 @@ Una vez que el convertidor se encuentra en un modo normal de funcionamiento, la 
 
 % Cosas sacadas de https://en.wikipedia.org/wiki/Buck_converter
 
-\snsubsection{Cálculos para el diseño}
+\subsection{Cálculos para el diseño}
 
 El módulo convertidor reductor se diseña para una tensión de entrada de \SI{12}{\volt} y una corriente de entrada de \SI{3}{\ampere}. Para facilitar la visualización de las distintas señales, tanto de corriente como de tensión necesarias para la interpretación del circuito, la tensión de salida se estableció con un rango completo de \SIrange{0}{12}{\volt}, al igual que la corriente. Esto permite que aumenten las posibilidades de pruebas en el laboratorio, y genera una mayor versatilidad para observar el funcionamiento del módulo en cuestión.
 
 Los cálculos correspondientes al diseño fueron realizados siguiendo un informe de aplicación de \textit{Texas Instruments}, \parencite{ti-buck-report}.
 % Referenciar texas instruments para el cálculo
-\snsubsubsection{Criterios de diseño}
+\subsubsection{Criterios de diseño}
 
 Se calcula para una corriente de \SI{2,4}{\ampere} la cual representa un $80\%$ de la corriente entregada por la fuente, esto es con el objetivo de mantener un margen de seguridad evitando exigir los componentes.
 
@@ -257,14 +257,14 @@ Se calcula para una corriente de \SI{2,4}{\ampere} la cual representa un $80\%$ 
   
 Se elige como transistor de conmutación de potencia el IRF9540, la selección del mismo se basó en la disponibilidad y en su amplio campo de aplicación; otro de los motivos de la elección de este transistor es para que, en caso de falla o rotura del módulo, los componentes sean fáciles de conseguir.
 
-\snsubsubsection{Ciclo de trabajo máximo}
+\subsubsection{Ciclo de trabajo máximo}
 \begin{equation} \label{eq:buck:duty_cycle}
     D_{max} = \frac{V_{out}}{V_{in} \, \eta} = \frac{\SI{6}{\volt}}{\SI{12}{\volt} \, 0,9} = 0,55    
 \end{equation}
 
 Dentro del cálculo es considerado el rendimiento porque el convertidor también entrega energía. Este cálculo proporciona un valor más realista del ciclo de trabajo máximo en comparación con la ecuación que no incluye el factor de rendimiento.
 
-\snsubsubsection{Capacitor de salida mínimo}
+\subsubsection{Capacitor de salida mínimo}
 \begin{equation} \label{eq:buck:capacitancia_salida}
     C_{out_{min}} = \frac{\Delta I_L}{8 \, f_s \, \Delta V_{out}} = \frac{\SI{0,72}{\ampere}}{8 \cdot \, \SI{19e3}{\hertz} \, \SI{0,24}{\volt}} = \SI{19,74}{\micro\farad}
 \end{equation}
@@ -272,7 +272,7 @@ Dentro del cálculo es considerado el rendimiento porque el convertidor también
 Cualquier capacidad mayor a la calculada puede ser utilizada sin afectar el correcto funcionamiento del convertidor. Este tipo de cálculos se pueden realizar para convertidores con compensación externa. Para el caso de los internamente compensados, como puede ser un circuito integrado buck, es recomendable utilizar los valores establecidos en la hoja de datos.
 
 % Revisar otros cálculos por las dudas, no se si es estrictamente el valor mínimo, pero si se que si pones más grande mejoras el ripple de salida.
-\snsubsubsection{Inductor mínimo}
+\subsubsection{Inductor mínimo}
 \begin{equation} \label{eq:buck:inductancia_minima}
     L_{min} = \frac{(V_{in}-V_{out}) \, D_{max}}{f_s \, \Delta I_L} = \frac{(\SI{12}{\volt} - \SI{6}{\volt}) \, 0,55}{\SI{19e3}{\hertz} \, \SI{0,72}{\ampere}} = \SI{241,23}{\micro\henry}
 \end{equation}
@@ -281,39 +281,161 @@ El valor calculado se considera como mínimo, ya que emplear una inductancia may
 
 % Podría agregar como se calcula y se bobina el inductor, por más que no lo hicimos.
 
-\snsubsubsection{Corriente media en diodo}
+\subsubsection{Corriente media en diodo}
 \begin{equation} \label{eq:buck:corriente_diodo_rectificacion}
     I_D = I_{out} \, (1-D) = \SI{2,4}{\ampere} \, (1-0.55) = \SI{1,08}{\ampere}
 \end{equation}
 
 Este valor determina la corriente media aplicada en el diodo de rectificación, es recomendable utilizar un Schottky ya que su rápida recuperación lo hace adecuado a las altas frecuencias de trabajo del convertidor. Además, la tensión soportada por el diodo debe ser al menos un $30\%$ más que la tensión de salida del convertidor.
 
-\snsubsubsection{Red Snubber}
-\textcolor{red}{Esta sección requiere de pruebas con la PCB que todavía no se realizaron}
-\begin{comment}
-Para este cálculo se utilizó el siguiente documento \textcolor{red}{PONER DOCUMENTO TOSHIBA}. No se pudo seguir por completo, pero se realizaron algunas consideraciones para el cálculo.
+\subsubsection{Red Snubber}
+%\textcolor{red}{Esta sección requiere de pruebas con la PCB que todavía no se realizaron}
+%\begin{comment}
+El cálculo de la red Snubber se basó en una nota de aplicación de Toshiba \parencite{toshiba_2018_power}, tomando como referencia algunos de sus criterios, aunque no se siguió todo el procedimiento de manera estricta.
 
 Se supone un valor de inductancia parásita típico de 50 nH. $C_P = C_{OSS}$
 
-+ IRF9540
+\textbf{IRF9540}
 
 $C_{OSS} = 400 \ pF \approx C_{snub}(min)$
-\begin{align} \label{eq:frecuencia-oscilacion-snubber}
+\begin{align} \label{eq:buck:frecuencia-oscilacion-mos-snubber}
     f_{ring} =& \frac{1}{2 \pi * \sqrt{L_P * C_P}} \\
     =& \frac{1}{2 \pi * \sqrt{50 \ nH * 400 \ pF}} \nonumber \\
     =& 35,6 \ MHz \nonumber
 \end{align}
-\begin{equation} \label{eq:resistencia-snubber}
+\begin{equation} \label{eq:buck:resistencia-mos-snubber}
     R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = 11,2 \ \Omega
 \end{equation}
 
+\textbf{2N2222}
 
-$f_{ring}$, representa la frecuencia de las oscilaciones existentes en la conmutación del transistor, no se tiene este valor, pero se calcula en función de un valor estimado de inductancia parásita, lo ideal es medirlo uno vez el circuito se encuentre armado.
+$C_{obo} = 8 \ pF \approx C_{snub}(min)$
+\begin{align} \label{eq:buck:frecuencia-oscilacion-bjt-snubber}
+    f_{ring} =& \frac{1}{2 \pi * \sqrt{L_P * C_P}} \\
+    =& \frac{1}{2 \pi * \sqrt{50 \ nH * 8 \ pF}} \nonumber \\
+    =& 251,65 \ MHz \nonumber
+\end{align}
+\begin{equation} \label{eq:buck:resistencia-bjt-snubber}
+    R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = 79 \ \Omega
+\end{equation}
 
-**Puede ser necesario una red de snubber para el diodo rectificador**
-\end{comment}
+$f_{ring}$, representa la frecuencia de las oscilaciones existentes en la conmutación del transistor, no se tiene este valor, pero se calcula en función de un valor estimado de inductancia parásita, con el fin de probar el circuito con red de snubber y sin la misma. Esto se realiza para seguir la técnica implementada en artículo técnico de Texas Instruments, \parencite{ti_2016_snubber}.
 
-\snsubsubsection{Realimentación microcontrolador}
+Esta técnica consiste en probar el circuito en 2 condiciones, la primera es sin ninguna red de Snubber para poder determinar la frecuencia de oscilación real; la segunda condición es conectando un capacitor en paralelo al transistor y medir la frecuencia nuevamente. El objetivo de esta prueba es que al conectar el capacitor, la frecuencia medida sea de al menos un $50\%$ menor a la frecuencia real de oscilación del circuito. 
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} % Aumenté un poco el ancho para que sea más robusto
+        \centering
+        \includegraphics[width=\columnwidth]{buck/freq_mos_nocap.png}
+        \caption{Sin capacitor.}
+        \label{fig:buck:freq-oscilacion-mos-sin-cap}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{buck/freq_mos.png}
+        \caption{Con capacitor de \SI{400}{\pico\farad}.}
+        \label{fig:buck:freq-oscilacion-mos-con-cap}
+    \end{subfigure}
+    \caption{Resultados en transistor IRF9540 en circuito real}
+    \label{fig:buck:freq-oscilacion-mosfet}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} % Aumenté un poco el ancho para que sea más robusto
+        \centering
+        \includegraphics[width=\columnwidth]{buck/freq_bjt_nocap.png}
+        \caption{Sin capacitor.}
+        \label{fig:buck:freq-oscilacion-bjt-sin-cap}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{buck/freq_bjt.png}
+        \caption{Con capacitor de \SI{2}{\pico\farad}\protect \footnotemark.}
+        \label{fig:buck:freq-oscilacion-bjt-con-cap}
+    \end{subfigure}
+    \caption{Resultados en transistor 2N2222 en circuito real}
+    \label{fig:buck:freq-oscilacion-bjt}
+\end{figure}
+\footnotetext{Se utiliza un capacitor de \SI{2}{\pico\farad} en lugar del utilizado para el cálculo en la \cref{eq:buck:frecuencia-oscilacion-bjt-snubber}, ya que el corrimiento necesario de frecuencia fue más coherente con el mismo.}
+
+En las \cref{fig:buck:freq-oscilacion-mosfet,fig:buck:freq-oscilacion-bjt} se puede observar el corrimiento de frecuencia necesario para los siguientes cálculos.
+
+\textbf{IRF9540}
+
+\begin{itemize}
+    \item Datos
+    \begin{itemize}
+        \item Frecuencia de oscilación sin capacitor, $f_0 = \SI{19,23}{\mega\hertz}$, \cref{fig:buck:freq-oscilacion-mos-sin-cap}.
+        \item Frecuencia de oscilación con capacitor, $f_1 = \SI{11,9}{\mega\hertz}$, \cref{fig:buck:freq-oscilacion-mos-con-cap}.
+        \item Capacitor paralelo, $C_1 = \SI{400}{\pico\farad}$.
+    \end{itemize} 
+\end{itemize}
+
+\begin{equation*}
+    m = \frac{f_0}{f_1} = 1,62
+\end{equation*}
+
+Se calcula la capacitancia e inductancia parásita.
+\begin{equation*}
+    C_0 = \frac{C_1}{m^2 - 1} = \SI{246,24}{\pico\farad}
+\end{equation*}
+
+\begin{equation*}
+    L = \frac{m^2 - 1}{\left(2\pi \, f_0\right)^2 \, C_1} = \SI{278,17}{\nano\henry}
+\end{equation*}
+
+Se determinan los nuevos valores de red de Snubber en función del corrimiento de frecuencia.
+\begin{equation} \label{eq:buck:cap-snub-mosfet}
+    C_{snub} = 3 \, C_0 = \SI{738,72}{\pico\farad}
+\end{equation}
+
+\begin{equation} \label{eq:buck:res-snub-mosfet}
+    R_{snub} = \sqrt{\frac{L}{C_0}} = \SI{33,61}{\ohm}
+\end{equation}
+
+Se utiliza un valor de \SI{1}{\nano\farad} para el capacitor y de \SI{33}{\ohm} para la resistencia de la red.
+
+\textbf{2N2222}
+
+\begin{itemize}
+    \item Datos
+    \begin{itemize}
+        \item Frecuencia de oscilación sin capacitor, $f_0 = \SI{19,23}{\mega\hertz}$, \cref{fig:buck:freq-oscilacion-bjt-sin-cap}.
+        \item Frecuencia de oscilación con capacitor, $f_1 = \SI{12,05}{\mega\hertz}$, \cref{fig:buck:freq-oscilacion-bjt-con-cap}.
+        \item Capacitor paralelo, $C_1 = \SI{2}{\pico\farad}$.
+    \end{itemize} 
+\end{itemize}
+
+\begin{equation*}
+    m = \frac{f_0}{f_1} = 1,6
+\end{equation*}
+
+Se calcula la capacitancia e inductancia parásita.
+\begin{equation*}
+    C_0 = \frac{C_1}{m^2 - 1} = \SI{1,28}{\pico\farad}
+\end{equation*}
+
+\begin{equation*}
+    L = \frac{m^2 - 1}{\left(2\pi \, f_0\right)^2 \, C_1} = \SI{53,43}{\nano\henry}
+\end{equation*}
+
+Se determinan los nuevos valores de red de Snubber en función del corrimiento de frecuencia.
+\begin{equation} \label{eq:buck:cap-snub-bjt}
+    C_{snub} = 3 \, C_0 = \SI{3,84}{\pico\farad}
+\end{equation}
+
+\begin{equation} \label{eq:buck:res-snub-bjt}
+    R_{snub} = \sqrt{\frac{L}{C_0}} = \SI{6460,82}{\ohm}
+\end{equation}
+
+Se utiliza un valor de \SI{5}{\pico\farad} para el capacitor y de \SI{6,8}{\kilo\ohm} para la resistencia de la red.
+%\end{comment}
+
+\subsubsection{Realimentación microcontrolador}
 
 Para poder realizar un control digital es necesario tener una variable manipulada y una controlada. La primera, para el caso del convertidor buck, es el PWM que se aplica al terminal gate del transistor MOSFET-p; la segunda se corresponde a la tensión de salida realimentada al microcontrolador. 
 
@@ -341,7 +463,7 @@ Para lograr realimentar la tensión de salida se utiliza un divisor de tensión,
     \label{fig:buck:divisor_tensión}
 \end{figure}
 
-\snsubsubsection{Filtro RC para ADC}
+\subsubsection{Filtro RC para ADC}
 \textbf{Criterios de diseño - filtro pasa-bajos}
     \begin{itemize}
         \item $f_c = \SI{100}{\hertz}$
@@ -388,7 +510,7 @@ Tanto el filtro como el divisor de tensión anteriormente mencionados, \cref{fig
 
 El objetivo de esta medición es poder realizar un control preciso de la tensión entregada a la carga, por ello se aplica un lazo cerrado donde la tensión de salida se la compara con una tensión de referencia (setpoint), para así aplicar la corrección del ciclo de trabajo del PWM y lograr la conmutación correcta del transistor. Si la carga demanda menos corriente, la tensión tiende a subir y viceversa, por ello la utilidad de un control para ajustar el ciclo de trabajo en función de la carga conectada al convertidor. Hay diversas técnicas de control, dentro de las más utilizadas, PID (control proporcional, integrador y derivativo).
 
-\snsubsubsection{Transistor BJT como driver de MOSFET}
+\subsubsection{Transistor BJT como driver de MOSFET}
 
 Como el microcontrolador elegido es el ESP32-S3, el mismo presenta en la hoja de datos que la corriente acumulada de todos los pines es de \SI{1,5}{\ampere}, por ende, si el microcontrolador posee 45 pines físicos, cada uno contará de \SI{33,33}{\milli\ampere} de corriente. El transistor elegido para este uso es el 2N2222, posee una corriente de colector máxima de \SI{600}{\milli\ampere} y un $\beta$ de 100 para una corriente de colector de \SI{150}{\milli\ampere}.
 
@@ -405,7 +527,9 @@ Se elige una resistencia de \SI{2,2}{\kilo\ohm}, \cref{fig:buck:bjt_driver_mosfe
     \label{fig:buck:bjt_driver_mosfet}
 \end{figure}
 
-\snsubsubsection{Resistencia de gate}
+\begin{comment}
+    
+\subsubsection{Resistencia de gate}
 \textcolor{red}{ESTA SubSubSECCIÓN ESTÁ EN EVALUACIÓN}
 
 La corriente requerida para cargar la gate del transistor está determinada por su capacitancia de gate y el período de conmutación.
@@ -421,8 +545,9 @@ $t=1/f_s = \SI{52,63}{\micro\second}$
 \end{equation}
 
 Este valor fue probado en simulación, pero generaba una disminución drástica en el tiempo de respuesta del transistor, por ello se probará en la práctica para determinar si este cálculo es adecuado o no.
+\end{comment}
 
-\snsubsubsection{Medición de corriente en inductor - Unidireccional}
+\subsubsection{Medición de corriente en inductor - Unidireccional}
 
 Para facilitar la medición de corriente y poder visualizar el comportamiento de la misma en operación normal del convertidor, se utilizó un amplificador de corriente INA199B2, el cual es un amplificador operacional utilizado en su configuración diferencial, \cref{fig:buck:ina199_unidireccional} \parencite{ina199_datasheet}.
 
@@ -465,7 +590,7 @@ Luego se determina el valor de la resistencia shunt, $R_{shunt}$, a partir de la
 
 Se elige una resistencia shunt de $\SI{10}{\milli\ohm}$ por la disipación de potencia. Además, entrega un buen rango de tensión a la salida del amplificador, $V_{out} = \SIrange{0,05}{3}{\volt}$.
 
-\snsubsubsection{Medición de corriente en capacitor - Bidireccional}
+\subsubsection{Medición de corriente en capacitor - Bidireccional}
 
 Como la corriente en el capacitor es bidireccional, se debe realizar un arreglo de resistencias al amplificador de corriente para poder medir este tipo de corriente, \cref{fig:buck:ina199_bidireccional}. 
 
@@ -497,7 +622,7 @@ El procedimiento presentado en las \cref{eq:buck:salida_amplificador_bidireccion
 
 Se opta por utilizar una resistencia shunt de \SI{5}{\milli\ohm}, ya que si se eligiese una resistencia mayor, la tensión entregada por el amplificador estaría muy próxima al valor máximo manejable por el mismo; además es un valor comercial común y estandarizado, fácil de conseguir.
 
-\snsubsubsection{Selección de carga con Relé}
+\subsubsection{Selección de carga con Relé}
 %\textcolor{red}{Dependiendo que modulo va primero esto lo agrego o no, posiblemente sea mejor RECORTADOR DE ONDA antes que buck. AGREGAR SI O SI}
 
 Para experimentar el comportamiento del convertidor Buck frente a diferentes cargas, se utiliza un relé controlado por un microcontrolador permitiendo elegir entre dos cargas, una resistiva y otra inductiva, con el fin de notar las diferencias que puede causar un simple cambio de carga en la operación normal del convertidor.
@@ -511,9 +636,9 @@ Para conmutar entre los dos estados del relé, normal abierto o normal cerrado, 
     \label{fig:buck:driver_rele}
 \end{figure}
 
-\textcolor{red}{Falta carga inductiva.}
+%\textcolor{red}{Falta carga inductiva.}
 
-\snsubsubsection{Cálculo de disipador para MOSFET de conmutación}
+\subsubsection{Cálculo de disipador para MOSFET de conmutación}
 
 Una vez seleccionado el transistor MOSFET-p es necesario determinar la disipación de potencia que experimentará en la operación normal del convertidor. Para ello, se divide la potencia total en resistiva y de conmutación. Como lo indica el nombre, la primera se debe a la resistencia drenador-surtidor de transistor; y la segunda es debido a la conmutación del mismo en la operación del convertidor Buck, \parencite{analog-devices-power-dissipation}.
 \begin{equation} \label{eq:buck:potencia_total}
@@ -549,7 +674,7 @@ Partiendo de la \cref{eq:buck:potencia_total} se obtiene la potencia que debe di
     P_{total} = \SI{1,55}{\watt} + \SI{0,02}{\watt} = \SI{1,57}{\watt}
 \end{equation*}
 
-\snsubsubsection{Resistencia térmica}
+\subsubsection{Resistencia térmica}
 
 Partiendo de la potencia total, es requisito determinar cuánto es el aumento de la temperatura de juntura debido a la potencia disipada.
 \begin{align} \label{eq:buck:temperatura_juntura_rise}
@@ -569,7 +694,7 @@ Luego se debe determinar el valor de la temperatura ambiente teórica que debe e
 
 Si esta temperatura ambiente es menor que la temperatura ambiente especificada, se debe asumir una temperatura de juntura mayor o utilizar un disipador; en cambio, si la temperatura ambiente no es menor que la temperatura ambiente especificada y a su vez no es considerablemente mayor que la temperatura ambiente especificada, el transistor no necesita un disipador para el correcto funcionamiento del mismo.
 
-\snsubsubsection{Eficiencia del convertidor}
+\subsubsection{Eficiencia del convertidor}
 La eficiencia es un término útil para determinar cuánto de la potencia que se entrega al convertidor es traspasada a la salida del mismo, se expresa en un porcentaje. Alternativamente, se puede expresar la eficiencia en término de las pérdidas, \cref{eq:buck:rendimiento}; \parencite{ti-eficiencia}.
 
 \begin{equation} \label{eq:buck:rendimiento}
@@ -597,7 +722,7 @@ El rendimiento teórico del convertidor está dado por, \cref{eq:buck:rendimient
 
 \textcolor{red}{Faltaría calcular el rendimiento real del circuito}
 
-\snsubsection{Simulación}
+\subsection{Simulación}
 Para corroborar el correcto funcionamiento del circuito previo a su elaboración física, se realizó la simulación del mismo utilizando el software gratuito LTSpice, \parencite{LTSPICE}.
 
 \begin{figure}[H]
