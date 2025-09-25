@@ -337,9 +337,6 @@ dkms.conf
 # devcontainer
 .devcontainer
 
-#  ESP-IDF managed components
-managed_components/
-
 # For PCBs designed using KiCad: https://www.kicad.org/
 # Format documentation: https://kicad.org/help/file-formats/
 
