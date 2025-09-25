@@ -66,9 +66,9 @@
 
 /*----------- CONTROL DEFINES ------------*/
 #define PWM_FREQUENCY 19000 // Frequency of PWM signal.
-#define TIMER_PERIOD_US 200 // Timer period in microseconds, (Ts).
+#define TIMER_PERIOD_US 52 // Timer period in microseconds, (Ts).
 #define PRINT_LOGS 0 // Set to 1 to print logs, 0 to disable.
-#define MAX_PWM_DUTY_CYCLE 2047.0 // Maximum duty cycle for the PWM signal (12-bit resolution)4095.
+#define MAX_PWM_DUTY_CYCLE 4095.0 // Maximum duty cycle for the PWM signal (12-bit resolution)4095.
 //#define MAX_PWM_DUTY_CYCLE_11_BIT 2047.0 // Maximum duty cycle for the PWM signal (11-bit resolution).
 #define MAX_OUTPUT_VOLTAGE 12.0 // Maximum output voltage of the buck converter in volts.
 /*----------------------------------------*/
@@ -355,7 +355,7 @@ static void vTaskUpdatePwmFrequency(void *pvParameters){
         if (set_pwm_frequency != last_pwm_frequency){
             ledc_set_freq(LEDC_LOW_SPEED_MODE, LEDC_TIMER_0, set_pwm_frequency);
         }
-        printf("Set PWM Frequency: %d, Real PWM Frequency: %d\n", set_pwm_frequency, last_pwm_frequency);
+        //printf("Set PWM Frequency: %d, Real PWM Frequency: %d\n", set_pwm_frequency, last_pwm_frequency);
         vTaskDelayUntil( &xLastWakeTime, xPeriod );
     }
 }
@@ -408,7 +408,7 @@ static void vTaskPid(void *arg){
             /*--------------------------------------------------------------------------------*/
                 // Read ADC value
                 setpoint_v = lv_slider_get_value(ui_SliderSP);
-                adc_oneshot_get_calibrated_result(adc1_handle, adc1_cali_handle, ADC_CHANNEL_3, &feedback_mv);  // Return mV value.
+                adc_oneshot_get_calibrated_result(adc1_handle, adc1_cali_handle, ADC_CHANNEL_7, &feedback_mv);  // Return mV value.
                 feedback_v = feedback_mv / 1000.0; // Convert to volts  
                 
                 // TODO: Evaluate the alternative linearization function
@@ -483,7 +483,7 @@ static void adc_init_and_config(void){
         .atten = ADC_ATTEN_DB_12,
         .bitwidth = ADC_BITWIDTH_12,
     };
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc1_handle, ADC_CHANNEL_3, &adc1_config));
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc1_handle, ADC_CHANNEL_7, &adc1_config));
     
     #if PRINT_LOGS
         ESP_LOGI("ADC", "ADC1 initialized and configured");
@@ -522,14 +522,14 @@ static void ledc_config(void){
     ledc_timer_config_t ledc_timer_cfg = {
         .speed_mode = LEDC_LOW_SPEED_MODE,
         .timer_num = LEDC_TIMER_0,
-        .duty_resolution = LEDC_TIMER_11_BIT,
+        .duty_resolution = LEDC_TIMER_12_BIT,
         .freq_hz = PWM_FREQUENCY,
         .clk_cfg = LEDC_AUTO_CLK,
     };
     ESP_ERROR_CHECK(ledc_timer_config(&ledc_timer_cfg));
 
     ledc_channel_config_t ledc_channel_cfg ={
-        .gpio_num = GPIO_NUM_18,
+        .gpio_num = GPIO_NUM_17,
         .channel = LEDC_CHANNEL_0,
         .speed_mode = LEDC_LOW_SPEED_MODE,
         .timer_sel = LEDC_TIMER_0,

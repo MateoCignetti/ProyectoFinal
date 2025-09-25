@@ -16,11 +16,11 @@ void change_load(lv_event_t * e)
 }
 
 void resistive_load(lv_event_t * e){
-	gpio_set_level(PIN_NUM_RELAY, true);
+	gpio_set_level(PIN_NUM_RELAY, false);
 }
 
 void inductive_load(lv_event_t * e){
-	gpio_set_level(PIN_NUM_RELAY, false);
+	gpio_set_level(PIN_NUM_RELAY, true);
 }
 
 void controlFixedPWM(lv_event_t * e)
