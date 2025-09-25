@@ -392,7 +392,7 @@ Teniendo en cuenta:
     \item Corriente de TRIAC RMS $I_{T(RMS)} = \SI{1}{\ampere}$ (máximo establecido del módulo)
     \item Tensión de encendido del TRIAC $V_{o} = \SI{1.264}{\volt}$, \parencite{BT137}
     \item Resistencia de pendiente del TRIAC $R_{s} = \SI{0.038}{\ohm}$, \parencite{BT137}
-    \item Resistencia de juntura-ambiente del TRIAC $R_{th(j-a)} = \SI{60}{\kelvin\over\watt} = \SI{60}{\degreeCelsius\over\watt}$, \parencite{BT137}
+    \item Resistencia de juntura-ambiente del TRIAC $R_{th(j-a)} = \SI[per-mode=symbol]{60}{\kelvin\per\watt} = \SI[per-mode=symbol]{60}{\degreeCelsius\per\watt}$, \parencite{BT137}
     \item Temperatura de ambiente máxima $T_{a(max)} = \SI{40}{\degreeCelsius}$
     \item Temperatura de juntura máxima del TRIAC $T_{j(max)} = \SI{125}{\degreeCelsius}$, \parencite{BT137}
 \end{itemize}
@@ -409,7 +409,7 @@ P = V_o \times I_{T(AVE)} + R_s \times {I_{T(RMS)}}^2 = \SI{1.264}{\volt} \times
 
 Finalmente se puede calcular la temperatura de juntura del TRIAC en operación:
 \begin{equation} \label{eq:dimmer:triac_temperatura_juntura}
-T_j = T_a + P \times R_{thj-a} = \SI{40}{\degreeCelsius} + \SI{1.18}{\watt} \times \SI{60}{\degreeCelsius\over\watt} = \SI{110.8}{\degreeCelsius} < \SI{125}{\degreeCelsius}
+T_j = T_a + P \times R_{thj-a} = \SI{40}{\degreeCelsius} + \SI{1.18}{\watt} \times \SI[per-mode=fraction]{60}{\degreeCelsius\per\watt} = \SI{110.8}{\degreeCelsius} < \SI{125}{\degreeCelsius}
 \end{equation}
 
 Por lo tanto, no es necesario colocar un disipador en el TRIAC, ya que la temperatura de juntura calculada se encuentra por debajo del máximo especificado por el fabricante bajo las condiciones de operación establecidas.
