@@ -1,4 +1,4 @@
-\snsection{Módulo inversor de medio puente}
+\section{Módulo inversor de medio puente}
 
 La función de un inversor es cambiar un voltaje de entrada de corriente continua (CC) a un voltaje simétrico de salida de corriente alterna (CA) de magnitud y frecuencia
 deseadas. El voltaje de salida podría ser fijo o variable a una frecuencia también fija o variable. Se puede obtener un voltaje de salida variable si se varía el voltaje de CC de entrada y se mantiene constante la ganancia del inversor. Por otra parte, si el voltaje de entrada de CC es fijo y no es controlable, se puede obtener un voltaje de salida variable si se hace que la ganancia del inversor varíe, lo que normalmente se consigue mediante el control de modulación por ancho de pulso (PWM) dentro del inversor. La ganancia del inversor se puede definir como la relación del voltaje de salida de CA al voltaje de entrada de CC.
@@ -15,7 +15,7 @@ Para operar correctamente el inversor, se deben cumplir las siguientes reglas:
     \item En la implementación práctica, debe considerarse un tiempo muerto (también conocido como tiempo de bloqueo) en las señales de control de los interruptores de la rama, para evitar la violación de la regla 1.
 \end{enumerate} \parencite{RASHID}
 
-\snsubsection{Descripción de funcionamiento de un oscilador 555}
+\subsection{Descripción de funcionamiento de un oscilador 555}
 
 El circuito integrado IC555 es un dispositivo de temporización de precisión muy económico, popular y útil, que puede funcionar como un temporizador simple para generar pulsos únicos o retardos largos, o como un oscilador que produce una serie de formas de onda estabilizadas con ciclos de trabajo variables del 50\% al 100\%.
 
@@ -93,7 +93,7 @@ Cuando la salida está en ALTO, el capacitor se carga a través de R2, y cuando 
 El reset (pin 4) debe conectarse a Vcc para evitar que el circuito se desactive involuntariamente, mientras que el control de voltaje (pin 5) se conecta con un capacitor de bajo valor a tierra para mejorar la estabilidad y reducir el ruido. El pin 7 (Descarga) no se usa en esta configuración, ya que la carga y descarga del capacitor ocurren exclusivamente a través de la resistencia R2, \parencite{electronics-tutorial-555}.
 
 
-\snsubsection{Descripción de funcionamiento de un inversor de medio puente}
+\subsection{Descripción de funcionamiento de un inversor de medio puente}
 
 Como se mencionó anteriormente, un inversor es un convertidor que transfiere potencia desde una fuente de continua a una carga de alterna. La función de un inversor es, entonces, cambiar la tensión de entrada de corriente continua en una tensión simétrica de salida en corriente alterna con una magnitud, frecuencia y fase deseada.
 
@@ -145,7 +145,7 @@ En inversores monofásico se utilizan dos topologías básicas: medio puente \cr
 
 En este circuito tenemos dos etapas, una de potencia en la cual encontramos el medio puente conformado por dos transistores mosfet y dos capacitores electrolíticos, y una etapa de control que depende del oscilador 555 visto anteriormente.
 
-\snsubsubsection{Etapa de control}
+\subsubsection{Etapa de control}
 
 El control del medio puente se realiza a través de la señal de salida del oscilador 555, que se divide en dos ramas. Una de estas ramas se conecta a la gate del transistor Q1 mediante una resistencia, mientras que la otra rama lo hace a la base de un transistor BJT, también a través de una resistencia.
 
@@ -155,7 +155,7 @@ Cuando la salida del oscilador pasa a un impulso bajo, el comportamiento se invi
 
 Así, se logra que solo uno de los dos MOSFETs conduzca en cada ciclo de conmutación, lo que genera la acción complementaria.
 
-\snsubsubsection{Acople}
+\subsubsection{Acople}
 El uso de un amplificador operacional como seguidor de tensión entre la salida del IC555 y la etapa de potencia resulta conveniente porque actúa como adaptador de impedancia, presentando alta impedancia de entrada y baja impedancia de salida. De esta manera, evita que el IC deba excitar cargas capacitivas directamente, mejora la forma de onda entregada y asegura niveles de tensión más estables.
 
 
@@ -175,7 +175,7 @@ El uso de un amplificador operacional como seguidor de tensión entre la salida 
 \end{figure}
 
 
-\snsubsubsection{Etapa de potencia}
+\subsubsection{Etapa de potencia}
 Los capacitores electrolíticos conforman un divisor de tensión y estos se mantienen cargados gracias a la tensión entregada por el regulador.
 
 Cuando la salida del oscilador esta en ALTO, como mencionamos, Q1 se activa y Q2 no lo hace. Al activarse Q1 tendremos la tensión que nos otorga el capacitor C1 aplicada en la carga, y el sentido de la corriente es el siguiente:
@@ -265,9 +265,9 @@ Así podemos realizar las gráficas correspondiente a cada estado de conmutació
 
 Las dos primeras formas de onda muestran los pulsos aplicados a los mosfet, donde cada uno recibe el pulso cuando el interruptor complementario está desactivado. El tercer gráfico muestra la forma de onda de voltaje a través de la carga. Esto muestra que la polaridad del voltaje cambia con respecto a la conmutación.
 
-\snsubsection{Cálculos}
+\subsection{Cálculos}
 
-\snsubsubsection{Temporizador 555 configurado como oscilador con ciclo de trabajo del 50\%}
+\subsubsection{Temporizador 555 configurado como oscilador con ciclo de trabajo del 50\%}
 
 Durante cada ciclo, el capacitor se carga hasta el límite superior del comparador \(\left(\frac{2}{3} \times V_\mathrm{CC}\right)\) a través del resistor externo \(R{2}\) y el capacitor \(C{1}\), y luego se descarga hasta el límite inferior del comparador \(\left(\frac{1}{3} \times V_\mathrm{CC}\right)\) a través de los mismos componentes, \parencite{ti-555calculation}.
 
@@ -313,14 +313,14 @@ R = \frac{1}{2 \times 0{,}693 \times \SI{50}{\hertz} \times \SI{0.1}{\micro\fara
 \label{eq:inversor:resistencia_frecuencia}
 \end{equation}
 
-Ya que no es un valor comercial, se emplea una resistencia de \SI{100}{\kilo\ohm} en serie con un potenciómetro de \SI{50}{\kilo\ohm}, para tener un ajuste preciso de la frecuencia deseada.
-Además, se utiliza una resistencia adicional \(R{1}\) de \SI{10}{\mega\ohm} para asegurar la carga completa del capacitor, y así un ciclo de trabajo del 50\%.
+Ya que no es un valor comercial, se emplea una resistencia de \SI{120}{\kilo\ohm} en serie con un potenciómetro de \SI{50}{\kilo\ohm}, para tener un ajuste preciso de la frecuencia deseada.
+Además, se utiliza una resistencia adicional \(R{1}\) de \SI{3,9}{\mega\ohm} para asegurar la carga completa del capacitor, y así un ciclo de trabajo del 50\%. Este valor de resistencia es el que mejores resultados entregó en las pruebas realizadas.
 En cuanto a la alimentación del integrado, se utiliza la tensión proporcionada por el módulo general \SI{12}{Vcc}.
 
-\snsubsubsection{Regulador de voltaje}
+\subsubsection{Regulador de voltaje}
 El MOSFET seleccionado es el IRFZ44N, \parencite{IRFZ44N}, y el umbral de conducción \(V_\mathrm{GS(th)} = \SI{2}{\volt} \text{ a } \SI{4}{\volt}\), por lo que la tensión de alimentación del IC555 debe ser mayor por \SI{3}{\volt}\ al de alimentación de MOSFETs, para obtener esta diferencia entre gate y surtidor. Para ello se utiliza un regulador LM7809, el cual se alimenta con \SI{12}{V} y entrega \SI{9}{V} a la salida, con los que se alimenta el surtidor del MOSFET.
 
-\snsubsubsection{Cálculo de la capacitancia mínima}
+\subsubsection{Cálculo de la capacitancia mínima}
 
 \begin{figure}[H]
     \centering
@@ -397,7 +397,7 @@ C \geq \left| \frac{\SI{20}{\milli\second}}{2 \times \SI{100}{\ohm} \times \ln(0
 
 Siendo \SI{950}{\micro\farad} el valor mínimo de capacitancia. Al aumentar el valor de la misma se obtendrán mejores resultados de rizado, por lo que mediante pruebas de laboratorio se estableció un valor de \SI{1500}{\micro\farad}.
 
-\snsubsubsection{Gate del MOSFET:}
+\subsubsection{Gate del MOSFET}
 
 La resistencia de gate del mosfet que conecta directamente con la salida del IC555, se calcula teniendo en cuenta dos consideraciones, por un lado, el pico de corriente al momento de conducir y por otro la corriente máxima de salida del IC555.
 El mosfet tiene una Qg que ronda los \SI{70}{\nano C}, y por criterio de diseño, el tiempo de carga seleccionado debe estar dentro de los \SI{10}{\micro S}.
@@ -418,9 +418,9 @@ Por ley de ohm
 R_g = \frac{V}{I_g} = \frac{\SI{12}{\volt}}{\SI{7}{\milli\ampere}} = \SI{1714}{\ohm}
 \label{eq:inversor:rg}
 \end{equation}
-Sin embargo, con una resistencia de \SI{1.2}{\kilo\ohm}, bajamos el tiempo de conmutación a \SI{7}{\micro\second}, y se mantiene la potencia disipada por debajo de medio Watt.
+Sin embargo, con una resistencia de \SI{1.2}{\kilo\ohm}, se reduce el tiempo de conmutación a \SI{7}{\micro\second}, y se mantiene la potencia disipada por debajo de medio Watt.
 
-\snsubsubsection{Driver de MOSFET:}
+\subsubsection{Driver de MOSFET}
 Para intercalar el funcionamiento de los MOSFETs y que solo uno conduzca por cada oscilación, se utiliza un transistor BJT BC548, en saturación como driver del segundo mosfet.
 Se coloca entonces, una resistencia pull-up para limitar la corriente en el colector del BC548. 
 
@@ -448,7 +448,11 @@ Para calcular la resistencia de base, se aplica la ley de tensiones de Kirchoff:
 R_B = \frac{(V_{555} - V_{BE}) \cdot \beta}{I_C} = \frac{(\SI{12}{\volt} - \SI{0.7}{\volt}) \cdot 200}{\SI{50}{\milli\ampere}} = \SI{45.2}{\kilo\ohm} \approx \SI{47}{\kilo\ohm}
 \end{equation}
 
-\snsubsection{Simulación}
+\subsubsection{Disipación de potencia en transistores}
+
+No se incluyen cálculos de disipación de potencia en los transistores, dado que las condiciones de operación (baja corriente de carga y tiempos de conmutación cortos) aseguran que las pérdidas por conducción y conmutación permanecen dentro de los límites seguros especificados por los fabricantes.
+
+\subsection{Simulación}
 
 Para verificar el correcto funcionamiento del circuito oscilador IC555 y la tensión en la carga, se realizó una simple simulación con el software gratuito LTSpice, \parencite{LTSPICE}.
 

@@ -32,7 +32,8 @@ El TRIAC (Triode for Alternating Current, Triodo para Corriente Alterna en espa�
     \end{subfigure}
 
     %\vspace{-0.25cm}
-    \caption{Características del TRIAC, \parencite{RASHID-SPANISH}} 
+    \caption{Características del TRIAC.\\
+    \textit{Fuente: \parencite{RASHID-SPANISH}}} 
     \label{fig:dimmer:triac_caracteristicas}
 \end{figure}
 
@@ -51,7 +52,8 @@ El método más común de control electrónico de potencia de CA se denomina con
 
     \includegraphics[width=0.5\textwidth]{dimmer/control-fase.png}
 
-    \caption{Control de fase de onda de corriente alterna, \parencite{ON-ThyristorHandbook}}
+    \caption{Control de fase de onda de corriente alterna.\\
+    \textit{Fuente: \parencite{ON-ThyristorHandbook}}}
     \label{fig:dimmer:control_fase}
 \end{figure}
 
@@ -91,7 +93,8 @@ La forma de onda del voltaje a través del capacitor para dos condiciones de con
 
     \includegraphics[width=0.6\textwidth]{dimmer/formas-onda.png}
 
-    \caption{Tensión de capacitor con dos diferentes ángulos de fase, \parencite{ON-ThyristorHandbook}}
+    \caption{Tensión de capacitor con dos diferentes ángulos de fase.\\
+    \textit{Fuente: \parencite{ON-ThyristorHandbook}}} 
     \label{fig:dimmer:formas_onda}
 \end{figure}
 
@@ -329,7 +332,8 @@ Un método comúnmente aceptado para mantener la $dv/dt$ de conmutación dentro 
     \begin{subfigure}[b]{\columnwidth}
         \centering
         \includegraphics[height=7cm]{dimmer/snubber_curvas.png}
-        \caption{Curva (dI/dt)c según (dV/dt)c para TRIACs Z01, con y sin red Snubber, \parencite{ST-AN437}}
+        \caption{Curva (dI/dt)c según (dV/dt)c para TRIACs Z01, con y sin red Snubber. \\
+        \textit{Fuente: \parencite{ST-AN437}}}
         \label{fig:dimmer:snubber_curvas}
     \end{subfigure}
 
@@ -341,6 +345,36 @@ Un método comúnmente aceptado para mantener la $dv/dt$ de conmutación dentro 
 En la \cref{fig:dimmer:snubber_curvas} se observa la tasa crítica de disminución de la corriente de conmutación en estado activo ((dI/dt)c) respecto a la tasa crítica de aumento de la tensión de conmutación en estado inactivo ((dV/dt)c), \parencite{ST-AN437}. Se aprecia que, en el caso de la curva con el TRIAC Z0103, el punto de operación se encuentra en la área de disparos espurios, lo cual se soluciona con la implementación de una red Snubber.
 
 Se selecciona una resistencia de \SI{51}{\ohm} y un capacitor de \SI{10}{\nano\farad} ya que una red R-C de estas características suele ser suficiente para evitar disparos espurios, \parencite{ST-AN437}.
+
+\subsection{Disipación de potencia en TRIAC}
+Los cálculos correspondientes a la disipación de potencia y temperatura de juntura del TRIAC fueron realizados siguiendo un informe de aplicación de Philips Semiconductors, \parencite{PHILIPS-TRIACs}.
+
+Teniendo en cuenta:
+\begin{itemize}
+    \item Corriente de TRIAC RMS $I_{T(RMS)} = \SI{1}{\ampere}$ (máximo establecido del módulo)
+    \item Tensión de encendido del TRIAC $V_{o} = \SI{1.264}{\volt}$, \parencite{BT137}
+    \item Resistencia de pendiente del TRIAC $R_{s} = \SI{0.038}{\ohm}$, \parencite{BT137}
+    \item Resistencia de juntura-ambiente del TRIAC $R_{th(j-a)} = \SI[per-mode=symbol]{60}{\kelvin\per\watt} = \SI[per-mode=symbol]{60}{\degreeCelsius\per\watt}$, \parencite{BT137}
+    \item Temperatura de ambiente máxima $T_{a(max)} = \SI{40}{\degreeCelsius}$
+    \item Temperatura de juntura máxima del TRIAC $T_{j(max)} = \SI{125}{\degreeCelsius}$, \parencite{BT137}
+\end{itemize}
+
+Se calcula la corriente promedio de carga:
+\begin{equation} \label{eq:dimmer:triac_corriente_promedio}
+I_{T(AVE)} = \dfrac{2 \times \sqrt{2} \times I_{T(RMS)}}{\pi} = \dfrac{2 \sqrt{2} \SI{1}{\ampere}}{\pi} = \SI{0.9}{\ampere}
+\end{equation}
+
+Luego se calcula la potencia disipada por el TRIAC:
+\begin{equation} \label{eq:dimmer:triac_potencia}
+P = V_o \times I_{T(AVE)} + R_s \times {I_{T(RMS)}}^2 = \SI{1.264}{\volt} \times \SI{0.9}{\ampere} + \SI{0.038}{\ohm} \times (\SI{1}{\ampere})^2 = \SI{1.18}{\watt}
+\end{equation}
+
+Finalmente se puede calcular la temperatura de juntura del TRIAC en operación:
+\begin{equation} \label{eq:dimmer:triac_temperatura_juntura}
+T_j = T_a + P \times R_{thj-a} = \SI{40}{\degreeCelsius} + \SI{1.18}{\watt} \times \SI[per-mode=fraction]{60}{\degreeCelsius\per\watt} = \SI{110.8}{\degreeCelsius} < \SI{125}{\degreeCelsius}
+\end{equation}
+
+Por lo tanto, no es necesario colocar un disipador en el TRIAC, ya que la temperatura de juntura calculada se encuentra por debajo del máximo especificado por el fabricante bajo las condiciones de operación establecidas.
 
 \subsection{Simulación}
 
@@ -383,36 +417,6 @@ Para verificar el correcto funcionamiento del circuito control de fase analógic
 \end{figure}
 
 Como se observa en la \cref{fig:dimmer:simulacion_resultados}, el circuito se comporta según lo esperado, cambiando el ángulo de disparo del TRIAC con distintos valores de resistencia del potenciómetro. La simulación comienza a los \SI{40}{\milli\second} para visualizar el comportamiento del circuito en régimen permanente.
-
-\subsection{Disipación de potencia en TRIAC}
-Los cálculos correspondientes a la disipación de potencia y temperatura de juntura del TRIAC fueron realizados siguiendo un informe de aplicación de Philips Semiconductors, \parencite{PHILIPS-TRIACs}.
-
-Teniendo en cuenta:
-\begin{itemize}
-    \item Corriente de TRIAC RMS $I_{T(RMS)} = \SI{1}{\ampere}$ (máximo establecido del módulo)
-    \item Tensión de encendido del TRIAC $V_{o} = \SI{1.264}{\volt}$, \parencite{BT137}
-    \item Resistencia de pendiente del TRIAC $R_{s} = \SI{0.038}{\ohm}$, \parencite{BT137}
-    \item Resistencia de juntura-ambiente del TRIAC $R_{th(j-a)} = \SI[per-mode=symbol]{60}{\kelvin\per\watt} = \SI[per-mode=symbol]{60}{\degreeCelsius\per\watt}$, \parencite{BT137}
-    \item Temperatura de ambiente máxima $T_{a(max)} = \SI{40}{\degreeCelsius}$
-    \item Temperatura de juntura máxima del TRIAC $T_{j(max)} = \SI{125}{\degreeCelsius}$, \parencite{BT137}
-\end{itemize}
-
-Se calcula la corriente promedio de carga:
-\begin{equation} \label{eq:dimmer:triac_corriente_promedio}
-I_{T(AVE)} = \dfrac{2 \times \sqrt{2} \times I_{T(RMS)}}{\pi} = \dfrac{2 \sqrt{2} \SI{1}{\ampere}}{\pi} = \SI{0.9}{\ampere}
-\end{equation}
-
-Luego se calcula la potencia disipada por el TRIAC:
-\begin{equation} \label{eq:dimmer:triac_potencia}
-P = V_o \times I_{T(AVE)} + R_s \times {I_{T(RMS)}}^2 = \SI{1.264}{\volt} \times \SI{0.9}{\ampere} + \SI{0.038}{\ohm} \times (\SI{1}{\ampere})^2 = \SI{1.18}{\watt}
-\end{equation}
-
-Finalmente se puede calcular la temperatura de juntura del TRIAC en operación:
-\begin{equation} \label{eq:dimmer:triac_temperatura_juntura}
-T_j = T_a + P \times R_{thj-a} = \SI{40}{\degreeCelsius} + \SI{1.18}{\watt} \times \SI[per-mode=fraction]{60}{\degreeCelsius\per\watt} = \SI{110.8}{\degreeCelsius} < \SI{125}{\degreeCelsius}
-\end{equation}
-
-Por lo tanto, no es necesario colocar un disipador en el TRIAC, ya que la temperatura de juntura calculada se encuentra por debajo del máximo especificado por el fabricante bajo las condiciones de operación establecidas.
 
 \begin{comment}
 
