@@ -313,8 +313,8 @@ R = \frac{1}{2 \times 0{,}693 \times \SI{50}{\hertz} \times \SI{0.1}{\micro\fara
 \label{eq:inversor:resistencia_frecuencia}
 \end{equation}
 
-Ya que no es un valor comercial, se emplea una resistencia de \SI{100}{\kilo\ohm} en serie con un potenciómetro de \SI{50}{\kilo\ohm}, para tener un ajuste preciso de la frecuencia deseada.
-Además, se utiliza una resistencia adicional \(R{1}\) de \SI{10}{\mega\ohm} para asegurar la carga completa del capacitor, y así un ciclo de trabajo del 50\%.
+Ya que no es un valor comercial, se emplea una resistencia de \SI{120}{\kilo\ohm} en serie con un potenciómetro de \SI{50}{\kilo\ohm}, para tener un ajuste preciso de la frecuencia deseada.
+Además, se utiliza una resistencia adicional \(R{1}\) de \SI{3,9}{\mega\ohm} para asegurar la carga completa del capacitor, y así un ciclo de trabajo del 50\%. Este valor de resistencia es el que mejores resultados entregó en las pruebas realizadas.
 En cuanto a la alimentación del integrado, se utiliza la tensión proporcionada por el módulo general \SI{12}{Vcc}.
 
 \snsubsubsection{Regulador de voltaje}
@@ -397,7 +397,7 @@ C \geq \left| \frac{\SI{20}{\milli\second}}{2 \times \SI{100}{\ohm} \times \ln(0
 
 Siendo \SI{950}{\micro\farad} el valor mínimo de capacitancia. Al aumentar el valor de la misma se obtendrán mejores resultados de rizado, por lo que mediante pruebas de laboratorio se estableció un valor de \SI{1500}{\micro\farad}.
 
-\snsubsubsection{Gate del MOSFET:}
+\snsubsubsection{Gate del MOSFET}
 
 La resistencia de gate del mosfet que conecta directamente con la salida del IC555, se calcula teniendo en cuenta dos consideraciones, por un lado, el pico de corriente al momento de conducir y por otro la corriente máxima de salida del IC555.
 El mosfet tiene una Qg que ronda los \SI{70}{\nano C}, y por criterio de diseño, el tiempo de carga seleccionado debe estar dentro de los \SI{10}{\micro S}.
@@ -418,9 +418,9 @@ Por ley de ohm
 R_g = \frac{V}{I_g} = \frac{\SI{12}{\volt}}{\SI{7}{\milli\ampere}} = \SI{1714}{\ohm}
 \label{eq:inversor:rg}
 \end{equation}
-Sin embargo, con una resistencia de \SI{1.2}{\kilo\ohm}, bajamos el tiempo de conmutación a \SI{7}{\micro\second}, y se mantiene la potencia disipada por debajo de medio Watt.
+Sin embargo, con una resistencia de \SI{1.2}{\kilo\ohm}, se reduce el tiempo de conmutación a \SI{7}{\micro\second}, y se mantiene la potencia disipada por debajo de medio Watt.
 
-\snsubsubsection{Driver de MOSFET:}
+\snsubsubsection{Driver de MOSFET}
 Para intercalar el funcionamiento de los MOSFETs y que solo uno conduzca por cada oscilación, se utiliza un transistor BJT BC548, en saturación como driver del segundo mosfet.
 Se coloca entonces, una resistencia pull-up para limitar la corriente en el colector del BC548. 
 
@@ -447,6 +447,10 @@ Para calcular la resistencia de base, se aplica la ley de tensiones de Kirchoff:
 \begin{equation}
 R_B = \frac{(V_{555} - V_{BE}) \cdot \beta}{I_C} = \frac{(\SI{12}{\volt} - \SI{0.7}{\volt}) \cdot 200}{\SI{50}{\milli\ampere}} = \SI{45.2}{\kilo\ohm} \approx \SI{47}{\kilo\ohm}
 \end{equation}
+
+\snsubsubsection{Disipación de potencia en transistores}
+
+No se incluyen cálculos de disipación de potencia en los transistores, dado que las condiciones de operación (baja corriente de carga y tiempos de conmutación cortos) aseguran que las pérdidas por conducción y conmutación permanecen dentro de los límites seguros especificados por los fabricantes.
 
 \snsubsection{Simulación}
 
