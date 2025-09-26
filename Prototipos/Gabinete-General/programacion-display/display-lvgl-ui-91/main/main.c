@@ -56,8 +56,8 @@
 
 /*----------- ENCODER DEFINES ------------*/
 // Rotary encoder pin configuration
-#define PIN_NUM_CLOCKWISE GPIO_NUM_48
-#define PIN_NUM_COUNTERCLOCKWISE GPIO_NUM_47
+#define PIN_NUM_CLOCKWISE GPIO_NUM_47
+#define PIN_NUM_COUNTERCLOCKWISE GPIO_NUM_48
 #define PIN_NUM_BUTTON GPIO_NUM_21
 /*--------------------------------*/
 
