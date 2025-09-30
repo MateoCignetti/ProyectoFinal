@@ -169,6 +169,7 @@ static void vTaskModuleManagerUpdate(void *pvParameters) {
         
         module_manager_state_t current_state = get_module_manager_state();
         
+        // I don't know if this will work after module_running to module_stopping. Test.
         switch (current_state){
             case MANAGER_READY:
                 // Only try to identify if module is actually connected
