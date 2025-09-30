@@ -169,8 +169,9 @@ static void configure_gpios(){
 }
 
 static void delete_gpios(){
+    ESP_ERROR_CHECK(gpio_set_level(PIN_RELAY_OUT, 0)); // Enable the relay (dimmer in digital mode)
     ESP_ERROR_CHECK(gpio_isr_handler_remove(PIN_TRIAC_OUT)); // Remove the ISR handler for the TRIAC pin
-    gpio_uninstall_isr_service(); // Uninstall the ISR service
+    //gpio_uninstall_isr_service(); // Uninstall the ISR service
 
     // Reset the GPIOs to their default state
     gpio_reset_pin(PIN_ZCD_IN);
@@ -223,12 +224,14 @@ static void configure_timers(){
 static void delete_timers(){
     // Stop the timers
     if(dimmer_wait_timer != NULL){
+        ESP_LOGI(MODULE_TAG, "Deleting dimmer wait timer...");
         gptimer_stop(dimmer_wait_timer); // Stop the wait timer
         gptimer_disable(dimmer_wait_timer); // Disable the wait timer
         gptimer_del_timer(dimmer_wait_timer); // Delete the wait timer
         dimmer_wait_timer = NULL; // Reset the timer handle
     }
     if(dimmer_pulse_timer != NULL){
+        ESP_LOGI(MODULE_TAG, "Deleting dimmer pulse timer...");
         gptimer_stop(dimmer_pulse_timer); // Stop the pulse timer
         gptimer_disable(dimmer_pulse_timer); // Disable the pulse timer
         gptimer_del_timer(dimmer_pulse_timer); // Delete the pulse timer

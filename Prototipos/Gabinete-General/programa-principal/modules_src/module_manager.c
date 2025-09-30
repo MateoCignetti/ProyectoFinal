@@ -26,11 +26,26 @@ static void delete_ident_adc(void);
 static void handle_module_connected(bool connected);
 //
 
+module_t inverter_module = {
+    .name = "Inverter Module", // Name of the module
+    .start_function = NULL, // Function pointer to start the module
+    .stop_function = NULL, // Function pointer to stop the module
+};
+
+module_t buck_module = {
+    .name = "Buck Converter Module", // Name of the module
+    .start_function = NULL, // Function pointer to start the module
+    .stop_function = NULL, // Function pointer to stop the module
+};
+
 static const module_ident_t module_ident_list[] = {
     // Add module identification entries here
     // Example:
     // { .module_ident_mv_min = 1000, .module_ident_mv_max = 2000, .module = &my_module },
-    {1500, 1700, &dimmer_module},
+    {1600, 1700, &inverter_module},
+    {1900, 2000, &buck_module},
+    
+    {2500, 2600, &dimmer_module},
 
     {0, 0, NULL} // Sentinel value to mark the end of the list
 };
@@ -42,7 +57,8 @@ module_manager_state_t get_module_manager_state() {
         state = module_manager_state;
         xSemaphoreGive(xModuleManagerMutex);
     } else {
-        state = MANAGER_FAULT; // Return FAULT if we can't get the mutex
+        ESP_LOGE(MANAGER_TAG, "Failed to get module manager state mutex");
+        state = MANAGER_FAULT; // Return FAULT if we can't get the mute
     }
     return state;
 }
@@ -90,7 +106,7 @@ void delete_ident_adc(){
         adc_unit_handle = NULL;
     }
     if(adc_cali_handle != NULL){
-        adc_cali_delete(adc_cali_handle);
+        //adc_cali_delete(adc_cali_handle);
         adc_cali_handle = NULL;
     }
 }
@@ -129,7 +145,17 @@ void module_manager_init(void){
 
 static const module_t* identify_module() {
     int module_ident_mv = 0;
-    adc_oneshot_get_calibrated_result(adc_unit_handle, adc_cali_handle, ADC_MODULE_IDENT_CHANNEL, &module_ident_mv);
+    int module_ident_avg = 0;
+    
+    // Take 5 samples and average them
+    for (int sample = 0; sample < 50; sample++) {
+        adc_oneshot_get_calibrated_result(adc_unit_handle, adc_cali_handle, ADC_MODULE_IDENT_CHANNEL, &module_ident_mv);
+        ESP_LOGI(MANAGER_TAG, "Module identification sample %d: %d mV", sample + 1, module_ident_mv);
+        module_ident_avg += module_ident_mv;
+    }
+    module_ident_avg /= 50;
+    module_ident_mv = module_ident_avg;
+    ESP_LOGI(MANAGER_TAG, "Average module identification voltage: %d mV", module_ident_mv);
 
     for (int i = 0; module_ident_list[i].module != NULL; i++) {
         if (module_ident_mv >= module_ident_list[i].module_ident_mv_min && module_ident_mv <= module_ident_list[i].module_ident_mv_max) {
@@ -143,6 +169,7 @@ static const module_t* identify_module() {
 
 static void handle_module_connected(bool connected) {
     // This function is called when module connection state changes
+    /*
     if (connected) {
         ESP_LOGI(MANAGER_TAG, "Module connection confirmed - triggering identification");
         xTaskNotifyGive(xTaskModuleManagerUpdate_handle);
@@ -153,10 +180,13 @@ static void handle_module_connected(bool connected) {
             set_module_manager_state(MANAGER_STOPPING);
             xTaskNotifyGive(xTaskModuleManagerUpdate_handle);
         }
-    }
+    }*/
+    // Notify the module manager task of the connection state change
+    xTaskNotifyGive(xTaskModuleManagerUpdate_handle);
 }
 
 static void vTaskModuleManagerUpdate(void *pvParameters) {
+    const module_t* current_module = NULL;
     while (true) {
         if(get_module_manager_state() == MANAGER_INIT) {
             ESP_LOGI(MANAGER_TAG, "Module Manager is initializing...");
@@ -178,16 +208,17 @@ static void vTaskModuleManagerUpdate(void *pvParameters) {
                     if (identified_module != NULL) {
                         ESP_LOGI(MANAGER_TAG, "Identified module: %s", identified_module->name);
                         if (identified_module->start_function != NULL) {
-                            identified_module->start_function();
                             delete_ident_adc();
+                            identified_module->start_function();
+                            current_module = identified_module;
                             set_module_manager_state(MANAGER_RUNNING);
                         } else {
                             ESP_LOGE(MANAGER_TAG, "No start function defined for module: %s", identified_module->name);
-                            set_module_manager_state(MANAGER_FAULT);
+                            set_module_manager_state(MANAGER_READY); //CHANGE LATER TO FAULT
                         }
                     } else {
                         ESP_LOGW(MANAGER_TAG, "Failed to identify module");
-                        set_module_manager_state(MANAGER_FAULT);
+                        set_module_manager_state(MANAGER_READY); //CHANGE LATER TO FAULT
                     }
                 }
                 break;
@@ -197,6 +228,10 @@ static void vTaskModuleManagerUpdate(void *pvParameters) {
                 if (get_connection_state() != CONNECTION_CONNECTED) {
                     ESP_LOGI(MANAGER_TAG, "Module disconnected while running - stopping");
                     set_module_manager_state(MANAGER_STOPPING);
+                    current_module->stop_function(); // Stop current module
+                    current_module = NULL;
+                    setup_ident_adc(); // Re-setup ADC for identification
+                    set_module_manager_state(MANAGER_READY);
                 }
                 break;
                 
@@ -210,7 +245,7 @@ static void vTaskModuleManagerUpdate(void *pvParameters) {
             case MANAGER_FAULT:
                 ESP_LOGE(MANAGER_TAG, "Module Manager is in FAULT state!");
                 // Reset to ready state after some time or condition
-                set_module_manager_state(MANAGER_READY);
+                //set_module_manager_state(MANAGER_READY);
                 break;
 
             default:

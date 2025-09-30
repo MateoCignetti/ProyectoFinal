@@ -178,6 +178,7 @@ static void vTaskConnectionUpdate(void *pvParameters) {
                 } else {
                     new_state = CONNECTION_DISCONNECTED;
                     gptimer_stop(debounce_timer); // Stop debounce timer
+                    gptimer_set_raw_count(debounce_timer, 0); // Reset timer count
                 }
                 
                 module_connection_state_t current_state = get_connection_state();
