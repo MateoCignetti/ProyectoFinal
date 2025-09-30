@@ -1,8 +1,9 @@
 #ifndef MODULE_MANAGER_H
 #define MODULE_MANAGER_H
 
-#include <stdint.h>
-#include "module.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/semphr.h"
 
 typedef enum {
     MANAGER_INIT,

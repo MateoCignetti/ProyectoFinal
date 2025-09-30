@@ -1,4 +1,5 @@
 #include "module_manager.h"
+#include "module_connection.h"
 
 #include "esp_adc/adc_oneshot.h"
 #include "esp_adc/adc_cali.h"
@@ -13,14 +14,16 @@ static adc_oneshot_unit_handle_t adc_unit_handle = NULL;
 static adc_cali_handle_t adc_cali_handle = NULL;
 TaskHandle_t xTaskModuleManagerUpdate_handle = NULL; // Task handle for the module state update task
 
-static module_state_t module_manager_state = INIT; // Initial state of the module
-SemaphoreHandle_t xModuleManagerMutex = NULL; // Mutex for protecting module state access
+static module_manager_state_t module_manager_state = MANAGER_INIT;
+SemaphoreHandle_t xModuleManagerMutex = NULL;
 
 // Private function declarations
 static void vTaskModuleManagerUpdate(void *pvParameters);
 static void create_module_manager_tasks(void);
 static const module_t* identify_module(void);
-static void configure_adc(void);
+static void setup_ident_adc(void);
+static void delete_ident_adc(void);
+static void handle_module_connected(bool connected);
 //
 
 static const module_ident_t module_ident_list[] = {
@@ -39,7 +42,7 @@ module_manager_state_t get_module_manager_state() {
         state = module_manager_state;
         xSemaphoreGive(xModuleManagerMutex);
     } else {
-        state = FAULT; // Return FAULT if we can't get the mutex
+        state = MANAGER_FAULT; // Return FAULT if we can't get the mutex
     }
     return state;
 }
@@ -54,7 +57,7 @@ void set_module_manager_state(module_manager_state_t new_state) {
 
 //
 
-void configure_adc(){
+void setup_ident_adc(){
 
     if(adc_unit_handle != NULL){
         return; // ADC already configured
@@ -81,6 +84,16 @@ void configure_adc(){
     adc_cali_create_scheme_curve_fitting(&adc_cali_config, &adc_cali_handle);
 }
 
+void delete_ident_adc(){
+    if(adc_unit_handle != NULL){
+        adc_oneshot_del_unit(adc_unit_handle);
+        adc_unit_handle = NULL;
+    }
+    if(adc_cali_handle != NULL){
+        adc_cali_delete(adc_cali_handle);
+        adc_cali_handle = NULL;
+    }
+}
 
 static void create_module_manager_tasks(void){
     // Create mutex for module manager state
@@ -104,7 +117,13 @@ static void create_module_manager_tasks(void){
 }
 
 void module_manager_init(void){
-    create_module_manager_tasks(); // Create the task to update the module state
+    create_module_manager_tasks();
+    
+    // Initialize module connection system
+    initialize_module_connection();
+    
+    // Register callback for connection state changes
+    register_connection_callback(handle_module_connected);
 }
 
 
@@ -114,59 +133,88 @@ static const module_t* identify_module() {
 
     for (int i = 0; module_ident_list[i].module != NULL; i++) {
         if (module_ident_mv >= module_ident_list[i].module_ident_mv_min && module_ident_mv <= module_ident_list[i].module_ident_mv_max) {
-            return module_ident_list[i].module; // Return the identified module
+            return module_ident_list[i].module;
         }
     }
 
-    ESP_LOGW(MANAGER_TAG, "No module identified for voltage: %d mV", module_ident_mv); // Log warning if no module is identified
-    return NULL; // No module identified
+    ESP_LOGW(MANAGER_TAG, "No module identified for voltage: %d mV", module_ident_mv);
+    return NULL;
+}
+
+static void handle_module_connected(bool connected) {
+    // This function is called when module connection state changes
+    if (connected) {
+        ESP_LOGI(MANAGER_TAG, "Module connection confirmed - triggering identification");
+        xTaskNotifyGive(xTaskModuleManagerUpdate_handle);
+    } else {
+        ESP_LOGI(MANAGER_TAG, "Module disconnected - stopping current module");
+        // Handle disconnection - stop current module if running
+        if (get_module_manager_state() == MANAGER_RUNNING) {
+            set_module_manager_state(MANAGER_STOPPING);
+            xTaskNotifyGive(xTaskModuleManagerUpdate_handle);
+        }
+    }
 }
 
 static void vTaskModuleManagerUpdate(void *pvParameters) {
     while (true) {
-
         if(get_module_manager_state() == MANAGER_INIT) {
             ESP_LOGI(MANAGER_TAG, "Module Manager is initializing...");
-            configure_adc();
-            set_module_manager_state(MANAGER_READY); // Move to READY state after initialization
+            setup_ident_adc();
+            set_module_manager_state(MANAGER_READY);
         }
 
-        ulTaskNotifyTake(pdTRUE, portMAX_DELAY); // Wait for notification to update module state
+        // Wait for notification from connection callback
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
         
-        // Get current state and update if changed
         module_manager_state_t current_state = get_module_manager_state();
         
         switch (current_state){
             case MANAGER_READY:
-                const module_t* identified_module = identify_module();
-                if (identified_module != NULL) {
-                    ESP_LOGI(MANAGER_TAG, "Identified module: %s", identified_module->name);
-                    if (identified_module->start_function != NULL) {
-                        identified_module->start_function(); // Start the identified module
-                        set_module_manager_state(MANAGER_RUNNING); // Update state to RUNNING
+                // Only try to identify if module is actually connected
+                if (get_connection_state() == CONNECTION_CONNECTED) {
+                    const module_t* identified_module = identify_module();
+                    if (identified_module != NULL) {
+                        ESP_LOGI(MANAGER_TAG, "Identified module: %s", identified_module->name);
+                        if (identified_module->start_function != NULL) {
+                            identified_module->start_function();
+                            delete_ident_adc();
+                            set_module_manager_state(MANAGER_RUNNING);
+                        } else {
+                            ESP_LOGE(MANAGER_TAG, "No start function defined for module: %s", identified_module->name);
+                            set_module_manager_state(MANAGER_FAULT);
+                        }
                     } else {
-                        ESP_LOGE(MANAGER_TAG, "No start function defined for module: %s", identified_module->name);
-                        set_module_manager_state(MANAGER_FAULT); // Set to FAULT if no start function
+                        ESP_LOGW(MANAGER_TAG, "Failed to identify module");
+                        set_module_manager_state(MANAGER_FAULT);
                     }
                 }
+                break;
                 
-                break;
             case MANAGER_RUNNING:
-                // Monitor running module or handle stop requests
+                // Module is running - handle any state changes or disconnection
+                if (get_connection_state() != CONNECTION_CONNECTED) {
+                    ESP_LOGI(MANAGER_TAG, "Module disconnected while running - stopping");
+                    set_module_manager_state(MANAGER_STOPPING);
+                }
                 break;
+                
             case MANAGER_STOPPING:
                 // Handle stopping the module
+                ESP_LOGI(MANAGER_TAG, "Stopping module...");
+                // TODO: Add stop function call if needed
+                set_module_manager_state(MANAGER_READY);
                 break;
 
             case MANAGER_FAULT:
                 ESP_LOGE(MANAGER_TAG, "Module Manager is in FAULT state!");
-                // Handle fault state tasks here
+                // Reset to ready state after some time or condition
+                set_module_manager_state(MANAGER_READY);
                 break;
 
             default:
                 break;
-            }
-
+        }
     }
 }
 
