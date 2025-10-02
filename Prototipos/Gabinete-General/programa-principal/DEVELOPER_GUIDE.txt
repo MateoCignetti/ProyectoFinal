@@ -1,0 +1,143 @@
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    ADDING A NEW MODULE - WORKFLOW                       │
+└─────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│  STEP 1: Create Module Files (Copy from MODULE_TEMPLATE.md)             │
+└──────────────────────────────────────────────────────────────────────────┘
+
+    modules_include/your_module.h
+    ┌─────────────────────────────────────┐
+    │ #ifndef YOUR_MODULE_H               │
+    │ #define YOUR_MODULE_H               │
+    │                                     │
+    │ #include "module_manager.h"         │
+    │                                     │
+    │ #define YOUR_MODULE_IDENT_MV_MIN .. │
+    │ #define YOUR_MODULE_IDENT_MV_MAX .. │
+    │                                     │
+    │ extern const module_t your_module;  │
+    │                                     │
+    │ #endif                              │
+    └─────────────────────────────────────┘
+
+    modules_src/your_module.c
+    ┌─────────────────────────────────────┐
+    │ #include "your_module.h"            │
+    │                                     │
+    │ static void start_your_module() {   │
+    │     // Initialize hardware          │
+    │ }                                   │
+    │                                     │
+    │ static void stop_your_module() {    │
+    │     // Clean up resources           │
+    │ }                                   │
+    │                                     │
+    │ const module_t your_module = {      │
+    │     .name = "Your Module",          │
+    │     .ident_mv_min = YOUR_..._MIN,   │
+    │     .ident_mv_max = YOUR_..._MAX,   │
+    │     .start_function = start_...,    │
+    │     .stop_function = stop_...,      │
+    │ };                                  │
+    └─────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│  STEP 2: Register in module_registry.h (ONLY FILE TO EDIT!)             │
+└──────────────────────────────────────────────────────────────────────────┘
+
+    modules_include/module_registry.h
+    ┌────────────────────────────────────────────────────────────────────┐
+    │ // STEP 1: Add include                                             │
+    │ #include "dimmer_control.h"                                        │
+    │ #include "your_module.h"  ◄── ADD THIS LINE                        │
+    │                                                                    │
+    │ // STEP 2: Add to registry list                                    │
+    │ #define MODULE_REGISTRY_LIST \                                     │
+    │     &dimmer_module,          \                                     │
+    │     &your_module,            \  ◄── ADD THIS LINE                  │
+    │     NULL                                                           │
+    └────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│  THAT'S IT! Build and run.                                               │
+└──────────────────────────────────────────────────────────────────────────┘
+
+    $ idf.py build
+    $ idf.py flash monitor
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│  WHAT HAPPENS AUTOMATICALLY:                                             │
+└──────────────────────────────────────────────────────────────────────────┘
+
+    1. MODULE_REGISTRY_LIST macro expands in module_manager.c
+       ↓
+    2. module_list[] is populated at compile time
+       ↓
+    3. When module connected, ADC reads identification voltage
+       ↓
+    4. Manager iterates through module_list[]
+       ↓
+    5. Finds match by comparing voltage to ident_mv_min/max
+       ↓
+    6. Calls matched module's start_function()
+       ↓
+    7. Your module is now running!
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│  FILES YOU NEVER NEED TO TOUCH:                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+
+    ✗ module_manager.c      (core logic - hands off!)
+    ✗ module_manager.h      (interface definitions)
+    ✗ module_connection.c   (hot-plug detection)
+    ✗ main.c                (initialization)
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│  COMPARISON: OLD vs NEW                                                  │
+└──────────────────────────────────────────────────────────────────────────┘
+
+    OLD APPROACH:
+    ┌─────────────────────────────────────────────────────────────────┐
+    │ 1. Create module.h and module.c                                 │
+    │ 2. Edit module_manager.h (add forward declarations)             │
+    │ 3. Edit module_manager.c (add to embedded struct array)         │
+    │ 4. Navigate through 200+ lines to find the right spot           │
+    │ 5. Risk breaking existing modules                               │
+    │ 6. Need to understand module_manager.c internals                │
+    └─────────────────────────────────────────────────────────────────┘
+         ↓ REFACTORED TO ↓
+    ┌─────────────────────────────────────────────────────────────────┐
+    │ 1. Create module.h and module.c (from template)                 │
+    │ 2. Edit module_registry.h (add 2 lines)                         │
+    │ 3. Done!                                                         │
+    └─────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│  BENEFITS:                                                                │
+└──────────────────────────────────────────────────────────────────────────┘
+
+    ✓ Single registration point (module_registry.h)
+    ✓ Core code is protected from developer errors
+    ✓ Clear, documented process
+    ✓ Template-driven development
+    ✓ Compile-time registration (macro expansion)
+    ✓ Minimal cognitive load for new developers
+    ✓ Scales to dozens of modules easily
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│  MODULE IDENTIFICATION VOLTAGE ASSIGNMENTS:                               │
+└──────────────────────────────────────────────────────────────────────────┘
+
+    Module              Min     Max     Status
+    ────────────────────────────────────────────────
+    Dimmer              500     600     ✓ Implemented
+    Inverter           1600    1700     ○ Planned
+    Buck Converter     1900    2000     ○ Planned
+    Your Module        ????    ????     ○ Available
+
+    Note: Each module needs a unique 100mV window.
+          Coordinate with team to avoid conflicts.
+
+```

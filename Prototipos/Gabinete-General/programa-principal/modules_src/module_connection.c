@@ -13,7 +13,7 @@
 static const char* CONNECTION_TAG = "Module Connection";
 
 static TaskHandle_t xTaskConnectionUpdate_handle = NULL;
-SemaphoreHandle_t xConnectionStateMutex = NULL;
+static SemaphoreHandle_t xConnectionStateMutex = NULL;
 static gptimer_handle_t debounce_timer = NULL;
 
 static bool gpio_isr_service_installed = false;
@@ -21,6 +21,11 @@ static module_connection_state_t connection_state = CONNECTION_INIT;
 
 // Callback function pointer for connection changes
 static connection_callback_t connection_change_callback = NULL;
+
+// Public function declarations (available to other modules)
+void initialize_module_connection(void);
+void register_connection_callback(connection_callback_t callback);
+module_connection_state_t get_connection_state(void);
 
 // Private function declarations
 static void hp_isr_handler(void* arg);
@@ -30,6 +35,7 @@ static void create_connection_tasks(void);
 static void vTaskConnectionUpdate(void *pvParameters);
 static void configure_debounce_timer(void);
 static bool debounce_timer_cb(gptimer_handle_t timer, const gptimer_alarm_event_data_t *edata, void *user_ctx);
+static void set_connection_state(module_connection_state_t new_state);
 
 // Public functions
 void initialize_module_connection(){
@@ -52,14 +58,15 @@ module_connection_state_t get_connection_state() {
     return state;
 }
 
-void set_connection_state(module_connection_state_t new_state) {
+// Private functions
+static void set_connection_state(module_connection_state_t new_state) {
     if (xConnectionStateMutex != NULL && xSemaphoreTake(xConnectionStateMutex, pdMS_TO_TICKS(100)) == pdTRUE) {
         connection_state = new_state;
         xSemaphoreGive(xConnectionStateMutex);
     }
 }
 
-// Private functions
+
 static bool debounce_timer_cb(gptimer_handle_t timer, const gptimer_alarm_event_data_t *edata, void *user_ctx) {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     

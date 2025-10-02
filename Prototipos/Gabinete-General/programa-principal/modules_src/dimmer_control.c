@@ -2,8 +2,8 @@
  * @file dimmer.c
  * @author Mateo Antonio Cignetti (mateo@cignetti.ar)
  * @brief Control program for the dimmer module.
- * @version 0.1
- * @date 2025-07-25
+ * @version 0.9
+ * @date 2025-10-02
  * 
  * @copyright Copyright (c) 2025
  * 
@@ -12,9 +12,6 @@
 #include "dimmer_control.h"
 #include "gpio_definition.h"
 
-// IMPORTANT: The prototype's relay pin must be shorted to 3.3 V for the dimmer to be set in digital control mode.
-//            This was not included in this program to keep test components to a minimum.
-
 #include "driver/gpio.h" // GPIO driver
 #include "driver/gptimer.h" // Driver for the gptimers
 #include "esp_attr.h" // Needed for IRAM_ATTR (needed for interrupt handler)
@@ -22,22 +19,25 @@
 #include "freertos/FreeRTOS.h" // FreeRTOS general library
 #include "freertos/task.h" // FreeRTOS task library
 
-//#define ESP_INTR_FLAG_DEFAULT 0 // Default interrupt flag
+// Module identification voltage range (in millivolts)
+#define DIMMER_IDENT_MV_MIN 500
+#define DIMMER_IDENT_MV_MAX 600
+
 #define PIN_RELAY_OUT PIN_S1
-#define PIN_ZCD_IN PIN_S16 // Zero crossing detector input pin
 #define PIN_TRIAC_OUT PIN_S15 // TRIAC output pin
+#define PIN_ZCD_IN PIN_S16 // Zero crossing detector input pin
+
 #define PULSE_WIDTH_US 25 // Pulse width for driving the triac, in microseconds
-#define DIMMER_TIMER_COUNT_DEFAULT 4000 // Turns on TRIAC at 9,9 ms after zero crossing
-                                        // (basically starts the dimmer off)
+#define DIMMER_TIMER_COUNT_DEFAULT 9900 // Dimmer wait timer alarm count. Turns on TRIAC at 9,9 ms after zero crossing
+                                        // (basically no load voltage.)
+/* UNCOMMENT WHEN IMPLEMENTING USER INTERFACE
 #define ALARM_COUNT_MIN 100 // Minimum alarm count for the dimmer
 #define ALARM_COUNT_MAX 9900 // Maximum alarm count for the dimmer
+*/
 
 static gptimer_handle_t dimmer_wait_timer = NULL; // Handle for the wait timer
 static gptimer_handle_t dimmer_pulse_timer = NULL; // Handle for the pulse timer
 
-static volatile bool timer_is_running = false; // Aux flag to ensure proper timer operation, additional
-                                      // safety measure in case an interrupt happens mid timer
-                                      // (shouldn't happen in normal operation)
 static uint16_t dimmer_wait_alarm_count = DIMMER_TIMER_COUNT_DEFAULT; // Static variable to store the alarm count
 
 static bool isModuleRunning = false;
@@ -52,67 +52,45 @@ static void configure_gpios();
 static void delete_gpios();
 static void configure_timers();
 static void delete_timers();
-//static void vTaskStartDimmerModule(void *pvParameters);
-//static void vTaskStopDimmerModule(void *pvParameters);
+static void start_dimmer_module();
+static void stop_dimmer_module();
 
-// Public functions
-/*
-void start_dimmer_module() {
-    // Create the task to start the dimmer module
-    BaseType_t xReturned = xTaskCreate(vTaskStartDimmerModule,
-                                       "Start Dimmer Module Task",
-                                       5*2048,
-                                       NULL,
-                                       5,
-                                       NULL);
-    if (xReturned != pdPASS) {
-        ESP_LOGE(MODULE_TAG, "Failed to start dimmer module");
-        //return ESP_FAIL; // Return error if task creation failed
-    }
-}
+// Public declarations
+const module_t dimmer_module = {
+    .name = "Dimmer Module",
+    .ident_mv_min = DIMMER_IDENT_MV_MIN,
+    .ident_mv_max = DIMMER_IDENT_MV_MAX,
+    .start_function = start_dimmer_module,
+    .stop_function = stop_dimmer_module,
+};
+//
 
-void stop_dimmer_module() {
-    // Create the task to stop the dimmer module
-    BaseType_t xReturned = xTaskCreate(vTaskStopDimmerModule,
-                                       "Stop Dimmer Module Task",
-                                       5*2048,
-                                       NULL,
-                                       5,
-                                       NULL);
-    if (xReturned != pdPASS) {
-        ESP_LOGE(MODULE_TAG, "Failed to create the Stop Dimmer Module Task");
-        //return ESP_FAIL; // Return error if task creation failed
-    }
-}
-*/
-void start_dimmer_module(){
+// Private functions
+static void start_dimmer_module(){
     if(!isModuleRunning) { // Check if the module is not already running
         isModuleRunning = true; // Set the module running flag
         ESP_LOGI(MODULE_TAG, "Starting dimmer module..."); // Log the start of the module
 
-        configure_gpios();
         configure_timers();
+        configure_gpios();
         
     } else {
         ESP_LOGW(MODULE_TAG, "Dimmer module got a request to run, but is already running... ignoring start request.");
     }
 }
 
-void stop_dimmer_module(){
+static void stop_dimmer_module(){
     if(isModuleRunning){ // Check if the module is running
         isModuleRunning = false; // Set the module running flag to false
         ESP_LOGI(MODULE_TAG, "Stopping dimmer module..."); // Log the stop of the module
 
-        delete_timers(); // Stop the timers
         delete_gpios(); // Delete the GPIOs  
+        delete_timers(); // Stop the timers
 
     } else {
         ESP_LOGW(MODULE_TAG, "Dimmer module got a request to stop, but is not running... ignoring stop request.");
     }
 }
-//
-
-// Private functions
 
 // Callback of the timer that starts waiting after the zero crossing to turn on the TRIAC
 static bool dimmer_wait_callback(gptimer_handle_t timer, const gptimer_alarm_event_data_t *edata, void *user_ctx) {
@@ -141,7 +119,6 @@ static bool dimmer_pulse_callback(gptimer_handle_t timer, const gptimer_alarm_ev
     gptimer_stop(timer); // Stop the pulse timer
     gptimer_set_raw_count(timer, 0); // Reset the count, again, important. See callback above
     
-    timer_is_running = false; // Reset the timer running flag
 
     return true;
 }
@@ -151,17 +128,11 @@ static void IRAM_ATTR zcd_isr_handler(){
     static gptimer_alarm_config_t wait_alarm_config = {
         .flags.auto_reload_on_alarm = false, // Set the auto reload flag to false
     };
-    // Checks that the timer is not running, just in case
-    //if(!timer_is_running) {
-        timer_is_running = true; // Set the timer running flag
         
-        wait_alarm_config.alarm_count = dimmer_wait_alarm_count; // Set the alarm count to the default value
-        gptimer_set_alarm_action(dimmer_wait_timer, &wait_alarm_config);
+    wait_alarm_config.alarm_count = dimmer_wait_alarm_count; // Set the alarm count to the default value
+    gptimer_set_alarm_action(dimmer_wait_timer, &wait_alarm_config);
 
-        gptimer_start(dimmer_wait_timer); // Start the timer
-    //} else {
-        //ESP_DRAM_LOGW("ZCD ISR", "Interrupt happened mid timer, check ZCD signal"); // Log a warning if the timer is already running
-    //}
+    gptimer_start(dimmer_wait_timer); // Start the timer
     
 }
 
@@ -257,8 +228,8 @@ static void delete_timers(){
         gptimer_set_raw_count(dimmer_wait_timer, 0); // Reset the wait timer count
         gptimer_disable(dimmer_wait_timer); // Disable the wait timer
         gptimer_del_timer(dimmer_wait_timer); // Delete the wait timer
+
         dimmer_wait_timer = NULL; // Reset the timer handle
-        timer_is_running = false; // Reset the timer running flag
     }
     if(dimmer_pulse_timer != NULL){
         ESP_LOGI(MODULE_TAG, "Deleting dimmer pulse timer...");
@@ -266,46 +237,10 @@ static void delete_timers(){
         gptimer_set_raw_count(dimmer_pulse_timer, 0); // Reset the pulse timer count
         gptimer_disable(dimmer_pulse_timer); // Disable the pulse timer
         gptimer_del_timer(dimmer_pulse_timer); // Delete the pulse timer
+
         dimmer_pulse_timer = NULL; // Reset the timer handle
     }
 }
 
 
-/*
-static void vTaskStartDimmerModule(void *pvParameters){
-    if(!isModuleRunning) { // Check if the module is not already running
-        isModuleRunning = true; // Set the module running flag
-        ESP_LOGI(MODULE_TAG, "Starting dimmer module..."); // Log the start of the module
-
-        configure_gpios();
-        configure_timers();
-        
-    } else {
-        ESP_LOGW(MODULE_TAG, "Dimmer module is already running, ignoring start request.");
-    }
-
-    vTaskDelete(NULL); // Delete the task
-}
-
-static void vTaskStopDimmerModule(void *pvParameters){
-    if(isModuleRunning){
-        isModuleRunning = false; // Set the module running flag to false
-        ESP_LOGI(MODULE_TAG, "Stopping dimmer module..."); // Log the stop of the module
-
-        delete_timers(); // Stop the timers
-        delete_gpios(); // Delete the GPIOs  
-
-    } else {
-        ESP_LOGW(MODULE_TAG, "Dimmer module is not running, ignoring stop request.");
-    }
-
-    vTaskDelete(NULL); // Delete the task
-}
-*/
-
-const module_t dimmer_module = {
-    .name = "Dimmer Module", // Name of the module
-    .start_function = start_dimmer_module, // Function pointer to start the module
-    .stop_function = stop_dimmer_module, // Function pointer to stop the module
-};
 //

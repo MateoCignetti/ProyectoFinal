@@ -1,10 +1,10 @@
 #include "module_manager.h"
 #include "module_connection.h"
+#include "module_registry.h" // Central registry for all modules
 
 #include "esp_adc/adc_oneshot.h"
 #include "esp_adc/adc_cali.h"
 #include "esp_adc/adc_cali_scheme.h"
-#include "dimmer_control.h"
 #include "gpio_definition.h"
 #include "esp_log.h"
 #include "driver/gpio.h"
@@ -13,10 +13,16 @@
 static const char* MANAGER_TAG = "Module Manager"; // Module name for logging
 static adc_oneshot_unit_handle_t adc1_unit_handle = NULL;
 static adc_cali_handle_t adc1_cali_handle = NULL;
-TaskHandle_t xTaskModuleManagerUpdate_handle = NULL; // Task handle for the module state update task
+static TaskHandle_t xTaskModuleManagerUpdate_handle = NULL; // Task handle for the module state update task
 
 static module_manager_state_t module_manager_state = MANAGER_INIT;
-SemaphoreHandle_t xModuleManagerMutex = NULL;
+static SemaphoreHandle_t xModuleManagerMutex = NULL;
+
+
+// Public function declarations
+module_manager_state_t get_module_manager_state(void);
+void module_manager_init(void);
+//
 
 // Private function declarations
 static void vTaskModuleManagerUpdate(void *pvParameters);
@@ -25,30 +31,17 @@ static const module_t* identify_module(void);
 static void setup_ident_adc(void);
 static void delete_ident_adc(void);
 static void handle_module_connected(bool connected);
+static void set_module_manager_state(module_manager_state_t new_state);
 //
 
-module_t inverter_module = {
-    .name = "Inverter Module", // Name of the module
-    .start_function = NULL, // Function pointer to start the module
-    .stop_function = NULL, // Function pointer to stop the module
-};
-
-module_t buck_module = {
-    .name = "Buck Converter Module", // Name of the module
-    .start_function = NULL, // Function pointer to start the module
-    .stop_function = NULL, // Function pointer to stop the module
-};
-
-static const module_ident_t module_ident_list[] = {
-    // Add module identification entries here
-    // Example:
-    // { .module_ident_mv_min = 1000, .module_ident_mv_max = 2000, .module = &my_module },
-    {1600, 1700, &inverter_module},
-    {1900, 2000, &buck_module},
-    
-    {500, 600, &dimmer_module},
-
-    {0, 0, NULL} // Sentinel value to mark the end of the list
+/**
+ * Module Registry
+ * 
+ * The list of modules is defined in module_registry.h using MODULE_REGISTRY_LIST.
+ * To add a new module, edit module_registry.h
+ */
+static const module_t* module_list[] = {
+    MODULE_REGISTRY_LIST
 };
 
 // Function to safely read module state
@@ -64,17 +57,29 @@ module_manager_state_t get_module_manager_state() {
     return state;
 }
 
+// Public Functions
+void module_manager_init(void){
+    create_module_manager_tasks();
+    
+    // Initialize module connection system
+    initialize_module_connection();
+    
+    // Register callback for connection state changes
+    register_connection_callback(handle_module_connected);
+}
+//
+
+// Private Functions
+
 // Function to safely set module state
-void set_module_manager_state(module_manager_state_t new_state) {
+static void set_module_manager_state(module_manager_state_t new_state) {
     if (xModuleManagerMutex != NULL && xSemaphoreTake(xModuleManagerMutex, pdMS_TO_TICKS(100)) == pdTRUE) {
         module_manager_state = new_state;
         xSemaphoreGive(xModuleManagerMutex);
     }
 }
 
-//
-
-void setup_ident_adc(){
+static void setup_ident_adc(){
 
     if(adc1_unit_handle == NULL && adc1_cali_handle == NULL){
         // First, ensure the GPIO pin is properly configured as analog input
@@ -114,7 +119,7 @@ void setup_ident_adc(){
     }
 }
 
-void delete_ident_adc(){
+static void delete_ident_adc(){
     if(adc1_cali_handle != NULL){
         adc_cali_delete_scheme_curve_fitting(adc1_cali_handle);
         adc1_cali_handle = NULL;
@@ -159,15 +164,7 @@ static void create_module_manager_tasks(void){
     }
 }
 
-void module_manager_init(void){
-    create_module_manager_tasks();
-    
-    // Initialize module connection system
-    initialize_module_connection();
-    
-    // Register callback for connection state changes
-    register_connection_callback(handle_module_connected);
-}
+
 
 
 static const module_t* identify_module() {
@@ -184,9 +181,9 @@ static const module_t* identify_module() {
     module_ident_mv = module_ident_avg;
     ESP_LOGI(MANAGER_TAG, "Average module identification voltage: %d mV", module_ident_mv);
 
-    for (int i = 0; module_ident_list[i].module != NULL; i++) {
-        if (module_ident_mv >= module_ident_list[i].module_ident_mv_min && module_ident_mv <= module_ident_list[i].module_ident_mv_max) {
-            return module_ident_list[i].module;
+    for (int i = 0; module_list[i] != NULL; i++) {
+        if (module_ident_mv >= module_list[i]->ident_mv_min && module_ident_mv <= module_list[i]->ident_mv_max) {
+            return module_list[i];
         }
     }
 

@@ -15,8 +15,6 @@ void app_main(void)
     
     ESP_LOGI(TAG, "Application initialized successfully");
     
-    // Main application loop - let FreeRTOS handle task scheduling
-    while (1) {
-        vTaskDelay(pdMS_TO_TICKS(1000)); // Delay 1 second
-    }
+    // app_main() can return - other tasks will continue running
+    // The module_manager and module_connection tasks handle everything from here
 }

@@ -4,7 +4,6 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h"
-#include <stdbool.h>
 
 typedef enum {
     CONNECTION_INIT,
@@ -25,9 +24,5 @@ typedef void (*connection_callback_t)(bool connected);
 void initialize_module_connection(void);
 void register_connection_callback(connection_callback_t callback);
 module_connection_state_t get_connection_state(void);
-void set_connection_state(module_connection_state_t new_state);
-
-// External declarations
-extern SemaphoreHandle_t xConnectionStateMutex;
 
 #endif
