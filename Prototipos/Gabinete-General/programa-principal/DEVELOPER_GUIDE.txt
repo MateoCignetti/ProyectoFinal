@@ -86,35 +86,6 @@
     7. Your module is now running!
 
 ┌──────────────────────────────────────────────────────────────────────────┐
-│  FILES YOU NEVER NEED TO TOUCH:                                          │
-└──────────────────────────────────────────────────────────────────────────┘
-
-    ✗ module_manager.c      (core logic - hands off!)
-    ✗ module_manager.h      (interface definitions)
-    ✗ module_connection.c   (hot-plug detection)
-    ✗ main.c                (initialization)
-
-┌──────────────────────────────────────────────────────────────────────────┐
-│  COMPARISON: OLD vs NEW                                                  │
-└──────────────────────────────────────────────────────────────────────────┘
-
-    OLD APPROACH:
-    ┌─────────────────────────────────────────────────────────────────┐
-    │ 1. Create module.h and module.c                                 │
-    │ 2. Edit module_manager.h (add forward declarations)             │
-    │ 3. Edit module_manager.c (add to embedded struct array)         │
-    │ 4. Navigate through 200+ lines to find the right spot           │
-    │ 5. Risk breaking existing modules                               │
-    │ 6. Need to understand module_manager.c internals                │
-    └─────────────────────────────────────────────────────────────────┘
-         ↓ REFACTORED TO ↓
-    ┌─────────────────────────────────────────────────────────────────┐
-    │ 1. Create module.h and module.c (from template)                 │
-    │ 2. Edit module_registry.h (add 2 lines)                         │
-    │ 3. Done!                                                         │
-    └─────────────────────────────────────────────────────────────────┘
-
-┌──────────────────────────────────────────────────────────────────────────┐
 │  BENEFITS:                                                                │
 └──────────────────────────────────────────────────────────────────────────┘
 

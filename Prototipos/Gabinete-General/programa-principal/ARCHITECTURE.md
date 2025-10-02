@@ -145,20 +145,49 @@ Each module has a unique resistor divider on its PCB that produces a specific vo
 ```
 programa-principal/
 ├── main/
-│   └── main.c                      # Entry point
+│   ├── main.c                      # Entry point
+│   └── CMakeLists.txt              # Main component build config
+├── include/
+│   └── gpio_definition.h           # Shared pin definitions
+├── src/
+│   ├── module_manager.c            # Manager implementation (core framework)
+│   ├── module_connection.c         # Connection detection implementation
+│   └── CMakeLists.txt              # Core framework build config
 ├── modules_include/
 │   ├── module_manager.h            # Manager interface
-│   ├── module_connection.h         # Connection interface
-│   ├── module_registry.h           # Registry
-│   ├── dimmer_control.h            # Dimmer interface
-│   └── gpio_definition.h           # Pin definitions
+│   ├── module_connection.h         # Connection interface  
+│   ├── module_registry.h           # ✨ Module registry (add modules here!)
+│   └── dimmer_control.h            # Dimmer module interface
 ├── modules_src/
-│   ├── module_manager.c            # Manager implementation
-│   ├── module_connection.c         # Connection implementation
-│   └── dimmer_control.c            # Dimmer implementation
-├── MODULE_TEMPLATE.md              # Developer guide
-└── README.md                       # Project readme
+│   ├── dimmer_control.c            # Dimmer module implementation
+│   └── CMakeLists.txt              # Modules component build config
+├── ARCHITECTURE.md                 # This file - system documentation
+├── MODULE_TEMPLATE.md              # ✨ Developer guide for adding modules
+├── DEVELOPER_GUIDE.txt             # Visual workflow guide
+├── README.md                       # Project readme
+└── CMakeLists.txt                  # Top-level project configuration
 ```
+
+### Component Structure
+
+The project is organized into **ESP-IDF components**:
+
+- **`main`**: Application entry point, initializes the system
+- **`src`**: Core framework (module_manager, module_connection)
+  - Handles module lifecycle and hot-plug detection
+  - Dependencies: `modules_src`, FreeRTOS, GPIO, GPTimer, ADC
+- **`modules_src`**: Individual module implementations
+  - Each module is self-contained (dimmer, future inverter, etc.)
+  - Add new modules here without touching core framework
+  - Dependencies: FreeRTOS, GPIO, GPTimer, etc. (per module)
+
+### Adding a New Module
+
+1. **Create files in `modules_src/` and `modules_include/`**
+2. **Edit `modules_include/module_registry.h`** (add 2 lines)
+3. **Done!** Build and flash
+
+See [MODULE_TEMPLATE.md](MODULE_TEMPLATE.md) for details.
 
 ## Questions or Issues?
 

@@ -30,7 +30,7 @@ module_connection_state_t get_connection_state(void);
 // Private function declarations
 static void hp_isr_handler(void* arg);
 static void setup_hotplug_gpios(void);
-static void delete_hotplug_gpios(void);
+//static void delete_hotplug_gpios(void);
 static void create_connection_tasks(void);
 static void vTaskConnectionUpdate(void *pvParameters);
 static void configure_debounce_timer(void);
@@ -118,6 +118,7 @@ static void setup_hotplug_gpios(){
     ESP_ERROR_CHECK(gpio_isr_handler_add(PIN_HP_SIGNAL, hp_isr_handler, NULL)); // Add ISR handler for HP Signal pin
 }
 
+/*
 static void delete_hotplug_gpios(){
     // Only remove handlers if ISR service is installed
     if (gpio_isr_service_installed) {
@@ -130,7 +131,7 @@ static void delete_hotplug_gpios(){
     // Reset the GPIOs to their default state
     gpio_reset_pin(PIN_HP_POWER);
     gpio_reset_pin(PIN_HP_SIGNAL);
-}
+}*/
 
 static void IRAM_ATTR hp_isr_handler(void* arg) {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;

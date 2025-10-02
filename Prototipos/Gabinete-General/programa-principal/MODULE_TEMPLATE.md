@@ -125,19 +125,38 @@ This is the ONLY core file you need to edit! Add your module in two places:
 
 That's it! The module manager will automatically pick it up.
 
-### 4. Update CMakeLists.txt (if needed)
+### 4. Update CMakeLists.txt
 
-If you created the files in the standard locations, CMake should pick them up automatically.
-If not, add them to `modules_src/CMakeLists.txt`:
+You **must** add your module source file to `modules_src/CMakeLists.txt`:
 
 ```cmake
 idf_component_register(
-    SRCS "your_module.c"
-         "dimmer_control.c"
-         ...
-    INCLUDE_DIRS "."
+    SRCS "dimmer_control.c"
+         "your_module.c"          # <-- Add your module here
+    INCLUDE_DIRS "../modules_include" "../include"
+    PRIV_REQUIRES freertos 
+                  esp_driver_gpio
+                  # Add other ESP-IDF components your module needs:
+                  # esp_driver_gptimer  # For timers
+                  # esp_driver_ledc     # For PWM/LED control
+                  # esp_driver_i2c      # For I2C communication
+                  # esp_driver_spi      # For SPI communication
+                  # esp_adc             # For ADC readings
+                  # etc.
 )
 ```
+
+**Important**: Add ESP-IDF driver components to `PRIV_REQUIRES` based on what hardware your module uses:
+- Timers → `esp_driver_gptimer`
+- PWM/LEDs → `esp_driver_ledc`
+- GPIOs → `esp_driver_gpio` (already included)
+- I2C → `esp_driver_i2c`
+- SPI → `esp_driver_spi`
+- ADC → `esp_adc`
+- UART → `esp_driver_uart`
+- etc.
+
+See the [ESP-IDF component list](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/api-reference/index.html) for all available components.
 
 ## That's It!
 
