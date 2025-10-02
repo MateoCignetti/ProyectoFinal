@@ -54,7 +54,7 @@ Un convertidor Buck consta de un diodo, un filtro de salida, un circuito de real
 
 El interruptor se encarga de traspasar la potencia, de la entrada a la salida, dependiendo de la velocidad de conmutación o del tiempo que se encuentre encendido, la tensión en la salida puede aumentar o disminuir, pero manteniéndose siempre por debajo de la tensión de entrada, o en casos puede alcanzar el valor de la entrada, \parencite{RASHID}.
 
-En este tipo de topología de convertidores DC-DC se suele emplear un transistor MOSFET canal p como interruptor en lugar de un MOSFET canal n, debido a la facilidad de implementación que entrega el primero mencionado. Para lograr que el transistor esté en conducción (MOSFET-p), es necesario tener una caída de tensión $V_{gs}$ que cumpla con los rangos de operación del transistor, por ello el valor mínimo de tensión necesario para la conducción debe ser $V_{g(min)} = V_{in} - V_{gs(th)}$, \cref{fig:buck:comparativa-transistor}. En cambio, el MOSFET-n requiere un circuito de mayor complejidad para ser disparado. A diferencia del canal p, para que el transistor canal n entre en zona de conducción se requiere que la tensión de gate sea como mínimo $V_{g(min)} = V_{load} + V_{gs(th)}$, \cref{fig:buck:comparativa-transistor}, aumentando así la dificultad para obtener este valor. El método utilizado para lograr esto se lo llama bootstrapping o circuito de bootstrap.
+En este tipo de topología de convertidores DC-DC se suele emplear un transistor MOSFET canal p como interruptor en lugar de un MOSFET canal n, debido a la facilidad de implementación que entrega el primero mencionado. Para lograr que el transistor esté en conducción (MOSFET-p), es necesario tener una caída de tensión \textit{gate} surtidor ($V_{gs}$) que cumpla con los rangos de operación del transistor, por ello el valor mínimo de tensión necesario para la conducción debe ser $V_{g(min)} = V_{in} - V_{gs(th)}$, \cref{fig:buck:comparativa-transistor}. En cambio, el MOSFET-n requiere un circuito de mayor complejidad para ser disparado. A diferencia del canal p, para que el transistor canal n entre en zona de conducción se requiere que la tensión de \textit{gate} sea como mínimo $V_{g(min)} = V_{load} + V_{gs(th)}$, \cref{fig:buck:comparativa-transistor}, aumentando así la dificultad para obtener este valor. El método utilizado para lograr esto se lo llama \textit{bootstrapping} o circuito de \textit{bootstrap}.
 
 \begin{figure}[H]
     \centering
@@ -255,14 +255,14 @@ Se calcula para una corriente de \SI{2,4}{\ampere} la cual representa un $80\%$ 
         \item $\Delta I_L = 30\% ~ I_{out} = 0,3 \cdot \SI{2,4}{\ampere} = \SI{0,72}{\ampere}$
     \end{itemize}
     \item Frecuencia de conmutación ($f_s$), \SI{19}{\kilo\hertz}.
-    \item Rendimiento teórico considerado, $\eta = 90\%$.
+    \item Rendimiento teórico considerado, $\eta = \SI{90}{\percent}$.
 \end{itemize}
-  
-Se elige como transistor de conmutación de potencia el IRF9540, la selección del mismo se basó en la disponibilidad y en su amplio campo de aplicación; otro de los motivos de la elección de este transistor es para que, en caso de falla o rotura del módulo, los componentes sean fáciles de conseguir.
+
+Se elige como transistor de conmutación de potencia el IRF9540, la selección del mismo se basó en la disponibilidad y en su amplio campo de aplicación, lo que permite que en caso de falla o rotura del módulo sea fácil de reemplazar.
 
 \subsubsection{Ciclo de trabajo máximo}
 \begin{equation} \label{eq:buck:duty_cycle}
-    D_{max} = \frac{V_{out}}{V_{in} \, \eta} = \frac{\SI{6}{\volt}}{\SI{12}{\volt} \, 0,9} = 0,55    
+    D_{max} = \frac{V_{out}}{V_{in} \, \eta} = \frac{\SI{6}{\volt}}{\SI{12}{\volt} \, 0,9} = 0.55    
 \end{equation}
 
 Dentro del cálculo es considerado el rendimiento porque el convertidor también entrega energía. Este cálculo proporciona un valor más realista del ciclo de trabajo máximo en comparación con la ecuación que no incluye el factor de rendimiento.
@@ -272,7 +272,7 @@ Dentro del cálculo es considerado el rendimiento porque el convertidor también
     C_{out_{min}} = \frac{\Delta I_L}{8 \, f_s \, \Delta V_{out}} = \frac{\SI{0,72}{\ampere}}{8 \cdot \, \SI{19e3}{\hertz} \, \SI{0,24}{\volt}} = \SI{19,74}{\micro\farad}
 \end{equation}
 
-Cualquier capacidad mayor a la calculada puede ser utilizada sin afectar el correcto funcionamiento del convertidor. Este tipo de cálculos se pueden realizar para convertidores con compensación externa. Para el caso de los internamente compensados, como puede ser un circuito integrado buck, es recomendable utilizar los valores establecidos en la hoja de datos.
+Cualquier capacidad mayor a la calculada puede ser utilizada sin afectar el correcto funcionamiento del convertidor. Este tipo de cálculos se pueden realizar para convertidores con compensación externa. Para el caso de los internamente compensados, como puede ser un circuito integrado Buck, es recomendable utilizar los valores establecidos en la hoja de datos.
 
 % Revisar otros cálculos por las dudas, no se si es estrictamente el valor mínimo, pero si se que si pones más grande mejoras el ripple de salida.
 \subsubsection{Inductor mínimo}
@@ -280,7 +280,7 @@ Cualquier capacidad mayor a la calculada puede ser utilizada sin afectar el corr
     L_{min} = \frac{(V_{in}-V_{out}) \, D_{max}}{f_s \, \Delta I_L} = \frac{(\SI{12}{\volt} - \SI{6}{\volt}) \, 0,55}{\SI{19e3}{\hertz} \, \SI{0,72}{\ampere}} = \SI{241,23}{\micro\henry}
 \end{equation}
 
-El valor calculado se considera como mínimo, ya que emplear una inductancia mayor reduce el ripple de corriente e incrementa la corriente de salida. Sin embargo, también implica un aumento en el tamaño físico del inductor. Por el contrario, disminuir la inductancia incrementa el ripple y reduce la corriente de salida, aunque permite utilizar un inductor de menor tamaño. Por lo tanto, es necesario encontrar un equilibrio adecuado entre el tamaño del inductor y el nivel de ripple permitido en la salida.
+El valor calculado se considera como mínimo, ya que emplear una inductancia mayor reduce el \textit{ripple} de corriente e incrementa la corriente de salida. Sin embargo, también implica un aumento en el tamaño físico del inductor. Por el contrario, disminuir la inductancia incrementa el \textit{ripple} y reduce la corriente de salida, aunque permite utilizar un inductor de menor tamaño. Por lo tanto, es necesario encontrar un equilibrio adecuado entre el tamaño del inductor y el nivel de \textit{ripple} permitido en la salida.
 
 % Podría agregar como se calcula y se bobina el inductor, por más que no lo hicimos.
 
@@ -294,7 +294,7 @@ Este valor determina la corriente media aplicada en el diodo de rectificación, 
 \subsubsection{Red Snubber}
 %\textcolor{red}{Esta sección requiere de pruebas con la PCB que todavía no se realizaron}
 %\begin{comment}
-El cálculo de la red Snubber se basó en una nota de aplicación de Toshiba \parencite{toshiba_2018_power}, tomando como referencia algunos de sus criterios, aunque no se siguió todo el procedimiento de manera estricta.
+El cálculo de la red Snubber se basó en una nota de aplicación de Toshiba \parencite{toshiba_2018_power}, tomando como referencia algunos de sus criterios, además de criterios propios.
 
 Se supone un valor de inductancia parásita típico de 50 nH. $C_P = C_{OSS}$
 
@@ -324,7 +324,7 @@ $C_{obo} = 8 \ pF \approx C_{snub}(min)$
 
 $f_{ring}$, representa la frecuencia de las oscilaciones existentes en la conmutación del transistor, no se tiene este valor, pero se calcula en función de un valor estimado de inductancia parásita, con el fin de probar el circuito con red de snubber y sin la misma. Esto se realiza para seguir la técnica implementada en artículo técnico de Texas Instruments, \parencite{ti_2016_snubber}.
 
-Esta técnica consiste en probar el circuito en 2 condiciones, la primera es sin ninguna red de Snubber para poder determinar la frecuencia de oscilación real; la segunda condición es conectando un capacitor en paralelo al transistor y medir la frecuencia nuevamente. El objetivo de esta prueba es que al conectar el capacitor, la frecuencia medida sea de al menos un $50\%$ menor a la frecuencia real de oscilación del circuito. 
+Esta técnica consiste en probar el circuito en dos condiciones, la primera es sin ninguna red de Snubber para poder determinar la frecuencia de oscilación real; la segunda condición es conectando un capacitor en paralelo al transistor y medir la frecuencia nuevamente. El objetivo de esta prueba es que al conectar el capacitor, la frecuencia medida sea de al menos un $50\%$ menor a la frecuencia real de oscilación del circuito. 
 
 \begin{figure}[H]
     \centering
@@ -379,7 +379,7 @@ En las \cref{fig:buck:freq-oscilacion-mosfet,fig:buck:freq-oscilacion-bjt} se pu
 \end{itemize}
 
 \begin{equation*}
-    m = \frac{f_0}{f_1} = 1,62
+    m = \frac{f_0}{f_1} = 1.62
 \end{equation*}
 
 Se calcula la capacitancia e inductancia parásita.
@@ -414,7 +414,7 @@ Se utiliza un valor de \SI{1}{\nano\farad} para el capacitor y de \SI{33}{\ohm} 
 \end{itemize}
 
 \begin{equation*}
-    m = \frac{f_0}{f_1} = 1,6
+    m = \frac{f_0}{f_1} = 1.6
 \end{equation*}
 
 Se calcula la capacitancia e inductancia parásita.
@@ -440,7 +440,7 @@ Se utiliza un valor de \SI{5}{\pico\farad} para el capacitor y de \SI{6,8}{\kilo
 
 \subsubsection{Realimentación microcontrolador}
 
-Para poder realizar un control digital es necesario tener una variable manipulada y una controlada. La primera, para el caso del convertidor buck, es el PWM que se aplica al terminal gate del transistor MOSFET-p; la segunda se corresponde a la tensión de salida realimentada al microcontrolador. 
+Para poder realizar un control digital es necesario tener una variable manipulada y una controlada. La primera, para el caso del convertidor Buck, es el PWM que se aplica al terminal \textit{gate} del transistor MOSFET-p; la segunda se corresponde a la tensión de salida realimentada al microcontrolador. 
 
 Para lograr realimentar la tensión de salida se utiliza un divisor de tensión, encargado de adecuar la tensión de salida con rango \SIrange{0}{12}{\volt}, a tensiones manejables por el microcontrolador, rango \SIrange{0}{3,3}{V}. En la \cref{eq:buck:resistencia_divisor_tension} se presenta el cálculo de las resistencias del divisor de tensión, donde $R_1$ es la resistencia que se conecta entre la salida y el punto medio del divisor, y $R_2$ es la resistencia que se conecta entre el punto medio y tierra; se presenta gráficamente en la \cref{fig:buck:divisor_tensión}.
 \begin{align} \label{eq:buck:resistencia_divisor_tension}
@@ -511,7 +511,7 @@ En la \cref{fig:buck:filtro_adc} se presenta el filtro pasa-bajos utilizado en l
 
 Tanto el filtro como el divisor de tensión anteriormente mencionados, \cref{fig:buck:divisor_tensión,fig:buck:filtro_adc}; y calculados, \cref{eq:buck:resistencia_divisor_tension,eq:buck:resistencia_filtro_adc}, son importantes para poder realizar correctamente un control digital.
 
-El objetivo de esta medición es poder realizar un control preciso de la tensión entregada a la carga, por ello se aplica un lazo cerrado donde la tensión de salida se la compara con una tensión de referencia (setpoint), para así aplicar la corrección del ciclo de trabajo del PWM y lograr la conmutación correcta del transistor. Si la carga demanda menos corriente, la tensión tiende a subir y viceversa, por ello la utilidad de un control para ajustar el ciclo de trabajo en función de la carga conectada al convertidor. Hay diversas técnicas de control, dentro de las más utilizadas, PID (control proporcional, integrador y derivativo).
+El objetivo de esta medición es poder realizar un control preciso de la tensión entregada a la carga, por ello se aplica un lazo cerrado donde la tensión de salida se la compara con una tensión de referencia \textit{setpoint}, para así aplicar la corrección del ciclo de trabajo del PWM y lograr la conmutación correcta del transistor. Si la carga demanda menos corriente, la tensión tiende a subir y viceversa, por ello la utilidad de un control para ajustar el ciclo de trabajo en función de la carga conectada al convertidor. Hay diversas técnicas de control, dentro de las más utilizadas, PID (control proporcional, integrador y derivativo).
 
 \subsubsection{Transistor BJT como driver de MOSFET}
 
@@ -579,19 +579,19 @@ Información obtenida de la hoja de datos del amplificador INA199B2, \parencite{
 
 Estos valores fueron calculados para una corriente de \SI{3}{\ampere}, que es la corriente máxima determinada para el diseño del convertidor.
 
-En una primera instancia se calcula el valor máximo de tensión en la resistencia shunt, $V_{R_{shunt}}$, teniendo en cuenta la tensión de salida máxima del integrado, $V_{out} = \SI{4,8}{\volt}$; y la ganancia del amplificador, $Ganancia = 100$; \cref{eq:buck:salida_amplificador_unidireccional}.
+En una primera instancia se calcula el valor máximo de tensión en la resistencia \textit{shunt}, $V_{R_{shunt}}$, teniendo en cuenta la tensión de salida máxima del integrado, $V_{out} = \SI{4,8}{\volt}$; y la ganancia del amplificador, $Ganancia = 100$; \cref{eq:buck:salida_amplificador_unidireccional}.
 \begin{align} \label{eq:buck:salida_amplificador_unidireccional}
     V_{out} =& Ganancia \, V_{R_{shunt}} \\
     \SI{4,8}{\volt} =& 100 \, V_{R_{shunt}} \nonumber \\ 
     V_{R_{shunt}} =& \frac{\SI{4,8}{\volt}}{100} = \SI{48}{\milli\volt}\nonumber 
 \end{align}
 
-Luego se determina el valor de la resistencia shunt, $R_{shunt}$, a partir de la tensión máxima en la resistencia shunt y la corriente máxima del convertidor, \cref{eq:buck:resistencia_shunt_unidireccional}.
+Luego se determina el valor de la resistencia \textit{shunt}, $R_{shunt}$, a partir de la tensión máxima en la resistencia \textit{shunt} y la corriente máxima del convertidor, \cref{eq:buck:resistencia_shunt_unidireccional}.
 \begin{equation} \label{eq:buck:resistencia_shunt_unidireccional}
     R_{shunt} = \frac{\SI{48e-3}{\volt}}{\SI{3}{\ampere}} = \SI{0,016}{\ohm}
 \end{equation}
 
-Se elige una resistencia shunt de $\SI{10}{\milli\ohm}$ por la disipación de potencia. Además, entrega un buen rango de tensión a la salida del amplificador, $V_{out} = \SIrange{0,05}{3}{\volt}$.
+Se elige una resistencia \textit{shunt} de $\SI{10}{\milli\ohm}$ por la disipación de potencia. Además, entrega un buen rango de tensión a la salida del amplificador, $V_{out} = \SIrange{0,05}{3}{\volt}$.
 
 \subsubsection{Medición de corriente en capacitor - Bidireccional}
 
@@ -623,19 +623,19 @@ Para lograr la tensión de referencia se usa un divisor de tensión para obtener
 
 El procedimiento presentado en las \cref{eq:buck:salida_amplificador_bidireccional,eq:buck:resistencia_shunt_bidireccional} es similar al realizado para la medición de corriente unidireccional, con la única diferencia del voltaje de referencia, $V_{ref}$, fijado por el divisor de tensión.
 
-Se opta por utilizar una resistencia shunt de \SI{5}{\milli\ohm}, ya que si se eligiese una resistencia mayor, la tensión entregada por el amplificador estaría muy próxima al valor máximo manejable por el mismo; además es un valor comercial común y estandarizado, fácil de conseguir.
+Se opta por utilizar una resistencia \textit{shunt} de \SI{5}{\milli\ohm}, ya que si se eligiese una resistencia mayor, la tensión entregada por el amplificador estaría muy próxima al valor máximo manejable por el mismo; además es un valor comercial común y estandarizado, fácil de conseguir.
 
 \subsubsection{Selección de carga con Relé}
 %\textcolor{red}{Dependiendo que modulo va primero esto lo agrego o no, posiblemente sea mejor RECORTADOR DE ONDA antes que buck. AGREGAR SI O SI}
 
 Para experimentar el comportamiento del convertidor Buck frente a diferentes cargas, se utiliza un relé controlado por un microcontrolador permitiendo elegir entre dos cargas, una resistiva y otra inductiva, con el fin de notar las diferencias que puede causar un simple cambio de carga en la operación normal del convertidor.
 
-Para conmutar entre los dos estados del relé, normal abierto o normal cerrado, se utiliza un transistor BJT como driver, \cref{fig:buck:driver_rele}.
+Para conmutar entre los dos estados del relé, normal abierto o normal cerrado, se utiliza un transistor BJT como \textit{driver}, \cref{fig:buck:driver_rele}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{buck/driver-rele.png}
-    \caption{Circuito driver para relé.}
+    \caption{Circuito \textit{driver} para relé.}
     \label{fig:buck:driver_rele}
 \end{figure}
 
