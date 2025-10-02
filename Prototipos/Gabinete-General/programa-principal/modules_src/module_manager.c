@@ -11,8 +11,8 @@
 
 
 static const char* MANAGER_TAG = "Module Manager"; // Module name for logging
-static adc_oneshot_unit_handle_t adc_unit_handle = NULL;
-static adc_cali_handle_t adc_cali_handle = NULL;
+static adc_oneshot_unit_handle_t adc1_unit_handle = NULL;
+static adc_cali_handle_t adc1_cali_handle = NULL;
 TaskHandle_t xTaskModuleManagerUpdate_handle = NULL; // Task handle for the module state update task
 
 static module_manager_state_t module_manager_state = MANAGER_INIT;
@@ -76,50 +76,52 @@ void set_module_manager_state(module_manager_state_t new_state) {
 
 void setup_ident_adc(){
 
-    if(adc_unit_handle != NULL || adc_cali_handle != NULL){
-        return; // ADC already configured
+    if(adc1_unit_handle == NULL && adc1_cali_handle == NULL){
+        // First, ensure the GPIO pin is properly configured as analog input
+        // This prevents the pin from being driven as output
+        gpio_config_t ident_io_conf = {
+            .pin_bit_mask = (1ULL << PIN_MODULE_IDENT),
+            .mode = GPIO_MODE_DISABLE,  // Disable digital I/O
+            .pull_up_en = GPIO_PULLUP_DISABLE,
+            .pull_down_en = GPIO_PULLDOWN_DISABLE,
+            .intr_type = GPIO_INTR_DISABLE,
+        };
+        gpio_config(&ident_io_conf);
+
+        adc_oneshot_unit_init_cfg_t adc1_init_cfg = {
+            .unit_id = ADC_MODULE_IDENT_UNIT,
+            .clk_src = ADC_RTC_CLK_SRC_DEFAULT,
+            .ulp_mode = ADC_ULP_MODE_DISABLE,
+        };
+        adc_oneshot_new_unit(&adc1_init_cfg, &adc1_unit_handle);
+        
+        adc_oneshot_chan_cfg_t adc1_config = {
+            .atten = ADC_ATTEN_DB_12,
+            .bitwidth = ADC_BITWIDTH_12,
+        };
+        adc_oneshot_config_channel(adc1_unit_handle, ADC_MODULE_IDENT_CHANNEL, &adc1_config);
+        
+        adc_cali_curve_fitting_config_t adc1_cali_config = {
+            .unit_id = ADC_MODULE_IDENT_UNIT,
+            .atten = ADC_ATTEN_DB_12,
+            .bitwidth = ADC_BITWIDTH_12,
+        };
+        adc_cali_create_scheme_curve_fitting(&adc1_cali_config, &adc1_cali_handle);
+
+    } else{
+        ESP_LOGE(MANAGER_TAG, "ADC already configured for module identification");
+        set_module_manager_state(MANAGER_FAULT);
     }
-
-    // First, ensure the GPIO pin is properly configured as analog input
-    // This prevents the pin from being driven as output
-    gpio_config_t io_conf = {
-        .pin_bit_mask = (1ULL << PIN_MODULE_IDENT),
-        .mode = GPIO_MODE_DISABLE,  // Disable digital I/O
-        .pull_up_en = GPIO_PULLUP_DISABLE,
-        .pull_down_en = GPIO_PULLDOWN_DISABLE,
-        .intr_type = GPIO_INTR_DISABLE,
-    };
-    gpio_config(&io_conf);
-
-    adc_oneshot_unit_init_cfg_t adc_init_cfg = {
-        .unit_id = ADC_MODULE_IDENT_UNIT,
-        .clk_src = ADC_RTC_CLK_SRC_DEFAULT,
-        .ulp_mode = ADC_ULP_MODE_DISABLE,
-    };
-    adc_oneshot_new_unit(&adc_init_cfg, &adc_unit_handle);
-    
-    adc_oneshot_chan_cfg_t adc1_config = {
-        .atten = ADC_ATTEN_DB_12,
-        .bitwidth = ADC_BITWIDTH_12,
-    };
-    adc_oneshot_config_channel(adc_unit_handle, ADC_MODULE_IDENT_CHANNEL, &adc1_config);
-    
-    adc_cali_curve_fitting_config_t adc_cali_config = {
-        .unit_id = ADC_MODULE_IDENT_UNIT,
-        .atten = ADC_ATTEN_DB_12,
-        .bitwidth = ADC_BITWIDTH_12,
-    };
-    adc_cali_create_scheme_curve_fitting(&adc_cali_config, &adc_cali_handle);
 }
 
 void delete_ident_adc(){
-    if(adc_cali_handle != NULL){
-        adc_cali_delete_scheme_curve_fitting(adc_cali_handle);
-        adc_cali_handle = NULL;
+    if(adc1_cali_handle != NULL){
+        adc_cali_delete_scheme_curve_fitting(adc1_cali_handle);
+        adc1_cali_handle = NULL;
     }
-    if(adc_unit_handle != NULL){
-        adc_oneshot_del_unit(adc_unit_handle);
-        adc_unit_handle = NULL;
+    if(adc1_unit_handle != NULL){
+        adc_oneshot_del_unit(adc1_unit_handle);
+        adc1_unit_handle = NULL;
     }
     
     // CRITICAL: Reset the GPIO to high-impedance input to prevent voltage injection
@@ -174,7 +176,7 @@ static const module_t* identify_module() {
     
     // Take 5 samples and average them
     for (int sample = 0; sample < 50; sample++) {
-        adc_oneshot_get_calibrated_result(adc_unit_handle, adc_cali_handle, ADC_MODULE_IDENT_CHANNEL, &module_ident_mv);
+        adc_oneshot_get_calibrated_result(adc1_unit_handle, adc1_cali_handle, ADC_MODULE_IDENT_CHANNEL, &module_ident_mv);
         ESP_LOGI(MANAGER_TAG, "Module identification sample %d: %d mV", sample + 1, module_ident_mv);
         module_ident_avg += module_ident_mv;
     }
@@ -254,13 +256,9 @@ static void vTaskModuleManagerUpdate(void *pvParameters) {
                     ESP_LOGI(MANAGER_TAG, "Module disconnected while running - stopping");
                     set_module_manager_state(MANAGER_STOPPING);
                     if (current_module != NULL && current_module->stop_function != NULL) {
-                        current_module->stop_function(); // Stop current module (async task)
+                        current_module->stop_function(); // Stop current module
                     }
                     current_module = NULL;
-                    
-                    // CRITICAL: Wait for module to finish cleanup before re-configuring ADC
-                    // The stop function creates a task that takes time to complete
-                    vTaskDelay(pdMS_TO_TICKS(1000)); // Give module time to clean up GPIOs
                     
                     setup_ident_adc(); // Re-setup ADC for identification
                     set_module_manager_state(MANAGER_READY);
