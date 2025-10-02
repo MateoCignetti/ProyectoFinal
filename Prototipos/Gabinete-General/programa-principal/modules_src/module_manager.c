@@ -7,6 +7,7 @@
 #include "dimmer_control.h"
 #include "gpio_definition.h"
 #include "esp_log.h"
+#include "driver/gpio.h"
 
 
 static const char* MANAGER_TAG = "Module Manager"; // Module name for logging
@@ -45,7 +46,7 @@ static const module_ident_t module_ident_list[] = {
     {1600, 1700, &inverter_module},
     {1900, 2000, &buck_module},
     
-    {2500, 2600, &dimmer_module},
+    {500, 600, &dimmer_module},
 
     {0, 0, NULL} // Sentinel value to mark the end of the list
 };
@@ -75,9 +76,20 @@ void set_module_manager_state(module_manager_state_t new_state) {
 
 void setup_ident_adc(){
 
-    if(adc_unit_handle != NULL){
+    if(adc_unit_handle != NULL || adc_cali_handle != NULL){
         return; // ADC already configured
     }
+
+    // First, ensure the GPIO pin is properly configured as analog input
+    // This prevents the pin from being driven as output
+    gpio_config_t io_conf = {
+        .pin_bit_mask = (1ULL << PIN_MODULE_IDENT),
+        .mode = GPIO_MODE_DISABLE,  // Disable digital I/O
+        .pull_up_en = GPIO_PULLUP_DISABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+        .intr_type = GPIO_INTR_DISABLE,
+    };
+    gpio_config(&io_conf);
 
     adc_oneshot_unit_init_cfg_t adc_init_cfg = {
         .unit_id = ADC_MODULE_IDENT_UNIT,
@@ -101,14 +113,27 @@ void setup_ident_adc(){
 }
 
 void delete_ident_adc(){
+    if(adc_cali_handle != NULL){
+        adc_cali_delete_scheme_curve_fitting(adc_cali_handle);
+        adc_cali_handle = NULL;
+    }
     if(adc_unit_handle != NULL){
         adc_oneshot_del_unit(adc_unit_handle);
         adc_unit_handle = NULL;
     }
-    if(adc_cali_handle != NULL){
-        //adc_cali_delete(adc_cali_handle);
-        adc_cali_handle = NULL;
-    }
+    
+    // CRITICAL: Reset the GPIO to high-impedance input to prevent voltage injection
+    // This ensures the module identification pin is not driven by the microcontroller
+    gpio_config_t io_conf = {
+        .pin_bit_mask = (1ULL << PIN_MODULE_IDENT),
+        .mode = GPIO_MODE_INPUT,  // Set as input (high impedance)
+        .pull_up_en = GPIO_PULLUP_DISABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+        .intr_type = GPIO_INTR_DISABLE,
+    };
+    gpio_config(&io_conf);
+    
+    ESP_LOGI(MANAGER_TAG, "ADC deleted and GPIO %d set to high-impedance input", PIN_MODULE_IDENT);
 }
 
 static void create_module_manager_tasks(void){
@@ -228,10 +253,18 @@ static void vTaskModuleManagerUpdate(void *pvParameters) {
                 if (get_connection_state() != CONNECTION_CONNECTED) {
                     ESP_LOGI(MANAGER_TAG, "Module disconnected while running - stopping");
                     set_module_manager_state(MANAGER_STOPPING);
-                    current_module->stop_function(); // Stop current module
+                    if (current_module != NULL && current_module->stop_function != NULL) {
+                        current_module->stop_function(); // Stop current module (async task)
+                    }
                     current_module = NULL;
+                    
+                    // CRITICAL: Wait for module to finish cleanup before re-configuring ADC
+                    // The stop function creates a task that takes time to complete
+                    vTaskDelay(pdMS_TO_TICKS(1000)); // Give module time to clean up GPIOs
+                    
                     setup_ident_adc(); // Re-setup ADC for identification
                     set_module_manager_state(MANAGER_READY);
+                    ESP_LOGI(MANAGER_TAG, "Module stopped and ADC re-configured for identification");
                 }
                 break;
                 
