@@ -1,4 +1,5 @@
 #include "module_manager.h"
+
 #include "module_connection.h"
 #include "module_registry.h" // Central registry for all modules
 
@@ -14,9 +15,11 @@ static const char* MANAGER_TAG = "Module Manager"; // Module name for logging
 static adc_oneshot_unit_handle_t adc1_unit_handle = NULL;
 static adc_cali_handle_t adc1_cali_handle = NULL;
 static TaskHandle_t xTaskModuleManagerUpdate_handle = NULL; // Task handle for the module state update task
+static TaskHandle_t xTaskAdcSampling_handle = NULL; // Task handle for ADC sampling
 
 static module_manager_state_t module_manager_state = MANAGER_INIT;
 static SemaphoreHandle_t xModuleManagerMutex = NULL;
+static QueueHandle_t xAdcResultQueue = NULL; // Queue to receive ADC sampling results
 
 
 // Public function declarations
@@ -26,8 +29,9 @@ void module_manager_init(void);
 
 // Private function declarations
 static void vTaskModuleManagerUpdate(void *pvParameters);
+static void vTaskAdcSampling(void *pvParameters);
 static void create_module_manager_tasks(void);
-static const module_t* identify_module(void);
+static const module_t* identify_module(int module_ident_mv);
 static void setup_ident_adc(void);
 static void delete_ident_adc(void);
 static void handle_module_connected(bool connected);
@@ -151,36 +155,92 @@ static void create_module_manager_tasks(void){
         return;
     }
     
-    // Create the task to update the module state
-    BaseType_t xReturned = xTaskCreate(vTaskModuleManagerUpdate,
-                                       "Module Manager Update Task",
-                                       4096,  // Increased stack size
+    // Create queue for ADC results (1 item, holds int voltage in mV)
+    xAdcResultQueue = xQueueCreate(1, sizeof(int));
+    if (xAdcResultQueue == NULL) {
+        ESP_LOGE(MANAGER_TAG, "Failed to create ADC result queue");
+        return;
+    }
+    
+    // Create the ADC sampling task
+    BaseType_t xReturned = xTaskCreate(vTaskAdcSampling,
+                                       "ADC Sampling Task",
+                                       4096,
                                        NULL,
-                                       5,
-                                       &xTaskModuleManagerUpdate_handle);
+                                       4,  // Lower priority than manager task
+                                       &xTaskAdcSampling_handle);
+    if (xReturned != pdPASS) {
+        ESP_LOGE(MANAGER_TAG, "Failed to create ADC Sampling Task");
+        set_module_manager_state(MANAGER_FAULT);
+        return;
+    }
+    
+    // Create the task to update the module state
+    xReturned = xTaskCreate(vTaskModuleManagerUpdate,
+                           "Module Manager Update Task",
+                           4096,  // Increased stack size
+                           NULL,
+                           5,
+                           &xTaskModuleManagerUpdate_handle);
     if (xReturned != pdPASS) {
         ESP_LOGE(MANAGER_TAG, "Failed to create Module Manager Update Task");
         set_module_manager_state(MANAGER_FAULT); // Set module state to FAULT if task creation failed
     }
 }
 
-
-
-
-static const module_t* identify_module() {
-    int module_ident_mv = 0;
-    int module_ident_avg = 0;
-    
-    // Take 5 samples and average them
-    for (int sample = 0; sample < 50; sample++) {
-        adc_oneshot_get_calibrated_result(adc1_unit_handle, adc1_cali_handle, ADC_MODULE_IDENT_CHANNEL, &module_ident_mv);
-        ESP_LOGI(MANAGER_TAG, "Module identification sample %d: %d mV", sample + 1, module_ident_mv);
-        module_ident_avg += module_ident_mv;
+/**
+ * ADC Sampling Task
+ * This task runs independently and performs ADC sampling when requested.
+ * Results are sent back via queue to avoid blocking the main manager task.
+ */
+static void vTaskAdcSampling(void *pvParameters) {
+    while (true) {
+        // Wait for notification to start sampling
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+        
+        // Check if we're still supposed to be sampling (module could have disconnected)
+        if (get_connection_state() != CONNECTION_CONNECTED) {
+            ESP_LOGW(MANAGER_TAG, "Module disconnected before ADC sampling - aborting");
+            continue;
+        }
+        
+        int module_ident_mv = 0;
+        int module_ident_avg = 0;
+        bool sampling_completed = true;
+        
+        // Take 50 samples and average them
+        for (int sample = 0; sample < 50; sample++) {
+            // Check if module was disconnected during sampling
+            if (get_connection_state() != CONNECTION_CONNECTED) {
+                ESP_LOGW(MANAGER_TAG, "Module disconnected during sampling at sample %d - aborting", sample + 1);
+                sampling_completed = false;
+                break;
+            }
+            
+            adc_oneshot_get_calibrated_result(adc1_unit_handle, adc1_cali_handle, ADC_MODULE_IDENT_CHANNEL, &module_ident_mv);
+            ESP_LOGI(MANAGER_TAG, "Module identification sample %d: %d mV", sample + 1, module_ident_mv);
+            module_ident_avg += module_ident_mv;
+            
+            vTaskDelay(pdMS_TO_TICKS(10)); // Small delay between samples, allows other tasks to run
+        }
+        
+        // Always send a result to unblock the waiting task
+        if (sampling_completed) {
+            module_ident_avg /= 50;
+            module_ident_mv = module_ident_avg;
+            ESP_LOGI(MANAGER_TAG, "Average module identification voltage: %d mV", module_ident_mv);
+        } else {
+            // Send sentinel value (-1) to indicate sampling was aborted
+            module_ident_mv = -1;
+            ESP_LOGW(MANAGER_TAG, "Sending failure indicator to manager task");
+        }
+        
+        // Send result to queue (overwrite if full)
+        xQueueOverwrite(xAdcResultQueue, &module_ident_mv);
     }
-    module_ident_avg /= 50;
-    module_ident_mv = module_ident_avg;
-    ESP_LOGI(MANAGER_TAG, "Average module identification voltage: %d mV", module_ident_mv);
+}
 
+static const module_t* identify_module(int module_ident_mv) {
     for (int i = 0; module_list[i] != NULL; i++) {
         if (module_ident_mv >= module_list[i]->ident_mv_min && module_ident_mv <= module_list[i]->ident_mv_max) {
             return module_list[i];
@@ -228,21 +288,45 @@ static void vTaskModuleManagerUpdate(void *pvParameters) {
             case MANAGER_READY:
                 // Only try to identify if module is actually connected
                 if (get_connection_state() == CONNECTION_CONNECTED) {
-                    const module_t* identified_module = identify_module();
-                    if (identified_module != NULL) {
-                        ESP_LOGI(MANAGER_TAG, "Identified module: %s", identified_module->name);
-                        if (identified_module->start_function != NULL) {
-                            delete_ident_adc();
-                            identified_module->start_function();
-                            current_module = identified_module;
-                            set_module_manager_state(MANAGER_RUNNING);
+                    // Request ADC sampling from the dedicated task
+                    ESP_LOGI(MANAGER_TAG, "Starting ADC sampling for module identification");
+                    xTaskNotifyGive(xTaskAdcSampling_handle);
+                    
+                    // Wait for ADC result (no timeout needed since sampling task always sends a value)
+                    int module_ident_mv = 0;
+                    if (xQueueReceive(xAdcResultQueue, &module_ident_mv, portMAX_DELAY) == pdTRUE) {
+                        // Check for sentinel value indicating sampling failure
+                        if (module_ident_mv < 0) {
+                            ESP_LOGW(MANAGER_TAG, "ADC sampling was aborted (module disconnected)");
+                            break;
+                        }
+                        
+                        // Double-check module is still connected after sampling
+                        if (get_connection_state() != CONNECTION_CONNECTED) {
+                            ESP_LOGW(MANAGER_TAG, "Module disconnected after ADC sampling completed");
+                            break;
+                        }
+                        
+                        const module_t* identified_module = identify_module(module_ident_mv);
+                        if (identified_module != NULL) {
+                            ESP_LOGI(MANAGER_TAG, "Identified module: %s", identified_module->name);
+                            if (identified_module->start_function != NULL) {
+                                delete_ident_adc();
+                                identified_module->start_function();
+                                current_module = identified_module;
+                                set_module_manager_state(MANAGER_RUNNING);
+                            } else {
+                                ESP_LOGE(MANAGER_TAG, "No start function defined for module: %s", identified_module->name);
+                                set_module_manager_state(MANAGER_READY); //CHANGE LATER TO FAULT
+                            }
                         } else {
-                            ESP_LOGE(MANAGER_TAG, "No start function defined for module: %s", identified_module->name);
+                            ESP_LOGW(MANAGER_TAG, "Failed to identify module");
                             set_module_manager_state(MANAGER_READY); //CHANGE LATER TO FAULT
                         }
                     } else {
-                        ESP_LOGW(MANAGER_TAG, "Failed to identify module");
-                        set_module_manager_state(MANAGER_READY); //CHANGE LATER TO FAULT
+                        // This should never happen since we use portMAX_DELAY
+                        ESP_LOGE(MANAGER_TAG, "Failed to receive ADC result from queue");
+                        set_module_manager_state(MANAGER_FAULT);
                     }
                 }
                 break;
