@@ -4,12 +4,14 @@
 // Project name: UI_TFI
 
 #include "ui.h"
+#include "gpio_definition.h"
 #include "driver/gpio.h"
+#include "buck_control.h"
 
 //#include "control_state_machine.h"
 
 
-#define PIN_NUM_RELAY GPIO_NUM_18
+#define PIN_NUM_RELAY PIN_S8 // Pin to control the relay for load switching
 
 void change_load(lv_event_t * e)
 {
@@ -17,21 +19,21 @@ void change_load(lv_event_t * e)
 }
 
 void resistive_load(lv_event_t * e){
-//	gpio_set_level(PIN_NUM_RELAY, false);
+	gpio_set_level(PIN_NUM_RELAY, false);
 }
 
 void inductive_load(lv_event_t * e){
-//	gpio_set_level(PIN_NUM_RELAY, true);
+	gpio_set_level(PIN_NUM_RELAY, true);
 }
 
-void controlFixedPWM(lv_event_t * e)
-{
-//	control_mode = CONTROL_MODE_FIXED_PWM;
-	//printf("Se cambió a PWM fijo");
+void controlFixedPWM(lv_event_t * e){
+	
+	set_control_mode(CONTROL_MODE_FIXED_PWM);
+
 }
 
-void controlPID(lv_event_t * e)
-{
-//	control_mode = CONTROL_MODE_PID;
-	//printf("Se cambió a control PID");
+void controlPID(lv_event_t * e){
+	
+	set_control_mode(CONTROL_MODE_PID);
+	
 }

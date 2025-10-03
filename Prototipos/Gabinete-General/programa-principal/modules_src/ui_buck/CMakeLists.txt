@@ -8,5 +8,5 @@ idf_component_register(SRCS "ui_themes.c" "ui_theme_manager.c" "ui_events.c" "ui
                             "ui_comp_hook.c" 
                             "ui_helpers.c" 
                             "ui_img_buck_png.c"
-                    INCLUDE_DIRS "../../modules_include/ui_buck" "../../include"
-                    PRIV_REQUIRES freertos esp_driver_gpio esp_lcd esp_timer lvgl__lvgl lvgl)
+                    INCLUDE_DIRS "../../modules_include/ui_buck" "../../modules_include" "../../include"
+                    PRIV_REQUIRES freertos esp_driver_gpio esp_lcd esp_timer lvgl__lvgl lvgl modules_src)

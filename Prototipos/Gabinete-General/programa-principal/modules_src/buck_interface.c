@@ -1,9 +1,13 @@
 #include "buck_interface.h"
 
 #include <sys/lock.h>
+#include "esp_log.h"
 #include "lvgl.h"
 #include "module_manager.h"
 #include "ui.h"
+#include "ui_config.h"
+
+static const char* TAG = "Buck Interface";
 
 // Module definition
 /*const module_t buck_module = {
@@ -14,16 +18,14 @@
     .stop_function = stop_buck_interface,
 };*/
 
-// Mutex for LVGL API calls 
-static _lock_t lvgl_api_lock;
+// Mutex for LVGL API calls - defined in ui_config.c
+extern _lock_t lvgl_api_lock;
 
 // Task handle for cleanup
 static TaskHandle_t xTaskUpdateGroups_handle = NULL;
 
-// Input device for LVGL (encoder)
-static lv_indev_t *indev_encoder = NULL; // Input device for LVGL (encoder)
-
-extern lv_indev_t *indev_encoder; // Input device for LVGL (encoder)
+// Shutdown flag for graceful task termination
+static volatile bool shutdown_requested = false;
 
 // State for screen management
 typedef enum {
@@ -45,6 +47,9 @@ static void destroy_groups_for_ui(void);
 static void vTaskUpdateGroups(void *pvParameters);
 
 void start_buck_interface(){
+    // Initialize shutdown flag
+    shutdown_requested = false;
+    
     xTaskCreate(vTaskUpdateGroups,
             "UpdateGroups",
             configMINIMAL_STACK_SIZE * 4,
@@ -60,13 +65,20 @@ void start_buck_interface(){
 }
 
 void stop_buck_interface(){
-    // Delete the task first
+    // Signal the task to shutdown gracefully
     if (xTaskUpdateGroups_handle != NULL) {
+        shutdown_requested = true;
+        
+        // Wait for task to finish (with timeout)
+        // The task should exit on its next iteration
+        vTaskDelay(pdMS_TO_TICKS(150)); // Wait slightly longer than task period (100ms)
+        
+        // Force delete if still running (safety measure)
         vTaskDelete(xTaskUpdateGroups_handle);
         xTaskUpdateGroups_handle = NULL;
     }
     
-    // Clean up LVGL objects
+    // Clean up LVGL objects under lock protection
     _lock_acquire(&lvgl_api_lock);
     destroy_groups_for_ui();
     ui_destroy();
@@ -143,7 +155,15 @@ static void create_groups_for_ui(void){
     current_group = groups[SCREEN_1];  // Grupo inicial
     current_screen = SCREEN_1;
     lv_group_set_default(groups[current_screen]);
-    lv_indev_set_group(indev_encoder, groups[current_screen]);
+    
+    // Set the encoder to control this group
+    if (indev_encoder != NULL) {
+        lv_indev_set_group(indev_encoder, groups[current_screen]);
+        ESP_LOGI(TAG, "Encoder assigned to group for SCREEN_1");
+    } else {
+        ESP_LOGE(TAG, "indev_encoder is NULL! Cannot assign to group");
+    }
+    
     lv_group_focus_obj(ui_freqScreen);
 }
 
@@ -174,8 +194,15 @@ static void vTaskUpdateGroups(void *pvParameters){
     xLastWakeTime = xTaskGetTickCount();
 
     while (1) {
+        // Check for shutdown request before acquiring lock
+        if (shutdown_requested) {
+            ESP_LOGI(TAG, "UpdateGroups task shutting down gracefully");
+            vTaskDelete(NULL); // Delete self
+            return;
+        }
+        
         _lock_acquire(&lvgl_api_lock);
-        // Detectar la pantalla activa
+        // Determine the currently active screen
         lv_obj_t *active_screen = lv_screen_active();
         screen_state_t new_screen = current_screen;
 

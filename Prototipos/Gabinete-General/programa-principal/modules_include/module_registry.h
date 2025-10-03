@@ -27,10 +27,10 @@
 // - extern const module_t <module_name>_module;
 
 #include "dimmer_control.h"
+#include "buck_control.h"
 // Add more module includes here as they are developed
 // Example:
 // #include "inverter_control.h"
-// #include "buck_control.h"
 
 
 // ============================================================================
@@ -45,21 +45,13 @@
  */
 
 // For testing without actual modules, remove later
-const module_t inverter_module ={
+const module_t inverter_module = {
     .name = "Inverter Module",
     .ident_mv_min = 1600,
     .ident_mv_max = 1700,
     .start_function = NULL,
     .stop_function = NULL,
 };
-const module_t buck_module = {
-    .name = "Buck Module",
-    .ident_mv_min = 1900,
-    .ident_mv_max = 2000,
-    .start_function = NULL,
-    .stop_function = NULL,
-};
-//
 
 #define MODULE_REGISTRY_LIST \
     &dimmer_module,          \

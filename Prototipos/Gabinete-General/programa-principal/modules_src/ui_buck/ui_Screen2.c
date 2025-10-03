@@ -85,7 +85,7 @@ void ui_Screen2_screen_init(void)
     lv_obj_set_style_text_opa(ui_Label9, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_SliderFreq1 = lv_slider_create(ui_Screen2);
-    lv_slider_set_range(ui_SliderFreq1, 10, 30);
+    lv_slider_set_range(ui_SliderFreq1, 1, 19);
     lv_slider_set_value(ui_SliderFreq1, 0, LV_ANIM_OFF);
     if(lv_slider_get_mode(ui_SliderFreq1) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(ui_SliderFreq1, 0, LV_ANIM_OFF);
     lv_obj_set_width(ui_SliderFreq1, 150);

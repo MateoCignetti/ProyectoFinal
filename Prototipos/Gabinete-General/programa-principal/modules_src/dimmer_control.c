@@ -19,8 +19,6 @@
 #include "freertos/FreeRTOS.h" // FreeRTOS general library
 #include "freertos/task.h" // FreeRTOS task library
 
-#include "buck_interface.h"
-
 // Module identification voltage range (in millivolts)
 #define DIMMER_IDENT_MV_MIN 500
 #define DIMMER_IDENT_MV_MAX 600
@@ -73,7 +71,6 @@ static void start_dimmer_module(){
         isModuleRunning = true; // Set the module running flag
         ESP_LOGI(MODULE_TAG, "Starting dimmer module..."); // Log the start of the module
 
-        start_buck_interface();
         configure_timers();
         configure_gpios();
         
@@ -89,8 +86,6 @@ static void stop_dimmer_module(){
 
         delete_gpios(); // Delete the GPIOs  
         delete_timers(); // Stop the timers
-        stop_buck_interface();
-
     } else {
         ESP_LOGW(MODULE_TAG, "Dimmer module got a request to stop, but is not running... ignoring stop request.");
     }

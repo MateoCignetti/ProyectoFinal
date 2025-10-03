@@ -68,8 +68,8 @@ static int32_t accumulated_diff = 0;    // Accumulated difference from encoder t
 static lv_indev_state_t button_state = LV_INDEV_STATE_RELEASED; // Current button state
 /*--------------------------------------*/
 
-// Mutex for LVGL API calls 
-static _lock_t lvgl_api_lock;
+// Mutex for LVGL API calls (exported for use by modules)
+_lock_t lvgl_api_lock;
 
 /*-------- FUNCTION PROTOTYPES --------*/
 static void lvgl_flush_callback(lv_display_t *disp, const lv_area_t *area, uint8_t *px_map);    // LVGL flush callback
@@ -92,7 +92,7 @@ void setup_user_interface(){
 
     ESP_ERROR_CHECK(rotary_encoder_init(encoder_queue));
     
-    rotary_encoder_t display_encoder ={
+    static rotary_encoder_t display_encoder ={
         .pin_a = PIN_ROTARY_DATA,
         .pin_b = PIN_ROTARY_CLK,
         .pin_btn = PIN_ROTARY_SW,
