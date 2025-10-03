@@ -217,6 +217,7 @@ void app_main(void){
     };
     ESP_ERROR_CHECK(gpio_config(&relay_pin_conf)); // Apply the configuration
     gpio_set_level(GPIO_NUM_18, 0); // Set initial state to LOW (resistive load)
+   
     encoder_queue = xQueueCreate(10, sizeof(rotary_encoder_event_t));
     if (encoder_queue == NULL) {
         ESP_LOGE("ENCODER", "Failed to create encoder queue");
@@ -337,10 +338,6 @@ void app_main(void){
                 tskIDLE_PRIORITY + 1,
                 NULL
                 );
-
-    while (true){
-        vTaskDelay(pdMS_TO_TICKS(1000));
-    }
     
 }
 
@@ -602,7 +599,7 @@ static void gptimer_config(void){
     #endif
 }
 
-/**
+/**    lv_group_focus_obj(ui_freqScreen);
  * @brief Callback to notify LVGL that the flush operation is complete
  * 
  * @param panel_io 
@@ -754,6 +751,9 @@ static void vTaskUpdateGroups(void *pvParameters){
  */
 static void create_groups_for_ui(void){
     for(int i=0; i < SCREEN_COUNT; i++){
+    lv_obj_add_event_cb(ui_freqScreen, ui_event_freqScreen, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(ui_controlScreen, ui_event_controlScreen, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(ui_loadScreen, ui_event_loadScreen, LV_EVENT_CLICKED, NULL);
         groups[i] = lv_group_create();
     }
     
@@ -797,7 +797,7 @@ static void create_groups_for_ui(void){
     lv_group_add_obj(groups[SCREEN_5], ui_ButtonReturn4);
     lv_group_add_obj(groups[SCREEN_5], ui_SliderSP);
     lv_group_add_obj(groups[SCREEN_5], ui_ButtonReturnDefault3);
-
+    lv_group_focus_obj(ui_freqScreen);
     lv_obj_add_event_cb(ui_ButtonReturn4, ui_event_ButtonReturn4, LV_EVENT_CLICKED, NULL);
     //lv_obj_add_event_cb(ui_SliderSP, ui_event_SliderSP, LV_EVENT_VALUE_CHANGED, NULL);
     lv_obj_add_event_cb(ui_ButtonReturnDefault3, ui_event_ButtonReturnDefault3, LV_EVENT_CLICKED, NULL);
