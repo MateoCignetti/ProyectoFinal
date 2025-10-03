@@ -6,7 +6,7 @@
 #include "ui.h"
 #include "driver/gpio.h"
 
-#include "control_state_machine.h"
+//#include "control_state_machine.h"
 
 
 #define PIN_NUM_RELAY GPIO_NUM_18
@@ -17,21 +17,21 @@ void change_load(lv_event_t * e)
 }
 
 void resistive_load(lv_event_t * e){
-	gpio_set_level(PIN_NUM_RELAY, false);
+//	gpio_set_level(PIN_NUM_RELAY, false);
 }
 
 void inductive_load(lv_event_t * e){
-	gpio_set_level(PIN_NUM_RELAY, true);
+//	gpio_set_level(PIN_NUM_RELAY, true);
 }
 
 void controlFixedPWM(lv_event_t * e)
 {
-	control_mode = CONTROL_MODE_FIXED_PWM;
+//	control_mode = CONTROL_MODE_FIXED_PWM;
 	//printf("Se cambió a PWM fijo");
 }
 
 void controlPID(lv_event_t * e)
 {
-	control_mode = CONTROL_MODE_PID;
+//	control_mode = CONTROL_MODE_PID;
 	//printf("Se cambió a control PID");
 }

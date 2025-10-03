@@ -6,13 +6,13 @@
 #include "ui.h"
 
 // Module definition
-const module_t buck_module = {
+/*const module_t buck_module = {
     .name = "Buck Converter",
     .ident_mv_min = 1900,
     .ident_mv_max = 2000,
     .start_function = start_buck_interface,
     .stop_function = stop_buck_interface,
-};
+};*/
 
 // Mutex for LVGL API calls 
 static _lock_t lvgl_api_lock;
