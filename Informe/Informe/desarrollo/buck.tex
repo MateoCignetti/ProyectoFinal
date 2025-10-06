@@ -1,4 +1,4 @@
-\section{Convertidor reductor o Buck}
+\section{Módulo convertidor reductor o Buck}
 
 \begin{figure}[H]
     \centering
@@ -49,7 +49,6 @@
     \label{fig:buck:circuito_generico}
 \end{figure}
 
-% Citar el RASHID, si bien no lo estoy usando mucho, estoy leyendo y redactando más o menos con eso
 Un convertidor Buck consta de un diodo, un filtro de salida, un circuito de realimentación y un interruptor al cual se le controla su conmutación, \cref{fig:buck:circuito_generico}; siendo el objetivo lograr una tensión de salida menor a la tensión de entrada sin prescindir de eficiencia. 
 
 El interruptor se encarga de traspasar la potencia, de la entrada a la salida, dependiendo de la velocidad de conmutación o del tiempo que se encuentre encendido, la tensión en la salida puede aumentar o disminuir, pero manteniéndose siempre por debajo de la tensión de entrada, o en casos puede alcanzar el valor de la entrada, \parencite{RASHID}.
@@ -88,11 +87,7 @@ En este tipo de topología de convertidores DC-DC se suele emplear un transistor
     \label{fig:buck:comparativa-transistor}
 \end{figure}
 
-%es condición suficiente colocar el terminal de gate del MOSFET-p a potencial de $V_{in}$ (transistor en corte) o GND (transistor en saturación); en cambio, utilizar un MOSFET-n implica una mayor dificultad de implementación para conmutar el mismo, ya que la tensión aplicada en la gate debe ser de al menos $V_{in}+V_{th}$ para que el mismo pueda encontrarse en máxima saturación\textcolor{red}{VER DE PONER IMAGEN O ALGO PARA QUE SE ENTIENDA MEJOR}. El método utilizado para cumplir con la condición mencionada se lo llama bootstrapping o circuito de bootstrap.
-
-% Buscar documento de comparativa de MOSFET-p vs MOSFET-n, explicar la dificultad que tiene la fabricación del MOSFET-p y algun documento que respalde todo eso.
-
-Existen diversas formas de controlar el voltaje medio de salida del convertidor, entre las dos formas más conocidas se encuentra el PWM (Pulse Width Modulation, modulación por ancho de pulso) y el PFM (Pulse Frequency Modulation, modulación por frecuencia de pulso), \cref{fig:buck:pfm_pwm}. En el primero de los casos lo que se modifica es el tiempo de encendido, manteniéndose el período constante. A diferencia de PFM donde el período es el que se modifica (cambia la frecuencia de conmutación), pero el tiempo de encendido se mantiene constante, por ejemplo, en un $50\%$ del duty, \parencite{rohm-PWM-PFM}. El método más elegido para los convertidores Buck es el PWM.
+Existen diversas formas de controlar el voltaje medio de salida del convertidor, entre las dos formas más conocidas se encuentra el PWM (Pulse Width Modulation, modulación por ancho de pulso) y el PFM (Pulse Frequency Modulation, modulación por frecuencia de pulso), \cref{fig:buck:pfm_pwm}. En el primero de los casos lo que se modifica es el tiempo de encendido, manteniéndose el período constante. A diferencia de PFM donde el período es el que se modifica (cambia la frecuencia de conmutación), pero el tiempo de encendido se mantiene constante, por ejemplo, en un \SI{50}{\percent} del duty, \parencite{rohm-PWM-PFM}. El método más elegido para los convertidores Buck es el PWM.
 
 \begin{figure}[H]
     \centering
@@ -181,7 +176,6 @@ En la \cref{fig:buck:formas_onda} se observa que, mientras el interruptor conduc
 \subsection{Modo apagado}
 
 Cuando el dispositivo de conmutación pasa a su estado de no conducción, la fuente es removida del circuito, haciendo que la corriente disminuya. La disminución de la corriente produce una caída de tensión en el inductor, inversa a la que había cuando se encontraba en estado de encendido, esto hace que la bobina funcione como una fuente de corriente hacia la carga por medio del campo magnético almacenado. Esta corriente solo fluye mientras la fuente se mantiene desconectada del circuito, \cref{fig:buck:modo_apagado}.
-
 % Revisar si está bien dicho que sea una caida de tensión inversa.
 
 \begin{figure}[H]
@@ -237,6 +231,11 @@ Una vez que el convertidor se encuentra en un modo normal de funcionamiento, la 
 
 % Cosas sacadas de https://en.wikipedia.org/wiki/Buck_converter
 
+\subsection{Interacción del usuario: control y verificación experimental}
+El usuario puede interactuar con el módulo mediante una interfaz intuitiva que permite seleccionar entre diferentes modos de control, como regulación automática de tensión mediante PID o ajuste manual del ciclo de trabajo PWM. Además, puede modificar la frecuencia de conmutación y alternar entre cargas resistivas e inductivas usando el relé integrado. Se dispone de diversos \textit{test points} a través de la 
+
+El sistema muestra en tiempo real la tensión de salida y facilita la realización de experimentos, como observar la estabilidad de la tensión bajo distintas condiciones de carga, analizar las corrientes en el inductor y el capacitor, y visualizar la señal de conmutación en el transistor, proporcionando así una experiencia completa para el aprendizaje y la caracterización del convertidor Buck.
+
 \subsection{Cálculos para el diseño}
 
 El módulo convertidor reductor se diseña para una tensión de entrada de \SI{12}{\volt} y una corriente de entrada de \SI{3}{\ampere}. Para facilitar la visualización de las distintas señales, tanto de corriente como de tensión necesarias para la interpretación del circuito, la tensión de salida se estableció con un rango completo de \SIrange{0}{12}{\volt}, al igual que la corriente. Esto permite que aumenten las posibilidades de pruebas en el laboratorio, y genera una mayor versatilidad para observar el funcionamiento del módulo en cuestión.
@@ -245,15 +244,15 @@ Los cálculos correspondientes al diseño fueron realizados siguiendo un informe
 % Referenciar texas instruments para el cálculo
 \subsubsection{Criterios de diseño}
 
-El módulo se calcula para una corriente de \SI{2,4}{\ampere} la cual representa un $80\%$ de la corriente entregada por la fuente, esto es con el objetivo de mantener un margen de seguridad evitando exigir los componentes.
+El módulo se calcula para una corriente de \SI{2,4}{\ampere} la cual representa un \SI{80}{\percent} de la corriente entregada por la fuente, esto es con el objetivo de mantener un margen de seguridad evitando exigir los componentes.
 
 \begin{itemize}
     \item Potencia del convertidor \SI{36}{\watt}.
     \item $R = \frac{\SI{12}{\volt}}{\SI{2,4}{\ampere}} = \SI{5}{\ohm}$.
     \item Ripple
     \begin{itemize}
-        \item $\Delta V_{out} = 2\% ~ V_{out} = 0,02 \cdot \SI{12}{\volt} = \SI{0,24}{\volt}$
-        \item $\Delta I_L = 30\% ~ I_{out} = 0,3 \cdot \SI{2,4}{\ampere} = \SI{0,72}{\ampere}$
+        \item $\Delta V_{out} = \SI{2}{\percent} ~ V_{out} = 0,02 \cdot \SI{12}{\volt} = \SI{0,24}{\volt}$
+        \item $\Delta I_L = \SI{30}{\percent} ~ I_{out} = 0,3 \cdot \SI{2,4}{\ampere} = \SI{0,72}{\ampere}$
     \end{itemize}
     \item Frecuencia de conmutación ($f_s$), \SI{19}{\kilo\hertz}.
     \item Rendimiento teórico considerado, $\eta = \SI{90}{\percent}$.
@@ -262,6 +261,7 @@ El módulo se calcula para una corriente de \SI{2,4}{\ampere} la cual representa
 Se elige como transistor de conmutación de potencia el IRF9540, la selección del mismo se basó en la disponibilidad y en su amplio campo de aplicación, lo que permite que en caso de falla o rotura del módulo sea fácil de reemplazar.
 
 \subsubsection{Ciclo de trabajo máximo}
+
 \begin{equation} \label{eq:buck:duty_cycle}
     D_{max} = \frac{V_{out}}{V_{in} \, \eta} = \frac{\SI{6}{\volt}}{\SI{12}{\volt} \, 0,9} = 0.55    
 \end{equation}
@@ -290,7 +290,7 @@ El valor calculado se considera como mínimo, ya que emplear una inductancia may
     I_D = I_{out} \, (1-D) = \SI{2,4}{\ampere} \, (1-0.55) = \SI{1,08}{\ampere}
 \end{equation}
 
-Este valor determina la corriente media aplicada en el diodo de rectificación, es recomendable utilizar un Schottky ya que su rápida recuperación lo hace adecuado a las altas frecuencias de trabajo del convertidor. Además, la tensión soportada por el diodo debe ser al menos un $30\%$ más que la tensión de salida del convertidor.
+Este valor determina la corriente media aplicada en el diodo de rectificación, es recomendable utilizar un Schottky ya que su rápida recuperación lo hace adecuado a las altas frecuencias de trabajo del convertidor. Además, la tensión soportada por el diodo debe ser al menos un \SI{30}{\percent} más que la tensión de salida del convertidor.
 
 \subsubsection{Red Snubber}
 %\textcolor{red}{Esta sección requiere de pruebas con la PCB que todavía no se realizaron}
@@ -301,29 +301,30 @@ Se supone un valor de inductancia parásita típico de 50 nH y que la capacitanc
 
 $f_{ring}$, representa la frecuencia de las oscilaciones existentes en la conmutación del transistor, no se tiene este valor, pero se calcula en función de un valor estimado de inductancia parásita, con el fin de probar el circuito con red de snubber y sin la misma.
 
-\textbf{Red de Snubber para transistor IRF9540}
+\paragraph{Red de Snubber para transistor IRF9540}
 
 $C_{OSS} = 400 \ pF \approx C_{snub}(min)$
+
 \begin{equation} \label{eq:buck:frecuencia-oscilacion-mos-snubber}
-    f_{ring} = \frac{1}{2 \pi * \sqrt{L_P * C_P}} = 35,6 \ MHz \nonumber
+    f_{ring} = \frac{1}{2 \pi * \sqrt{L_P * C_P}} = \SI{35,6}{\mega\hertz}
 \end{equation}
 \begin{equation} \label{eq:buck:resistencia-mos-snubber}
-    R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = 11,2 \ \Omega
+    R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = \SI{11,2}{\ohm}
 \end{equation}
 
-\textbf{Red de Snubber para transistor 2N2222}
+\paragraph{Red de Snubber para transistor 2N2222}
 
 $C_{obo} = 8 \ pF \approx C_{snub}(min)$. $C_{obo}$, capacitancia de salida de transistores BJT.
 
 \begin{equation} \label{eq:buck:frecuencia-oscilacion-bjt-snubber}
-    f_{ring} = \frac{1}{2 \pi * \sqrt{L_P * C_P}} = 251,65 \ MHz \nonumber
+    f_{ring} = \frac{1}{2 \pi * \sqrt{L_P * C_P}} = \SI{251,65}{\mega\hertz}
 \end{equation}
 \begin{equation} \label{eq:buck:resistencia-bjt-snubber}
-    R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = 79 \ \Omega
+    R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = \SI{79}{\ohm}
 \end{equation}
 
 
-Estos cálculos se realizan para seguir la técnica implementada en artículo técnico de Texas Instruments, \parencite{ti_2016_snubber}. Este método consiste en probar el circuito en dos condiciones, la primera es sin ninguna red de Snubber para poder determinar la frecuencia de oscilación real; la segunda condición es conectando un capacitor en paralelo al transistor y medir la frecuencia nuevamente. El objetivo de esta prueba es que al conectar el capacitor, la frecuencia medida sea de al menos un $50\%$ menor a la frecuencia real de oscilación del circuito. 
+Estos cálculos se realizan para seguir la técnica implementada en artículo técnico de Texas Instruments, \parencite{ti_2016_snubber}. Este método consiste en probar el circuito en dos condiciones, la primera es sin ninguna red de Snubber para poder determinar la frecuencia de oscilación real; la segunda condición es conectando un capacitor en paralelo al transistor y medir la frecuencia nuevamente. El objetivo de esta prueba es que al conectar el capacitor, la frecuencia medida sea de al menos un \SI{50}{\percent} menor a la frecuencia real de oscilación del circuito. 
 
 \begin{figure}[H]
     \centering
@@ -366,16 +367,13 @@ Estos cálculos se realizan para seguir la técnica implementada en artículo t�
 
 En las \cref{fig:buck:freq-oscilacion-mosfet,fig:buck:freq-oscilacion-bjt} se puede observar el corrimiento de frecuencia necesario para los siguientes cálculos.
 
-\textbf{IRF9540}
-
-\begin{itemize}
-    \item Datos
+\paragraph{Nuevos valores para red de Snubber de transistor IRF9540}
+Datos para la obtención de nuevos valores de red de Snubber:
     \begin{itemize}
         \item Frecuencia de oscilación sin capacitor, $f_0 = \SI{19,23}{\mega\hertz}$, \cref{fig:buck:freq-oscilacion-mos-sin-cap}.
         \item Frecuencia de oscilación con capacitor, $f_1 = \SI{11,9}{\mega\hertz}$, \cref{fig:buck:freq-oscilacion-mos-con-cap}.
         \item Capacitor paralelo, $C_1 = \SI{400}{\pico\farad}$.
     \end{itemize} 
-\end{itemize}
 
 \begin{equation*}
     m = \frac{f_0}{f_1} = 1.62
@@ -401,16 +399,13 @@ Se determinan los nuevos valores de red de Snubber en función del corrimiento d
 
 Se utiliza un valor de \SI{1}{\nano\farad} para el capacitor y de \SI{33}{\ohm} para la resistencia de la red.
 
-\textbf{2N2222}
-
-\begin{itemize}
-    \item Datos
+\paragraph{Nuevos valores para red de Snubber de transistor 2N2222}
+Datos para la obtención de nuevos valores de red de Snubber:
     \begin{itemize}
         \item Frecuencia de oscilación sin capacitor, $f_0 = \SI{19,23}{\mega\hertz}$, \cref{fig:buck:freq-oscilacion-bjt-sin-cap}.
         \item Frecuencia de oscilación con capacitor, $f_1 = \SI{12,05}{\mega\hertz}$, \cref{fig:buck:freq-oscilacion-bjt-con-cap}.
         \item Capacitor paralelo, $C_1 = \SI{2}{\pico\farad}$.
     \end{itemize} 
-\end{itemize}
 
 \begin{equation*}
     m = \frac{f_0}{f_1} = 1.6
@@ -596,7 +591,7 @@ Se elige una resistencia \textit{shunt} de $\SI{10}{\milli\ohm}$ por la disipaci
 
 Como la corriente en el capacitor es bidireccional, se debe realizar un arreglo de resistencias al amplificador de corriente para poder medir este tipo de corriente, \cref{fig:buck:ina199_bidireccional}. 
 
-Es común en esta configuración de amplificador diferencial la necesidad de utilizar una tensión de referencia del $50\%$ de la tensión de alimentación del integrado, con el fin de lograr que la corriente en la resistencia shunt pueda ser medida en ambos sentidos. Cuando $V_{shunt} < V_{ref}$ la corriente circula en un sentido, y cuando $V_{shunt} > V_{ref}$ la corriente circula en sentido contrario al anterior. 
+Es común en esta configuración de amplificador diferencial la necesidad de utilizar una tensión de referencia del \SI{50}{\percent} de la tensión de alimentación del integrado, con el fin de lograr que la corriente en la resistencia shunt pueda ser medida en ambos sentidos. Cuando $V_{shunt} < V_{ref}$ la corriente circula en un sentido, y cuando $V_{shunt} > V_{ref}$ la corriente circula en sentido contrario al anterior. 
 
 Para lograr la tensión de referencia se usa un divisor de tensión para obtener el voltaje requerido, $\SI{2,5}{\volt}$; a su vez se aplica un operacional como seguidor de tensión por recomendación propia del fabricante.
 
@@ -719,7 +714,7 @@ El rendimiento teórico del convertidor está dado por, \cref{eq:buck:rendimient
 \begin{align} \label{eq:buck:rendimiento_teorico_calculado}
     \eta &= \frac{P_O}{P_O + P_D} \\
     &= \frac{\SI{36}{\watt}}{\SI{36}{\watt} + \SI{2,9}{\watt}} \nonumber \\
-    &= 0,925 \approx 92,5\%
+    &= 0,925 \approx \SI{92,5}{\percent}
 \end{align}
 
 \textcolor{red}{Faltaría calcular el rendimiento real del circuito}
@@ -749,12 +744,9 @@ Para corroborar el correcto funcionamiento del circuito previo a su elaboración
         \caption{Circuito utilizado para simular\protect \footnotemark.}
         \label{fig:buck:circuito_simulacion}
     \end{subfigure}
-    \caption{Resultados de la simulación con un ciclo de trabajo del 50\%.}
+    \caption{Resultados de la simulación con un ciclo de trabajo del \SI{50}{\percent}.}
     \label{fig:buck:resultados-simulacion}
 \end{figure}
 \footnotetext{Se utilizó el diodo RBR5LAM60A por disponibilidad del modelo para simulación. Las características se corresponden con las de SR560.}
 
-Como se observa en la \cref{fig:buck:resultados-simulacion} el circuito funciona según lo esperado, donde al aplicar un ciclo de trabajo del 50\% aproximadamente, la tensión de salida es de \SI{6}{\volt}. Cabe aclarar que las \cref{fig:buck:simulacion-1,fig:buck:simulacion-2} están tomadas en régimen permanente, sin considerar los posibles efectos transitorios del circuito.
-
-\subsection{Qué puede hacer el usuario?}
-El usuario puede interactuar con el módulo mediante una interfaz intuitiva que permite seleccionar entre diferentes modos de control, como regulación automática de tensión mediante PID o ajuste manual del ciclo de trabajo PWM. Además, puede modificar la frecuencia de conmutación y alternar entre cargas resistivas e inductivas usando el relé integrado. El sistema muestra en tiempo real la tensión de salida y facilita la realización de experimentos, como observar la estabilidad de la tensión bajo distintas condiciones de carga, analizar las corrientes en el inductor y el capacitor, y visualizar la señal de conmutación en el transistor, proporcionando así una experiencia completa para el aprendizaje y la caracterización del convertidor Buck.
+Como se observa en la \cref{fig:buck:resultados-simulacion} el circuito funciona según lo esperado, donde al aplicar un ciclo de trabajo del \SI{50}{\percent} aproximadamente, la tensión de salida es de \SI{6}{\volt}. Cabe aclarar que las \cref{fig:buck:simulacion-1,fig:buck:simulacion-2} están tomadas en régimen permanente, sin considerar los posibles efectos transitorios del circuito.

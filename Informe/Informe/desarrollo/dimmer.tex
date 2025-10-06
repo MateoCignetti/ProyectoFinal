@@ -6,6 +6,9 @@ Este método tiene varias desventajas, como una baja eficiencia y alta distorsi�
 
 Se decidió elegir este módulo para el proyecto ya que es un buen primer paso en la electrónica de potencia, donde se puede realizar un enfoque centralizado en el funcionamiento y control de un semiconductor como el TRIAC.
 
+\subsection{Interacción del usuario: control y verificación experimental}
+El usuario puede seleccionar entre distintos modos de control de potencia para la carga conectada, utilizando tanto el potenciómetro físico para ajuste manual (modo analógico) como la interfaz digital para establecer el ángulo de disparo del TRIAC (modo digital, medio ciclo o ciclo completo). Además, puede realizar experimentos prácticos, como observar el efecto del control de fase sobre la forma de onda de la carga con un osciloscopio, y visualizar el pulso de disparo en la compuerta del TRIAC, permitiendo comprender y verificar el funcionamiento del circuito recortador de onda.
+
 \subsection{Base teórica}
 
 \subsubsection{Tiristores y el TRIAC}
@@ -106,14 +109,14 @@ Este tipo de control de fase se recomienda solamente para circuitos con carga re
 \label{sec:dimmer:rama-rc}
 
 % Alejo: Habría que ver de usar otro modificador de tipografía que no sea \textit, en el texto no representa un cambio visual muy grande haciendo que el subtítulo parezca una oración suelta. La otra opción es redistribuir las secciones para que se pueda usar \subsubsection en este caso.
-\noindent\textit{Criterios de diseño}
+\paragraph{Criterios de diseño}
 \begin{itemize}[noitemsep]
     \item $C_T = \SI{330}{\nano\farad}$
     \item $\hat{V}_{DIAC} = \SI{32}{\volt}$, \parencite{DB3}
     \item $f = \SI{50}{\hertz}$
 \end{itemize}
 
-\noindent\textit{Desarrollo de fórmulas}
+\paragraph{Desarrollo de fórmulas}
 
 Las siguientes fórmulas se desarrollan teniendo en cuenta el circuito de la \cref{fig:dimmer:control_fase_simple}. El objetivo es obtener el valor máximo de la resistencia variable $R_T$ para el cual se obtiene una tensión pico en el capacitor $C_T$ equivalente a la tensión de disparo del DIAC $D$.
 
@@ -202,14 +205,14 @@ Este simple circuito convierte la señal de entrada de CA sinusoidal en una señ
 
 En el semiciclo positivo de la señal de entrada de CA, se enciende el led interno del optoacoplador, que polariza el transistor de salida, llevando la tensión $uC_{phase}$ de \SI{3,3}{\volt} a \SI{0}{\volt}. En el semiciclo negativo, la corriente fluye por el diodo D2, manteniendo la tensión reversa del led interno fija y menor a la máxima permitida (\SI{6}{\volt} para el EL817), \parencite{EL817}
 
-\noindent\textit{Criterios de diseño}
+\paragraph{Criterios de diseño}
 
 \begin{itemize}
     \item $I_{F(max)} = \SI{60}{\milli\ampere}$, \parencite{EL817} 
     \item $V_{F(typ)} = \SI{1.2}{\volt}$, \parencite{EL817}
 \end{itemize}
 
-\noindent\textit{Desarrollo de fórmulas}
+\paragraph{Desarrollo de fórmulas}
 
 Para poder utilizar resistencias de $\SI{0.25}{\watt}$, se calcula primero la resistencia mínima a colocar:
 
@@ -242,26 +245,26 @@ Como el microcontrolador se encuentra aislado galvánicamente del circuito de co
 
 El único fin de este circuito es de poder disparar la gate del TRIAC con la señal del microcontrolador. Solamente es necesario calcular resistencias limitadoras de corriente para el uso correcto del optoacoplador:
 
-\noindent\textit{Criterios de diseño - Emisor}
+\paragraph{Criterios de diseño - Emisor}
 
 \begin{itemize}
     \item $I_{F(max)} = \SI{60}{\milli\ampere} \implies I_F = \SI{30}{\milli\ampere}$, \parencite{MOC3021}
     \item $V_{F(typ)} = \SI{1.15}{\volt}$, \parencite{MOC3021}
 \end{itemize}
 
-\noindent\textit{Desarrollo de fórmulas - Emisor}
+\paragraph{Desarrollo de fórmulas - Emisor}
 
 \begin{equation}
 R5 = \frac{V_{UCdout} - V_{F(typ)}}{I_F} = \frac{\SI{3.3}{\volt} - \SI{1.15}{\volt}}{\SI{30}{\milli\ampere}} = \SI{71.6}{\ohm} \approx \SI{82}{\ohm}
 \end{equation}
 
-\noindent\textit{Criterios de diseño - Detector}
+\paragraph{Criterios de diseño - Detector}
 
 \begin{itemize}
     \item $I_{TSM(max)} = \SI{1}{\ampere} \implies I_{TSM} = \SI{0.8}{\ampere}$ (corriente pico repetitiva máxima), \parencite{MOC3021}
 \end{itemize}
 
-\noindent\textit{Desarrollo de fórmulas - Detector}
+\paragraph{Desarrollo de fórmulas - Detector}
 
 \begin{equation}
 R7 = \frac{\hat{V}_{ca}}{I_{TSM}} = \frac{V_{ca} \cdot \sqrt{2}}{I_{TSM}} = \frac{\SI{48}{\volt} \cdot \sqrt{2}}{\SI{0.8}{\ampere}} = \SI{84.85}{\ohm} \approx \SI{82}{\ohm}
@@ -284,7 +287,7 @@ Para poder intercambiar entre ambos modos de control, el analógico y el digital
 
 En la \cref{fig:dimmer:rele} se observa el circuito que permite conmutar el relé para cambiar entre ambos modos de control (analógico y digital). Cuando $UC_{Relay} = 0 V$, el circuito utilizado es el de control analógico, mientras que cuando $UC_{Relay} = 3,3 V$, se activa el control digital.
 
-\noindent\textit{Criterios de diseño}
+\paragraph{Criterios de diseño}
 
 \begin{itemize}
     \item $I_L = I_C = \SI{72}{\milli\ampere}$, \parencite{SRD-RELAY}
@@ -292,7 +295,7 @@ En la \cref{fig:dimmer:rele} se observa el circuito que permite conmutar el rel�
     \item $V_{BE} = \SI{0.72}{\volt}$, \parencite{BC548}
 \end{itemize}
 
-\noindent\textit{Desarrollo de fórmulas}
+\paragraph{Desarrollo de fórmulas}
 
 Se calcula un beta promedio para el transistor:
 
@@ -417,9 +420,6 @@ Para verificar el correcto funcionamiento del circuito control de fase analógic
 \end{figure}
 
 Como se observa en la \cref{fig:dimmer:simulacion_resultados}, el circuito se comporta según lo esperado, cambiando el ángulo de disparo del TRIAC con distintos valores de resistencia del potenciómetro. La simulación comienza a los \SI{40}{\milli\second} para visualizar el comportamiento del circuito en régimen permanente.
-
-\subsection{Qué puede hacer el usuario?}
-El usuario puede seleccionar entre distintos modos de control de potencia para la carga conectada, utilizando tanto el potenciómetro físico para ajuste manual (modo analógico) como la interfaz digital para establecer el ángulo de disparo del TRIAC (modo digital, medio ciclo o ciclo completo). Además, puede realizar experimentos prácticos, como observar el efecto del control de fase sobre la forma de onda de la carga con un osciloscopio, y visualizar el pulso de disparo en la compuerta del TRIAC, permitiendo comprender y verificar el funcionamiento del circuito recortador de onda.
 
 \begin{comment}
 
