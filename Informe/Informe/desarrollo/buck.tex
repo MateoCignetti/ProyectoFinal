@@ -1,5 +1,6 @@
 \section{Módulo convertidor reductor o Buck}
 
+\subsection{Base teórica}
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -109,7 +110,8 @@ Cuando el convertidor es controlado de forma digital, estos modos de conducción
     \label{fig:buck:CCM_DCM}
 \end{figure}
 
-\subsection{Modo encendido}
+\subsubsection{Funcionamiento del convertidor}
+\paragraph{Modo encendido}
 \begin{figure}[H]
     \centering
     \resizebox{0.8\textwidth}{!}{
@@ -173,7 +175,7 @@ El voltaje de caída mencionado contrarresta el voltaje de la fuente, generando 
 
 En la \cref{fig:buck:formas_onda} se observa que, mientras el interruptor conduce, la corriente a través del inductor aumenta llegando a su valor máximo. En el momento en que se apaga el interruptor la corriente comienza a disminuir.
 
-\subsection{Modo apagado}
+\paragraph{Modo apagado}
 
 Cuando el dispositivo de conmutación pasa a su estado de no conducción, la fuente es removida del circuito, haciendo que la corriente disminuya. La disminución de la corriente produce una caída de tensión en el inductor, inversa a la que había cuando se encontraba en estado de encendido, esto hace que la bobina funcione como una fuente de corriente hacia la carga por medio del campo magnético almacenado. Esta corriente solo fluye mientras la fuente se mantiene desconectada del circuito, \cref{fig:buck:modo_apagado}.
 
@@ -231,9 +233,11 @@ Una vez que el convertidor se encuentra en un modo normal de funcionamiento, la 
 % Cosas sacadas de https://en.wikipedia.org/wiki/Buck_converter
 
 \subsection{Interacción del usuario: control y verificación experimental}
-El usuario puede interactuar con el módulo mediante una interfaz intuitiva que permite seleccionar entre diferentes modos de control, como regulación automática de tensión mediante PID o ajuste manual del ciclo de trabajo PWM. Además, puede modificar la frecuencia de conmutación y alternar entre cargas resistivas e inductivas usando el relé integrado. Se dispone de diversos \textit{test points} a través de la 
+El usuario puede interactuar con el módulo mediante una interfaz intuitiva que permite seleccionar entre diferentes modos de control, como regulación automática de tensión mediante PID o ajuste manual del ciclo de trabajo PWM. Además, se puede modificar la frecuencia de conmutación y alternar entre una carga resistiva o inductiva usando el relé integrado. Se dispone de diversos \textit{test points} a través de la PCB con el fin de poder realizar pruebas en tiempo real utilizando herramientas de medición como osciloscopios, multímetros, entre otros.
 
-El sistema muestra en tiempo real la tensión de salida y facilita la realización de experimentos, como observar la estabilidad de la tensión bajo distintas condiciones de carga, analizar las corrientes en el inductor y el capacitor, y visualizar la señal de conmutación en el transistor, proporcionando así una experiencia completa para el aprendizaje y la caracterización del convertidor Buck.
+Las principales señales que se observan en el módulo son, tensión de salida, a través de la cual se puede observar la estabilidad de tensión frente a distintas condiciones de carga, analizar las corrientes en el inductor y de carga y descarga del capacitor. A su vez, se permite visualizar la señal de conmutación en el transistor, proporcionando así una experiencia completa para el aprendizaje y la caracterización del convertidor Buck.
+
+El objetivo de esto es poner a disposición del usuario la mayor cantidad de pruebas posibles como, analizar el efecto que produce una carga inductiva y resistiva sobre el PWM del microcontrolador, o el resultado en el \textit{ripple} debido al cambio de frecuencia de conmutación o al PWM. 
 
 \subsection{Cálculos para el diseño}
 
@@ -241,7 +245,7 @@ El módulo convertidor reductor se diseña para una tensión de entrada de \SI{1
 
 Los cálculos correspondientes al diseño fueron realizados siguiendo un informe de aplicación de \textit{Texas Instruments}, \parencite{ti-buck-report}.
 % Referenciar texas instruments para el cálculo
-\subsubsection{Criterios de diseño}
+\paragraph{Criterios de diseño}
 
 El módulo se calcula para una corriente de \SI{2,4}{\ampere} la cual representa un \SI{80}{\percent} de la corriente entregada por la fuente, esto es con el objetivo de mantener un margen de seguridad evitando exigir los componentes.
 
@@ -458,7 +462,7 @@ Para lograr realimentar la tensión de salida se utiliza un divisor de tensión,
 \end{figure}
 
 \subsubsection{Filtro RC para ADC}
-\textbf{Criterios de diseño - filtro pasa-bajos}
+\paragraph{Criterios de diseño - filtro pasa-bajos}
     \begin{itemize}
         \item $f_c = \SI{100}{\hertz}$
         \item $C = \SI{10}{\micro\farad}$
@@ -541,7 +545,9 @@ $t=1/f_s = \SI{52,63}{\micro\second}$
 Este valor fue probado en simulación, pero generaba una disminución drástica en el tiempo de respuesta del transistor, por ello se probará en la práctica para determinar si este cálculo es adecuado o no.
 \end{comment}
 
-\subsubsection{Medición de corriente en inductor - Unidireccional}
+\subsubsection{Mediciones de corriente}
+
+\paragraph{Medición de corriente en inductor - Unidireccional}
 
 Para facilitar la medición de corriente y poder visualizar el comportamiento de la misma en operación normal del convertidor, se utilizó un amplificador de corriente INA199B2, el cual es un amplificador operacional utilizado en su configuración diferencial, \cref{fig:buck:ina199_unidireccional} \parencite{ina199_datasheet}.
 
@@ -552,7 +558,7 @@ Para facilitar la medición de corriente y poder visualizar el comportamiento de
     \label{fig:buck:ina199_unidireccional}
 \end{figure}
 
-\textbf{Información útil para cálculos}
+\paragraph{Información útil para cálculos}
 \begin{itemize}
     \item Ganancia = \SI[per-mode=symbol]{100}{\volt\per\volt}.
     \item $V_{CC} = \SI{5}{\volt}$.
@@ -561,7 +567,7 @@ Para facilitar la medición de corriente y poder visualizar el comportamiento de
 
 Información obtenida de la hoja de datos del amplificador INA199B2, \parencite{ina199_datasheet}.
 
-\textbf{Criterio de diseño}
+\paragraph{Criterio de diseño}
 \begin{itemize}
     \item $V_{R_{shunt}} = \SIrange{20}{50}{\milli\volt}$.
     \item $R_{shunt} = \SIrange{6.8}{15}{\milli\ohm}$.
@@ -584,7 +590,7 @@ Luego se determina el valor de la resistencia \textit{shunt}, $R_{shunt}$, a par
 
 Se elige una resistencia \textit{shunt} de $\SI{10}{\milli\ohm}$ por la disipación de potencia. Además, entrega un buen rango de tensión a la salida del amplificador, $V_{out} = \SIrange{0.05}{3}{\volt}$.
 
-\subsubsection{Medición de corriente en capacitor - Bidireccional}
+\paragraph{Medición de corriente en capacitor - Bidireccional}
 
 Como la corriente en el capacitor es bidireccional, se debe realizar un arreglo de resistencias al amplificador de corriente para poder medir este tipo de corriente, \cref{fig:buck:ina199_bidireccional}. 
 
@@ -599,7 +605,7 @@ Para lograr la tensión de referencia se usa un divisor de tensión para obtener
     \label{fig:buck:ina199_bidireccional}
 \end{figure}
 
-\textbf{Criterio de diseño}
+\paragraph{Criterio de diseño}
 \begin{itemize}
     \item $V_{ref} =$ $\frac{\SI{5}{\volt} \, \SI{10}{\kilo\ohm}}{\SI{10}{\kilo\ohm} + \SI{10}{\kilo\ohm}} = \SI{2.5}{\volt}$.
 \end{itemize}
@@ -668,7 +674,7 @@ Partiendo de la \cref{eq:buck:potencia_total} se obtiene la potencia que debe di
     P_{total} = \SI{1.55}{\watt} + \SI{0.02}{\watt} = \SI{1.57}{\watt}
 \end{equation*}
 
-\subsubsection{Resistencia térmica}
+\paragraph{Resistencia térmica}
 
 Partiendo de la potencia total, es requisito determinar cuánto es el aumento de la temperatura de juntura debido a la potencia disipada.
 \begin{align} \label{eq:buck:temperatura_juntura_rise}
