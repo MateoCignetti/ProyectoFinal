@@ -67,10 +67,17 @@ static adc_oneshot_unit_handle_t adc1_unit_handle = NULL;   // ADC handle. Used 
 static adc_cali_handle_t adc1_cali_handle = NULL;  // ADC calibration handle.
 static gptimer_handle_t gptimer_handle = NULL; // Timer handle used for PID control and to make the sampling time consistent.
 static TaskHandle_t xTaskControlUpdate_handle = NULL; // PID task handle. Used to notify the PID task when the timer is triggered.
+static TaskHandle_t xTaskUIUpdate_handle = NULL; // UI update task handle for cached values
 static SemaphoreHandle_t xControlModeMutex = NULL; // Mutex to protect access to the control mode variable.
 
 // Shutdown flags for graceful task termination
 static volatile bool shutdown_pid_task = false;
+static volatile bool shutdown_ui_task = false;
+
+// Cached UI values to avoid blocking PID loop
+static volatile uint32_t cached_fixed_pwm_value = 0;
+static volatile uint32_t cached_setpoint_v = 0;
+static volatile uint32_t cached_pwm_frequency = PWM_FREQUENCY;
 
 /*--------------------------------*/
 
@@ -123,6 +130,7 @@ long map(long x, long in_min, long in_max, long out_min, long out_max);
 /*-------------------------------------*/
 
 /*------- TASKS FUNCTION PROTOTYPES -------*/
+static void vTaskUIUpdate(void *arg); // UI update task function to cache values
 static void vTaskControlUpdate(void *arg); // PID task function
 /*----------------------------------------*/
 
@@ -139,6 +147,8 @@ const module_t buck_module = {
 void start_buck_module(void){
     // Initialize shutdown flags
     shutdown_pid_task = false;
+    shutdown_ui_task = false;
+    
     start_buck_interface();
 
     adc_init_and_config();
@@ -370,15 +380,27 @@ static void create_module_tasks(void){
         ESP_LOGE(MODULE_TAG, "Failed to create control mode mutex");
         return;
     }
-    // Create PID task pinned to CPU 1 to avoid conflicts with LVGL (CPU 0)
-    // This improves real-time performance and prevents watchdog timeouts
-    BaseType_t xReturned = xTaskCreatePinnedToCore(vTaskControlUpdate,
+    
+    // Create UI update task (lower priority, updates cached values)
+    BaseType_t xReturnedUI = xTaskCreate(vTaskUIUpdate,
+                                        "vTaskUIUpdate", 
+                                        configMINIMAL_STACK_SIZE * 2, 
+                                        NULL, 
+                                        tskIDLE_PRIORITY + 1,  // Priority 1 (lower than PID)
+                                        &xTaskUIUpdate_handle
+                                        );
+    
+    if (xReturnedUI != pdPASS) {
+        ESP_LOGE(MODULE_TAG, "Failed to create UI Update Task");
+        return;
+    }
+    
+    BaseType_t xReturned = xTaskCreate(vTaskControlUpdate,
                                         "vTaskControlUpdate", 
                                         configMINIMAL_STACK_SIZE * 4, 
                                         NULL, 
                                         tskIDLE_PRIORITY + 2,  // Priority 2 (same as LVGL)
-                                        &xTaskControlUpdate_handle,
-                                        1  // Pin to CPU 1
+                                        &xTaskControlUpdate_handle
                                         ); // Create a task to run the PID control
     
     if (xReturned != pdPASS) {
@@ -405,9 +427,52 @@ static void delete_module_tasks(void){
         xTaskControlUpdate_handle = NULL;
     }
     
+    if (xTaskUIUpdate_handle != NULL) {
+        // Signal UI task to shutdown
+        shutdown_ui_task = true;
+
+        eTaskState task_state = eTaskGetState(xTaskUIUpdate_handle);
+        while (task_state != eDeleted) { 
+            vTaskDelay(pdMS_TO_TICKS(10));
+            task_state = eTaskGetState(xTaskUIUpdate_handle);
+        }
+        ESP_LOGI(MODULE_TAG, "UIUpdate task exited gracefully");
+
+        xTaskUIUpdate_handle = NULL;
+    }
+    
     if (xControlModeMutex != NULL) {
         vSemaphoreDelete(xControlModeMutex);
         xControlModeMutex = NULL;
+    }
+}
+
+/**
+ * @brief UI update task that runs at lower frequency to cache UI values.
+ * This prevents the high-frequency PID task from being blocked by LVGL lock contention.
+ * 
+ * @param arg 
+ */
+static void vTaskUIUpdate(void *arg){
+    TickType_t xLastWakeTime = xTaskGetTickCount();
+    const TickType_t xUpdatePeriod = pdMS_TO_TICKS(50); // Update every 50ms
+    
+    while(true){
+        // Check for shutdown
+        if (shutdown_ui_task) {
+            ESP_LOGI(MODULE_TAG, "UI update task shutting down gracefully");
+            vTaskDelete(NULL);
+            return;
+        }
+        
+        // Acquire lock and update all cached values at once
+        _lock_acquire(&lvgl_api_lock);
+        cached_fixed_pwm_value = lv_slider_get_value(ui_SliderDuty);
+        cached_setpoint_v = lv_slider_get_value(ui_SliderSP);
+        cached_pwm_frequency = lv_slider_get_value(ui_SliderFreq1) * 1000;
+        _lock_release(&lvgl_api_lock);
+        
+        vTaskDelayUntil(&xLastWakeTime, xUpdatePeriod);
     }
 }
 
@@ -446,9 +511,8 @@ static void vTaskControlUpdate(void *arg){
         switch(control_mode){
             case CONTROL_MODE_FIXED_PWM:
             
-                _lock_acquire(&lvgl_api_lock);
-                fixed_pwm_value = lv_slider_get_value(ui_SliderDuty);
-                _lock_release(&lvgl_api_lock);
+                // Use cached value - no lock needed!
+                fixed_pwm_value = cached_fixed_pwm_value;
                 pwm_output_bits = map(fixed_pwm_value, 0, 100, 0, MAX_PWM_DUTY_CYCLE);
                 break;
             case CONTROL_MODE_PID:
@@ -460,10 +524,8 @@ static void vTaskControlUpdate(void *arg){
                 // but the LEDC is configured for 11 bits resolution.
             /*--------------------------------------------------------------------------------*/
             /*--------------------------------------------------------------------------------*/
-                // Use cached setpoint value
-                _lock_acquire(&lvgl_api_lock);
-                setpoint_v = lv_slider_get_value(ui_SliderSP);
-                _lock_release(&lvgl_api_lock);
+                // Use cached setpoint value - no lock needed!
+                setpoint_v = cached_setpoint_v;
 
                 adc_oneshot_get_calibrated_result(adc1_unit_handle, adc1_cali_handle, ADC_CHANNEL_7, &feedback_mv);  // Return mV value.
                 feedback_v = feedback_mv / 1000.0; // Convert to volts  
@@ -507,9 +569,8 @@ static void vTaskControlUpdate(void *arg){
         
         ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, LEDC_MODULE_BUCK_CHANNEL, pwm_output_bits, 0);  // Set new duty cycle based on PID output
 
-        _lock_acquire(&lvgl_api_lock);
-        pwm_frequency = lv_slider_get_value(ui_SliderFreq1) * 1000;
-        _lock_release(&lvgl_api_lock);
+        // Use cached frequency value - no lock needed!
+        pwm_frequency = cached_pwm_frequency;
         
         ledc_set_freq(LEDC_LOW_SPEED_MODE, LEDC_TIMER_0, pwm_frequency);
 

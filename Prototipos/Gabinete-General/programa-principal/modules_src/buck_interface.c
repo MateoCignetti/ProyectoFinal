@@ -118,6 +118,7 @@ static void create_groups_for_ui(void){
     lv_group_add_obj(groups[SCREEN_1], ui_freqScreen);
     lv_group_add_obj(groups[SCREEN_1], ui_controlScreen);
     lv_group_add_obj(groups[SCREEN_1], ui_loadScreen);
+    lv_group_focus_obj(ui_freqScreen);
 
     lv_obj_add_event_cb(ui_freqScreen, ui_event_freqScreen, LV_EVENT_CLICKED, NULL);
     lv_obj_add_event_cb(ui_controlScreen, ui_event_controlScreen, LV_EVENT_CLICKED, NULL);
@@ -127,6 +128,7 @@ static void create_groups_for_ui(void){
     lv_group_add_obj(groups[SCREEN_2], ui_ButtonReturn1);
     lv_group_add_obj(groups[SCREEN_2], ui_SliderFreq1);
     lv_group_add_obj(groups[SCREEN_2], ui_ButtonReturnDefault1);
+    lv_group_focus_obj(ui_ButtonReturn1);
 
     lv_obj_add_event_cb(ui_ButtonReturn1, ui_event_ButtonReturn1, LV_EVENT_CLICKED, NULL);
     //lv_obj_add_event_cb(ui_SliderFreq1, ui_event_SliderFreq1, LV_EVENT_VALUE_CHANGED, NULL);
@@ -136,6 +138,7 @@ static void create_groups_for_ui(void){
     lv_group_add_obj(groups[SCREEN_3], ui_ButtonReturn2);
     lv_group_add_obj(groups[SCREEN_3], ui_ButtonPWM);
     lv_group_add_obj(groups[SCREEN_3], ui_ButtonPID);
+    lv_group_focus_obj(ui_ButtonReturn2);
 
     lv_obj_add_event_cb(ui_ButtonReturn2, ui_event_ButtonReturn2, LV_EVENT_CLICKED, NULL);
     lv_obj_add_event_cb(ui_ButtonPWM, ui_event_ButtonPWM, LV_EVENT_CLICKED, NULL);
@@ -145,6 +148,7 @@ static void create_groups_for_ui(void){
     lv_group_add_obj(groups[SCREEN_4], ui_ButtonReturn3);
     lv_group_add_obj(groups[SCREEN_4], ui_SliderDuty);
     lv_group_add_obj(groups[SCREEN_4], ui_ButtonReturnDefault2);
+    lv_group_focus_obj(ui_ButtonReturn3);
 
     lv_obj_add_event_cb(ui_ButtonReturn3, ui_event_ButtonReturn3, LV_EVENT_CLICKED, NULL);
     //lv_obj_add_event_cb(ui_SliderDuty, ui_event_SliderDuty, LV_EVENT_VALUE_CHANGED, NULL);
@@ -154,7 +158,7 @@ static void create_groups_for_ui(void){
     lv_group_add_obj(groups[SCREEN_5], ui_ButtonReturn4);
     lv_group_add_obj(groups[SCREEN_5], ui_SliderSP);
     lv_group_add_obj(groups[SCREEN_5], ui_ButtonReturnDefault3);
-    lv_group_focus_obj(ui_freqScreen);
+    lv_group_focus_obj(ui_ButtonReturn4);
     lv_obj_add_event_cb(ui_ButtonReturn4, ui_event_ButtonReturn4, LV_EVENT_CLICKED, NULL);
     //lv_obj_add_event_cb(ui_SliderSP, ui_event_SliderSP, LV_EVENT_VALUE_CHANGED, NULL);
     lv_obj_add_event_cb(ui_ButtonReturnDefault3, ui_event_ButtonReturnDefault3, LV_EVENT_CLICKED, NULL);
@@ -163,6 +167,7 @@ static void create_groups_for_ui(void){
     lv_group_add_obj(groups[SCREEN_6], ui_Button5);
     lv_group_add_obj(groups[SCREEN_6], ui_Button6);
     lv_group_add_obj(groups[SCREEN_6], ui_ButtonReturn5);
+    lv_group_focus_obj(ui_ButtonReturn5);
 
     lv_obj_add_event_cb(ui_Button5, ui_event_Button5, LV_EVENT_PRESSED, NULL);
     lv_obj_add_event_cb(ui_Button6, ui_event_Button6, LV_EVENT_PRESSED, NULL);
