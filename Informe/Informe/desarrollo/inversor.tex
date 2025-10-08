@@ -16,7 +16,9 @@ Para operar correctamente el inversor, se deben cumplir las siguientes reglas:
 
 \subsection{Interacción del usuario: control y verificación experimental}
 
-El módulo inversor de onda cuadrada permite al usuario ajustar la frecuencia de la señal de salida mediante un potenciómetro integrado en la placa, sin necesidad de interacción con la pantalla central. Para experimentar, se recomienda utilizar un osciloscopio para visualizar la onda cuadrada generada por el temporizador 555, que oscila entre \SIrange{0}{12}{V}. Además, al medir la tensión en la carga, se observará una onda cuadrada alternando entre valores positivos y negativos (aproximadamente +\SI{4.5}{V} y -\SI{4.5}{V}). Girando el potenciómetro, el usuario puede modificar la frecuencia de la señal y observar los cambios en tiempo real.
+El módulo inversor de onda cuadrada está diseñado para que el usuario pueda ajustar la frecuencia de la señal de salida mediante un potenciómetro ubicado en la propia placa, sin requerir interacción con la pantalla central del sistema. Para la verificación experimental, se recomienda utilizar un osciloscopio para visualizar la onda cuadrada generada por el temporizador 555, la cual oscila entre \SIrange{0}{12}{V}. 
+
+Al medir la tensión en la carga, se observará una onda cuadrada alternando entre valores positivos y negativos (aproximadamente \SIrange{+4.5}{-4.5}{V}), producto de la topología de medio puente. Girando el potenciómetro, el usuario podrá modificar la frecuencia de la señal y observar los cambios en tiempo real en el osciloscopio, permitiendo así la experimentación y ajuste fino del funcionamiento del inversor.
 
 \subsection{Descripción de funcionamiento de un oscilador 555}
 
