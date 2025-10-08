@@ -69,20 +69,37 @@ void stop_buck_interface(){
     if (xTaskUpdateGroups_handle != NULL) {
         shutdown_requested = true;
         
-        // Wait for task to finish (with timeout)
-        // The task should exit on its next iteration
-        vTaskDelay(pdMS_TO_TICKS(150)); // Wait slightly longer than task period (100ms)
+        // Wait for task to self-delete with timeout protection
+        eTaskState task_state = eTaskGetState(xTaskUpdateGroups_handle);
         
-        // Force delete if still running (safety measure)
-        vTaskDelete(xTaskUpdateGroups_handle);
+        while (task_state != eDeleted) { 
+            vTaskDelay(pdMS_TO_TICKS(10));
+            task_state = eTaskGetState(xTaskUpdateGroups_handle);
+        } 
+        ESP_LOGI(TAG, "UpdateGroups task exited gracefully");
+        
         xTaskUpdateGroups_handle = NULL;
     }
     
-    // Clean up LVGL objects under lock protection
     _lock_acquire(&lvgl_api_lock);
+    
+    // CRITICAL FIX: Create and load a blank screen BEFORE destroying UI
+    // This gives LVGL something safe to render during cleanup and after
+    lv_obj_t *blank_screen = lv_obj_create(NULL);
+    lv_screen_load(blank_screen);
+    
+    // Destroy groups (removes references to UI objects)
     destroy_groups_for_ui();
+    
+    // NOW safe to destroy the old UI
     ui_destroy();
+    
+    // DON'T delete the blank screen - leave it loaded for LVGL to render
+    // It will be cleaned up when the next module loads its UI or on system shutdown
+    
     _lock_release(&lvgl_api_lock);
+    
+    ESP_LOGI(TAG, "Buck interface stopped, blank screen loaded");
 }
 
 /**

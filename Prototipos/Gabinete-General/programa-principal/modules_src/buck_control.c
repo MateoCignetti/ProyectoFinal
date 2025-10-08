@@ -66,13 +66,11 @@ extern _lock_t lvgl_api_lock;
 static adc_oneshot_unit_handle_t adc1_unit_handle = NULL;   // ADC handle. Used to save the ADC configurations.
 static adc_cali_handle_t adc1_cali_handle = NULL;  // ADC calibration handle.
 static gptimer_handle_t gptimer_handle = NULL; // Timer handle used for PID control and to make the sampling time consistent.
-static TaskHandle_t xTaskPID = NULL; // PID task handle. Used to notify the PID task when the timer is triggered.
-static TaskHandle_t xTaskUpdatePwmFrequency = NULL; // Task handle to update the PWM frequency based on the slider value.
+static TaskHandle_t xTaskControlUpdate_handle = NULL; // PID task handle. Used to notify the PID task when the timer is triggered.
 static SemaphoreHandle_t xControlModeMutex = NULL; // Mutex to protect access to the control mode variable.
 
 // Shutdown flags for graceful task termination
 static volatile bool shutdown_pid_task = false;
-static volatile bool shutdown_pwm_freq_task = false;
 
 /*--------------------------------*/
 
@@ -81,17 +79,6 @@ const char* MODULE_TAG = "Buck Control"; // Module name for logging
 
 volatile control_mode_t control_mode = CONTROL_MODE_IDLE;
 /*-------------------------------------------*/
-
-/*------------ CONTROL VARIABLES -----------*/
-uint32_t setpoint_v = 0; // Setpoint voltage in volts
-int feedback_mv = 0;    // Feedback voltage in millivolts
-float feedback_v = 0.0;   // Feedback voltage in volts. It is used to compare with the setpoint voltage
-float error = 0.0;  // Error between setpoint and feedback voltage.
-
-// Cached UI slider values (updated periodically to avoid blocking PID loop)
-static volatile uint32_t cached_setpoint_v = 0;
-static volatile int cached_fixed_pwm_value = 0;
-static volatile int cached_pwm_frequency = PWM_FREQUENCY;
 
 //PID variables
 // PID constants and variables
@@ -112,17 +99,6 @@ const float b_coefficients[3] = {
     -2 * Kp - 2 * Kd * Nc + Ki * Ts + Kp * Nc * Ts,
     Kp + Kd * Nc - Ki * Ts - Kp * Nc * Ts + Ki * Nc * Ts * Ts
 };
-
-// PID input and output arrays
-float input_array[3] = {0, 0, 0};
-float output_array[3] = {0, 0, 0}; 
-int pwm_output_bits = 0;
-int fixed_pwm_value = 0;
-
-/*------------------------------------------*/
-
-/*------------- PWM FREQUENCY --------------*/
-static int set_pwm_frequency = 0;
 /*------------------------------------------*/
 
 /*-------- FUNCTION PROTOTYPES --------*/
@@ -147,8 +123,7 @@ long map(long x, long in_min, long in_max, long out_min, long out_max);
 /*-------------------------------------*/
 
 /*------- TASKS FUNCTION PROTOTYPES -------*/
-static void vTaskPid(void *arg); // PID task function
-static void vTaskUpdatePwmFrequency(void *pvParameters);
+static void vTaskControlUpdate(void *arg); // PID task function
 /*----------------------------------------*/
 
 /* ----------- MODULE DECLARATION ----------- */
@@ -164,7 +139,6 @@ const module_t buck_module = {
 void start_buck_module(void){
     // Initialize shutdown flags
     shutdown_pid_task = false;
-    shutdown_pwm_freq_task = false;
     start_buck_interface();
 
     adc_init_and_config();
@@ -176,19 +150,20 @@ void start_buck_module(void){
 }
 
 void stop_buck_module(void){
-    // Signal tasks to shutdown first
-    shutdown_pid_task = true;
-    shutdown_pwm_freq_task = true;
-    
-    // Now stop hardware and delete tasks
+    // Stop timer BEFORE deleting tasks (important order)
     delete_timer();
+
+    // Now safe to delete tasks
     delete_module_tasks();
+    
+    // Clean up hardware
     delete_adc();
     delete_ledc();
     delete_gpio();
 
-     // Stop UI interface first (cleans up UI objects)
+    ESP_LOGI(MODULE_TAG, "Before stop buck interface.");
     stop_buck_interface();
+    ESP_LOGI(MODULE_TAG, "After stop buck interface.");
 }   
 
 // Function to safely set control mode
@@ -294,6 +269,7 @@ static void ledc_config(void){
 }
 
 static void delete_ledc(void){
+    ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, LEDC_MODULE_BUCK_CHANNEL, 0, 0);
     ESP_ERROR_CHECK(ledc_stop(LEDC_LOW_SPEED_MODE, LEDC_MODULE_BUCK_CHANNEL, 0));
     ledc_fade_func_uninstall();
     gpio_reset_pin(LEDC_MODULE_BUCK_PIN); // Reset the LEDC pin to its default state
@@ -335,7 +311,7 @@ static bool gptimer_on_alarm_callback(gptimer_handle_t timer, const gptimer_alar
     // Notify the PID task that the timer alarm has been triggered.
     // NOTE: FreeRTOS task notification is used because it's more efficient and lightweight
     // compared to semaphores or queues. The limitation is that only one task can be notified.
-    vTaskNotifyGiveFromISR(xTaskPID, &xHigherPriorityTaskWoken);
+    vTaskNotifyGiveFromISR(xTaskControlUpdate_handle, &xHigherPriorityTaskWoken);
     
     return xHigherPriorityTaskWoken == pdTRUE; // Return true if a higher priority task was woken up
 }
@@ -396,12 +372,12 @@ static void create_module_tasks(void){
     }
     // Create PID task pinned to CPU 1 to avoid conflicts with LVGL (CPU 0)
     // This improves real-time performance and prevents watchdog timeouts
-    BaseType_t xReturned = xTaskCreatePinnedToCore(vTaskPid,
-                                        "vTaskPid", 
+    BaseType_t xReturned = xTaskCreatePinnedToCore(vTaskControlUpdate,
+                                        "vTaskControlUpdate", 
                                         configMINIMAL_STACK_SIZE * 4, 
                                         NULL, 
                                         tskIDLE_PRIORITY + 2,  // Priority 2 (same as LVGL)
-                                        &xTaskPID,
+                                        &xTaskControlUpdate_handle,
                                         1  // Pin to CPU 1
                                         ); // Create a task to run the PID control
     
@@ -409,71 +385,29 @@ static void create_module_tasks(void){
         ESP_LOGE(MODULE_TAG, "Failed to create PID Task");
         return;
     }
-
-    xReturned = xTaskCreate(vTaskUpdatePwmFrequency,
-                "Update PWM Frequency",
-                configMINIMAL_STACK_SIZE * 4,
-                NULL,
-                tskIDLE_PRIORITY + 1,
-                &xTaskUpdatePwmFrequency
-                );
-    
-    if (xReturned != pdPASS) {
-        ESP_LOGE(MODULE_TAG, "Failed to create Update PWM Frequency Task");
-        return;
-    }
 }
 
 static void delete_module_tasks(void){
-    if (xTaskPID != NULL) {
-        vTaskDelete(xTaskPID);
-        xTaskPID = NULL;
+
+    if (xTaskControlUpdate_handle != NULL) {
+        // Signal task to shutdown
+        shutdown_pid_task = true;
+
+        eTaskState task_state = eTaskGetState(xTaskControlUpdate_handle);
+        while (task_state != eDeleted) { 
+            vTaskDelay(pdMS_TO_TICKS(10));
+            // Update task state
+            task_state = eTaskGetState(xTaskControlUpdate_handle);
+
+        }
+        ESP_LOGI(MODULE_TAG, "ControlUpdate task exited gracefully");
+
+        xTaskControlUpdate_handle = NULL;
     }
-    if (xTaskUpdatePwmFrequency != NULL) {
-        vTaskDelete(xTaskUpdatePwmFrequency);
-        xTaskUpdatePwmFrequency = NULL;
-    }
+    
     if (xControlModeMutex != NULL) {
         vSemaphoreDelete(xControlModeMutex);
         xControlModeMutex = NULL;
-    }
-}
-
-static void vTaskUpdatePwmFrequency(void *pvParameters){
-    int last_pwm_frequency = 0;
-    TickType_t xLastWakeTime;
-    const TickType_t xPeriod = pdMS_TO_TICKS(200); // 200 ms period - update UI values periodically
-    xLastWakeTime = xTaskGetTickCount();
-    
-    while (true){
-        // Check for shutdown request
-        if (shutdown_pwm_freq_task) {
-            ESP_LOGI(MODULE_TAG, "PWM Frequency task shutting down gracefully");
-            vTaskDelete(NULL);
-            return;
-        }
-        
-        // Safely access ALL UI sliders with LVGL lock and NULL check
-        // This updates cached values for the PID task to use
-        _lock_acquire(&lvgl_api_lock);
-        if (ui_SliderFreq1 != NULL) {
-            cached_pwm_frequency = lv_slider_get_value(ui_SliderFreq1) * 1000;
-        }
-        if (ui_SliderDuty != NULL) {
-            cached_fixed_pwm_value = lv_slider_get_value(ui_SliderDuty);
-        }
-        if (ui_SliderSP != NULL) {
-            cached_setpoint_v = lv_slider_get_value(ui_SliderSP);
-        }
-        _lock_release(&lvgl_api_lock);
-        
-        // Update PWM frequency if changed
-        last_pwm_frequency = ledc_get_freq(LEDC_LOW_SPEED_MODE, LEDC_TIMER_0);
-        if (cached_pwm_frequency != last_pwm_frequency){
-            ledc_set_freq(LEDC_LOW_SPEED_MODE, LEDC_TIMER_0, cached_pwm_frequency);
-        }
-        
-        vTaskDelayUntil( &xLastWakeTime, xPeriod );
     }
 }
 
@@ -483,7 +417,15 @@ static void vTaskUpdatePwmFrequency(void *pvParameters){
  * 
  * @param arg 
  */
-static void vTaskPid(void *arg){
+static void vTaskControlUpdate(void *arg){
+    uint32_t fixed_pwm_value = 0;
+    uint32_t pwm_frequency = PWM_FREQUENCY;
+    uint32_t setpoint_v = 0;
+
+    float feedback_v = 0.0;   // Feedback voltage in volts. It is
+    int feedback_mv = 0;    // Feedback voltage in millivolts
+    int pwm_output_bits = 0; // PWM duty cycle value to be set
+    
     while(true){
         // Check for shutdown with timeout to avoid blocking forever
         if (shutdown_pid_task) {
@@ -503,19 +445,26 @@ static void vTaskPid(void *arg){
         
         switch(control_mode){
             case CONTROL_MODE_FIXED_PWM:
-                // Use cached value - no LVGL lock needed in time-critical loop
-                fixed_pwm_value = cached_fixed_pwm_value;
+            
+                _lock_acquire(&lvgl_api_lock);
+                fixed_pwm_value = lv_slider_get_value(ui_SliderDuty);
+                _lock_release(&lvgl_api_lock);
                 pwm_output_bits = map(fixed_pwm_value, 0, 100, 0, MAX_PWM_DUTY_CYCLE);
                 break;
             case CONTROL_MODE_PID:
+                static float input_array[3] = {0, 0, 0};
+                static float output_array[3] = {0, 0, 0}; 
             /*--------------------------------------------------------------------------------*/
             /*--------------------------------------------------------------------------------*/
                 // WARNING: This section is based on 12 Bit duty cycle resolution.
                 // but the LEDC is configured for 11 bits resolution.
             /*--------------------------------------------------------------------------------*/
             /*--------------------------------------------------------------------------------*/
-                // Use cached setpoint value - no LVGL lock needed in time-critical loop
-                setpoint_v = cached_setpoint_v;
+                // Use cached setpoint value
+                _lock_acquire(&lvgl_api_lock);
+                setpoint_v = lv_slider_get_value(ui_SliderSP);
+                _lock_release(&lvgl_api_lock);
+
                 adc_oneshot_get_calibrated_result(adc1_unit_handle, adc1_cali_handle, ADC_CHANNEL_7, &feedback_mv);  // Return mV value.
                 feedback_v = feedback_mv / 1000.0; // Convert to volts  
                 
@@ -531,9 +480,6 @@ static void vTaskPid(void *arg){
                 } else if (feedback_v > MAX_OUTPUT_VOLTAGE) {
                     feedback_v = MAX_OUTPUT_VOLTAGE; // Limit feedback voltage to 12V
                 }    
-
-                // Calculate error
-                error = setpoint_v - feedback_v;
                 
                 // PID control logic here
                 input_array[0] = setpoint_v - feedback_v;
@@ -541,24 +487,31 @@ static void vTaskPid(void *arg){
                 output_array[0] = b_coefficients[0] * input_array[0] + b_coefficients[1] * input_array[1] + b_coefficients[2] * input_array[2] - a_coefficients[1] * output_array[1] - a_coefficients[2] * output_array[2];
 
                 pwm_output_bits = (int) (output_array[0] * MAX_PWM_DUTY_CYCLE / MAX_OUTPUT_VOLTAGE);
+
+                if(pwm_output_bits > MAX_PWM_DUTY_CYCLE){
+                    pwm_output_bits = MAX_PWM_DUTY_CYCLE;
+                } else if(pwm_output_bits < 0) {
+                    pwm_output_bits = 0;
+                }
+                input_array[2] = input_array[1];
+                input_array[1] = input_array[0];
+                output_array[2] = output_array[1];
+                output_array[1] = output_array[0];
                 break;
             case CONTROL_MODE_IDLE:
-            default:
                 pwm_output_bits = 0;
                 break;
+            default:
+                break;
         }
-
-        if(pwm_output_bits > MAX_PWM_DUTY_CYCLE){
-            pwm_output_bits = MAX_PWM_DUTY_CYCLE;
-        } else if(pwm_output_bits < 0) {
-            pwm_output_bits = 0;
-        }
-
+        
         ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, LEDC_MODULE_BUCK_CHANNEL, pwm_output_bits, 0);  // Set new duty cycle based on PID output
-        input_array[2] = input_array[1];
-        input_array[1] = input_array[0];
-        output_array[2] = output_array[1];
-        output_array[1] = output_array[0];
+
+        _lock_acquire(&lvgl_api_lock);
+        pwm_frequency = lv_slider_get_value(ui_SliderFreq1) * 1000;
+        _lock_release(&lvgl_api_lock);
+        
+        ledc_set_freq(LEDC_LOW_SPEED_MODE, LEDC_TIMER_0, pwm_frequency);
 
         #if PRINT_LOGS
             static TickType_t last_print = 0;

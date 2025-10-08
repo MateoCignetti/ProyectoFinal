@@ -56,6 +56,7 @@ static QueueHandle_t encoder_queue = NULL;  // Queue to handle rotary encoder ev
 static esp_lcd_panel_io_handle_t io_handle = NULL; // LCD panel IO handle
 static esp_lcd_panel_handle_t panel_handle = NULL; // LCD panel handle
 static esp_timer_handle_t lvgl_tick_timer = NULL;   // Timer handle for LVGL tick
+static TaskHandle_t lvgl_port_task_handle = NULL;   // Task handle for LVGL port task
 /*--------------------------------*/
 
 /*----------- ENCODER VARIABLES -----------*/
@@ -179,7 +180,7 @@ void setup_user_interface(){
                 4096,
                 NULL,
                 2,
-                NULL
+                &lvgl_port_task_handle
                 );
     
 
