@@ -4,7 +4,7 @@
 #include "esp_log.h"
 #include "lvgl.h"
 #include "module_manager.h"
-#include "ui.h"
+#include "buck_ui.h"
 #include "ui_config.h"
 
 static const char* TAG = "Buck Interface";
@@ -50,12 +50,13 @@ void start_buck_interface(){
     // Initialize shutdown flag
     shutdown_requested = false;
     
-    xTaskCreate(vTaskUpdateGroups,
+    xTaskCreatePinnedToCore(vTaskUpdateGroups,
             "UpdateGroups",
             configMINIMAL_STACK_SIZE * 4,
             NULL,
             tskIDLE_PRIORITY + 1,
-            &xTaskUpdateGroups_handle
+            &xTaskUpdateGroups_handle,
+            0
             );
 
     _lock_acquire(&lvgl_api_lock);

@@ -16,7 +16,7 @@
 #include <math.h>
 #include <sys/lock.h>
 #include "esp_log.h"
-#include "ui.h"
+#include "buck_ui.h"
 
 // FREERTOS
 #include "freertos/FreeRTOS.h"
@@ -382,12 +382,13 @@ static void create_module_tasks(void){
     }
     
     // Create UI update task (lower priority, updates cached values)
-    BaseType_t xReturnedUI = xTaskCreate(vTaskUIUpdate,
+    BaseType_t xReturnedUI = xTaskCreatePinnedToCore(vTaskUIUpdate,
                                         "vTaskUIUpdate", 
                                         configMINIMAL_STACK_SIZE * 2, 
                                         NULL, 
                                         tskIDLE_PRIORITY + 1,  // Priority 1 (lower than PID)
-                                        &xTaskUIUpdate_handle
+                                        &xTaskUIUpdate_handle,
+                                        1
                                         );
     
     if (xReturnedUI != pdPASS) {
@@ -395,12 +396,13 @@ static void create_module_tasks(void){
         return;
     }
     
-    BaseType_t xReturned = xTaskCreate(vTaskControlUpdate,
+    BaseType_t xReturned = xTaskCreatePinnedToCore(vTaskControlUpdate,
                                         "vTaskControlUpdate", 
                                         configMINIMAL_STACK_SIZE * 4, 
                                         NULL, 
                                         tskIDLE_PRIORITY + 2,  // Priority 2 (same as LVGL)
-                                        &xTaskControlUpdate_handle
+                                        &xTaskControlUpdate_handle,
+                                        1
                                         ); // Create a task to run the PID control
     
     if (xReturned != pdPASS) {
@@ -450,12 +452,13 @@ static void delete_module_tasks(void){
 /**
  * @brief UI update task that runs at lower frequency to cache UI values.
  * This prevents the high-frequency PID task from being blocked by LVGL lock contention.
+ * Uses try-lock to avoid blocking when LVGL is busy processing encoder input.
  * 
  * @param arg 
  */
 static void vTaskUIUpdate(void *arg){
     TickType_t xLastWakeTime = xTaskGetTickCount();
-    const TickType_t xUpdatePeriod = pdMS_TO_TICKS(50); // Update every 50ms
+    const TickType_t xUpdatePeriod = pdMS_TO_TICKS(100); // Update every 100ms
     
     while(true){
         // Check for shutdown
@@ -465,12 +468,14 @@ static void vTaskUIUpdate(void *arg){
             return;
         }
         
-        // Acquire lock and update all cached values at once
-        _lock_acquire(&lvgl_api_lock);
-        cached_fixed_pwm_value = lv_slider_get_value(ui_SliderDuty);
-        cached_setpoint_v = lv_slider_get_value(ui_SliderSP);
-        cached_pwm_frequency = lv_slider_get_value(ui_SliderFreq1) * 1000;
-        _lock_release(&lvgl_api_lock);
+        // Try to acquire lock without blocking - skip this update if LVGL is busy
+        if (_lock_try_acquire(&lvgl_api_lock) == 0) {
+            cached_fixed_pwm_value = lv_slider_get_value(ui_SliderDuty);
+            cached_setpoint_v = lv_slider_get_value(ui_SliderSP);
+            cached_pwm_frequency = lv_slider_get_value(ui_SliderFreq1) * 1000;
+            _lock_release(&lvgl_api_lock);
+        }
+        // If lock is busy, skip this update cycle - cached values remain valid
         
         vTaskDelayUntil(&xLastWakeTime, xUpdatePeriod);
     }

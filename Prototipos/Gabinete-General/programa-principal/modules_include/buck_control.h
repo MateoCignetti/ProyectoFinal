@@ -3,6 +3,8 @@
 
 #include "module_manager.h"
 
+#define PIN_NUM_RELAY PIN_S8 // Pin to control the relay for load switching
+
 // Control modes for the buck module
 typedef enum {
     CONTROL_MODE_IDLE,

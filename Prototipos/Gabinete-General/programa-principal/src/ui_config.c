@@ -67,6 +67,7 @@ lv_indev_t *indev_encoder = NULL; // Input device for LVGL (encoder)
 /* --- VARIABLES TO NAVIGATE IN LVGL --- */
 static int32_t accumulated_diff = 0;    // Accumulated difference from encoder turns
 static lv_indev_state_t button_state = LV_INDEV_STATE_RELEASED; // Current button state
+static bool button_event_pending = false; // Flag to track if button event needs to be reported
 /*--------------------------------------*/
 
 // Mutex for LVGL API calls (exported for use by modules)
@@ -175,12 +176,13 @@ void setup_user_interface(){
     lv_indev_set_type(indev_encoder, LV_INDEV_TYPE_ENCODER);    // Set input device type to encoder
     lv_indev_set_read_cb(indev_encoder, read_encoder_callback); // Set read callback for the encoder
 
-    xTaskCreate(lvgl_port_task,
+    xTaskCreatePinnedToCore(lvgl_port_task,
                 "LVGL",
                 4096,
                 NULL,
                 2,
-                &lvgl_port_task_handle
+                &lvgl_port_task_handle,
+                0
                 );
     
 
@@ -252,12 +254,23 @@ static void lvgl_port_task(void *arg){
 
 /**
  * @brief Callback to read encoder data
+ * This function processes encoder events and updates LVGL input data.
+ * Button state changes are only reported once per actual event to prevent
+ * double-triggering during screen refreshes.
+ * Limits event processing to prevent holding LVGL lock too long.
  * 
  * @param indev_drv 
  * @param data 
  */
 static void read_encoder_callback(lv_indev_t *indev_drv, lv_indev_data_t *data){
-    if (xQueueReceive(encoder_queue, &encoder_event, 0) == pdTRUE){
+    // Limit events processed per callback to reduce lock hold time
+    const int MAX_EVENTS_PER_CALL = 5;
+    int events_processed = 0;
+    
+    // Process pending events in the queue (up to limit)
+    while (events_processed < MAX_EVENTS_PER_CALL && 
+           xQueueReceive(encoder_queue, &encoder_event, 0) == pdTRUE){
+        events_processed++;
         //printf("Event received: ");
         switch (encoder_event.type) {
             case RE_ET_CHANGED:
@@ -267,10 +280,12 @@ static void read_encoder_callback(lv_indev_t *indev_drv, lv_indev_data_t *data){
             case RE_ET_BTN_PRESSED:
                 //printf("Button pressed\n");
                 button_state = LV_INDEV_STATE_PRESSED;
+                button_event_pending = true; // Mark that we have a new button event
                 break;
             case RE_ET_BTN_RELEASED:
                 //printf("Button released\n");
                 button_state = LV_INDEV_STATE_RELEASED;
+                button_event_pending = true; // Mark that we have a new button event
                 break;
             case RE_ET_BTN_LONG_PRESSED:
                 //printf("Button long pressed\n");
@@ -283,8 +298,19 @@ static void read_encoder_callback(lv_indev_t *indev_drv, lv_indev_data_t *data){
                 break;
         }
     }
+    
+    // Report encoder rotation
     data->enc_diff = accumulated_diff;
-    data->state = button_state;
     accumulated_diff = 0; // Reset after reading
+    
+    // Report button state only if there's a pending event
+    if (button_event_pending) {
+        data->state = button_state;
+        button_event_pending = false; // Clear the flag after reporting once
+    } else {
+        // No new button event, maintain current state but don't trigger new actions
+        data->state = LV_INDEV_STATE_RELEASED;
+    }
+    
     //printf("Slider value freq (Screen2): %ld\n", lv_slider_get_value(ui_SliderFreq1));
 }
