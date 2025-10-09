@@ -22,6 +22,9 @@ void ui_event_ButtonAnalogical(lv_event_t * e)
         _ui_screen_change(&ui_Screen2, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Screen2_screen_init);
         _ui_screen_delete(&ui_Screen1);
     }
+    if(event_code == LV_EVENT_PRESSED) {
+        dimmer_control_analog(e);
+    }
 }
 
 void ui_event_ButtonDigital(lv_event_t * e)
@@ -31,6 +34,9 @@ void ui_event_ButtonDigital(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED) {
         _ui_screen_change(&ui_Screen3, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Screen3_screen_init);
         _ui_screen_delete(&ui_Screen1);
+    }
+    if(event_code == LV_EVENT_PRESSED) {
+        dimmer_control_digital(e);
     }
 }
 

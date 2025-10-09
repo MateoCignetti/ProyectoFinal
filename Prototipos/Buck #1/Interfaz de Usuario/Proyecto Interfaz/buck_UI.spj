@@ -1555,13 +1555,11 @@
           },
           {
             "nid": 90,
-            "flags": 1048576,
             "strtype": "OBJECT/Flags",
             "InheritedType": 1
           },
           {
             "nid": 225,
-            "flags": 1048576,
             "strtype": "OBJECT/Scrolling",
             "InheritedType": 1
           },
@@ -1597,7 +1595,6 @@
           },
           {
             "nid": 320,
-            "flags": 1048576,
             "strtype": "OBJECT/States",
             "InheritedType": 1
           },
@@ -9246,7 +9243,7 @@
     "uiExportFolderPath": "Z:\\home\\alejo\\Documents\\Repositories\\utilities\\(0) UI_FINALES\\UI_Buck\\UI_archivos",
     "projectExportFolderPath": "",
     "custom_variable_prefix": "ui_buck",
-    "backup_cnt": 47,
+    "backup_cnt": 48,
     "autosave_cnt": 0,
     "group_color_cnt": 0,
     "lvgl_version": "9.1.0",
@@ -9264,7 +9261,7 @@
     "naming": "Name",
     "naming_force_lowercase": false,
     "naming_add_subcomponent": true,
-    "nidcnt": 1000402,
+    "nidcnt": 1000410,
     "BitDepth": 16,
     "Name": "buck_UI"
   }

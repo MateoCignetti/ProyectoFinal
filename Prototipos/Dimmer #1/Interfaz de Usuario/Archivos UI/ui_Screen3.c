@@ -32,6 +32,9 @@ void ui_event_Button1(lv_event_t * e)
         _ui_screen_change(&ui_Screen4, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Screen4_screen_init);
         _ui_screen_delete(&ui_Screen3);
     }
+    if(event_code == LV_EVENT_PRESSED) {
+        dimmer_digital_full_cycle(e);
+    }
 }
 
 void ui_event_Button2(lv_event_t * e)
@@ -42,6 +45,9 @@ void ui_event_Button2(lv_event_t * e)
         _ui_screen_change(&ui_Screen5, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Screen5_screen_init);
         _ui_screen_delete(&ui_Screen3);
     }
+    if(event_code == LV_EVENT_PRESSED) {
+        dimmer_digital_positive_cycle(e);
+    }
 }
 
 void ui_event_Button3(lv_event_t * e)
@@ -51,6 +57,9 @@ void ui_event_Button3(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED) {
         _ui_screen_change(&ui_Screen6, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Screen6_screen_init);
         _ui_screen_delete(&ui_Screen3);
+    }
+    if(event_code == LV_EVENT_PRESSED) {
+        dimmer_digital_negative_cycle(e);
     }
 }
 
