@@ -1,2 +1,7 @@
-idf_component_register(SRCS "main.c"
-                    REQUIRES src lvgl__lvgl)
+idf_component_register(
+    SRCS "main.c"
+    REQUIRES 
+        module_manager
+        ui_framework
+        lvgl__lvgl
+)

@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
 #include "esp_log.h"
 #include "module_manager.h"
 #include "ui_config.h"

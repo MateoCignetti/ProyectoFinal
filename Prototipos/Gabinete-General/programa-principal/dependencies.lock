@@ -37,6 +37,6 @@ dependencies:
 direct_dependencies:
 - espressif/esp_lcd_ili9341
 - lvgl/lvgl
-manifest_hash: 6caf361026197523112ca0b4b1d30b3b1f376df6465c957b9e879163dbb9ad4a
+manifest_hash: 6f0fdc300352e75b344e458dde656415f97af6534acd29841d7ec2c92f337d76
 target: esp32s3
 version: 2.0.0
