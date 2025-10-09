@@ -1,0 +1,16 @@
+{
+  "codename": "fontRobotoRegular16Tildes",
+  "ttf_path": "/assets/fonts/Roboto-Regular.ttf",
+  "bin_path": "/assets/fonts\\ui_font_fontRobotoRegular16Tildes.bin",
+  "c_path": "/assets/fonts\\ui_font_fontRobotoRegular16Tildes.c",
+  "cfg_path": "/assets/fonts\\ui_font_fontRobotoRegular16Tildes.fcfg",
+  "size": 16,
+  "bpp": 4,
+  "letters": 0,
+  "ranges": [
+    "0x20-0x7f"
+  ],
+  "symbols": "ÁÉÍÓÚáéíóú",
+  "customparams": "--no-compress --no-prefilter",
+  "uploaded": false
+}

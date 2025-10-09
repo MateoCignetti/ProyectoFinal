@@ -1,0 +1,16 @@
+{
+  "codename": "fontRobotoMedium18Tildes",
+  "ttf_path": "/assets/fonts/Roboto-Medium.ttf",
+  "bin_path": "/assets/fonts\\ui_font_fontRobotoMedium18Tildes.bin",
+  "c_path": "/assets/fonts\\ui_font_fontRobotoMedium18Tildes.c",
+  "cfg_path": "/assets/fonts\\ui_font_fontRobotoMedium18Tildes.fcfg",
+  "size": 18,
+  "bpp": 4,
+  "letters": 0,
+  "ranges": [
+    "0x20-0x7f"
+  ],
+  "symbols": "ÁÉÍÓÚáéíóú",
+  "customparams": "--no-compress --no-prefilter",
+  "uploaded": false
+}
