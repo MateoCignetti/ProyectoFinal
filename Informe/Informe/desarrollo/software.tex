@@ -1,0 +1,78 @@
+\section{Desarrollo de \textit{Software}}
+
+\subsection{Introducción y objetivo del código}
+% Introducción de lo que se busca que haga el programa
+
+El software tiene como fin ser una interfaz entre el usuario y los distintos módulos, siendo el mismo interactivo e intuitivo. Cada módulo presenta su propia programación de control, por ejemplo en el convertidor Buck un control PID o de PWM fijo, o en el recortador de onda los distintos modos de generar el disparo del TRIAC. 
+
+\begin{itemize}[noitemsep]
+    \item \textbf{Autodetección de módulos}, mediante una red de identificación, el código es capaz de determinar de que módulo se trata por ejemplo, convertidor Buck, recortador de onda o inversor.
+    \item \textbf{Conexión segura}, utiliza un sistema de \textit{hot plugs} para verificar y asegurar la correcta conexión física del módulo, con el fin de evitar cualquier mala comunicación o falla en el mismo.
+    \item \textbf{Interfaz de usuario dinámica}, Una vez que el código verifica de que módulo se trata y asegura conexión válida, el \textit{software} carga una nueva pantalla en el \textit{display}, correspondiente al módulo utilizado. Esta interfaz se diseñó para el fácil uso y aprendizaje del módulo con experimentación en tiempo real. Tiene un menú donde se puede acceder a distintas características de cada módulo y modificarlas en tiempo real, alguna de ellas pueden ser, frecuencia de conmutación, valor de \textit{setpoint}, ángulo de disparo, selección entre cargas, entre otros.
+\end{itemize}
+
+Cuando se desconecta el módulo que estaba siendo utilizado, el sistema queda en espera de una nueva conexión.
+
+\subsection{Estructura del código}
+% Estructura del código y configuración
+\begin{figure}[H]
+    \centering
+        \resizebox{\textwidth}{!}{
+            \begin{tikzpicture}
+                % Paths, nodes and wires:
+                \node[shape=rectangle, draw, line width=1pt, align=left, text width=6.077cm, inner sep=6pt] at (5.5, 2) {main.c\\ \begin{itemize}[noitemsep]
+                        \item Inicializa interfaz de usuario 
+                        \item Inicializa \textit{module manager}
+                    \end{itemize}};
+                \draw[line width=1pt] (5.5, 1.15) -- (5.5, 0);
+                \node[shape=rectangle, draw, line width=1pt, align=left, text width=5cm, inner sep=6pt] at (9.125, -2.125) {Module Manager (common)\\ 
+                    \begin{itemize}[noitemsep]
+                        \item Identifica módulo conectado
+                        \item Inicia y detiene módulo conectado
+                    \end{itemize}};
+                \draw[line width=1pt, -latex] (5.5, -0) -| (9.25, -0.8);
+                \node[shape=rectangle, draw, line width=1pt, align=left, text width=5cm, inner sep=6pt] at (1.625, -2.125) {UI Framework (common)\\
+                    \begin{itemize}[noitemsep]
+                        \item Configuración de LVGL 
+                        \item Configuración \textit{display}
+                        \item Configuración Encoder
+                    \end{itemize}};
+                \draw[line width=1pt, -latex] (5.5, -0) -| (1.625, -1);
+                \draw[line width=1pt] (9.375, -3.4) -- (9.375, -4.25);
+                \draw[line width=1pt, -latex] (12.25, -4.25) -| (8.25, -4.875);
+                \node[shape=rectangle, draw, line width=1pt, align=left, text width=5cm, inner sep=6pt] at (2.25, -6.5) {Módulo Dimmer\\
+                    \begin{itemize}[noitemsep]
+                        \item Inicia interfaz de usuario propia
+                        \item Configura perisféricos para el funcionamiento
+                        \item Lógica de control
+                    \end{itemize}};
+                \node[shape=rectangle, draw, line width=1pt, align=left, text width=5cm, inner sep=6pt] at (8.25, -6.5) {Módulo Buck\\
+                    \begin{itemize}[noitemsep]
+                        \item Inicia interfaz de usuario propia
+                        \item Configura perisféricos para el funcionamiento
+                        \item Lógica de control
+                    \end{itemize}};
+                \draw[line width=1pt, -latex] (14.25, -4.25) -- (14.25, -5.6);
+                \node[shape=rectangle, draw, line width=1pt, align=left, text width=5cm, inner sep=6pt] at (14.25, -6.5) {Módulo Inversor\\
+                    \begin{itemize}[noitemsep]
+                        \item Inicia interfaz de usuario propia
+                    \end{itemize}};
+                \node[shape=rectangle, draw, line width=1pt, align=left, text width=5cm, inner sep=6pt] at (15.875, -2.125) {Module Connection (common)\\
+                    \begin{itemize}[noitemsep]
+                        \item Detecta conexión y desconexión de módulos
+                        \item Espera hasta lograr conexión estable
+                    \end{itemize}};
+                \draw[line width=1pt, -latex] (11.83, -2.125) -- (13.15, -2.125);
+                \draw[line width=1pt, -latex] (8.25, -4.25) -| (2.25, -4.875);
+                \node[shape=rectangle, draw, line width=1pt, align=center, text width=5cm, inner sep=6pt] at (20.25, -6.5) {Nuevo módulo};
+                \draw[line width=1pt] (12.25, -4.25) -- (14.625, -4.25);
+                \draw[line width=1pt, dash pattern={on 1pt off 8pt}] (14.625, -4.25) -- (15.875, -4.25);
+                \draw[line width=1pt, -latex] (15.875, -4.25) -| (20.25, -6.1);
+            \end{tikzpicture}
+        }
+    \caption{hola}
+    \label{fig:soft:diagrama-arquitectura}
+\end{figure}
+
+% Hablar sobre cada parte del código, lo más importante
+% Diagrama de flujo
