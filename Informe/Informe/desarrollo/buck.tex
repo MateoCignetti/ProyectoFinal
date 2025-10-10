@@ -1,5 +1,14 @@
 \section{Módulo convertidor reductor o Buck}
 
+Un convertidor es un circuito electrónico que transforma energía eléctrica de una forma a otra, ya sea cambiando niveles de tensión, corriente o frecuencia. En el caso del Buck, se trata de un tipo específico de convertidor DC-DC (\textit{Direct Current}, corriente continua en español) que disminuye la tensión de entrada a una menor en la salida, manteniendo una buena eficiencia gracias a su operación conmutada. Este convertidor funciona mediante el encendido y apagado rápido de un transistor, aprovechando elementos reactivos como inductores y capacitores para almacenar y transferir energía de manera controlada, evitando las pérdidas típicas de los reguladores lineales.
+
+\subsection{Interacción del usuario: control y verificación experimental}
+El usuario puede interactuar con el módulo mediante una interfaz intuitiva que permite seleccionar entre diferentes modos de control, como regulación automática de tensión mediante PID o ajuste manual del ciclo de trabajo PWM. Además, se puede modificar la frecuencia de conmutación y alternar entre una carga resistiva o inductiva usando el relé integrado. Se dispone de diversos \textit{test points} a través de la PCB con el fin de poder realizar pruebas en tiempo real utilizando herramientas de medición como osciloscopios, multímetros, entre otros.
+
+Las principales señales que se observan en el módulo son, tensión de salida, a través de la cual se puede observar la estabilidad de tensión frente a distintas condiciones de carga, analizar las corrientes en el inductor y de carga y descarga del capacitor. A su vez, se permite visualizar la señal de conmutación en el transistor, proporcionando así una experiencia completa para el aprendizaje y la caracterización del convertidor Buck.
+
+El objetivo de esto es poner a disposición del usuario la mayor cantidad de pruebas posibles como, analizar el efecto que produce una carga inductiva y resistiva sobre el PWM del microcontrolador, o el resultado en el \textit{ripple} debido al cambio de frecuencia de conmutación o al PWM. 
+
 \subsection{Base teórica}
 \begin{figure}[H]
     \centering
@@ -231,13 +240,6 @@ El interruptor se encuentra abierto, y el inductor cambia su polaridad para opon
 Una vez que el convertidor se encuentra en un modo normal de funcionamiento, la corriente por la carga queda determinada por la suma de la corriente aportada por la fuente de alimentación, y por la corriente producto del campo magnético almacenado en el inductor. En este caso, siempre se tendrá una corriente mayor en la carga. Ese aumento de corriente, debido a la corriente de fuente y a la corriente del inductor, da lugar a que el voltaje se vea disminuido en la carga para preservar la potencia del convertidor.
 
 % Cosas sacadas de https://en.wikipedia.org/wiki/Buck_converter
-
-\subsection{Interacción del usuario: control y verificación experimental}
-El usuario puede interactuar con el módulo mediante una interfaz intuitiva que permite seleccionar entre diferentes modos de control, como regulación automática de tensión mediante PID o ajuste manual del ciclo de trabajo PWM. Además, se puede modificar la frecuencia de conmutación y alternar entre una carga resistiva o inductiva usando el relé integrado. Se dispone de diversos \textit{test points} a través de la PCB con el fin de poder realizar pruebas en tiempo real utilizando herramientas de medición como osciloscopios, multímetros, entre otros.
-
-Las principales señales que se observan en el módulo son, tensión de salida, a través de la cual se puede observar la estabilidad de tensión frente a distintas condiciones de carga, analizar las corrientes en el inductor y de carga y descarga del capacitor. A su vez, se permite visualizar la señal de conmutación en el transistor, proporcionando así una experiencia completa para el aprendizaje y la caracterización del convertidor Buck.
-
-El objetivo de esto es poner a disposición del usuario la mayor cantidad de pruebas posibles como, analizar el efecto que produce una carga inductiva y resistiva sobre el PWM del microcontrolador, o el resultado en el \textit{ripple} debido al cambio de frecuencia de conmutación o al PWM. 
 
 \subsection{Cálculos para el diseño}
 

@@ -1,4 +1,4 @@
-\section{Diseño de circuito - módulo recortador de onda}
+\section{Módulo recortador de onda}
 
 Uno de los métodos más simples para controlar la potencia entregada a una carga de corriente alterna es mediante el uso de un recortador. Este método se basa en la utilización de un tiristor para recortar la onda de tensión aplicada a la carga, permitiendo así regular la potencia entregada. Al recortar la onda, se reduce la tensión RMS aplicada a la carga, lo que a su vez produce una reducción de potencia entregada.
 
@@ -7,7 +7,7 @@ Este método tiene varias desventajas, como una baja eficiencia y alta distorsi�
 Se decidió elegir este módulo para el proyecto ya que es un buen primer paso en la electrónica de potencia, donde se puede realizar un enfoque centralizado en el funcionamiento y control de un semiconductor como el TRIAC (Triode for Alternating Current, Triodo para Corriente Alterna en español).
 
 \subsection{Interacción del usuario: control y verificación experimental}
-El usuario puede seleccionar entre distintos modos de control de potencia para la carga conectada, utilizando tanto el potenciómetro físico para ajuste manual (modo analógico) como la interfaz digital para establecer el ángulo de disparo del TRIAC (modo digital, medio ciclo o ciclo completo). Además, puede realizar experimentos prácticos, como observar el efecto del control de fase sobre la forma de onda de la carga con un osciloscopio, y visualizar el pulso de disparo en la compuerta del TRIAC, permitiendo comprender y verificar el funcionamiento del circuito recortador de onda.
+El módulo recortador de onda está diseñado para que el usuario pueda seleccionar entre dos modos de control: analógico y digital. En el modo de control analógico, el usuario utiliza un potenciómetro dentro del gabinete para modificar una resistencia, lo que cambia la potencia entregada a la carga (dos lámparas de \SI{24}{\volt} en serie). En el modo de control digital, el usuario puede elegir el tiempo de disparo del TRIAC y la onda aplicada a la carga (ciclo completo, sólo semiciclo positivo o semiciclo negativo). Mediante distintos puntos de prueba, el usuario puede con un osciloscopio visualizar diferentes ondas, como la tensión aplicada a la carga, tensión en TRIAC, carga y descarga de capacitor, entre otras. De esta manera, el usuario aprende sobre el funcionamiento del circuito y verificar experimentalmente los conceptos teóricos.
 
 \subsection{Base teórica}
 
@@ -89,7 +89,7 @@ El circuito más simple para lograr el control de fase se muestra en la \cref{fi
     \label{fig:dimmer:control_fase_simple}
 \end{figure}
 
-La forma de onda del voltaje a través del capacitor para dos condiciones de control típicas ($\alpha$ = 90° y $\alpha$ = 150°) se muestra en la \cref{fig:dimmer:formas_onda}. Si se utiliza un rectificador controlado por silicio en este circuito en lugar del TRIAC, solo se controlará un semiciclo de la forma de onda. El otro semiciclo se bloqueará, lo que genera una salida de CC pulsante cuyo valor promedio puede variarse ajustando el $R_T$, \parencite{ON-ThyristorHandbook}.
+La forma de onda del voltaje a través del capacitor para dos condiciones de control típicas ($\alpha$ = 90° y $\alpha$ = 150°) se muestra en la \cref{fig:dimmer:formas_onda}. Si se utiliza un rectificador controlado por silicio en este circuito en lugar del TRIAC, solo se controlará un semiciclo de la forma de onda. El otro semiciclo se bloqueará, lo que genera una salida de DC pulsante cuyo valor promedio puede variarse ajustando el $R_T$, \parencite{ON-ThyristorHandbook}.
 
 \begin{figure}[H]
     \centering
