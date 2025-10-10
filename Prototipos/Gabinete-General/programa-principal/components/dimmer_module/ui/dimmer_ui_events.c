@@ -5,7 +5,37 @@
 
 #include "dimmer_ui.h"
 
+#include "gpio_definition.h"
+#include "driver/gpio.h"
+
+#define PIN_DIMMER_RELAY PIN_S1
+
 void update_time_label(lv_event_t * e)
+{
+	// Your code here
+}
+
+void dimmer_control_analog(lv_event_t * e)
+{
+	gpio_set_level(PIN_DIMMER_RELAY, 0);
+}
+
+void dimmer_control_digital(lv_event_t * e)
+{
+	gpio_set_level(PIN_DIMMER_RELAY, 1);
+}
+
+void dimmer_digital_full_cycle(lv_event_t * e)
+{
+	// Your code here
+}
+
+void dimmer_digital_positive_cycle(lv_event_t * e)
+{
+	// Your code here
+}
+
+void dimmer_digital_negative_cycle(lv_event_t * e)
 {
 	// Your code here
 }

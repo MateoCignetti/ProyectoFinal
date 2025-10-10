@@ -6,6 +6,7 @@
 #include "module_manager.h"
 #include "dimmer_ui.h"
 #include "ui_config.h"
+#include "idle_screen.h"
 // REVISAR TEMA DE ARCHIVOS A INCLUIR
 
 static const char* TAG = "Dimmer Interface";
@@ -51,8 +52,11 @@ void start_dimmer_interface(){
             );
 
     _lock_acquire(&lvgl_api_lock);
+    // CRITICAL: Initialize new UI BEFORE destroying old screen
+    // This prevents deleting screens while their animations are still active
     dimmer_ui_init();
     create_groups_for_ui();
+    stop_idle_screen();  // Now safe to destroy idle screen
     _lock_release(&lvgl_api_lock);
 }
 
@@ -75,10 +79,9 @@ void stop_dimmer_interface(){
 
     _lock_acquire(&lvgl_api_lock);
 
-    // CRITICAL FIX: Create and load a blank screen BEFORE destroying UI
-    // This gives LVGL something safe to render during cleanup and after
-    lv_obj_t *blank_screen = lv_obj_create(NULL);
-    lv_screen_load(blank_screen);
+    // CRITICAL: Create new screen BEFORE destroying old UI
+    // This prevents deleting screens while their animations are still active
+    start_idle_screen();
 
     // Destroy groups (removes references to UI objects)
     destroy_groups_for_ui();
@@ -86,12 +89,15 @@ void stop_dimmer_interface(){
     // NOW safe to destroy the old UI
     dimmer_ui_destroy();
 
-    // DON'T delete the blank screen - leave it loaded for LVGL to render
-    // It will be cleaned up when the next module loads its UI or on system shutdown
+    // Clean up the initial actions object to prevent memory leak
+    if(dimmer_ui____initial_actions0) {
+        lv_obj_del(dimmer_ui____initial_actions0);
+        dimmer_ui____initial_actions0 = NULL;
+    }
 
     _lock_release(&lvgl_api_lock);
 
-    ESP_LOGI(TAG, "Buck interface stopped, blank screen loaded");
+    ESP_LOGI(TAG, "Dimmer interface stopped, blank screen loaded");
 }
 
 /**
@@ -127,22 +133,22 @@ static void create_groups_for_ui(void){
     lv_obj_add_event_cb(dimmer_ui_Button3, dimmer_ui_event_Button3, LV_EVENT_CLICKED, NULL);
 
     // Add interactive objects to groups[SCREEN_4] group
-    lv_group_add_obj(groups[SCREEN_4], dimmer_ui_SliderCC);
     lv_group_add_obj(groups[SCREEN_4], dimmer_ui_ButtonReturn3);
+    lv_group_add_obj(groups[SCREEN_4], dimmer_ui_SliderCC);
 
     //lv_obj_add_event_cb(dimmer_ui_SliderCC, dimmer_ui_event_SliderCC, LV_EVENT_VALUE_CHANGED, NULL);
     lv_obj_add_event_cb(dimmer_ui_ButtonReturn3, dimmer_ui_event_ButtonReturn3, LV_EVENT_CLICKED, NULL);
 
     // Add interactive objects to groups[SCREEN_5] group
-    lv_group_add_obj(groups[SCREEN_5], dimmer_ui_SliderSP);
     lv_group_add_obj(groups[SCREEN_5], dimmer_ui_ButtonReturn4);
+    lv_group_add_obj(groups[SCREEN_5], dimmer_ui_SliderSP);
 
     //lv_obj_add_event_cb(dimmer_ui_SliderSP, dimmer_ui_event_SliderSP, LV_EVENT_VALUE_CHANGE, NULL);
     lv_obj_add_event_cb(dimmer_ui_ButtonReturn4, dimmer_ui_event_ButtonReturn4, LV_EVENT_CLICKED, NULL);
 
     // Add interactive objects to groups[SCREEN_6] group
-    lv_group_add_obj(groups[SCREEN_6], dimmer_ui_SliderSN);
     lv_group_add_obj(groups[SCREEN_6], dimmer_ui_ButtonReturn5);
+    lv_group_add_obj(groups[SCREEN_6], dimmer_ui_SliderSN);
 
     //lv_obj_add_event_cb(dimmer_ui_SliderSN, dimmer_ui_event_SliderSN, LV_EVENT_VALUE_CHANGE, NULL);
     lv_obj_add_event_cb(dimmer_ui_ButtonReturn5, dimmer_ui_event_ButtonReturn5, LV_EVENT_PRESSED, NULL);
@@ -219,6 +225,7 @@ static void vTaskUpdateGroups(void *pvParameters){
             current_group = groups[current_screen];
             lv_group_set_default(current_group);
             lv_indev_set_group(indev_encoder, groups[current_screen]);
+            lv_group_focus_obj(lv_obj_get_child(active_screen, 0)); // Focus on first object of new screen
             //printf("Cambié a pantalla %d\n", current_screen);
         }
         _lock_release(&lvgl_api_lock);

@@ -29,6 +29,8 @@
 // SPI
 #include "driver/spi_master.h"
 
+#include "idle_screen.h"
+
 // Extern libraries
 #include "esp_lcd_ili9341.h"
 #include "lvgl.h"
@@ -183,7 +185,9 @@ void setup_user_interface(){
                 0
                 );
     
-
+    _lock_acquire(&lvgl_api_lock);
+    start_idle_screen(); // Start with the idle screen
+    _lock_release(&lvgl_api_lock);
     ESP_LOGI(TAG, "User interface setup complete");
 }
 

@@ -9,6 +9,7 @@
 #include "driver/gptimer.h"
 
 #define ESP_INTR_FLAG_DEFAULT 0
+#define CONNECTION_WAIT_MS 1000 // Debounce time for connection stability
 
 static const char* CONNECTION_TAG = "Module Connection";
 
@@ -85,7 +86,7 @@ static void configure_debounce_timer(){
     ESP_ERROR_CHECK(gptimer_new_timer(&gptimer_config, &debounce_timer)); 
 
     gptimer_alarm_config_t wait_alarm_config = {
-        .alarm_count = 3 * 1000 * 1000, // 3 second debounce
+        .alarm_count = CONNECTION_WAIT_MS * 1000, // 3 second debounce
         .flags.auto_reload_on_alarm = false,
     };
     ESP_ERROR_CHECK(gptimer_set_alarm_action(debounce_timer, &wait_alarm_config));

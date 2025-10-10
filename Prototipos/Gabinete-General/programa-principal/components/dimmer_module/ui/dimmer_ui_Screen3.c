@@ -32,6 +32,9 @@ void dimmer_ui_event_Button1(lv_event_t * e)
         _ui_screen_change(&dimmer_ui_Screen4, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &dimmer_ui_Screen4_screen_init);
         _ui_screen_delete(&dimmer_ui_Screen3);
     }
+    if(event_code == LV_EVENT_PRESSED) {
+        dimmer_digital_full_cycle(e);
+    }
 }
 
 void dimmer_ui_event_Button2(lv_event_t * e)
@@ -42,6 +45,9 @@ void dimmer_ui_event_Button2(lv_event_t * e)
         _ui_screen_change(&dimmer_ui_Screen5, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &dimmer_ui_Screen5_screen_init);
         _ui_screen_delete(&dimmer_ui_Screen3);
     }
+    if(event_code == LV_EVENT_PRESSED) {
+        dimmer_digital_positive_cycle(e);
+    }
 }
 
 void dimmer_ui_event_Button3(lv_event_t * e)
@@ -51,6 +57,9 @@ void dimmer_ui_event_Button3(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED) {
         _ui_screen_change(&dimmer_ui_Screen6, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &dimmer_ui_Screen6_screen_init);
         _ui_screen_delete(&dimmer_ui_Screen3);
+    }
+    if(event_code == LV_EVENT_PRESSED) {
+        dimmer_digital_negative_cycle(e);
     }
 }
 
@@ -85,7 +94,7 @@ void dimmer_ui_Screen3_screen_init(void)
     lv_obj_set_align(dimmer_ui_Label5, LV_ALIGN_CENTER);
     lv_label_set_text(dimmer_ui_Label5, "Ciclo \ncompleto");
     lv_obj_set_style_text_align(dimmer_ui_Label5, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(dimmer_ui_Label5, &dimmer_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(dimmer_ui_Label5, &dimmer_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     dimmer_ui_Button2 = lv_button_create(dimmer_ui_Screen3);
     lv_obj_set_width(dimmer_ui_Button2, 100);
@@ -100,7 +109,7 @@ void dimmer_ui_Screen3_screen_init(void)
     lv_obj_set_align(dimmer_ui_Label6, LV_ALIGN_CENTER);
     lv_label_set_text(dimmer_ui_Label6, "Semiciclo\npositivo");
     lv_obj_set_style_text_align(dimmer_ui_Label6, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(dimmer_ui_Label6, &dimmer_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(dimmer_ui_Label6, &dimmer_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     dimmer_ui_Button3 = lv_button_create(dimmer_ui_Screen3);
     lv_obj_set_width(dimmer_ui_Button3, 100);
@@ -117,7 +126,7 @@ void dimmer_ui_Screen3_screen_init(void)
     lv_obj_set_align(dimmer_ui_Label7, LV_ALIGN_CENTER);
     lv_label_set_text(dimmer_ui_Label7, "Semiciclo\nnegativo");
     lv_obj_set_style_text_align(dimmer_ui_Label7, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(dimmer_ui_Label7, &dimmer_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(dimmer_ui_Label7, &dimmer_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(dimmer_ui_ButtonReturn2, dimmer_ui_event_ButtonReturn2, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(dimmer_ui_Button1, dimmer_ui_event_Button1, LV_EVENT_ALL, NULL);

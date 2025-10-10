@@ -40,9 +40,11 @@ void dimmer_ui_Screen2_screen_init(void)
     lv_obj_set_height(dimmer_ui_Label4, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(dimmer_ui_Label4, LV_ALIGN_CENTER);
     lv_label_set_text(dimmer_ui_Label4,
-                      "Se encuentra dentro del\ncontrol analógico, utilice el \npotenciometro que se\nse encuentra en el gabinete\npara poder modificar el \nángulo de disparo");
-    lv_obj_set_style_text_align(dimmer_ui_Label4, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(dimmer_ui_Label4, &dimmer_ui_font_fontMontserratM16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+                      "Se encuentra dentro del control \nanalógico, utilice el \npotenciometro que se encuentra \nen el gabinete para poder \nmodificar el ángulo de disparo");
+    lv_obj_set_style_text_letter_space(dimmer_ui_Label4, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_line_space(dimmer_ui_Label4, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(dimmer_ui_Label4, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(dimmer_ui_Label4, &dimmer_ui_font_fontRobotoMedium16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(dimmer_ui_ButtonReturn1, dimmer_ui_event_ButtonReturn1, LV_EVENT_ALL, NULL);
 

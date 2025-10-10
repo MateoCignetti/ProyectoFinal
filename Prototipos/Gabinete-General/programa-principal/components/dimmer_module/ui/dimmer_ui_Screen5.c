@@ -45,7 +45,7 @@ void dimmer_ui_Screen5_screen_init(void)
     lv_obj_set_y(dimmer_ui_Label10, -50);
     lv_obj_set_align(dimmer_ui_Label10, LV_ALIGN_CENTER);
     lv_label_set_text(dimmer_ui_Label10, "Semiciclo Positivo");
-    lv_obj_set_style_text_font(dimmer_ui_Label10, &dimmer_ui_font_fontMontserratM18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(dimmer_ui_Label10, &dimmer_ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     dimmer_ui_SliderSP = lv_slider_create(dimmer_ui_Screen5);
     lv_slider_set_range(dimmer_ui_SliderSP, 0, 50);
@@ -65,7 +65,7 @@ void dimmer_ui_Screen5_screen_init(void)
     lv_obj_set_height(dimmer_ui_Label11, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(dimmer_ui_Label11, LV_ALIGN_CENTER);
     lv_label_set_text(dimmer_ui_Label11, "Tiempo de disparo");
-    lv_obj_set_style_text_font(dimmer_ui_Label11, &dimmer_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(dimmer_ui_Label11, &dimmer_ui_font_fontRobotoMedium14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     dimmer_ui_LabelSP = lv_label_create(dimmer_ui_Screen5);
     lv_obj_set_width(dimmer_ui_LabelSP, LV_SIZE_CONTENT);   /// 1
@@ -74,7 +74,7 @@ void dimmer_ui_Screen5_screen_init(void)
     lv_obj_set_y(dimmer_ui_LabelSP, 30);
     lv_obj_set_align(dimmer_ui_LabelSP, LV_ALIGN_CENTER);
     lv_label_set_text(dimmer_ui_LabelSP, "0 ms");
-    lv_obj_set_style_text_font(dimmer_ui_LabelSP, &dimmer_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(dimmer_ui_LabelSP, &dimmer_ui_font_fontRobotoRegular14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     dimmer_ui_ButtonReturn4 = lv_button_create(dimmer_ui_Screen5);
     lv_obj_set_width(dimmer_ui_ButtonReturn4, 45);

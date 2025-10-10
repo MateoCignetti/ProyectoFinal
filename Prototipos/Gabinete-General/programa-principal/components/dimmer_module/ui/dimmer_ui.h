@@ -46,9 +46,15 @@ LV_IMG_DECLARE(dimmer_ui_img_images_dimmer_png);    // assets/images/dimmer.png
 LV_IMG_DECLARE(dimmer_ui_img_images_arrow_png);    // assets/images/arrow.png
 
 // FONTS
-LV_FONT_DECLARE(dimmer_ui_font_fontMontserratM14Tildes);
-LV_FONT_DECLARE(dimmer_ui_font_fontMontserratM16Tildes);
-LV_FONT_DECLARE(dimmer_ui_font_fontMontserratM18Tildes);
+LV_FONT_DECLARE(dimmer_ui_font_fontRobotoBold14Tildes);
+LV_FONT_DECLARE(dimmer_ui_font_fontRobotoBold16Tildes);
+LV_FONT_DECLARE(dimmer_ui_font_fontRobotoBold18Tildes);
+LV_FONT_DECLARE(dimmer_ui_font_fontRobotoMedium14Tildes);
+LV_FONT_DECLARE(dimmer_ui_font_fontRobotoMedium16Tildes);
+LV_FONT_DECLARE(dimmer_ui_font_fontRobotoMedium18Tildes);
+LV_FONT_DECLARE(dimmer_ui_font_fontRobotoRegular14Tildes);
+LV_FONT_DECLARE(dimmer_ui_font_fontRobotoRegular16Tildes);
+LV_FONT_DECLARE(dimmer_ui_font_fontRobotoRegular18Tildes);
 
 // UI INIT
 void dimmer_ui_init(void);

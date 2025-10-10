@@ -22,6 +22,9 @@ void dimmer_ui_event_ButtonAnalogical(lv_event_t * e)
         _ui_screen_change(&dimmer_ui_Screen2, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &dimmer_ui_Screen2_screen_init);
         _ui_screen_delete(&dimmer_ui_Screen1);
     }
+    if(event_code == LV_EVENT_PRESSED) {
+        dimmer_control_analog(e);
+    }
 }
 
 void dimmer_ui_event_ButtonDigital(lv_event_t * e)
@@ -31,6 +34,9 @@ void dimmer_ui_event_ButtonDigital(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED) {
         _ui_screen_change(&dimmer_ui_Screen3, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &dimmer_ui_Screen3_screen_init);
         _ui_screen_delete(&dimmer_ui_Screen1);
+    }
+    if(event_code == LV_EVENT_PRESSED) {
+        dimmer_control_digital(e);
     }
 }
 
@@ -48,7 +54,7 @@ void dimmer_ui_Screen1_screen_init(void)
     lv_obj_set_y(dimmer_ui_Label1, -80);
     lv_obj_set_align(dimmer_ui_Label1, LV_ALIGN_CENTER);
     lv_label_set_text(dimmer_ui_Label1, "Modo de Control");
-    lv_obj_set_style_text_font(dimmer_ui_Label1, &dimmer_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(dimmer_ui_Label1, &dimmer_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     dimmer_ui_ButtonAnalogical = lv_button_create(dimmer_ui_Screen1);
     lv_obj_set_width(dimmer_ui_ButtonAnalogical, 100);
@@ -64,7 +70,7 @@ void dimmer_ui_Screen1_screen_init(void)
     lv_obj_set_height(dimmer_ui_Label2, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(dimmer_ui_Label2, LV_ALIGN_CENTER);
     lv_label_set_text(dimmer_ui_Label2, "Analógico");
-    lv_obj_set_style_text_font(dimmer_ui_Label2, &dimmer_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(dimmer_ui_Label2, &dimmer_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     dimmer_ui_ButtonDigital = lv_button_create(dimmer_ui_Screen1);
     lv_obj_set_width(dimmer_ui_ButtonDigital, 100);
@@ -80,7 +86,7 @@ void dimmer_ui_Screen1_screen_init(void)
     lv_obj_set_height(dimmer_ui_Label3, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(dimmer_ui_Label3, LV_ALIGN_CENTER);
     lv_label_set_text(dimmer_ui_Label3, "Digital");
-    lv_obj_set_style_text_font(dimmer_ui_Label3, &dimmer_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(dimmer_ui_Label3, &dimmer_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     dimmer_ui_Label14 = lv_label_create(dimmer_ui_Screen1);
     lv_obj_set_width(dimmer_ui_Label14, LV_SIZE_CONTENT);   /// 1
@@ -90,7 +96,7 @@ void dimmer_ui_Screen1_screen_init(void)
     lv_obj_set_align(dimmer_ui_Label14, LV_ALIGN_CENTER);
     lv_label_set_text(dimmer_ui_Label14, "Módulo recortador\nde onda");
     lv_obj_set_style_text_align(dimmer_ui_Label14, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(dimmer_ui_Label14, &dimmer_ui_font_fontMontserratM18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(dimmer_ui_Label14, &dimmer_ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     dimmer_ui_Image1 = lv_image_create(dimmer_ui_Screen1);
     lv_image_set_src(dimmer_ui_Image1, &dimmer_ui_img_images_dimmer_png);
@@ -101,7 +107,7 @@ void dimmer_ui_Screen1_screen_init(void)
     lv_obj_set_align(dimmer_ui_Image1, LV_ALIGN_CENTER);
     lv_obj_add_flag(dimmer_ui_Image1, LV_OBJ_FLAG_CLICKABLE);     /// Flags
     lv_obj_remove_flag(dimmer_ui_Image1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_image_set_scale(dimmer_ui_Image1, 220);
+    lv_image_set_scale(dimmer_ui_Image1, 250);
 
     lv_obj_add_event_cb(dimmer_ui_ButtonAnalogical, dimmer_ui_event_ButtonAnalogical, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(dimmer_ui_ButtonDigital, dimmer_ui_event_ButtonDigital, LV_EVENT_ALL, NULL);

@@ -6,6 +6,7 @@
 #include "module_manager.h"
 #include "buck_ui.h"
 #include "ui_config.h"
+#include "idle_screen.h"
 
 static const char* TAG = "Buck Interface";
 
@@ -60,8 +61,11 @@ void start_buck_interface(){
             );
 
     _lock_acquire(&lvgl_api_lock);
+    // CRITICAL: Initialize new UI BEFORE destroying old screen
+    // This prevents deleting screens while their animations are still active
     buck_ui_init();
     create_groups_for_ui();
+    stop_idle_screen();  // Now safe to destroy idle screen
     _lock_release(&lvgl_api_lock);
 }
 
@@ -83,20 +87,19 @@ void stop_buck_interface(){
     }
     
     _lock_acquire(&lvgl_api_lock);
+
+    // CRITICAL: Create new screen BEFORE destroying old UI
+    // This prevents deleting screens while their animations are still active
+    start_idle_screen();
     
-    // CRITICAL FIX: Create and load a blank screen BEFORE destroying UI
-    // This gives LVGL something safe to render during cleanup and after
-    lv_obj_t *blank_screen = lv_obj_create(NULL);
-    lv_screen_load(blank_screen);
-    
-    // Destroy groups (removes references to UI objects)
     destroy_groups_for_ui();
-    
-    // NOW safe to destroy the old UI
     buck_ui_destroy();
-    
-    // DON'T delete the blank screen - leave it loaded for LVGL to render
-    // It will be cleaned up when the next module loads its UI or on system shutdown
+
+    // Clean up the initial actions object to prevent memory leak
+    if(buck_ui____initial_actions0) {
+        lv_obj_del(buck_ui____initial_actions0);
+        buck_ui____initial_actions0 = NULL;
+    }
     
     _lock_release(&lvgl_api_lock);
     
@@ -246,6 +249,7 @@ static void vTaskUpdateGroups(void *pvParameters){
             current_group = groups[current_screen];
             lv_group_set_default(current_group);
             lv_indev_set_group(indev_encoder, groups[current_screen]);
+            lv_group_focus_obj(lv_obj_get_child(active_screen, 0)); // Focus on first object of new screen
             //printf("Cambié a pantalla %d\n", current_screen);
         }
         _lock_release(&lvgl_api_lock);
