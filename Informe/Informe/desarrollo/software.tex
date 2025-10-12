@@ -17,6 +17,7 @@ Cuando se desconecta el módulo que estaba siendo utilizado, el sistema queda en
 
 El código se separa en componentes, cada pieza encapsulada y con responsabilidad única. De esta forma, se simplifica la adición de nuevos módulos o funciones en el programa sin necesidad de restructurar todo el código.
 % Estructura del código y configuración
+% MATEO PARA ALEJO: Module connection teóricamente no es un componente aparte, sino que es parte del module manager. No sé de qué forma se podría poner para que quede bien.
 \begin{figure}[H]
     \centering
         \resizebox{\textwidth}{!}{
@@ -78,12 +79,54 @@ El código se separa en componentes, cada pieza encapsulada y con responsabilida
 
 En la \cref{fig:soft:diagrama-arquitectura} se observa un diagrama de la estructura del código. A continuación, se explica el funcionamiento de los componentes más importantes:
 
-\subsubsection{\textit{UI Framework}, Esqueleto de interfaz de usuario}
+\subsubsection{\textit{UI Framework} - Estructura de interfaz de usuario}
 Este componente se encarga de inicializar y configurar la librería LVGL (Light and Versatile Graphics Library, Librería de Gráficos Liviana y Verśatil en español), \parencite{LVGL}. Mediante esta librería, se controla el \textit{display} TFT LCD de \SI{2.8}{pulgadas}, creando las tareas, \textit{mutex}, \textit{handlers}, \textit{handles} y punteros necesarios para proveer una API (\textit{Application Programming Interface}, interfaz de programación de aplicación en español) para los módulos. También se encarga de configurar el IO (\textit{Input Output}, Entrada y Salida en español) para el funcionamiento del encoder rotativo con el que el usuario navega la interfaz en el \textit{display}.
 
 De esta forma, la interfaz de usuario queda desacoplada del resto del sistema, permitiendo que cada módulo solo implemente la lógica y pantallas específicas sin manipular directamente drivers o detalles de sincronización.
 
-\subsubsection{\textit{Module Connection}, Conexión de módulos}
+\subsubsection{\textit{Module Manager} - Gestor de módulos}
+Este componente se compone de dos programas separados, \textit{Module Connection}(Conexión de Módulo) y \textit{Module Manager}, así como un archivo de encabezado registro global de módulos, \textit{module\_registry.h}.
+
+\paragraph{\textit{Module Connection}}
+El primero encarga de gestionar la conexión y desconexión de cada módulo, con interrupciones configuradas para ambos pines de HotPlug HP\_Power y HP\_Signal. Estos son los pines de los extremos del conector PCIe x4, que permiten detectar que el módulo se haya conectado perfectamente, ya que sus \textit{pads} son más cortos que los demás.
+
+Se configuró una máquina de estados para monitorear el estado de conexión: 
+\begin{itemize}[noitemsep]
+    \item \textit{CONNECTION\_INIT}: inicalización de programa
+    \item \textit{CONNECTION\_DISCONNECTED}: módulo desconectado, señalizar a \textit{Module Manager}.
+    \item \textit{CONNECTION\_DETECTING}: módulo conectado, inicando \textit{timer} de \SI{1}{\second} para verificar conexión segura y antirrebote.
+    \item \textit{CONNECTION\_CONNECTED}: módulo conectado, señalizar a \textit{Module Manager}.
+    \item \textit{CONNECTION\_FAULT}: falla detectada, detener máquina de estados.
+\end{itemize}
+El cambio de estados se realiza mediante notificaciones liberadas desde las interrupciones, despertando a una tarea general.
+
+\paragraph{\textit{Module Manager}}
+Este módulo se encarga de definir una estructura de módulo (\textit{module\_t}), identificar el módulo conectado e iniciar y detener cada módulo. Cada módulo se define en su propio archivo de control mediante una estructura (\textit{module\_t}), la cual contiene: su nombre, punteros a sus funciones de inicio y parada, valores en milivolts de identificación.
+
+Se configuró una máquina de estados para gestionar los módulos: 
+\begin{itemize}[noitemsep]
+    \item \textit{MANAGER\_INIT}: inicalización de programa
+    \item \textit{MANAGER\_READY}: ningún módulo corriendo, esperando conexión de módulo señalizada por \textit{Module Connection}. Una vez obtenida, notificar a tarea de identificación para detectar qué modulo se conectó, mediante lectura de \textit{ADC} (Analog to Digital Converter, Convertidor Analógico a Digital en español). Si se detecta algún módulo registrado, corrrer función de inicio de módulo.
+    \item \textit{MANAGER\_RUNNING}: módulo corriendo, esperando desconexión de módulo señalizada por \textit{Module Connection}. Una vez obtenida, proceder a detener módulo corriendo actualmente.
+    \item \textit{CONNECTION\_STOPPING}: deteniendo módulo previamente conectado.
+    \item \textit{CONNECTION\_FAULT}: falla detectada, detener máquina de estados.
+\end{itemize}
+
 
 % Hablar sobre cada parte del código, lo más importante
 % Diagrama de flujo
+
+\subsection{Diseño de interfaz de usuario}
+% Explicar acá qué consideraciones se tomaron en cuenta al diseñar las pantallas, qué programa se utilizó, por qué, referenciarlo, etc.
+
+\subsection{Programación de módulos}
+Cada programación de módulo se compone de dos partes importantes: el control del módulo y su interfaz. A continuación se detallan los programas utilizados para los tres módulos desarrollados en el proyecto.
+
+\subsubsection{Módulo convertidor Buck}
+% Explicar máquina de estado, utilización de timers, lógica de control.
+
+\subsubsection{Módulo recortador de onda}
+% Explicar máquina de estado, utilización de timers, lógica de control.
+
+\subsubsection{Módulo inversor de onda cuadrada}
+% Explicar que no tiene programa de control y que solo tiene una pantalla informativa.
