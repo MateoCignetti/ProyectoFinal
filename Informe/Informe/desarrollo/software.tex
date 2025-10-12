@@ -108,8 +108,8 @@ Se configuró una máquina de estados para gestionar los módulos:
     \item \textit{MANAGER\_INIT}: inicalización de programa
     \item \textit{MANAGER\_READY}: ningún módulo corriendo, esperando conexión de módulo señalizada por \textit{Module Connection}. Una vez obtenida, notificar a tarea de identificación para detectar qué modulo se conectó, mediante lectura de \textit{ADC} (Analog to Digital Converter, Convertidor Analógico a Digital en español). Si se detecta algún módulo registrado, corrrer función de inicio de módulo.
     \item \textit{MANAGER\_RUNNING}: módulo corriendo, esperando desconexión de módulo señalizada por \textit{Module Connection}. Una vez obtenida, proceder a detener módulo corriendo actualmente.
-    \item \textit{CONNECTION\_STOPPING}: deteniendo módulo previamente conectado.
-    \item \textit{CONNECTION\_FAULT}: falla detectada, detener máquina de estados.
+    \item \textit{MANAGER\_STOPPING}: deteniendo módulo previamente conectado.
+    \item \textit{MANAGER\_FAULT}: falla detectada, detener máquina de estados.
 \end{itemize}
 
 
