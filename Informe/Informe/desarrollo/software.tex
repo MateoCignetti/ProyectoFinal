@@ -1,10 +1,10 @@
 \section{Desarrollo de \textit{Software}}
 
 \subsection{Introducción y objetivo del código}
-% Introducción de lo que se busca que haga el programa
 
-El software tiene como fin ser una interfaz entre el usuario y los distintos módulos, siendo el mismo interactivo e intuitivo. Cada módulo presenta su propia programación de control, por ejemplo en el convertidor Buck un control PID o de PWM fijo, o en el recortador de onda los distintos modos de generar el disparo del TRIAC. 
+Una vez desarrollados los módulos y el gabinete central, se desarolla el programa de control para el microcontrolador. El software tiene como fin ser una interfaz interactiva e intuitiva entre el usuario y los distintos módulos. Cada módulo presenta su propia programación de control e interfaz. 
 
+%% VER ESTO DE ABAJO, no me cuadra
 \begin{itemize}[noitemsep]
     \item \textbf{Autodetección de módulos}, mediante una red de identificación, el código es capaz de determinar de que módulo se trata por ejemplo, convertidor Buck, recortador de onda o inversor.
     \item \textbf{Conexión segura}, utiliza un sistema de \textit{hot plugs} para verificar y asegurar la correcta conexión física del módulo, con el fin de evitar cualquier mala comunicación o falla en el mismo.
@@ -13,7 +13,9 @@ El software tiene como fin ser una interfaz entre el usuario y los distintos mó
 
 Cuando se desconecta el módulo que estaba siendo utilizado, el sistema queda en espera de una nueva conexión.
 
-\subsection{Estructura del código}
+\subsection{Estructura del \textit{software}}
+
+El código se separa en componentes, cada pieza encapsulada y con responsabilidad única. De esta forma, se simplifica la adición de nuevos módulos o funciones en el programa sin necesidad de restructurar todo el código.
 % Estructura del código y configuración
 \begin{figure}[H]
     \centering
@@ -73,6 +75,15 @@ Cuando se desconecta el módulo que estaba siendo utilizado, el sistema queda en
     \caption{hola}
     \label{fig:soft:diagrama-arquitectura}
 \end{figure}
+
+En la \cref{fig:soft:diagrama-arquitectura} se observa un diagrama de la estructura del código. A continuación, se explica el funcionamiento de los componentes más importantes:
+
+\subsubsection{\textit{UI Framework}, Esqueleto de interfaz de usuario}
+Este componente se encarga de inicializar y configurar la librería LVGL (Light and Versatile Graphics Library, Librería de Gráficos Liviana y Verśatil en español), \parencite{LVGL}. Mediante esta librería, se controla el \textit{display} TFT LCD de \SI{2.8}{pulgadas}, creando las tareas, \textit{mutex}, \textit{handlers}, \textit{handles} y punteros necesarios para proveer una API (\textit{Application Programming Interface}, interfaz de programación de aplicación en español) para los módulos. También se encarga de configurar el IO (\textit{Input Output}, Entrada y Salida en español) para el funcionamiento del encoder rotativo con el que el usuario navega la interfaz en el \textit{display}.
+
+De esta forma, la interfaz de usuario queda desacoplada del resto del sistema, permitiendo que cada módulo solo implemente la lógica y pantallas específicas sin manipular directamente drivers o detalles de sincronización.
+
+\subsubsection{\textit{Module Connection}, Conexión de módulos}
 
 % Hablar sobre cada parte del código, lo más importante
 % Diagrama de flujo
