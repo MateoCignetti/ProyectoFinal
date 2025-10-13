@@ -60,14 +60,14 @@ El código se separa en componentes, cada pieza encapsulada y con responsabilida
                     \begin{itemize}[noitemsep]
                         \item Inicia interfaz de usuario propia
                     \end{itemize}};
-                \node[shape=rectangle, draw, line width=1pt, align=left, text width=5cm, inner sep=6pt, minimum width=5cm, minimum height=2.7cm] at (15.875, -2.125) {Module Connection (common)\\
+                \node[shape=rectangle, draw, line width=1pt, align=left, text width=5cm, inner sep=6pt, minimum width=5cm, minimum height=2.7cm] at (15.875, -2.125) {Module Connection \\
                     \begin{itemize}[noitemsep]
                         \item Detecta conexión y desconexión de módulos
                         \item Espera hasta lograr conexión estable
                     \end{itemize}};
                 \draw[line width=1pt, -latex] (11.83, -2.125) -- (13.15, -2.125);
                 \draw[line width=1pt, -latex] (8.25, -4.25) -| (2.25, -4.875);
-                \node[shape=rectangle, draw, line width=1pt, align=center, text width=5cm, inner sep=6pt, minimum width=5cm, minimum height=3.3cm] at (20.25, -6.5) {Nuevo módulo};
+                \node[shape=rectangle, draw, line width=1pt, align=center, text width=5cm, inner sep=6pt, minimum width=5cm, minimum height=3.3cm] at (20.25, -6.5) {Otros módulos};
                 \draw[line width=1pt] (12.25, -4.25) -- (16.8, -4.25);
                 \draw[line width=1pt, dash pattern={on 1pt off 8pt}] (16.8, -4.25) -- (18, -4.25);
                 \draw[line width=1pt, -latex] (18, -4.25) -| (20.25, -4.875);
@@ -106,7 +106,7 @@ Este módulo se encarga de definir una estructura de módulo (\textit{module\_t}
 Se configuró una máquina de estados para gestionar los módulos: 
 \begin{itemize}[noitemsep]
     \item \textit{MANAGER\_INIT}: inicalización de programa
-    \item \textit{MANAGER\_READY}: ningún módulo corriendo, esperando conexión de módulo señalizada por \textit{Module Connection}. Una vez obtenida, notificar a tarea de identificación para detectar qué modulo se conectó, mediante lectura de \textit{ADC} (Analog to Digital Converter, Convertidor Analógico a Digital en español). Si se detecta algún módulo registrado, corrrer función de inicio de módulo.
+    \item \textit{MANAGER\_READY}: ningún módulo corriendo, esperando conexión de módulo señalizada por \textit{Module Connection}. Una vez obtenida, notificar a tarea de identificación para detectar qué módulo se conectó, mediante lectura de \textit{ADC} (Analog to Digital Converter, Convertidor Analógico a Digital en español). Si se detecta algún módulo registrado, corrrer función de inicio de módulo.
     \item \textit{MANAGER\_RUNNING}: módulo corriendo, esperando desconexión de módulo señalizada por \textit{Module Connection}. Una vez obtenida, proceder a detener módulo corriendo actualmente.
     \item \textit{MANAGER\_STOPPING}: deteniendo módulo previamente conectado.
     \item \textit{MANAGER\_FAULT}: falla detectada, detener máquina de estados.
@@ -131,21 +131,45 @@ El control de este módulo fue diseñado para lograr un control preciso de la te
 
 \paragraph{Arquitectura de software}
 \begin{itemize}[noitemsep]
-    \item \textit{buck\_control.c}: responsable de la configuración de todos los periféricos de hardware necesarios, como el convertidor analógico-digital (ADC) para la lectura de la realimentación, el generador de modulación por ancho de pulso (LEDC PWM) para controlar el interruptor de potencia y el temporizador de propósito general (GPTimer) que dicta la frecuencia del bucle de control. Además, implementa la lógica de control principal, incluyendo la máquina de estados y el algoritmo del controlador Proporcional-Integral-Derivativo (PID).
+    \item \textit{buck\_control.c}: responsable de la configuración de todos los periféricos de hardware necesarios, como el convertidor analógico-digital (ADC) para la lectura de la realimentación, el generador de modulación por ancho de pulso (LEDC PWM) para controlar el interruptor de potencia y el temporizador de propósito general (GPTimer) que dicta la frecuencia del bucle de control. Además, implementa la lógica de control principal, incluyendo la máquina de estados y el algoritmo del controlador Proporcional-Integral-Derivativo (PID). Se define el \textit{module\_t} del convertidor, con su nombre, punteros a funciones de \textit{start} y \textit{stop} y valores de indetificación.
     \item \textit{buck\_interface.c}: este componente realiza la gestión de la interfaz gráfica de usuario (GUI) del módulo, utilizando la librería LVGL. Se encarga de la creación, destrucción y navegación de las distintas pantallas y elementos interactivos específicos del convertidor Buck.
 \end{itemize}
 
 \paragraph{Máquina de estados}
-El comportamiento del convertidor se rige por una máquina de estados gestionada a través de la variable \textit{control\_mode}. El acceso a esta variable está protegido por un mutex (\textit{xControlModeMutex}) para evitar condiciones de carrera cuando el modo es modificado por la interfaz de usuario y leído por la tarea de control. Los estados definidos son:
+El comportamiento del convertidor se rige por una máquina de estados gestionada a través de la variable \textit{control\_mode}. El acceso a esta variable está protegido por un \textit{mutex} (\textit{xBuckControlModeMutex}) para evitar condiciones de carrera cuando el modo es modificado por la interfaz de usuario y leído por la tarea de control. Los estados definidos son:
 
 \begin{itemize}[noitemsep]
-    \item \textit{CONTROL\_MODE\_IDLE}, Estado seguro por defecto. La salida PWM se fuerza a cero, desactivando el convertidor.
-    \item \textit{CONTROL\_MODE\_FIXED\_PWM}, Modo de control en lazo abierto. El usuario controla directamente el ciclo de trabajo del PWM a través de un \textit{slider} en la UI.
-    \item \textit{CONTROL\_MODE\_PID}, Modo de control de tensión en lazo cerrado. El sistema regula activamente la tensión de salida para que coincida con el \textit{setpoint} definido por el usuario, implementando el bucle de control de realimentación completo.
+    \item \textit{BUCK\_CONTROL\_MODE\_IDLE}: estado seguro por defecto. La salida PWM se fuerza a cero, desactivando el convertidor.
+    \item \textit{BUCK\_CONTROL\_MODE\_FIXED\_PWM}: modo de control en lazo abierto. El usuario controla directamente el ciclo de trabajo del PWM a través de un \textit{slider} en la UI.
+    \item \textit{BUCK\_CONTROL\_MODE\_PID}: modo de control de tensión en lazo cerrado. El sistema regula activamente la tensión de salida para que coincida con el \textit{setpoint} definido por el usuario, implementando el bucle de control de realimentación completo.
 \end{itemize}
 
 \subsubsection{Módulo recortador de onda}
 % Explicar máquina de estado, utilización de timers, lógica de control.
+El control digital de este módulo fue diseñado para cambiar con exactitud el tiempo de disparo del TRIAC, regulando la potencia aplicada a la carga. Permite operar el relé del módulo que elije entre el control analógico mediante resistencia variable o control digital. Además, es posible seleccionar la onda aplicada a la carga: ciclo completo, sólo semiciclo positivo o sólo semiciclo negativo. Al igual que el módulo anterior, se separa en dos programas (\textit{dimmer\_control.c}) y (\textit{dimmer\_interface.c})
+
+\paragraph{Arquitectura de software}
+\begin{itemize}[noitemsep]
+    \item \textit{dimmer\_control.c}: se encarga de configurar las interrupciones necesarias para el funcionamiento del módulo, así como los \textit{timers} que utiliza la lógica de control. Cuando el módulo se encuentra en funcionamiento, se comienza un \textit{timer} cuando la señal sinusoidal de corriente alterna cruza el cero, esperando el tiempo establecido por el usuario, y luego inicializa otro \textit{timer} para generar un pulso de \SI{25}{\micro\second} sin código bloqueante. Se implementa una máquina de estados para el tipo de control. Se define el \textit{module\_t} del convertidor, con su nombre, punteros a funciones de \textit{start} y \textit{stop} y valores de indetificación.
+    \item \textit{dimmer\_interface.c}: al igual que en el convertidor buck, se encarga de crear, eliminar y navegar las pantallas de interfaz de usuario asociadas al módulo.
+\end{itemize}
+
+\paragraph{Máquina de estados}
+Como se implementó en el módulo reductor, se implementa una máquina de estados para el modo de control seleccionado en el recortador de onda. Se proteje también con un \textit{mutex} (\textit{xDimmerControlModeMutex}).
+
+\begin{itemize}[noitemsep]
+    \item \textit{DIMMER\_CONTROL\_IDLE}: estado seguro por defecto. Se activa el relé, activando el control digital, pero no se desactiva la interrupción del detector de cruce por cero. De esta forma, no se genera un pulso de salida.
+    \item \textit{DIMMER\_CONTROL\_ANALOG}: modo de control analógico. Se desactiva el relé , activando el control analógico. El programa desactiva la interrupción y la generación de pulso.
+    \item \textit{DIMMER\_CONTROL\_FULL\_WAVE}: modo de control digital con ciclo completo aplicado a la carga. Se activa el relé y se configura la interrupción del detector de cruce por cero en \textit{ANYEDGE}, lo que inicializa el \textit{timer} de espera en ambos semiciclos de la señal.
+    \item \textit{DIMMER\_CONTROL\_POSITIVE\_SEMICYCLE}: modo de control digital sólo con semiciclo positivo aplicado a la carga. Se activa el relé y se configura la interrupción del detector de cruce por cero en \textit{NEGEDGE}, lo que inicializa el \textit{timer} de espera sólo para el semiciclo positivo.
+    \item \textit{DIMMER\_CONTROL\_NEGATIVE\_SEMICYCLE}: igual al modo de control anterior, pero con la interrupción configurada en \textit{POSEDGE}, lo que inicializa el \textit{timer} de espera sólo para el semiciclo negativo.
+\end{itemize}
 
 \subsubsection{Módulo inversor de onda cuadrada}
-% Explicar que no tiene programa de control y que solo tiene una pantalla informativa.
+Este módulo se diseñó sin control digital, por lo que contiene una versión simplificada de archivo de control e interfaz, en comparación con ambos módulos anteriores.
+
+\paragraph{Arquitectura de software}
+\begin{itemize}[noitemsep]
+    \item \textit{inverter\_control.c}: se encarga sólamente de inicializar y detener la interfaz del módulo. Se define el \textit{module\_t} del convertidor, con su nombre, punteros a funciones de \textit{start} y \textit{stop} y valores de indetificación.
+    \item \textit{inverter\_interface.c}: se encarga de crear y eliminar las pantallas de interfaz de usuario asociadas al módulo. Debido a que este módulo no tiene control digital, solo posee una pantalla de bienvenida.
+\end{itemize}
