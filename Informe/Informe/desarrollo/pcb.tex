@@ -1,10 +1,10 @@
-\section{Desarrollo de Hardware}
+\section{Desarrollo de \textit{Hardware}}
 
-El desarrollo de hardware del proyecto implicó una transición desde el diseño teórico de los circuitos electrónicos hasta la validación experimental de los mismos. En esta etapa, se llevaron a cabo pruebas sobre prototipos armados en placas experimentales perforadas, permitiendo detectar y corregir posibles errores antes de avanzar con el diseño y fabricación de las placas de circuito impreso (PCBs) finales. 
+El desarrollo de \textit{hardware} del proyecto implicó una transición desde el diseño teórico de los circuitos electrónicos hasta la validación experimental de los mismos. En esta etapa, se llevaron a cabo pruebas sobre prototipos armados en placas experimentales perforadas, permitiendo detectar y corregir posibles errores antes de avanzar con el diseño y fabricación de las placas de circuito impreso (PCBs) finales. 
 
 \subsection{Prototipado con placas experimentales perforadas}
 
-Para confirmar el correcto funcionamiento de los circuitos diseñados anteriormente, se confeccionaron prototipos con placas experimentales perforadas para poder realizar pruebas y correcciones de componentes con rapidez y costos mínimos. Este proceso fue fundamental para asegurar la funcionalidad y confiabilidad del hardware desarrollado. Para minimizar el tiempo de fabricación, se realizó su diseño en computadora anteriormente:
+Para confirmar el correcto funcionamiento de los circuitos diseñados anteriormente, se confeccionaron prototipos con placas experimentales perforadas para poder realizar pruebas y correcciones de componentes con rapidez y costos mínimos. Este proceso fue fundamental para asegurar la funcionalidad y confiabilidad del \textit{hardware} desarrollado. Para minimizar el tiempo de fabricación, se realizó su diseño en computadora anteriormente:
 
 \begin{figure}[H]
     \centering
@@ -29,7 +29,7 @@ Una vez obtenidos los circuitos finales con sus respectivos valores de component
     \item PCB Gabinete general.
 \end{enumerate}
 
-Para diseñarlas, se utilizó el conjunto de software de código abierto para Automatización del Diseño Electrónico (EDA) KiCad 9, \parencite{KiCad}. Se tomaron los siguientes criterios de diseño para las PCBs de los módulos:
+Para diseñarlas, se utilizó el conjunto de \textit{software} de código abierto para Automatización del Diseño Electrónico (EDA) KiCad 9, \parencite{KiCad}. Se tomaron los siguientes criterios de diseño para las PCBs de los módulos:
 
 \begin{itemize}[noitemsep]
     \item Tamaño de PCB: $\SI{50}{\milli\meter} \times \SI{100}{\milli\meter}$
@@ -89,7 +89,7 @@ ROTARY\_DATA             & 48                     \\
 \end{tabularx}
 \end{table}
 
-En la \cref{fig:pcb:pcie_footprint_simbolo}, se observa la footprint y símbolo del conector PCIe x4 utilizado, con su asignación de pads a pines. En la \cref{tab:pcb:pads_pins} se observa el mapeo del conector a los GPIOs del microcontrolador ESP32-S3.
+En la \cref{fig:pcb:pcie_footprint_simbolo}, se observa la \textit{footprint} y símbolo del conector PCIe x4 utilizado, con su asignación de pads a pines. En la \cref{tab:pcb:pads_pins} se observa el mapeo del conector a los GPIOs del microcontrolador ESP32-S3.
 
 \begin{figure}[H]
     \centering
