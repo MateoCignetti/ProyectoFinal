@@ -23,9 +23,13 @@ El código se separa en componentes, cada pieza encapsulada y con responsabilida
         \resizebox{\textwidth}{!}{
             \begin{tikzpicture}
                 % Paths, nodes and wires:
-                \node[shape=rectangle, draw, line width=1pt, align=left, text width=6.077cm, inner sep=6pt] at (5.5, 2) {main.c\\ \begin{itemize}[noitemsep]
+                \node[shape=rectangle, draw, line width=1pt, align=left, text width=6.5cm, inner sep=6pt, minimum width=6cm, minimum height=1.5cm] at (5.5, 2) {main.c\\ \begin{itemize}[noitemsep]
                         \item Inicializa interfaz de usuario 
                         \item Inicializa \textit{module manager}
+                    \end{itemize}};
+                \node[shape=rectangle, draw, line width=1pt, align=left, text width=6.5cm, inner sep=6pt, minimum width=6cm, minimum height=1.5cm] at (13.5, 2) {Hardware (common)\\
+                    \begin{itemize}[noitemsep]
+                        \item Define macros, vinculando GPIOs a pines de conector PCIe x4.                
                     \end{itemize}};
                 \draw[line width=1pt] (5.5, 1.15) -- (5.5, 0);
                 \node[shape=rectangle, draw, line width=1pt, align=left, text width=5cm, inner sep=6pt, minimum width=5cm, minimum height=2.7cm] at (9.125, -2.125) {Module Manager (common)\\ 
