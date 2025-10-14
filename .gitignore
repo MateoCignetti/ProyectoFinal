@@ -377,3 +377,9 @@ fp-info-cache
 **/build/**
 !**/build/
 !**/build/main.pdf
+
+# For Square Line Studio
+# Ignore all backup and autosave files
+autosave/
+backup/
+cache/

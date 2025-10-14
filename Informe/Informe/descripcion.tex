@@ -1,20 +1,19 @@
-\section{DESCRIPCIÓN}
+\section{Descripción}
 \justifying
 
 El proyecto consiste en el diseño y construcción de un sistema didáctico modular orientado a la enseñanza y aprendizaje de la electrónica de potencia. Está destinado a estudiantes y entusiastas que deseen experimentar con diferentes configuraciones de circuitos, tales como rectificadores, inversores, convertidores DC-DC, entre otros.
 
-El sistema es comandado por un gabinete central que cuenta con una fuente de tension de 12 V, un transformador de 220 V a 48 V, una PCB de control general con un microcontrolador ESP32-S3 y una interfaz compuesta por una pantalla y un encoder rotativo. El gabinete posee un cable con conector PCIe x4 hembra que permite la conexión de diferentes módulos funcionales. 
+El sistema es comandado por un gabinete central que cuenta con una fuente de tensión de 12 V, un transformador de 220 V a 48 V, una PCB de control general con un microcontrolador ESP32-S3 y una interfaz compuesta por una pantalla y un encoder rotativo. El gabinete posee un cable con conector PCIe x4 hembra que permite la conexión de diferentes módulos funcionales. 
 
 Se contempla el desarrollo de tres módulos funcionales. El diseño modular elegido facilita la expansión futura del sistema, permitiendo incorporar nuevos módulos personalizados conforme a las necesidades de los usuarios o los avances tecnológicos. Así, el proyecto se concibe como una plataforma abierta, adaptable y en constante evolución.
 
-Los módulos desarrollados fueron:
+Los módulos desarrollados en este proyecto son los siguientes:
 \begin{itemize}[noitemsep]
     \item Recortador de onda: regula la potencia entregada a la carga mediante el uso de un tiristor, recortando la onda de tensión. 
-    \item Convertidor buck: logra una tensión de salida menor a la tensión de entrada sin prescindir de eficiencia.
+    \item Convertidor Buck: logra una tensión de salida menor a la tensión de entrada sin prescindir de eficiencia.
     \item Inversor de onda cuadrada: transfiere potencia desde una fuente de continua a una carga de alterna.
 \end{itemize}
 
 El sistema en su totalidad permite la observación de señales de entrada y salida con la ayuda de herramientas externas, así como el ajuste de parámetros en tiempo real, lo que posibilita un aprendizaje práctico e interactivo. A través de estas interacciones, se busca que los usuarios comprendan de forma tangible los principios fundamentales de la electrónica de potencia.
 
-En el desarrollo del trabajo se implementó la metodología ágil Scrum, entendida como un marco de trabajo ligero que permite generar valor a través de soluciones adaptativas frente a problemas complejos. \parencite{SCRUM-GUIDE}
-El trabajo se dividió en sprints, permitiendo una planificación incremental y entregas periódicas. Además, se utilizó la función Proyectos de GitHub para gestionar una pizarra de tareas, organizando el flujo de trabajo en columnas: backlog, ready, in progress, in review y done. Esto facilitó el seguimiento del avance, la asignación de responsabilidades y la colaboración entre los integrantes del equipo.
+En el desarrollo del trabajo se implementó la metodología ágil Scrum, entendida como un marco de trabajo ligero que permite generar valor a través de soluciones adaptativas frente a problemas complejos, \parencite{SCRUM-GUIDE}. El trabajo se dividió en \textit{sprints}, permitiendo una planificación incremental y entregas periódicas. Además, se utilizó la función Proyectos de GitHub para gestionar una pizarra de tareas, organizando el flujo de trabajo en columnas: \textit{backlog}, \textit{ready}, \textit{in progress}, \textit{in review} y \textit{done}. Esto facilitó el seguimiento del avance, la asignación de responsabilidades y la colaboración entre los integrantes del equipo.

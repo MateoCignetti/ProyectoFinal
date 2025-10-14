@@ -62,13 +62,13 @@
 \usepackage{enumitem}
 
 % Paquetes de Bibliografía %
-\usepackage[sorting=none,backend=biber,style=apa,urldate=long]{biblatex}
+\usepackage[sorting=nyt,backend=biber,style=apa,urldate=long]{biblatex}
 \usepackage{csquotes}
 
 \bibliography{referencias}
 
 % Hipervínculos %
-\usepackage{hyperref} % Agregar hidelinks para que no figure el recuadro
+\usepackage[]{hyperref} % Agregar hidelinks para que no figure el recuadro
 
 % Referencias cruzadas %
 \usepackage[capitalise, nameinlink, spanish]{cleveref}
@@ -79,12 +79,21 @@
 
 % Configuracion de secciones y subsecciones %
 \usepackage{titlesec}
-\titleformat{\section}
-  [block]              % estilo de la sección
-  {\normalfont\bfseries\Large\centering} % formato del texto
-  {}                   % aquí va el número, lo dejamos vacío para no mostrar
-  {0pt}                % separación entre número (vacío) y título
-  {}                   % código antes del título
+%\titleformat{\section}
+%  [block]              % estilo de la sección
+%  {\normalfont\bfseries\Large\centering} % formato del texto
+%  {}                   % aquí va el número, lo dejamos vacío para no mostrar
+%  {0pt}                % separación entre número (vacío) y título
+%  {}                   % código antes del título
+
+\titleformat
+  {\paragraph} % Command
+  [block]      % Shape
+  {\normalfont\bfseries\normalsize} % Format
+  {} % Label
+  {0pt} % Separation
+  {}
+  []
 
 \newcommand{\snsection}[1]{
   \section*{#1}
