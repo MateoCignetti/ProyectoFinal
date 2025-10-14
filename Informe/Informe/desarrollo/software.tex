@@ -1,10 +1,11 @@
 \section{Desarrollo de \textit{Software}}
 
-\subsection{Introducción y objetivo del código}
+Una vez diseñados los módulos y el gabinete central, se desarrolla el programa de control para el microcontrolador ESP32-S3. Para ello, se utilizó el \textit{framework} oficial de desarrollo ESP-IDF, \parencite{esp_idf}. El software tiene como fin ser una interfaz interactiva e intuitiva entre el usuario y los distintos módulos. Cada módulo presenta su propia programación de control e interfaz. 
 
-Una vez diseñados los módulos y el gabinete central, se desarrolla el programa de control para el microcontrolador. El software tiene como fin ser una interfaz interactiva e intuitiva entre el usuario y los distintos módulos. Cada módulo presenta su propia programación de control e interfaz. 
+\subsection{Objetivos del programa}
 
-%% VER ESTO DE ABAJO, no me cuadra
+Los objetivos del programa son los siguientes:
+
 \begin{itemize}[noitemsep]
     \item \textbf{Autodetección de módulos}: mediante una red de identificación, el código es capaz de determinar de qué módulo se trata, por ejemplo, convertidor Buck, recortador de onda o inversor de onda cuadrada.
     \item \textbf{Conexión segura}: se utiliza un sistema de \textit{hot-plug} para verificar y asegurar la correcta conexión física del módulo, con el fin de evitar cualquier mala comunicación o falla en el mismo.
@@ -16,8 +17,7 @@ Cuando se desconecta el módulo que estaba siendo utilizado, el sistema queda en
 \subsection{Estructura del \textit{software}}
 
 El código se separa en componentes, cada pieza encapsulada y con responsabilidad única. De esta forma, se simplifica la adición de nuevos módulos o funciones en el programa sin necesidad de restructurar todo el código.
-% Estructura del código y configuración
-% MATEO PARA ALEJO: Module connection teóricamente no es un componente aparte, sino que es parte del module manager. No sé de qué forma se podría poner para que quede bien.
+
 \begin{figure}[H]
     \centering
         \resizebox{\textwidth}{!}{
@@ -79,8 +79,11 @@ El código se separa en componentes, cada pieza encapsulada y con responsabilida
 
 En la \cref{fig:soft:diagrama-arquitectura} se observa un diagrama de la estructura del código. A continuación, se explica el funcionamiento de los componentes más importantes:
 
+\subsubsection{\textit{Hardware}}
+Este pequeño componente contiene únicamente un archivo de encabezado (\textit{gpio\_definition.h}), el cual define macros enlazando los pines del conector PCIe x4 a los GPIO (General Purpose Input/Output, Entradas/Salidas de Propósito General, en español) del microcontrolador, según anteriormente detallado en la \cref{tab:pcb:pads_pins}, \cref{sec:pcb:diseño_pcbs_finales}. De esta manera, el desarrollador puede referirse a la nomenclatura de pines de señal, sin necesidad de investigar cuál es el pin exacto de la placa de desarrollo.
+
 \subsubsection{\textit{UI Framework} - Estructura de interfaz de usuario}
-Este componente se encarga de inicializar y configurar la librería LVGL (Light and Versatile Graphics Library, Librería de Gráficos Liviana y Versátil en español), \parencite{LVGL}. Mediante esta librería, se controla el \textit{display} TFT LCD de \SI{2.8}{pulgadas}, creando las tareas, \textit{mutex}, \textit{handlers}, \textit{handles} y punteros necesarios para proveer una API (\textit{Application Programming Interface}, Interfaz de Programación de Aplicaciones en español) para los módulos. También se encarga de configurar el I/O (\textit{Input/Output}, Entrada/Salida en español) para el funcionamiento del encoder rotativo con el que el usuario navega la interfaz en el \textit{display}.
+Este componente se encarga de inicializar y configurar la librería LVGL (Light and Versatile Graphics Library, Librería de Gráficos Liviana y Versátil en español), \parencite{LVGL}. Mediante esta librería, se controla el \textit{display} TFT LCD de \SI{2.8} pulgadas, creando las tareas, \textit{mutex}, \textit{handlers}, \textit{handles} y punteros necesarios para proveer una API (\textit{Application Programming Interface}, Interfaz de Programación de Aplicaciones en español) para los módulos. También se encarga de configurar el I/O (\textit{Input/Output}, Entrada/Salida en español) para el funcionamiento del encoder rotativo con el que el usuario navega la interfaz en el \textit{display}.
 
 De esta forma, la interfaz de usuario queda desacoplada del resto del sistema, permitiendo que cada módulo solo implemente la lógica y pantallas específicas sin manipular directamente drivers o detalles de sincronización.
 
@@ -112,13 +115,8 @@ Se configuró una máquina de estados para gestionar los módulos:
     \item \textit{MANAGER\_FAULT}: falla detectada, detener máquina de estados.
 \end{itemize}
 
-
-% Hablar sobre cada parte del código, lo más importante
-% Diagrama de flujo
-
 \subsection{Diseño de interfaz de usuario}
 Para realizar una interfaz gráfica intuitiva y fácil de utilizar, se empleó el software SquareLine Studio, \parencite{squareline}. Es un editor visual de interfaz de usuario que permite crear interfaces de forma rápida y sencilla para aplicaciones integradas y de escritorio, con una fácil escalabilidad e implementación en microcontroladores. Se hizo uso de la licencia gratuita de este software, el cual se eligió por su versatilidad, su facilidad de uso y, además, es ampliamente utilizado en la industria.
-% Explicar acá qué consideraciones se tomaron en cuenta al diseñar las pantallas, qué programa se utilizó, por qué, referenciarlo, etc.
 
 Cada módulo cuenta con su propia interfaz lanzada cada vez que es conectado al gabinete. Las interfaces se mantuvieron sencillas y con la información útil y necesaria; se utilizó una tipografía que facilita la lectura, y además se utilizaron colores armónicos.
 
@@ -126,7 +124,7 @@ Cada módulo cuenta con su propia interfaz lanzada cada vez que es conectado al 
 Cada programación de módulo se compone de dos partes importantes: el control del módulo y su interfaz. A continuación se detallan los programas utilizados para los tres módulos desarrollados en el proyecto.
 
 \subsubsection{Módulo convertidor Buck}
-% Explicar máquina de estado, utilización de timers, lógica de control.
+
 El control de este módulo fue diseñado para lograr un control preciso de la tensión de salida y, al mismo tiempo, ofrecer una interfaz de usuario fluida e interactiva. La arquitectura del software está estratégicamente dividida en dos componentes principales que operan de forma concurrente: el núcleo de control (\textit{buck\_control.c}) y el gestor de la interfaz de usuario (\textit{buck\_interface.c}). Esta separación es fundamental para aislar las operaciones críticas en tiempo, como el bucle de control, de las operaciones no críticas, como la actualización de la pantalla, garantizando así la estabilidad del sistema.
 
 \paragraph{Arquitectura de software}
@@ -145,17 +143,17 @@ El comportamiento del convertidor se rige por una máquina de estados gestionada
 \end{itemize}
 
 \subsubsection{Módulo recortador de onda}
-% Explicar máquina de estado, utilización de timers, lógica de control.
+
 El control digital de este módulo fue diseñado para cambiar con exactitud el tiempo de disparo del TRIAC, regulando la potencia aplicada a la carga. Permite operar el relé del módulo que elige entre el control analógico mediante resistencia variable o control digital. Además, es posible seleccionar la onda aplicada a la carga: ciclo completo, sólo semiciclo positivo o sólo semiciclo negativo. Al igual que el módulo anterior, se separa en dos programas (\textit{dimmer\_control.c}) y (\textit{dimmer\_interface.c})
 
 \paragraph{Arquitectura de software}
 \begin{itemize}[noitemsep]
-    \item \textit{dimmer\_control.c}: se encarga de configurar las interrupciones necesarias para el funcionamiento del módulo, así como los \textit{timers} que utiliza la lógica de control. Cuando el módulo se encuentra en funcionamiento, se comienza un \textit{timer} cuando la señal sinusoidal de corriente alterna cruza el cero, esperando el tiempo establecido por el usuario, y luego inicializa otro \textit{timer} para generar un pulso de \SI{25}{\micro\second} sin código bloqueante. Se implementa una máquina de estados para el tipo de control. Se define el \textit{module\_t} del convertidor, con su nombre, punteros a funciones de \textit{start} y \textit{stop} y valores de identificación.
+    \item \textit{dimmer\_control.c}: se encarga de configurar las interrupciones necesarias para el funcionamiento del módulo, así como los \textit{timers} que utiliza la lógica de control. Cuando el módulo se encuentra en funcionamiento, se comienza un \textit{timer} cuando la señal sinusoidal de corriente alterna cruza el cero, esperando el tiempo establecido por el usuario, y luego inicializa otro \textit{timer} para generar un pulso de \SI{25}{\micro\second} sin código bloqueante. Se implementa una máquina de estados para el tipo de control. Se define el \textit{module\_t} del recortador, con su nombre, punteros a funciones de \textit{start} y \textit{stop} y valores de identificación.
     \item \textit{dimmer\_interface.c}: al igual que en el convertidor buck, se encarga de crear, eliminar y navegar las pantallas de interfaz de usuario asociadas al módulo.
 \end{itemize}
 
 \paragraph{Máquina de estados}
-Como se implementó anteriormente en el módulo reductor, se utiliza una máquina de estados para el modo de control seleccionado en el recortador de onda. Se protege también con un \textit{mutex} (\textit{xDimmerControlModeMutex}).
+Como se implementó anteriormente en el módulo convertidor Buck, se utiliza una máquina de estados para el modo de control seleccionado en el recortador de onda. Se protege también con un \textit{mutex} (\textit{xDimmerControlModeMutex}).
 
 \begin{itemize}[noitemsep]
     \item \textit{DIMMER\_CONTROL\_IDLE}: estado seguro por defecto. Se activa el relé, activando el control digital, pero no se desactiva la interrupción del detector de cruce por cero. De esta forma, no se genera un pulso de salida.
@@ -170,6 +168,6 @@ Este módulo se diseñó sin control digital, por lo que contiene una versión s
 
 \paragraph{Arquitectura de software}
 \begin{itemize}[noitemsep]
-    \item \textit{inverter\_control.c}: se encarga solamente de inicializar y detener la interfaz del módulo. Se define el \textit{module\_t} del convertidor, con su nombre, punteros a funciones de \textit{start} y \textit{stop} y valores de identificación.
+    \item \textit{inverter\_control.c}: se encarga solamente de inicializar y detener la interfaz del módulo. Se define el \textit{module\_t} del inversor, con su nombre, punteros a funciones de \textit{start} y \textit{stop} y valores de identificación.
     \item \textit{inverter\_interface.c}: se encarga de crear y eliminar las pantallas de interfaz de usuario asociadas al módulo. Debido a que este módulo no tiene control digital, solo posee una pantalla de bienvenida.
 \end{itemize}
