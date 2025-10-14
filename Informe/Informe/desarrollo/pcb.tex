@@ -66,7 +66,7 @@ El conector seleccionado para los módulos es el PCIe x4, el cual tiene un ancho
 \end{equation}
 
 Por lo tanto, cada pin soporta un máximo de \SI{1.85}{\ampere}. Sin embargo, por limitaciones de espacio, se utilizaron trazas de \SI{0.3
-}{\milli\meter} (\SI{1}{\ampere} máximo) en la mini-pcb que contiene el conector PCIe x4 hembra y el cable plano de comunicación, \cref{fig:pcb:minipcb_front_back}. Para cumplir con los requisitos del módulo convertidor, con un consumo máximo establecido de \SI{3}{\ampere}, se destinan 3 pines del conector para el suministro de \SI{12}{\volt}, y 4 para el PGND. Se aprovechan también dos pines ``Hot Plug'' para poder detectar la correcta conexión del conector desde el microcontrolador. El ancho de traza para los módulos que utilizan la corriente máxima establecida fue fijado en \SI{2}{\milli\meter}.
+}{\milli\meter} (\SI{1}{\ampere} máximo) en la mini-pcb que contiene el conector PCIe x4 hembra y el cable plano de comunicación, \cref{fig:pcb:minipcb_front_back}. Para cumplir con los requisitos del módulo convertidor, con un consumo máximo establecido de \SI{3}{\ampere}, se destinan 3 pines del conector para el suministro de \SI{12}{\volt}, y 4 para el PGND. Se aprovechan también dos pines ``hot-plug'' para poder detectar la correcta conexión del conector desde el microcontrolador. El ancho de traza para los módulos que utilizan la corriente máxima establecida fue fijado en \SI{2}{\milli\meter}.
 
 Para la interfaz de usuario, se decidió utilizar un display LCD TFT de \SI{2.8}{''} y un encoder rotativo. Su asignación de pines respecto al ESP32-S3 se observa en la \cref{tab:pcb:interfaz_pins}.
 
