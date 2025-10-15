@@ -1,34 +1,8 @@
-\section{Diseño de gabinetes}
+\section{Diseño de gabinetes de módulos}
 Para la construcción de los gabinetes de cada módulo y del gabinete general del prototipo, se optó por la impresión 3D, ya que esta tecnología permite fabricarlos a medida con las especificaciones requeridas, además de ofrecer costos accesibles y una rápida producción. Los diseños se realizaron en FreeCAD \parencite{FreeCAD}, seleccionado por ser un software libre, fácil de usar y altamente versátil.
 
-\subsection{Gabinete individual}
-El gabinete destinado a cada módulo se concibió inicialmente como una caja cuadrada en la cual pudiera fijarse una placa de circuito impreso (PCB) de 10 x 10 [cm], separada un centímetro del fondo mediante cuatro separadores huecos que permiten el paso de tornillos.  
-En un primer diseño, la caja no contemplaba tapa, lo que implicaba un contacto directo del usuario con la PCB. Para evitarlo, se incorporó una tapa de acrílico transparente que cubre la totalidad de la superficie superior del gabinete. De esta forma se impide el contacto directo con la electrónica, pero al mismo tiempo se mantiene la visibilidad de la placa. No obstante, esta solución dificultaba la realización de mediciones directas, por lo que se añadieron perforaciones en el acrílico, de tamaño suficiente para permitir el ingreso de las puntas de un multímetro u osciloscopio, sin comprometer la seguridad del usuario.
-
-Posteriormente se consideró que los módulos solo requerirían una PCB de 10 x 5 [cm]. Sin embargo, se decidió mantener el diseño original para conservar una línea de universalidad que brinde libertad al usuario en el desarrollo de distintos módulos. Para ello, se añadieron dos separadores adicionales que permiten fijar también placas de 10 x 5 [cm] por sus cuatro esquinas.
-
-La última consideración fue la conexión de los módulos. Se buscó una solución que evitara tener que desmontar la PCB para realizar las conexiones. Esto se resolvió diseñando el gabinete con una ventana lateral del tamaño exacto del conector, de modo que la PCB pueda alojar el conector en su borde y conectarse directamente desde el exterior.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\textwidth]{3d/Gabinete_chico.png}
-    \caption{Gabinete individual.}
-    \label{fig:3d:gabinete_individual}
-\end{figure}
-
-
-\subsubsection{Conector PCIe x4}
-El conector PCIe x4 se monta sobre una PCB desde la cual se desprenden los cables correspondientes. Para su protección, se diseñó una caja negra en la que, en su cara frontal, queda accesible el conector; mientras que en la cara posterior se colocó una tapa con una abertura lo suficientemente amplia para permitir el paso de los cables.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{3d/Carcasa_conector.png}
-    \caption{Carcasa para conector PCIe x4.}
-    \label{fig:3d:carcasa_conector}
-\end{figure}
-
 \subsection{Gabinete general}
-El gabinete principal, encargado de controlar todo el sistema, debía tener la capacidad suficiente para alojar en su interior la fuente de tensión de 12 Vcc, el transformador de 48 Vca y la PCB general de control y distribución de energía. Además, en la superficie debía quedar espacio para ubicar el gabinete individual en prueba, junto con la pantalla interactiva y el encoder rotativo.
+El gabinete principal, encargado de controlar todo el sistema, debía tener la capacidad suficiente para alojar en su interior la fuente de tensión de \SI{12}{\volt} de corriente continua, el transformador de \SI{48}{\volt} de corriente alterna y la PCB general de control y distribución de energía. Además, en la superficie debía quedar espacio para ubicar el gabinete individual en prueba, junto con la pantalla interactiva y el encoder rotativo.
 
 En base a estos requerimientos, se diseñó un gabinete compuesto por dos partes: una inferior (base), destinada a la fijación de los elementos de alimentación y control, y una superior, en la cual se instalaron el display de \SI{2.8}{''} con el encoder, además del espacio para apoyar el gabinete individual.  
 
@@ -59,5 +33,31 @@ Las dimensiones finales del gabinete fueron de 20 x 15 [cm], con sus piezas unid
     \end{subfigure}
     \caption{Piezas que componen el gabinete general.} 
     \label{fig:3d:gabinete_general}
+\end{figure}
+
+\subsection{Gabinete individual}
+El gabinete destinado a cada módulo se concibió inicialmente como una caja cuadrada en la cual pudiera fijarse una placa de circuito impreso (PCB) de 10 x 10 [cm], separada un centímetro del fondo mediante cuatro separadores huecos que permiten el paso de tornillos.  
+En un primer diseño, la caja no contemplaba tapa, lo que implicaba un contacto directo del usuario con la PCB. Para evitarlo, se incorporó una tapa de acrílico transparente que cubre la totalidad de la superficie superior del gabinete. De esta forma se impide el contacto directo con la electrónica, pero al mismo tiempo se mantiene la visibilidad de la placa. No obstante, esta solución dificultaba la realización de mediciones directas, por lo que se añadieron perforaciones en el acrílico, de tamaño suficiente para permitir el ingreso de las puntas de un multímetro u osciloscopio, sin comprometer la seguridad del usuario.
+
+Posteriormente se consideró que los módulos solo requerirían una PCB de 10 x 5 [cm]. Sin embargo, se decidió mantener el diseño original para conservar una línea de universalidad que brinde libertad al usuario en el desarrollo de distintos módulos. Para ello, se añadieron dos separadores adicionales que permiten fijar también placas de 10 x 5 [cm] por sus cuatro esquinas.
+
+La última consideración fue la conexión de los módulos. Se buscó una solución que evitara tener que desmontar la PCB para realizar las conexiones. Esto se resolvió diseñando el gabinete con una ventana lateral del tamaño exacto del conector, de modo que la PCB pueda alojar el conector en su borde y conectarse directamente desde el exterior.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{3d/Gabinete_chico.png}
+    \caption{Gabinete individual.}
+    \label{fig:3d:gabinete_individual}
+\end{figure}
+
+
+\subsubsection{Conector PCIe x4}
+El conector PCIe x4 se monta sobre una PCB desde la cual se desprenden los cables correspondientes. Para su protección, se diseñó una caja negra en la que, en su cara frontal, queda accesible el conector; mientras que en la cara posterior se colocó una tapa con una abertura lo suficientemente amplia para permitir el paso de los cables.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{3d/Carcasa_conector.png}
+    \caption{Carcasa para conector PCIe x4.}
+    \label{fig:3d:carcasa_conector}
 \end{figure}
 
