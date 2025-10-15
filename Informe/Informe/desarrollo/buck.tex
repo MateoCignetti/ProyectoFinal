@@ -5,9 +5,9 @@ Un convertidor es un circuito electrónico que transforma energía eléctrica de
 \subsection{Interacción del usuario: control y verificación experimental}
 El usuario puede interactuar con el módulo mediante una interfaz intuitiva que permite seleccionar entre diferentes modos de control, como regulación automática de tensión mediante PID o ajuste manual del ciclo de trabajo PWM. Además, se puede modificar la frecuencia de conmutación y alternar entre una carga resistiva o inductiva usando el relé integrado. Se dispone de diversos \textit{test points} a través de la PCB con el fin de poder realizar pruebas en tiempo real utilizando herramientas de medición como osciloscopios, multímetros, entre otros.
 
-Las principales señales que se observan en el módulo son, tensión de salida, a través de la cual se puede observar la estabilidad de tensión frente a distintas condiciones de carga, analizar las corrientes en el inductor y de carga y descarga del capacitor. A su vez, se permite visualizar la señal de conmutación en el transistor, proporcionando así una experiencia completa para el aprendizaje y la caracterización del convertidor Buck.
+Las principales señales que se observan en el módulo son: la tensión de salida (a través de la cual se puede observar la estabilidad de tensión frente a distintas condiciones de carga), la corriente en el inductor y la corriente de carga y descarga del capacitor. A su vez, se permite visualizar la señal de conmutación en el transistor, proporcionando así una experiencia completa para el aprendizaje y la caracterización del convertidor Buck.
 
-El objetivo de esto es poner a disposición del usuario la mayor cantidad de pruebas posibles como, analizar el efecto que produce una carga inductiva y resistiva sobre el PWM del microcontrolador, o el resultado en el \textit{ripple} debido al cambio de frecuencia de conmutación o al PWM. 
+El objetivo de esto es poner a disposición del usuario la mayor cantidad de pruebas posibles como, por ejemplo, analizar el efecto que produce una carga inductiva y resistiva sobre el PWM del microcontrolador, o el resultado en el \textit{ripple} debido al cambio de frecuencia de conmutación o al PWM. 
 
 \subsection{Base teórica}
 \begin{figure}[H]
@@ -168,8 +168,6 @@ Cuando el convertidor es controlado de forma digital, estos modos de conducción
     \label{fig:buck:modo_encendido}
 \end{figure}
 
-% Acá debería explicar el tema de la corriente y todo lo que pasa con las curvas, ver que hace en el video, https://www.youtube.com/watch?v=IyiCHMHE5Qg&list=PLaAA5jT_5f5LRl9TgsN0nq5VtwB-iXzuq&index=2
-
 En un primer momento, cuando el interruptor se encuentra abierto, la corriente en el circuito es nula; luego de cerrado por primera vez, la corriente comienza a incrementarse, por lo que el inductor genera una tensión opuesta en respuesta a la corriente de la fuente. En este momento, el diodo se encuentra polarizado de forma inversa, de modo que toda la corriente de entrada se aplica en el inductor, almacenando energía en forma de campo magnético, \cref{fig:buck:modo_encendido}.
 
 El voltaje de caída mencionado contrarresta el voltaje de la fuente, generando una reducción en el voltaje a través de la carga. Luego de algunos ciclos de conmutación, la tasa de cambio de la corriente disminuye, y el voltaje a través del inductor también lo hace, haciendo que la tensión en la carga aumente.
@@ -239,14 +237,12 @@ El interruptor se encuentra abierto, y el inductor cambia su polaridad para opon
 
 Una vez que el convertidor se encuentra en un modo normal de funcionamiento, la corriente por la carga queda determinada por la suma de la corriente aportada por la fuente de alimentación, y por la corriente producto del campo magnético almacenado en el inductor. En este caso, siempre se tendrá una corriente mayor en la carga. Ese aumento de corriente, debido a la corriente de fuente y a la corriente del inductor, da lugar a que el voltaje se vea disminuido en la carga para preservar la potencia del convertidor.
 
-% Cosas sacadas de https://en.wikipedia.org/wiki/Buck_converter
-
 \subsection{Cálculos para el diseño}
 
 El módulo convertidor reductor se diseña para una tensión de entrada de \SI{12}{\volt} y una corriente de entrada de \SI{3}{\ampere}. Para facilitar la visualización de las distintas señales, tanto de corriente como de tensión necesarias para la interpretación del circuito, la tensión de salida se estableció con un rango completo de \SIrange{0}{12}{\volt}, al igual que la corriente. Esto permite que aumenten las posibilidades de pruebas en el laboratorio, y genera una mayor versatilidad para observar el funcionamiento del módulo en cuestión.
 
 Los cálculos correspondientes al diseño fueron realizados siguiendo un informe de aplicación de \textit{Texas Instruments}, \parencite{ti-buck-report}.
-% Referenciar texas instruments para el cálculo
+
 \paragraph{Criterios de diseño}
 
 El módulo se calcula para una corriente de \SI{2,4}{\ampere} la cual representa un \SI{80}{\percent} de la corriente entregada por la fuente, esto es con el objetivo de mantener un margen de seguridad evitando exigir los componentes.
@@ -280,15 +276,12 @@ Dentro del cálculo es considerado el rendimiento porque el convertidor también
 
 Cualquier capacidad mayor a la calculada puede ser utilizada sin afectar el correcto funcionamiento del convertidor. Este tipo de cálculos se pueden realizar para convertidores con compensación externa. Para el caso de los internamente compensados, como puede ser un circuito integrado Buck, es recomendable utilizar los valores establecidos en la hoja de datos.
 
-% Revisar otros cálculos por las dudas, no se si es estrictamente el valor mínimo, pero si se que si pones más grande mejoras el ripple de salida.
 \subsubsection{Inductor mínimo}
 \begin{equation} \label{eq:buck:inductancia_minima}
     L_{min} = \frac{(V_{in}-V_{out}) \, D_{max}}{f_s \, \Delta I_L} = \frac{(\SI{12}{\volt} - \SI{6}{\volt}) \, 0.55}{\SI{19e3}{\hertz} \, \SI{0.72}{\ampere}} = \SI{241.23}{\micro\henry}
 \end{equation}
 
 El valor calculado se considera como mínimo, ya que emplear una inductancia mayor reduce el \textit{ripple} de corriente e incrementa la corriente de salida. Sin embargo, también implica un aumento en el tamaño físico del inductor. Por el contrario, disminuir la inductancia incrementa el \textit{ripple} y reduce la corriente de salida, aunque permite utilizar un inductor de menor tamaño. Por lo tanto, es necesario encontrar un equilibrio adecuado entre el tamaño del inductor y el nivel de \textit{ripple} permitido en la salida.
-
-% Podría agregar como se calcula y se bobina el inductor, por más que no lo hicimos.
 
 \subsubsection{Corriente media en diodo}
 \begin{equation} \label{eq:buck:corriente_diodo_rectificacion}
@@ -527,26 +520,6 @@ Se elige una resistencia de \SI{2.2}{\kilo\ohm}, \cref{fig:buck:bjt_driver_mosfe
     \label{fig:buck:bjt_driver_mosfet}
 \end{figure}
 
-\begin{comment}
-    
-\subsubsection{Resistencia de gate}
-\textcolor{red}{ESTA SubSubSECCIÓN ESTÁ EN EVALUACIÓN}
-
-La corriente requerida para cargar la gate del transistor está determinada por su capacitancia de gate y el período de conmutación.
-
-$t=1/f_s = \SI{52,63}{\micro\second}$
-
-\begin{equation} \label{eq:buck:corriente-gate}
-    I_g = \frac{Q_g}{t} = \frac{\SI{97}{\nano\coulomb}}{\SI{52,63}{\micro\second}} = \SI{1,843}{\milli\ampere}  
-\end{equation}
-
-\begin{equation} \label{eq:buck:resistencia-gate-maxima}
-    R_{max} = \frac{V_{in}}{I_g} = \frac{\SI{12}{\volt}}{\SI{1,843}{\milli\ampere}} = \SI{6,5}{\kilo\ohm}
-\end{equation}
-
-Este valor fue probado en simulación, pero generaba una disminución drástica en el tiempo de respuesta del transistor, por ello se probará en la práctica para determinar si este cálculo es adecuado o no.
-\end{comment}
-
 \subsubsection{Mediciones de corriente}
 
 \paragraph{Medición de corriente en inductor - Unidireccional}
@@ -625,9 +598,8 @@ El procedimiento presentado en las \cref{eq:buck:salida_amplificador_bidireccion
 Se opta por utilizar una resistencia \textit{shunt} de \SI{5}{\milli\ohm}, ya que si se eligiese una resistencia mayor, la tensión entregada por el amplificador estaría muy próxima al valor máximo manejable por el mismo; además es un valor comercial común y estandarizado, fácil de conseguir.
 
 \subsubsection{Selección de carga con Relé}
-%\textcolor{red}{Dependiendo que modulo va primero esto lo agrego o no, posiblemente sea mejor RECORTADOR DE ONDA antes que buck. AGREGAR SI O SI}
 
-Para experimentar el comportamiento del convertidor Buck frente a diferentes cargas, se utiliza un relé controlado por un microcontrolador permitiendo elegir entre dos cargas, una resistiva y otra inductiva, con el fin de notar las diferencias que puede causar un simple cambio de carga en la operación normal del convertidor.
+Para experimentar el comportamiento del convertidor Buck frente a diferentes cargas, se utiliza un relé controlado por un microcontrolador permitiendo elegir entre dos cargas: una resistiva y otra inductiva, con el fin de notar las diferencias que puede causar un simple cambio de carga en la operación normal del convertidor.
 
 Para conmutar entre los dos estados del relé, normal abierto o normal cerrado, se utiliza un transistor BJT como \textit{driver}, \cref{fig:buck:driver_rele}.
 
@@ -637,8 +609,6 @@ Para conmutar entre los dos estados del relé, normal abierto o normal cerrado, 
     \caption{Circuito \textit{driver} para relé.}
     \label{fig:buck:driver_rele}
 \end{figure}
-
-%\textcolor{red}{Falta carga inductiva.}
 
 \subsubsection{Cálculo de disipador para MOSFET de conmutación}
 
@@ -660,7 +630,7 @@ Una vez determinado este valor se procede a calcular el valor de $R_{DS(on)}$ co
 Luego, se calcula la potencia disipada debido a la resistencia anteriormente calculada.
 \begin{align} \label{eq:buck:potencia_resistiva}
     P_{resistive} =& \left[ I_{load}^2 \, R_{DS(on)hot} \right] \, \frac{V_{out}}{V_{in}} \\
-    =& \left[ (\SI{3}{\ampere})^2 \, \SI{0.72}{\ohm}\right] \, 1 \nonumber \\
+    =& \left[ (\SI{3}{\ampere})^2 \, \SI{0.172}{\ohm}\right] \, 1 \nonumber \\
     =& \SI{1,55}{\watt} \nonumber
 \end{align}
 
@@ -691,10 +661,8 @@ Luego se debe determinar el valor de la temperatura ambiente teórica que debe e
     =& \SI{120}{\celsius} - \SI{97.22}{\celsius} \nonumber \\
     =& \SI{22.78}{\celsius} \nonumber
 \end{align}
-\textcolor{red}{REVISAR SI ESTO LO DEJO ASÍ}
-% Justificar el porque ponemos el disipador, lo ponemos por las ¿dudas?
 
-Si esta temperatura ambiente es menor que la temperatura ambiente especificada, se debe asumir una temperatura de juntura mayor o utilizar un disipador; en cambio, si la temperatura ambiente no es menor que la temperatura ambiente especificada y a su vez no es considerablemente mayor que la temperatura ambiente especificada, el transistor no necesita un disipador para el correcto funcionamiento del mismo.
+Si la temperatura ambiente real excede la temperatura ambiente calculada, $T_{ambiente} = \SI{22.78}{\degreeCelsius}$, será necesario emplear un disipador térmico. Debido a que esta temperatura es ligeramente menor a \SI{25}{\degreeCelsius}, se emplea un pequeño disipador de 17x11x5 (mm).
 
 \subsubsection{Eficiencia del convertidor}
 La eficiencia es un término útil para determinar cuánto de la potencia que se entrega al convertidor es traspasada a la salida del mismo, se expresa en un porcentaje. Alternativamente, se puede expresar la eficiencia en término de las pérdidas, \cref{eq:buck:rendimiento}; \parencite{ti-eficiencia}.
@@ -722,10 +690,10 @@ El rendimiento teórico del convertidor está dado por, \cref{eq:buck:rendimient
     &= 0.925 \approx \SI{92,5}{\percent}
 \end{align}
 
-\textcolor{red}{Faltaría calcular el rendimiento real del circuito}
+% Ver si agregar: rendimiento real del circuito
 
 \subsection{Simulación}
-Para corroborar el correcto funcionamiento del circuito previo a su elaboración física, se realizó la simulación del mismo utilizando el software gratuito LTSpice, \parencite{LTSPICE}.
+Para corroborar el correcto funcionamiento del circuito previo a su elaboración física, se realizó la simulación del mismo utilizando el software gratuito LTspice, \parencite{LTSPICE}.
 
 \begin{figure}[H]
     \centering

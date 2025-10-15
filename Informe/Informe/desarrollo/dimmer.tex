@@ -15,7 +15,7 @@ El módulo recortador de onda está diseñado para que el usuario pueda seleccio
 
 Los tiristores pueden adoptar diversas formas, pero comparten ciertas características. Todos son interruptores de estado sólido que actúan como circuitos abiertos capaces de soportar la tensión nominal hasta su activación. Al activarse, los tiristores se convierten en circuitos de corriente de baja impedancia y permanecen en esa condición hasta que la corriente se detiene o cae por debajo de un valor mínimo denominado nivel de retención. Una vez activado un tiristor, la corriente de activación puede eliminarse sin apagar el dispositivo, \parencite{ON-ThyristorHandbook}
 
-El TRIAC es un tiristor bidireccional ampliamente utilizado en la electrónica de potencia, en especial en aplicaciones menores a 40 A. Puede ser pensado como dos SCR (Silicon Controlled Rectifier, Rectificador controlado de silicio en epsañol) en antiparalelo con su terminal de compuerta unidos. Además, puede ser disparado por una señal de corriente alterna o una de corriente continua positiva o negativa.
+El TRIAC es un tiristor bidireccional ampliamente utilizado en la electrónica de potencia, en especial en aplicaciones menores a 40 A. Puede ser pensado como dos SCR (Silicon Controlled Rectifier, Rectificador controlado de silicio en español) en antiparalelo con su terminal de compuerta unidos. Además, puede ser disparado por una señal de corriente alterna o una de corriente continua positiva o negativa.
 
 \subsubsection{Características del TRIAC}
 
@@ -380,14 +380,14 @@ Por lo tanto, no es necesario colocar un disipador en el TRIAC, ya que la temper
 
 \subsection{Simulación}
 
-Para verificar el correcto funcionamiento del circuito control de fase analógico del \cref{sec:dimmer:rama-rc}, se realizó una simple simulación con el software gratuito LTSpice, \parencite{LTSPICE}.
+Para verificar el correcto funcionamiento del circuito control de fase analógico del \cref{sec:dimmer:rama-rc}, se realizó una simple simulación con el software gratuito LTspice, \parencite{LTSPICE}.
 
 \begin{figure}[H]
     \centering
 
     \includegraphics[width=0.6\textwidth]{dimmer/simulacion_circuito.png}
 
-    \caption{Circuito en LTSpice\protect\footnotemark}
+    \caption{Circuito en LTspice\protect\footnotemark}
     \label{fig:dimmer:simulacion_circuito}
 \end{figure}
 \footnotetext{Se utilizó el TRIAC Z0402M por disponibilidad de modelo de simulación. Sus características son similares a las del BT137.}
