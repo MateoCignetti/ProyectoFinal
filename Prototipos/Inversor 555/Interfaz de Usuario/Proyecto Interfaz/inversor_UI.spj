@@ -142,6 +142,15 @@
                     "strval": "DEFAULT",
                     "childs": [
                       {
+                        "nid": 10420,
+                        "strtype": "_style/Text_Spacing",
+                        "intarray": [
+                          0,
+                          0
+                        ],
+                        "InheritedType": 7
+                      },
+                      {
                         "nid": 10430,
                         "strtype": "_style/Text_Align",
                         "strval": "CENTER",
@@ -150,7 +159,7 @@
                       {
                         "nid": 10450,
                         "strtype": "_style/Text_Font",
-                        "strval": "fontMontserratM18Tildes",
+                        "strval": "fontRobotoBold18Tildes",
                         "InheritedType": 3
                       }
                     ],
@@ -469,7 +478,7 @@
                           {
                             "nid": 10450,
                             "strtype": "_style/Text_Font",
-                            "strval": "fontMontserratM14Tildes",
+                            "strval": "fontRobotoMedium16Tildes",
                             "InheritedType": 3
                           }
                         ],
@@ -523,7 +532,7 @@
                 "strtype": "OBJECT/Position",
                 "intarray": [
                   0,
-                  -55
+                  -47
                 ],
                 "InheritedType": 7
               },
@@ -786,7 +795,7 @@
     "uiExportFolderPath": "",
     "projectExportFolderPath": "",
     "custom_variable_prefix": "uic",
-    "backup_cnt": 13,
+    "backup_cnt": 16,
     "autosave_cnt": 0,
     "group_color_cnt": 0,
     "lvgl_version": "9.1.0",

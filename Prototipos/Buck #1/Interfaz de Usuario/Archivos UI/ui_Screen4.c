@@ -77,7 +77,7 @@ void ui_Screen4_screen_init(void)
     lv_obj_set_align(ui_Label9, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label9, "Ajuste de Ciclo de Trabajo");
     lv_obj_set_style_text_align(ui_Label9, LV_TEXT_ALIGN_AUTO, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label9, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label9, &ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_SliderDuty = lv_slider_create(ui_Screen4);
     lv_slider_set_value(ui_SliderDuty, 0, LV_ANIM_OFF);
@@ -97,7 +97,7 @@ void ui_Screen4_screen_init(void)
     lv_obj_set_align(ui_dutyPercentage, LV_ALIGN_CENTER);
     lv_label_set_text(ui_dutyPercentage, "0 %");
     lv_obj_set_style_text_align(ui_dutyPercentage, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_dutyPercentage, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_dutyPercentage, &ui_font_fontRobotoRegular14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ButtonReturnDefault2 = lv_button_create(ui_Screen4);
     lv_obj_set_width(ui_ButtonReturnDefault2, 100);
@@ -114,7 +114,7 @@ void ui_Screen4_screen_init(void)
     lv_obj_set_align(ui_Label10, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label10, "Valor por\ndefecto");
     lv_obj_set_style_text_align(ui_Label10, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label10, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label10, &ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(ui_ButtonReturn3, ui_event_ButtonReturn3, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_SliderDuty, ui_event_SliderDuty, LV_EVENT_ALL, NULL);

@@ -77,7 +77,7 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_align(ui_Label11, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label11, "Ajuste de Control PID");
     lv_obj_set_style_text_align(ui_Label11, LV_TEXT_ALIGN_AUTO, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label11, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label11, &ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_SliderSP = lv_slider_create(ui_Screen5);
     lv_slider_set_range(ui_SliderSP, 0, 12);
@@ -98,7 +98,7 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_align(ui_setPointValue, LV_ALIGN_CENTER);
     lv_label_set_text(ui_setPointValue, "0 V");
     lv_obj_set_style_text_align(ui_setPointValue, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_setPointValue, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_setPointValue, &ui_font_fontRobotoRegular14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ButtonReturnDefault3 = lv_button_create(ui_Screen5);
     lv_obj_set_width(ui_ButtonReturnDefault3, 100);
@@ -115,7 +115,7 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_align(ui_Label12, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label12, "Valor por\ndefecto");
     lv_obj_set_style_text_align(ui_Label12, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label12, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label12, &ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(ui_ButtonReturn4, ui_event_ButtonReturn4, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_SliderSP, ui_event_SliderSP, LV_EVENT_ALL, NULL);
