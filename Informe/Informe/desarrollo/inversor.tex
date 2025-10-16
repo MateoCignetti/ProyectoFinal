@@ -58,7 +58,7 @@ El uso más común del dispositivo es como oscilador en modo astable, conectando
         \node[jump crossing] at (5, 5){};
         \draw (5.14, 5) -- (9.25, 5);
         \draw (5, 5.14) -| (5, 6);
-        \draw (17, 7) to[american voltage source, l={$Vcc$}] (17, 5);
+        \draw (17, 7) to[american voltage source, l={$V_{CC}$}] (17, 5);
         \draw (17, 7) |- (14, 9.5);
         \draw (17, 5) |- (15.25, 1);
         \node[shape=rectangle, draw, line width=1pt, minimum width=2.965cm, minimum height=4.965cm](N1) at (10.75, 6.5){} node[anchor=center] at (N1.text){$IC555$};
@@ -90,7 +90,7 @@ Para que produzca un ciclo de trabajo del \SI{50}{\percent}, el capacitor de tem
 
 Cuando la salida está en ALTO, el capacitor se carga a través de R2, y cuando la salida está en BAJO, el capacitor se descarga a través de R2. La resistencia R1 tiene un valor alto y se utiliza para garantizar que el capacitor se cargue completamente hasta alcanzar el mismo valor que la tensión de alimentación.  
 
-El \textit{reset} (pin 4) debe conectarse a Vcc para evitar que el circuito se desactive involuntariamente, mientras que el control de voltaje (pin 5) se conecta con un capacitor de bajo valor a tierra para mejorar la estabilidad y reducir el ruido. El pin 7 (Descarga) no se usa en esta configuración, ya que la carga y descarga del capacitor ocurren exclusivamente a través de la resistencia R2, \parencite{electronics-tutorial-555}.
+El \textit{reset} (pin 4) debe conectarse a $V_{CC}$ para evitar que el circuito se desactive involuntariamente, mientras que el control de voltaje (pin 5) se conecta con un capacitor de bajo valor a tierra para mejorar la estabilidad y reducir el ruido. El pin 7 (Descarga) no se usa en esta configuración, ya que la carga y descarga del capacitor ocurren exclusivamente a través de la resistencia R2, \parencite{electronics-tutorial-555}.
 
 
 \subsection{Descripción de funcionamiento de un inversor de medio puente}
@@ -149,9 +149,9 @@ En este circuito tenemos dos etapas, una de potencia en la cual encontramos el m
 
 El control del medio puente se realiza a través de la señal de salida del oscilador 555, que se divide en dos ramas. Una de estas ramas se conecta a la \textit{gate} del transistor Q1 mediante una resistencia, mientras que la otra rama lo hace a la base de un transistor BJT, también a través de una resistencia.
 
-La \textit{gate} del transistor Q2 se conecta al colector del transistor BJT, que tiene una resistencia conectada a la tensión de alimentación Vcc. El emisor del BJT está conectado a tierra. Este transistor BJT actúa como una compuerta \textit{NOT}: cuando el oscilador proporciona un impulso alto en la base del BJT, este coloca la \textit{gate} de Q2 a tierra, evitando que Q2 conduzca. Al mismo tiempo, la \textit{gate} de Q1 recibe la tensión Vcc, lo que hace que Q1 conduzca.
+La \textit{gate} del transistor Q2 se conecta al colector del transistor BJT, que tiene una resistencia conectada a la tensión de alimentación $V_{CC}$. El emisor del BJT está conectado a tierra. Este transistor BJT actúa como una compuerta \textit{NOT}: cuando el oscilador proporciona un impulso alto en la base del BJT, este coloca la \textit{gate} de Q2 a tierra, evitando que Q2 conduzca. Al mismo tiempo, la \textit{gate} de Q1 recibe la tensión $V_{CC}$, lo que hace que Q1 conduzca.
 
-Cuando la salida del oscilador pasa a un impulso bajo, el comportamiento se invierte. Q1 deja de conducir porque no recibe tensión en su \textit{gate}. Esto también ocurre en el BJT, que deja de conducir, y la tensión Vcc aplicada a su colector se dirige a la \textit{gate} de Q2, haciendo que Q2 conduzca.
+Cuando la salida del oscilador pasa a un impulso bajo, el comportamiento se invierte. Q1 deja de conducir porque no recibe tensión en su \textit{gate}. Esto también ocurre en el BJT, que deja de conducir, y la tensión $V_{CC}$ aplicada a su colector se dirige a la \textit{gate} de Q2, haciendo que Q2 conduzca.
 
 Así, se logra que solo uno de los dos MOSFETs conduzca en cada ciclo de conmutación, lo que genera la acción complementaria.
 
@@ -315,7 +315,7 @@ R = \frac{1}{2 \times 0{,}693 \times \SI{50}{\hertz} \times \SI{0.1}{\micro\fara
 
 Ya que no es un valor comercial, se emplea una resistencia de \SI{120}{\kilo\ohm} en serie con un potenciómetro de \SI{50}{\kilo\ohm}, para tener un ajuste preciso de la frecuencia deseada.
 Además, se utiliza una resistencia adicional \(R{1}\) de \SI{3,9}{\mega\ohm} para asegurar la carga completa del capacitor, y así un ciclo de trabajo del \SI{50}{\percent}. Este valor de resistencia es el que mejores resultados entregó en las pruebas realizadas.
-En cuanto a la alimentación del integrado, se utiliza la tensión proporcionada por el módulo general \SI{12}{Vcc}, por lo que entrega una onda cuadra de \SIrange{0}{12}{V}.
+En cuanto a la alimentación del integrado, se utiliza la tensión proporcionada por el módulo general (\SI{12}{\volt} de corriente continua), por lo que entrega a la salida del mismo una onda cuadra de \SIrange{0}{12}{\volt}.
 
 \subsubsection{Regulador de voltaje}
 El MOSFET seleccionado es el IRFZ44N, \parencite{IRFZ44N}, y el umbral de conducción es \(V_\mathrm{GS(th)} = \SIrange{2}{4}{V}\), por lo que la tensión de alimentación del IC555 debe ser mayor por \SI{3}{\volt}\ al de alimentación de MOSFETs, para obtener esta diferencia entre \textit{gate} y surtidor. Para ello se utiliza un regulador LM7809, el cual se alimenta con \SI{12}{V} y entrega \SI{9}{V} a la salida, con los que se alimenta el surtidor del MOSFET.
@@ -454,12 +454,12 @@ No se incluyen cálculos de disipación de potencia en los transistores, dado qu
 
 \subsection{Simulación}
 
-Para verificar el correcto funcionamiento del circuito oscilador IC555 y la tensión en la carga, se realizó una simple simulación con el software gratuito LTSpice, \parencite{LTSPICE}.
+Para verificar el correcto funcionamiento del circuito oscilador IC555 y la tensión en la carga, se realizó una simple simulación con el software gratuito LTspice, \parencite{LTSPICE}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{inversor/circuito_simulacion.png}
-    \caption{Circuito en LTSpice.}
+    \caption{Circuito en LTspice.}
     \label{fig:inversor:cicuito_simulacion}
 \end{figure}
 

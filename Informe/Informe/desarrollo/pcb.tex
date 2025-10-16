@@ -65,8 +65,7 @@ El conector seleccionado para los módulos es el PCIe x4, el cual tiene un ancho
     I = 0.048 \cdot 10^{0.44} \cdot (27.56 \cdot 1.378)^{0.725} = \SI{1.8466}{\ampere} \approx \SI{1.85}{\ampere}
 \end{equation}
 
-Por lo tanto, cada pin soporta un máximo de \SI{1.85}{\ampere}. Sin embargo, por limitaciones de espacio, se utilizaron trazas de \SI{0.3
-}{\milli\meter} (\SI{1}{\ampere} máximo) en la mini-pcb que contiene el conector PCIe x4 hembra y el cable plano de comunicación, \cref{fig:pcb:minipcb_front_back}. Para cumplir con los requisitos del módulo convertidor, con un consumo máximo establecido de \SI{3}{\ampere}, se destinan 3 pines del conector para el suministro de \SI{12}{\volt}, y 4 para el PGND. Se aprovechan también dos pines ``hot-plug'' para poder detectar la correcta conexión del conector desde el microcontrolador. El ancho de traza para los módulos que utilizan la corriente máxima establecida fue fijado en \SI{2}{\milli\meter}.
+Por lo tanto, cada pin soporta un máximo de \SI{1.85}{\ampere}. Sin embargo, por limitaciones de espacio, se utilizaron trazas de \SI{0.3}{\milli\meter} (\SI{1}{\ampere} máximo) en la mini-pcb que contiene el conector PCIe x4 hembra y el cable plano de comunicación, \cref{fig:pcb:minipcb_front_back}. Para cumplir con los requisitos del módulo convertidor, con un consumo máximo establecido de \SI{3}{\ampere}, se destinan 3 pines del conector para el suministro de \SI{12}{\volt}, y 4 para el PGND. Se aprovechan también dos pines ``hot-plug'' para poder detectar la correcta conexión del conector desde el microcontrolador. El ancho de traza para los módulos que utilizan la corriente máxima establecida fue fijado en \SI{2}{\milli\meter}.
 
 Para la interfaz de usuario, se decidió utilizar un display LCD TFT de \SI{2.8}{''} y un encoder rotativo. Su asignación de pines respecto al ESP32-S3 se observa en la \cref{tab:pcb:interfaz_pins}.
 
@@ -121,13 +120,13 @@ La asignación de pines, símbolo y huella del conector se presenta a continuaci
 \hline
 \textbf{Pad huella PCIe x4} & \textbf{Pin símbolo PCIe x4} & \textbf{GPIO ESP32-S3} \\ \hline
 1                           & HP\_Power                    & 35                     \\
-2                           & PNGD                         & N/A                    \\
+2                           & GND                          & GND                    \\
 3                           & 5Vdc                         & 5V                     \\
 4                           & 12Vdc                        & N/A                    \\
 5                           & 48Vac\_L                     & N/A                    \\
 6                           & 48Vac\_N                     & N/A                    \\
-7                           & AGND                         & GND                    \\
-8                           & 3,3Vdc\_Signal               & 3V3                    \\
+7                           & GND                          & GND                    \\
+8                           & \SI{3.3} Vdc\_Signal               & 3V3                    \\
 9                           & S1                           & 4 (ADC1\_3)            \\
 10                          & S2                           & 5 (ADC1\_4)            \\
 11                          & S3                           & 6 (ADC1\_5)            \\

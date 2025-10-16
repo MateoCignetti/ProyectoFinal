@@ -40,7 +40,7 @@
 #define PIN_TRIAC_OUT GPIO_NUM_41 // TRIAC output pin
 #define ADC_READ_CHANNEL ADC_CHANNEL_2 // ADC channel to read (GPIO 3)
 #define PULSE_WIDTH_US 25 // Pulse width for driving the triac, in microseconds
-#define DIMMER_TIMER_COUNT_DEFAULT 4000 // Turns on TRIAC at 9,9 ms after zero crossing
+#define DIMMER_TIMER_COUNT_DEFAULT 9900 // Turns on TRIAC at 9,9 ms after zero crossing
                                         // (basically starts the dimmer off)
 #define ADC_SAMPLING_FREQUENCY 40 // ADC sampling frequency in Hz
 #define ALARM_COUNT_MIN 100 // Minimum alarm count for the dimmer

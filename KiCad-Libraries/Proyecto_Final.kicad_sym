@@ -98,7 +98,7 @@
 			(pin input line
 				(at -15.24 16.51 0)
 				(length 2.54)
-				(name "PGND"
+				(name "GND"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -134,7 +134,7 @@
 			(pin input line
 				(at -15.24 7.62 0)
 				(length 2.54)
-				(name "AGND"
+				(name "GND"
 					(effects
 						(font
 							(size 1.27 1.27)

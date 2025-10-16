@@ -29,7 +29,7 @@
 #define PIN_ZCD_IN PIN_S16 // Zero crossing detector input pin
 
 #define PULSE_WIDTH_US 25 // Pulse width for driving the triac, in microseconds
-#define DIMMER_TIMER_COUNT_DEFAULT 9900 // Dimmer wait timer alarm count. Turns on TRIAC at 9,9 ms after zero crossing
+#define DIMMER_TIMER_COUNT_DEFAULT 9700 // Dimmer wait timer alarm count. Turns on TRIAC at 9,9 ms after zero crossing
                                         // (basically no load voltage.)
 /* UNCOMMENT WHEN IMPLEMENTING USER INTERFACE
 #define ALARM_COUNT_MIN 100 // Minimum alarm count for the dimmer
