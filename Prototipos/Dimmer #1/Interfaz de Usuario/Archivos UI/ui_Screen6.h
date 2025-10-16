@@ -21,6 +21,7 @@ extern lv_obj_t * ui_Label13;
 extern lv_obj_t * ui_LabelSN;
 extern void ui_event_ButtonReturn5(lv_event_t * e);
 extern lv_obj_t * ui_ButtonReturn5;
+extern lv_obj_t * ui_cicloNegativo;
 // CUSTOM VARIABLES
 
 #ifdef __cplusplus

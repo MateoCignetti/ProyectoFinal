@@ -11,6 +11,7 @@ lv_obj_t * ui_SliderSN = NULL;
 lv_obj_t * ui_Label13 = NULL;
 lv_obj_t * ui_LabelSN = NULL;
 lv_obj_t * ui_ButtonReturn5 = NULL;
+lv_obj_t * ui_cicloNegativo = NULL;
 // event funtions
 void ui_event_SliderSN(lv_event_t * e)
 {
@@ -42,7 +43,7 @@ void ui_Screen6_screen_init(void)
     lv_obj_set_width(ui_Label12, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label12, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_Label12, 0);
-    lv_obj_set_y(ui_Label12, -50);
+    lv_obj_set_y(ui_Label12, -100);
     lv_obj_set_align(ui_Label12, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label12, "Semiciclo Negativo");
     lv_obj_set_style_text_font(ui_Label12, &ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -53,8 +54,6 @@ void ui_Screen6_screen_init(void)
     if(lv_slider_get_mode(ui_SliderSN) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(ui_SliderSN, 1, LV_ANIM_OFF);
     lv_obj_set_width(ui_SliderSN, 150);
     lv_obj_set_height(ui_SliderSN, 10);
-    lv_obj_set_x(ui_SliderSN, 0);
-    lv_obj_set_y(ui_SliderSN, 50);
     lv_obj_set_align(ui_SliderSN, LV_ALIGN_CENTER);
 
     //Compensating for LVGL9.1 draw crash with bar/slider max value when top-padding is nonzero and right-padding is 0
@@ -63,6 +62,8 @@ void ui_Screen6_screen_init(void)
     ui_Label13 = lv_label_create(ui_Screen6);
     lv_obj_set_width(ui_Label13, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label13, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Label13, 0);
+    lv_obj_set_y(ui_Label13, -50);
     lv_obj_set_align(ui_Label13, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label13, "Tiempo de disparo");
     lv_obj_set_style_text_font(ui_Label13, &ui_font_fontRobotoMedium14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -71,7 +72,7 @@ void ui_Screen6_screen_init(void)
     lv_obj_set_width(ui_LabelSN, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelSN, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_LabelSN, 0);
-    lv_obj_set_y(ui_LabelSN, 30);
+    lv_obj_set_y(ui_LabelSN, -20);
     lv_obj_set_align(ui_LabelSN, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelSN, "0 ms");
     lv_obj_set_style_text_font(ui_LabelSN, &ui_font_fontRobotoRegular14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -84,6 +85,16 @@ void ui_Screen6_screen_init(void)
     lv_obj_set_style_bg_image_src(ui_ButtonReturn5, &ui_img_images_arrow_png, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_image_recolor(ui_ButtonReturn5, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_image_recolor_opa(ui_ButtonReturn5, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_cicloNegativo = lv_image_create(ui_Screen6);
+    lv_image_set_src(ui_cicloNegativo, &ui_img_images_negativo_sf_png);
+    lv_obj_set_width(ui_cicloNegativo, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_cicloNegativo, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_cicloNegativo, 0);
+    lv_obj_set_y(ui_cicloNegativo, 85);
+    lv_obj_set_align(ui_cicloNegativo, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_cicloNegativo, LV_OBJ_FLAG_CLICKABLE);     /// Flags
+    lv_obj_remove_flag(ui_cicloNegativo, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     lv_obj_add_event_cb(ui_SliderSN, ui_event_SliderSN, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonReturn5, ui_event_ButtonReturn5, LV_EVENT_ALL, NULL);
@@ -101,5 +112,6 @@ void ui_Screen6_screen_destroy(void)
     ui_Label13 = NULL;
     ui_LabelSN = NULL;
     ui_ButtonReturn5 = NULL;
+    ui_cicloNegativo = NULL;
 
 }

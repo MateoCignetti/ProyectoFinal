@@ -11,6 +11,7 @@ lv_obj_t * ui_SliderCC = NULL;
 lv_obj_t * ui_Label9 = NULL;
 lv_obj_t * ui_LabelCC = NULL;
 lv_obj_t * ui_ButtonReturn3 = NULL;
+lv_obj_t * ui_cicloCompleto = NULL;
 // event funtions
 void ui_event_SliderCC(lv_event_t * e)
 {
@@ -42,7 +43,7 @@ void ui_Screen4_screen_init(void)
     lv_obj_set_width(ui_Label8, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label8, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_Label8, 0);
-    lv_obj_set_y(ui_Label8, -50);
+    lv_obj_set_y(ui_Label8, -100);
     lv_obj_set_align(ui_Label8, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label8, "Ciclo Completo");
     lv_obj_set_style_text_font(ui_Label8, &ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -54,7 +55,7 @@ void ui_Screen4_screen_init(void)
     lv_obj_set_width(ui_SliderCC, 150);
     lv_obj_set_height(ui_SliderCC, 10);
     lv_obj_set_x(ui_SliderCC, 2);
-    lv_obj_set_y(ui_SliderCC, 50);
+    lv_obj_set_y(ui_SliderCC, 0);
     lv_obj_set_align(ui_SliderCC, LV_ALIGN_CENTER);
 
     //Compensating for LVGL9.1 draw crash with bar/slider max value when top-padding is nonzero and right-padding is 0
@@ -63,6 +64,8 @@ void ui_Screen4_screen_init(void)
     ui_Label9 = lv_label_create(ui_Screen4);
     lv_obj_set_width(ui_Label9, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label9, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Label9, 0);
+    lv_obj_set_y(ui_Label9, -50);
     lv_obj_set_align(ui_Label9, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label9, "Tiempo de disparo");
     lv_obj_set_style_text_font(ui_Label9, &ui_font_fontRobotoMedium14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -71,7 +74,7 @@ void ui_Screen4_screen_init(void)
     lv_obj_set_width(ui_LabelCC, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelCC, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_LabelCC, 0);
-    lv_obj_set_y(ui_LabelCC, 30);
+    lv_obj_set_y(ui_LabelCC, -20);
     lv_obj_set_align(ui_LabelCC, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelCC, "0 ms");
     lv_obj_set_style_text_font(ui_LabelCC, &ui_font_fontRobotoRegular14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -84,6 +87,16 @@ void ui_Screen4_screen_init(void)
     lv_obj_set_style_bg_image_src(ui_ButtonReturn3, &ui_img_images_arrow_png, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_image_recolor(ui_ButtonReturn3, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_image_recolor_opa(ui_ButtonReturn3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_cicloCompleto = lv_image_create(ui_Screen4);
+    lv_image_set_src(ui_cicloCompleto, &ui_img_images_completo_sf_png);
+    lv_obj_set_width(ui_cicloCompleto, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_cicloCompleto, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_cicloCompleto, 0);
+    lv_obj_set_y(ui_cicloCompleto, 85);
+    lv_obj_set_align(ui_cicloCompleto, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_cicloCompleto, LV_OBJ_FLAG_CLICKABLE);     /// Flags
+    lv_obj_remove_flag(ui_cicloCompleto, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     lv_obj_add_event_cb(ui_SliderCC, ui_event_SliderCC, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonReturn3, ui_event_ButtonReturn3, LV_EVENT_ALL, NULL);
@@ -101,5 +114,6 @@ void ui_Screen4_screen_destroy(void)
     ui_Label9 = NULL;
     ui_LabelCC = NULL;
     ui_ButtonReturn3 = NULL;
+    ui_cicloCompleto = NULL;
 
 }
