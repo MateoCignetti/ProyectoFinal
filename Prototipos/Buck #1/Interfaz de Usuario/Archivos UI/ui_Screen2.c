@@ -62,8 +62,8 @@ void ui_Screen2_screen_init(void)
     lv_obj_set_style_bg_image_src(ui_ButtonReturn1, &ui_img_images_arrow_png, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Panel1 = lv_obj_create(ui_Screen2);
-    lv_obj_set_width(ui_Panel1, 170);
-    lv_obj_set_height(ui_Panel1, 60);
+    lv_obj_set_width(ui_Panel1, LV_SIZE_CONTENT);   /// 170
+    lv_obj_set_height(ui_Panel1, LV_SIZE_CONTENT);    /// 60
     lv_obj_set_x(ui_Panel1, 0);
     lv_obj_set_y(ui_Panel1, -60);
     lv_obj_set_align(ui_Panel1, LV_ALIGN_CENTER);
@@ -77,7 +77,7 @@ void ui_Screen2_screen_init(void)
     lv_obj_set_align(ui_Label5, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label5, "Ajuste de frecuencia\nde conmutación");
     lv_obj_set_style_text_align(ui_Label5, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label5, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label5, &ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_SliderFreq1 = lv_slider_create(ui_Screen2);
     lv_slider_set_range(ui_SliderFreq1, 1, 19);
@@ -97,7 +97,7 @@ void ui_Screen2_screen_init(void)
     lv_obj_set_height(ui_freqValue, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_freqValue, LV_ALIGN_CENTER);
     lv_label_set_text(ui_freqValue, "1 kHz");
-    lv_obj_set_style_text_font(ui_freqValue, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_freqValue, &ui_font_fontRobotoRegular14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ButtonReturnDefault1 = lv_button_create(ui_Screen2);
     lv_obj_set_width(ui_ButtonReturnDefault1, 100);
@@ -114,7 +114,7 @@ void ui_Screen2_screen_init(void)
     lv_obj_set_align(ui_Label6, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label6, "Valor por\ndefecto");
     lv_obj_set_style_text_align(ui_Label6, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label6, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label6, &ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(ui_ButtonReturn1, ui_event_ButtonReturn1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_SliderFreq1, ui_event_SliderFreq1, LV_EVENT_ALL, NULL);

@@ -10,8 +10,10 @@ SET(SOURCES ui_Screen1.c
     ui_events.c
     ui_img_images_buck_png.c
     ui_img_images_arrow_png.c
-    fonts/ui_font_fontMontserratM14Tildes.c
-    fonts/ui_font_fontMontserratM16Tildes.c
-    fonts/ui_font_fontMontserratM18Tildes.c)
+    fonts/ui_font_fontRobotoBold16Tildes.c
+    fonts/ui_font_fontRobotoBold18Tildes.c
+    fonts/ui_font_fontRobotoMedium14Tildes.c
+    fonts/ui_font_fontRobotoMedium16Tildes.c
+    fonts/ui_font_fontRobotoRegular14Tildes.c)
 
 add_library(ui ${SOURCES})

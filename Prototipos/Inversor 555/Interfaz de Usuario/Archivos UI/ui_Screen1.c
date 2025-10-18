@@ -26,8 +26,10 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_y(ui_Label1, -120);
     lv_obj_set_align(ui_Label1, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label1, "Módulo inversor de onda \ncuadrada con medio \npuente de transistores");
+    lv_obj_set_style_text_letter_space(ui_Label1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_line_space(ui_Label1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui_Label1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label1, &ui_font_fontMontserratM18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label1, &ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Image3 = lv_image_create(ui_Screen1);
     lv_image_set_src(ui_Image3, &ui_img_images_inversor_png);
@@ -44,7 +46,7 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_height(ui_Panel1, 60);
     lv_obj_set_width(ui_Panel1, LV_SIZE_CONTENT);   /// 100
     lv_obj_set_x(ui_Panel1, 0);
-    lv_obj_set_y(ui_Panel1, -55);
+    lv_obj_set_y(ui_Panel1, -47);
     lv_obj_set_align(ui_Panel1, LV_ALIGN_CENTER);
     lv_obj_remove_flag(ui_Panel1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_border_color(ui_Panel1, lv_color_hex(0x2095F6), LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -56,7 +58,7 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_align(ui_Label2, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label2, "Para modificar los valores \npermitidos en este módulo, \nrevisar manual de usuario");
     lv_obj_set_style_text_align(ui_Label2, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label2, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label2, &ui_font_fontRobotoMedium16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
 }
 

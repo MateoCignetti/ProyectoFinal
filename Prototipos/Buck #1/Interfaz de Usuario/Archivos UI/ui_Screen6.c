@@ -79,7 +79,7 @@ void ui_Screen6_screen_init(void)
     lv_obj_set_align(ui_Label16, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label16, "Elegir carga");
     lv_obj_set_style_text_align(ui_Label16, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label16, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label16, &ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Button5 = lv_button_create(ui_Screen6);
     lv_obj_set_width(ui_Button5, 110);
@@ -94,7 +94,7 @@ void ui_Screen6_screen_init(void)
     lv_obj_set_height(ui_Label17, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_Label17, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label17, "Resistiva");
-    lv_obj_set_style_text_font(ui_Label17, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label17, &ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Button6 = lv_button_create(ui_Screen6);
     lv_obj_set_width(ui_Button6, 110);
@@ -110,7 +110,7 @@ void ui_Screen6_screen_init(void)
     lv_obj_set_align(ui_Label18, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label18, "Inductiva");
     lv_obj_set_style_text_align(ui_Label18, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label18, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label18, &ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Label13 = lv_label_create(ui_Screen6);
     lv_obj_set_width(ui_Label13, LV_SIZE_CONTENT);   /// 1
@@ -120,7 +120,7 @@ void ui_Screen6_screen_init(void)
     lv_obj_set_align(ui_Label13, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label13, "Carga Activa:");
     lv_obj_set_style_text_align(ui_Label13, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label13, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label13, &ui_font_fontRobotoRegular14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_LabelTypeLoad = lv_label_create(ui_Screen6);
     lv_obj_set_width(ui_LabelTypeLoad, LV_SIZE_CONTENT);   /// 1
@@ -130,7 +130,7 @@ void ui_Screen6_screen_init(void)
     lv_obj_set_align(ui_LabelTypeLoad, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelTypeLoad, "Resistiva");
     lv_obj_set_style_text_align(ui_LabelTypeLoad, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_LabelTypeLoad, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_LabelTypeLoad, &ui_font_fontRobotoRegular14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(ui_ButtonReturn5, ui_event_ButtonReturn5, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_Button5, ui_event_Button5, LV_EVENT_ALL, NULL);

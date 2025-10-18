@@ -80,7 +80,7 @@ void ui_Screen3_screen_init(void)
     lv_obj_set_align(ui_Label7, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label7, "Control Fijo\nPWM");
     lv_obj_set_style_text_align(ui_Label7, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label7, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label7, &ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ButtonPID = lv_button_create(ui_Screen3);
     lv_obj_set_width(ui_ButtonPID, 100);
@@ -97,7 +97,7 @@ void ui_Screen3_screen_init(void)
     lv_obj_set_align(ui_Label8, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label8, "Control PID");
     lv_obj_set_style_text_align(ui_Label8, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label8, &ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label8, &ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(ui_ButtonReturn2, ui_event_ButtonReturn2, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonPWM, ui_event_ButtonPWM, LV_EVENT_ALL, NULL);

@@ -40,9 +40,8 @@ extern lv_obj_t * ui____initial_actions0;
 LV_IMG_DECLARE(ui_img_images_inversor_png);    // assets/images/inversor.png
 
 // FONTS
-LV_FONT_DECLARE(ui_font_fontMontserratM14Tildes);
-LV_FONT_DECLARE(ui_font_fontMontserratM18Tildes);
-LV_FONT_DECLARE(ui_font_fuenteMontserratM16Tildes);
+LV_FONT_DECLARE(ui_font_fontRobotoBold18Tildes);
+LV_FONT_DECLARE(ui_font_fontRobotoMedium16Tildes);
 
 // UI INIT
 void ui_init(void);
