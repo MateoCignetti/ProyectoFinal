@@ -21,6 +21,7 @@ extern lv_obj_t * dimmer_ui_Label11;
 extern lv_obj_t * dimmer_ui_LabelSP;
 extern void dimmer_ui_event_ButtonReturn4(lv_event_t * e);
 extern lv_obj_t * dimmer_ui_ButtonReturn4;
+extern lv_obj_t * dimmer_ui_cicloPositivo;
 // CUSTOM VARIABLES
 
 #ifdef __cplusplus

@@ -5,6 +5,9 @@
 
 #include "buck_ui.h"
 
+lv_obj_t * buck_ui_buck_ButtonPID;
+lv_obj_t * buck_ui_buck_ButtonPWM;
+lv_obj_t * buck_ui_buck_ButtonReturn2;
 lv_obj_t * buck_ui_Screen3 = NULL;
 lv_obj_t * buck_ui_ButtonReturn2 = NULL;
 lv_obj_t * buck_ui_ButtonPWM = NULL;
@@ -77,7 +80,7 @@ void buck_ui_Screen3_screen_init(void)
     lv_obj_set_align(buck_ui_Label7, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_Label7, "Control Fijo\nPWM");
     lv_obj_set_style_text_align(buck_ui_Label7, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(buck_ui_Label7, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_Label7, &buck_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     buck_ui_ButtonPID = lv_button_create(buck_ui_Screen3);
     lv_obj_set_width(buck_ui_ButtonPID, 100);
@@ -94,11 +97,14 @@ void buck_ui_Screen3_screen_init(void)
     lv_obj_set_align(buck_ui_Label8, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_Label8, "Control PID");
     lv_obj_set_style_text_align(buck_ui_Label8, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(buck_ui_Label8, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_Label8, &buck_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(buck_ui_ButtonReturn2, buck_ui_event_ButtonReturn2, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(buck_ui_ButtonPWM, buck_ui_event_ButtonPWM, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(buck_ui_ButtonPID, buck_ui_event_ButtonPID, LV_EVENT_ALL, NULL);
+    buck_ui_buck_ButtonReturn2 = buck_ui_ButtonReturn2;
+    buck_ui_buck_ButtonPWM = buck_ui_ButtonPWM;
+    buck_ui_buck_ButtonPID = buck_ui_ButtonPID;
 
 }
 
@@ -108,9 +114,12 @@ void buck_ui_Screen3_screen_destroy(void)
 
     // NULL screen variables
     buck_ui_Screen3 = NULL;
+    buck_ui_buck_ButtonReturn2 = NULL;
     buck_ui_ButtonReturn2 = NULL;
+    buck_ui_buck_ButtonPWM = NULL;
     buck_ui_ButtonPWM = NULL;
     buck_ui_Label7 = NULL;
+    buck_ui_buck_ButtonPID = NULL;
     buck_ui_ButtonPID = NULL;
     buck_ui_Label8 = NULL;
 

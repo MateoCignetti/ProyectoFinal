@@ -5,6 +5,9 @@
 
 #include "buck_ui.h"
 
+lv_obj_t * buck_ui_buck_Button6;
+lv_obj_t * buck_ui_buck_Button5;
+lv_obj_t * buck_ui_buck_ButtonReturn5;
 lv_obj_t * buck_ui_Screen6 = NULL;
 lv_obj_t * buck_ui_ButtonReturn5 = NULL;
 lv_obj_t * buck_ui_Panel4 = NULL;
@@ -76,7 +79,7 @@ void buck_ui_Screen6_screen_init(void)
     lv_obj_set_align(buck_ui_Label16, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_Label16, "Elegir carga");
     lv_obj_set_style_text_align(buck_ui_Label16, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(buck_ui_Label16, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_Label16, &buck_ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     buck_ui_Button5 = lv_button_create(buck_ui_Screen6);
     lv_obj_set_width(buck_ui_Button5, 110);
@@ -91,7 +94,7 @@ void buck_ui_Screen6_screen_init(void)
     lv_obj_set_height(buck_ui_Label17, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(buck_ui_Label17, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_Label17, "Resistiva");
-    lv_obj_set_style_text_font(buck_ui_Label17, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_Label17, &buck_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     buck_ui_Button6 = lv_button_create(buck_ui_Screen6);
     lv_obj_set_width(buck_ui_Button6, 110);
@@ -107,7 +110,7 @@ void buck_ui_Screen6_screen_init(void)
     lv_obj_set_align(buck_ui_Label18, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_Label18, "Inductiva");
     lv_obj_set_style_text_align(buck_ui_Label18, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(buck_ui_Label18, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_Label18, &buck_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     buck_ui_Label13 = lv_label_create(buck_ui_Screen6);
     lv_obj_set_width(buck_ui_Label13, LV_SIZE_CONTENT);   /// 1
@@ -117,7 +120,7 @@ void buck_ui_Screen6_screen_init(void)
     lv_obj_set_align(buck_ui_Label13, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_Label13, "Carga Activa:");
     lv_obj_set_style_text_align(buck_ui_Label13, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(buck_ui_Label13, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_Label13, &buck_ui_font_fontRobotoRegular14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     buck_ui_LabelTypeLoad = lv_label_create(buck_ui_Screen6);
     lv_obj_set_width(buck_ui_LabelTypeLoad, LV_SIZE_CONTENT);   /// 1
@@ -127,11 +130,14 @@ void buck_ui_Screen6_screen_init(void)
     lv_obj_set_align(buck_ui_LabelTypeLoad, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_LabelTypeLoad, "Resistiva");
     lv_obj_set_style_text_align(buck_ui_LabelTypeLoad, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(buck_ui_LabelTypeLoad, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_LabelTypeLoad, &buck_ui_font_fontRobotoRegular14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(buck_ui_ButtonReturn5, buck_ui_event_ButtonReturn5, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(buck_ui_Button5, buck_ui_event_Button5, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(buck_ui_Button6, buck_ui_event_Button6, LV_EVENT_ALL, NULL);
+    buck_ui_buck_ButtonReturn5 = buck_ui_ButtonReturn5;
+    buck_ui_buck_Button5 = buck_ui_Button5;
+    buck_ui_buck_Button6 = buck_ui_Button6;
 
 }
 
@@ -141,11 +147,14 @@ void buck_ui_Screen6_screen_destroy(void)
 
     // NULL screen variables
     buck_ui_Screen6 = NULL;
+    buck_ui_buck_ButtonReturn5 = NULL;
     buck_ui_ButtonReturn5 = NULL;
     buck_ui_Panel4 = NULL;
     buck_ui_Label16 = NULL;
+    buck_ui_buck_Button5 = NULL;
     buck_ui_Button5 = NULL;
     buck_ui_Label17 = NULL;
+    buck_ui_buck_Button6 = NULL;
     buck_ui_Button6 = NULL;
     buck_ui_Label18 = NULL;
     buck_ui_Label13 = NULL;

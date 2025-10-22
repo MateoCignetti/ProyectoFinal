@@ -5,6 +5,9 @@
 
 #include "buck_ui.h"
 
+lv_obj_t * buck_ui_buck_ButtonReturnDefault1;
+lv_obj_t * buck_ui_buck_SliderFreq1;
+lv_obj_t * buck_ui_buck_ButtonReturn1;
 lv_obj_t * buck_ui_Screen2 = NULL;
 lv_obj_t * buck_ui_ButtonReturn1 = NULL;
 lv_obj_t * buck_ui_Panel1 = NULL;
@@ -59,8 +62,8 @@ void buck_ui_Screen2_screen_init(void)
     lv_obj_set_style_bg_image_src(buck_ui_ButtonReturn1, &buck_ui_img_images_arrow_png, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     buck_ui_Panel1 = lv_obj_create(buck_ui_Screen2);
-    lv_obj_set_width(buck_ui_Panel1, 170);
-    lv_obj_set_height(buck_ui_Panel1, 60);
+    lv_obj_set_width(buck_ui_Panel1, LV_SIZE_CONTENT);   /// 170
+    lv_obj_set_height(buck_ui_Panel1, LV_SIZE_CONTENT);    /// 60
     lv_obj_set_x(buck_ui_Panel1, 0);
     lv_obj_set_y(buck_ui_Panel1, -60);
     lv_obj_set_align(buck_ui_Panel1, LV_ALIGN_CENTER);
@@ -74,7 +77,7 @@ void buck_ui_Screen2_screen_init(void)
     lv_obj_set_align(buck_ui_Label5, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_Label5, "Ajuste de frecuencia\nde conmutación");
     lv_obj_set_style_text_align(buck_ui_Label5, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(buck_ui_Label5, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_Label5, &buck_ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     buck_ui_SliderFreq1 = lv_slider_create(buck_ui_Screen2);
     lv_slider_set_range(buck_ui_SliderFreq1, 1, 19);
@@ -94,7 +97,7 @@ void buck_ui_Screen2_screen_init(void)
     lv_obj_set_height(buck_ui_freqValue, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(buck_ui_freqValue, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_freqValue, "1 kHz");
-    lv_obj_set_style_text_font(buck_ui_freqValue, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_freqValue, &buck_ui_font_fontRobotoRegular14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     buck_ui_ButtonReturnDefault1 = lv_button_create(buck_ui_Screen2);
     lv_obj_set_width(buck_ui_ButtonReturnDefault1, 100);
@@ -111,11 +114,14 @@ void buck_ui_Screen2_screen_init(void)
     lv_obj_set_align(buck_ui_Label6, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_Label6, "Valor por\ndefecto");
     lv_obj_set_style_text_align(buck_ui_Label6, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(buck_ui_Label6, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_Label6, &buck_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(buck_ui_ButtonReturn1, buck_ui_event_ButtonReturn1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(buck_ui_SliderFreq1, buck_ui_event_SliderFreq1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(buck_ui_ButtonReturnDefault1, buck_ui_event_ButtonReturnDefault1, LV_EVENT_ALL, NULL);
+    buck_ui_buck_ButtonReturn1 = buck_ui_ButtonReturn1;
+    buck_ui_buck_SliderFreq1 = buck_ui_SliderFreq1;
+    buck_ui_buck_ButtonReturnDefault1 = buck_ui_ButtonReturnDefault1;
 
 }
 
@@ -125,11 +131,14 @@ void buck_ui_Screen2_screen_destroy(void)
 
     // NULL screen variables
     buck_ui_Screen2 = NULL;
+    buck_ui_buck_ButtonReturn1 = NULL;
     buck_ui_ButtonReturn1 = NULL;
     buck_ui_Panel1 = NULL;
     buck_ui_Label5 = NULL;
+    buck_ui_buck_SliderFreq1 = NULL;
     buck_ui_SliderFreq1 = NULL;
     buck_ui_freqValue = NULL;
+    buck_ui_buck_ButtonReturnDefault1 = NULL;
     buck_ui_ButtonReturnDefault1 = NULL;
     buck_ui_Label6 = NULL;
 

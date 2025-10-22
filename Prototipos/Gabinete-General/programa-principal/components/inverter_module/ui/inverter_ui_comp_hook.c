@@ -3,15 +3,3 @@
 // LVGL version: 9.1.0
 // Project name: inversor_UI
 
-#ifndef INVERTER_UI_EVENTS_H
-#define INVERTER_UI_EVENTS_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#ifdef __cplusplus
-} /*extern "C"*/
-#endif
-
-#endif

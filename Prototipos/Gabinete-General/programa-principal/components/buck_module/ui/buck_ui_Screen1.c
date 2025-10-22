@@ -5,6 +5,9 @@
 
 #include "buck_ui.h"
 
+lv_obj_t * buck_ui_buck_loadScreen;
+lv_obj_t * buck_ui_buck_controlScreen;
+lv_obj_t * buck_ui_buck_freqScreen;
 lv_obj_t * buck_ui_Screen1 = NULL;
 lv_obj_t * buck_ui_freqScreen = NULL;
 lv_obj_t * buck_ui_Label1 = NULL;
@@ -66,7 +69,7 @@ void buck_ui_Screen1_screen_init(void)
     lv_obj_set_align(buck_ui_Label1, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_Label1, "Frecuencia de\nconmutación");
     lv_obj_set_style_text_align(buck_ui_Label1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(buck_ui_Label1, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_Label1, &buck_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     buck_ui_controlScreen = lv_button_create(buck_ui_Screen1);
     lv_obj_set_width(buck_ui_controlScreen, 110);
@@ -81,7 +84,7 @@ void buck_ui_Screen1_screen_init(void)
     lv_obj_set_height(buck_ui_Label2, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(buck_ui_Label2, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_Label2, "Control");
-    lv_obj_set_style_text_font(buck_ui_Label2, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_Label2, &buck_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     buck_ui_loadScreen = lv_button_create(buck_ui_Screen1);
     lv_obj_set_width(buck_ui_loadScreen, 110);
@@ -96,7 +99,7 @@ void buck_ui_Screen1_screen_init(void)
     lv_obj_set_height(buck_ui_Label3, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(buck_ui_Label3, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_Label3, "Carga");
-    lv_obj_set_style_text_font(buck_ui_Label3, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_Label3, &buck_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     buck_ui_Image1 = lv_image_create(buck_ui_Screen1);
     lv_image_set_src(buck_ui_Image1, &buck_ui_img_images_buck_png);
@@ -117,11 +120,14 @@ void buck_ui_Screen1_screen_init(void)
     lv_obj_set_align(buck_ui_Label4, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_Label4, "Módulo convertidor\nreductor o Buck");
     lv_obj_set_style_text_align(buck_ui_Label4, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(buck_ui_Label4, &buck_ui_font_fontMontserratM18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_Label4, &buck_ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(buck_ui_freqScreen, buck_ui_event_freqScreen, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(buck_ui_controlScreen, buck_ui_event_controlScreen, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(buck_ui_loadScreen, buck_ui_event_loadScreen, LV_EVENT_ALL, NULL);
+    buck_ui_buck_freqScreen = buck_ui_freqScreen;
+    buck_ui_buck_controlScreen = buck_ui_controlScreen;
+    buck_ui_buck_loadScreen = buck_ui_loadScreen;
 
 }
 
@@ -131,10 +137,13 @@ void buck_ui_Screen1_screen_destroy(void)
 
     // NULL screen variables
     buck_ui_Screen1 = NULL;
+    buck_ui_buck_freqScreen = NULL;
     buck_ui_freqScreen = NULL;
     buck_ui_Label1 = NULL;
+    buck_ui_buck_controlScreen = NULL;
     buck_ui_controlScreen = NULL;
     buck_ui_Label2 = NULL;
+    buck_ui_buck_loadScreen = NULL;
     buck_ui_loadScreen = NULL;
     buck_ui_Label3 = NULL;
     buck_ui_Image1 = NULL;

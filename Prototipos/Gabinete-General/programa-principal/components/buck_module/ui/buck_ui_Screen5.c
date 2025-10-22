@@ -5,6 +5,9 @@
 
 #include "buck_ui.h"
 
+lv_obj_t * buck_ui_buck_ButtonReturnDefault3;
+lv_obj_t * buck_ui_buck_SliderSP;
+lv_obj_t * buck_ui_buck_ButtonReturn4;
 lv_obj_t * buck_ui_Screen5 = NULL;
 lv_obj_t * buck_ui_ButtonReturn4 = NULL;
 lv_obj_t * buck_ui_Panel3 = NULL;
@@ -74,7 +77,7 @@ void buck_ui_Screen5_screen_init(void)
     lv_obj_set_align(buck_ui_Label11, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_Label11, "Ajuste de Control PID");
     lv_obj_set_style_text_align(buck_ui_Label11, LV_TEXT_ALIGN_AUTO, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(buck_ui_Label11, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_Label11, &buck_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     buck_ui_SliderSP = lv_slider_create(buck_ui_Screen5);
     lv_slider_set_range(buck_ui_SliderSP, 0, 12);
@@ -95,7 +98,7 @@ void buck_ui_Screen5_screen_init(void)
     lv_obj_set_align(buck_ui_setPointValue, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_setPointValue, "0 V");
     lv_obj_set_style_text_align(buck_ui_setPointValue, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(buck_ui_setPointValue, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_setPointValue, &buck_ui_font_fontRobotoRegular14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     buck_ui_ButtonReturnDefault3 = lv_button_create(buck_ui_Screen5);
     lv_obj_set_width(buck_ui_ButtonReturnDefault3, 100);
@@ -112,11 +115,14 @@ void buck_ui_Screen5_screen_init(void)
     lv_obj_set_align(buck_ui_Label12, LV_ALIGN_CENTER);
     lv_label_set_text(buck_ui_Label12, "Valor por\ndefecto");
     lv_obj_set_style_text_align(buck_ui_Label12, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(buck_ui_Label12, &buck_ui_font_fontMontserratM14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(buck_ui_Label12, &buck_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(buck_ui_ButtonReturn4, buck_ui_event_ButtonReturn4, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(buck_ui_SliderSP, buck_ui_event_SliderSP, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(buck_ui_ButtonReturnDefault3, buck_ui_event_ButtonReturnDefault3, LV_EVENT_ALL, NULL);
+    buck_ui_buck_ButtonReturn4 = buck_ui_ButtonReturn4;
+    buck_ui_buck_SliderSP = buck_ui_SliderSP;
+    buck_ui_buck_ButtonReturnDefault3 = buck_ui_ButtonReturnDefault3;
 
 }
 
@@ -126,11 +132,14 @@ void buck_ui_Screen5_screen_destroy(void)
 
     // NULL screen variables
     buck_ui_Screen5 = NULL;
+    buck_ui_buck_ButtonReturn4 = NULL;
     buck_ui_ButtonReturn4 = NULL;
     buck_ui_Panel3 = NULL;
     buck_ui_Label11 = NULL;
+    buck_ui_buck_SliderSP = NULL;
     buck_ui_SliderSP = NULL;
     buck_ui_setPointValue = NULL;
+    buck_ui_buck_ButtonReturnDefault3 = NULL;
     buck_ui_ButtonReturnDefault3 = NULL;
     buck_ui_Label12 = NULL;
 
