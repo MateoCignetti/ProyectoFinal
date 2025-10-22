@@ -68,7 +68,7 @@ static void set_connection_state(module_connection_state_t new_state) {
 }
 
 
-static bool debounce_timer_cb(gptimer_handle_t timer, const gptimer_alarm_event_data_t *edata, void *user_ctx) {
+static bool IRAM_ATTR debounce_timer_cb(gptimer_handle_t timer, const gptimer_alarm_event_data_t *edata, void *user_ctx) {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     
     // Notify connection task to check stable connection
@@ -163,18 +163,47 @@ static void create_connection_tasks() {
 
 static void vTaskConnectionUpdate(void *pvParameters) {
     uint32_t notification_value;
+    module_connection_state_t current_state;
+    bool interrupts_disabled = false;
     
     while (true) {
-        if(get_connection_state() == CONNECTION_INIT) {
+        // Re-enable interrupts if they were disabled in previous iteration
+        // Do this FIRST before any other operations
+        if (interrupts_disabled) {
+            gpio_intr_enable(PIN_HP_POWER);
+            gpio_intr_enable(PIN_HP_SIGNAL);
+            interrupts_disabled = false;
+        }
+        
+        current_state = get_connection_state();
+        
+        if(current_state == CONNECTION_INIT) {
             ESP_LOGI(CONNECTION_TAG, "Module connection is initializing...");
             setup_hotplug_gpios();
             set_connection_state(CONNECTION_DISCONNECTED);
+            // Give a small delay to let system stabilize after GPIO setup
+            vTaskDelay(pdMS_TO_TICKS(10));
         }
 
         // Wait for notification with timeout
         if (xTaskNotifyWait(0, UINT32_MAX, &notification_value, portMAX_DELAY) == pdTRUE) {
             
+            // Clear any additional notifications that arrived while we were waking up
+            // This ensures we process everything in one go without interruptions
+            uint32_t extra_notifications = 0;
+            while (xTaskNotifyWait(0, UINT32_MAX, &extra_notifications, 0) == pdTRUE) {
+                notification_value |= extra_notifications;
+            }
+            
             if (notification_value & CONNECTION_EVENT_CHANGE) {
+                // Temporarily disable interrupts to prevent rapid retriggering during processing
+                gpio_intr_disable(PIN_HP_POWER);
+                gpio_intr_disable(PIN_HP_SIGNAL);
+                interrupts_disabled = true;
+                
+                // Small delay to ensure any pending ISR completes
+                vTaskDelay(1);
+                
                 // GPIO state changed - check current state
                 bool hp_power_level = gpio_get_level(PIN_HP_POWER);
                 bool hp_signal_level = gpio_get_level(PIN_HP_SIGNAL);
@@ -190,7 +219,7 @@ static void vTaskConnectionUpdate(void *pvParameters) {
                     gptimer_set_raw_count(debounce_timer, 0); // Reset timer count
                 }
                 
-                module_connection_state_t current_state = get_connection_state();
+                current_state = get_connection_state();
                 
                 if (current_state != new_state) {
                     set_connection_state(new_state);
@@ -211,9 +240,14 @@ static void vTaskConnectionUpdate(void *pvParameters) {
                             break;
                     }
                 }
+                // Interrupts will be re-enabled at the top of the loop
             }
             
             if (notification_value & CONNECTION_EVENT_STABLE) {
+                // Stop and reset timer first to prevent re-triggering
+                gptimer_stop(debounce_timer);
+                gptimer_set_raw_count(debounce_timer, 0);
+                
                 // Debounce timer expired - check if still connected
                 bool hp_power_level = gpio_get_level(PIN_HP_POWER);
                 bool hp_signal_level = gpio_get_level(PIN_HP_SIGNAL);

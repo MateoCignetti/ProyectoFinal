@@ -10,6 +10,9 @@
 #include "esp_log.h"
 #include "driver/gpio.h"
 
+#define IDENT_SAMPLES_N 50
+#define IDENT_SAMPLES_PERIOD_MS 10
+
 
 static const char* MANAGER_TAG = "Module Manager"; // Module name for logging
 static adc_oneshot_unit_handle_t adc1_unit_handle = NULL;
@@ -86,36 +89,37 @@ static void set_module_manager_state(module_manager_state_t new_state) {
 static void setup_ident_adc(){
 
     if(adc1_unit_handle == NULL && adc1_cali_handle == NULL){
-        // First, ensure the GPIO pin is properly configured as analog input
-        // This prevents the pin from being driven as output
+        // Configure GPIO as INPUT just in case
         gpio_config_t ident_io_conf = {
             .pin_bit_mask = (1ULL << PIN_MODULE_IDENT),
-            .mode = GPIO_MODE_DISABLE,  // Disable digital I/O
+            .mode = GPIO_MODE_INPUT,  // Disable digital I/O
             .pull_up_en = GPIO_PULLUP_DISABLE,
             .pull_down_en = GPIO_PULLDOWN_DISABLE,
             .intr_type = GPIO_INTR_DISABLE,
         };
-        gpio_config(&ident_io_conf);
+        ESP_ERROR_CHECK(gpio_config(&ident_io_conf));
 
         adc_oneshot_unit_init_cfg_t adc1_init_cfg = {
             .unit_id = ADC_MODULE_IDENT_UNIT,
             .clk_src = ADC_RTC_CLK_SRC_DEFAULT,
             .ulp_mode = ADC_ULP_MODE_DISABLE,
         };
-        adc_oneshot_new_unit(&adc1_init_cfg, &adc1_unit_handle);
+        ESP_ERROR_CHECK(adc_oneshot_new_unit(&adc1_init_cfg, &adc1_unit_handle));
         
         adc_oneshot_chan_cfg_t adc1_config = {
             .atten = ADC_ATTEN_DB_12,
             .bitwidth = ADC_BITWIDTH_12,
         };
-        adc_oneshot_config_channel(adc1_unit_handle, ADC_MODULE_IDENT_CHANNEL, &adc1_config);
+        ESP_ERROR_CHECK(adc_oneshot_config_channel(adc1_unit_handle, ADC_MODULE_IDENT_CHANNEL, &adc1_config));
         
         adc_cali_curve_fitting_config_t adc1_cali_config = {
             .unit_id = ADC_MODULE_IDENT_UNIT,
             .atten = ADC_ATTEN_DB_12,
             .bitwidth = ADC_BITWIDTH_12,
         };
-        adc_cali_create_scheme_curve_fitting(&adc1_cali_config, &adc1_cali_handle);
+        ESP_ERROR_CHECK(adc_cali_create_scheme_curve_fitting(&adc1_cali_config, &adc1_cali_handle));
+
+        ESP_LOGI(MANAGER_TAG, "ADC setup on GPIO %d", PIN_MODULE_IDENT);
 
     } else{
         ESP_LOGE(MANAGER_TAG, "ADC already configured for module identification");
@@ -125,26 +129,24 @@ static void setup_ident_adc(){
 
 static void delete_ident_adc(){
     if(adc1_cali_handle != NULL){
-        adc_cali_delete_scheme_curve_fitting(adc1_cali_handle);
+        ESP_ERROR_CHECK(adc_cali_delete_scheme_curve_fitting(adc1_cali_handle));
         adc1_cali_handle = NULL;
     }
     if(adc1_unit_handle != NULL){
-        adc_oneshot_del_unit(adc1_unit_handle);
+        ESP_ERROR_CHECK(adc_oneshot_del_unit(adc1_unit_handle));
         adc1_unit_handle = NULL;
     }
     
-    // CRITICAL: Reset the GPIO to high-impedance input to prevent voltage injection
-    // This ensures the module identification pin is not driven by the microcontroller
     gpio_config_t io_conf = {
         .pin_bit_mask = (1ULL << PIN_MODULE_IDENT),
-        .mode = GPIO_MODE_INPUT,  // Set as input (high impedance)
+        .mode = GPIO_MODE_DISABLE, 
         .pull_up_en = GPIO_PULLUP_DISABLE,
         .pull_down_en = GPIO_PULLDOWN_DISABLE,
         .intr_type = GPIO_INTR_DISABLE,
     };
     gpio_config(&io_conf);
     
-    ESP_LOGI(MANAGER_TAG, "ADC deleted and GPIO %d set to high-impedance input", PIN_MODULE_IDENT);
+    ESP_LOGI(MANAGER_TAG, "ADC deleted and GPIO %d disabled", PIN_MODULE_IDENT);
 }
 
 static void create_module_manager_tasks(void){
@@ -207,26 +209,38 @@ static void vTaskAdcSampling(void *pvParameters) {
         int module_ident_mv = 0;
         int module_ident_avg = 0;
         bool sampling_completed = true;
+        int last_sample_checked = 0;
         
         // Take 50 samples and average them
-        for (int sample = 0; sample < 50; sample++) {
-            // Check if module was disconnected during sampling
-            if (get_connection_state() != CONNECTION_CONNECTED) {
-                ESP_LOGW(MANAGER_TAG, "Module disconnected during sampling at sample %d - aborting", sample + 1);
-                sampling_completed = false;
-                break;
-            }
-            
+        for (int sample = 0; sample < IDENT_SAMPLES_N; sample++) {
             adc_oneshot_get_calibrated_result(adc1_unit_handle, adc1_cali_handle, ADC_MODULE_IDENT_CHANNEL, &module_ident_mv);
-            ESP_LOGI(MANAGER_TAG, "Module identification sample %d: %d mV", sample + 1, module_ident_mv);
+
             module_ident_avg += module_ident_mv;
+
+            // Delay between samples to allow other tasks to run
+            vTaskDelay(pdMS_TO_TICKS(IDENT_SAMPLES_PERIOD_MS));
             
-            vTaskDelay(pdMS_TO_TICKS(10)); // Small delay between samples, allows other tasks to run
+            // Check connection state only periodically (every 10 samples) to reduce mutex contention
+            // Do NOT log inside the loop - it causes spinlock issues
+            if ((sample + 1) % 10 == 0) {
+                if (get_connection_state() != CONNECTION_CONNECTED) {
+                    sampling_completed = false;
+                    last_sample_checked = sample + 1;
+                    break;
+                }
+            }
+        }
+        
+        // All logging done AFTER the loop completes
+        if (!sampling_completed) {
+            ESP_LOGW(MANAGER_TAG, "Module disconnected during sampling after sample %d - aborting", last_sample_checked);
+        } else {
+            ESP_LOGI(MANAGER_TAG, "Completed %d samples", IDENT_SAMPLES_N);
         }
         
         // Always send a result to unblock the waiting task
         if (sampling_completed) {
-            module_ident_avg /= 50;
+            module_ident_avg /= IDENT_SAMPLES_N;
             module_ident_mv = module_ident_avg;
             ESP_LOGI(MANAGER_TAG, "Average module identification voltage: %d mV", module_ident_mv);
         } else {
