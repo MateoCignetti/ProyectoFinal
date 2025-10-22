@@ -19,6 +19,7 @@
 #include "esp_log.h" // ESP-IDF logging library
 #include "freertos/FreeRTOS.h" // FreeRTOS general library
 #include "freertos/task.h" // FreeRTOS task library
+#include "freertos/semphr.h" // FreeRTOS semaphore library
 
 // Module identification voltage range (in millivolts)
 #define DIMMER_IDENT_MV_MIN 500
@@ -29,12 +30,16 @@
 #define PIN_ZCD_IN PIN_S16 // Zero crossing detector input pin
 
 #define PULSE_WIDTH_US 25 // Pulse width for driving the triac, in microseconds
-#define DIMMER_TIMER_COUNT_DEFAULT 9700 // Dimmer wait timer alarm count. Turns on TRIAC at 9,9 ms after zero crossing
+#define DIMMER_TIMER_COUNT_DEFAULT 9000 // Dimmer wait timer alarm count. Turns on TRIAC at 9,9 ms after zero crossing
                                         // (basically no load voltage.)
 /* UNCOMMENT WHEN IMPLEMENTING USER INTERFACE
 #define ALARM_COUNT_MIN 100 // Minimum alarm count for the dimmer
 #define ALARM_COUNT_MAX 9900 // Maximum alarm count for the dimmer
 */
+
+dimmer_control_state_t dimmer_control_state = DIMMER_CONTROL_IDLE; // Current state of the dimmer control
+static SemaphoreHandle_t xDimmerControlStateMutex; // Mutex for protecting access to the dimmer control state
+static TaskHandle_t xTaskUpdateDimmerControlState_handle = NULL; // Task handle for the dimmer control state update task
 
 static gptimer_handle_t dimmer_wait_timer = NULL; // Handle for the wait timer
 static gptimer_handle_t dimmer_pulse_timer = NULL; // Handle for the pulse timer
@@ -53,8 +58,11 @@ static void configure_gpios();
 static void delete_gpios();
 static void configure_timers();
 static void delete_timers();
+static void create_module_tasks();
+static void delete_module_tasks();
 static void start_dimmer_module();
 static void stop_dimmer_module();
+static void vTaskUpdateDimmerControlState(void *pvParameters);
 
 // Public declarations
 const module_t dimmer_module = {
@@ -64,6 +72,33 @@ const module_t dimmer_module = {
     .start_function = start_dimmer_module,
     .stop_function = stop_dimmer_module,
 };
+
+void set_dimmer_control_state(dimmer_control_state_t new_dimmer_control_state){
+    if(xDimmerControlStateMutex != NULL && xSemaphoreTake(xDimmerControlStateMutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+        dimmer_control_state = new_dimmer_control_state;
+        xSemaphoreGive(xDimmerControlStateMutex);
+    } else {
+        ESP_LOGE(MODULE_TAG, "Failed to get dimmer control state mutex");
+    }
+
+    // Notify the dimmer control state update task about the state change
+    if(xTaskUpdateDimmerControlState_handle != NULL) {
+        xTaskNotifyGive(xTaskUpdateDimmerControlState_handle);
+    }
+}
+
+dimmer_control_state_t get_dimmer_control_state(void){
+    dimmer_control_state_t current_dimmer_control_state;
+    if(xDimmerControlStateMutex != NULL && xSemaphoreTake(xDimmerControlStateMutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+        current_dimmer_control_state = dimmer_control_state;
+        xSemaphoreGive(xDimmerControlStateMutex);
+    } else {
+        ESP_LOGE(MODULE_TAG, "Failed to get dimmer control state mutex");
+        current_dimmer_control_state = DIMMER_CONTROL_IDLE; // Return idle state on error
+    }
+    return current_dimmer_control_state;
+}
+
 //
 
 // Private functions
@@ -71,6 +106,7 @@ static void start_dimmer_module(){
     if(!isModuleRunning) { // Check if the module is not already running
         isModuleRunning = true; // Set the module running flag
         ESP_LOGI(MODULE_TAG, "Starting dimmer module..."); // Log the start of the module
+        create_module_tasks();
         start_dimmer_interface(); // Start the dimmer interface (UI)
         configure_timers();
         configure_gpios();
@@ -88,8 +124,94 @@ static void stop_dimmer_module(){
         delete_gpios(); // Delete the GPIOs  
         delete_timers(); // Stop the timers
         stop_dimmer_interface();
+        delete_module_tasks(); // Delete the module tasks
     } else {
         ESP_LOGW(MODULE_TAG, "Dimmer module got a request to stop, but is not running... ignoring stop request.");
+    }
+}
+
+static void create_module_tasks(){
+    xDimmerControlStateMutex = xSemaphoreCreateMutex();
+    if (xDimmerControlStateMutex == NULL) {
+        ESP_LOGE(MODULE_TAG, "Failed to create dimmer control state mutex");
+        return;
+    }
+
+    BaseType_t xReturned = xTaskCreate(vTaskUpdateDimmerControlState,
+                                       "Update Dimmer Control State Task",
+                                       4096,
+                                       NULL,
+                                       5,
+                                       &xTaskUpdateDimmerControlState_handle);
+
+    if (xReturned != pdPASS) {
+        ESP_LOGE(MODULE_TAG, "Failed to create Module Connection Task");
+    }
+}
+
+static void delete_module_tasks(){
+    if (xTaskUpdateDimmerControlState_handle != NULL) {
+
+        // Signal idle task to delete the task
+        vTaskDelete(xTaskUpdateDimmerControlState_handle);
+
+        // Check if deleted, if not, wait until it is deleted
+        eTaskState task_state = eTaskGetState(xTaskUpdateDimmerControlState_handle);
+        while (task_state != eDeleted) {
+            vTaskDelay(pdMS_TO_TICKS(10));
+            // Update task state
+            task_state = eTaskGetState(xTaskUpdateDimmerControlState_handle);
+
+        }
+        ESP_LOGI(MODULE_TAG, "Update Dimmer Control task exited gracefully");
+
+        xTaskUpdateDimmerControlState_handle = NULL;
+    }
+    
+    
+    if (xDimmerControlStateMutex != NULL) {
+        vSemaphoreDelete(xDimmerControlStateMutex);
+        xDimmerControlStateMutex = NULL;
+    }
+}
+
+static void vTaskUpdateDimmerControlState(void *pvParameters){
+    // Task to update the dimmer control state
+    
+   
+    while(1){
+        // Wait for notification about state change
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+    
+        dimmer_control_state_t current_state = get_dimmer_control_state();
+        switch(current_state){
+            case DIMMER_CONTROL_IDLE:
+                ESP_LOGI(MODULE_TAG, "Dimmer control state set to IDLE");
+                // In idle state, enable the relay (digital mode)
+                gpio_set_level(PIN_RELAY_OUT, 1);
+
+                static gptimer_alarm_config_t wait_alarm_config = {
+                .flags.auto_reload_on_alarm = false, // Set the auto reload flag to false
+                };
+        
+                wait_alarm_config.alarm_count = DIMMER_TIMER_COUNT_DEFAULT; // Set the alarm count to the default value
+                gptimer_set_alarm_action(dimmer_wait_timer, &wait_alarm_config);
+
+                break;
+            case DIMMER_CONTROL_ANALOG:
+                ESP_LOGI(MODULE_TAG, "Dimmer control state set to ANALOG");
+                // In analog mode, disable the relay
+                gpio_set_level(PIN_RELAY_OUT, 0);
+                break;
+            case DIMMER_CONTROL_FULL_WAVE:
+                ESP_LOGI(MODULE_TAG, "Dimmer control state set to FULL WAVE");
+                // In full wave mode, enable the relay (digital mode)
+                gpio_set_level(PIN_RELAY_OUT, 1);
+                break;
+            default:
+                ESP_LOGW(MODULE_TAG, "Dimmer control state set to UNKNOWN STATE");
+                break;
+        }
     }
 }
 
@@ -126,15 +248,7 @@ static bool dimmer_pulse_callback(gptimer_handle_t timer, const gptimer_alarm_ev
 
 // Handler for the zero crossing detector interrupt.
 static void IRAM_ATTR zcd_isr_handler(){
-    static gptimer_alarm_config_t wait_alarm_config = {
-        .flags.auto_reload_on_alarm = false, // Set the auto reload flag to false
-    };
-        
-    wait_alarm_config.alarm_count = dimmer_wait_alarm_count; // Set the alarm count to the default value
-    gptimer_set_alarm_action(dimmer_wait_timer, &wait_alarm_config);
-
     gptimer_start(dimmer_wait_timer); // Start the timer
-    
 }
 
 // Function to configure the GPIOs (pins, directions, interrupts, etc.)
