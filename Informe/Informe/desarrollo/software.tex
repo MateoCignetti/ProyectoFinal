@@ -1,6 +1,6 @@
 \section{Desarrollo de \textit{Software}}
 
-Una vez diseñados los módulos y el gabinete central, se desarrolla el programa de control para el microcontrolador ESP32-S3. Para ello, se utilizó el \textit{framework} oficial de desarrollo ESP-IDF, \parencite{esp_idf}. El software tiene como fin ser una interfaz interactiva e intuitiva entre el usuario y los distintos módulos. Cada módulo presenta su propia programación de control e interfaz. 
+Una vez diseñados los módulos y el gabinete central, se desarrolla el programa de control para el microcontrolador ESP32-S3. Para ello, se utiliza el \textit{framework} oficial de desarrollo ESP-IDF, \parencite{esp_idf}. El \textit{software} tiene como fin ser una interfaz interactiva e intuitiva entre el usuario y los distintos módulos. Cada módulo presenta su propia programación de control e interfaz. 
 
 \subsection{Objetivos del programa}
 
@@ -9,7 +9,7 @@ Los objetivos del programa son los siguientes:
 \begin{itemize}[noitemsep]
     \item \textbf{Autodetección de módulos}: mediante una red de identificación, el código es capaz de determinar de qué módulo se trata, por ejemplo, convertidor Buck, recortador de onda o inversor de onda cuadrada.
     \item \textbf{Conexión segura}: se utiliza un sistema de \textit{hot-plug} para verificar y asegurar la correcta conexión física del módulo, con el fin de evitar cualquier mala comunicación o falla en el mismo.
-    \item \textbf{Interfaz de usuario dinámica}: una vez que el código verifica de qué módulo se trata y asegura conexión válida, el \textit{software} carga una nueva pantalla en el \textit{display}, correspondiente al módulo utilizado. Esta interfaz se diseñó para el fácil uso y aprendizaje del módulo con experimentación en tiempo real. Tiene un menú donde se puede acceder a distintas características de cada módulo y modificarlas en tiempo real. Algunas de ellas son: frecuencia de conmutación, valor de \textit{setpoint}, ángulo de disparo, selección entre cargas, entre otros.
+    \item \textbf{Interfaz de usuario dinámica}: una vez que el código verifica de qué módulo se trata y asegura conexión válida, el \textit{software} carga una nueva pantalla en el \textit{display}, correspondiente al módulo utilizado. Esta interfaz está diseñada para el fácil uso y aprendizaje del módulo con experimentación en tiempo real. Tiene un menú donde se puede acceder a distintas características de cada módulo y modificarlas en tiempo real. Algunas de ellas son: frecuencia de conmutación, valor de \textit{setpoint}, ángulo de disparo, selección entre cargas, entre otros.
 \end{itemize}
 
 Cuando se desconecta el módulo que estaba siendo utilizado, el sistema queda en espera de una nueva conexión.
@@ -89,15 +89,15 @@ Este pequeño componente contiene únicamente un archivo de encabezado (\textit{
 \subsubsection{\textit{UI Framework} - Estructura de interfaz de usuario}
 Este componente se encarga de inicializar y configurar la librería LVGL (Light and Versatile Graphics Library, Librería de Gráficos Liviana y Versátil en español), \parencite{LVGL}. Mediante esta librería, se controla el \textit{display} TFT LCD de \SI{2.8}{''}, creando las tareas, \textit{mutex}, \textit{handlers}, \textit{handles} y punteros necesarios para proveer una API (\textit{Application Programming Interface}, Interfaz de Programación de Aplicaciones en español) para los módulos. También se encarga de configurar el I/O (\textit{Input/Output}, Entrada/Salida en español) para el funcionamiento del encoder rotativo con el que el usuario navega la interfaz en el \textit{display}.
 
-De esta forma, la interfaz de usuario queda desacoplada del resto del sistema, permitiendo que cada módulo solo implemente la lógica y pantallas específicas sin manipular directamente drivers o detalles de sincronización.
+De esta forma, la interfaz de usuario queda desacoplada del resto del sistema, permitiendo que cada módulo solo implemente la lógica y pantallas específicas sin manipular directamente \textit{drivers} o detalles de sincronización.
 
 \subsubsection{\textit{Module Manager} - Gestor de módulos}
 Este componente se compone de dos programas separados, \textit{Module Connection} (Conexión de Módulo) y \textit{Module Manager}, así como un archivo de encabezado del registro global de módulos, \textit{module\_registry.h}.
 
 \paragraph{\textit{Module Connection}}
-El primero se encarga de gestionar la conexión y desconexión de cada módulo, con interrupciones configuradas para ambos pines de hot-plug HP\_Power y HP\_Signal. Estos son los pines de los extremos del conector PCIe x4, que permiten detectar que la conexión del módulo haya sido exitosa, ya que sus \textit{pads} son más cortos que los demás.
+El primero se encarga de gestionar la conexión y desconexión de cada módulo, con interrupciones configuradas para ambos pines de \textit{hot-plug} HP\_Power y HP\_Signal. Estos son los pines de los extremos del conector PCIe x4, que permiten detectar que la conexión del módulo haya sido exitosa, ya que sus \textit{pads} son más cortos que los demás.
 
-Se configuró una máquina de estados para monitorear el estado de conexión: 
+Se configura una máquina de estados para monitorear el estado de conexión: 
 \begin{itemize}[noitemsep]
     \item \textit{CONNECTION\_INIT}: inicialización del programa
     \item \textit{CONNECTION\_DISCONNECTED}: módulo desconectado, señalizar a \textit{Module Manager}.
@@ -110,10 +110,10 @@ El cambio de estados se realiza mediante notificaciones liberadas desde las inte
 \paragraph{\textit{Module Manager}}
 Este módulo se encarga de definir una estructura de módulo (\textit{module\_t}), identificar el módulo conectado e iniciar y detener cada módulo. Cada módulo se define en su propio archivo de control mediante una estructura (\textit{module\_t}), la cual contiene: su nombre, punteros a sus funciones de inicio y parada, valores en milivolts de identificación.
 
-Se configuró una máquina de estados para gestionar los módulos: 
+Se configura una máquina de estados para gestionar los módulos: 
 \begin{itemize}[noitemsep]
     \item \textit{MANAGER\_INIT}: inicialización del programa
-    \item \textit{MANAGER\_READY}: ningún módulo corriendo, esperando conexión de módulo señalizada por \textit{Module Connection}. Una vez obtenida, notificar a la tarea de identificación para detectar qué módulo se conectó, mediante lectura de \textit{ADC} (Analog to Digital Converter, Convertidor Analógico a Digital en español). Si se detecta algún módulo registrado, ejecutar la función de inicio de módulo.
+    \item \textit{MANAGER\_READY}: ningún módulo corriendo, esperando conexión de módulo señalizada por \textit{Module Connection}. Una vez obtenida, notificar a la tarea de identificación para detectar qué módulo se conecta, mediante lectura de \textit{ADC} (Analog to Digital Converter, Convertidor Analógico a Digital en español). Si se detecta algún módulo registrado, ejecutar la función de inicio de módulo.
     \item \textit{MANAGER\_RUNNING}: módulo corriendo, esperando desconexión de módulo señalizada por \textit{Module Connection}. Una vez obtenida, proceder a detener módulo corriendo actualmente.
     \item \textit{MANAGER\_STOPPING}: deteniendo módulo previamente conectado.
     \item \textit{MANAGER\_FAULT}: falla detectada, detener máquina de estados.

@@ -89,7 +89,7 @@ El circuito más simple para lograr el control de fase se muestra en la \cref{fi
     \label{fig:dimmer:control_fase_simple}
 \end{figure}
 
-La forma de onda del voltaje a través del capacitor para dos condiciones de control típicas ($\alpha$ = 90° y $\alpha$ = 150°) se muestra en la \cref{fig:dimmer:formas_onda}. Si se utiliza un rectificador controlado por silicio en este circuito en lugar del TRIAC, solo se controla un semiciclo de la forma de onda. El otro semiciclo se bloquea, lo que genera una salida de DC pulsante cuyo valor promedio puede variarse ajustando el $R_T$, \parencite{ON-ThyristorHandbook}.
+La forma de onda del voltaje a través del capacitor para dos condiciones de control típicas ($\alpha$ = 90° y $\alpha$ = 150°) se muestra en la \cref{fig:dimmer:formas_onda}. Si se utiliza un SCR en este circuito en lugar del TRIAC, solo se controla un semiciclo de la forma de onda. El otro semiciclo se bloquea, lo que genera una salida de DC pulsante cuyo valor promedio puede variarse ajustando el $R_T$, \parencite{ON-ThyristorHandbook}.
 
 \begin{figure}[H]
     \centering
@@ -179,7 +179,7 @@ Debido a la tolerancia de los componentes y al hecho de que estos cálculos son 
 \subsubsection{Circuito detector de cruce por cero (ZCD)}
 \label{sec:dimmer:zcd}
 
-El control de fase explicado anteriormente puede ser reemplazado por un control digital, prescindiendo de la rama RC y del DIAC del circuito de la \cref{fig:dimmer:control_fase_simple}. El control digital se compone de dos circuitos distintos: el Zero Crossing Detector (detector de cruce por cero) y el driver de TRIAC. 
+El control de fase explicado anteriormente puede ser reemplazado por un control digital, prescindiendo de la rama RC y del DIAC del circuito de la \cref{fig:dimmer:control_fase_simple}. El control digital se compone de dos circuitos distintos: el Zero Crossing Detector (detector de cruce por cero) mostrado en la \cref{fig:dimmer:zcd} y el driver de TRIAC \cref{fig:dimmer:driver_triac_cd}. 
 
 \begin{figure}[H]
     \centering
@@ -390,7 +390,7 @@ Para verificar el correcto funcionamiento del circuito control de fase analógic
     \caption{Circuito en LTspice\protect\footnotemark}
     \label{fig:dimmer:simulacion_circuito}
 \end{figure}
-\footnotetext{Se utilizó el TRIAC Z0402M por disponibilidad de modelo de simulación. Sus características son similares a las del BT137.}
+\footnotetext{Se utiliza el TRIAC Z0402M por disponibilidad de modelo de simulación. Sus características son similares a las del BT137.}
 
 \begin{figure}[H]
     \centering

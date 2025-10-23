@@ -97,7 +97,7 @@ El \textit{reset} (pin 4) debe conectarse a $V_{CC}$ para evitar que el circuito
 
 Como se menciona anteriormente, un inversor es un convertidor que transfiere potencia desde una fuente de continua a una carga de alterna. La función de un inversor es, entonces, cambiar la tensión de entrada de corriente continua en una tensión simétrica de salida en corriente alterna con una magnitud, frecuencia y fase deseada.
 
-En inversores monofásicos se utilizan dos topologías básicas: medio puente \cref{fig:inversor:Medio-Puente}, el utilizado en este caso, y puente completo. La principal desventaja de utilizar un inversor de medio puente es que obtendremos solo la mitad de la tensión que se proporciona en la entrada.
+En inversores monofásicos se utilizan dos topologías básicas: medio puente \cref{fig:inversor:Medio-Puente}, el utilizado en este caso, y puente completo. La principal desventaja de utilizar un inversor de medio puente es que se obtiene solo la mitad de la tensión que se proporciona en la entrada.
 
 \begin{figure}[H]
     \centering
@@ -178,7 +178,7 @@ El uso de un amplificador operacional como seguidor de tensión entre la salida 
 \subsubsection{Etapa de potencia}
 Los capacitores electrolíticos conforman un divisor de tensión y estos se mantienen cargados gracias a la tensión entregada por el regulador.
 
-Cuando la salida del oscilador está en ALTO, como mencionamos, Q1 se activa y Q2 no lo hace. Al activarse Q1 tendremos la tensión que nos otorga el capacitor C1 aplicada en la carga, y el sentido de la corriente es el siguiente:
+Cuando la salida del oscilador está en ALTO, como mencionamos, Q1 se activa y Q2 no lo hace. Al activarse Q1 la tensión que otorga el capacitor C1 aplicada en la carga, y el sentido de la corriente es el siguiente:
 
 \begin{figure}[H]
     \centering
@@ -314,7 +314,7 @@ R = \frac{1}{2 \times 0{,}693 \times \SI{50}{\hertz} \times \SI{0.1}{\micro\fara
 \end{equation}
 
 Ya que no es un valor comercial, se emplea una resistencia de \SI{120}{\kilo\ohm} en serie con un potenciómetro de \SI{100}{\kilo\ohm}, para tener un ajuste preciso de la frecuencia deseada.
-Además, se utiliza una resistencia adicional \(R{1}\) de \SI{3,9}{\mega\ohm} para asegurar la carga completa del capacitor, y así un ciclo de trabajo del \SI{50}{\percent}. Este valor de resistencia es el que mejores resultados entregó en las pruebas realizadas.
+Además, se utiliza una resistencia adicional \(R{1}\) de \SI{3,9}{\mega\ohm} para asegurar la carga completa del capacitor, y así un ciclo de trabajo del \SI{50}{\percent}. Este valor de resistencia es el que mejores resultados entrega en las pruebas realizadas.
 En cuanto a la alimentación del integrado, se utiliza la tensión proporcionada por el módulo general (\SI{12}{\volt} de corriente continua), por lo que entrega a la salida del mismo una onda cuadra de \SIrange{0}{12}{\volt}.
 
 \subsubsection{Regulador de voltaje}
@@ -362,7 +362,7 @@ V(t) = {V_\mathrm{0}} \times e^{-t / RC}
 \label{eq:inversor:vrt_descarga}
 \end{equation}
 
-La descarga completa del capacitor se da cuando \(V_\mathrm{t} = \frac{T}{2}\) y como se menciona anteriormente, la tensión en este modelo de inversor es la mitad de la tensión de alimentación, \(\frac{V_\mathrm{CC}}{2}\). Reescribiendo queda la \cref{eq:inversor:vr_beta}
+La descarga completa del capacitor se da cuando \(V_\mathrm{t} = \frac{T}{2}\) y como se menciona anteriormente, la tensión en este modelo de inversor es la mitad de la tensión de alimentación, \(\frac{V_\mathrm{CC}}{2}\). Reescribiendo la \cref{eq:inversor:vrt_descarga} se obtiene la \cref{eq:inversor:vr_beta}
 
 \begin{equation}
 V\left(\frac{T}{2}\right) = \frac{V_\mathrm{CC}}{2} \times \beta
