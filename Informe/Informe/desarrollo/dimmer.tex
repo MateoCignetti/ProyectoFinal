@@ -302,7 +302,7 @@ Se calcula un beta promedio para el transistor:
 \beta_{avg} = \frac{\beta_{min} + \beta_{max}}{2} = \frac{200 + 450}{2} = 325
 \end{equation}
 
-Aplicando ley de las tensiones de Kirchoff:
+Aplicando ley de las tensiones de Kirchhoff:
 
 \begin{equation}
 V_{UC} = \frac{I_C}{\beta_{avg}} \cdot R2 + V_{BE}
@@ -320,7 +320,7 @@ Como en el \cref{sec:dimmer:zcd}, se elige el 1N4007 como diodo \textit{flyback}
 
 Es imperativo implementar algún método para restringir la tasa de aumento de la tensión reaplicada del TRIAC a un valor que permita la desactivación del TRIAC en condiciones de carga inductiva, \parencite{ON-ThyristorHandbook}.
 
-Un método comúnmente aceptado para mantener la $dv/dt$ de conmutación dentro de niveles tolerables es utilizar una red Snubber RC en paralelo con los terminales principales del TRIAC. Dado que la tasa de aumento de la tensión aplicada en los terminales del TRIAC depende de la impedancia de carga y de la red Snubber RC, el circuito puede evaluarse en las peores condiciones de temperatura de funcionamiento y corriente principal máxima. Los valores de resistencia y capacitancia en red Snubber se ajustan para que la tasa de aumento de la tensión $dv/dt$ de conmutación se encuentre dentro del límite mínimo especificado en cualquiera de las condiciones mencionadas anteriormente. El valor de la resistencia de Snubber debe ser lo suficientementes alto como para limitar las corrientes de descarga de la capacitancia de Snubber durante el encendido y amortiguar la oscilación del LC durante la conmutación. Generalmente, se prefiere la combinación de valores de Snubber con la mayor resistencia y la menor capacitancia que proporcione un funcionamiento satisfactorio, \parencite{ON-ThyristorHandbook}.
+Un método comúnmente aceptado para mantener la $dv/dt$ de conmutación dentro de niveles tolerables es utilizar una red Snubber RC en paralelo con los terminales principales del TRIAC. Dado que la tasa de aumento de la tensión aplicada en los terminales del TRIAC depende de la impedancia de carga y de la red Snubber RC, el circuito puede evaluarse en las peores condiciones de temperatura de funcionamiento y corriente principal máxima. Los valores de resistencia y capacitancia en red Snubber se ajustan para que la tasa de aumento de la tensión $dv/dt$ de conmutación se encuentre dentro del límite mínimo especificado en cualquiera de las condiciones mencionadas anteriormente. El valor de la resistencia de Snubber debe ser lo suficientemente alto como para limitar las corrientes de descarga de la capacitancia de Snubber durante el encendido y amortiguar la oscilación del LC durante la conmutación. Generalmente, se prefiere la combinación de valores de Snubber con la mayor resistencia y la menor capacitancia que proporcione un funcionamiento satisfactorio, \parencite{ON-ThyristorHandbook}.
 
 
 \begin{figure}[H]
@@ -349,7 +349,7 @@ En la \cref{fig:dimmer:snubber_curvas} se observa la tasa crítica de disminuci�
 Se selecciona una resistencia de \SI{51}{\ohm} y un capacitor de \SI{10}{\nano\farad} ya que una red RC de estas características suele ser suficiente para evitar disparos espurios, \parencite{ST-AN437}.
 
 \subsection{Disipación de potencia en TRIAC}
-Los cálculos correspondientes a la disipación de potencia y temperatura de juntura del TRIAC fueron realizados siguiendo un informe de aplicación de Philips Semiconductors, \parencite{PHILIPS-TRIACs}.
+Los cálculos correspondientes a la disipación de potencia y temperatura de juntura del TRIAC se realizan siguiendo un informe de aplicación de Philips Semiconductors, \parencite{PHILIPS-TRIACs}.
 
 Teniendo en cuenta:
 \begin{itemize}
@@ -380,7 +380,7 @@ Por lo tanto, no es necesario colocar un disipador en el TRIAC, ya que la temper
 
 \subsection{Simulación}
 
-Para verificar el correcto funcionamiento del circuito control de fase analógico del \cref{sec:dimmer:rama-rc}, se realizó una simple simulación con el software gratuito LTspice, \parencite{LTSPICE}.
+Para verificar el correcto funcionamiento del circuito control de fase analógico del \cref{sec:dimmer:rama-rc}, se realiza una simple simulación con el software gratuito LTspice, \parencite{LTSPICE}.
 
 \begin{figure}[H]
     \centering
