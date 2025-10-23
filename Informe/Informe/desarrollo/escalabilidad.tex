@@ -1,0 +1,87 @@
+\section{Escalabilidad del proyecto}
+
+%% Remarcar que el proyecto es escalable
+%% Explicar qué se hizo para que el proyecto sea de esa forma
+%% Guía para agregar un nuevo módulo
+
+El proyecto se diseña considerando la posibilidad de agregar nuevos módulos de manera dinámica. Por ello, se adapta el sistema para que un futuro desarrollador pueda diseñar su propio circuito, control e interfaz con facilidad, y disponer de las herramientas necesarias para integrarlo al sistema de forma confiable y efectiva. 
+
+Para lograr esto, el sistema implementa varios elementos clave: un conector estandarizado PCIe x4 con asignación de pines definida, gabinetes de dimensiones específicas, y una arquitectura de software modular que permite la intercambiabilidad de módulos en tiempo de ejecución. Esta arquitectura facilita a nuevos desarrolladores o estudiantes la incorporación de cualquier circuito de electrónica de potencia que extienda las capacidades del sistema.
+
+Cada módulo es completamente independiente, conteniendo su propia interfaz gráfica, lógica de control y controladores de hardware, lo que permite su desarrollo aislado sin afectar al resto del sistema.
+
+A continuación, se detallan los pasos necesarios para agregar un nuevo módulo al sistema.
+
+\subsection{Guía para agregar un nuevo módulo}
+
+\subsubsection{Diseño del hardware}
+
+\paragraph{Placa de circuito impreso}
+
+El circuito debe utilizar en su borde lateral izquierdo el conector macho PCIe X4 (\cref{fig:pcb:pcie_footprint_simbolo}), con su asignación de pines según la librería ``Proyecto\_Final'' que se encuentra en ``KiCad-Libraries'', \parencite{git_proyecto}. Las placas pueden realizarse en dos tamaños específicos: $5\times10 \unit{\centi\meter}$ o $10\times10 \unit{\centi\meter}$, con agujeros de montaje ubicados a \SI{5}{\milli\meter} de cada borde, tamaño métrica 5 (M5). Para los \textit{TestPoint}, se utiliza la \textit{footprint} ``TestPoint\_Loop\_D1.80mm\_Drill1.0mm\_Beaded''.
+
+\paragraph{Identificación del módulo}
+
+Cada módulo debe implementar un divisor resistivo conectado al pin de identificación del conector PCIe, que genera un voltaje único dentro de un rango específico. Al diseñar un nuevo módulo, se debe seleccionar un rango de voltaje no utilizado por otros módulos existentes.
+
+\subsubsection{Desarrollo del software}
+
+\paragraph{Diseño de la interfaz gráfica}
+
+Para el diseño de la interfaz gráfica, se recomienda utilizar \textit{SquareLine Studio}, herramienta visual que facilita la creación de interfaces con la biblioteca LVGL. Para comenzar el proyecto, seleccionar la versión 9.1 de LVGL, y dentro de las opciones elegir ``Arduino'' y el proyecto de ejemplo ``\textit{Arduino with TFT\_eSPI}'', con las siguientes configuraciones:
+\begin{itemize}
+    \item Resolución: $240\times320$ píxeles.
+    \item Rotación: \SI{0}{\degree}.
+    \item Forma: rectangular.
+    \item Profundidad de color: 16 bit.
+\end{itemize}
+
+Una vez configurado, se pueden tomar como referencia las interfaces ya implementadas en los módulos existentes, ubicadas en ``ProyectoFinal/Prototipos/(\textit{módulo})/Interfaz de Usuario/Proyecto Interfaz''.
+
+\paragraph{Estructura de archivos del módulo}
+
+El software de cada módulo se organiza como un componente independiente dentro de la estructura del proyecto ESP-IDF. La estructura recomendada para un nuevo módulo es:
+
+\begin{itemize}[noitemsep]
+    \item components
+    \begin{itemize}
+        \item \textit{nombre}\_module
+        \item CMakeLists.txt
+        \begin{itemize}
+            \item include
+            \begin{itemize}
+                \item \textit{nombre}\_control.h
+                \item \textit{nombre}\_interface.h
+            \end{itemize}
+            \item src
+            \begin{itemize}
+                \item \textit{nombre}\_control.c
+                \item \textit{nombre}\_interface.c
+            \end{itemize}
+            \item ui
+            \begin{itemize}
+                \item (archivos generados por SquareLine Studio)
+            \end{itemize}
+        \end{itemize} 
+    \end{itemize}   
+\end{itemize}
+
+Esta estructura separa claramente la interfaz del usuario (carpeta \textit{ui}), la lógica de control del hardware (\textit{nombre\_control.c}), y la gestión de la iterfaz de usuario del módulo (\textit{nombre\_interface.c}).
+
+Una vez ubicados los archivos de interfaz en la carpeta ``ui'', se deben modificar para agregar prefijos a los nombres de los archivos y variables globales, evitando conflictos con otras interfaces de otros módulos. Para ello, se recomienda utilizar el \textit{script} ``prefix\_ui\_files.py'' ubicado en la carpeta ``tools''.
+
+\paragraph{Configuración del componente}
+
+Cada módulo requiere un archivo \textit{CMakeLists.txt} que define cómo ESP-IDF debe procesar el componente. Este archivo especifica los archivos fuente, directorios de inclusión, y dependencias del módulo. Se recomienda utilizar como plantilla los archivos \textit{CMakeLists.txt} de los módulos ya existentes.
+
+\paragraph{Implementación del control e interfaz de usuario}
+
+La lógica de control del módulo se implementa en \textit{nombre\_control.c}, mientras que la inicialización y configuración de la interfaz de usuario se implementa en \textit{nombre\_interface.c}. Es importante que, en el programa de control, se declaren las funciones de \textit{start} y \textit{stop} del módulo, que realicen la configuración y desconfiguración de los periféricos a utilizar.
+
+Una vez implementadas estas funciones, debe declararse una la estructura \textit{module\_t} del módulo, que contiene su nombre descriptivo, el rango de voltaje ADC para identificación (en mV), y los punteros a las funciones de inicio y detención.
+
+\subsubsection{Registro del módulo en el sistema}
+
+Finalmente, para que el gestor de módulos reconozca el nuevo módulo, se debe registrar en el archivo \textit{components/common/module\_manager/include/module\_registry.h}, agregando el módulo a la macro \textit{MODULE\_REGISTRY\_LIST}, que contiene la lista de todos los módulos disponibles en el sistema.
+
+Además, se debe actualizar el archivo \textit{CMakeLists.txt} principal del proyecto para incluir el nuevo componente en \textit{EXTRA\_COMPONENT\_DIRS}, y el \textit{CMakeLists.txt} del \textit{module\_manager} para agregarlo en las dependencias privadas (\textit{PRIV\_REQUIRES}).
