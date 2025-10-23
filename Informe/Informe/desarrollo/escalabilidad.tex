@@ -28,7 +28,7 @@ Cada módulo debe implementar un divisor resistivo conectado al pin de identific
 
 \paragraph{Diseño de la interfaz gráfica}
 
-Para el diseño de la interfaz gráfica, se recomienda utilizar \textit{SquareLine Studio}, herramienta visual que facilita la creación de interfaces con la biblioteca LVGL. Para comenzar el proyecto, seleccionar la versión 9.1 de LVGL, y dentro de las opciones elegir ``Arduino'' y el proyecto de ejemplo ``\textit{Arduino with TFT\_eSPI}'', con las siguientes configuraciones:
+Para el diseño de la interfaz gráfica, se recomienda utilizar \textit{SquareLine Studio}, herramienta visual que facilita la creación de interfaces con la biblioteca LVGL. Para comenzar el proyecto, seleccionar la versión 9.1 de LVGL, y dentro de las opciones elegir ``Arduino'' y el proyecto de ejemplo ``Arduino with TFT\_eSPI'', con las siguientes configuraciones:
 \begin{itemize}
     \item Resolución: $240\times320$ píxeles.
     \item Rotación: \SI{0}{\degree}.
@@ -60,25 +60,25 @@ El software de cada módulo se organiza como un componente independiente dentro 
             \end{itemize}
             \item ui
             \begin{itemize}
-                \item (archivos generados por SquareLine Studio)
+                \item (archivos generados por \textit{SquareLine Studio})
             \end{itemize}
         \end{itemize} 
     \end{itemize}   
 \end{itemize}
 
-Esta estructura separa claramente la interfaz del usuario (carpeta \textit{ui}), la lógica de control del hardware (\textit{nombre\_control.c}), y la gestión de la iterfaz de usuario del módulo (\textit{nombre\_interface.c}).
+Esta estructura separa claramente la interfaz del usuario (carpeta ``ui''), la lógica de control del hardware (\textit{nombre\_control.c}), y la gestión de la interfaz de usuario del módulo (\textit{nombre\_interface.c}).
 
 Una vez ubicados los archivos de interfaz en la carpeta ``ui'', se deben modificar para agregar prefijos a los nombres de los archivos y variables globales, evitando conflictos con otras interfaces de otros módulos. Para ello, se recomienda utilizar el \textit{script} ``prefix\_ui\_files.py'' ubicado en la carpeta ``tools''.
 
 \paragraph{Configuración del componente}
 
-Cada módulo requiere un archivo \textit{CMakeLists.txt} que define cómo ESP-IDF debe procesar el componente. Este archivo especifica los archivos fuente, directorios de inclusión, y dependencias del módulo. Se recomienda utilizar como plantilla los archivos \textit{CMakeLists.txt} de los módulos ya existentes.
+Cada módulo requiere un archivo ``CMakeLists.txt'' que define cómo ESP-IDF debe procesar el componente. Este archivo especifica los archivos fuente, directorios de inclusión, y dependencias del módulo. Se recomienda utilizar como plantilla los archivos ``CMakeLists.txt'' de los módulos ya existentes.
 
 \paragraph{Implementación del control e interfaz de usuario}
 
 La lógica de control del módulo se implementa en \textit{nombre\_control.c}, mientras que la inicialización y configuración de la interfaz de usuario se implementa en \textit{nombre\_interface.c}. Es importante que, en el programa de control, se declaren las funciones de \textit{start} y \textit{stop} del módulo, que realicen la configuración y desconfiguración de los periféricos a utilizar.
 
-Una vez implementadas estas funciones, debe declararse una la estructura \textit{module\_t} del módulo, que contiene su nombre descriptivo, el rango de voltaje ADC para identificación (en mV), y los punteros a las funciones de inicio y detención.
+Una vez implementadas estas funciones, debe declararse la estructura \textit{module\_t} del módulo, que contiene su nombre descriptivo, el rango de voltaje en \unit{\milli\volt} para identificación, y los punteros a las funciones de inicio y detención.
 
 \subsubsection{Registro del módulo en el sistema}
 
