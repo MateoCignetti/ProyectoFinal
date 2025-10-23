@@ -20,20 +20,20 @@ void dimmer_control_analog(lv_event_t * e)
 
 void dimmer_control_digital(lv_event_t * e)
 {
-	set_dimmer_control_state(DIMMER_CONTROL_FULL_WAVE);
+	
 }
 
 void dimmer_digital_full_cycle(lv_event_t * e)
 {
-	// Your code here
+	set_dimmer_control_state(DIMMER_CONTROL_FULL_WAVE);
 }
 
 void dimmer_digital_positive_cycle(lv_event_t * e)
 {
-	// Your code here
+	set_dimmer_control_state(DIMMER_CONTROL_POSITIVE_SEMICYCLE);
 }
 
 void dimmer_digital_negative_cycle(lv_event_t * e)
 {
-	// Your code here
+	set_dimmer_control_state(DIMMER_CONTROL_NEGATIVE_SEMICYCLE);
 }
