@@ -1,10 +1,10 @@
 \section{Desarrollo de \textit{Hardware}}
 
-El desarrollo de \textit{hardware} del proyecto implicó una transición desde el diseño teórico de los circuitos electrónicos hasta la validación experimental de los mismos. En esta etapa, se llevaron a cabo pruebas sobre prototipos armados en placas experimentales perforadas, permitiendo detectar y corregir posibles errores antes de avanzar con el diseño y fabricación de las placas de circuito impreso (PCBs) finales. 
+El desarrollo de \textit{hardware} del proyecto implica una transición desde el diseño teórico de los circuitos electrónicos hasta la validación experimental de los mismos. En esta etapa, se llevan a cabo pruebas sobre prototipos armados en placas experimentales perforadas, permitiendo detectar y corregir posibles errores antes de avanzar con el diseño y fabricación de las placas de circuito impreso (PCBs) finales. 
 
 \subsection{Prototipado con placas experimentales perforadas}
 
-Para confirmar el correcto funcionamiento de los circuitos diseñados anteriormente, se confeccionaron prototipos con placas experimentales perforadas para poder realizar pruebas y correcciones de componentes con rapidez y costos mínimos. Este proceso fue fundamental para asegurar la funcionalidad y confiabilidad del \textit{hardware} desarrollado. Para minimizar el tiempo de fabricación, se realizó su diseño en computadora anteriormente:
+Para confirmar el correcto funcionamiento de los circuitos diseñados anteriormente, se confeccionan prototipos con placas experimentales perforadas para poder realizar pruebas y correcciones de componentes con rapidez y costos mínimos. Este proceso fue fundamental para asegurar la funcionalidad y confiabilidad del \textit{hardware} desarrollado. Para minimizar el tiempo de fabricación, se realiza su diseño en computadora anteriormente:
 
 \begin{figure}[H]
     \centering
@@ -15,11 +15,11 @@ Para confirmar el correcto funcionamiento de los circuitos diseñados anteriorme
     \label{fig:pcb:perforadas_front}
 \end{figure}
 
-Los resultados obtenidos fueron satisfactorios, permitiendo realizar las pruebas necesarias para optimizar el circuito final. No obstante, el diseño directo de simples placas de circuito impreso (PCB) podría haber sido una alternativa más eficiente para corroborar el funcionamiento del circuito diseñado. Las placas experimentales perforadas, además de tener un costo significativamente mayor que las placas vírgenes de cobre, presentaron problemas de calidad, como pads de cobre que se desprendían con facilidad durante el proceso de soldadura.
+Los resultados obtenidos son satisfactorios, permitiendo realizar las pruebas necesarias para optimizar el circuito final. No obstante, el diseño directo de simples placas de circuito impreso (PCB) son una alternativa más eficiente para corroborar el funcionamiento del circuito diseñado. Las placas experimentales perforadas, además de tener un costo significativamente mayor que las placas vírgenes de cobre, presentan problemas de calidad, como pads de cobre que se desprenden con facilidad durante el proceso de soldadura.
 
 \subsection{Diseño de PCBs finales} \label{sec:pcb:diseño_pcbs_finales}
 
-Una vez obtenidos los circuitos finales con sus respectivos valores de componentes, se procedió a realizar los diseños de las PCBs necesarias para el proyecto:
+Una vez obtenidos los circuitos finales con sus respectivos valores de componentes, se procede a realizar los diseños de las PCBs necesarias para el proyecto:
 
 \begin{enumerate}[noitemsep]
     \item PCB Módulo recortador de onda.
@@ -29,7 +29,7 @@ Una vez obtenidos los circuitos finales con sus respectivos valores de component
     \item PCB Gabinete general.
 \end{enumerate}
 
-Para diseñarlas, se utilizó el conjunto de \textit{software} de código abierto para Automatización del Diseño Electrónico (EDA) KiCad 9, \parencite{KiCad}. Se tomaron los siguientes criterios de diseño para las PCBs de los módulos:
+Para diseñarlas, se utiliza el conjunto de \textit{software} de código abierto para Automatización del Diseño Electrónico (EDA) KiCad 9, \parencite{KiCad}. Se toman los siguientes criterios de diseño para las PCBs de los módulos:
 
 \begin{itemize}[noitemsep]
     \item Tamaño de PCB: $\SI{50}{\milli\meter} \times \SI{100}{\milli\meter}$
@@ -65,9 +65,9 @@ El conector seleccionado para los módulos es el PCIe x4, el cual tiene un ancho
     I = 0.048 \cdot 10^{0.44} \cdot (27.56 \cdot 1.378)^{0.725} = \SI{1.8466}{\ampere} \approx \SI{1.85}{\ampere}
 \end{equation}
 
-Por lo tanto, cada pin soporta un máximo de \SI{1.85}{\ampere}. Sin embargo, por limitaciones de espacio, se utilizaron trazas de \SI{0.3}{\milli\meter} (\SI{1}{\ampere} máximo) en la mini-pcb que contiene el conector PCIe x4 hembra y el cable plano de comunicación, \cref{fig:pcb:minipcb_front_back}. Para cumplir con los requisitos del módulo convertidor, con un consumo máximo establecido de \SI{3}{\ampere}, se destinan 3 pines del conector para el suministro de \SI{12}{\volt}, y 4 para el PGND. Se aprovechan también dos pines ``hot-plug'' para poder detectar la correcta conexión del conector desde el microcontrolador. El ancho de traza para los módulos que utilizan la corriente máxima establecida fue fijado en \SI{2}{\milli\meter}.
+Por lo tanto, cada pin soporta un máximo de \SI{1.85}{\ampere}. Sin embargo, por limitaciones de espacio, se utilizan trazas de \SI{0.3}{\milli\meter} (\SI{1}{\ampere} máximo) en la mini-pcb que contiene el conector PCIe x4 hembra y el cable plano de comunicación, \cref{fig:pcb:minipcb_front_back}. Para cumplir con los requisitos del módulo convertidor, con un consumo máximo establecido de \SI{3}{\ampere}, se destinan 3 pines del conector para el suministro de \SI{12}{\volt}, y 4 para el PGND. Se aprovechan también dos pines \textit{hot-plug} para poder detectar la correcta conexión del conector desde el microcontrolador. El ancho de traza para los módulos que utilizan la corriente máxima establecida fue fijado en \SI{2}{\milli\meter}.
 
-Para la interfaz de usuario, se decidió utilizar un display LCD TFT de \SI{2.8}{''} y un encoder rotativo. Su asignación de pines respecto al ESP32-S3 se observa en la \cref{tab:pcb:interfaz_pins}.
+Para la interfaz de usuario, se decide utilizar un display LCD TFT de \SI{2.8}{''} y un \textit{encoder} rotativo. Su asignación de pines respecto al ESP32-S3 se observa en la \cref{tab:pcb:interfaz_pins}.
 
 \begin{table}[H]
 \centering
@@ -88,7 +88,7 @@ ROTARY\_DATA             & 48                     \\
 \end{tabularx}
 \end{table}
 
-En la \cref{fig:pcb:pcie_footprint_simbolo}, se observa la \textit{footprint} y símbolo del conector PCIe x4 utilizado, con su asignación de pads a pines. En la \cref{tab:pcb:pads_pins} se observa el mapeo del conector a los GPIOs del microcontrolador ESP32-S3.
+En la \cref{fig:pcb:pcie_footprint_simbolo}, se observa la \textit{footprint} y símbolo del conector PCIe x4 utilizado, con su asignación de \textit{pads} a pines. En la \cref{tab:pcb:pads_pins} se observa el mapeo del conector a los GPIOs del microcontrolador ESP32-S3.
 
 \begin{figure}[H]
     \centering
@@ -149,7 +149,7 @@ La asignación de pines, símbolo y huella del conector se presenta a continuaci
 \end{tabularx}
 \end{table}
 
-En la \cref{fig:pcb:modulos_front_back} se pueden observar los diseños de las PCB de los módulos. Se priorizó la ubicación de los componentes en bloques para que el usuario identifique fácilmente las distintas etapas del módulo, con sus respectivos identificadores en la serigrafía frontal. Además, se agregaron puntos de prueba para facilitar las mediciones del usuario con osciloscopio. Estas placas fueron enviadas para su fabricación en el exterior.
+En la \cref{fig:pcb:modulos_front_back} se pueden observar los diseños de las PCB de los módulos. Se prioriza la ubicación de los componentes en bloques para que el usuario identifique fácilmente las distintas etapas del módulo, con sus respectivos identificadores en la serigrafía frontal. Además, se agregan puntos de prueba para facilitar las mediciones del usuario con osciloscopio. Estas placas se fabrican en el exterior.
 
 \begin{figure}[H]
     \centering
@@ -171,7 +171,7 @@ En la \cref{fig:pcb:modulos_front_back} se pueden observar los diseños de las P
     \label{fig:pcb:modulos_front_back}
 \end{figure}
 
-La PCB del gabinete general se puede visualizar en la \cref{fig:pcb:pcbgeneral_front_back}. Se priorizó mantener la longitud de las trazas de potencia lo mínimo posible para evitar pérdidas y caídas de tensión indeseadas. Se diseñó una huella más separada del conector PCIe x4 para soldar directamente el cable plano sobre la placa.
+La PCB del gabinete general se puede visualizar en la \cref{fig:pcb:pcbgeneral_front_back}. Se prioriza mantener la longitud de las trazas de potencia lo mínimo posible para evitar pérdidas y caídas de tensión indeseadas. Se diseña una huella con mayor separación del conector PCIe x4 para soldar directamente el cable plano sobre la placa.
 
 \begin{figure}[H]
     \centering
@@ -191,7 +191,7 @@ La PCB del gabinete general se puede visualizar en la \cref{fig:pcb:pcbgeneral_f
     \label{fig:pcb:pcbgeneral_front_back}
 \end{figure}
 
-Se diseñó también una mini-pcb, \cref{fig:pcb:minipcb_front_back}, para poder enrutar los pines del conector hembra PCIe x4 y poder soldar el cable plano que lo conecta a la PCB general.
+Se diseña también una mini-PCB, \cref{fig:pcb:minipcb_front_back}, para enrutar los pines del conector hembra PCIe x4 y soldar el cable plano que lo conecta a la PCB general.
 
 \begin{figure}[H]
     \centering
@@ -212,4 +212,4 @@ Se diseñó también una mini-pcb, \cref{fig:pcb:minipcb_front_back}, para poder
     \label{fig:pcb:minipcb_front_back}
 \end{figure}
 
-Todos los diseños de las placas están disponibles en el repositorio público del proyecto en GitHub \parencite{git_proyecto}. Se incluyen versiones estándar y alternativas, estas últimas optimizadas para fabricación casera con el método de transferencia térmica y grabado con cloruro férrico. Las placas utilizadas en el prototipo final son las estándar para los módulos, y las alternativas para la PCB general y la mini-pcb.
+Todos los diseños de las placas están disponibles en el repositorio público del proyecto en GitHub \parencite{git_proyecto}. Se incluyen versiones estándar y alternativas, estas últimas optimizadas para fabricación casera con el método de transferencia térmica y grabado con cloruro férrico. Las placas utilizadas en el prototipo final son las estándar para los módulos, y las alternativas para la PCB general y la mini-PCB.
