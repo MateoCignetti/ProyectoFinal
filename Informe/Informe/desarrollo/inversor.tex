@@ -1,15 +1,15 @@
 \section{Módulo inversor de onda cuadrada}
 
-La función de un inversor es cambiar un voltaje de entrada de corriente continua (DC) a un voltaje simétrico de salida de corriente alterna (CA) de magnitud y frecuencia deseadas. El voltaje de salida podría ser fijo o variable a una frecuencia también fija o variable. Se puede obtener un voltaje de salida variable si se varía el voltaje de DC de entrada y se mantiene constante la ganancia del inversor. Por otra parte, si el voltaje de entrada de DC es fijo y no es controlable, se puede obtener un voltaje de salida variable si se hace que la ganancia del inversor varíe, lo que normalmente se consigue mediante el control de modulación por ancho de pulso (PWM) dentro del inversor. La ganancia del inversor se puede definir como la relación del voltaje de salida de CA al voltaje de entrada de DC.
+La función de un inversor es cambiar un voltaje de entrada de corriente continua (DC) a un voltaje simétrico de salida de corriente alterna (CA) de magnitud y frecuencia deseadas. El voltaje de salida puede ser fijo o variable a una frecuencia también fija o variable. Se puede obtener un voltaje de salida variable si se varía el voltaje de DC de entrada y se mantiene constante la ganancia del inversor. Por otra parte, si el voltaje de entrada de DC es fijo y no es controlable, se puede obtener un voltaje de salida variable si se hace que la ganancia del inversor varíe, lo que normalmente se consigue mediante el control de modulación por ancho de pulso (PWM) dentro del inversor. La ganancia del inversor se puede definir como la relación del voltaje de salida de CA al voltaje de entrada de DC.
 
-Las formas de onda del voltaje de salida de los inversores ideales deberían ser senoidal. Sin embargo, los circuitos más simples de inversores generan una onda de salida cuadrada lo cual es suficiente para algunas aplicaciones sencillas.
+Las formas de onda del voltaje de salida de los inversores ideales deben ser senoidal. Sin embargo, los circuitos más simples de inversores generan una onda de salida cuadrada lo cual es suficiente para algunas aplicaciones sencillas.
  
 Para aplicaciones de baja y mediana frecuencia, se pueden aceptar voltajes de onda cuadrada o de onda cuasi cuadrada; para aplicaciones de alta potencia, se requieren formas de onda senoidales poco distorsionadas, \Parencite{RASHID-SPANISH}.
 
 Para operar correctamente el inversor, se deben cumplir las siguientes reglas: 
 
 \begin{enumerate}
-    \item Los interruptores de la misma rama no pueden estar encendidos simultáneamente, ya que se produciría un cortocircuito a través de la fuente de tensión de continua.
+    \item Los interruptores de la misma rama no pueden estar encendidos simultáneamente, ya que se produce un cortocircuito a través de la fuente de tensión de continua.
     \item Debe colocarse un diodo en antiparalelo con cada interruptor para proporcionar un camino de corriente a las cargas inductivas. Si el interruptor comercial ya incluye este diodo, entonces el circuito está completo.
     \item En la implementación práctica, debe considerarse un tiempo muerto (también conocido como tiempo de bloqueo) en las señales de control de los interruptores de la rama, para evitar la violación de la regla 1.
 \end{enumerate} \parencite{RASHID}
@@ -18,13 +18,13 @@ Para operar correctamente el inversor, se deben cumplir las siguientes reglas:
 
 El módulo inversor de onda cuadrada está diseñado para que el usuario pueda ajustar la frecuencia de la señal de salida mediante un potenciómetro ubicado en la propia placa, sin requerir interacción con la pantalla central del sistema. Para la verificación experimental, se recomienda utilizar un osciloscopio para visualizar la onda cuadrada generada por el temporizador 555, la cual oscila entre \SIrange{0}{12}{V}. 
 
-Al medir la tensión en la carga, se observará una onda cuadrada alternando entre valores positivos y negativos (aproximadamente \SIrange{+4.5}{-4.5}{V}), producto de la topología de medio puente. Girando el potenciómetro, el usuario podrá modificar la frecuencia de la señal y observar los cambios en tiempo real en el osciloscopio, permitiendo así la experimentación y ajuste fino del funcionamiento del inversor.
+Al medir la tensión en la carga, se observa una onda cuadrada alternando entre valores positivos y negativos (aproximadamente \SIrange{+4.5}{-4.5}{V}), producto de la topología de medio puente. Girando el potenciómetro, el usuario puede modificar la frecuencia de la señal y observar los cambios en tiempo real en el osciloscopio, permitiendo así la experimentación y ajuste fino del funcionamiento del inversor.
 
 \subsection{Descripción de funcionamiento de un oscilador 555}
 
 El circuito integrado IC555 es un dispositivo de temporización de precisión muy económico, popular y útil, que puede funcionar como un temporizador simple para generar pulsos únicos o retardos largos, o como un oscilador que produce una serie de formas de onda estabilizadas con ciclos de trabajo variables del \SIrange{50}{100}{\percent}.
 
-El IC555 es un dispositivo de 8 pines extremadamente robusto y estable, que puede operar con gran precisión en modo monoestable, biestable o astable. Esto le permite ser utilizado en una amplia variedad de aplicaciones, como temporizadores de un solo disparo o con retardo, generación de pulsos, fuentes de alimentación y convertidores, entre otros. En realidad, puede utilizarse en cualquier circuito que requiera algún tipo de control de tiempo, ya que sus aplicaciones son prácticamente ilimitadas.
+El IC555 es un dispositivo de 8 pines extremadamente robusto y estable, que puede operar con gran precisión en modo monoestable, biestable o astable. Esto le permite ser utilizado en una amplia variedad de aplicaciones, como temporizadores de un solo disparo o con retardo, generación de pulsos, fuentes de alimentación, convertidores, entre otros. En realidad, puede utilizarse en cualquier circuito que requiera algún tipo de control de tiempo, ya que sus aplicaciones son prácticamente ilimitadas.
 
 El uso más común del dispositivo es como oscilador en modo astable, conectando dos resistencias y un capacitor a sus terminales para generar un tren de pulsos con un período de tiempo determinado por la constante de tiempo de la red RC, como se puede ver en la \cref{fig:inversor:IC555}.
 
@@ -95,9 +95,9 @@ El \textit{reset} (pin 4) debe conectarse a $V_{CC}$ para evitar que el circuito
 
 \subsection{Descripción de funcionamiento de un inversor de medio puente}
 
-Como se mencionó anteriormente, un inversor es un convertidor que transfiere potencia desde una fuente de continua a una carga de alterna. La función de un inversor es, entonces, cambiar la tensión de entrada de corriente continua en una tensión simétrica de salida en corriente alterna con una magnitud, frecuencia y fase deseada.
+Como se menciona anteriormente, un inversor es un convertidor que transfiere potencia desde una fuente de continua a una carga de alterna. La función de un inversor es, entonces, cambiar la tensión de entrada de corriente continua en una tensión simétrica de salida en corriente alterna con una magnitud, frecuencia y fase deseada.
 
-En inversores monofásicos se utilizan dos topologías básicas: medio puente \cref{fig:inversor:Medio-Puente}, el utilizado en este caso, y puente completo. La principal desventaja de utilizar un inversor de medio puente es que obtendremos solo la mitad de la tensión que se proporciona en la entrada.
+En inversores monofásicos se utilizan dos topologías básicas: medio puente \cref{fig:inversor:Medio-Puente}, el utilizado en este caso, y puente completo. La principal desventaja de utilizar un inversor de medio puente es que se obtiene solo la mitad de la tensión que se proporciona en la entrada.
 
 \begin{figure}[H]
     \centering
@@ -126,11 +126,11 @@ En inversores monofásicos se utilizan dos topologías básicas: medio puente \c
         \node[shape=rectangle, draw, line width=1pt, minimum width=1.215cm, minimum height=0.465cm](N5) at (8.125, 7.25){} node[anchor=center] at (N5.text){$555$};
         \draw (9.5, 2.5) -| (10.52, 2.5);
         \draw (9.5, 1) -- (9.5, 0.25);
-        \draw (7.25, 1.73) to[american resistor, mirror, l={$R2$}] (8.66, 1.75);
+        \draw (7.25, 1.75) to[american resistor, mirror, l={$R2$}] (8.66, 1.73);
         \node[shape=rectangle, draw, line width=1pt, minimum width=1.215cm, minimum height=0.465cm](N6) at (6.375, 1.75){} node[anchor=center] at (N6.text){$555$};
         \draw (7, 1.75) -- (7.25, 1.75);
         \draw (9.5, 2.5) to[american resistor, l={$R3$}] (9.5, 4.5);
-        \draw (9.5, 4) -| (9.5, 6) |- (5, 6);
+        \draw (9.5, 4.5) -| (9.5, 6) |- (5, 6);
         \node[circ] at (5, 6){};
         \node[circ] at (9.5, 2.5){};
         \node[circ] at (11.5, 5.25){};
@@ -178,7 +178,7 @@ El uso de un amplificador operacional como seguidor de tensión entre la salida 
 \subsubsection{Etapa de potencia}
 Los capacitores electrolíticos conforman un divisor de tensión y estos se mantienen cargados gracias a la tensión entregada por el regulador.
 
-Cuando la salida del oscilador está en ALTO, como mencionamos, Q1 se activa y Q2 no lo hace. Al activarse Q1 tendremos la tensión que nos otorga el capacitor C1 aplicada en la carga, y el sentido de la corriente es el siguiente:
+Cuando la salida del oscilador está en ALTO, como mencionamos, Q1 se activa y Q2 no lo hace. Al activarse Q1 la tensión que otorga el capacitor C1 aplicada en la carga, y el sentido de la corriente es el siguiente:
 
 \begin{figure}[H]
     \centering
@@ -238,7 +238,7 @@ Cuando el oscilador pasa a estado BAJO, ahora el que se activa es Q2 y ya no lo 
     \label{fig:inversor:Conmutacion2}
 \end{figure}
 
-Así podemos realizar las gráficas correspondiente a cada estado de conmutación, como se ve en la \cref{fig:inversor:Forma-onda}.
+Las gráficas correspondiente a cada estado de conmutación, se muestran en la \cref{fig:inversor:Forma-onda}.
 
 \begin{figure}[H]
     \centering
@@ -313,12 +313,12 @@ R = \frac{1}{2 \times 0{,}693 \times \SI{50}{\hertz} \times \SI{0.1}{\micro\fara
 \label{eq:inversor:resistencia_frecuencia}
 \end{equation}
 
-Ya que no es un valor comercial, se emplea una resistencia de \SI{120}{\kilo\ohm} en serie con un potenciómetro de \SI{50}{\kilo\ohm}, para tener un ajuste preciso de la frecuencia deseada.
-Además, se utiliza una resistencia adicional \(R{1}\) de \SI{3,9}{\mega\ohm} para asegurar la carga completa del capacitor, y así un ciclo de trabajo del \SI{50}{\percent}. Este valor de resistencia es el que mejores resultados entregó en las pruebas realizadas.
+Ya que no es un valor comercial, se emplea una resistencia de \SI{120}{\kilo\ohm} en serie con un potenciómetro de \SI{100}{\kilo\ohm}, para tener un ajuste preciso de la frecuencia deseada.
+Además, se utiliza una resistencia adicional \(R{1}\) de \SI{3,9}{\mega\ohm} para asegurar la carga completa del capacitor, y así un ciclo de trabajo del \SI{50}{\percent}. Este valor de resistencia es el que mejores resultados entrega en las pruebas realizadas.
 En cuanto a la alimentación del integrado, se utiliza la tensión proporcionada por el módulo general (\SI{12}{\volt} de corriente continua), por lo que entrega a la salida del mismo una onda cuadra de \SIrange{0}{12}{\volt}.
 
 \subsubsection{Regulador de voltaje}
-El MOSFET seleccionado es el IRFZ44N, \parencite{IRFZ44N}, y el umbral de conducción es \(V_\mathrm{GS(th)} = \SIrange{2}{4}{V}\), por lo que la tensión de alimentación del IC555 debe ser mayor por \SI{3}{\volt}\ al de alimentación de MOSFETs, para obtener esta diferencia entre \textit{gate} y surtidor. Para ello se utiliza un regulador LM7809, el cual se alimenta con \SI{12}{V} y entrega \SI{9}{V} a la salida, con los que se alimenta el surtidor del MOSFET.
+El MOSFET seleccionado es el IRFZ44N, \parencite{IRFZ44N}, y el umbral de conducción es \(V_\mathrm{GS(th)} = \SIrange{2}{4}{V}\), por lo que la tensión de alimentación del IC555 debe ser mayor por \SI{3}{\volt}\ al de alimentación de MOSFETs, para obtener esta diferencia entre \textit{gate} y surtidor. Para ello se utiliza un regulador KA7808, el cual se alimenta con \SI{12}{V} y entrega \SI{8}{V} a la salida, con los que se alimenta el surtidor del MOSFET.
 
 \subsubsection{Cálculo de la capacitancia mínima}
 
@@ -362,7 +362,7 @@ V(t) = {V_\mathrm{0}} \times e^{-t / RC}
 \label{eq:inversor:vrt_descarga}
 \end{equation}
 
-La descarga completa del capacitor se da cuando \(V_\mathrm{t} = \frac{T}{2}\) y como se mencionó anteriormente, la tensión en este modelo de inversor es la mitad de la tensión de alimentación, \(\frac{V_\mathrm{CC}}{2}\). Reescribiendo nos queda la \cref{eq:inversor:vr_beta}
+La descarga completa del capacitor se da cuando \(V_\mathrm{t} = \frac{T}{2}\) y como se menciona anteriormente, la tensión en este modelo de inversor es la mitad de la tensión de alimentación, \(\frac{V_\mathrm{CC}}{2}\). Reescribiendo la \cref{eq:inversor:vrt_descarga} se obtiene la \cref{eq:inversor:vr_beta}
 
 \begin{equation}
 V\left(\frac{T}{2}\right) = \frac{V_\mathrm{CC}}{2} \times \beta
@@ -388,14 +388,14 @@ C \geq \left| \frac{T}{2R \ln(\beta)} \right|
 \label{eq:inversor:c_general}
 \end{equation}
 
-Si seleccionamos un \(\beta = 0{,}9\), que es un valor razonable:
+Se selecciona un \(\beta = 0{,}9\), el cual es un valor razonable:
 
 \begin{equation}
 C \geq \left| \frac{\SI{20}{\milli\second}}{2 \times \SI{100}{\ohm} \times \ln(0{,}9)} \right| = \SI{950}{\micro\farad}
 \label{eq:inversor:c_numerico}
 \end{equation}
 
-Siendo \SI{950}{\micro\farad} el valor mínimo de capacitancia. Al aumentar el valor de la misma se obtendrán mejores resultados de rizado, por lo que mediante pruebas de laboratorio se estableció un valor de \SI{1500}{\micro\farad}.
+Siendo \SI{950}{\micro\farad} el valor mínimo de capacitancia. Al aumentar el valor de la misma se obtienen mejores resultados de rizado, por lo que mediante pruebas de laboratorio se establece un valor de \SI{1500}{\micro\farad}.
 
 \subsubsection{\textit{Gate} del MOSFET}
 
@@ -418,6 +418,7 @@ Por ley de Ohm
 R_g = \frac{V}{I_g} = \frac{\SI{12}{\volt}}{\SI{7}{\milli\ampere}} = \SI{1714}{\ohm}
 \label{eq:inversor:rg}
 \end{equation}
+
 Sin embargo, con una resistencia de \SI{1.2}{\kilo\ohm}, se reduce el tiempo de conmutación a \SI{7}{\micro\second}, y se mantiene la potencia disipada por debajo de medio Watt.
 
 \subsubsection{\textit{Driver} de MOSFET}
@@ -435,8 +436,8 @@ R_{pull up} = \frac{(V_{CC} - V_{CE_{Sat}})}{{I_{C}}} =\frac{\SI{12}{\volt} - \S
 \label{eq:inversor:pullup}
 \end{equation}
 
-Para que el BJT opere en saturación, necesitamos que la corriente de base sea suficiente para "sobresaturarlo". 
-Para calcular la resistencia de base, se aplica la ley de tensiones de Kirchoff:
+Para que el BJT opere en saturación, la corriente de base debe ser suficiente para "sobresaturarlo". 
+Para calcular la resistencia de base, se aplica la ley de tensiones de Kirchhoff:
 
 \begin{itemize}
     \item $I_C = \SI{50}{\milli\ampere}$
@@ -454,7 +455,7 @@ No se incluyen cálculos de disipación de potencia en los transistores, dado qu
 
 \subsection{Simulación}
 
-Para verificar el correcto funcionamiento del circuito oscilador IC555 y la tensión en la carga, se realizó una simple simulación con el software gratuito LTspice, \parencite{LTSPICE}.
+Para verificar el correcto funcionamiento del circuito oscilador IC555 y la tensión en la carga, se realiza una simple simulación con el software gratuito LTspice, \parencite{LTSPICE}.
 
 \begin{figure}[H]
     \centering

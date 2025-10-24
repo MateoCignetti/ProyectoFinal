@@ -4,10 +4,10 @@ Uno de los métodos más simples para controlar la potencia entregada a una carg
 
 Este método tiene varias desventajas, como una baja eficiencia y alta distorsión armónica. Sin embargo, su simplicidad y bajo costo es la razón por la cual se sigue utilizando en aplicaciones específicas donde se requiere un control de potencia simple y económico.
 
-Se decidió elegir este módulo para el proyecto ya que es un buen primer paso en la electrónica de potencia, donde se puede realizar un enfoque centralizado en el funcionamiento y control de un semiconductor como el TRIAC (Triode for Alternating Current, Triodo para Corriente Alterna en español).
+Se elige este módulo para el proyecto ya que es un buen primer paso en la electrónica de potencia, donde se puede realizar un enfoque centralizado en el funcionamiento y control de un semiconductor como el TRIAC (Triode for Alternating Current, Triodo para Corriente Alterna en español).
 
 \subsection{Interacción del usuario: control y verificación experimental}
-El módulo recortador de onda está diseñado para que el usuario pueda seleccionar entre dos modos de control: analógico y digital. En el modo de control analógico, el usuario utiliza un potenciómetro dentro del gabinete para modificar una resistencia, lo que cambia la potencia entregada a la carga (dos lámparas de \SI{24}{\volt} en serie). En el modo de control digital, el usuario puede elegir el tiempo de disparo del TRIAC y la onda aplicada a la carga (ciclo completo, sólo semiciclo positivo o semiciclo negativo). Mediante distintos puntos de prueba, el usuario puede con un osciloscopio visualizar diferentes ondas, como la tensión aplicada a la carga, tensión en TRIAC, carga y descarga de capacitor, entre otras. De esta manera, el usuario aprende sobre el funcionamiento del circuito y verificar experimentalmente los conceptos teóricos.
+El módulo recortador de onda está diseñado para que el usuario pueda seleccionar entre dos modos de control: analógico y digital. En el modo de control analógico, el usuario utiliza un potenciómetro dentro del gabinete para modificar una resistencia, lo que cambia el tiempo de carga de un capacitor y el tiempo de disparo del TRIAC, variando la potencia entregada a la carga (dos lámparas de \SI{24}{\volt} en serie). En el modo de control digital, el usuario puede directamente elegir el tiempo de disparo del TRIAC, en base al cruce por cero de la tensión de corriente alterna de entrada. Mediante distintos puntos de prueba, el usuario puede con un osciloscopio visualizar diferentes ondas, como la tensión aplicada a la carga, tensión en TRIAC, carga y descarga de capacitor, entre otras. De esta manera, el usuario aprende sobre el funcionamiento del circuito y verificar experimentalmente los conceptos teóricos.
 
 \subsection{Base teórica}
 
@@ -40,7 +40,7 @@ El TRIAC es un tiristor bidireccional ampliamente utilizado en la electrónica d
     \label{fig:dimmer:triac_caracteristicas}
 \end{figure}
 
-Como un TRIAC es un dispositivo bidireccional, sus terminales no se pueden designar como ánodo y cátodo. Si la terminal MT2 es positiva con respecto a la terminal MT1, el TRIAC se puede encender aplicando una señal de compuerta positiva entre la compuerta G y la terminal MT1. Si la terminal MT2 es negativa con respecto a la terminal MT1, se enciende aplicando una señal de compuerta negativa entre la compuerta G y la terminal MT1. No es necesario tener ambas polaridades de señales de compuerta, y un TRIAC se puede encender con una señal de compuerta ya sea positiva o negativa. En la práctica, las sensibilidades varían de uno a otro cuadrante y por lo común los TRIAC funcionan en el cuadrante I+ (voltaje y corriente de compuerta positivos), o en el cuadrante III - (voltaje y corriente de compuerta negativos), \parencite{RASHID-SPANISH}
+Como un TRIAC es un dispositivo bidireccional, sus terminales no se pueden designar como ánodo y cátodo. Si la terminal MT2 es positiva con respecto a la terminal MT1, el TRIAC se puede encender aplicando una señal de compuerta positiva entre la compuerta G y la terminal MT1. Si la terminal MT2 es negativa con respecto a la terminal MT1, se enciende aplicando una señal de compuerta negativa entre la compuerta G y la terminal MT1. No es necesario tener ambas polaridades de señales de compuerta, y un TRIAC se puede encender con una señal de compuerta ya sea positiva o negativa. En la práctica, las sensibilidades varían de uno a otro cuadrante y por lo común los TRIAC funcionan en el cuadrante I (voltaje y corriente de compuerta positivos), o en el cuadrante III (voltaje y corriente de compuerta negativos), \parencite{RASHID-SPANISH}
 
 En la electrónica de potencia, el TRIAC puede ser utilizado en diversas aplicaciones: Interruptor de CA, conmutador de punto cero, control de fase, entre otras. La aplicación del TRIAC utilizada en este módulo es la de control de fase, para subsecuentemente regular la potencia entregada a la carga.
 
@@ -48,7 +48,7 @@ En la electrónica de potencia, el TRIAC puede ser utilizado en diversas aplicac
 
 El control de fase es un método que utiliza el TRIAC para aplicar la alimentación de CA a la carga durante una fracción controlada de cada ciclo. En este modo de funcionamiento, el TRIAC se mantiene en estado de apagado o abierto durante una parte de cada ciclo positivo y negativo, y luego se activa en un momento del semiciclo determinado por el circuito de control. En estado de encendido, la corriente del circuito está limitada únicamente por la carga; es decir, toda la tensión de línea (menos la caída de tensión directa del TRIAC) se aplica a la carga, \parencite{ON-ThyristorHandbook}.
 
-El método más común de control electrónico de potencia de CA se denomina control de fase. La Figura \ref{fig:dimmer:control_fase} ilustra este concepto. Durante la primera parte de cada semiciclo de la onda sinusoidal de CA, se abre un interruptor electrónico para impedir el flujo de corriente. En un ángulo de fase específico $\alpha$, este interruptor se cierra para permitir que se aplique toda la tensión de línea a la carga durante el resto de ese semiciclo. La variación de $\alpha$ controlará la parte de la onda sinusoidal total que se aplica a la carga (área sombreada) y, por lo tanto, regulará el flujo de potencia hacia la carga, \parencite{ON-ThyristorHandbook}.
+El método más común de control electrónico de potencia de CA se denomina control de fase. La Figura \ref{fig:dimmer:control_fase} ilustra este concepto. Durante la primera parte de cada semiciclo de la onda sinusoidal de CA, se abre un interruptor electrónico para impedir el flujo de corriente. En un ángulo de fase específico $\alpha$, este interruptor se cierra para permitir que se aplique toda la tensión de línea a la carga durante el resto de ese semiciclo. La variación de $\alpha$ controla la parte de la onda sinusoidal total que se aplica a la carga (área sombreada) y, por lo tanto, regula el flujo de potencia hacia la carga, \parencite{ON-ThyristorHandbook}.
 
 \begin{figure}[H]
     \centering
@@ -60,7 +60,7 @@ El método más común de control electrónico de potencia de CA se denomina con
     \label{fig:dimmer:control_fase}
 \end{figure}
 
-El circuito más simple para lograr el control de fase se muestra en la \cref{fig:dimmer:control_fase_simple}. En este caso, el interruptor electrónico es un TRIAC (Q) que se activa mediante un pequeño pulso de corriente en su compuerta. El TRIAC se desactiva automáticamente cuando la corriente que lo atraviesa pasa por cero. En el circuito mostrado, el capacitor $C_T$ se carga durante cada semiciclo mediante la corriente que fluye a través de la resistencia $R_T$  y la carga. El hecho de que la carga esté en serie con $R_T$ durante esta parte del ciclo tiene poca importancia, ya que la resistencia de $R_T$ es mucho mayor que la de la carga. Cuando la tensión en el $C_T$  alcanza la tensión de ruptura del disparador bilateral DIAC (D), se libera la energía almacenada en el capacitor $C_T$ . Esta energía produce un pulso de corriente en el DIAC, que fluye a través de la compuerta del TRIAC y lo activa. Dado que tanto el DIAC como el TRIAC son dispositivos bidireccionales, los valores de $R_T$ y $C_T$  determinarán el ángulo de fase en el que se activará el TRIAC en los semiciclos positivo y negativo de la onda sinusoidal de CA, \parencite{ON-ThyristorHandbook}.
+El circuito más simple para lograr el control de fase se muestra en la \cref{fig:dimmer:control_fase_simple}. En este caso, el interruptor electrónico es un TRIAC (Q) que se activa mediante un pequeño pulso de corriente en su compuerta. El TRIAC se desactiva automáticamente cuando la corriente que lo atraviesa pasa por cero. En el circuito mostrado, el capacitor $C_T$ se carga durante cada semiciclo mediante la corriente que fluye a través de la resistencia $R_T$  y la carga. El hecho de que la carga esté en serie con $R_T$ durante esta parte del ciclo tiene poca importancia, ya que la resistencia de $R_T$ es mucho mayor que la de la carga. Cuando la tensión en el $C_T$  alcanza la tensión de ruptura del disparador bilateral DIAC (D), se libera la energía almacenada en el capacitor $C_T$ . Esta energía produce un pulso de corriente en el DIAC, que fluye a través de la compuerta del TRIAC y lo activa. Dado que tanto el DIAC como el TRIAC son dispositivos bidireccionales, los valores de $R_T$ y $C_T$  determinan el ángulo de fase en el que se activa el TRIAC en los semiciclos positivo y negativo de la onda sinusoidal de CA, \parencite{ON-ThyristorHandbook}.
 
 \begin{figure}[H]
     \centering
@@ -89,7 +89,7 @@ El circuito más simple para lograr el control de fase se muestra en la \cref{fi
     \label{fig:dimmer:control_fase_simple}
 \end{figure}
 
-La forma de onda del voltaje a través del capacitor para dos condiciones de control típicas ($\alpha$ = 90° y $\alpha$ = 150°) se muestra en la \cref{fig:dimmer:formas_onda}. Si se utiliza un rectificador controlado por silicio en este circuito en lugar del TRIAC, solo se controlará un semiciclo de la forma de onda. El otro semiciclo se bloqueará, lo que genera una salida de DC pulsante cuyo valor promedio puede variarse ajustando el $R_T$, \parencite{ON-ThyristorHandbook}.
+La forma de onda del voltaje a través del capacitor para dos condiciones de control típicas ($\alpha$ = 90° y $\alpha$ = 150°) se muestra en la \cref{fig:dimmer:formas_onda}. Si se utiliza un SCR en este circuito en lugar del TRIAC, solo se controla un semiciclo de la forma de onda. El otro semiciclo se bloquea, lo que genera una salida de DC pulsante cuyo valor promedio puede variarse ajustando el $R_T$, \parencite{ON-ThyristorHandbook}.
 
 \begin{figure}[H]
     \centering
@@ -158,7 +158,7 @@ Reemplazando valores para obtener el valor de la resistencia:
 {R_T} = \frac{1}{2 \pi \cdot \SI{50}{\hertz} \cdot \SI{330}{\nano\farad}} \cdot \sqrt{\frac{2 \cdot (\SI{48}{\volt})^2}{(\SI{32}{\volt})^2} - 1} = \SI{18.04}{\kilo\ohm}
 \end{equation}
 
-Se establece una resistencia mínima $R4 = \SI{470}{\ohm}$ y se decide utilizar un potenciómetro $R3 = \SI{100}{\kilo\ohm}$. Para obtener el rango desde la resistencia mínima a la calculada con el potenciómetro, se decide agregar una resistencia en paralelo $R1$ con el mismo, la cual se calcula a continuación:
+Se establece una resistencia mínima $R4 = \SI{470}{\ohm}$ y se utiliza un potenciómetro $R3 = \SI{100}{\kilo\ohm}$. Para obtener el rango desde la resistencia mínima a la calculada con el potenciómetro, se decide agregar una resistencia en paralelo $R1$ con el mismo, la cual se calcula a continuación:
 
 \begin{equation}
 R1 \parallel R3 = R - R4
@@ -174,12 +174,12 @@ Reemplazando valores:
 R1 = \SI{21.31}{\kilo\ohm} \approx \SI{22}{\kilo\ohm}
 \end{equation}
 
-Debido a la tolerancia de los componentes y al hecho de que estos cálculos son sobre una simplificación del circuito real (solo una rama RC), este valor representa un punto de inicio. En la práctica, el valor de $R_T$ óptimo se midió en \SI{21}{\kilo\ohm}, lo que significaría una $R1 = \SI{26.58}{\kilo\ohm}$. A causa de que los potenciómetros utilizados tienen una resistencia máxima significativamente menor a la especificada por el fabricante, el mejor resultado se obtuvo con una $R1 = \SI{33}{\kilo\ohm}$.
+Debido a la tolerancia de los componentes y al hecho de que estos cálculos son sobre una simplificación del circuito real (solo una rama RC), este valor representa un punto de inicio. En la práctica, el valor de $R_T$ óptimo se mide en \SI{21}{\kilo\ohm}, lo que significa una $R1 = \SI{26.58}{\kilo\ohm}$. A causa de que los potenciómetros utilizados tienen una resistencia máxima significativamente menor a la especificada por el fabricante, el mejor resultado se obtuvo con una $R1 = \SI{33}{\kilo\ohm}$.
 
 \subsubsection{Circuito detector de cruce por cero (ZCD)}
 \label{sec:dimmer:zcd}
 
-El control de fase explicado anteriormente puede ser reemplazado por un control digital, prescindiendo de la rama RC y del DIAC del circuito de la \cref{fig:dimmer:control_fase_simple}. El control digital se compone de dos circuitos distintos: el Zero Crossing Detector (detector de cruce por cero) y el driver de TRIAC. 
+El control de fase explicado anteriormente puede ser reemplazado por un control digital, prescindiendo de la rama RC y del DIAC del circuito de la \cref{fig:dimmer:control_fase_simple}. El control digital se compone de dos circuitos distintos: el Zero Crossing Detector (detector de cruce por cero) mostrado en la \cref{fig:dimmer:zcd} y el driver de TRIAC \cref{fig:dimmer:driver_triac_cd}. 
 
 \begin{figure}[H]
     \centering
@@ -227,11 +227,11 @@ I_F = \frac{V_{CA}}{R6} = \frac{\SI{48}{\volt}}{\SI{10}{\kilo\ohm}} = \SI{4.8}{\
 
 La resistencia $R8$ es simplemente de \textit{pull-up} para la señal que va al microcontrolador, por lo que se establece arbitrariamente $R8 = \SI{10}{\kilo\ohm}$. Puede reducirse a valores menores hasta $\SI{1}{\kilo\ohm}$ en caso de presentar problemas.
 
-Se debe agregar un diodo $D2$ en antiparalelo con la entrada del optoacoplador debido a que el mismo tiene una tensión de reversa de \SI{6}{V}, lo cual es sustancialmente baja. Se optó por utilizar el 1N4007 porque es uno de los diodos más comunes encontrados en diversos dispositivos electrónicos, pero cualquier diodo que tenga la capacidad de conmutar a \SI{50}{\hertz} y soporte una tensión reversa de $\SI{48}{\volt} \sqrt{2} \approx \SI{68}{\voltpeak}$ puede utilizarse.
+Se debe agregar un diodo $D2$ en antiparalelo con la entrada del optoacoplador debido a que el mismo tiene una tensión de reversa de \SI{6}{V}, lo cual es sustancialmente baja. Se opta por el 1N4007 porque es uno de los diodos más comunes encontrados en diversos dispositivos electrónicos, pero cualquier diodo que tenga la capacidad de conmutar a \SI{50}{\hertz} y soporte una tensión reversa de $\SI{48}{\volt} \sqrt{2} \approx \SI{68}{\voltpeak}$ puede utilizarse.
 
 \subsubsection{\textit{Driver} de TRIAC}
 
-Como el microcontrolador se encuentra aislado galvánicamente del circuito de corriente alterna del TRIAC y la carga, se diseñó un simple \textit{driver} con un optoacoplador con salida TRIAC MOC3021M, \parencite{MOC3021}.
+Como el microcontrolador se encuentra aislado galvánicamente del circuito de corriente alterna del TRIAC y la carga, se diseña un simple \textit{driver} con un optoacoplador con salida TRIAC MOC3021M, \parencite{MOC3021}.
 
 \begin{figure}[H]
     \centering
@@ -242,7 +242,7 @@ Como el microcontrolador se encuentra aislado galvánicamente del circuito de co
     \label{fig:dimmer:driver_triac_cd}
 \end{figure}
 
-El único fin de este circuito es de poder disparar la \textit{gate} del TRIAC con la señal del microcontrolador. Solamente es necesario calcular resistencias limitadoras de corriente para el uso correcto del optoacoplador:
+El fin de este circuito es disparar la \textit{gate} del TRIAC con la señal del microcontrolador. Solamente es necesario calcular resistencias limitadoras de corriente para el uso correcto del optoacoplador:
 
 \paragraph{Criterios de diseño - Emisor}
 
@@ -273,7 +273,7 @@ No es necesario tener en cuenta la disipación de potencia de la resistencia $R7
 
 \subsubsection{Driver de relé}
 
-Para poder intercambiar entre ambos modos de control, el analógico y el digital, se diseñó un simple circuito con un relé en la \textit{gate} del TRIAC. En el contacto normal-cerrado, el relé conecta la \textit{gate} del TRIAC con la salida del DIAC perteneciente al circuito de control analógico; mientras que en el contacto normal-abierto, conecta la \textit{gate} con la salida del optoacoplador del circuito de control digital.
+Para poder intercambiar entre ambos modos de control, el analógico y el digital, se diseña un simple circuito con un relé en la \textit{gate} del TRIAC. En el contacto normal-cerrado, el relé conecta la \textit{gate} del TRIAC con la salida del DIAC perteneciente al circuito de control analógico; mientras que en el contacto normal-abierto, conecta la \textit{gate} con la salida del optoacoplador del circuito de control digital.
 
 \begin{figure}[H]
     \centering
@@ -284,7 +284,7 @@ Para poder intercambiar entre ambos modos de control, el analógico y el digital
     \label{fig:dimmer:rele}
 \end{figure}
 
-En la \cref{fig:dimmer:rele} se observa el circuito que permite conmutar el relé para cambiar entre ambos modos de control (analógico y digital). Cuando $uC_{Relay} = \SI{0}{\volt}$, el circuito utilizado es el de control analógico, mientras que cuando $uC_{Relay} = \SI{3.3}{\volt}$, se activa el control digital.
+En la \cref{fig:dimmer:rele} se observa el circuito que permite conmutar el relé para cambiar entre ambos modos de control (analógico y digital). Cuando $uC_{Relay} = \SI{0}{\volt}$, el circuito utilizado es el de control analógico, cuando $uC_{Relay} = \SI{3.3}{\volt}$, se activa el control digital.
 
 \paragraph{Criterios de diseño}
 
@@ -302,7 +302,7 @@ Se calcula un beta promedio para el transistor:
 \beta_{avg} = \frac{\beta_{min} + \beta_{max}}{2} = \frac{200 + 450}{2} = 325
 \end{equation}
 
-Aplicando ley de las tensiones de Kirchoff:
+Aplicando ley de las tensiones de Kirchhoff:
 
 \begin{equation}
 V_{UC} = \frac{I_C}{\beta_{avg}} \cdot R2 + V_{BE}
@@ -320,7 +320,7 @@ Como en el \cref{sec:dimmer:zcd}, se elige el 1N4007 como diodo \textit{flyback}
 
 Es imperativo implementar algún método para restringir la tasa de aumento de la tensión reaplicada del TRIAC a un valor que permita la desactivación del TRIAC en condiciones de carga inductiva, \parencite{ON-ThyristorHandbook}.
 
-Un método comúnmente aceptado para mantener la $dv/dt$ de conmutación dentro de niveles tolerables es utilizar una red Snubber RC en paralelo con los terminales principales del TRIAC. Dado que la tasa de aumento de la tensión aplicada en los terminales del TRIAC depende de la impedancia de carga y de la red Snubber RC, el circuito puede evaluarse en las peores condiciones de temperatura de funcionamiento y corriente principal máxima. Los valores de resistencia y capacitancia en red Snubber se ajustan para que la tasa de aumento de la tensión $dv/dt$ de conmutación se encuentre dentro del límite mínimo especificado en cualquiera de las condiciones mencionadas anteriormente. El valor de la resistencia del Snubber debe ser lo suficientemente alto como para limitar las corrientes de descarga de la capacitancia del Snubber durante el encendido y amortiguar la oscilación del LC durante la conmutación. Generalmente, se prefiere la combinación de valores de Snubber con la mayor resistencia y la menor capacitancia que proporcione un funcionamiento satisfactorio, \parencite{ON-ThyristorHandbook}.
+Un método comúnmente aceptado para mantener la $dv/dt$ de conmutación dentro de niveles tolerables es utilizar una red Snubber RC en paralelo con los terminales principales del TRIAC. Dado que la tasa de aumento de la tensión aplicada en los terminales del TRIAC depende de la impedancia de carga y de la red Snubber RC, el circuito puede evaluarse en las peores condiciones de temperatura de funcionamiento y corriente principal máxima. Los valores de resistencia y capacitancia en red Snubber se ajustan para que la tasa de aumento de la tensión $dv/dt$ de conmutación se encuentre dentro del límite mínimo especificado en cualquiera de las condiciones mencionadas anteriormente. El valor de la resistencia de Snubber debe ser lo suficientemente alto como para limitar las corrientes de descarga de la capacitancia de Snubber durante el encendido y amortiguar la oscilación del LC durante la conmutación. Generalmente, se prefiere la combinación de valores de Snubber con la mayor resistencia y la menor capacitancia que proporcione un funcionamiento satisfactorio, \parencite{ON-ThyristorHandbook}.
 
 
 \begin{figure}[H]
@@ -349,7 +349,7 @@ En la \cref{fig:dimmer:snubber_curvas} se observa la tasa crítica de disminuci�
 Se selecciona una resistencia de \SI{51}{\ohm} y un capacitor de \SI{10}{\nano\farad} ya que una red RC de estas características suele ser suficiente para evitar disparos espurios, \parencite{ST-AN437}.
 
 \subsection{Disipación de potencia en TRIAC}
-Los cálculos correspondientes a la disipación de potencia y temperatura de juntura del TRIAC fueron realizados siguiendo un informe de aplicación de Philips Semiconductors, \parencite{PHILIPS-TRIACs}.
+Los cálculos correspondientes a la disipación de potencia y temperatura de juntura del TRIAC se realizan siguiendo un informe de aplicación de Philips Semiconductors, \parencite{PHILIPS-TRIACs}.
 
 Teniendo en cuenta:
 \begin{itemize}
@@ -380,7 +380,7 @@ Por lo tanto, no es necesario colocar un disipador en el TRIAC, ya que la temper
 
 \subsection{Simulación}
 
-Para verificar el correcto funcionamiento del circuito control de fase analógico del \cref{sec:dimmer:rama-rc}, se realizó una simple simulación con el software gratuito LTspice, \parencite{LTSPICE}.
+Para verificar el correcto funcionamiento del circuito control de fase analógico del \cref{sec:dimmer:rama-rc}, se realiza una simple simulación con el software gratuito LTspice, \parencite{LTSPICE}.
 
 \begin{figure}[H]
     \centering
@@ -390,7 +390,7 @@ Para verificar el correcto funcionamiento del circuito control de fase analógic
     \caption{Circuito en LTspice\protect\footnotemark}
     \label{fig:dimmer:simulacion_circuito}
 \end{figure}
-\footnotetext{Se utilizó el TRIAC Z0402M por disponibilidad de modelo de simulación. Sus características son similares a las del BT137.}
+\footnotetext{Se utiliza el TRIAC Z0402M por disponibilidad de modelo de simulación. Sus características son similares a las del BT137.}
 
 \begin{figure}[H]
     \centering
