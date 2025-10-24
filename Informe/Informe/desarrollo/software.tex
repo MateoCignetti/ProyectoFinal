@@ -148,7 +148,7 @@ El comportamiento del convertidor se rige por una máquina de estados gestionada
 
 \subsubsection{Módulo recortador de onda}
 
-El control digital de este módulo se diseña para cambiar con exactitud el tiempo de disparo del TRIAC, regulando la potencia aplicada a la carga. Permite operar el relé del módulo que elige entre el control analógico mediante resistencia variable o control digital. Además, es posible seleccionar la onda aplicada a la carga: ciclo completo, sólo semiciclo positivo o sólo semiciclo negativo. Al igual que el módulo anterior, se separa en dos programas (\textit{dimmer\_control.c}) y (\textit{dimmer\_interface.c})
+El control digital de este módulo se diseña para cambiar con exactitud el tiempo de disparo del TRIAC, regulando la potencia aplicada a la carga. Permite operar el relé del módulo que elige entre el control analógico mediante resistencia variable o control digital. Al igual que el módulo anterior, se separa en dos programas (\textit{dimmer\_control.c}) y (\textit{dimmer\_interface.c})
 
 \paragraph{Arquitectura de software}
 \begin{itemize}[noitemsep]
@@ -163,8 +163,6 @@ Como en el módulo convertidor Buck, se utiliza una máquina de estados para el 
     \item \textit{DIMMER\_CONTROL\_IDLE}: estado seguro por defecto. Se activa el relé, activando el control digital, pero no se desactiva la interrupción del detector de cruce por cero. De esta forma, no se genera un pulso de salida.
     \item \textit{DIMMER\_CONTROL\_ANALOG}: modo de control analógico. Se desactiva el relé, activando el control analógico. El programa desactiva la interrupción y la generación de pulso.
     \item \textit{DIMMER\_CONTROL\_FULL\_WAVE}: modo de control digital con ciclo completo aplicado a la carga. Se activa el relé y se configura la interrupción del detector de cruce por cero en \textit{ANYEDGE}, lo que inicializa el \textit{timer} de espera en ambos semiciclos de la señal.
-    \item \textit{DIMMER\_CONTROL\_POSITIVE\_SEMICYCLE}: modo de control digital sólo con semiciclo positivo aplicado a la carga. Se activa el relé y se configura la interrupción del detector de cruce por cero en \textit{NEGEDGE}, lo que inicializa el \textit{timer} de espera sólo para el semiciclo positivo.
-    \item \textit{DIMMER\_CONTROL\_NEGATIVE\_SEMICYCLE}: igual al modo de control anterior, pero con la interrupción configurada en \textit{POSEDGE}, lo que inicializa el \textit{timer} de espera sólo para el semiciclo negativo.
 \end{itemize}
 
 \subsubsection{Módulo inversor de onda cuadrada}

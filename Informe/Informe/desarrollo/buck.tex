@@ -319,7 +319,9 @@ $C_{obo} = 8 \ pF \approx C_{snub}(min)$. $C_{obo}$, capacitancia de salida de t
     R_{snub} = \frac{1}{2\pi f_{ring} C_{snub}} = \SI{79}{\ohm}
 \end{equation}
 
-Estos cálculos siguen la técnica descrita en un artículo técnico de \textit{Texas Instruments}, \parencite{ti_2016_snubber}. Este método consiste en probar el circuito en dos condiciones, la primera es sin ninguna red de Snubber para poder determinar la frecuencia de oscilación real; la segunda condición es conectando un capacitor en paralelo al transistor y medir la frecuencia nuevamente. El objetivo de esta prueba es que al conectar el capacitor, la frecuencia medida sea de al menos un \SI{50}{\percent} menor a la frecuencia real de oscilación del circuito. 
+Los cálculos que se presentan a continuación, siguen la técnica descrita en un artículo técnico de \textit{Texas Instruments}, \parencite{ti_2016_snubber}. Este método consiste en probar el circuito en dos condiciones, la primera es sin ninguna red de Snubber para poder determinar la frecuencia de oscilación real; la segunda condición es conectando un capacitor en paralelo al transistor y medir la frecuencia nuevamente. El objetivo de esta prueba es que al conectar el capacitor, la frecuencia medida sea de al menos un \SI{50}{\percent} menor a la frecuencia real de oscilación del circuito. 
+
+La tensión medida es entre colector y emisor de un transistor BJT, o entre drenador y surtidor de un transistor MOSFET. Estas oscilaciones que se presentan en las \cref{fig:buck:freq-oscilacion-bjt,fig:buck:freq-oscilacion-mosfet}, son las que aparecen en el momento en el que los transistores cambian su estado, de encendido a apagado o viceversa. Esta frecuencia es la denominada anteriormente como frecuencia de \textit{ring}, la cual no es deseada, teniendo que disminuir al máximo su efecto.
 
 \begin{figure}[H]
     \centering
@@ -426,6 +428,46 @@ Se determinan los nuevos valores de red de Snubber en función del corrimiento d
 
 Se utiliza un valor de \SI{5}{\pico\farad} para el capacitor y de \SI{6.8}{\kilo\ohm} para la resistencia de la red.
 %\end{comment}
+
+En las \cref{fig:buck:freq-oscilacion-mosfet-nueva,fig:buck:freq-oscilacion-bjt-nueva} se encuentran los resultados con los nuevos valores de red de Snubber, donde se puede determinar una amplia disminución de la frecuencia de oscilación no deseada en la conmutación de los transistores.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} % Aumenté un poco el ancho para que sea más robusto
+        \centering
+        \includegraphics[width=\columnwidth]{buck/freq_mos.png}
+        \caption{Únicamente con capacitor en paralelo, \cref{fig:buck:freq-oscilacion-mos-con-cap}.}
+        \label{fig:buck:freq-oscilacion-mos-con-cap-nueva}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{buck/tension-snub-nueva-mosfet.png}
+        \caption{Con nuevos valores de red de Snubber.}
+        \label{fig:buck:tension-snub-nueva-mosfet}
+    \end{subfigure}
+    \caption{Resultados en transistor IRF9540 en circuito real}
+    \label{fig:buck:freq-oscilacion-mosfet-nueva}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} % Aumenté un poco el ancho para que sea más robusto
+        \centering
+        \includegraphics[width=\columnwidth]{buck/freq_bjt.png}
+        \caption{Únicamente con capacitor en paralelo, \cref{fig:buck:freq-oscilacion-bjt-con-cap}.}
+        \label{fig:buck:freq-oscilacion-bjt-con-cap-nueva}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{buck/tension-snub-nueva-bjt.png}
+        \caption{Con nuevos valores de red de Snubber.}
+        \label{fig:buck:tension-snub-nueva-bjt}
+    \end{subfigure}
+    \caption{Resultados en transistor 2N2222 en circuito real}
+    \label{fig:buck:freq-oscilacion-bjt-nueva}
+\end{figure}
 
 \subsubsection{Realimentación microcontrolador}
 
