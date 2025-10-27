@@ -2,6 +2,14 @@
 
 \subsection{Convertidor reductor o Buck}
 
+Se presentan los resultados experimentales obtenidos con el convertidor reductor o Buck, en las pruebas realizadas en el laboratorio, por medio del uso de osciloscopios y multímetros. El objetivo de esto es corroborar y justificar experimentalmente los cálculos realizados en secciones anteriores.
+
+Cabe destacar que los datos experimentales obtenidos son para una tensión de salida de \SI{6}{\volt} con una corriente de \SI{1.2}{\ampere}, siendo una potencia teórica de \SI{7.2}{\watt}, la carga elegida para las pruebas es la resistiva, y no se presenta ningún control, se trabaja en lazo abierto.
+
+\paragraph{Tensión de salida pre-filtrado}
+Como se aprecia en la \cref{fig:resultados:buck:tension-gate-mosfet}, la tensión $V_{g}$ (IRF9540) es una señal cuadrada de \SI{12}{\volt} de amplitud, con un \textit{duty cycle} del \SI{44}{\percent}. Esta señal es opuesta a la forma del PWM enviado por el microcontrolador, ya que en el momento que el \textit{driver} BJT conduce, la tensión en la \textit{gate} es \SI{0}{\volt} haciendo que el transistor de conmutación de potencia conduzca, debido a una $V_{gs}$ negativa; Ocurre lo contrario cuando el driver no conduce, ya que la tensión aplicada en la \textit{gate} ($V_g$) es de \SI{12}{\volt}, quedando una $V_{gs} \approx \SI{0}{\volt}$.
+
+La \cref{fig:resultados:buck:tension-drenador} muestra una señal que sigue la forma del PWM entregado por el microcontrolador. Esta señal representa la tensión de salida previa a la etapa de filtrado.
 
 \begin{figure}[H]
     \centering
@@ -17,19 +25,9 @@
     \label{fig:resultados:buck:tension-drenador}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{resultados/Buck/corriente-inductor-6v.png}
-    \caption{Corriente por el inductor.}
-    \label{fig:resultados:buck:corriente-inductor}
-\end{figure}
+En la \cref{fig:resultados:buck:tensiones-salida-buck} se muestran las tensiones de salida del convertidor frente a dos cargas distintas, una inductiva (\cref{fig:resultados:buck:tension-salida-inductiva}) y otra resistiva (\cref{fig:resultados:buck:tension-salida-resistiva}). En donde, la tensión resistiva respeta la tensión de salida calculada para un valor de \textit{duty cycle} de \SI{55}{\percent}, mientras que la inductiva no lo hace debido a las características inherentes a la misma. 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{resultados/Buck/corriente-capacitor-6v.png}
-    \caption{Corriente por el capacitor de salida.}
-    \label{fig:resultados:buck:corriente-capacitor}
-\end{figure}
+Cuando la carga es inductiva, el PWM entregado por el microcontrolador deja de comportarse linealmente, \textcolor{red}{NO SE COMO JUSTIFICARLO}.
 
 \begin{figure}[H]
     \centering
@@ -49,6 +47,31 @@
     \caption{Resultados de tensiones de salida en el convertidor reductor.}
     \label{fig:resultados:buck:tensiones-salida-buck}
 \end{figure}
+
+
+Como prueba adicional se realizan las mediciones de corriente tanto en el inductor como en el capacitor. En la \cref{fig:resultados:buck:corriente-inductor} se muestra la corriente a través del inductor, siendo la corriente teórica de  \SI{1.2}{\ampere}; como el amplificador entrega una tensión, hay que realizar una conversión para obtener la corriente, \cref{eq:resultados:buck:corriente-inductor}. Esta ecuación se obtiene de despejar las \cref{eq:buck:salida_amplificador_unidireccional,eq:buck:resistencia_shunt_unidireccional}.
+
+\begin{equation} \label{eq:resultados:buck:corriente-inductor}
+    I_{inductor} = \frac{V_{out}}{R_{shunt}\,ganancia}
+\end{equation}
+
+Calculando con el valor experimental mostrado en la \cref{fig:resultados:buck:corriente-inductor}, da como resultado una corriente a través del inductor de \SI{1.27}{\ampere}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{resultados/Buck/corriente-inductor-6v.png}
+    \caption{Corriente por el inductor.}
+    \label{fig:resultados:buck:corriente-inductor}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{resultados/Buck/corriente-capacitor-6v.png}
+    \caption{Corriente por el capacitor de salida.}
+    \label{fig:resultados:buck:corriente-capacitor}
+\end{figure}
+
+
 
 \subsection{Recortador de onda o Dimmer}
 

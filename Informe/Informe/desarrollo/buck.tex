@@ -601,7 +601,7 @@ En una primera instancia se calcula el valor máximo de tensión en la resistenc
 
 Luego se determina el valor de la resistencia \textit{shunt}, $R_{shunt}$, a partir de la tensión máxima en la resistencia \textit{shunt} y la corriente máxima del convertidor, \cref{eq:buck:resistencia_shunt_unidireccional}.
 \begin{equation} \label{eq:buck:resistencia_shunt_unidireccional}
-    R_{shunt} = \frac{\SI{48e-3}{\volt}}{\SI{3}{\ampere}} = \SI{0,016}{\ohm}
+    R_{shunt} = \frac{V_{R_{shunt}}}{I_{out(max)}} = \frac{\SI{48e-3}{\volt}}{\SI{3}{\ampere}} = \SI{0,016}{\ohm}
 \end{equation}
 
 Se elige una resistencia \textit{shunt} de $\SI{10}{\milli\ohm}$ por la disipación de potencia. Además, entrega un buen rango de tensión a la salida del amplificador, $V_{out} = \SIrange{0.05}{3}{\volt}$.
