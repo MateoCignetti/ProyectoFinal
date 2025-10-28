@@ -158,7 +158,7 @@ void create_module_connection_tasks(void){
     BaseType_t task_created = xTaskCreate(
         vTaskUpdateConnectionState,
         "UpdateConnectionState",
-        2048,
+        2*2048,
         NULL,
         tskIDLE_PRIORITY + 2,
         &xTaskUpdateConnectionState_handle
@@ -173,7 +173,7 @@ void create_module_connection_tasks(void){
     task_created = xTaskCreate(
         vTaskCheckHotplugs,
         "CheckHotplugs",
-        2048,
+        2*2048,
         NULL,
         tskIDLE_PRIORITY + 1,
         NULL
