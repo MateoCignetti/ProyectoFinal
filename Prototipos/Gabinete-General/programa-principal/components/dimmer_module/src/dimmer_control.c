@@ -474,7 +474,7 @@ static void configure_gpios(){
     };
     ESP_ERROR_CHECK(gpio_config(&zcd_pin_conf)); // Apply the configuration
 
-    //ESP_ERROR_CHECK(gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT)); // Install ISR service
+    ESP_ERROR_CHECK(gpio_install_isr_service(ESP_INTR_FLAG_IRAM)); // Install ISR service
     ESP_ERROR_CHECK(gpio_isr_handler_add(PIN_ZCD_IN, zcd_isr_handler, NULL)); // Add ISR handler for the ZCD pin
 
     // Configuration for the TRIAC pin
@@ -494,6 +494,7 @@ static void configure_gpios(){
 static void delete_gpios(){
     ESP_ERROR_CHECK(gpio_set_level(PIN_RELAY_OUT, 0)); // Disable the relay (dimmer in analog mode)
     ESP_ERROR_CHECK(gpio_isr_handler_remove(PIN_ZCD_IN)); // Remove the ISR handler for the ZCD pin (only pin with ISR)
+    ESP_ERROR_CHECK(gpio_install_isr_service(ESP_INTR_FLAG_IRAM)); // Install ISR service
     
     // Reset the GPIOs to their default state (high impedance input)
     gpio_reset_pin(PIN_ZCD_IN);

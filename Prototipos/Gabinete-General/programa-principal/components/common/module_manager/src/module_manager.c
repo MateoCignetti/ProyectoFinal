@@ -1,6 +1,6 @@
 #include "module_manager.h"
-
 #include "module_connection.h"
+
 #include "module_registry.h" // Central registry for all modules
 
 #include "esp_adc/adc_oneshot.h"
@@ -10,23 +10,27 @@
 #include "esp_log.h"
 #include "driver/gpio.h"
 
+#define DEFAULT_MANAGER_STATE MANAGER_FAULT
+#define IDENT_TIMEOUT_MS 2000
 #define IDENT_SAMPLES_N 50
 #define IDENT_SAMPLES_PERIOD_MS 10
 
+static module_manager_state_t module_manager_state = DEFAULT_MANAGER_STATE;
 
 static const char* MANAGER_TAG = "Module Manager"; // Module name for logging
 static adc_oneshot_unit_handle_t adc1_unit_handle = NULL;
 static adc_cali_handle_t adc1_cali_handle = NULL;
-static TaskHandle_t xTaskModuleManagerUpdate_handle = NULL; // Task handle for the module state update task
-static TaskHandle_t xTaskAdcSampling_handle = NULL; // Task handle for ADC sampling
 
-static module_manager_state_t module_manager_state = MANAGER_INIT;
+static TaskHandle_t xTaskAdcSampling_handle = NULL; // Task handle for ADC sampling
+static TaskHandle_t xTaskModuleManagerUpdate_handle = NULL; // Task handle for the module state update task
+
 static SemaphoreHandle_t xModuleManagerMutex = NULL;
 static QueueHandle_t xAdcResultQueue = NULL; // Queue to receive ADC sampling results
 
 
 // Public function declarations
 module_manager_state_t get_module_manager_state(void);
+void set_module_manager_state(module_manager_state_t new_state);
 void module_manager_init(void);
 //
 
@@ -37,8 +41,7 @@ static void create_module_manager_tasks(void);
 static const module_t* identify_module(int module_ident_mv);
 static void setup_ident_adc(void);
 static void delete_ident_adc(void);
-static void handle_module_connected(bool connected);
-static void set_module_manager_state(module_manager_state_t new_state);
+void set_module_manager_state(module_manager_state_t new_state);
 //
 
 /**
@@ -64,27 +67,28 @@ module_manager_state_t get_module_manager_state() {
     return state;
 }
 
-// Public Functions
-void module_manager_init(void){
-    create_module_manager_tasks();
-    
-    // Initialize module connection system
-    initialize_module_connection();
-    
-    // Register callback for connection state changes
-    register_connection_callback(handle_module_connected);
-}
-//
-
-// Private Functions
-
 // Function to safely set module state
-static void set_module_manager_state(module_manager_state_t new_state) {
+void set_module_manager_state(module_manager_state_t new_state) {
     if (xModuleManagerMutex != NULL && xSemaphoreTake(xModuleManagerMutex, pdMS_TO_TICKS(100)) == pdTRUE) {
         module_manager_state = new_state;
         xSemaphoreGive(xModuleManagerMutex);
+
+        xTaskNotifyGive(xTaskModuleManagerUpdate_handle);
     }
 }
+
+// Public Functions
+void module_manager_init(void){
+    create_module_manager_tasks();
+    set_module_manager_state(MANAGER_INIT);
+    // Initialize module connection system
+   
+}
+//
+
+
+
+
 
 static void setup_ident_adc(){
 
@@ -265,107 +269,98 @@ static const module_t* identify_module(int module_ident_mv) {
     return NULL;
 }
 
-static void handle_module_connected(bool connected) {
-    // This function is called when module connection state changes
-    /*
-    if (connected) {
-        ESP_LOGI(MANAGER_TAG, "Module connection confirmed - triggering identification");
-        xTaskNotifyGive(xTaskModuleManagerUpdate_handle);
-    } else {
-        ESP_LOGI(MANAGER_TAG, "Module disconnected - stopping current module");
-        // Handle disconnection - stop current module if running
-        if (get_module_manager_state() == MANAGER_RUNNING) {
-            set_module_manager_state(MANAGER_STOPPING);
-            xTaskNotifyGive(xTaskModuleManagerUpdate_handle);
-        }
-    }*/
-    // Notify the module manager task of the connection state change
-    xTaskNotifyGive(xTaskModuleManagerUpdate_handle);
-}
-
 static void vTaskModuleManagerUpdate(void *pvParameters) {
     const module_t* current_module = NULL;
+    module_manager_state_t current_state = DEFAULT_MANAGER_STATE;
+
     while (true) {
-        if(get_module_manager_state() == MANAGER_INIT) {
-            ESP_LOGI(MANAGER_TAG, "Module Manager is initializing...");
-            setup_ident_adc();
-            set_module_manager_state(MANAGER_READY);
-        }
 
         // Wait for notification from connection callback
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-        
-        module_manager_state_t current_state = get_module_manager_state();
-        
+
+        current_state = get_module_manager_state();
+
         // I don't know if this will work after module_running to module_stopping. Test.
         switch (current_state){
+            case MANAGER_INIT:
+                ESP_LOGI(MANAGER_TAG, "Module Manager is initializing...");
+                setup_ident_adc();
+                initialize_module_connection();
+                set_module_manager_state(MANAGER_READY);
+
+                break;
+
             case MANAGER_READY:
-                // Only try to identify if module is actually connected
-                if (get_connection_state() == CONNECTION_CONNECTED) {
-                    // Request ADC sampling from the dedicated task
-                    ESP_LOGI(MANAGER_TAG, "Starting ADC sampling for module identification");
+                ESP_LOGI(MANAGER_TAG, "Module Manager is READY, waiting for module connection...");
+
+                break;
+            
+            case MANAGER_STARTING:
+                ESP_LOGI(MANAGER_TAG, "Module connected, starting identification...");
+                
+                // Trigger ADC sampling task
+                if (xTaskAdcSampling_handle != NULL) {
                     xTaskNotifyGive(xTaskAdcSampling_handle);
+                } else {
+                    ESP_LOGE(MANAGER_TAG, "ADC Sampling Task handle is NULL");
+                    set_module_manager_state(MANAGER_FAULT);
+                    break;
+                }
+                
+                // Wait for ADC result
+                int module_ident_mv = -1;
+                if (xQueueReceive(xAdcResultQueue, &module_ident_mv, IDENT_TIMEOUT_MS) == pdTRUE) {
+                    if (module_ident_mv == -1) {
+                        ESP_LOGW(MANAGER_TAG, "ADC sampling was aborted due to disconnection");
+                        set_module_manager_state(MANAGER_READY);
+                        break;
+                    }
                     
-                    // Wait for ADC result (no timeout needed since sampling task always sends a value)
-                    int module_ident_mv = 0;
-                    if (xQueueReceive(xAdcResultQueue, &module_ident_mv, portMAX_DELAY) == pdTRUE) {
-                        // Check for sentinel value indicating sampling failure
-                        if (module_ident_mv < 0) {
-                            ESP_LOGW(MANAGER_TAG, "ADC sampling was aborted (module disconnected)");
-                            break;
-                        }
+                    // Identify module
+                    current_module = identify_module(module_ident_mv);
+                    if (current_module != NULL) {
+                        ESP_LOGI(MANAGER_TAG, "Identified module: %s", current_module->name);
+                        delete_ident_adc();
                         
-                        // Double-check module is still connected after sampling
-                        if (get_connection_state() != CONNECTION_CONNECTED) {
-                            ESP_LOGW(MANAGER_TAG, "Module disconnected after ADC sampling completed");
-                            break;
-                        }
-                        
-                        const module_t* identified_module = identify_module(module_ident_mv);
-                        if (identified_module != NULL) {
-                            ESP_LOGI(MANAGER_TAG, "Identified module: %s", identified_module->name);
-                            if (identified_module->start_function != NULL) {
-                                delete_ident_adc();
-                                identified_module->start_function();
-                                current_module = identified_module;
-                                set_module_manager_state(MANAGER_RUNNING);
-                            } else {
-                                ESP_LOGE(MANAGER_TAG, "No start function defined for module: %s", identified_module->name);
-                                set_module_manager_state(MANAGER_READY); //CHANGE LATER TO FAULT
-                            }
+                        // Start the module
+                        if (current_module->start_function != NULL) {
+                            current_module->start_function();
+                            set_module_manager_state(MANAGER_RUNNING);
                         } else {
-                            ESP_LOGW(MANAGER_TAG, "Failed to identify module");
-                            set_module_manager_state(MANAGER_READY); //CHANGE LATER TO FAULT
+                            ESP_LOGE(MANAGER_TAG, "Module %s has no start function!", current_module->name);
+                            set_module_manager_state(MANAGER_FAULT);
                         }
                     } else {
-                        // This should never happen since we use portMAX_DELAY
-                        ESP_LOGE(MANAGER_TAG, "Failed to receive ADC result from queue");
-                        set_module_manager_state(MANAGER_FAULT);
+                        ESP_LOGW(MANAGER_TAG, "No module matched the identification voltage");
+                        set_module_manager_state(MANAGER_READY);
                     }
+                } else {
+                    ESP_LOGE(MANAGER_TAG, "Timeout waiting for ADC result");
+                    set_module_manager_state(MANAGER_FAULT);
                 }
+
                 break;
-                
+
             case MANAGER_RUNNING:
-                // Module is running - handle any state changes or disconnection
-                if (get_connection_state() != CONNECTION_CONNECTED) {
-                    ESP_LOGI(MANAGER_TAG, "Module disconnected while running - stopping");
-                    set_module_manager_state(MANAGER_STOPPING);
-                    if (current_module != NULL && current_module->stop_function != NULL) {
-                        current_module->stop_function(); // Stop current module
-                    }
-                    current_module = NULL;
-                    
-                    setup_ident_adc(); // Re-setup ADC for identification
-                    set_module_manager_state(MANAGER_READY);
-                    ESP_LOGI(MANAGER_TAG, "Module stopped and ADC re-configured for identification");
-                }
+                // Module is running normally
+                ESP_LOGI(MANAGER_TAG, "Module is RUNNING");
+
                 break;
                 
             case MANAGER_STOPPING:
                 // Handle stopping the module
                 ESP_LOGI(MANAGER_TAG, "Stopping module...");
-                // TODO: Add stop function call if needed
-                set_module_manager_state(MANAGER_READY);
+                if (current_module != NULL && current_module->stop_function != NULL) {
+                    current_module->stop_function();
+                    ESP_LOGI(MANAGER_TAG, "Module stopped successfully");
+                    current_module = NULL;
+                    set_module_manager_state(MANAGER_READY);
+                    setup_ident_adc(); // Re-setup ADC for identification
+                    ESP_LOGI(MANAGER_TAG, "Module stopped and ADC re-configured for identification");
+                } else {
+                    ESP_LOGW(MANAGER_TAG, "No module to stop or stop function is NULL");
+                }
+                
                 break;
 
             case MANAGER_FAULT:
