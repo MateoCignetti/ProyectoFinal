@@ -173,7 +173,7 @@ void create_module_connection_tasks(void){
     task_created = xTaskCreate(
         vTaskCheckHotplugs,
         "CheckHotplugs",
-        2*2048,
+        3*2048,
         NULL,
         tskIDLE_PRIORITY + 1,
         NULL
