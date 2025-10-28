@@ -6,8 +6,6 @@
 #include "dimmer_ui.h"
 #include "dimmer_control.h"
 
-#define PIN_DIMMER_RELAY PIN_S1
-
 void update_time_label(lv_event_t * e)
 {
 	// Your code here
@@ -20,20 +18,20 @@ void dimmer_control_analog(lv_event_t * e)
 
 void dimmer_control_digital(lv_event_t * e)
 {
-	
+	set_dimmer_control_state(DIMMER_CONTROL_DIGITAL);
 }
 
 void dimmer_digital_full_cycle(lv_event_t * e)
 {
-	set_dimmer_control_state(DIMMER_CONTROL_FULL_WAVE);
+	// Your code here
 }
 
 void dimmer_digital_positive_cycle(lv_event_t * e)
 {
-	set_dimmer_control_state(DIMMER_CONTROL_POSITIVE_SEMICYCLE);
+	// Your code here
 }
 
 void dimmer_digital_negative_cycle(lv_event_t * e)
 {
-	set_dimmer_control_state(DIMMER_CONTROL_NEGATIVE_SEMICYCLE);
+	// Your code here
 }

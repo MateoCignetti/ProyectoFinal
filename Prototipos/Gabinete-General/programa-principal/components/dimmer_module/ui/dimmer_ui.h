@@ -30,9 +30,6 @@ extern "C" {
 #include "dimmer_ui_Screen1.h"
 #include "dimmer_ui_Screen2.h"
 #include "dimmer_ui_Screen3.h"
-#include "dimmer_ui_Screen4.h"
-#include "dimmer_ui_Screen5.h"
-#include "dimmer_ui_Screen6.h"
 
 ///////////////////// VARIABLES ////////////////////
 
@@ -45,8 +42,6 @@ extern lv_obj_t * dimmer_ui____initial_actions0;
 LV_IMG_DECLARE(dimmer_ui_img_images_dimmer_png);    // assets/images/dimmer.png
 LV_IMG_DECLARE(dimmer_ui_img_images_arrow_png);    // assets/images/arrow.png
 LV_IMG_DECLARE(dimmer_ui_img_images_completo_sf_png);    // assets/images/completo_sf.png
-LV_IMG_DECLARE(dimmer_ui_img_images_positivo_sf_png);    // assets/images/positivo_sf.png
-LV_IMG_DECLARE(dimmer_ui_img_images_negativo_sf_png);    // assets/images/negativo_sf.png
 
 // FONTS
 LV_FONT_DECLARE(dimmer_ui_font_fontRobotoBold16Tildes);

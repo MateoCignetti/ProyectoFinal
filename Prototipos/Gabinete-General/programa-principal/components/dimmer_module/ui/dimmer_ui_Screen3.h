@@ -14,17 +14,14 @@ extern "C" {
 extern void dimmer_ui_Screen3_screen_init(void);
 extern void dimmer_ui_Screen3_screen_destroy(void);
 extern lv_obj_t * dimmer_ui_Screen3;
-extern void dimmer_ui_event_ButtonReturn2(lv_event_t * e);
-extern lv_obj_t * dimmer_ui_ButtonReturn2;
-extern void dimmer_ui_event_Button1(lv_event_t * e);
-extern lv_obj_t * dimmer_ui_Button1;
-extern lv_obj_t * dimmer_ui_Label5;
-extern void dimmer_ui_event_Button2(lv_event_t * e);
-extern lv_obj_t * dimmer_ui_Button2;
-extern lv_obj_t * dimmer_ui_Label6;
-extern void dimmer_ui_event_Button3(lv_event_t * e);
-extern lv_obj_t * dimmer_ui_Button3;
-extern lv_obj_t * dimmer_ui_Label7;
+extern lv_obj_t * dimmer_ui_Label8;
+extern void dimmer_ui_event_SliderCC(lv_event_t * e);
+extern lv_obj_t * dimmer_ui_SliderCC;
+extern lv_obj_t * dimmer_ui_Label9;
+extern lv_obj_t * dimmer_ui_LabelCC;
+extern void dimmer_ui_event_ButtonReturn3(lv_event_t * e);
+extern lv_obj_t * dimmer_ui_ButtonReturn3;
+extern lv_obj_t * dimmer_ui_cicloCompleto;
 // CUSTOM VARIABLES
 
 #ifdef __cplusplus

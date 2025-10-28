@@ -6,60 +6,29 @@
 #include "dimmer_ui.h"
 
 lv_obj_t * dimmer_ui_Screen3 = NULL;
-lv_obj_t * dimmer_ui_ButtonReturn2 = NULL;
-lv_obj_t * dimmer_ui_Button1 = NULL;
-lv_obj_t * dimmer_ui_Label5 = NULL;
-lv_obj_t * dimmer_ui_Button2 = NULL;
-lv_obj_t * dimmer_ui_Label6 = NULL;
-lv_obj_t * dimmer_ui_Button3 = NULL;
-lv_obj_t * dimmer_ui_Label7 = NULL;
+lv_obj_t * dimmer_ui_Label8 = NULL;
+lv_obj_t * dimmer_ui_SliderCC = NULL;
+lv_obj_t * dimmer_ui_Label9 = NULL;
+lv_obj_t * dimmer_ui_LabelCC = NULL;
+lv_obj_t * dimmer_ui_ButtonReturn3 = NULL;
+lv_obj_t * dimmer_ui_cicloCompleto = NULL;
 // event funtions
-void dimmer_ui_event_ButtonReturn2(lv_event_t * e)
+void dimmer_ui_event_SliderCC(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+    if(event_code == LV_EVENT_VALUE_CHANGED) {
+        update_time_label(e);
+    }
+}
+
+void dimmer_ui_event_ButtonReturn3(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
 
     if(event_code == LV_EVENT_CLICKED) {
         _ui_screen_change(&dimmer_ui_Screen1, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &dimmer_ui_Screen1_screen_init);
         _ui_screen_delete(&dimmer_ui_Screen3);
-    }
-}
-
-void dimmer_ui_event_Button1(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&dimmer_ui_Screen4, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &dimmer_ui_Screen4_screen_init);
-        _ui_screen_delete(&dimmer_ui_Screen3);
-    }
-    if(event_code == LV_EVENT_PRESSED) {
-        dimmer_digital_full_cycle(e);
-    }
-}
-
-void dimmer_ui_event_Button2(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&dimmer_ui_Screen5, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &dimmer_ui_Screen5_screen_init);
-        _ui_screen_delete(&dimmer_ui_Screen3);
-    }
-    if(event_code == LV_EVENT_PRESSED) {
-        dimmer_digital_positive_cycle(e);
-    }
-}
-
-void dimmer_ui_event_Button3(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&dimmer_ui_Screen6, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &dimmer_ui_Screen6_screen_init);
-        _ui_screen_delete(&dimmer_ui_Screen3);
-    }
-    if(event_code == LV_EVENT_PRESSED) {
-        dimmer_digital_negative_cycle(e);
     }
 }
 
@@ -70,68 +39,67 @@ void dimmer_ui_Screen3_screen_init(void)
     dimmer_ui_Screen3 = lv_obj_create(NULL);
     lv_obj_remove_flag(dimmer_ui_Screen3, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    dimmer_ui_ButtonReturn2 = lv_button_create(dimmer_ui_Screen3);
-    lv_obj_set_width(dimmer_ui_ButtonReturn2, 45);
-    lv_obj_set_height(dimmer_ui_ButtonReturn2, 40);
-    lv_obj_add_flag(dimmer_ui_ButtonReturn2, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_remove_flag(dimmer_ui_ButtonReturn2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_image_src(dimmer_ui_ButtonReturn2, &dimmer_ui_img_images_arrow_png, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_image_recolor(dimmer_ui_ButtonReturn2, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_image_recolor_opa(dimmer_ui_ButtonReturn2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    dimmer_ui_Label8 = lv_label_create(dimmer_ui_Screen3);
+    lv_obj_set_width(dimmer_ui_Label8, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(dimmer_ui_Label8, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(dimmer_ui_Label8, 0);
+    lv_obj_set_y(dimmer_ui_Label8, -100);
+    lv_obj_set_align(dimmer_ui_Label8, LV_ALIGN_CENTER);
+    lv_label_set_text(dimmer_ui_Label8, "Control Digital");
+    lv_obj_set_style_text_font(dimmer_ui_Label8, &dimmer_ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    dimmer_ui_Button1 = lv_button_create(dimmer_ui_Screen3);
-    lv_obj_set_width(dimmer_ui_Button1, 100);
-    lv_obj_set_height(dimmer_ui_Button1, 50);
-    lv_obj_set_x(dimmer_ui_Button1, 0);
-    lv_obj_set_y(dimmer_ui_Button1, -80);
-    lv_obj_set_align(dimmer_ui_Button1, LV_ALIGN_CENTER);
-    lv_obj_add_flag(dimmer_ui_Button1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_remove_flag(dimmer_ui_Button1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    dimmer_ui_SliderCC = lv_slider_create(dimmer_ui_Screen3);
+    lv_slider_set_range(dimmer_ui_SliderCC, 0, 50);
+    lv_slider_set_value(dimmer_ui_SliderCC, 0, LV_ANIM_OFF);
+    if(lv_slider_get_mode(dimmer_ui_SliderCC) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(dimmer_ui_SliderCC, 1, LV_ANIM_OFF);
+    lv_obj_set_width(dimmer_ui_SliderCC, 150);
+    lv_obj_set_height(dimmer_ui_SliderCC, 10);
+    lv_obj_set_x(dimmer_ui_SliderCC, 2);
+    lv_obj_set_y(dimmer_ui_SliderCC, -13);
+    lv_obj_set_align(dimmer_ui_SliderCC, LV_ALIGN_CENTER);
 
-    dimmer_ui_Label5 = lv_label_create(dimmer_ui_Button1);
-    lv_obj_set_width(dimmer_ui_Label5, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(dimmer_ui_Label5, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(dimmer_ui_Label5, LV_ALIGN_CENTER);
-    lv_label_set_text(dimmer_ui_Label5, "Ciclo \ncompleto");
-    lv_obj_set_style_text_align(dimmer_ui_Label5, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(dimmer_ui_Label5, &dimmer_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    //Compensating for LVGL9.1 draw crash with bar/slider max value when top-padding is nonzero and right-padding is 0
+    if(lv_obj_get_style_pad_top(dimmer_ui_SliderCC, LV_PART_MAIN) > 0) lv_obj_set_style_pad_right(dimmer_ui_SliderCC,
+                                                                                               lv_obj_get_style_pad_right(dimmer_ui_SliderCC, LV_PART_MAIN) + 1, LV_PART_MAIN);
+    dimmer_ui_Label9 = lv_label_create(dimmer_ui_Screen3);
+    lv_obj_set_width(dimmer_ui_Label9, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(dimmer_ui_Label9, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(dimmer_ui_Label9, 0);
+    lv_obj_set_y(dimmer_ui_Label9, -60);
+    lv_obj_set_align(dimmer_ui_Label9, LV_ALIGN_CENTER);
+    lv_label_set_text(dimmer_ui_Label9, "Tiempo de disparo");
+    lv_obj_set_style_text_font(dimmer_ui_Label9, &dimmer_ui_font_fontRobotoMedium14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    dimmer_ui_Button2 = lv_button_create(dimmer_ui_Screen3);
-    lv_obj_set_width(dimmer_ui_Button2, 100);
-    lv_obj_set_height(dimmer_ui_Button2, 50);
-    lv_obj_set_align(dimmer_ui_Button2, LV_ALIGN_CENTER);
-    lv_obj_add_flag(dimmer_ui_Button2, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_remove_flag(dimmer_ui_Button2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    dimmer_ui_LabelCC = lv_label_create(dimmer_ui_Screen3);
+    lv_obj_set_width(dimmer_ui_LabelCC, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(dimmer_ui_LabelCC, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(dimmer_ui_LabelCC, 0);
+    lv_obj_set_y(dimmer_ui_LabelCC, -30);
+    lv_obj_set_align(dimmer_ui_LabelCC, LV_ALIGN_CENTER);
+    lv_label_set_text(dimmer_ui_LabelCC, "0 ms");
+    lv_obj_set_style_text_font(dimmer_ui_LabelCC, &dimmer_ui_font_fontRobotoRegular14Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    dimmer_ui_Label6 = lv_label_create(dimmer_ui_Button2);
-    lv_obj_set_width(dimmer_ui_Label6, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(dimmer_ui_Label6, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(dimmer_ui_Label6, LV_ALIGN_CENTER);
-    lv_label_set_text(dimmer_ui_Label6, "Semiciclo\npositivo");
-    lv_obj_set_style_text_align(dimmer_ui_Label6, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(dimmer_ui_Label6, &dimmer_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
+    dimmer_ui_ButtonReturn3 = lv_button_create(dimmer_ui_Screen3);
+    lv_obj_set_width(dimmer_ui_ButtonReturn3, 45);
+    lv_obj_set_height(dimmer_ui_ButtonReturn3, 40);
+    lv_obj_add_flag(dimmer_ui_ButtonReturn3, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_remove_flag(dimmer_ui_ButtonReturn3, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_image_src(dimmer_ui_ButtonReturn3, &dimmer_ui_img_images_arrow_png, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_image_recolor(dimmer_ui_ButtonReturn3, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_image_recolor_opa(dimmer_ui_ButtonReturn3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    dimmer_ui_Button3 = lv_button_create(dimmer_ui_Screen3);
-    lv_obj_set_width(dimmer_ui_Button3, 100);
-    lv_obj_set_height(dimmer_ui_Button3, 50);
-    lv_obj_set_x(dimmer_ui_Button3, 0);
-    lv_obj_set_y(dimmer_ui_Button3, 80);
-    lv_obj_set_align(dimmer_ui_Button3, LV_ALIGN_CENTER);
-    lv_obj_add_flag(dimmer_ui_Button3, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_remove_flag(dimmer_ui_Button3, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    dimmer_ui_cicloCompleto = lv_image_create(dimmer_ui_Screen3);
+    lv_image_set_src(dimmer_ui_cicloCompleto, &dimmer_ui_img_images_completo_sf_png);
+    lv_obj_set_width(dimmer_ui_cicloCompleto, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(dimmer_ui_cicloCompleto, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(dimmer_ui_cicloCompleto, 5);
+    lv_obj_set_y(dimmer_ui_cicloCompleto, 77);
+    lv_obj_set_align(dimmer_ui_cicloCompleto, LV_ALIGN_CENTER);
+    lv_obj_add_flag(dimmer_ui_cicloCompleto, LV_OBJ_FLAG_CLICKABLE);     /// Flags
+    lv_obj_remove_flag(dimmer_ui_cicloCompleto, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    dimmer_ui_Label7 = lv_label_create(dimmer_ui_Button3);
-    lv_obj_set_width(dimmer_ui_Label7, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(dimmer_ui_Label7, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(dimmer_ui_Label7, LV_ALIGN_CENTER);
-    lv_label_set_text(dimmer_ui_Label7, "Semiciclo\nnegativo");
-    lv_obj_set_style_text_align(dimmer_ui_Label7, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(dimmer_ui_Label7, &dimmer_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    lv_obj_add_event_cb(dimmer_ui_ButtonReturn2, dimmer_ui_event_ButtonReturn2, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(dimmer_ui_Button1, dimmer_ui_event_Button1, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(dimmer_ui_Button2, dimmer_ui_event_Button2, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(dimmer_ui_Button3, dimmer_ui_event_Button3, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(dimmer_ui_SliderCC, dimmer_ui_event_SliderCC, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(dimmer_ui_ButtonReturn3, dimmer_ui_event_ButtonReturn3, LV_EVENT_ALL, NULL);
 
 }
 
@@ -141,12 +109,11 @@ void dimmer_ui_Screen3_screen_destroy(void)
 
     // NULL screen variables
     dimmer_ui_Screen3 = NULL;
-    dimmer_ui_ButtonReturn2 = NULL;
-    dimmer_ui_Button1 = NULL;
-    dimmer_ui_Label5 = NULL;
-    dimmer_ui_Button2 = NULL;
-    dimmer_ui_Label6 = NULL;
-    dimmer_ui_Button3 = NULL;
-    dimmer_ui_Label7 = NULL;
+    dimmer_ui_Label8 = NULL;
+    dimmer_ui_SliderCC = NULL;
+    dimmer_ui_Label9 = NULL;
+    dimmer_ui_LabelCC = NULL;
+    dimmer_ui_ButtonReturn3 = NULL;
+    dimmer_ui_cicloCompleto = NULL;
 
 }

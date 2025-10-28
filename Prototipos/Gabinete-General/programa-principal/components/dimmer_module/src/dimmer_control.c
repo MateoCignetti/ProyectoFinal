@@ -52,8 +52,6 @@ static bool isModuleRunning = false;
 static const char* MODULE_TAG = "Dimmer Module"; // Module name for logging
 
 static int32_t slider_CC_value = DIMMER_TIMER_COUNT_DEFAULT;
-static int32_t slider_SP_value = DIMMER_TIMER_COUNT_DEFAULT;
-static int32_t slider_SN_value = DIMMER_TIMER_COUNT_DEFAULT;
 static SemaphoreHandle_t xSliderValueMutex;
 
 
@@ -255,33 +253,12 @@ static void vTaskUpdateDimmerControlState(void *pvParameters){
                 gpio_set_intr_type(PIN_ZCD_IN, GPIO_INTR_DISABLE);
                 break;
 
-            case DIMMER_CONTROL_FULL_WAVE:
-                ESP_LOGI(MODULE_TAG, "Dimmer control state set to FULL WAVE");
+            case DIMMER_CONTROL_DIGITAL:
+                ESP_LOGI(MODULE_TAG, "Dimmer control state set to DIGITAL");
 
-                // In full wave mode, enable the relay (digital mode)
+                // In digital mode, enable the relay (digital mode)
                 gpio_set_level(PIN_RELAY_OUT, 1);
                 gpio_set_intr_type(PIN_ZCD_IN, GPIO_INTR_ANYEDGE); // Set ZCD interrupt to trigger on both edges
-                break;
-
-            case DIMMER_CONTROL_POSITIVE_SEMICYCLE:
-                ESP_LOGI(MODULE_TAG, "Dimmer control state set to POSITIVE SEMICYCLE");
-
-                // In positive semicyle mode, enable the relay (digital mode)
-                gpio_set_level(PIN_RELAY_OUT, 1);
-                gpio_set_intr_type(PIN_ZCD_IN, GPIO_INTR_NEGEDGE); // Set ZCD interrupt to trigger only on falling edge
-                break;
-
-            case DIMMER_CONTROL_NEGATIVE_SEMICYCLE:
-                ESP_LOGI(MODULE_TAG, "Dimmer control state set to NEGATIVE SEMICYCLE");
-
-                // In negative semicyle mode, enable the relay (digital mode)
-                gpio_set_level(PIN_RELAY_OUT, 1);
-                gpio_set_intr_type(PIN_ZCD_IN, GPIO_INTR_POSEDGE); // Set ZCD interrupt to trigger only on rising edge
-                break;
-
-            default:
-                ESP_LOGW(MODULE_TAG, "Dimmer control state set to UNKNOWN STATE");
-                gpio_set_intr_type(PIN_ZCD_IN, GPIO_INTR_DISABLE);
                 break;
         }
     }
@@ -292,11 +269,7 @@ static void vTaskDimmerUIUpdate(void *arg){
     const TickType_t xUpdatePeriod = pdMS_TO_TICKS(DIMMER_UI_UPDATE_PERIOD_MS); // Update every 100ms
 
     int32_t slider_CC_value_local = DIMMER_TIMER_COUNT_DEFAULT;
-    int32_t slider_SP_value_local = DIMMER_TIMER_COUNT_DEFAULT;
-    int32_t slider_SN_value_local = DIMMER_TIMER_COUNT_DEFAULT;
     int32_t slider_CC_value_new = 0;
-    int32_t slider_SP_value_new = 0;
-    int32_t slider_SN_value_new = 0;
 
     dimmer_control_state_t current_state;
 
@@ -310,27 +283,21 @@ static void vTaskDimmerUIUpdate(void *arg){
         
         current_state = get_dimmer_control_state();
 
-        if(current_state != DIMMER_CONTROL_IDLE && current_state != DIMMER_CONTROL_ANALOG){
+        if(current_state == DIMMER_CONTROL_DIGITAL){
 
             if(xSliderValueMutex != NULL && xSemaphoreTake(xSliderValueMutex, pdMS_TO_TICKS(100)) == pdTRUE) {
                 slider_CC_value_local = slider_CC_value;
-                slider_SP_value_local = slider_SP_value;
-                slider_SN_value_local = slider_SN_value;
                 xSemaphoreGive(xSliderValueMutex);
             }
 
             // Only process if we can acquire the LVGL lock
             if (_lock_try_acquire(&lvgl_api_lock) == 0) {
                 slider_CC_value_new = lv_slider_get_value(dimmer_ui_SliderCC);
-                slider_SP_value_new = lv_slider_get_value(dimmer_ui_SliderSP);
-                slider_SN_value_new = lv_slider_get_value(dimmer_ui_SliderSN);
                 _lock_release(&lvgl_api_lock);
                 
                 // Convert slider value (0-50) to microseconds (100-9900 µs)
                 // Multiply by 200 to get 0-10000 range, then clamp to valid range
                 slider_CC_value_new *= 200; // Convert to microseconds
-                slider_SP_value_new *= 200; // Convert to microseconds
-                slider_SN_value_new *= 200; // Convert to microseconds
 
                 if(slider_CC_value_new < ALARM_COUNT_MIN_US){
                     slider_CC_value_new = ALARM_COUNT_MIN_US;
@@ -338,75 +305,40 @@ static void vTaskDimmerUIUpdate(void *arg){
                     slider_CC_value_new = ALARM_COUNT_MAX_US;
                 }
 
-                if(slider_SP_value_new < ALARM_COUNT_MIN_US){
-                    slider_SP_value_new = ALARM_COUNT_MIN_US;
-                } else if(slider_SP_value_new > ALARM_COUNT_MAX_US){
-                    slider_SP_value_new = ALARM_COUNT_MAX_US;
-                }
 
-                if(slider_SN_value_new < ALARM_COUNT_MIN_US){
-                    slider_SN_value_new = ALARM_COUNT_MIN_US;
-                } else if(slider_SN_value_new > ALARM_COUNT_MAX_US){
-                    slider_SN_value_new = ALARM_COUNT_MAX_US;
-                }
-
-                ESP_LOGI(MODULE_TAG, "Slider local values: CC=%d µs, SP=%d µs, SN=%d µs",
-                         slider_CC_value_local, slider_SP_value_local, slider_SN_value_local);
-                ESP_LOGI(MODULE_TAG, "Slider new values: CC=%d µs, SP=%d µs, SN=%d µs",
-                         slider_CC_value_new, slider_SP_value_new, slider_SN_value_new);
+                ESP_LOGI(MODULE_TAG, "Slider local values: CC=%d µs", slider_CC_value_local);
+                ESP_LOGI(MODULE_TAG, "Slider new values: CC=%d µs", slider_CC_value_new);
 
                 // Prepare label text buffers OUTSIDE the lock
                 char buffer_cc[10];
-                char buffer_sp[10];
-                char buffer_sn[10];
+
                 float cc_ms = slider_CC_value_new / 1000.0f; // Convert µs to ms
-                float sp_ms = slider_SP_value_new / 1000.0f;
-                float sn_ms = slider_SN_value_new / 1000.0f;
+
                 snprintf(buffer_cc, sizeof(buffer_cc), "%.1f ms", cc_ms);
-                snprintf(buffer_sp, sizeof(buffer_sp), "%.1f ms", sp_ms);
-                snprintf(buffer_sn, sizeof(buffer_sn), "%.1f ms", sn_ms);
                 
                 // Update on-screen labels - only hold lock during UI updates
                 if (_lock_try_acquire(&lvgl_api_lock) == 0) {
                     lv_label_set_text(dimmer_ui_LabelCC, buffer_cc);
-                    lv_label_set_text(dimmer_ui_LabelSP, buffer_sp);
-                    lv_label_set_text(dimmer_ui_LabelSN, buffer_sn);
+
                     _lock_release(&lvgl_api_lock);
                 }
 
                 // Check if any slider value has changed
-                if(slider_CC_value_local != slider_CC_value_new ||
-                   slider_SP_value_local != slider_SP_value_new ||
-                   slider_SN_value_local != slider_SN_value_new){
+                if(slider_CC_value_local != slider_CC_value_new){
                     
                     // Update the global slider values
                     if(xSliderValueMutex != NULL && xSemaphoreTake(xSliderValueMutex, pdMS_TO_TICKS(100)) == pdTRUE) {
                         slider_CC_value = slider_CC_value_new;
-                        slider_SP_value = slider_SP_value_new;
-                        slider_SN_value = slider_SN_value_new;
+
                         xSemaphoreGive(xSliderValueMutex);
                     }
                     
                     // Update the timer alarm based on current state
                     //gptimer_stop(dimmer_wait_timer); // Stop the wait timer to update the alarm count safely
                     //gptimer_set_raw_count(dimmer_wait_timer, 0); // Reset the timer count to 0 before changing the alarm
-                    
-                    switch(current_state){
-                        case DIMMER_CONTROL_FULL_WAVE:
-                            wait_alarm_config.alarm_count = slider_CC_value_new;
-                            ESP_ERROR_CHECK(gptimer_set_alarm_action(dimmer_wait_timer, &wait_alarm_config));
-                            break;
-                        case DIMMER_CONTROL_POSITIVE_SEMICYCLE:
-                            wait_alarm_config.alarm_count = slider_SP_value_new;
-                            ESP_ERROR_CHECK(gptimer_set_alarm_action(dimmer_wait_timer, &wait_alarm_config));
-                            break;
-                        case DIMMER_CONTROL_NEGATIVE_SEMICYCLE:
-                            wait_alarm_config.alarm_count = slider_SN_value_new;
-                            ESP_ERROR_CHECK(gptimer_set_alarm_action(dimmer_wait_timer, &wait_alarm_config));
-                            break;
-                        default:
-                            break;
-                    }
+        
+                    wait_alarm_config.alarm_count = slider_CC_value_new;
+                    ESP_ERROR_CHECK(gptimer_set_alarm_action(dimmer_wait_timer, &wait_alarm_config));
                     
                     //gptimer_start(dimmer_wait_timer); // Restart the wait timer
                 }

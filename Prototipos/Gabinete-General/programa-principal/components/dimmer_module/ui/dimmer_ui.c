@@ -33,9 +33,6 @@ void dimmer_ui_init(void)
     dimmer_ui_Screen1_screen_init();
     dimmer_ui_Screen2_screen_init();
     dimmer_ui_Screen3_screen_init();
-    dimmer_ui_Screen4_screen_init();
-    dimmer_ui_Screen5_screen_init();
-    dimmer_ui_Screen6_screen_init();
     dimmer_ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(dimmer_ui_Screen1);
 }
@@ -45,7 +42,4 @@ void dimmer_ui_destroy(void)
     dimmer_ui_Screen1_screen_destroy();
     dimmer_ui_Screen2_screen_destroy();
     dimmer_ui_Screen3_screen_destroy();
-    dimmer_ui_Screen4_screen_destroy();
-    dimmer_ui_Screen5_screen_destroy();
-    dimmer_ui_Screen6_screen_destroy();
 }
