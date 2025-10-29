@@ -2,15 +2,16 @@
 
 El objetivo de esta sección es corroborar y justificar experimentalmente los cálculos y simulaciones realizadas en secciones anteriores, en los circuitos reales. 
 
-Es de destacar que en determinadas condiciones, los datos experimentales obtenidos pueden tener cierto grado de diferencia con los cálculos y simulaciones, ya que los circuitos reales se ven afectados por ruido introducido por la línea de alimentación, capacitancia e inductancias no deseadas, y defecto propio de la fabricación en los componentes.
+%% CAMBIAR ESTO
+%Es de destacar que en determinadas condiciones, los datos experimentales obtenidos pueden tener cierto grado de diferencia con los cálculos y simulaciones, ya que los circuitos reales se ven afectados por ruido introducido por la línea de alimentación, capacitancia e inductancias no deseadas, y defecto propio de la fabricación en los componentes.
 
 % LA IDEA DE ESTA INTRODUCCIÓN ES DESLIGARNOS SI ALGO NO COINCIDE CON LO QUE SE CALCULÓ/SIMULÓ
 
-\subsection{Convertidor reductor o Buck}
+\subsection{Módulo convertidor reductor o Buck}
 
-Se presentan los resultados experimentales obtenidos con el convertidor reductor o Buck, en las pruebas realizadas en el laboratorio, por medio del uso de osciloscopios y multímetros. 
+Se presentan los resultados experimentales obtenidos con el convertidor reductor o Buck, en las pruebas realizadas en el laboratorio, por medio del uso de osciloscopio y multímetro. 
 
-Cabe destacar que los datos experimentales obtenidos son para una tensión de salida de \SI{6}{\volt} con una corriente de \SI{1.2}{\ampere}, siendo una potencia teórica de \SI{7.2}{\watt}, la carga elegida para las pruebas es la resistiva, y no se presenta ningún control, se trabaja en lazo abierto.
+Los datos experimentales obtenidos son para una tensión de salida de \SI{6}{\volt} con una corriente de \SI{1.2}{\ampere}, siendo una potencia teórica de \SI{7.2}{\watt}, la carga elegida para las pruebas es la resistiva, y no se presenta ningún control, se trabaja en lazo abierto.
 
 %\paragraph{Tensión de salida pre-filtrado}
 En la \cref{fig:resultados:buck:tension-gate-mosfet}, la tensión $V_{g}$ (IRF9540) es una señal cuadrada de \SI{12}{\volt} de amplitud, con un \textit{duty cycle} del \SI{44}{\percent}. Esta señal es opuesta a la forma del PWM enviado por el microcontrolador, ya que en el momento que el \textit{driver} BJT conduce, la tensión en la \textit{gate} es \SI{0}{\volt} haciendo que el transistor de conmutación de potencia conduzca, debido a una $V_{gs}$ negativa. Ocurre lo contrario cuando el driver no conduce, ya que la tensión $V_g$ es de \SI{12}{\volt}, quedando una $V_{gs} \approx \SI{0}{\volt}$.
@@ -52,13 +53,13 @@ En la \cref{fig:resultados:buck:tensiones-salida-buck} se muestran las tensiones
     \label{fig:resultados:buck:tensiones-salida-buck}
 \end{figure}
 
-Cuando la carga es resistiva, el PWM entregado por el microcontrolador en función de la tensión de salida se comporta como en la \textcolor{red}{REFERENCIAR IMAGEN}. Mientras que con la carga inductiva, el PWM entregado por el microcontrolador deja de comportarse linealmente, \cref{fig:resultados:buck:pwm-carga-inductiva}.
+Cuando la carga es resistiva, el PWM entregado por el microcontrolador en función de la tensión de salida se comporta como en la \cref{fig:resultados:buck:pwm-carga-resistiva}. Mientras que con la carga inductiva, el PWM entregado por el microcontrolador deja de comportarse linealmente, \cref{fig:resultados:buck:pwm-carga-inductiva}.
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.49\textwidth} 
         \centering
-        \includegraphics[width=\columnwidth]{resultados/buck/pwm-tension-carga-inductiva.png}
+        \includegraphics[width=\columnwidth]{resultados/buck/pwm-tension-carga-resistiva.png}
         \caption{Con carga resistiva.}
         \label{fig:resultados:buck:pwm-carga-resistiva}
     \end{subfigure}
@@ -116,13 +117,128 @@ Este fenómeno se fuerza con fines demostrativos, en la práctica, esto se prese
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\columnwidth]{resultados/buck/corriente-inductor-dcm.png}
-        \caption{CModo discontinuo de conducción (DCM).}
+        \caption{Modo discontinuo de conducción (DCM).}
         \label{fig:resultados:buck:corriente-inductor-dcm}
     \end{subfigure}
-    \caption{Modos de conducción.}
+    \caption{Corriente en el inductor en distntos modos de conducción}
     \label{fig:resultados:buck:modo-conduccion-ccm-dcm}
 \end{figure}
 
-\subsection{Recortador de onda o Dimmer}
+\subsection{Módulo recortador de onda}
+Se presentan los resultados experimentales obtenidos con el recortador de onda
 
-\subsection{Inversor de onda cuadrada}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} % Aumenté un poco el ancho para que sea más robusto
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/dimmer/g_vCAP_y_vLOAD_0.png}
+        \caption{Potenciómetro al mínimo (resistencia máxima).}
+        \label{fig:resultados:dimmer:analogico0}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/dimmer/g_vCAP_y_vLOAD_50.png}
+        \caption{Potenciómetro en la mitad (resistencia media).}
+        \label{fig:resultados:dimmer:analogico50}
+    \end{subfigure}
+  
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        \includegraphics[width=0.49\columnwidth]{resultados/dimmer/g_vCAP_y_vLOAD_100.png}
+        \caption{Potenciómetro al máximo(resistencia mínima).}
+        \label{fig:resultados:dimmer:analogico100}
+    \end{subfigure}
+    \caption{Recortador de onda funcionando en modo analógico. Señal verde: tensión de capacitor de rama R-C. Señal amarilla: tensión aplicada en la carga.}
+    \label{fig:resultados:dimmer:analogico}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} % Aumenté un poco el ancho para que sea más robusto
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/dimmer/y_VLOAD_g_VGATE_0.png}
+        \caption{Tiempo de espera mínimo (\SI{1}{\milli\second}).}
+        \label{fig:resultados:dimmer:digital0}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/dimmer/y_VLOAD_g_VGATE_50.png}
+        \caption{Tiempo de espera medio (\SI{5}{\milli\second}).}
+        \label{fig:resultados:dimmer:digital50}
+    \end{subfigure}
+  
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        \includegraphics[width=0.49\columnwidth]{resultados/dimmer/y_VLOAD_g_VGATE_100.png}
+        \caption{Tiempo de espera máximo (\SI{9.2}{\milli\second}).}
+        \label{fig:resultados:dimmer:digital100}
+    \end{subfigure}
+    \caption{Recortador de onda funcionando en modo digital. Señal verde: tensión de \textit{gate} en TRIAC. Señal amarilla: tensión aplicada en la carga.}
+    \label{fig:resultados:dimmer:digital}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.49\columnwidth]{resultados/dimmer/g_vAC_y_vLOAD_50.png}
+    \caption{Potenciómetro al mínimo (resistencia máxima).}
+    \label{fig:resultados:dimmer:linea_carga}
+\end{figure}
+
+\subsection{Módulo inversor de onda cuadrada}
+Se presentan los resultados experimentales obtenidos con el inversor de onda cuadrada, en las pruebas realizadas en el laboratorio, por medio del uso de osciloscopio y multímetro. 
+
+%\paragraph{Señal de control}
+En la \cref{fig:resultados:inversor:inversor_555_50hz} se muestra la señal cuadrada, a la salida del IC 555, con una frecuencia de \SI{50}{\hertz} y un \textit{duty cycle} del \SI{50}{\percent}, que es utilizada para controlar el medio puente del inversor. Al variar el potenciometro, varía la frecuencia de la señal, sin modificar significativamente el \textit{duty cycle}; por ejemplo al cambiar a \SI{60}{\hertz}, como se observa en la \cref{fig:resultados:inversor:inversor_555_60hz}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} 
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/inversor/inversor_555_50hz.png}
+        \caption{50 Hz.}
+        \label{fig:resultados:inversor:inversor_555_50hz}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/inversor/inversor_555_60hz.png}
+        \caption{60 Hz.}
+        \label{fig:resultados:inversor:inversor_555_60hz}
+    \end{subfigure}
+    \caption{Señal de control.}
+    \label{fig:resultados:inversor:senal-control-inversor}
+\end{figure}
+
+%\paragraph{Señal alternada en MOSFETs}
+En la \cref{fig:resultados:inversor:inversor_mosfet_ds} se muestra la tensión drenador-surtidor de los MOSFETs que conforman el medio puente, donde se observa la señal invertida de cada transistor. Esto es, cuando uno de los MOSFETs está conduciendo, el otro está apagado, y viceversa, generando así la señal alterna.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resultados/inversor/inversor_Q1_Q2.png}
+    \caption{Tensión drenador-surtidor de los MOSFETs.}
+    \label{fig:resultados:inversor:inversor_mosfet_ds}
+\end{figure}
+
+%\paragraph{Tensión alterna}
+En la \cref{fig:resultados:inversor:carga-alterna} se muestra la tension alterna obtenida en la carga, para frecuencias de \SI{50}{\hertz} (\cref{fig:resultados:inversor:inversor_carga_50hz}) y \SI{60}{\hertz} (\cref{fig:resultados:inversor:inversor_carga_60hz}). La tensión de salida es de aproximadamente \SI{3.6}{\volt} en ambos casos, con una carga resistiva de \SI{100}{\ohm}. 
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} 
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/inversor/inversor_carga_50hz.png}
+        \caption{50 Hz.}
+        \label{fig:resultados:inversor:inversor_carga_50hz}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/inversor/inversor_555_60hz.png}
+        \caption{60 Hz.}
+        \label{fig:resultados:inversor:inversor_carga_60hz}
+    \end{subfigure}
+    \caption{Tensión alterna.}
+    \label{fig:resultados:inversor:carga-alterna}
+\end{figure}
