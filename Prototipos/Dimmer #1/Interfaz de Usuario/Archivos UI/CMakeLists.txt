@@ -5,7 +5,7 @@ SET(SOURCES ui_Screen1.c
     ui_comp_hook.c
     ui_helpers.c
     ui_events.c
-    ui_img_images_dimmer_png.c
+    ui_img_images_dimmer_escalado_png.c
     ui_img_images_arrow_png.c
     ui_img_images_completo_sf_png.c
     fonts/ui_font_fontRobotoBold16Tildes.c

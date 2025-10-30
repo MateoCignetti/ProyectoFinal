@@ -37,7 +37,7 @@ extern "C" {
 extern lv_obj_t * ui____initial_actions0;
 
 // IMAGES AND IMAGE SETS
-LV_IMG_DECLARE(ui_img_images_inversor_png);    // assets/images/inversor.png
+LV_IMG_DECLARE(ui_img_images_inversor_escalado_png);    // assets/images/inversor_escalado.png
 
 // FONTS
 LV_FONT_DECLARE(ui_font_fontRobotoBold18Tildes);

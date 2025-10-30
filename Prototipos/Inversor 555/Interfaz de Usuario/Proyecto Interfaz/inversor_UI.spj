@@ -291,7 +291,7 @@
               {
                 "nid": 1020,
                 "strtype": "IMAGE/Asset",
-                "strval": "assets/images/inversor.png",
+                "strval": "assets/images/inversor_escalado.png",
                 "InheritedType": 5
               },
               {
@@ -311,7 +311,7 @@
               {
                 "nid": 1050,
                 "strtype": "IMAGE/Scale",
-                "integer": 250,
+                "integer": 127,
                 "InheritedType": 6
               },
               {
@@ -795,7 +795,7 @@
     "uiExportFolderPath": "",
     "projectExportFolderPath": "",
     "custom_variable_prefix": "uic",
-    "backup_cnt": 16,
+    "backup_cnt": 19,
     "autosave_cnt": 0,
     "group_color_cnt": 0,
     "lvgl_version": "9.1.0",
