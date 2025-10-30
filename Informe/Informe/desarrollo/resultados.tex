@@ -5,11 +5,49 @@ El objetivo de esta sección es corroborar y justificar experimentalmente los c�
 %% CAMBIAR ESTO
 %Es de destacar que en determinadas condiciones, los datos experimentales obtenidos pueden tener cierto grado de diferencia con los cálculos y simulaciones, ya que los circuitos reales se ven afectados por ruido introducido por la línea de alimentación, capacitancia e inductancias no deseadas, y defecto propio de la fabricación en los componentes.
 
-% LA IDEA DE ESTA INTRODUCCIÓN ES DESLIGARNOS SI ALGO NO COINCIDE CON LO QUE SE CALCULÓ/SIMULÓ
+% LA IDEA DE ESTA INTRODUCCIÓN ES DESLIGARNOS SI ALGO NO COINCIDE CON LO QUE SE CALCULÓ/SIMULÓ.
+
+% Está mal hacer lo que dice ahí arriba. Es obvio que la realidad es un poco distinta a la teoría... Además, todo da bastante parecido o igual
+
+\subsection{Gabinete central}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} % Aumenté un poco el ancho para que sea más robusto
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/gabinete-central/front.png}
+        \caption{Vista frontal.}
+        \label{fig:resultados:gabinete_central_front}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/gabinete-central/back.png}
+        \caption{Vista trasera.}
+        \label{fig:resultados:gabinete_central_back}
+    \end{subfigure}
+  
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        \includegraphics[width=0.6\columnwidth]{resultados/gabinete-central/inside.png}
+        \caption{Interior del gabinete.}
+        \label{fig:resultados:fig:resultados:gabinete_central_inside}
+    \end{subfigure}
+    \caption{Gabinete central del sistema.}
+    \label{fig:resultados:fig:resultados:gabinete_central}
+\end{figure}
+
 
 \subsection{Módulo convertidor reductor o Buck}
 
 Se presentan los resultados experimentales obtenidos con el convertidor reductor o Buck, en las pruebas realizadas en el laboratorio, por medio del uso de osciloscopio y multímetro. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resultados/buck/gabinete_modulo.png}
+    \caption{Gabinete del módulo convertidor reductor.}
+    \label{fig:resultados:buck:gabinete}
+\end{figure}
 
 Los datos experimentales obtenidos son para una tensión de salida de \SI{6}{\volt} con una corriente de \SI{1.2}{\ampere}, siendo una potencia teórica de \SI{7.2}{\watt}, la carga elegida para las pruebas es la resistiva, y no se presenta ningún control, se trabaja en lazo abierto.
 
@@ -129,6 +167,13 @@ Se presentan los resultados experimentales obtenidos con el recortador de onda
 
 \begin{figure}[H]
     \centering
+    \includegraphics[width=0.6\textwidth]{resultados/dimmer/gabinete_modulo.png}
+    \caption{Gabinete del módulo recortador de onda.}
+    \label{fig:resultados:dimmer:gabinete}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
     \begin{subfigure}[b]{0.49\textwidth} % Aumenté un poco el ancho para que sea más robusto
         \centering
         \includegraphics[width=\columnwidth]{resultados/dimmer/g_vCAP_y_vLOAD_0.png}
@@ -188,6 +233,13 @@ Se presentan los resultados experimentales obtenidos con el recortador de onda
 
 \subsection{Módulo inversor de onda cuadrada}
 Se presentan los resultados experimentales obtenidos con el inversor de onda cuadrada, en las pruebas realizadas en el laboratorio, por medio del uso de osciloscopio y multímetro. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resultados/inversor/gabinete_modulo.png}
+    \caption{Gabinete del módulo inversor de onda cuadrada.}
+    \label{fig:resultados:inversor:gabinete}
+\end{figure}
 
 %\paragraph{Señal de control}
 En la \cref{fig:resultados:inversor:inversor_555_50hz} se muestra la señal cuadrada, a la salida del IC 555, con una frecuencia de \SI{50}{\hertz} y un \textit{duty cycle} del \SI{50}{\percent}, que es utilizada para controlar el medio puente del inversor. Al variar el potenciometro, varía la frecuencia de la señal, sin modificar significativamente el \textit{duty cycle}; por ejemplo al cambiar a \SI{60}{\hertz}, como se observa en la \cref{fig:resultados:inversor:inversor_555_60hz}.
