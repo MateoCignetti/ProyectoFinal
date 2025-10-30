@@ -70,8 +70,7 @@ La \cref{fig:resultados:buck:tension-drenador} muestra una señal que sigue la f
     \label{fig:resultados:buck:tension-drenador}
 \end{figure}
 
-En la \cref{fig:resultados:buck:tensiones-salida-buck} se muestran las tensiones de salida del convertidor frente a dos cargas distintas, una inductiva (\cref{fig:resultados:buck:tension-salida-inductiva}) y otra resistiva (\cref{fig:resultados:buck:tension-salida-resistiva}). En donde, la tensión resistiva respeta la tensión de salida calculada para un valor de \textit{duty cycle} de \SI{55}{\percent}, mientras que la inductiva no lo hace, ya que su naturaleza (reactiva/activa) impide que se cumpla la relación ideal, $V_{out} = V_{in} \, D$ (D, \textit{duty cycle}), válida únicamente para cargas pasivas en modo de conducción continua.
-\textcolor{red}{Libro daniel hart explica una ecuacion para DCM, y muestra un grafico que es identico al que obtuvimos con el motor, falta impedancia del motor para calcularlo, teóricamente es porque el motor consume poca corriente y está en modo DCM, entonces con la ecuación podes justificarlo}
+En la \cref{fig:resultados:buck:tensiones-salida-buck} se muestran las tensiones de salida del convertidor frente a dos cargas distintas, una inductiva (\cref{fig:resultados:buck:tension-salida-inductiva}) y otra resistiva (\cref{fig:resultados:buck:tension-salida-resistiva}). En donde, la tensión resistiva respeta la tensión de salida calculada para un valor de \textit{duty cycle} de \SI{55}{\percent}, mientras que la inductiva no lo hace, ya que su naturaleza (reactiva/activa) impide que se cumpla la relación ideal, $V_{out} = V_{in} \, D$ (D, \textit{duty cycle}), válida únicamente para cargas pasivas en modo de conducción continua, \parencite{DANIEL-HART-SPANISH}.
 
 %mientras que la inductiva no lo hace debido a las características de la misma. %% Mateo: Debido a las características de la misma? No me cierra bien esa forma de escribirlo. Entiendo que es porque es inductiva, pero bueno, capaz hay otra forma de escribir ese final de oración.
 
@@ -294,7 +293,7 @@ En la \cref{fig:resultados:inversor:inversor_555_50hz} se muestra la señal cuad
 \end{figure}
 
 %\paragraph{Señal alternada en MOSFETs}
-En la \cref{fig:resultados:inversor:inversor_mosfet_ds} se muestra la tensión drenador-surtidor de los MOSFETs que conforman el medio puente, donde se observa que la señal de control de un transistor es la inversa de la señal de control del otro. Esto significa que, cuando uno de los MOSFETs está conduciendo, el otro está apagado y viceversa, generando así la señal alterna.
+En la \cref{fig:resultados:inversor:inversor_mosfet_ds} se muestra la tensión drenador-surtidor de los MOSFETs que conforman el medio puente, donde se observa que una es la inversa de la otra. Esto significa que, cuando uno de los MOSFETs está conduciendo, el otro está apagado y viceversa, generando así la señal alterna.
 
 \begin{figure}[H]
     \centering
