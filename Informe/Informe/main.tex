@@ -3,6 +3,7 @@
 % Símbolos y lenguaje español %
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
+\usepackage[babel]{microtype}
 %\usepackage{times}       % Para usar Times New Roman
 \usepackage{comment}     % Para comentarios en el código
 
@@ -69,13 +70,14 @@
 \usepackage{enumitem}
 
 % Paquetes de Bibliografía %
+%\usepackage{xurl}
 \usepackage[sorting=nyt,backend=biber,style=apa,urldate=long]{biblatex}
 \usepackage{csquotes}
 
 \bibliography{referencias}
 
 % Hipervínculos %
-\usepackage[]{hyperref} % Agregar hidelinks para que no figure el recuadro
+\usepackage[hidelinks]{hyperref} % Agregar hidelinks para que no figure el recuadro
 
 % Referencias cruzadas %
 \usepackage[capitalise, nameinlink, spanish]{cleveref}
@@ -120,6 +122,11 @@
   \phantomsection
   \addcontentsline{toc}{subsubsection}{#1}
 }
+
+% Configuración para bibliografía
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
 
 % Configuracion de la tabla de contenidos
 %\usepackage{tocloft}
@@ -175,10 +182,10 @@
     \input{apendice}
     \newpage
 
-    \renewcommand{\refname}{\Large REFERENCIAS}
+    %\renewcommand{\refname}{\Large REFERENCIAS}
     %\begin{minipage}{0.96\textwidth}
     %\phantomsection
-    \addcontentsline{toc}{section}{REFERENCIAS}
+    \addcontentsline{toc}{section}{Referencias}
     \printbibliography
     %\end{minipage}
 
