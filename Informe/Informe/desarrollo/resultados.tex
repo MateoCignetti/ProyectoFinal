@@ -1,15 +1,10 @@
 \section{Resultados del proyecto}
 
-El objetivo de esta sección es corroborar y justificar experimentalmente los cálculos y simulaciones realizadas en secciones anteriores, en los circuitos reales. 
-
-%% CAMBIAR ESTO
-%Es de destacar que en determinadas condiciones, los datos experimentales obtenidos pueden tener cierto grado de diferencia con los cálculos y simulaciones, ya que los circuitos reales se ven afectados por ruido introducido por la línea de alimentación, capacitancia e inductancias no deseadas, y defecto propio de la fabricación en los componentes.
-
-% LA IDEA DE ESTA INTRODUCCIÓN ES DESLIGARNOS SI ALGO NO COINCIDE CON LO QUE SE CALCULÓ/SIMULÓ.
-
-% Está mal hacer lo que dice ahí arriba. Es obvio que la realidad es un poco distinta a la teoría... Además, todo da bastante parecido o igual
+El objetivo de esta sección es corroborar y justificar experimentalmente los cálculos y simulaciones realizadas en secciones anteriores, en los circuitos reales. Además, se muestran fotos del gabinete central y los gabinetes de los módulos desarrollados.
 
 \subsection{Gabinete central}
+
+En la \cref{fig:resultados:gabinete_central}, se observan fotos del gabinete central. En la \cref{fig:resultados:gabinete_central_inside}, se observa, de izquierda a derecha, la PCB de control general, el transformador \SI{220}{\volt} - \SI{48}{\volt} y la fuente de alimentación de \SI{12}{\volt} de corriente continua.
 
 \begin{figure}[H]
     \centering
@@ -31,10 +26,10 @@ El objetivo de esta sección es corroborar y justificar experimentalmente los c�
         \centering
         \includegraphics[width=0.6\columnwidth]{resultados/gabinete-central/inside.png}
         \caption{Interior del gabinete.}
-        \label{fig:resultados:fig:resultados:gabinete_central_inside}
+        \label{fig:resultados:gabinete_central_inside}
     \end{subfigure}
     \caption{Gabinete central del sistema.}
-    \label{fig:resultados:fig:resultados:gabinete_central}
+    \label{fig:resultados:gabinete_central}
 \end{figure}
 
 
@@ -70,9 +65,7 @@ La \cref{fig:resultados:buck:tension-drenador} muestra una señal que sigue la f
     \label{fig:resultados:buck:tension-drenador}
 \end{figure}
 
-En la \cref{fig:resultados:buck:tensiones-salida-buck} se muestran las tensiones de salida del convertidor frente a dos cargas distintas, una inductiva (\cref{fig:resultados:buck:tension-salida-inductiva}) y otra resistiva (\cref{fig:resultados:buck:tension-salida-resistiva}). En donde, la tensión resistiva respeta la tensión de salida calculada para un valor de \textit{duty cycle} de \SI{55}{\percent}, mientras que la inductiva no lo hace, ya que su naturaleza (reactiva/activa) impide que se cumpla la relación ideal, $V_{out} = V_{in} \, D$ (D, \textit{duty cycle}), válida únicamente para cargas pasivas en modo de conducción continua, \parencite{DANIEL-HART-SPANISH}.
-
-%mientras que la inductiva no lo hace debido a las características de la misma. %% Mateo: Debido a las características de la misma? No me cierra bien esa forma de escribirlo. Entiendo que es porque es inductiva, pero bueno, capaz hay otra forma de escribir ese final de oración.
+En la \cref{fig:resultados:buck:tensiones-salida-buck} se muestran las tensiones de salida del convertidor frente a dos cargas distintas, una inductiva (\cref{fig:resultados:buck:tension-salida-inductiva}) y otra resistiva (\cref{fig:resultados:buck:tension-salida-resistiva}). La tensión resistiva respeta la tensión de salida calculada para un valor de \textit{duty cycle} de \SI{55}{\percent}, mientras que la inductiva no lo hace, ya que su naturaleza (reactiva/activa) impide que se cumpla la relación ideal, $V_{out} = V_{in} \, D$ (D, \textit{duty cycle}), válida únicamente para cargas pasivas en modo de conducción continua, \parencite{DANIEL-HART-SPANISH}.
 
 \begin{figure}[H]
     \centering
@@ -119,22 +112,22 @@ Como prueba adicional, se realizan las mediciones de corriente tanto en el induc
     I_{inductor} = \frac{V_{out}}{R_{shunt}\,ganancia}
 \end{equation}
 
-Calculando con el valor experimental mostrado en la \cref{fig:resultados:buck:corriente-inductor}, da como resultado una corriente de \SI{1.27}{\ampere}. El valor de tensión necesario es el valor medio de tensión de la señal mostrada en la figura, obtenido a través de la \cref{eq:resultados:buck:tension-media-para-corriente}.
+El cálculo con el valor experimental mostrado en la \cref{fig:resultados:buck:corriente-inductor} resulta en una corriente de \SI{1.27}{\ampere}.
+El valor de tensión necesario es el valor medio de tensión de la señal mostrada en la figura, obtenido a través de la \cref{eq:resultados:buck:tension-media-para-corriente}.
 \begin{equation} \label{eq:resultados:buck:tension-media-para-corriente}
     V_{out(med)} = \frac{V_{max}+V_{min}}{2} = \frac{V_{max}+(V_{max}-V_{p-p})}{2}
 \end{equation}
 
-% Estas dos figuras tienen mediciones erróneas, porque el valor de tensión máximo y el pico a pico están hechos basados a los picos que tiene la señal que son claramente ruido. Capaz se puede explicar que los valores son aproximados? O si no afecta mucho al resultado capaz ni hace falta explicarlo
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.46\textwidth} 
+    \begin{subfigure}[b]{0.49\textwidth} 
         \centering
         \includegraphics[width=\columnwidth]{resultados/buck/corriente-inductor-6v.png}
         \caption{Inductor.}
         \label{fig:resultados:buck:corriente-inductor}
     \end{subfigure}
     \hfill 
-    \begin{subfigure}[b]{0.46\textwidth}
+    \begin{subfigure}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\columnwidth]{resultados/buck/corriente-capacitor-6v.png}
         \caption{Capacitor.}
@@ -154,26 +147,26 @@ Para calcular el valor real del capacitor se aplica la \cref{eq:resultados:buck:
 
 % Explicar también qué es lo que se ve que confirma los distintos modos de conducción.
 %Otra prueba, para demostración, es observar los distintos modos de conducción, para ello se configura una frecuencia de conmutación de \SI{3}{\kilo\hertz} con el objetivo de desmejorar el filtrado al \textit{ripple} y del convertidor en general. Esto para poder observar el fenómeno con mayor facilidad.
-Otra prueba posible es demostrar los distintos modos de conducción del convertidor, se puede visualizar la forma de onda de la corriente en el inductor mientras se varía el \textit{duty cycle}, manteniendo la carga constante.
+Otra prueba posible es demostrar los distintos modos de conducción del convertidor. Se puede visualizar la forma de onda de la corriente en el inductor mientras se varía el \textit{duty cycle}, manteniendo la carga constante.
 
-Se observa que con un ciclo de trabajo de un \SI{55}{\percent}, el convertidor opera en modo de conducción continua (CCM), donde la corriente a través del inductor no llega a cero. A medida que se disminuye el ciclo de trabajo, a un \SI{8}{\percent} aproximadamente, la corriente media en la carga disminuye, provocando que la corriente mínima en el inductor descienda hasta que se anula durante una porción del ciclo, entrando así en modo de conducción discontinua (DCM).
+Se observa que, con un \textit{duty cycle} de un \SI{55}{\percent}, el convertidor opera en modo de conducción continua (CCM), donde la corriente a través del inductor no llega a cero. A medida que se disminuye el \textit{duty cycle} (a \SI{8}{\percent} aproximadamente), la corriente media en la carga disminuye, provocando que la corriente mínima en el inductor descienda hasta que se vuelve nula durante una porción del ciclo, entrando así en modo de conducción discontinua (DCM).
 
-Para facilitar la observación de este fenómeno, el ensayo se configuró con una frecuencia de conmutación de \SI{3}{\kilo\hertz}, con el fin de incrementar la magnitud del \textit{ripple} de corriente en relación a la corriente media, permitiendo que la transición entre los distintos modos de conducción sea más evidente.
+Para facilitar la observación de este fenómeno, el ensayo se configura con una frecuencia de conmutación de \SI{3}{\kilo\hertz}, con el fin de incrementar la magnitud del \textit{ripple} de corriente en relación a la corriente media, permitiendo que la transición entre los distintos modos de conducción sea más evidente.
 
-En la \cref{fig:resultados:buck:modo-conduccion-ccm-dcm}, se muestran los resultados, donde la \cref{fig:resultados:buck:corriente-inductor-ccm} representa al convertidor funcionando en modo de conducción continua, ya que la corriente en el inductor no alcanza la corriente nula. En cambio en la \cref{fig:resultados:buck:corriente-inductor-dcm}, se aprecia que para valores bajos de \textit{duty cycle}, entre \SIrange{5}{10}{\percent}, la corriente en el inductor se hace nula.
+En la \cref{fig:resultados:buck:modo-conduccion-ccm-dcm}, se muestran los resultados, donde la \cref{fig:resultados:buck:corriente-inductor-ccm} representa al convertidor funcionando en modo de conducción continua, ya que la corriente en el inductor no alcanza la corriente nula. En cambio, en la \cref{fig:resultados:buck:corriente-inductor-dcm}, se aprecia que para valores bajos de \textit{duty cycle} (entre \SIrange{5}{10}{\percent}), la corriente en el inductor es nula.
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.46\textwidth} 
+    \begin{subfigure}[b]{0.49\textwidth} 
         \centering
         \includegraphics[width=\columnwidth]{resultados/buck/corriente-inductor-ccm.png}
-        \caption{modo de conducción continua (CCM).}
+        \caption{Modo de conducción continua (CCM).}
         \label{fig:resultados:buck:corriente-inductor-ccm}
     \end{subfigure}
     \hfill 
-    \begin{subfigure}[b]{0.46\textwidth}
+    \begin{subfigure}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\columnwidth]{resultados/buck/corriente-inductor-dcm.png}
-        \caption{modo de conducción discontinua (DCM).}
+        \caption{Modo de conducción discontinua (DCM).}
         \label{fig:resultados:buck:corriente-inductor-dcm}
     \end{subfigure}
     \caption{Corriente en el inductor en distintos modos de conducción.}
@@ -192,7 +185,7 @@ Se presentan los resultados experimentales obtenidos con el recortador de onda, 
     \label{fig:resultados:dimmer:gabinete}
 \end{figure}
 
-En la \cref{fig:resultados:dimmer:linea_carga}, se puede observar el correcto funcionamiento del circuito de control analógico, recortando la onda de entrada y aplicando a la carga una tensión de valor RMS menor y, por lo tanto, menor potenica.
+En la \cref{fig:resultados:dimmer:linea_carga}, se puede observar el correcto funcionamiento del circuito de control analógico, recortando la onda de entrada y aplicando a la carga una tensión de valor RMS menor y, por lo tanto, menor potencia.
 
 \begin{figure}[H]
     \centering
@@ -222,15 +215,35 @@ En la \cref{fig:resultados:dimmer:analogico}, se observa la carga y descarga del
     \begin{subfigure}[b]{\columnwidth}
         \centering
         \includegraphics[width=0.49\columnwidth]{resultados/dimmer/g_vCAP_y_vLOAD_100.png}
-        \caption{Potenciómetro al máximo(resistencia mínima).}
+        \caption{Potenciómetro al máximo (resistencia mínima).}
         \label{fig:resultados:dimmer:analogico100}
     \end{subfigure}
     \caption{Recortador de onda funcionando en modo analógico. Señal verde: tensión de capacitor de rama R-C. Señal amarilla: tensión aplicada en la carga.}
     \label{fig:resultados:dimmer:analogico}
 \end{figure}
 
-En la \cref{fig:resultados:dimmer:digital}, se observa el funcionamiento del circuito en modo digital. Se visualiza el recorte de la onda según cuándo se aplica tensión en la \textit{gate} del TRIAC, que ocurre cuando el microcontrolador envía un pulso por el optoacoplador con salida TRIAC. Debido a la salida del optoacoplador, la señal en la \textit{gate} no es un corto pulso periódico.
-% Alejo: no entiendo la última oración.
+En la \cref{fig:resultados:dimmer:vgate}, se observa el comportamiento de la tensión en la \textit{gate} del TRIAC. Se observa que, cuando se dispara, se produce un pico de tensión, un pulso de aproximadamente \SI{2}{\micro\second}, que corresponde con tiempo de encendido del TRIAC controlado por la \textit{gate}, \parencite{BT137}. Luego, la tensión no disminuye a cero, sino a una menor a \SI{1}{\volt}, necesaria para suministrar a la \textit{gate} la corriente de mantenimiento del TRIAC (\SIrange{2.5}{20}{\milli\ampere}), \parencite{BT137}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/dimmer/g_vGATE_y_vLOAD_50_analog.png}
+        \caption{Carga resistiva.}
+        \label{fig:resultados:dimmer:vgate_vload}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth} 
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/dimmer/g_vGATE_pulse.png}
+        \caption{Vista ampliada del pulso en la tensión de \textit{gate} del TRIAC.}
+        \label{fig:resultados:dimmer:vgate_pulse}
+    \end{subfigure}
+    \caption{Recortador de onda funcionando en modo analógico. Señal verde: tensión de gate del TRIAC. Señal amarilla: tensión aplicada en la carga.}
+    \label{fig:resultados:dimmer:vgate}
+\end{figure}
+
+En la \cref{fig:resultados:dimmer:digital}, se observa el funcionamiento del circuito en modo digital. Se visualiza el recorte de la onda según cuándo se aplica tensión en la \textit{gate} del TRIAC, que ocurre cuando el microcontrolador envía un pulso al optoacoplador con salida TRIAC, que aplica la tensión de línea a la \textit{gate}.
 
 \begin{figure}[H]
     \centering
@@ -324,4 +337,5 @@ En la \cref{fig:resultados:inversor:carga-alterna} se muestra la tensión aplica
     \label{fig:resultados:inversor:carga-alterna}
 \end{figure}
 
-%% MENCIONAR MANUALES DE USUARIO Y HACER CREF PARA EL ANEXO.
+\subsection{Manuales de usuario}
+En el Anexo, \cref{sec:apendice}, se presentan los manuales de usuario desarrollados para cada módulo. Cada uno contiene una explicación sintetizada de qué es, cómo funciona, su composición, las señales a visualizar y preguntas para pensar.
