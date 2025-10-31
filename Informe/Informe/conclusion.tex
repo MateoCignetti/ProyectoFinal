@@ -1,4 +1,24 @@
 \section{Conclusión}
 \justifying
 
-Escriba aquí las conclusiones obtenidas. Se derivan del Contenido del Proyecto y reflejan lo relevante que se ha encontrado con el trabajo desarrollado y aquello que se considera son áreas de oportunidad para la investigación posterior.
+Este proyecto responde exitosamente a la necesidad concreta planteada en el mismo, ``dificultad de abordar el contenido práctico de la asignatura de Electrónica de Potencia, debido a la falta de equipamiento de laboratorio especializado y las limitaciones de tiempo académico''.
+
+Se ha logrado desarrollar un sistema didáctico modular para la enseñanza de electrónica de potencia, una herramienta que integra \textit{hardware} y \textit{software} en una solución práctica, segura y accesible. El sistema finalizado cuenta de un gabinete central, que contiene el microcontrolador, fuente conmutada y transformador, y además, tres módulos para complementar al mismo, un convertidor Buck, recortador de ondas e inversor de onda cuadrada. El desarrollo de cada módulo se encuentra validado por cálculos teóricos de diseño, verificados con pruebas en simulación y en laboratorio de los mismos.
+
+Uno de los pilares fundamentales del proyecto es la interactividad del usuario, lograda a través de una interfaz de usuario intuitiva en un \textit{display} LCD, desarrollada con LVGL y SquareLine Studio. Esta interfaz permite al usuario modificar en tiempo real diferentes parámetros claves de cada módulo. Mientras que el \textit{software} de control gestiona la autodetección de módulos y la conexión segura a través de \textit{hot-plugs}, garantizando una experiencia fluida y segura.
+
+Otro aspecto importante del proyecto son los modelados 3D de los gabinetes y accesorios necesario, todo con el fin de ser robusto y estar orientado al usuario; además de ser fácilmente personalizables.
+
+Sumado a lo mencionado, el sistema cuenta con la capacidad de escalabilidad e implementación de nuevos módulos, al tener un diseño modular, con una arquitectura de \textit{software} organizada y facilitando documentación de cómo hacerlo, permitiendo a futuros estudiantes o docentes poder expandir fácilmente el sistema. De esta manera, se entrega una solución funcional que facilita la integración de la teoría y la práctica, aportando una herramienta tangible y valiosa para la formación de estudiantes.
+
+\subsection{Posibles Mejoras}
+A pesar de los logros alcanzados, existen áreas que podrían beneficiarse de mejoras futuras. Algunas de estas incluyen:
+
+\begin{itemize} 
+    \item \textbf{Ampliación de Módulos:} Desarrollar módulos adicionales que aborden otros aspectos de la electrónica de potencia, como convertidor DC-DC Boost, variador de frecuencia, inversor de onda sinusoidal, inversor trifásico, entre otros.
+    \item \textbf{Incorporación de Protecciones:} Añadir protecciones adicionales, como fusibles o circuitos de protección contra sobrecorriente y sobretensión, para aumentar la seguridad del sistema.
+    \item \textbf{Optimización del Software:} Mejorar la eficiencia del código del microcontrolador y la interfaz de usuario para reducir el tiempo de respuesta y aumentar la estabilidad del sistema.
+    \item \textbf{Mejoras en el Diseño del Conector:} Optimizar el diseño de el conector para mejorar la ergonomía, la portabilidad y la facilidad de montaje/desmontaje.    
+\end{itemize}
+
+Abordar estas mejoras podría potenciar aún más la utilidad y el impacto del sistema didáctico desarrollado, consolidándolo como una herramienta esencial en la enseñanza de la electrónica de potencia.
