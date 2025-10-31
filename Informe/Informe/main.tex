@@ -3,7 +3,8 @@
 % Símbolos y lenguaje español %
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
-\usepackage{times}       % Para usar Times New Roman
+\usepackage[babel]{microtype}
+%\usepackage{times}       % Para usar Times New Roman
 \usepackage{comment}     % Para comentarios en el código
 
 % Márgenes %
@@ -38,6 +39,13 @@
 \usepackage{circuitikz}
 \usepackage[justification = centering]{caption}
 \graphicspath{{./figures/}}
+\captionsetup{skip=0.25cm}
+\usepackage{etoolbox}
+\AfterEndEnvironment{figure}{\vspace{-0.5cm}} 
+\BeforeBeginEnvironment{equation}{\vspace{-0.5cm}}
+\BeforeBeginEnvironment{equation*}{\vspace{-0.5cm}}
+\BeforeBeginEnvironment{align}{\vspace{-0.5cm}}
+
 
 % Interlineado y sangría %
 \usepackage[indent=0.5cm]{parskip}
@@ -62,13 +70,14 @@
 \usepackage{enumitem}
 
 % Paquetes de Bibliografía %
+%\usepackage{xurl}
 \usepackage[sorting=nyt,backend=biber,style=apa,urldate=long]{biblatex}
 \usepackage{csquotes}
 
 \bibliography{referencias}
 
 % Hipervínculos %
-\usepackage[]{hyperref} % Agregar hidelinks para que no figure el recuadro
+\usepackage[hidelinks]{hyperref} % Agregar hidelinks para que no figure el recuadro
 
 % Referencias cruzadas %
 \usepackage[capitalise, nameinlink, spanish]{cleveref}
@@ -94,7 +103,7 @@
   [block]      % Shape
   {\normalfont\bfseries\normalsize} % Format
   {} % Label
-  {0pt} % Separation
+  {0cm} % Separation
   {}
   []
 
@@ -113,6 +122,12 @@
   \phantomsection
   \addcontentsline{toc}{subsubsection}{#1}
 }
+
+% Configuración para bibliografía
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
+\appto{\bibsetup}{\emergencystretch=2em}
 
 % Configuracion de la tabla de contenidos
 %\usepackage{tocloft}
@@ -168,10 +183,10 @@
     \input{apendice}
     \newpage
 
-    \renewcommand{\refname}{\Large REFERENCIAS}
+    %\renewcommand{\refname}{\Large REFERENCIAS}
     %\begin{minipage}{0.96\textwidth}
     %\phantomsection
-    \addcontentsline{toc}{section}{REFERENCIAS}
+    \addcontentsline{toc}{section}{Referencias}
     \printbibliography
     %\end{minipage}
 

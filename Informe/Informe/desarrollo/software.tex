@@ -84,17 +84,21 @@ El código se separa en componentes, cada pieza encapsulada y con responsabilida
 En la \cref{fig:soft:diagrama-arquitectura} se observa un diagrama de la estructura del código. A continuación, se explica el funcionamiento de los componentes más importantes:
 
 \subsubsection{\textit{Hardware}}
+
 Este pequeño componente contiene únicamente un archivo de encabezado (\textit{gpio\_definition.h}), el cual define macros enlazando los pines del conector PCIe x4 a los GPIO (General Purpose Input/Output, Entradas/Salidas de Propósito General, en español) del microcontrolador, según anteriormente detallado en la \cref{tab:pcb:pads_pins}, \cref{sec:pcb:diseño_pcbs_finales}. De esta manera, el desarrollador puede referirse a la nomenclatura de pines de señal, sin necesidad de investigar cuál es el pin exacto de la placa de desarrollo.
 
 \subsubsection{\textit{UI Framework} - Estructura de interfaz de usuario}
+
 Este componente se encarga de inicializar y configurar la librería LVGL (Light and Versatile Graphics Library, Librería de Gráficos Liviana y Versátil en español), \parencite{LVGL}. Mediante esta librería, se controla el \textit{display} TFT LCD de \SI{2.8}{''}, creando las tareas, \textit{mutex}, \textit{handlers}, \textit{handles} y punteros necesarios para proveer una API (\textit{Application Programming Interface}, Interfaz de Programación de Aplicaciones en español) para los módulos. También se encarga de configurar el I/O (\textit{Input/Output}, Entrada/Salida en español) para el funcionamiento del encoder rotativo con el que el usuario navega la interfaz en el \textit{display}.
 
 De esta forma, la interfaz de usuario queda desacoplada del resto del sistema, permitiendo que cada módulo solo implemente la lógica y pantallas específicas sin manipular directamente \textit{drivers} o detalles de sincronización.
 
 \subsubsection{\textit{Module Manager} - Gestor de módulos}
+
 Este componente se compone de dos programas separados, \textit{Module Connection} (Conexión de Módulo) y \textit{Module Manager}, así como un archivo de encabezado del registro global de módulos, \textit{module\_registry.h}.
 
 \paragraph{\textit{Module Connection}}
+
 El primero se encarga de gestionar la conexión y desconexión de cada módulo, con interrupciones configuradas para ambos pines de \textit{hot-plug} HP\_Power y HP\_Signal. Estos son los pines de los extremos del conector PCIe x4, que permiten detectar que la conexión del módulo haya sido exitosa, ya que sus \textit{pads} son más cortos que los demás.
 
 A través de una tarea que monitorea el estado de los pines de \textit{hot-plug}, se verifica la conexión, estabilidad de conexión y desconexión del módulo.
@@ -109,9 +113,11 @@ Se implementa una máquina de estados para el seguimiento del estado de conexió
 \end{itemize}
 
 \paragraph{\textit{Module Manager}}
+
 Este módulo se encarga de definir una estructura de módulo (\textit{module\_t}), identificar el módulo conectado e iniciar y detener cada módulo. Cada módulo se define en su propio archivo de control mediante una estructura (\textit{module\_t}), la cual contiene: su nombre, punteros a sus funciones de inicio y parada, valores en milivolts de identificación.
 
 Se configura una máquina de estados para gestionar los módulos: 
+
 \begin{itemize}[noitemsep]
     \item \textit{MANAGER\_INIT}: inicialización del programa, configuración de periféricos necesarios.
     \item \textit{MANAGER\_READY}: ningún módulo corriendo, listo para identificar módulo. esperando conexión de módulo señalizada por \textit{Module Connection}. 
@@ -122,16 +128,17 @@ Se configura una máquina de estados para gestionar los módulos:
 \end{itemize}
 
 \subsection{Diseño de interfaz de usuario}
+
 Para realizar una interfaz gráfica intuitiva y fácil de utilizar, se emplea el software SquareLine Studio, \parencite{squareline}. Es un editor visual de interfaz de usuario que permite crear interfaces de forma rápida y sencilla para aplicaciones integradas y de escritorio, con una fácil escalabilidad e implementación en microcontroladores. Se utiliza la licencia gratuita de este software, el cual se elige por su versatilidad y facilidad de uso.
 
-Cada módulo cuenta con su propia interfaz lanzada cada vez que es conectado al gabinete. Las interfaces se mantienen sencillas y con la información útil y necesaria; se utiliza una tipografía que facilite la lectura, junto con colores armónicos. En la \cref{fig:software:interfaces-de-usuario}, se presentan las 3 interfaces de cada módulo.
+Cada módulo cuenta con su propia interfaz lanzada cada vez que es conectado al gabinete. Las interfaces se mantienen sencillas y con la información útil y necesaria; se utiliza una tipografía que facilite la lectura, junto con colores armónicos. En la \cref{fig:software:interfaces-de-usuario}, se presentan las interfaces de cada módulo.
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.23\textwidth} % Aumenté un poco el ancho para que sea más robusto
+    \begin{subfigure}[b]{0.2285\textwidth} % Aumenté un poco el ancho para que sea más robusto
         \centering
         \includegraphics[width=\columnwidth]{software/interfaz-inversor.png}
-        \caption{Interfaz inversor de onda cuadrada.}
+        \caption{Interfaz inversor.}
         \label{fig:software:interfaz-inversor}
     \end{subfigure}
     \hfill 
@@ -144,7 +151,7 @@ Cada módulo cuenta con su propia interfaz lanzada cada vez que es conectado al 
   
     \begin{subfigure}[b]{\columnwidth}
         \centering
-        \includegraphics[width=0.8\columnwidth]{software/interfaz-buck.png}
+        \includegraphics[width=0.7\columnwidth]{software/interfaz-buck.png}
         \caption{Interfaz convertidor reductor.}
         \label{fig:software:interfaz-buck}
     \end{subfigure}
@@ -153,6 +160,7 @@ Cada módulo cuenta con su propia interfaz lanzada cada vez que es conectado al 
 \end{figure}
 
 \subsection{Programación de módulos}
+
 Cada programación de módulo se compone de dos partes importantes: el control del módulo y su interfaz. A continuación se detallan los programas utilizados para los tres módulos desarrollados en el proyecto.
 
 \subsubsection{Módulo convertidor Buck}
@@ -160,12 +168,14 @@ Cada programación de módulo se compone de dos partes importantes: el control d
 El control de este módulo se diseña para lograr un control preciso de la tensión de salida y, al mismo tiempo, ofrecer una interfaz de usuario fluida e interactiva. La arquitectura del software está estratégicamente dividida en dos componentes principales que operan de forma concurrente: el núcleo de control (\textit{buck\_control.c}) y el gestor de la interfaz de usuario (\textit{buck\_interface.c}). Esta separación es fundamental para aislar las operaciones críticas en tiempo, como el bucle de control, de las operaciones no críticas, como la actualización de la pantalla, garantizando así la estabilidad del sistema.
 
 \paragraph{Arquitectura de software}
+
 \begin{itemize}[noitemsep]
     \item \textit{buck\_control.c}: responsable de la configuración de todos los periféricos de \textit{hardware} necesarios, como el convertidor analógico-digital (ADC) para la lectura de la realimentación, el generador de modulación por ancho de pulso (LEDC PWM) para controlar el interruptor de potencia y el \textit{timer} de propósito general (GPTimer) que dicta la frecuencia del bucle de control. Además, implementa la lógica de control principal, incluyendo la máquina de estados y el algoritmo del controlador Proporcional-Integral-Derivativo (PID). Se define el \textit{module\_t} del convertidor, con su nombre, punteros a funciones de \textit{start} y \textit{stop} y valores de identificación.
     \item \textit{buck\_interface.c}: este componente realiza la gestión de la interfaz gráfica de usuario (GUI) del módulo, utilizando la librería LVGL. Se encarga de la creación, destrucción y navegación de las distintas pantallas y elementos interactivos específicos del convertidor Buck.
 \end{itemize}
 
 \paragraph{Máquina de estados}
+
 El comportamiento del convertidor se rige por una máquina de estados gestionada a través de la variable \textit{control\_mode}. El acceso a esta variable está protegido por un \textit{mutex} (\textit{xBuckControlModeMutex}) para evitar condiciones de carrera cuando el modo es modificado por la interfaz de usuario y leído por la tarea de control. Los estados definidos son:
 
 \begin{itemize}[noitemsep]
@@ -179,12 +189,14 @@ El comportamiento del convertidor se rige por una máquina de estados gestionada
 El control digital de este módulo se diseña para cambiar con exactitud el tiempo de disparo del TRIAC, regulando la potencia aplicada a la carga. Permite operar el relé del módulo que elige entre el control analógico mediante resistencia variable o control digital. Al igual que el módulo anterior, se separa en dos programas (\textit{dimmer\_control.c}) y (\textit{dimmer\_interface.c})
 
 \paragraph{Arquitectura de software}
+
 \begin{itemize}[noitemsep]
     \item \textit{dimmer\_control.c}: se encarga de configurar las interrupciones necesarias para el funcionamiento del módulo, así como los \textit{timers} que utiliza la lógica de control. Cuando el módulo se encuentra en funcionamiento, se comienza un \textit{timer} cuando la señal sinusoidal de corriente alterna cruza el cero, esperando el tiempo establecido por el usuario, y luego inicializa otro \textit{timer} para generar un pulso de \SI{25}{\micro\second} sin código bloqueante. Se implementa una máquina de estados para el tipo de control. Se define el \textit{module\_t} del recortador, con su nombre, punteros a funciones de \textit{start} y \textit{stop} y valores de identificación.
     \item \textit{dimmer\_interface.c}: al igual que en el convertidor buck, se encarga de crear, eliminar y navegar las pantallas de interfaz de usuario asociadas al módulo.
 \end{itemize}
 
 \paragraph{Máquina de estados}
+
 Como en el módulo convertidor Buck, se utiliza una máquina de estados para el modo de control seleccionado en el recortador de onda. Se protege también con un \textit{mutex} (\textit{xDimmerControlModeMutex}).
 
 \begin{itemize}[noitemsep]
@@ -194,9 +206,11 @@ Como en el módulo convertidor Buck, se utiliza una máquina de estados para el 
 \end{itemize}
 
 \subsubsection{Módulo inversor de onda cuadrada}
+
 Este módulo está diseñado sin control digital, por lo que contiene una versión simplificada de archivo de control e interfaz, en comparación con los módulos anteriores.
 
 \paragraph{Arquitectura de software}
+
 \begin{itemize}[noitemsep]
     \item \textit{inverter\_control.c}: se encarga solamente de inicializar y detener la interfaz del módulo. Se define el \textit{module\_t} del inversor, con su nombre, punteros a funciones de \textit{start} y \textit{stop} y valores de identificación.
     \item \textit{inverter\_interface.c}: se encarga de crear y eliminar las pantallas de interfaz de usuario asociadas al módulo. Debido a que este módulo no tiene control digital, solo posee una pantalla de bienvenida.

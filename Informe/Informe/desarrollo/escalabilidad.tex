@@ -1,9 +1,5 @@
 \section{Escalabilidad del proyecto}
 
-%% Remarcar que el proyecto es escalable
-%% Explicar qué se hizo para que el proyecto sea de esa forma
-%% Guía para agregar un nuevo módulo
-
 El proyecto se diseña considerando la posibilidad de agregar nuevos módulos de manera dinámica. Por ello, se adapta el sistema para que un futuro desarrollador pueda diseñar su propio circuito, control e interfaz con facilidad, y disponer de las herramientas necesarias para integrarlo al sistema de forma confiable y efectiva. 
 
 Para lograr esto, el sistema implementa varios elementos clave: un conector estandarizado PCIe x4 con asignación de pines definida, gabinetes de dimensiones específicas, y una arquitectura de software modular que permite la intercambiabilidad de módulos en tiempo de ejecución. Esta arquitectura facilita a nuevos desarrolladores o estudiantes la incorporación de cualquier circuito de electrónica de potencia que extienda las capacidades del sistema.
@@ -18,7 +14,7 @@ A continuación, se detallan los pasos necesarios para agregar un nuevo módulo 
 
 \paragraph{Placa de circuito impreso}
 
-El circuito debe utilizar en su borde lateral izquierdo el conector macho PCIe X4 (\cref{fig:pcb:pcie_footprint_simbolo}), con su asignación de pines según la librería ``Proyecto\_Final'' que se encuentra en ``KiCad-Libraries'', \parencite{git_proyecto}. Las placas pueden realizarse en dos tamaños específicos: $5\times10 \unit{\centi\meter}$ o $10\times10 \unit{\centi\meter}$, con agujeros de montaje ubicados a \SI{5}{\milli\meter} de cada borde, tamaño métrica 5 (M5). Para los \textit{TestPoint}, se utiliza la \textit{footprint} ``TestPoint\_Loop\_D1.80mm\_Drill1.0mm\_Beaded''.
+El circuito debe utilizar en su borde lateral izquierdo el conector macho PCIe X4 (\cref{fig:pcb:pcie_footprint_simbolo}), con su asignación de pines según la librería ``Proyecto\_Final'' que se encuentra en ``KiCad-Libraries'', \parencite{git_proyecto}. Las placas pueden realizarse en dos tamaños específicos: $5\times10 \, \unit{\centi\meter}$ o $10\times10 \, \unit{\centi\meter}$, con agujeros de montaje ubicados a \SI{5}{\milli\meter} de cada borde, tamaño métrica 5 (M5). Para los \textit{TestPoint}, se utiliza la \textit{footprint} ``TestPoint\_Loop\_D1.80mm\_Drill1.0mm\_Beaded''.
 
 \paragraph{Identificación del módulo}
 
@@ -29,14 +25,15 @@ Cada módulo debe implementar un divisor resistivo conectado al pin de identific
 \paragraph{Diseño de la interfaz gráfica}
 
 Para el diseño de la interfaz gráfica, se recomienda utilizar \textit{SquareLine Studio}, herramienta visual que facilita la creación de interfaces con la biblioteca LVGL. Para comenzar el proyecto, seleccionar la versión 9.1 de LVGL, y dentro de las opciones elegir ``Arduino'' y el proyecto de ejemplo ``Arduino with TFT\_eSPI'', con las siguientes configuraciones:
-\begin{itemize}
+
+\begin{itemize}[noitemsep]
     \item Resolución: $240\times320$ píxeles.
     \item Rotación: \SI{0}{\degree}.
     \item Forma: rectangular.
     \item Profundidad de color: 16 bit.
 \end{itemize}
 
-Una vez configurado, se pueden tomar como referencia las interfaces ya implementadas en los módulos existentes, ubicadas en ``ProyectoFinal/Prototipos/(\textit{módulo})/Interfaz de Usuario/Proyecto Interfaz''.
+Una vez configurado, se pueden tomar como referencia las interfaces ya implementadas en los módulos existentes, ubicadas en``ProyectoFinal/Prototipos/(\textit{módulo})/Interfaz de Usuario/''.
 
 \paragraph{Estructura de archivos del módulo}
 
@@ -44,22 +41,22 @@ El software de cada módulo se organiza como un componente independiente dentro 
 
 \begin{itemize}[noitemsep]
     \item components
-    \begin{itemize}
+    \begin{itemize}[noitemsep]
         \item \textit{nombre}\_module
         \item CMakeLists.txt
-        \begin{itemize}
+        \begin{itemize}[noitemsep]
             \item include
-            \begin{itemize}
+            \begin{itemize}[noitemsep]
                 \item \textit{nombre}\_control.h
                 \item \textit{nombre}\_interface.h
             \end{itemize}
             \item src
-            \begin{itemize}
+            \begin{itemize}[noitemsep]
                 \item \textit{nombre}\_control.c
                 \item \textit{nombre}\_interface.c
             \end{itemize}
             \item ui
-            \begin{itemize}
+            \begin{itemize}[noitemsep]
                 \item (archivos generados por \textit{SquareLine Studio})
             \end{itemize}
         \end{itemize} 
