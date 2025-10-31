@@ -3,7 +3,7 @@
 % Símbolos y lenguaje español %
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
-\usepackage{times}       % Para usar Times New Roman
+%\usepackage{times}       % Para usar Times New Roman
 \usepackage{comment}     % Para comentarios en el código
 
 % Márgenes %
@@ -38,6 +38,13 @@
 \usepackage{circuitikz}
 \usepackage[justification = centering]{caption}
 \graphicspath{{./figures/}}
+\captionsetup{skip=0.25cm}
+\usepackage{etoolbox}
+\AfterEndEnvironment{figure}{\vspace{-0.5cm}} 
+\BeforeBeginEnvironment{equation}{\vspace{-0.5cm}}
+\BeforeBeginEnvironment{equation*}{\vspace{-0.5cm}}
+\BeforeBeginEnvironment{align}{\vspace{-0.5cm}}
+
 
 % Interlineado y sangría %
 \usepackage[indent=0.5cm]{parskip}
@@ -94,7 +101,7 @@
   [block]      % Shape
   {\normalfont\bfseries\normalsize} % Format
   {} % Label
-  {0pt} % Separation
+  {0cm} % Separation
   {}
   []
 

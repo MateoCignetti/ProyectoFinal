@@ -7,6 +7,7 @@ Este método tiene varias desventajas, como una baja eficiencia y alta distorsi�
 Se elige este módulo para el proyecto ya que es un buen primer paso en la electrónica de potencia, donde se puede realizar un enfoque centralizado en el funcionamiento y control de un semiconductor como el TRIAC (Triode for Alternating Current, Triodo para Corriente Alterna en español).
 
 \subsection{Interacción del usuario: control y verificación experimental}
+
 El módulo recortador de onda está diseñado para que el usuario pueda seleccionar entre dos modos de control: analógico y digital. En el modo de control analógico, el usuario utiliza un potenciómetro dentro del gabinete para modificar una resistencia, lo que cambia el tiempo de carga de un capacitor y el tiempo de disparo del TRIAC, variando la potencia entregada a la carga (dos lámparas de \SI{24}{\volt} en serie). En el modo de control digital, el usuario puede directamente elegir el tiempo de disparo del TRIAC, en base al cruce por cero de la tensión de corriente alterna de entrada. Mediante distintos puntos de prueba, el usuario puede con un osciloscopio visualizar diferentes ondas, como la tensión aplicada a la carga, tensión en TRIAC, carga y descarga de capacitor, entre otras. De esta manera, el usuario aprende sobre el funcionamiento del circuito y verificar experimentalmente los conceptos teóricos.
 
 \subsection{Base teórica}
@@ -64,7 +65,7 @@ El circuito más simple para lograr el control de fase se muestra en la \cref{fi
 
 \begin{figure}[H]
     \centering
-    \resizebox{0.6\textwidth}{!}{
+    \resizebox{0.55\textwidth}{!}{
         \begin{tikzpicture}
             % Paths, nodes and wires:
             \draw (6, 6) to[sinusoidal voltage source, l={$V_{CA}$}, label distance=0.1cm] (6, -0);
@@ -108,8 +109,8 @@ Este tipo de control de fase se recomienda solamente para circuitos con carga re
 \subsubsection{Rama RC de control analógico} 
 \label{sec:dimmer:rama-rc}
 
-% Alejo: Habría que ver de usar otro modificador de tipografía que no sea \textit, en el texto no representa un cambio visual muy grande haciendo que el subtítulo parezca una oración suelta. La otra opción es redistribuir las secciones para que se pueda usar \subsubsection en este caso.
 \paragraph{Criterios de diseño}
+\vspace{-0.25cm}
 \begin{itemize}[noitemsep]
     \item $C_T = \SI{330}{\nano\farad}$
     \item $\hat{V}_{DIAC} = \SI{32}{\volt}$, \parencite{DB3}
@@ -165,11 +166,10 @@ R1 \parallel R3 = R - R4
 \end{equation}
 
 Reemplazando valores:
-
 \begin{equation}
 \left( (R1)^{-1} + (\SI{100}{\kilo\ohm})^{-1} \right)^{-1} = \SI{18.04}{\kilo\ohm} - \SI{470}{\ohm}
 \end{equation}
-
+\vspace{-0.25cm}
 \begin{equation}
 R1 = \SI{21.31}{\kilo\ohm} \approx \SI{22}{\kilo\ohm}
 \end{equation}
@@ -252,7 +252,7 @@ El fin de este circuito es disparar la \textit{gate} del TRIAC con la señal del
 \end{itemize}
 
 \paragraph{Desarrollo de fórmulas - Emisor}
-
+\vspace{-0.25cm}
 \begin{equation}
 R5 = \frac{V_{UCdout} - V_{F(typ)}}{I_F} = \frac{\SI{3.3}{\volt} - \SI{1.15}{\volt}}{\SI{30}{\milli\ampere}} = \SI{71.6}{\ohm} \approx \SI{82}{\ohm}
 \end{equation}
@@ -264,7 +264,7 @@ R5 = \frac{V_{UCdout} - V_{F(typ)}}{I_F} = \frac{\SI{3.3}{\volt} - \SI{1.15}{\vo
 \end{itemize}
 
 \paragraph{Desarrollo de fórmulas - Detector}
-
+\vspace{-0.25cm}
 \begin{equation}
 R7 = \frac{\hat{V}_{ca}}{I_{TSM}} = \frac{V_{ca} \cdot \sqrt{2}}{I_{TSM}} = \frac{\SI{48}{\volt} \cdot \sqrt{2}}{\SI{0.8}{\ampere}} = \SI{84.85}{\ohm} \approx \SI{82}{\ohm}
 \end{equation}
@@ -303,6 +303,7 @@ Se calcula un beta promedio para el transistor:
 \end{equation}
 
 Aplicando ley de las tensiones de Kirchhoff:
+\vspace{-0.25cm}
 
 \begin{equation}
 V_{UC} = \frac{I_C}{\beta_{avg}} \cdot R2 + V_{BE}
@@ -349,6 +350,7 @@ En la \cref{fig:dimmer:snubber_curvas} se observa la tasa crítica de disminuci�
 Se selecciona una resistencia de \SI{51}{\ohm} y un capacitor de \SI{10}{\nano\farad} ya que una red RC de estas características suele ser suficiente para evitar disparos espurios, \parencite{ST-AN437}.
 
 \subsection{Disipación de potencia en TRIAC}
+
 Los cálculos correspondientes a la disipación de potencia y temperatura de juntura del TRIAC se realizan siguiendo un informe de aplicación de Philips Semiconductors, \parencite{PHILIPS-TRIACs}.
 
 Teniendo en cuenta:
@@ -362,16 +364,19 @@ Teniendo en cuenta:
 \end{itemize}
 
 Se calcula la corriente promedio de carga:
+
 \begin{equation} \label{eq:dimmer:triac_corriente_promedio}
 I_{T(AVE)} = \dfrac{2 \times \sqrt{2} \times I_{T(RMS)}}{\pi} = \dfrac{2 \sqrt{2} \SI{1}{\ampere}}{\pi} = \SI{0.9}{\ampere}
 \end{equation}
 
 Luego se calcula la potencia disipada por el TRIAC:
+
 \begin{equation} \label{eq:dimmer:triac_potencia}
 P = V_o \times I_{T(AVE)} + R_s \times {I_{T(RMS)}}^2 = \SI{1.264}{\volt} \times \SI{0.9}{\ampere} + \SI{0.038}{\ohm} \times (\SI{1}{\ampere})^2 = \SI{1.18}{\watt}
 \end{equation}
 
 Finalmente se puede calcular la temperatura de juntura del TRIAC en operación:
+
 \begin{equation} \label{eq:dimmer:triac_temperatura_juntura}
 T_j = T_a + P \times R_{thj-a} = \SI{40}{\degreeCelsius} + \SI{1.18}{\watt} \times \SI[per-mode=fraction]{60}{\degreeCelsius\per\watt} = \SI{110.8}{\degreeCelsius} < \SI{125}{\degreeCelsius}
 \end{equation}
@@ -419,38 +424,3 @@ Para verificar el correcto funcionamiento del circuito control de fase analógic
 \end{figure}
 
 Como se observa en la \cref{fig:dimmer:simulacion_resultados}, el circuito se comporta según lo esperado, cambiando el ángulo de disparo del TRIAC con distintos valores de resistencia del potenciómetro. La simulación comienza a los \SI{40}{\milli\second} para visualizar el comportamiento del circuito en régimen permanente.
-
-\begin{comment}
-
-\snsubsection{Entradas y salidas}
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|l|l|}
-        \hline
-        \textbf{Entradas} & \textbf{Salidas} \\
-        \hline
-        $V_{ca}$ = 48 Vca & $UC_{phase}$ = Onda cuadrada 3.3 Vcc \\
-        $5V_{cc}$ = 5 Vcc & $Load$ = Onda recortada 0-48 Vca RMS \\
-        $3.3V_{cc}$ = 3.3 Vcc & \\
-        $UC_{Dout}$ = Pulso 3.3 Vcc & \\
-        $UC_{Relay}$ = 0 V o 3.3 Vcc & \\
-        \hline
-    \end{tabular}
-    \caption{Entradas y salidas del circuito recortador de onda.}
-    \label{tab:entradas_salidas_dimmer}
-\end{table}
-
-\snsubsection{Resumen}
-
-\begin{figure}[H]
-    \centering
-
-    \includegraphics[width=\textwidth]{dimmer/circuito.png}
-
-    \caption{Circuito completo del módulo recortador de onda.}
-    \label{fig:dimmer:circuito}
-\end{figure}
-
-Con este circuito se permite disparar el TRIAC en cualquier momento de forma aislada, solamente enviando un pulso con el microcontrolador a $UC_{Dout}$. No es necesario mantener la señal por más que unos pocos microsegundos, ya que una vez disparado el TRIAC, no deja de conducir hasta que la tensión aplicada entre ambos ánodos cruza por cero.
-
-\end{comment}

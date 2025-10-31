@@ -8,11 +8,11 @@ Para aplicaciones de baja y mediana frecuencia, se pueden aceptar voltajes de on
 
 Para operar correctamente el inversor, se deben cumplir las siguientes reglas: 
 
-\begin{enumerate}
+\begin{enumerate}[noitemsep]
     \item Los interruptores de la misma rama no pueden estar encendidos simultáneamente, ya que se produce un cortocircuito a través de la fuente de tensión de continua.
     \item Debe colocarse un diodo en antiparalelo con cada interruptor para proporcionar un camino de corriente a las cargas inductivas. Si el interruptor comercial ya incluye este diodo, entonces el circuito está completo.
-    \item En la implementación práctica, debe considerarse un tiempo muerto (también conocido como tiempo de bloqueo) en las señales de control de los interruptores de la rama, para evitar la violación de la regla 1.
-\end{enumerate} \parencite{RASHID}
+    \item En la implementación práctica, debe considerarse un tiempo muerto (también conocido como tiempo de bloqueo) en las señales de control de los interruptores de la rama, para evitar la violación de la regla 1, \parencite{RASHID}.
+\end{enumerate}
 
 \subsection{Interacción del usuario: control y verificación experimental}
 
@@ -118,7 +118,7 @@ En inversores monofásicos se utilizan dos topologías básicas: medio puente \c
         \draw (5, 5.75) -| (5, 8.75) -- (7, 8.75);
         \draw (5, 4.75) |- (11.5, 0.25);
         \node[npn] at (9.5, 1.73){};
-        \node[shape=rectangle, draw, line width=1pt, minimum width=1.715cm, minimum height=0.715cm](N4) at (7.875, 8.75){} node[anchor=center] at (N4.text){$Regulador$};
+        \node[shape=rectangle, draw, line width=1pt, minimum width=1.715cm, minimum height=0.715cm](N4) at (7.875, 8.75){} node[anchor=center] at (N4.text){\small $Regulador$};
         \draw (8.75, 8.75) -- (11.5, 8.75);
         \node[ground] at (7.875, 8.375){};
         \draw (15.5, 1.75) -| (15.5, 0.25);
@@ -156,6 +156,7 @@ Cuando la salida del oscilador pasa a un impulso bajo, el comportamiento se invi
 Así, se logra que solo uno de los dos MOSFETs conduzca en cada ciclo de conmutación, lo que genera la acción complementaria.
 
 \subsubsection{Acople}
+
 El uso de un amplificador operacional como seguidor de tensión entre la salida del IC555 y la etapa de potencia resulta conveniente porque actúa como adaptador de impedancia, presentando alta impedancia de entrada y baja impedancia de salida. De esta manera, evita que el IC deba excitar cargas capacitivas directamente, mejora la forma de onda entregada y asegura niveles de tensión más estables.
 
 
@@ -167,15 +168,15 @@ El uso de un amplificador operacional como seguidor de tensión entre la salida 
 	\draw (11, 6) -- (11, 7.5) -- (8.25, 7.5) -- (8.25, 6.5) -- (8.62, 6.49);
 	\draw (8.62, 5.51) |- (8, 5.5);
 	\draw (11, 6) -- (12, 6);
-	\node[shape=rectangle, draw, line width=1pt, minimum width=2.065cm, minimum height=0.465cm](N1) at (13, 6){} node[anchor=center] at (N1.text){$MOSFETs$};
+	\node[shape=rectangle, draw, line width=1pt, minimum width=2.065cm, minimum height=0.465cm](N1) at (13, 6){} node[anchor=center] at (N1.text){\small $MOSFETs$};
 	\node[shape=rectangle, draw, line width=1pt, minimum width=1.215cm, minimum height=0.465cm](N2) at (7.375, 5.5){} node[anchor=center] at (N2.text){$IC555$};
     \end{tikzpicture}
     \caption{Seguidor de tensión.}
     \label{fig:inversor:Seguidor}
 \end{figure}
 
-
 \subsubsection{Etapa de potencia}
+
 Los capacitores electrolíticos conforman un divisor de tensión y estos se mantienen cargados gracias a la tensión entregada por el regulador.
 
 Cuando la salida del oscilador está en ALTO, como mencionamos, Q1 se activa y Q2 no lo hace. Al activarse Q1 la tensión que otorga el capacitor C1 aplicada en la carga, y el sentido de la corriente es el siguiente:
@@ -272,42 +273,49 @@ Las dos primeras formas de onda muestran los pulsos aplicados a los MOSFET, dond
 Durante cada ciclo, el capacitor se carga hasta el límite superior del comparador \(\left(\frac{2}{3} \times V_\mathrm{CC}\right)\) a través del resistor externo \(R{2}\) y el capacitor \(C{1}\), y luego se descarga hasta el límite inferior del comparador \(\left(\frac{1}{3} \times V_\mathrm{CC}\right)\) a través de los mismos componentes, \parencite{ti-555calculation}.
 
 La ecuación del voltaje del capacitor en un circuito RC es:
+
 \begin{equation}
 V_\mathrm{CAP}(t) = V \left( 1 - e^{-t / RC} \right)
 \label{eq:inversor:vcap}
 \end{equation}
 
 Reorganizando para obtener el tiempo de carga desde \(\frac{1}{3} \times V_\mathrm{CC}\) hasta \(\frac{2}{3} \times V_\mathrm{CC}\):
+
 \begin{equation}
 t_\mathrm{carga} = -RC \times \ln\left(1 - \frac{V_\mathrm{CAP}}{V} \right)
 \label{eq:inversor:tcarga_general}
 \end{equation}
 
 Si \(V = V_\mathrm{CC}\), \(V_\mathrm{CAP}(t_1) = \frac{1}{3}V_\mathrm{CC}\) y \(V_\mathrm{CAP}(t_2) = \frac{2}{3}V_\mathrm{CC}\), se obtiene:
+
 \begin{equation}
 t_\mathrm{carga} = t_2 - t_1 = -RC \times \ln\left( \frac{1}{3} \right) + RC \times \ln\left( \frac{2}{3} \right)
 \label{eq:inversor:tcarga_log}
 \end{equation}
 
 Simplificando:
+
 \begin{equation}
 t_\mathrm{carga} = 0{,}693 \times RC
 \label{eq:inversor:tcarga_final}
 \end{equation}
 
 Los tiempos de carga y descarga son iguales:
+
 \begin{equation}
 t_\mathrm{descarga} = 0{,}693 \times RC
 \label{eq:inversor:tdescarga}
 \end{equation}
 
 Por lo que la frecuencia resultante es:
+
 \begin{equation}
 f = \frac{1}{t_\mathrm{carga} + t_\mathrm{descarga}} = \frac{1}{2 \times 0{,}693 \times RC}
 \label{eq:inversor:frecuencia}
 \end{equation}
 
 Por criterio de diseño, se toma \(C = \SI{0.1}{\micro\farad}\) y \(f = \SI{50}{\hertz}\), la resistencia resultante es:
+
 \begin{equation}
 R = \frac{1}{2 \times 0{,}693 \times \SI{50}{\hertz} \times \SI{0.1}{\micro\farad}} = \SI{144.3}{\kilo\ohm}
 \label{eq:inversor:resistencia_frecuencia}
@@ -318,40 +326,43 @@ Además, se utiliza una resistencia adicional \(R{1}\) de \SI{3,9}{\mega\ohm} pa
 En cuanto a la alimentación del integrado, se utiliza la tensión proporcionada por el módulo general (\SI{12}{\volt} de corriente continua), por lo que entrega a la salida del mismo una onda cuadra de \SIrange{0}{12}{\volt}.
 
 \subsubsection{Regulador de voltaje}
+
 El MOSFET seleccionado es el IRFZ44N, \parencite{IRFZ44N}, y el umbral de conducción es \(V_\mathrm{GS(th)} = \SIrange{2}{4}{V}\), por lo que la tensión de alimentación del IC555 debe ser mayor por \SI{3}{\volt}\ al de alimentación de MOSFETs, para obtener esta diferencia entre \textit{gate} y surtidor. Para ello se utiliza un regulador KA7808, el cual se alimenta con \SI{12}{V} y entrega \SI{8}{V} a la salida, con los que se alimenta el surtidor del MOSFET.
 
 \subsubsection{Cálculo de la capacitancia mínima}
 
 \begin{figure}[H]
     \centering
-    \begin{tikzpicture}
-        % Paths, nodes and wires:
-        \draw (8.875, 8) to[curved capacitor, l={$Vcc/2$}] (8.875, 6);
-        \draw (8.875, 3) to[curved capacitor, l={$Vcc/2$}] (8.875, 1);
-        \node[nigfete](N1) at (4.875, 6.98){} node[anchor=west] at (N1.text){$Q1$};
-        \node[nigfete](N2) at (4.875, 2.02){} node[anchor=west] at (N2.text){$Q2$};
-        \draw (8.875, 6) -| (8.875, 3);
-        \draw (4.875, 6.25) -| (4.875, 2.79);
-        \draw (4.875, 7.75) -| (4.875, 8) -- (8.875, 8);
-        \draw (4.875, 1.25) -| (4.875, 1) -- (8.875, 1);
-        \node[shape=rectangle, draw, line width=1pt, minimum width=1.215cm, minimum height=0.465cm](N3) at (6.875, 4.5){} node[anchor=center] at (N3.text){$Carga$};
-        \draw (7.5, 4.5) -- (8.875, 4.5);
-        \draw (6.25, 4.5) -- (4.875, 4.5);
-        \draw (1.875, 5) to[american voltage source, l={$Vcc$}] (1.875, 4);
-        \draw (1.875, 5) -| (1.875, 8) -- (4.875, 8);
-        \draw (1.875, 4) |- (4.875, 1);
-        \node[circ] at (4.875, 8){};
-        \node[circ] at (4.875, 4.5){};
-        \node[circ] at (4.875, 1){};
-        \node[circ] at (8.875, 4.5){};
-    \end{tikzpicture}
+    \resizebox{0.5\textwidth}{!}{
+        \begin{tikzpicture}
+            % Paths, nodes and wires:
+            \draw (8.875, 8) to[curved capacitor, l={$Vcc/2$}] (8.875, 6);
+            \draw (8.875, 3) to[curved capacitor, l={$Vcc/2$}] (8.875, 1);
+            \node[nigfete](N1) at (4.875, 6.98){} node[anchor=west] at (N1.text){$Q1$};
+            \node[nigfete](N2) at (4.875, 2.02){} node[anchor=west] at (N2.text){$Q2$};
+            \draw (8.875, 6) -| (8.875, 3);
+            \draw (4.875, 6.25) -| (4.875, 2.79);
+            \draw (4.875, 7.75) -| (4.875, 8) -- (8.875, 8);
+            \draw (4.875, 1.25) -| (4.875, 1) -- (8.875, 1);
+            \node[shape=rectangle, draw, line width=1pt, minimum width=1.215cm, minimum height=0.465cm](N3) at (6.875, 4.5){} node[anchor=center] at (N3.text){$Carga$};
+            \draw (7.5, 4.5) -- (8.875, 4.5);
+            \draw (6.25, 4.5) -- (4.875, 4.5);
+            \draw (1.875, 5) to[american voltage source, l={$Vcc$}] (1.875, 4);
+            \draw (1.875, 5) -| (1.875, 8) -- (4.875, 8);
+            \draw (1.875, 4) |- (4.875, 1);
+            \node[circ] at (4.875, 8){};
+            \node[circ] at (4.875, 4.5){};
+            \node[circ] at (4.875, 1){};
+            \node[circ] at (8.875, 4.5){};
+        \end{tikzpicture}
+    }
     \caption{Inversor medio puente con control por 555}
     \label{figure:inversor:calculo-medio-puente}
 \end{figure}
 
 Considerando las características del MOSFET seleccionado, teniendo una carga puramente resistiva y una frecuencia de \SI{50}{Hz}, se plantea la ecuación de descarga de un capacitor.
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item $V_\mathrm{CC} = \SI{9}{\volt}$ 
     \item $R_\mathrm{LOAD} = \SI{100}{\ohm}$
     \item $T = \SI{20}{\milli\second}$
@@ -402,7 +413,7 @@ Siendo \SI{950}{\micro\farad} el valor mínimo de capacitancia. Al aumentar el v
 La resistencia de \textit{gate} del MOSFET que conecta directamente con la salida del IC555, se calcula teniendo en cuenta dos consideraciones, por un lado, el pico de corriente al momento de conducir y por otro la corriente máxima de salida del IC555.
 El MOSFET tiene una \(Q{g}\) que ronda los \SI{70}{\nano\coulomb}, y por criterio de diseño, el tiempo de carga seleccionado debe estar dentro de los \SI{10}{\micro\second}.
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item $Q_g = \SI{70}{\nano\coulomb}$, \parencite{IRFZ44N}
     \item $t_\mathrm{sw} = \SI{10}{\micro\second}$
 \end{itemize}
@@ -412,7 +423,7 @@ I_g = \frac{Q_g}{t_\mathrm{sw}} = \frac{\SI{70}{\nano\coulomb}}{\SI{10}{\micro\s
 \label{eq:inversor:ig}
 \end{equation}
 
-Por ley de Ohm
+Por ley de Ohm:
 
 \begin{equation}
 R_g = \frac{V}{I_g} = \frac{\SI{12}{\volt}}{\SI{7}{\milli\ampere}} = \SI{1714}{\ohm}
@@ -422,10 +433,11 @@ R_g = \frac{V}{I_g} = \frac{\SI{12}{\volt}}{\SI{7}{\milli\ampere}} = \SI{1714}{\
 Sin embargo, con una resistencia de \SI{1.2}{\kilo\ohm}, se reduce el tiempo de conmutación a \SI{7}{\micro\second}, y se mantiene la potencia disipada por debajo de medio Watt.
 
 \subsubsection{\textit{Driver} de MOSFET}
+
 Para intercalar el funcionamiento de los MOSFETs y que solo uno conduzca por cada oscilación, se utiliza un transistor BJT BC548, en saturación como \textit{driver} del segundo MOSFET.
 Se coloca entonces, una resistencia \textit{pull-up} para limitar la corriente en el colector del BC548. 
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item $V_{CE_{Sat}} = \SI{0.2}{\volt}$, \parencite{BC548}
     \item $I_C = \SI{10}{\milli\ampere}$
     \item $V_{BE} = \SI{0.7}{\volt}$, \parencite{BC548} 
@@ -439,7 +451,7 @@ R_{pull up} = \frac{(V_{CC} - V_{CE_{Sat}})}{{I_{C}}} =\frac{\SI{12}{\volt} - \S
 Para que el BJT opere en saturación, la corriente de base debe ser suficiente para "sobresaturarlo". 
 Para calcular la resistencia de base, se aplica la ley de tensiones de Kirchhoff:
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item $I_C = \SI{50}{\milli\ampere}$
     \item $\beta = 200\ $, \parencite{BC548} 
     \item $V_{BE} = \SI{0.7}{\volt}$, \parencite{BC548}  
@@ -468,13 +480,13 @@ Para verificar el correcto funcionamiento del circuito oscilador IC555 y la tens
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{inversor/Señal_IC555.png}
+        \includegraphics[height=5cm]{inversor/Señal_IC555.png}
         \caption{Señal a la salida del IC555.}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{inversor/Señal_carga.png}
+        \includegraphics[height=5cm]{inversor/Señal_carga.png}
         \caption{Señal en la carga.}
     \end{subfigure}
     \caption{Gráficos de simulación}
