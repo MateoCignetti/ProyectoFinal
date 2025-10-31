@@ -107,7 +107,7 @@ Existen diversas formas de controlar el voltaje medio de salida del convertidor,
     \label{fig:buck:pfm_pwm}
 \end{figure}
 
-Otro punto importante de los convertidores es el modo de operación, el mismo puede operar en dos formas, CCM (Continuous Conduction Mode, modo continuo de conducción) y DCM (Discontinuous Conduction Mode, modo discontinuo de conducción); en el primer caso, la corriente a través del inductor de salida se mantiene siempre positiva, sin alcanzar el valor cero durante el período de conmutación. En cambio, en el modo DCM, la corriente en el inductor llega a ser nula en determinados instantes del período de conmutación, \cref{fig:buck:CCM_DCM}.
+Otro punto importante de los convertidores es el modo de operación, el mismo puede operar en dos formas, CCM (Continuous Conduction Mode, modo de conducción continua) y DCM (Discontinuous Conduction Mode, modo de conducción discontinua); en el primer caso, la corriente a través del inductor de salida se mantiene siempre positiva, sin alcanzar el valor cero durante el período de conmutación. En cambio, en el modo DCM, la corriente en el inductor llega a ser nula en determinados instantes del período de conmutación, \cref{fig:buck:CCM_DCM}.
 
 Cuando el convertidor es controlado de forma digital, estos modos de conducción suelen presentarse dependiendo de la carga utilizada en el convertidor, de modo que a una carga de mayor consumo el convertidor actúa en modo CCM y para el caso contrario en DCM.
 
@@ -259,7 +259,7 @@ El módulo se calcula para una corriente de \SI{2,4}{\ampere} la cual representa
     \item Rendimiento teórico considerado, $\eta = \SI{90}{\percent}$.
 \end{itemize}
 
-Se elige como transistor de conmutación de potencia el IRF9540, la selección del mismo se basa en la disponibilidad y en su amplio campo de aplicación, lo que permite que en caso de falla o rotura del módulo sea fácil de reemplazar.
+Se elige como transistor de conmutación de potencia el IRF9540, \parencite{IRF9540}, la selección del mismo se basa en la disponibilidad y en su amplio campo de aplicación, lo que permite que en caso de falla o rotura del módulo sea fácil de reemplazar.
 
 \subsubsection{Ciclo de trabajo máximo}
 
@@ -274,14 +274,14 @@ Dentro del cálculo es considerado el rendimiento porque el convertidor también
     C_{out_{min}} = \frac{\Delta I_L}{8 \, f_s \, \Delta V_{out}} = \frac{\SI{0,72}{\ampere}}{8 \cdot \, \SI{19e3}{\hertz} \, \SI{0.24}{\volt}} = \SI{19.74}{\micro\farad}
 \end{equation}
 
-Cualquier capacidad mayor a la calculada puede ser utilizada sin afectar el correcto funcionamiento del convertidor. Este tipo de cálculos se pueden realizar para convertidores con compensación externa. Para el caso de los internamente compensados, como puede ser un circuito integrado Buck, es recomendable utilizar los valores establecidos en la hoja de datos.
+Cualquier capacidad mayor a la calculada puede ser utilizada sin afectar el correcto funcionamiento del convertidor. Este tipo de cálculos se pueden realizar para convertidores con compensación externa. Para el caso de los internamente compensados, como puede ser un circuito integrado Buck, es recomendable utilizar los valores establecidos en la hoja de datos. El capacitor elegido para el circuito es de \SI{42}{\micro\farad}.
 
 \subsubsection{Inductor mínimo}
 \begin{equation} \label{eq:buck:inductancia_minima}
     L_{min} = \frac{(V_{in}-V_{out}) \, D_{max}}{f_s \, \Delta I_L} = \frac{(\SI{12}{\volt} - \SI{6}{\volt}) \, 0.55}{\SI{19e3}{\hertz} \, \SI{0.72}{\ampere}} = \SI{241.23}{\micro\henry}
 \end{equation}
 
-El valor calculado se considera como mínimo, ya que emplear una inductancia mayor reduce el \textit{ripple} de corriente e incrementa la corriente de salida. Sin embargo, también implica un aumento en el tamaño físico del inductor. Por el contrario, disminuir la inductancia incrementa el \textit{ripple} y reduce la corriente de salida, aunque permite utilizar un inductor de menor tamaño. Por lo tanto, es necesario encontrar un equilibrio adecuado entre el tamaño del inductor y el nivel de \textit{ripple} permitido en la salida.
+El valor calculado se considera como mínimo, ya que emplear una inductancia mayor reduce el \textit{ripple} de corriente e incrementa la corriente de salida. Sin embargo, también implica un aumento en el tamaño físico del inductor. Por el contrario, disminuir la inductancia incrementa el \textit{ripple} y reduce la corriente de salida, aunque permite utilizar un inductor de menor tamaño. Por lo tanto, es necesario encontrar un equilibrio adecuado entre el tamaño del inductor y el nivel de \textit{ripple} permitido en la salida. Por ello, el inductor elegido para el circuito es de \SI{330}{\micro\henry}.
 
 \subsubsection{Corriente media en diodo}
 \begin{equation} \label{eq:buck:corriente_diodo_rectificacion}
@@ -289,6 +289,8 @@ El valor calculado se considera como mínimo, ya que emplear una inductancia may
 \end{equation}
 
 Este valor determina la corriente media aplicada en el diodo de rectificación, es recomendable utilizar un Schottky ya que su rápida recuperación lo hace adecuado a las altas frecuencias de trabajo del convertidor. Además, la tensión soportada por el diodo debe ser al menos un \SI{30}{\percent} más que la tensión de salida del convertidor.
+
+El diodo elegido para cumplir estas características es el SR560, \parencite{SR560}.
 
 \subsubsection{Red Snubber}
 El cálculo de la red Snubber se basa en una nota de aplicación de Toshiba \parencite{toshiba_2018_power}, tomando como referencia algunos de sus criterios, además de criterios propios.
@@ -561,7 +563,7 @@ Se elige una resistencia de \SI{2.2}{\kilo\ohm}, \cref{fig:buck:bjt_driver_mosfe
     \label{fig:buck:bjt_driver_mosfet}
 \end{figure}
 
-\subsubsection{Mediciones de corriente}
+\subsubsection{Mediciones de corriente} \label{sec:buck:medicion_corriente}
 
 \paragraph{Medición de corriente en inductor - Unidireccional}
 
@@ -601,7 +603,7 @@ En una primera instancia se calcula el valor máximo de tensión en la resistenc
 
 Luego se determina el valor de la resistencia \textit{shunt}, $R_{shunt}$, a partir de la tensión máxima en la resistencia \textit{shunt} y la corriente máxima del convertidor, \cref{eq:buck:resistencia_shunt_unidireccional}.
 \begin{equation} \label{eq:buck:resistencia_shunt_unidireccional}
-    R_{shunt} = \frac{\SI{48e-3}{\volt}}{\SI{3}{\ampere}} = \SI{0,016}{\ohm}
+    R_{shunt} = \frac{V_{R_{shunt}}}{I_{out(max)}} = \frac{\SI{48e-3}{\volt}}{\SI{3}{\ampere}} = \SI{0,016}{\ohm}
 \end{equation}
 
 Se elige una resistencia \textit{shunt} de $\SI{10}{\milli\ohm}$ por la disipación de potencia. Además, entrega un buen rango de tensión a la salida del amplificador, $V_{out} = \SIrange{0.05}{3}{\volt}$.

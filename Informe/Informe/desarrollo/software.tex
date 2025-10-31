@@ -29,7 +29,7 @@ El código se separa en componentes, cada pieza encapsulada y con responsabilida
                     \end{itemize}};
                 \node[shape=rectangle, draw, line width=1pt, align=left, text width=6.5cm, inner sep=6pt, minimum width=6cm, minimum height=1.5cm] at (13.5, 2) {Hardware (common)\\
                     \begin{itemize}[noitemsep]
-                        \item Define macros, vinculando GPIOs a pines de conector PCIe x4.                
+                        \item Define macros, vinculando GPIOs a pines de conector PCIe x4                
                     \end{itemize}};
                 \draw[line width=1pt] (5.5, 1.15) -- (5.5, 0);
                 \node[shape=rectangle, draw, line width=1pt, align=left, text width=5cm, inner sep=6pt, minimum width=5cm, minimum height=2.7cm] at (9.125, -2.125) {Module Manager (common)\\ 
@@ -67,7 +67,7 @@ El código se separa en componentes, cada pieza encapsulada y con responsabilida
                 \node[shape=rectangle, draw, line width=1pt, align=left, text width=5cm, inner sep=6pt, minimum width=5cm, minimum height=2.7cm] at (15.875, -2.125) {Module Connection \\
                     \begin{itemize}[noitemsep]
                         \item Detecta conexión y desconexión de módulos
-                        \item Espera hasta lograr conexión estable
+                        \item Verifica conexión estable
                     \end{itemize}};
                 \draw[line width=1pt, -latex] (11.83, -2.125) -- (13.15, -2.125);
                 \draw[line width=1pt, -latex] (8.25, -4.25) -| (2.25, -4.875);
@@ -97,32 +97,60 @@ Este componente se compone de dos programas separados, \textit{Module Connection
 \paragraph{\textit{Module Connection}}
 El primero se encarga de gestionar la conexión y desconexión de cada módulo, con interrupciones configuradas para ambos pines de \textit{hot-plug} HP\_Power y HP\_Signal. Estos son los pines de los extremos del conector PCIe x4, que permiten detectar que la conexión del módulo haya sido exitosa, ya que sus \textit{pads} son más cortos que los demás.
 
-Se configura una máquina de estados para monitorear el estado de conexión: 
+A través de una tarea que monitorea el estado de los pines de \textit{hot-plug}, se verifica la conexión, estabilidad de conexión y desconexión del módulo.
+
+Se implementa una máquina de estados para el seguimiento del estado de conexión:
 \begin{itemize}[noitemsep]
-    \item \textit{CONNECTION\_INIT}: inicialización del programa
-    \item \textit{CONNECTION\_DISCONNECTED}: módulo desconectado, señalizar a \textit{Module Manager}.
-    \item \textit{CONNECTION\_DETECTING}: módulo conectado, iniciando \textit{timer} de \SI{1}{\second} para verificar conexión segura y antirrebote.
-    \item \textit{CONNECTION\_CONNECTED}: módulo conectado, señalizar a \textit{Module Manager}.
+    \item \textit{CONNECTION\_INIT}: inicialización del programa, configuración de periféricos necesarios.
+    \item \textit{CONNECTION\_DISCONNECTED}: módulo desconectado. Si hay un módulo corriendo, cambiar estado de \textit{Module Manager} para detenerlo.
+    \item \textit{CONNECTION\_DETECTING}: módulo conectado, verificando conexión estable durante \SI{1}{\second}. En caso de detectar conexión estable, cambiar de estado a \textit{CONNECTION\_CONNECTED}.
+    \item \textit{CONNECTION\_CONNECTED}: módulo conectado, cambiar estado de \textit{Module Manager} para identificar módulo.
     \item \textit{CONNECTION\_FAULT}: falla detectada, detener máquina de estados.
 \end{itemize}
-El cambio de estados se realiza mediante notificaciones liberadas desde las interrupciones, despertando a una tarea general.
 
 \paragraph{\textit{Module Manager}}
 Este módulo se encarga de definir una estructura de módulo (\textit{module\_t}), identificar el módulo conectado e iniciar y detener cada módulo. Cada módulo se define en su propio archivo de control mediante una estructura (\textit{module\_t}), la cual contiene: su nombre, punteros a sus funciones de inicio y parada, valores en milivolts de identificación.
 
 Se configura una máquina de estados para gestionar los módulos: 
 \begin{itemize}[noitemsep]
-    \item \textit{MANAGER\_INIT}: inicialización del programa
-    \item \textit{MANAGER\_READY}: ningún módulo corriendo, esperando conexión de módulo señalizada por \textit{Module Connection}. Una vez obtenida, notificar a la tarea de identificación para detectar qué módulo se conecta, mediante lectura de \textit{ADC} (Analog to Digital Converter, Convertidor Analógico a Digital en español). Si se detecta algún módulo registrado, ejecutar la función de inicio de módulo.
-    \item \textit{MANAGER\_RUNNING}: módulo corriendo, esperando desconexión de módulo señalizada por \textit{Module Connection}. Una vez obtenida, proceder a detener módulo corriendo actualmente.
-    \item \textit{MANAGER\_STOPPING}: deteniendo módulo previamente conectado.
+    \item \textit{MANAGER\_INIT}: inicialización del programa, configuración de periféricos necesarios.
+    \item \textit{MANAGER\_READY}: ningún módulo corriendo, listo para identificar módulo. esperando conexión de módulo señalizada por \textit{Module Connection}. 
+    \item \textit{MANAGER\_STARTING}: módulo conectado, comenzando identificación mediante ADC. Si se identifica un módulo, iniciarlo y cambiar de estado a \textit{MANAGER\_RUNNING}.
+    \item \textit{MANAGER\_RUNNING}: módulo corriendo.
+    \item \textit{MANAGER\_STOPPING}: deteniendo módulo previamente conectado. Una vez detenido, cambiar de estado a \textit{MANAGER\_READY}.
     \item \textit{MANAGER\_FAULT}: falla detectada, detener máquina de estados.
 \end{itemize}
 
 \subsection{Diseño de interfaz de usuario}
 Para realizar una interfaz gráfica intuitiva y fácil de utilizar, se emplea el software SquareLine Studio, \parencite{squareline}. Es un editor visual de interfaz de usuario que permite crear interfaces de forma rápida y sencilla para aplicaciones integradas y de escritorio, con una fácil escalabilidad e implementación en microcontroladores. Se utiliza la licencia gratuita de este software, el cual se elige por su versatilidad, su facilidad de uso.
 
-Cada módulo cuenta con su propia interfaz lanzada cada vez que es conectado al gabinete. Las interfaces se mantienen sencillas y con la información útil y necesaria; se utiliza una tipografía que facilite la lectura, junto con colores armónicos.
+Cada módulo cuenta con su propia interfaz lanzada cada vez que es conectado al gabinete. Las interfaces se mantienen sencillas y con la información útil y necesaria; se utiliza una tipografía que facilite la lectura, junto con colores armónicos. En la \cref{fig:software:interfaces-de-usuario}, se presentan las 3 interfaces de cada módulo.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.23\textwidth} % Aumenté un poco el ancho para que sea más robusto
+        \centering
+        \includegraphics[width=\columnwidth]{software/interfaz-inversor.png}
+        \caption{Interfaz inversor de onda cuadrada.}
+        \label{fig:software:interfaz-inversor}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.75\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{software/interfaz-dimmer.png}
+        \caption{Interfaz recortador de onda.}
+        \label{fig:software:interfaz-dimmer}
+    \end{subfigure}
+  
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        \includegraphics[width=0.8\columnwidth]{software/interfaz-buck.png}
+        \caption{Interfaz convertidor reductor.}
+        \label{fig:software:interfaz-buck}
+    \end{subfigure}
+    \caption{Interfaces de usuario de cada módulo.}
+    \label{fig:software:interfaces-de-usuario}
+\end{figure}
 
 \subsection{Programación de módulos}
 Cada programación de módulo se compone de dos partes importantes: el control del módulo y su interfaz. A continuación se detallan los programas utilizados para los tres módulos desarrollados en el proyecto.
