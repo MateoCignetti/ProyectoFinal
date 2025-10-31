@@ -1,18 +1,18 @@
-\section{Circuito de gabinete central}
+\section{Consideraciones generales}
 
-Se comenzó el desarrollo del proyecto con el diseño del gabinete central. El mismo debe ser capaz de alimentar los módulos, con \SI{12}{\volt} de corriente continua y \SI{48}{\volt} de corriente alterna. Además, debe contar con el microcontrolador encargado de manejar el sistema completo y los conectores para la comunicación con los módulos y con los periféricos necesarios para la interfaz de usuario.
+Se comienza el desarrollo del proyecto con el diseño del gabinete central. El mismo debe ser capaz de alimentar los módulos, con \SI{12}{\volt} de corriente continua y \SI{48}{\volt} de corriente alterna. Además, debe contar con el microcontrolador encargado de manejar el sistema completo y los conectores para la comunicación con los módulos y con los periféricos necesarios para la interfaz de usuario.
 
 \subsection{Alimentación}
 
-Para la alimentación, se compró una fuente conmutada de \SI{12}{\volt} de corriente continua, \SI{5}{\ampere} máximo de salida (\SI{60}{\watt}), con entrada \SI{220}{\volt} de corriente alterna. Además, se compró un transformador de corriente alterna de entrada \SI{220}{\volt} y salida \SI{48}{\volt}, \SI{1}{\ampere} máximo de salida (\SI{48}{\voltampere}). 
+Para la alimentación, se emplea una fuente conmutada de \SI{12}{\volt} de corriente continua, \SI{5}{\ampere} máximo de salida (\SI{60}{\watt}), con entrada \SI{220}{\volt} de corriente alterna. Además, se dispone de un transformador de corriente alterna de entrada \SI{220}{\volt} y salida \SI{48}{\volt}, \SI{1}{\ampere} máximo de salida (\SI{48}{\voltampere}). 
 
 \subsection{Control}
 
-Para el control del sistema en general se decidió utilizar el microcontrolador Espressif ESP32-S3, \parencite{esp32s3}, por su versatilidad compacta y robustez funcional: dispone de una gran cantidad de entradas/salidas configurables y dos conversores analógico-digitales de 12 bits.
+Para el control del sistema en general se utiliza el microcontrolador Espressif ESP32-S3, \parencite{esp32s3}, por su versatilidad compacta y robustez funcional: dispone de una gran cantidad de entradas/salidas configurables y dos conversores analógico-digitales de 12 bits.
 
 \subsection{Interfaz de usuario}
 
-Para la interfaz de usuario, se decidió utilizar un \textit{display} LCD TFT de \SI{2.8}{''} con comunicación SPI y resolución de 240x320 píxeles; y un \textit{encoder} rotativo para navegación.
+Para la interfaz de usuario, se utiliza un \textit{display} LCD TFT de \SI{2.8}{''} con comunicación SPI y resolución de $240\times320$ píxeles; y un \textit{encoder} rotativo para navegación.
 
 \subsection{Circuito}
 

@@ -1,0 +1,341 @@
+\section{Resultados del proyecto}
+
+El objetivo de esta sección es corroborar y justificar experimentalmente los cálculos y simulaciones realizadas en secciones anteriores, en los circuitos reales. Además, se muestran fotos del gabinete central y los gabinetes de los módulos desarrollados.
+
+\subsection{Gabinete central}
+
+En la \cref{fig:resultados:gabinete_central}, se observan fotos del gabinete central. En la \cref{fig:resultados:gabinete_central_inside}, se observa, de izquierda a derecha, la PCB de control general, el transformador \SI{220}{\volt} - \SI{48}{\volt} y la fuente de alimentación de \SI{12}{\volt} de corriente continua.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} % Aumenté un poco el ancho para que sea más robusto
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/gabinete-central/front.png}
+        \caption{Vista frontal.}
+        \label{fig:resultados:gabinete_central_front}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/gabinete-central/back.png}
+        \caption{Vista trasera.}
+        \label{fig:resultados:gabinete_central_back}
+    \end{subfigure}
+  
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        \includegraphics[width=0.6\columnwidth]{resultados/gabinete-central/inside.png}
+        \caption{Interior del gabinete.}
+        \label{fig:resultados:gabinete_central_inside}
+    \end{subfigure}
+    \caption{Gabinete central del sistema.}
+    \label{fig:resultados:gabinete_central}
+\end{figure}
+
+
+\subsection{Módulo convertidor reductor o Buck}
+
+Se presentan los resultados experimentales obtenidos con el convertidor reductor o Buck, en las pruebas realizadas en el laboratorio, por medio del uso de osciloscopio y multímetro. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resultados/buck/gabinete_modulo.png}
+    \caption{Gabinete del módulo convertidor reductor.}
+    \label{fig:resultados:buck:gabinete}
+\end{figure}
+
+Los datos experimentales obtenidos son para una tensión de salida de \SI{6}{\volt} con una corriente de \SI{1.2}{\ampere}, siendo una potencia teórica de \SI{7.2}{\watt}, la carga elegida para las pruebas es la resistiva, y no se presenta ningún control, se trabaja en lazo abierto.
+
+%\paragraph{Tensión de salida pre-filtrado}
+En la \cref{fig:resultados:buck:tension-gate-mosfet}, la tensión $V_{g}$ (IRF9540) es una señal cuadrada de \SI{12}{\volt} de amplitud, con un \textit{duty cycle} del \SI{44}{\percent}. Esta señal es opuesta a la forma del PWM enviado por el microcontrolador, ya que en el momento que el \textit{driver} BJT conduce, la tensión en la \textit{gate} es \SI{0}{\volt} haciendo que el transistor de conmutación de potencia conduzca, debido a una $V_{gs}$ negativa. Ocurre lo contrario cuando el driver no conduce, ya que la tensión $V_g$ es de \SI{12}{\volt}, quedando una $V_{gs} \approx \SI{0}{\volt}$.
+
+La \cref{fig:resultados:buck:tension-drenador} muestra una señal que sigue la forma de la señal PWM entregada por el microcontrolador. Esta señal representa la tensión de salida previa a la etapa de filtrado.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{resultados/buck/tension-gate-mosfet.png}
+    \caption{Tensión de \textit{gate} del transistor IRF9540.}
+    \label{fig:resultados:buck:tension-gate-mosfet}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{resultados/buck/tension-drenador.png}
+    \caption{Tensión conmutada en drenador del transistor IRF9540.}
+    \label{fig:resultados:buck:tension-drenador}
+\end{figure}
+
+En la \cref{fig:resultados:buck:tensiones-salida-buck} se muestran las tensiones de salida del convertidor frente a dos cargas distintas, una inductiva (\cref{fig:resultados:buck:tension-salida-inductiva}) y otra resistiva (\cref{fig:resultados:buck:tension-salida-resistiva}). La tensión resistiva respeta la tensión de salida calculada para un valor de \textit{duty cycle} de \SI{55}{\percent}, mientras que la inductiva no lo hace, ya que su naturaleza (reactiva/activa) impide que se cumpla la relación ideal, $V_{out} = V_{in} \, D$ (D, \textit{duty cycle}), válida únicamente para cargas pasivas en modo de conducción continua, \parencite{DANIEL-HART-SPANISH}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/buck/tension-carga-resistiva.png}
+        \caption{Carga resistiva.}
+        \label{fig:resultados:buck:tension-salida-resistiva}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth} 
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/buck/tension-carga-inductiva.png}
+        \caption{Carga inductiva.}
+        \label{fig:resultados:buck:tension-salida-inductiva}
+    \end{subfigure}
+    \caption{Tensión de salida del convertidor con \textit{duty cycle} de \SI{55}{\percent}, según tipo de carga.}
+    \label{fig:resultados:buck:tensiones-salida-buck}
+\end{figure}
+
+Cuando la carga es resistiva, la tensión de salida responde linealmente al PWM entregado por el microcontrolador, como se observa en la \cref{fig:resultados:buck:pwm-carga-resistiva}. Mientras que, con la carga inductiva, el PWM entregado por el microcontrolador no afecta de manera lineal a la tensión de salida, \cref{fig:resultados:buck:pwm-carga-inductiva}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} 
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/buck/pwm-tension-carga-resistiva.png}
+        \caption{Carga resistiva.}
+        \label{fig:resultados:buck:pwm-carga-resistiva}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/buck/pwm-tension-carga-inductiva.png}
+        \caption{Carga inductiva.}
+        \label{fig:resultados:buck:pwm-carga-inductiva}
+    \end{subfigure}
+    \caption{Tensión de salida del convertidor en función del PWM entregado por el microcontrolador, según tipo de carga.}
+    \label{fig:resultados:buck:pwm-vs-tension-salida}
+\end{figure}
+
+Como prueba adicional, se realizan las mediciones de corriente tanto en el inductor como en el capacitor, \cref{fig:resultados:buck:formas-onda-corriente}. En la \cref{fig:resultados:buck:corriente-inductor} se muestra la corriente a través del inductor, siendo la corriente teórica de  \SI{1.2}{\ampere}. Como el amplificador operacional utilizado entrega una tensión, se realiza una conversión para obtener la corriente, \cref{eq:resultados:buck:corriente-inductor}. Esta ecuación se despeja de las \cref{eq:buck:salida_amplificador_unidireccional,eq:buck:resistencia_shunt_unidireccional} del \cref{sec:buck:medicion_corriente}.
+\begin{equation} \label{eq:resultados:buck:corriente-inductor}
+    I_{inductor} = \frac{V_{out}}{R_{shunt}\,ganancia}
+\end{equation}
+
+El cálculo con el valor experimental mostrado en la \cref{fig:resultados:buck:corriente-inductor} resulta en una corriente de \SI{1.27}{\ampere}.
+El valor de tensión necesario es el valor medio de tensión de la señal mostrada en la figura, obtenido a través de la \cref{eq:resultados:buck:tension-media-para-corriente}.
+\begin{equation} \label{eq:resultados:buck:tension-media-para-corriente}
+    V_{out(med)} = \frac{V_{max}+V_{min}}{2} = \frac{V_{max}+(V_{max}-V_{p-p})}{2}
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} 
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/buck/corriente-inductor-6v.png}
+        \caption{Inductor.}
+        \label{fig:resultados:buck:corriente-inductor}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/buck/corriente-capacitor-6v.png}
+        \caption{Capacitor.}
+        \label{fig:resultados:buck:corriente-capacitor}
+    \end{subfigure}
+    \caption{Formas de onda de corriente.}
+    \label{fig:resultados:buck:formas-onda-corriente}
+\end{figure}
+Para calcular el valor real del capacitor se aplica la \cref{eq:resultados:buck:corriente-capacitor}.
+\begin{equation} \label{eq:resultados:buck:corriente-capacitor}
+    I_{capacitor} = \frac{V_{out}-V_{ref}}{R_{shunt} \, ganancia}
+\end{equation}
+%% Podrías poner directamente las dos una al lado de la otra como subfigures, que sean directamente las formas de onda de corriente de inductor y capacitor. No hace falta explicar más nada de estas dos.
+%\textcolor{red}{ver que poner y como relacionar esta imagen}
+
+%No me gusta la forma de redacción de esto. Directamente podés decir que se puede visualizar los distintos modos de conducción observando 'x' forma de onda y variando 'y'. 
+
+% Explicar también qué es lo que se ve que confirma los distintos modos de conducción.
+%Otra prueba, para demostración, es observar los distintos modos de conducción, para ello se configura una frecuencia de conmutación de \SI{3}{\kilo\hertz} con el objetivo de desmejorar el filtrado al \textit{ripple} y del convertidor en general. Esto para poder observar el fenómeno con mayor facilidad.
+Otra prueba posible es demostrar los distintos modos de conducción del convertidor. Se puede visualizar la forma de onda de la corriente en el inductor mientras se varía el \textit{duty cycle}, manteniendo la carga constante.
+
+Se observa que, con un \textit{duty cycle} de un \SI{55}{\percent}, el convertidor opera en modo de conducción continua (CCM), donde la corriente a través del inductor no llega a cero. A medida que se disminuye el \textit{duty cycle} (a \SI{8}{\percent} aproximadamente), la corriente media en la carga disminuye, provocando que la corriente mínima en el inductor descienda hasta que se vuelve nula durante una porción del ciclo, entrando así en modo de conducción discontinua (DCM).
+
+Para facilitar la observación de este fenómeno, el ensayo se configura con una frecuencia de conmutación de \SI{3}{\kilo\hertz}, con el fin de incrementar la magnitud del \textit{ripple} de corriente en relación a la corriente media, permitiendo que la transición entre los distintos modos de conducción sea más evidente.
+
+En la \cref{fig:resultados:buck:modo-conduccion-ccm-dcm}, se muestran los resultados, donde la \cref{fig:resultados:buck:corriente-inductor-ccm} representa al convertidor funcionando en modo de conducción continua, ya que la corriente en el inductor no alcanza la corriente nula. En cambio, en la \cref{fig:resultados:buck:corriente-inductor-dcm}, se aprecia que para valores bajos de \textit{duty cycle} (entre \SIrange{5}{10}{\percent}), la corriente en el inductor es nula.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} 
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/buck/corriente-inductor-ccm.png}
+        \caption{Modo de conducción continua (CCM).}
+        \label{fig:resultados:buck:corriente-inductor-ccm}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/buck/corriente-inductor-dcm.png}
+        \caption{Modo de conducción discontinua (DCM).}
+        \label{fig:resultados:buck:corriente-inductor-dcm}
+    \end{subfigure}
+    \caption{Corriente en el inductor en distintos modos de conducción.}
+    \label{fig:resultados:buck:modo-conduccion-ccm-dcm}
+\end{figure}
+
+%----------------------------------%
+
+\subsection{Módulo recortador de onda}
+Se presentan los resultados experimentales obtenidos con el recortador de onda, en las pruebas realizadas en el laboratorio, por medio del uso de osciloscopio y multímetro. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resultados/dimmer/gabinete_modulo.png}
+    \caption{Gabinete del módulo recortador de onda.}
+    \label{fig:resultados:dimmer:gabinete}
+\end{figure}
+
+En la \cref{fig:resultados:dimmer:linea_carga}, se puede observar el correcto funcionamiento del circuito de control analógico, recortando la onda de entrada y aplicando a la carga una tensión de valor RMS menor y, por lo tanto, menor potencia.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.49\columnwidth]{resultados/dimmer/g_vAC_y_vLOAD_50.png}
+    \caption{Recortador de onda en control analógico. Señal verde: tensión de entrada. Señal amarilla: tensión aplicada en la carga }
+    \label{fig:resultados:dimmer:linea_carga}
+\end{figure}
+
+En la \cref{fig:resultados:dimmer:analogico}, se observa la carga y descarga del capacitor de la rama R-C según distintos valores de resistencia en serie. Cuando la resistencia es máxima, la tensión en el capacitor es sinusoidal, ya que en ningún momento alcanza la tensión de disparo del DIAC (\SI{32}{\volt}). Una vez que la resistencia disminuye, la forma de onda cambia a una de carga y descarga, reduciendo el tiempo de disparo a medida que se reduce la resistencia. El potenciómetro se encuentra configurado para reducir la resistencia a medida que se gira en sentido horario. De esta forma, el usuario aumenta la potencia entregada a la carga girando el potenciómetro en sentido horario, y reduce la potencia entregada a la carga girando el potenciómetro en sentido antihorario.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} % Aumenté un poco el ancho para que sea más robusto
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/dimmer/g_vCAP_y_vLOAD_0.png}
+        \caption{Potenciómetro al mínimo (resistencia máxima).}
+        \label{fig:resultados:dimmer:analogico0}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/dimmer/g_vCAP_y_vLOAD_50.png}
+        \caption{Potenciómetro en la mitad (resistencia media).}
+        \label{fig:resultados:dimmer:analogico50}
+    \end{subfigure}
+  
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        \includegraphics[width=0.49\columnwidth]{resultados/dimmer/g_vCAP_y_vLOAD_100.png}
+        \caption{Potenciómetro al máximo (resistencia mínima).}
+        \label{fig:resultados:dimmer:analogico100}
+    \end{subfigure}
+    \caption{Recortador de onda funcionando en modo analógico. Señal verde: tensión de capacitor de rama R-C. Señal amarilla: tensión aplicada en la carga.}
+    \label{fig:resultados:dimmer:analogico}
+\end{figure}
+
+En la \cref{fig:resultados:dimmer:vgate}, se observa el comportamiento de la tensión en la \textit{gate} del TRIAC. Se observa que, cuando se dispara, se produce un pico de tensión, un pulso de aproximadamente \SI{2}{\micro\second}, que corresponde con tiempo de encendido del TRIAC controlado por la \textit{gate}, \parencite{BT137}. Luego, la tensión no disminuye a cero, sino a una menor a \SI{1}{\volt}, necesaria para suministrar a la \textit{gate} la corriente de mantenimiento del TRIAC (\SIrange{2.5}{20}{\milli\ampere}), \parencite{BT137}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/dimmer/g_vGATE_y_vLOAD_50_analog.png}
+        \caption{Carga resistiva.}
+        \label{fig:resultados:dimmer:vgate_vload}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth} 
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/dimmer/g_vGATE_pulse.png}
+        \caption{Vista ampliada del pulso en la tensión de \textit{gate} del TRIAC.}
+        \label{fig:resultados:dimmer:vgate_pulse}
+    \end{subfigure}
+    \caption{Recortador de onda funcionando en modo analógico. Señal verde: tensión de gate del TRIAC. Señal amarilla: tensión aplicada en la carga.}
+    \label{fig:resultados:dimmer:vgate}
+\end{figure}
+
+En la \cref{fig:resultados:dimmer:digital}, se observa el funcionamiento del circuito en modo digital. Se visualiza el recorte de la onda según cuándo se aplica tensión en la \textit{gate} del TRIAC, que ocurre cuando el microcontrolador envía un pulso al optoacoplador con salida TRIAC, que aplica la tensión de línea a la \textit{gate}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} % Aumenté un poco el ancho para que sea más robusto
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/dimmer/y_VLOAD_g_VGATE_0.png}
+        \caption{Tiempo de espera máximo (\SI{9.2}{\milli\second}).}
+        \label{fig:resultados:dimmer:digital0}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/dimmer/y_VLOAD_g_VGATE_50.png}
+        \caption{Tiempo de espera medio (\SI{5}{\milli\second}).}
+        \label{fig:resultados:dimmer:digital50}
+    \end{subfigure}
+  
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        \includegraphics[width=0.49\columnwidth]{resultados/dimmer/y_VLOAD_g_VGATE_100.png}
+        \caption{Tiempo de espera mínimo (\SI{1}{\milli\second}).}
+        \label{fig:resultados:dimmer:digital100}
+    \end{subfigure}
+    \caption{Recortador de onda funcionando en modo digital. Señal verde: tensión de \textit{gate} en TRIAC. Señal amarilla: tensión aplicada en la carga.}
+    \label{fig:resultados:dimmer:digital}
+\end{figure}
+
+%----------------------------------%
+
+\subsection{Módulo inversor de onda cuadrada}
+Se presentan los resultados experimentales obtenidos con el inversor de onda cuadrada, en las pruebas realizadas en el laboratorio, por medio del uso de osciloscopio y multímetro. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resultados/inversor/gabinete_modulo.png}
+    \caption{Gabinete del módulo inversor de onda cuadrada.}
+    \label{fig:resultados:inversor:gabinete}
+\end{figure}
+
+%\paragraph{Señal de control}
+En la \cref{fig:resultados:inversor:inversor_555_50hz} se muestra la señal cuadrada de salida del IC 555, con una frecuencia de \SI{50}{\hertz} y un \textit{duty cycle} del \SI{50}{\percent}, que es utilizada para controlar el medio puente del inversor. Al variar el potenciómetro, varía la frecuencia de la señal, sin modificar significativamente el \textit{duty cycle}; por ejemplo al cambiar a \SI{60}{\hertz}, como se observa en la \cref{fig:resultados:inversor:inversor_555_60hz}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} 
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/inversor/inversor_555_50hz.png}
+        \caption{50 Hz.}
+        \label{fig:resultados:inversor:inversor_555_50hz}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/inversor/inversor_555_60hz.png}
+        \caption{60 Hz.}
+        \label{fig:resultados:inversor:inversor_555_60hz}
+    \end{subfigure}
+    \caption{Señal de control.}
+    \label{fig:resultados:inversor:senal-control-inversor}
+\end{figure}
+
+%\paragraph{Señal alternada en MOSFETs}
+En la \cref{fig:resultados:inversor:inversor_mosfet_ds} se muestra la tensión drenador-surtidor de los MOSFETs que conforman el medio puente, donde se observa que una es la inversa de la otra. Esto significa que, cuando uno de los MOSFETs está conduciendo, el otro está apagado y viceversa, generando así la señal alterna.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resultados/inversor/inversor_Q1_Q2.png}
+    \caption{Tensión drenador-surtidor de los MOSFETs. En amarillo, Q1 y en verde, Q2.}
+    \label{fig:resultados:inversor:inversor_mosfet_ds}
+\end{figure}
+
+%\paragraph{Tensión alterna}
+En la \cref{fig:resultados:inversor:carga-alterna} se muestra la tensión aplicada a la carga, en dos frecuencias distintas, \SI{50}{\hertz} (\cref{fig:resultados:inversor:inversor_carga_50hz}) y \SI{60}{\hertz} (\cref{fig:resultados:inversor:inversor_carga_60hz}). La tensión alterna RMS de salida es de aproximadamente \SI{3.6}{\volt} en ambos casos, con una carga resistiva de \SI{100}{\ohm}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth} 
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/inversor/inversor_carga_50hz.png}
+        \caption{50 Hz.}
+        \label{fig:resultados:inversor:inversor_carga_50hz}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{resultados/inversor/inversor_carga_60hz.png}
+        \caption{60 Hz.}
+        \label{fig:resultados:inversor:inversor_carga_60hz}
+    \end{subfigure}
+    \caption{Tensión alterna.}
+    \label{fig:resultados:inversor:carga-alterna}
+\end{figure}
+
+\subsection{Manuales de usuario}
+En el Anexo, \cref{sec:apendice}, se presentan los manuales de usuario desarrollados para cada módulo. Cada uno contiene una explicación sintetizada de qué es, cómo funciona, su composición, las señales a visualizar y preguntas para pensar.
