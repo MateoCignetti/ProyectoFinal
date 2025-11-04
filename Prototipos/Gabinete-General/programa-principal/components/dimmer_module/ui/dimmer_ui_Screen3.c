@@ -29,6 +29,7 @@ void dimmer_ui_event_ButtonReturn3(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED) {
         _ui_screen_change(&dimmer_ui_Screen1, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &dimmer_ui_Screen1_screen_init);
         _ui_screen_delete(&dimmer_ui_Screen3);
+        dimmer_return(e);
     }
 }
 

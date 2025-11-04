@@ -122,11 +122,13 @@ static void create_groups_for_ui(void){
     // Add interactive objects to groups[SCREEN_2] group
     lv_group_add_obj(groups[SCREEN_2], dimmer_ui_ButtonReturn1);
     lv_obj_add_event_cb(dimmer_ui_ButtonReturn1, dimmer_ui_event_ButtonReturn1, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(dimmer_ui_ButtonReturn1, dimmer_return, LV_EVENT_CLICKED, NULL);
 
     // Add interactive objects to groups[SCREEN_3] group
     lv_group_add_obj(groups[SCREEN_3], dimmer_ui_ButtonReturn3);
     lv_group_add_obj(groups[SCREEN_3], dimmer_ui_SliderCC);
     lv_obj_add_event_cb(dimmer_ui_ButtonReturn3, dimmer_ui_event_ButtonReturn3, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(dimmer_ui_ButtonReturn3, dimmer_return, LV_EVENT_CLICKED, NULL);
     //lv_obj_add_event_cb(dimmer_ui_SliderCC, dimmer_ui_event_SliderCC, LV_EVENT_VALUE_CHANGED, NULL);
 
 

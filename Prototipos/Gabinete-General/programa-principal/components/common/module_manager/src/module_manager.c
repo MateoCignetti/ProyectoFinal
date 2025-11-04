@@ -213,7 +213,7 @@ static void vTaskAdcSampling(void *pvParameters) {
         int module_ident_mv = 0;
         int module_ident_avg = 0;
         bool sampling_completed = true;
-        int last_sample_checked = 0;
+        //int last_sample_checked = 0;
         
         // Take 50 samples and average them
         for (int sample = 0; sample < IDENT_SAMPLES_N; sample++) {
@@ -229,18 +229,18 @@ static void vTaskAdcSampling(void *pvParameters) {
             if ((sample + 1) % 10 == 0) {
                 if (get_connection_state() != CONNECTION_CONNECTED) {
                     sampling_completed = false;
-                    last_sample_checked = sample + 1;
+                    //last_sample_checked = sample + 1;
                     break;
                 }
             }
         }
         
         // All logging done AFTER the loop completes
-        if (!sampling_completed) {
+        //if (!sampling_completed) {
             //ESP_LOGW(MANAGER_TAG, "Module disconnected during sampling after sample %d - aborting", last_sample_checked);
-        } else {
+        //} else {
             //ESP_LOGI(MANAGER_TAG, "Completed %d samples", IDENT_SAMPLES_N);
-        }
+        //}
         
         // Always send a result to unblock the waiting task
         if (sampling_completed) {

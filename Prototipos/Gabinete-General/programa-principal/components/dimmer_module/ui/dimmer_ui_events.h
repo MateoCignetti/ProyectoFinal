@@ -12,6 +12,7 @@ extern "C" {
 
 void dimmer_control_analog(lv_event_t * e);
 void dimmer_control_digital(lv_event_t * e);
+void dimmer_return(lv_event_t * e);
 void update_time_label(lv_event_t * e);
 
 #ifdef __cplusplus
