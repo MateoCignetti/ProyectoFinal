@@ -1753,6 +1753,44 @@
                       }
                     ],
                     "InheritedType": 10
+                  },
+                  {
+                    "nid": 1000364,
+                    "strtype": "_event/action",
+                    "strval": "CALL FUNCTION",
+                    "childs": [
+                      {
+                        "nid": 1000365,
+                        "strtype": "CALL FUNCTION/Name",
+                        "strval": "CALL FUNCTION",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": 1000366,
+                        "strtype": "CALL FUNCTION/Call",
+                        "strval": "<{Function_name}>( event_struct )",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": 1000367,
+                        "strtype": "CALL FUNCTION/CallC",
+                        "strval": "<{Function_name}>( e );",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": 1000368,
+                        "strtype": "CALL FUNCTION/Function_name",
+                        "strval": "dimmer_return",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": 1000369,
+                        "strtype": "CALL FUNCTION/Dont_export_function",
+                        "strval": "False",
+                        "InheritedType": 2
+                      }
+                    ],
+                    "InheritedType": 10
                   }
                 ],
                 "InheritedType": 4
@@ -2880,7 +2918,7 @@
                 "disabled": false,
                 "nid": 1000324,
                 "strtype": "_event/EventHandler",
-                "strval": "CLICKED",
+                "strval": "PRESSED",
                 "childs": [
                   {
                     "nid": 1000325,
@@ -2977,6 +3015,44 @@
                         "strtype": "DELETE SCREEN/Screen",
                         "strval": "GUID95261039-8501S2484266",
                         "InheritedType": 9
+                      }
+                    ],
+                    "InheritedType": 10
+                  },
+                  {
+                    "nid": 1000382,
+                    "strtype": "_event/action",
+                    "strval": "CALL FUNCTION",
+                    "childs": [
+                      {
+                        "nid": 1000383,
+                        "strtype": "CALL FUNCTION/Name",
+                        "strval": "CALL FUNCTION",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": 1000384,
+                        "strtype": "CALL FUNCTION/Call",
+                        "strval": "<{Function_name}>( event_struct )",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": 1000385,
+                        "strtype": "CALL FUNCTION/CallC",
+                        "strval": "<{Function_name}>( e );",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": 1000386,
+                        "strtype": "CALL FUNCTION/Function_name",
+                        "strval": "dimmer_return",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": 1000387,
+                        "strtype": "CALL FUNCTION/Dont_export_function",
+                        "strval": "False",
+                        "InheritedType": 2
                       }
                     ],
                     "InheritedType": 10
@@ -3318,7 +3394,7 @@
     "naming": "Name",
     "naming_force_lowercase": false,
     "naming_add_subcomponent": false,
-    "nidcnt": 1000364,
+    "nidcnt": 1000388,
     "BitDepth": 16,
     "Name": "UI-dimmer"
   }

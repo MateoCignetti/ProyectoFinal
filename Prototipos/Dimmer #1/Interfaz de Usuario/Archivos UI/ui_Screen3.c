@@ -26,9 +26,10 @@ void ui_event_ButtonReturn3(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
 
-    if(event_code == LV_EVENT_CLICKED) {
+    if(event_code == LV_EVENT_PRESSED) {
         _ui_screen_change(&ui_Screen1, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Screen1_screen_init);
         _ui_screen_delete(&ui_Screen3);
+        dimmer_return(e);
     }
 }
 

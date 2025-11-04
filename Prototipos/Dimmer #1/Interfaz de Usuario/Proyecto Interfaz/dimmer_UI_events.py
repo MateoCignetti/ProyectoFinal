@@ -26,3 +26,7 @@ def dimmer_digital_positive_cycle(event_struct):
 def dimmer_digital_negative_cycle(event_struct):
     return
 
+
+def dimmer_return(event_struct):
+    return
+
