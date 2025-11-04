@@ -13,9 +13,16 @@ typedef enum {
     CONTROL_MODE_FAULT
 } control_mode_t;
 
+typedef enum{
+    BUCK_LOAD_RESISTIVE,
+    BUCK_LOAD_INDUCTIVE
+} buck_load_type_t;
+
 // Public API functions
 control_mode_t get_control_mode(void);
 void set_control_mode(control_mode_t new_mode);
+
+void set_buck_load(buck_load_type_t new_load_type);
 
 extern const module_t buck_module; // Declaration of the buck module
 
