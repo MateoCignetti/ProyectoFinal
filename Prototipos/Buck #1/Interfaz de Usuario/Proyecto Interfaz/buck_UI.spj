@@ -1318,7 +1318,7 @@
               {
                 "nid": 1020,
                 "strtype": "IMAGE/Asset",
-                "strval": "assets/images/g91.png",
+                "strval": "assets/images/g91_escalado.png",
                 "InheritedType": 5
               },
               {
@@ -1338,7 +1338,7 @@
               {
                 "nid": 1050,
                 "strtype": "IMAGE/Scale",
-                "integer": 127,
+                "integer": 250,
                 "InheritedType": 6
               },
               {

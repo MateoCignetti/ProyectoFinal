@@ -99,7 +99,7 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_style_text_font(ui_Label14, &ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Image1 = lv_image_create(ui_Screen1);
-    lv_image_set_src(ui_Image1, &ui_img_images_dimmer_escalado_png);
+    lv_image_set_src(ui_Image1, &ui_img_images_dimmer_scaled_png);
     lv_obj_set_width(ui_Image1, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Image1, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_Image1, 0);
@@ -107,7 +107,7 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_align(ui_Image1, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_Image1, LV_OBJ_FLAG_CLICKABLE);     /// Flags
     lv_obj_remove_flag(ui_Image1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_image_set_scale(ui_Image1, 125);
+    lv_image_set_scale(ui_Image1, 250);
 
     lv_obj_add_event_cb(ui_ButtonAnalogical, ui_event_ButtonAnalogical, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonDigital, ui_event_ButtonDigital, LV_EVENT_ALL, NULL);

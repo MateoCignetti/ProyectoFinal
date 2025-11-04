@@ -215,7 +215,7 @@
                 "strtype": "OBJECT/Position",
                 "intarray": [
                   0,
-                  70
+                  73
                 ],
                 "InheritedType": 7
               },
@@ -291,7 +291,7 @@
               {
                 "nid": 1020,
                 "strtype": "IMAGE/Asset",
-                "strval": "assets/images/inversor_escalado.png",
+                "strval": "assets/images/inversor_scaled.png",
                 "InheritedType": 5
               },
               {
@@ -311,7 +311,7 @@
               {
                 "nid": 1050,
                 "strtype": "IMAGE/Scale",
-                "integer": 127,
+                "integer": 250,
                 "InheritedType": 6
               },
               {
@@ -792,7 +792,7 @@
     "theme_dark": false,
     "theme_color1": 5,
     "theme_color2": 0,
-    "uiExportFolderPath": "",
+    "uiExportFolderPath": "Z:\\home\\alejo\\Documents\\Repositories\\ProyectoFinal\\Prototipos\\Inversor 555\\Interfaz de Usuario\\Archivos UI",
     "projectExportFolderPath": "",
     "custom_variable_prefix": "uic",
     "backup_cnt": 19,
@@ -801,15 +801,15 @@
     "lvgl_version": "9.1.0",
     "callfuncsexport": "C_FILE",
     "imageexport": "SOURCE",
-    "lvgl_include_path": null,
-    "drive_stdio": null,
-    "drive_stdio_path": null,
-    "drive_posix": null,
-    "drive_posix_path": null,
-    "drive_win32": null,
-    "drive_win32_path": null,
-    "drive_fatfs": null,
-    "drive_fatfs_path": null,
+    "lvgl_include_path": "",
+    "drive_stdio": "-",
+    "drive_stdio_path": "",
+    "drive_posix": "-",
+    "drive_posix_path": "",
+    "drive_win32": "-",
+    "drive_win32_path": "",
+    "drive_fatfs": "-",
+    "drive_fatfs_path": "",
     "naming": "Name",
     "naming_force_lowercase": false,
     "naming_add_subcomponent": false,

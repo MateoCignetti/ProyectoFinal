@@ -39,7 +39,7 @@ extern "C" {
 extern lv_obj_t * ui____initial_actions0;
 
 // IMAGES AND IMAGE SETS
-LV_IMG_DECLARE(ui_img_images_dimmer_escalado_png);    // assets/images/dimmer_escalado.png
+LV_IMG_DECLARE(ui_img_images_dimmer_scaled_png);    // assets/images/dimmer_scaled.png
 LV_IMG_DECLARE(ui_img_images_arrow_png);    // assets/images/arrow.png
 LV_IMG_DECLARE(ui_img_images_completo_sf_png);    // assets/images/completo_sf.png
 

@@ -32,15 +32,15 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_style_text_font(ui_Label1, &ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Image3 = lv_image_create(ui_Screen1);
-    lv_image_set_src(ui_Image3, &ui_img_images_inversor_escalado_png);
+    lv_image_set_src(ui_Image3, &ui_img_images_inversor_scaled_png);
     lv_obj_set_width(ui_Image3, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Image3, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_Image3, 0);
-    lv_obj_set_y(ui_Image3, 70);
+    lv_obj_set_y(ui_Image3, 73);
     lv_obj_set_align(ui_Image3, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_Image3, LV_OBJ_FLAG_CLICKABLE);     /// Flags
     lv_obj_remove_flag(ui_Image3, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_image_set_scale(ui_Image3, 127);
+    lv_image_set_scale(ui_Image3, 250);
 
     ui_Panel1 = lv_obj_create(ui_Screen1);
     lv_obj_set_height(ui_Panel1, 60);
