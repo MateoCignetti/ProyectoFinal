@@ -78,7 +78,7 @@ void vTaskUpdateConnectionState(void *pvParameters){
                 break;
             
             case CONNECTION_CONNECTED:
-                ESP_LOGI(CONNECTION_TAG, "Notifying Module Manager about connection");
+                //ESP_LOGI(CONNECTION_TAG, "Notifying Module Manager about connection");
                 if(get_module_manager_state() == MANAGER_READY){
                     set_module_manager_state(MANAGER_STARTING); // Trigger identification
                 } else{
