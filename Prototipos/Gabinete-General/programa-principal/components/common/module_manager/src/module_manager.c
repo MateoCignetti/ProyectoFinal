@@ -237,20 +237,20 @@ static void vTaskAdcSampling(void *pvParameters) {
         
         // All logging done AFTER the loop completes
         if (!sampling_completed) {
-            ESP_LOGW(MANAGER_TAG, "Module disconnected during sampling after sample %d - aborting", last_sample_checked);
+            //ESP_LOGW(MANAGER_TAG, "Module disconnected during sampling after sample %d - aborting", last_sample_checked);
         } else {
-            ESP_LOGI(MANAGER_TAG, "Completed %d samples", IDENT_SAMPLES_N);
+            //ESP_LOGI(MANAGER_TAG, "Completed %d samples", IDENT_SAMPLES_N);
         }
         
         // Always send a result to unblock the waiting task
         if (sampling_completed) {
             module_ident_avg /= IDENT_SAMPLES_N;
             module_ident_mv = module_ident_avg;
-            ESP_LOGI(MANAGER_TAG, "Average module identification voltage: %d mV", module_ident_mv);
+            //ESP_LOGI(MANAGER_TAG, "Average module identification voltage: %d mV", module_ident_mv);
         } else {
             // Send sentinel value (-1) to indicate sampling was aborted
             module_ident_mv = -1;
-            ESP_LOGW(MANAGER_TAG, "Sending failure indicator to manager task");
+            //ESP_LOGW(MANAGER_TAG, "Sending failure indicator to manager task");
         }
         
         // Send result to queue (overwrite if full)

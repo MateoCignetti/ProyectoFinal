@@ -117,7 +117,7 @@ void vTaskCheckHotplugs(void *pvParameters){
             if(hp_stable_count >= hp_stable_count_threshold){
                 hp_stable_count = hp_stable_count_threshold; // Cap the count to avoid overflow
                 if(current_state != CONNECTION_CONNECTED){
-                    ESP_LOGI(CONNECTION_TAG, "Stable connection detected: Module Connected");
+                    //ESP_LOGI(CONNECTION_TAG, "Stable connection detected: Module Connected");
                     set_connection_state(CONNECTION_CONNECTED);
                 }
             }
@@ -125,7 +125,7 @@ void vTaskCheckHotplugs(void *pvParameters){
             hp_stable_count = 0;
             
             if(current_state != CONNECTION_DISCONNECTED){
-                ESP_LOGI(CONNECTION_TAG, "Module Disconnected");
+                //ESP_LOGI(CONNECTION_TAG, "Module Disconnected");
                 set_connection_state(CONNECTION_DISCONNECTED);
             }
         }
