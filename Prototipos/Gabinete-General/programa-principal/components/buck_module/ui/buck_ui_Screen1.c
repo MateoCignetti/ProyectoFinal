@@ -102,7 +102,7 @@ void buck_ui_Screen1_screen_init(void)
     lv_obj_set_style_text_font(buck_ui_Label3, &buck_ui_font_fontRobotoBold16Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     buck_ui_Image1 = lv_image_create(buck_ui_Screen1);
-    lv_image_set_src(buck_ui_Image1, &buck_ui_img_images_buck_png);
+    lv_image_set_src(buck_ui_Image1, &buck_ui_img_images_g91_escalado_png);
     lv_obj_set_width(buck_ui_Image1, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(buck_ui_Image1, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(buck_ui_Image1, 0);
@@ -110,7 +110,7 @@ void buck_ui_Screen1_screen_init(void)
     lv_obj_set_align(buck_ui_Image1, LV_ALIGN_CENTER);
     lv_obj_add_flag(buck_ui_Image1, LV_OBJ_FLAG_CLICKABLE);     /// Flags
     lv_obj_remove_flag(buck_ui_Image1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_image_set_scale(buck_ui_Image1, 140);
+    lv_image_set_scale(buck_ui_Image1, 250);
 
     buck_ui_Label4 = lv_label_create(buck_ui_Screen1);
     lv_obj_set_width(buck_ui_Label4, LV_SIZE_CONTENT);   /// 1

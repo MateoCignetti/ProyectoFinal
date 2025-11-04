@@ -32,11 +32,11 @@ void inverter_ui_Screen1_screen_init(void)
     lv_obj_set_style_text_font(inverter_ui_Label1, &inverter_ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     inverter_ui_Image3 = lv_image_create(inverter_ui_Screen1);
-    lv_image_set_src(inverter_ui_Image3, &inverter_ui_img_images_inversor_png);
+    lv_image_set_src(inverter_ui_Image3, &inverter_ui_img_images_inversor_scaled_png);
     lv_obj_set_width(inverter_ui_Image3, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(inverter_ui_Image3, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(inverter_ui_Image3, 0);
-    lv_obj_set_y(inverter_ui_Image3, 70);
+    lv_obj_set_y(inverter_ui_Image3, 73);
     lv_obj_set_align(inverter_ui_Image3, LV_ALIGN_CENTER);
     lv_obj_add_flag(inverter_ui_Image3, LV_OBJ_FLAG_CLICKABLE);     /// Flags
     lv_obj_remove_flag(inverter_ui_Image3, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
