@@ -70,7 +70,7 @@ void vTaskUpdateConnectionState(void *pvParameters){
                 // Notify module manager about disconnection with task notifications, not the callback, with the value
                 
                 if(get_module_manager_state() == MANAGER_RUNNING){
-                    ESP_LOGI(CONNECTION_TAG, "Notifying Module Manager about disconnection");
+                    //ESP_LOGI(CONNECTION_TAG, "Notifying Module Manager about disconnection");
                     set_module_manager_state(MANAGER_STOPPING);
                 } else{
                     ESP_LOGW(CONNECTION_TAG, "Module disconnected but Module Manager not in RUNNING state");
