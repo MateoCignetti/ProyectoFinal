@@ -69,6 +69,7 @@ static void start_dimmer_module();
 static void stop_dimmer_module();
 static void vTaskUpdateDimmerControlState(void *pvParameters);
 static void vTaskDimmerUIUpdate(void *pvParameters);
+static int map(long x, long in_min, long in_max, long out_min, long out_max);
 
 // Public declarations
 const module_t dimmer_module = {
@@ -294,20 +295,17 @@ static void vTaskDimmerUIUpdate(void *arg){
             if (_lock_try_acquire(&lvgl_api_lock) == 0) {
                 slider_CC_value_new = lv_slider_get_value(dimmer_ui_SliderCC);
                 _lock_release(&lvgl_api_lock);
-                
-                // Convert slider value (0-50) to microseconds (100-9900 µs)
-                // Multiply by 200 to get 0-10000 range, then clamp to valid range
-                slider_CC_value_new *= 200; // Convert to microseconds
 
+                slider_CC_value_new = map(slider_CC_value_new, 0, 50, ALARM_COUNT_MIN_US, ALARM_COUNT_MAX_US);
+                
                 if(slider_CC_value_new < ALARM_COUNT_MIN_US){
                     slider_CC_value_new = ALARM_COUNT_MIN_US;
                 } else if(slider_CC_value_new > ALARM_COUNT_MAX_US){
                     slider_CC_value_new = ALARM_COUNT_MAX_US;
                 }
 
-
-                ESP_LOGI(MODULE_TAG, "Slider local values: CC=%d µs", slider_CC_value_local);
-                ESP_LOGI(MODULE_TAG, "Slider new values: CC=%d µs", slider_CC_value_new);
+                //ESP_LOGI(MODULE_TAG, "Slider local values: CC=%d µs", slider_CC_value_local);
+                //ESP_LOGI(MODULE_TAG, "Slider new values: CC=%d µs", slider_CC_value_new);
 
                 // Prepare label text buffers OUTSIDE the lock
                 char buffer_cc[10];
@@ -383,10 +381,6 @@ static bool dimmer_pulse_callback(gptimer_handle_t timer, const gptimer_alarm_ev
 
 // Handler for the zero crossing detector interrupt.
 static void IRAM_ATTR zcd_isr_handler(){
-    // The ZCD interrupt can be configured to trigger on:
-    // - ANYEDGE (full wave mode - both positive and negative)
-    // - NEGEDGE (positive semicycle mode - only when going from high to low, entering positive half)
-    // - POSEDGE (negative semicycle mode - only when going from low to high, entering negative half)
     // 
     // Since gpio_set_intr_type() properly configures which edge triggers this ISR,
     // we can safely start the timer here - it will only be called on the correct edge.
@@ -500,5 +494,8 @@ static void delete_timers(){
     }
 }
 
-
+static int map(long x, long in_min, long in_max, long out_min, long out_max) {
+    long result = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    return (int) result;
+}
 //

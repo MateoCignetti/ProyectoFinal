@@ -57,6 +57,9 @@ void start_dimmer_interface(){
     dimmer_ui_init();
     create_groups_for_ui();
     stop_idle_screen();  // Now safe to destroy idle screen
+    lv_slider_set_value(dimmer_ui_SliderCC, 50, LV_ANIM_OFF); // Set default to mid-point (50%)
+    lv_label_set_text(dimmer_ui_LabelCC, "9.2 ms");
+
     _lock_release(&lvgl_api_lock);
 }
 
