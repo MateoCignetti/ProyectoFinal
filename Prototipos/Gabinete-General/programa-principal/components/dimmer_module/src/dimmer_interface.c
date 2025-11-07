@@ -57,6 +57,9 @@ void start_dimmer_interface(){
     dimmer_ui_init();
     create_groups_for_ui();
     stop_idle_screen();  // Now safe to destroy idle screen
+    lv_slider_set_value(dimmer_ui_SliderCC, 50, LV_ANIM_OFF); // Set default to mid-point (50%)
+    lv_label_set_text(dimmer_ui_LabelCC, "9.2 ms");
+
     _lock_release(&lvgl_api_lock);
 }
 
@@ -118,40 +121,16 @@ static void create_groups_for_ui(void){
 
     // Add interactive objects to groups[SCREEN_2] group
     lv_group_add_obj(groups[SCREEN_2], dimmer_ui_ButtonReturn1);
-
     lv_obj_add_event_cb(dimmer_ui_ButtonReturn1, dimmer_ui_event_ButtonReturn1, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(dimmer_ui_ButtonReturn1, dimmer_return, LV_EVENT_CLICKED, NULL);
 
     // Add interactive objects to groups[SCREEN_3] group
-    lv_group_add_obj(groups[SCREEN_3], dimmer_ui_ButtonReturn2);
-    lv_group_add_obj(groups[SCREEN_3], dimmer_ui_Button1);
-    lv_group_add_obj(groups[SCREEN_3], dimmer_ui_Button2);
-    lv_group_add_obj(groups[SCREEN_3], dimmer_ui_Button3);
-
-    lv_obj_add_event_cb(dimmer_ui_ButtonReturn2, dimmer_ui_event_ButtonReturn2, LV_EVENT_CLICKED, NULL);
-    lv_obj_add_event_cb(dimmer_ui_Button1, dimmer_ui_event_Button1, LV_EVENT_CLICKED, NULL);
-    lv_obj_add_event_cb(dimmer_ui_Button2, dimmer_ui_event_Button2, LV_EVENT_CLICKED, NULL);
-    lv_obj_add_event_cb(dimmer_ui_Button3, dimmer_ui_event_Button3, LV_EVENT_CLICKED, NULL);
-
-    // Add interactive objects to groups[SCREEN_4] group
-    lv_group_add_obj(groups[SCREEN_4], dimmer_ui_ButtonReturn3);
-    lv_group_add_obj(groups[SCREEN_4], dimmer_ui_SliderCC);
-
-    //lv_obj_add_event_cb(dimmer_ui_SliderCC, dimmer_ui_event_SliderCC, LV_EVENT_VALUE_CHANGED, NULL);
+    lv_group_add_obj(groups[SCREEN_3], dimmer_ui_ButtonReturn3);
+    lv_group_add_obj(groups[SCREEN_3], dimmer_ui_SliderCC);
     lv_obj_add_event_cb(dimmer_ui_ButtonReturn3, dimmer_ui_event_ButtonReturn3, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(dimmer_ui_ButtonReturn3, dimmer_return, LV_EVENT_CLICKED, NULL);
+    //lv_obj_add_event_cb(dimmer_ui_SliderCC, dimmer_ui_event_SliderCC, LV_EVENT_VALUE_CHANGED, NULL);
 
-    // Add interactive objects to groups[SCREEN_5] group
-    lv_group_add_obj(groups[SCREEN_5], dimmer_ui_ButtonReturn4);
-    lv_group_add_obj(groups[SCREEN_5], dimmer_ui_SliderSP);
-
-    //lv_obj_add_event_cb(dimmer_ui_SliderSP, dimmer_ui_event_SliderSP, LV_EVENT_VALUE_CHANGE, NULL);
-    lv_obj_add_event_cb(dimmer_ui_ButtonReturn4, dimmer_ui_event_ButtonReturn4, LV_EVENT_CLICKED, NULL);
-
-    // Add interactive objects to groups[SCREEN_6] group
-    lv_group_add_obj(groups[SCREEN_6], dimmer_ui_ButtonReturn5);
-    lv_group_add_obj(groups[SCREEN_6], dimmer_ui_SliderSN);
-
-    //lv_obj_add_event_cb(dimmer_ui_SliderSN, dimmer_ui_event_SliderSN, LV_EVENT_VALUE_CHANGE, NULL);
-    lv_obj_add_event_cb(dimmer_ui_ButtonReturn5, dimmer_ui_event_ButtonReturn5, LV_EVENT_PRESSED, NULL);
 
     current_group = groups[SCREEN_1];  // Grupo inicial
     current_screen = SCREEN_1;
@@ -212,12 +191,6 @@ static void vTaskUpdateGroups(void *pvParameters){
             new_screen = SCREEN_2;
         } else if (active_screen == dimmer_ui_Screen3) {
             new_screen = SCREEN_3;
-        } else if (active_screen == dimmer_ui_Screen4) {
-            new_screen = SCREEN_4;
-        } else if (active_screen == dimmer_ui_Screen5) {
-            new_screen = SCREEN_5;
-        } else if (active_screen == dimmer_ui_Screen6) {
-            new_screen = SCREEN_6;
         }
         // Actualizar grupo solo si cambió la pantalla
         if (new_screen != current_screen) {

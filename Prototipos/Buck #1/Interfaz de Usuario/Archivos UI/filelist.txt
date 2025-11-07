@@ -8,7 +8,7 @@ ui.c
 ui_comp_hook.c
 ui_helpers.c
 ui_events.c
-ui_img_images_buck_png.c
+ui_img_images_g91_escalado_png.c
 ui_img_images_arrow_png.c
 fonts/ui_font_fontRobotoBold16Tildes.c
 fonts/ui_font_fontRobotoBold18Tildes.c

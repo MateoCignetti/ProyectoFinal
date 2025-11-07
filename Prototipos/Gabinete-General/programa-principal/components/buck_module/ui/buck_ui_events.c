@@ -21,10 +21,10 @@ void controlPID(lv_event_t * e)
 
 void resistive_load(lv_event_t * e)
 {
-	gpio_set_level(PIN_NUM_RELAY, false);
+	set_buck_load(BUCK_LOAD_RESISTIVE);
 }
 
 void inductive_load(lv_event_t * e)
 {
-	gpio_set_level(PIN_NUM_RELAY, true);
+	set_buck_load(BUCK_LOAD_INDUCTIVE);
 }

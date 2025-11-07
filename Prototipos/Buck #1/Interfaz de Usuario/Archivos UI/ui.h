@@ -42,7 +42,7 @@ extern "C" {
 extern lv_obj_t * ui____initial_actions0;
 
 // IMAGES AND IMAGE SETS
-LV_IMG_DECLARE(ui_img_images_buck_png);    // assets/images/buck.png
+LV_IMG_DECLARE(ui_img_images_g91_escalado_png);    // assets/images/g91_escalado.png
 LV_IMG_DECLARE(ui_img_images_arrow_png);    // assets/images/arrow.png
 
 // FONTS

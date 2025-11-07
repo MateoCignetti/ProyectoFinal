@@ -30,9 +30,6 @@ extern "C" {
 #include "dimmer_ui_Screen1.h"
 #include "dimmer_ui_Screen2.h"
 #include "dimmer_ui_Screen3.h"
-#include "dimmer_ui_Screen4.h"
-#include "dimmer_ui_Screen5.h"
-#include "dimmer_ui_Screen6.h"
 
 ///////////////////// VARIABLES ////////////////////
 
@@ -42,19 +39,16 @@ extern "C" {
 extern lv_obj_t * dimmer_ui____initial_actions0;
 
 // IMAGES AND IMAGE SETS
-LV_IMG_DECLARE(dimmer_ui_img_images_dimmer_png);    // assets/images/dimmer.png
+LV_IMG_DECLARE(dimmer_ui_img_images_dimmer_scaled_png);    // assets/images/dimmer_scaled.png
 LV_IMG_DECLARE(dimmer_ui_img_images_arrow_png);    // assets/images/arrow.png
+LV_IMG_DECLARE(dimmer_ui_img_images_completo_sf_png);    // assets/images/completo_sf.png
 
 // FONTS
-LV_FONT_DECLARE(dimmer_ui_font_fontRobotoBold14Tildes);
 LV_FONT_DECLARE(dimmer_ui_font_fontRobotoBold16Tildes);
 LV_FONT_DECLARE(dimmer_ui_font_fontRobotoBold18Tildes);
 LV_FONT_DECLARE(dimmer_ui_font_fontRobotoMedium14Tildes);
 LV_FONT_DECLARE(dimmer_ui_font_fontRobotoMedium16Tildes);
-LV_FONT_DECLARE(dimmer_ui_font_fontRobotoMedium18Tildes);
 LV_FONT_DECLARE(dimmer_ui_font_fontRobotoRegular14Tildes);
-LV_FONT_DECLARE(dimmer_ui_font_fontRobotoRegular16Tildes);
-LV_FONT_DECLARE(dimmer_ui_font_fontRobotoRegular18Tildes);
 
 // UI INIT
 void dimmer_ui_init(void);

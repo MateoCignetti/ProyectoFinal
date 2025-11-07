@@ -47,13 +47,14 @@ extern _lock_t lvgl_api_lock;
 #define LEDC_MODULE_BUCK_CHANNEL LEDC_CHANNEL_0
 #define LEDC_MODULE_BUCK_TIMER LEDC_TIMER_0
 #define LEDC_MODULE_BUCK_PIN PIN_S7
+#define BUCK_DEFAULT_LOAD BUCK_LOAD_RESISTIVE
 
 // Module identification voltage range (in millivolts)
 #define BUCK_IDENT_MV_MIN 1900
 #define BUCK_IDENT_MV_MAX 2000
 
 /*----------- CONTROL DEFINES ------------*/
-#define PWM_FREQUENCY 19000 // Frequency of PWM signal.
+#define DEFAULT_PWM_FREQUENCY 19000 // Frequency of PWM signal.
 #define TIMER_PERIOD_US 1000 // Timer period in microseconds, (Ts). 1ms = 1kHz control loop
 #define PRINT_LOGS 0 // Set to 1 to print logs, 0 to disable.
 #define MAX_PWM_DUTY_CYCLE 4095.0 // Maximum duty cycle for the PWM signal (12-bit resolution)4095.
@@ -68,7 +69,9 @@ static adc_cali_handle_t adc1_cali_handle = NULL;  // ADC calibration handle.
 static gptimer_handle_t gptimer_handle = NULL; // Timer handle used for PID control and to make the sampling time consistent.
 static TaskHandle_t xTaskControlUpdate_handle = NULL; // PID task handle. Used to notify the PID task when the timer is triggered.
 static TaskHandle_t xTaskUIUpdate_handle = NULL; // UI update task handle for cached values
+static TaskHandle_t xTaskLoadUpdate_handle = NULL; // Load type update task handle
 static SemaphoreHandle_t xControlModeMutex = NULL; // Mutex to protect access to the control mode variable.
+static SemaphoreHandle_t xLoadTypeMutex = NULL; // Mutex to protect access to the load type variable.
 
 // Shutdown flags for graceful task termination
 static volatile bool shutdown_pid_task = false;
@@ -77,7 +80,7 @@ static volatile bool shutdown_ui_task = false;
 // Cached UI values to avoid blocking PID loop
 static volatile uint32_t cached_fixed_pwm_value = 0;
 static volatile uint32_t cached_setpoint_v = 0;
-static volatile uint32_t cached_pwm_frequency = PWM_FREQUENCY;
+static volatile uint32_t cached_pwm_frequency = DEFAULT_PWM_FREQUENCY;
 
 /*--------------------------------*/
 
@@ -85,6 +88,7 @@ const char* MODULE_TAG = "Buck Control"; // Module name for logging
 
 
 volatile control_mode_t control_mode = CONTROL_MODE_IDLE;
+static buck_load_type_t buck_load_type = BUCK_DEFAULT_LOAD;
 /*-------------------------------------------*/
 
 //PID variables
@@ -132,6 +136,7 @@ long map(long x, long in_min, long in_max, long out_min, long out_max);
 /*------- TASKS FUNCTION PROTOTYPES -------*/
 static void vTaskUIUpdate(void *arg); // UI update task function to cache values
 static void vTaskControlUpdate(void *arg); // PID task function
+static void vTaskLoadUpdate(void *arg); // Load type update task function
 /*----------------------------------------*/
 
 /* ----------- MODULE DECLARATION ----------- */
@@ -200,6 +205,33 @@ control_mode_t get_control_mode() {
     return state;
 }
 
+void set_buck_load(buck_load_type_t new_load_type){
+    if (xLoadTypeMutex != NULL && xSemaphoreTake(xLoadTypeMutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+        buck_load_type = new_load_type;
+        xSemaphoreGive(xLoadTypeMutex);
+        
+    } else {
+        ESP_LOGE(MODULE_TAG, "Failed to get load type mutex");
+    }
+
+    // Notify the load task about the state change
+    if(xTaskLoadUpdate_handle != NULL) {
+        xTaskNotifyGive(xTaskLoadUpdate_handle);
+    }
+}
+
+buck_load_type_t get_buck_load(void){
+    buck_load_type_t current_load_type = BUCK_DEFAULT_LOAD;
+    if (xLoadTypeMutex != NULL && xSemaphoreTake(xLoadTypeMutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+        current_load_type = buck_load_type;
+        xSemaphoreGive(xLoadTypeMutex);
+    } else {
+        ESP_LOGE(MODULE_TAG, "Failed to get load type mutex");
+    }
+
+    return current_load_type;
+}
+
 
 /**
  * @brief This function initializes and configures the ADC for reading the feedback voltage.
@@ -262,7 +294,7 @@ static void ledc_config(void){
         .speed_mode = LEDC_LOW_SPEED_MODE,
         .timer_num = LEDC_MODULE_BUCK_TIMER,
         .duty_resolution = LEDC_TIMER_12_BIT,
-        .freq_hz = PWM_FREQUENCY,
+        .freq_hz = DEFAULT_PWM_FREQUENCY,
         .clk_cfg = LEDC_AUTO_CLK,
     };
     ESP_ERROR_CHECK(ledc_timer_config(&ledc_timer_cfg));
@@ -409,9 +441,49 @@ static void create_module_tasks(void){
         ESP_LOGE(MODULE_TAG, "Failed to create PID Task");
         return;
     }
+
+    xLoadTypeMutex = xSemaphoreCreateMutex();
+
+    if (xLoadTypeMutex == NULL) {
+        ESP_LOGE(MODULE_TAG, "Failed to create load type mutex");
+        return;
+    }
+
+    BaseType_t xReturnedLoad = xTaskCreatePinnedToCore(vTaskLoadUpdate,
+                                        "vTaskLoadUpdate", 
+                                        configMINIMAL_STACK_SIZE * 4, 
+                                        NULL, 
+                                        tskIDLE_PRIORITY + 2,  // Priority 2 (same as LVGL)
+                                        &xTaskLoadUpdate_handle,
+                                        1
+                                        ); // Create a task to run the PID control
+
+    if (xReturnedLoad != pdPASS) {
+        ESP_LOGE(MODULE_TAG, "Failed to create Load Type Task");
+        return;
+    }
 }
 
 static void delete_module_tasks(void){
+
+    if (xTaskLoadUpdate_handle != NULL) {
+
+        vTaskDelete(xTaskLoadUpdate_handle);
+        eTaskState task_state = eTaskGetState(xTaskLoadUpdate_handle);
+        while (task_state != eDeleted) { 
+            vTaskDelay(pdMS_TO_TICKS(10));
+            // Update task state
+            task_state = eTaskGetState(xTaskLoadUpdate_handle);
+        }
+        ESP_LOGI(MODULE_TAG, "LoadUpdate task exited gracefully");
+
+        xTaskLoadUpdate_handle = NULL;
+    }
+
+    if (xLoadTypeMutex != NULL) {
+        vSemaphoreDelete(xLoadTypeMutex);
+        xLoadTypeMutex = NULL;
+    }
 
     if (xTaskControlUpdate_handle != NULL) {
         // Signal task to shutdown
@@ -489,7 +561,7 @@ static void vTaskUIUpdate(void *arg){
  */
 static void vTaskControlUpdate(void *arg){
     uint32_t fixed_pwm_value = 0;
-    uint32_t pwm_frequency = PWM_FREQUENCY;
+    uint32_t pwm_frequency = DEFAULT_PWM_FREQUENCY;
     uint32_t setpoint_v = 0;
 
     float feedback_v = 0.0;   // Feedback voltage in volts. It is
@@ -586,6 +658,26 @@ static void vTaskControlUpdate(void *arg){
                 ESP_LOGI("STATUS", "Set-point = %d", "Feedback = %.2f V, Error = %.2f, PWM = %d", setpoint_v, feedback_v, error, pwm_output_bits);
             }
         #endif
+    }
+}
+
+void vTaskLoadUpdate(void *arg){
+    buck_load_type_t current_load_type = BUCK_DEFAULT_LOAD;
+
+    while(true){
+
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY); // Wait for notification indefinitely
+
+        // Try to acquire load type mutex
+        current_load_type = get_buck_load();
+
+        // Set relay based on load type
+        if (current_load_type == BUCK_LOAD_INDUCTIVE) {
+            gpio_set_level(PIN_RELAY, 1); // Set relay to HIGH for inductive load
+        } else {
+            gpio_set_level(PIN_RELAY, 0); // Set relay to LOW for resistive load
+        }
+        set_control_mode(CONTROL_MODE_IDLE); // Set control mode to IDLE when switching
     }
 }
 

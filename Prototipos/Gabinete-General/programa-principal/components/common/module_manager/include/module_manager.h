@@ -18,20 +18,19 @@
 #include "freertos/task.h"
 #include "freertos/semphr.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /**
  * @brief Module manager states
  */
 typedef enum {
     MANAGER_INIT,       ///< Initializing
     MANAGER_READY,      ///< Ready, no module detected
+    MANAGER_STARTING,   ///< Starting module identification
     MANAGER_RUNNING,    ///< Module is running
     MANAGER_STOPPING,   ///< Stopping current module
     MANAGER_FAULT,      ///< Error state
 } module_manager_state_t;
+
+void set_module_manager_state(module_manager_state_t new_state);
 
 /**
  * @brief Module definition structure
@@ -67,9 +66,5 @@ module_manager_state_t get_module_manager_state(void);
  * @return Pointer to current module_t, or NULL if no module active
  */
 const module_t* get_current_module(void);
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif // MODULE_MANAGER_H

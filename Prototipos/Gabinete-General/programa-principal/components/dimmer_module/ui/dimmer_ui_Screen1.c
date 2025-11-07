@@ -99,7 +99,7 @@ void dimmer_ui_Screen1_screen_init(void)
     lv_obj_set_style_text_font(dimmer_ui_Label14, &dimmer_ui_font_fontRobotoBold18Tildes, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     dimmer_ui_Image1 = lv_image_create(dimmer_ui_Screen1);
-    lv_image_set_src(dimmer_ui_Image1, &dimmer_ui_img_images_dimmer_png);
+    lv_image_set_src(dimmer_ui_Image1, &dimmer_ui_img_images_dimmer_scaled_png);
     lv_obj_set_width(dimmer_ui_Image1, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(dimmer_ui_Image1, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(dimmer_ui_Image1, 0);

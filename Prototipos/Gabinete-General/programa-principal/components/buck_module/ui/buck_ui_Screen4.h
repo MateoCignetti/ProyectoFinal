@@ -25,6 +25,9 @@ extern void buck_ui_event_ButtonReturnDefault2(lv_event_t * e);
 extern lv_obj_t * buck_ui_ButtonReturnDefault2;
 extern lv_obj_t * buck_ui_Label10;
 // CUSTOM VARIABLES
+extern lv_obj_t * buck_ui_buck_ButtonReturn3;
+extern lv_obj_t * buck_ui_buck_SliderDuty;
+extern lv_obj_t * buck_ui_buck_ButtonReturnDefault2;
 
 #ifdef __cplusplus
 } /*extern "C"*/

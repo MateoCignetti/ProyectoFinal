@@ -26,6 +26,9 @@ extern lv_obj_t * buck_ui_Label3;
 extern lv_obj_t * buck_ui_Image1;
 extern lv_obj_t * buck_ui_Label4;
 // CUSTOM VARIABLES
+extern lv_obj_t * buck_ui_buck_freqScreen;
+extern lv_obj_t * buck_ui_buck_controlScreen;
+extern lv_obj_t * buck_ui_buck_loadScreen;
 
 #ifdef __cplusplus
 } /*extern "C"*/

@@ -16,6 +16,7 @@ void ui_event_ButtonReturn1(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED) {
         _ui_screen_change(&ui_Screen1, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Screen1_screen_init);
         _ui_screen_delete(&ui_Screen2);
+        dimmer_return(e);
     }
 }
 

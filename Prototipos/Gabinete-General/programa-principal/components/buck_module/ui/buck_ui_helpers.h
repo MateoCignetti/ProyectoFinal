@@ -21,7 +21,6 @@ void _ui_bar_set_property(lv_obj_t * target, int id, int val);
 #define _UI_BASIC_PROPERTY_POSITION_Y 1
 #define _UI_BASIC_PROPERTY_WIDTH 2
 #define _UI_BASIC_PROPERTY_HEIGHT 3
-#define BUCK_UI_HELPERS_HEIGHT 3
 void _ui_basic_set_property(lv_obj_t * target, int id, int val);
 
 #define _UI_DROPDOWN_PROPERTY_SELECTED 0

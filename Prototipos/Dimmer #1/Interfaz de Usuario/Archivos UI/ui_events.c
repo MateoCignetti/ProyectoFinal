@@ -34,3 +34,8 @@ void dimmer_digital_negative_cycle(lv_event_t * e)
 {
 	// Your code here
 }
+
+void dimmer_return(lv_event_t * e)
+{
+	// Your code here
+}

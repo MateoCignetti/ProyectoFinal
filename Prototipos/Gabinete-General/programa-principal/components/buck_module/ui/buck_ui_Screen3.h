@@ -23,6 +23,9 @@ extern void buck_ui_event_ButtonPID(lv_event_t * e);
 extern lv_obj_t * buck_ui_ButtonPID;
 extern lv_obj_t * buck_ui_Label8;
 // CUSTOM VARIABLES
+extern lv_obj_t * buck_ui_buck_ButtonReturn2;
+extern lv_obj_t * buck_ui_buck_ButtonPWM;
+extern lv_obj_t * buck_ui_buck_ButtonPID;
 
 #ifdef __cplusplus
 } /*extern "C"*/

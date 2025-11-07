@@ -66,6 +66,8 @@ void start_buck_interface(){
     buck_ui_init();
     create_groups_for_ui();
     stop_idle_screen();  // Now safe to destroy idle screen
+    lv_slider_set_value(buck_ui_SliderFreq1, 19, LV_ANIM_OFF); // Set default frequency to 19kHz
+    lv_label_set_text(buck_ui_freqValue, "19 kHz");
     _lock_release(&lvgl_api_lock);
 }
 
